@@ -3,7 +3,7 @@
     <!-- 勾选框：点击切换完成状态 -->
     <input 
       type="checkbox" 
-      v-model="todo.isDone"
+      :checked="todo.isDone"
       @change="handleToggle"
       class="todo-checkbox"
     />
