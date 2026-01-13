@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import mockTodos from '../mocks/todos'
 
 // 定义并导出Pinia仓库，id必须唯一
 export const useTodoStore = defineStore('todo', {
@@ -27,12 +28,32 @@ export const useTodoStore = defineStore('todo', {
 
   // actions：处理业务逻辑，修改state，支持同步/异步
   actions: {
-    // ========== 1. 初始化：从localStorage加载本地存储的待办数据 ==========
+    // ========== 1. 初始化：Mock 与 localStorage 合并（受开关控制） ==========
     initTodoList() {
-      const localTodo = localStorage.getItem('todoList')
-      if (localTodo) {
-        this.todoList = JSON.parse(localTodo)
+      const useMock = (import.meta.env && import.meta.env.VITE_USE_MOCK === 'true')
+      const mockTodoList = useMock ? mockTodos : []
+      let merged = []
+      try {
+        const localTodo = localStorage.getItem('todoList')
+        const localArr = localTodo ? JSON.parse(localTodo) : null
+        if (Array.isArray(localArr)) {
+          // 使用 Map 按 id 去重合并：先写入 mock 数据，再用本地数据覆盖同 id 项
+          const byId = new Map()
+          // 将 mock 数据写入 Map
+          for (const t of mockTodoList) byId.set(t.id, t)
+          // 用本地数据覆盖，实现“本地优先”合并策略
+          for (const t of localArr) byId.set(t.id, t)
+          // 将合并后的值转回数组
+          merged = Array.from(byId.values())
+        } else {
+          merged = mockTodoList
+        }
+      } catch {
+        merged = mockTodoList
       }
+      console.log('todoList:', merged)
+      this.todoList = merged
+      this.saveToLocal()
     },
 
     // ========== 2. 新增待办 ==========
