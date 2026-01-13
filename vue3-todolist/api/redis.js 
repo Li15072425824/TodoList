@@ -1,0 +1,45 @@
+// Vercel项目根目录 -> api/redis.js 完整代码
+export default async function handler(req, res) {
+  // 1. 从Vercel的环境变量读取你的Upstash Redis凭证（你第二步已经配置好的）
+  const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
+  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  // 2. 配置跨域请求头【解决Vue本地请求的跨域报错，必加！】
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  try {
+    // 3. 测试：给Upstash Redis写入一条测试数据 (SET 键名 值)
+    await fetch(`${redisUrl}/set/vue_vite_test_key/我是Vue+Vite写入Redis的数据`, {
+      headers: { Authorization: `Bearer ${redisToken}` }
+    });
+
+    // 4. 测试：从Upstash Redis读取刚才写入的数据 (GET 键名)
+    const redisRes = await fetch(`${redisUrl}/get/vue_vite_test_key`, {
+      headers: { Authorization: `Bearer ${redisToken}` }
+    });
+    const redisData = await redisRes.json();
+
+    // 5. 成功：返回数据给Vue前端
+    res.status(200).json({
+      code: 200,
+      success: true,
+      msg: "✅ Vue+Vite 连接 Vercel+Upstash Redis 成功！",
+      redisData: redisData // 这里就是Redis返回的数据
+    });
+
+  } catch (error) {
+    // 6. 失败：返回错误信息，方便排查
+    res.status(500).json({
+      code: 500,
+      success: false,
+      msg: "❌ 连接失败，请检查配置",
+      error: error.message
+    });
+  }
+}
