@@ -2,8 +2,8 @@
 import { Redis } from '@upstash/redis';
 
 // 创建 Redis 客户端实例（仅在配置存在时初始化）
-const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+const redisUrl = 'https://flowing-flea-26381.upstash.io';
+const redisToken = 'AWcNAAIncDExOWQwYzc0NmE4MDg0NDdkYmFhM2VkNmVjOTA2Y2IyZXAxMjYzODE';
 
 const redis =
   redisUrl && redisToken
