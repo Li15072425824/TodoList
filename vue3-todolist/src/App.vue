@@ -10,7 +10,7 @@ const inputText = ref('')
 // 1. 加载所有Todo：页面初始化时调用
 const getTodos = async () => {
   try {
-    const res = await axios.get('/api/todos')
+    const res = await axios.get('/api/get-data')
     if (res.data.success) {
       todos.value = res.data.data
     }
