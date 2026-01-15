@@ -13,6 +13,8 @@ Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://
    4.2 添加 拦截器 来实现 Mock 数据
    4.3 确保 Mock 数据与操作完全不会侵入前端代码
 ## 五期使用node.js 进行后端开发 
+   先运行 npm run dev 启动项目，浏览器访问 http://localhost:5173/ 即可查看结果。
+   然后运行 node api/server.js 启动Node服务，浏览器访问 http://localhost:3000/api/get-data 即可查看Redis数据。
 ## 六期使用eslint 进行代码规范检查
 ## 七期使用jest 进行单元测试
 ## 八期使用element-plus 进行UI组件库的开发

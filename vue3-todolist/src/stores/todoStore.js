@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import mockTodos from '../mocks/todos'
+import { fetchRedisData } from '../api/redisData'
 
 // 定义并导出Pinia仓库，id必须唯一
 export const useTodoStore = defineStore('todo', {
@@ -28,32 +28,19 @@ export const useTodoStore = defineStore('todo', {
 
   // actions：处理业务逻辑，修改state，支持同步/异步
   actions: {
-    // ========== 1. 初始化：Mock 与 localStorage 合并（受开关控制） ==========
-    initTodoList() {
-      const useMock = (import.meta.env && import.meta.env.VITE_USE_MOCK === 'true')
-      const mockTodoList = useMock ? mockTodos : []
-      let merged = []
+    // ========== 1. 初始化：通过本地 Node 接口获取待办数据 ==========
+    async initTodoList() {
       try {
-        const localTodo = localStorage.getItem('todoList')
-        const localArr = localTodo ? JSON.parse(localTodo) : null
-        if (Array.isArray(localArr)) {
-          // 使用 Map 按 id 去重合并：先写入 mock 数据，再用本地数据覆盖同 id 项
-          const byId = new Map()
-          // 将 mock 数据写入 Map
-          for (const t of mockTodoList) byId.set(t.id, t)
-          // 用本地数据覆盖，实现“本地优先”合并策略
-          for (const t of localArr) byId.set(t.id, t)
-          // 将合并后的值转回数组
-          merged = Array.from(byId.values())
-        } else {
-          merged = mockTodoList
-        }
-      } catch {
-        merged = mockTodoList
+        const data = await fetchRedisData()
+        const serverList =
+          (data && Array.isArray(data.redis_get_result) && data.redis_get_result) ||
+          (data && data.data && Array.isArray(data.data.value) && data.data.value) ||
+          []
+        this.todoList = serverList
+      } catch (e) {
+        console.error('初始化待办失败:', e)
+        this.todoList = []
       }
-      console.log('todoList:', merged)
-      this.todoList = merged
-      this.saveToLocal()
     },
 
     // ========== 2. 新增待办 ==========
@@ -68,8 +55,6 @@ export const useTodoStore = defineStore('todo', {
       }
       // 添加到数组头部，最新的待办在最上面
       this.todoList.unshift(newTodo)
-      // 同步到本地存储
-      this.saveToLocal()
     },
 
     // ========== 3. 切换待办完成状态 ===========
@@ -77,14 +62,12 @@ export const useTodoStore = defineStore('todo', {
       const todo = this.todoList.find(item => item.id === id)
       if (todo) {
         todo.isDone = !todo.isDone
-        this.saveToLocal()
       }
     },
 
     // ========== 4. 删除单个待办 ==========
     deleteTodo(id) {
       this.todoList = this.todoList.filter(item => item.id !== id)
-      this.saveToLocal()
     },
 
     // ========== 5. 切换筛选类型 ==========
@@ -95,12 +78,6 @@ export const useTodoStore = defineStore('todo', {
     // ========== 6. 清空所有待办 ==========
     clearAllTodo() {
       this.todoList = []
-      this.saveToLocal()
-    },
-
-    // ========== 公共方法：把待办数据同步到localStorage ==========
-    saveToLocal() {
-      localStorage.setItem('todoList', JSON.stringify(this.todoList))
     }
   }
 })
