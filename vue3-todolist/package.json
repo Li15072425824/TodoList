@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",
+    "https-proxy-agent": "^7.0.6",
     "vite": "^7.2.4"
   }
 }
