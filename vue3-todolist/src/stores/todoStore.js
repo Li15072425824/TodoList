@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { fetchRedisData } from '../api/redisData'
+import { fetchRedisData, addRedisTodo, updateRedisTodo, deleteRedisTodo } from '../api/redisData'
 
 /**
  * 待办事项状态管理仓库
@@ -45,12 +45,9 @@ export const useTodoStore = defineStore('todo', {
      */
     async initTodoList() {
       try {
-        const data = await fetchRedisData()
+        const res = await fetchRedisData()
         // 兼容不同的后端返回结构
-        const serverList =
-          (data && Array.isArray(data.redis_get_result) && data.redis_get_result) ||
-          (data && data.data && Array.isArray(data.data.value) && data.data.value) ||
-          []
+        const serverList = res.data || []
         this.todoList = serverList
       } catch (e) {
         console.error('初始化待办失败:', e)
@@ -62,7 +59,7 @@ export const useTodoStore = defineStore('todo', {
      * 新增待办
      * @param {string} content - 待办内容
      */
-    addTodo(content) {    
+    async addTodo(content) {    
       if (!content.trim()) return
       
       const newTodo = {
@@ -70,17 +67,31 @@ export const useTodoStore = defineStore('todo', {
         content: content.trim(),
         isDone: false
       }
-      this.todoList.unshift(newTodo)
+
+      try {
+        await addRedisTodo(newTodo)
+        // 接口成功后更新本地状态
+        this.todoList.unshift(newTodo)
+      } catch (e) {
+        console.error('新增待办失败:', e)
+      }
     },
 
     /**
      * 切换待办完成状态
      * @param {number} id - 待办项ID
      */
-    toggleTodoDone(id) {
+    async toggleTodoDone(id) {
       const todo = this.todoList.find(item => item.id === id)
       if (todo) {
-        todo.isDone = !todo.isDone
+        const newStatus = !todo.isDone
+        try {
+          await updateRedisTodo(id, newStatus)
+          // 接口成功后更新本地状态
+          todo.isDone = newStatus
+        } catch (e) {
+          console.error('更新待办状态失败:', e)
+        }
       }
     },
 
@@ -88,8 +99,14 @@ export const useTodoStore = defineStore('todo', {
      * 删除单个待办
      * @param {number} id - 待办项ID
      */
-    deleteTodo(id) {
-      this.todoList = this.todoList.filter(item => item.id !== id)
+    async deleteTodo(id) {
+      try {
+        await deleteRedisTodo(id)
+        // 接口成功后更新本地状态
+        this.todoList = this.todoList.filter(item => item.id !== id)
+      } catch (e) {
+        console.error('删除待办失败:', e)
+      }
     },
 
     /**
@@ -102,6 +119,7 @@ export const useTodoStore = defineStore('todo', {
 
     /**
      * 清空所有待办
+     * 注：此处仅清空本地，若需持久化清空可扩展接口
      */
     clearAllTodo() {
       this.todoList = []

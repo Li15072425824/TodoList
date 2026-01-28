@@ -1,45 +1,23 @@
-// 引入 Upstash Redis SDK
-import { Redis } from '@upstash/redis';
+import { ensureRedis, mapHashToList, TODO_HASH_KEY, sendSuccess, sendError } from './redis.js';
 
-// 创建 Redis 客户端实例（仅在配置存在时初始化）
-const redisUrl = 'https://flowing-flea-26381.upstash.io';
-const redisToken = 'AWcNAAIncDExOWQwYzc0NmE4MDg0NDdkYmFhM2VkNmVjOTA2Y2IyZXAxMjYzODE';
-
-const redis =
-  redisUrl && redisToken
-    ? new Redis({
-        url: redisUrl,
-        token: redisToken,
-      })
-    : null;
+/**
+ * **功能**：获取待办列表，从 Redis Hash 读取所有数据。
+ * **参数**：
+ * - `req` {Object} 请求对象。
+ * - `res` {Object} 响应对象。
+ * **返回**：{Promise<void>} 无显式返回值。
+ */
 
 export default async function handler(req, res) {
   try {
-    if (!redis) {
-      res.status(500).json({
-        success: false,
-        message:
-          'Redis 未正确配置，请在部署环境中设置 UPSTASH_REDIS_REST_URL 和 UPSTASH_REDIS_REST_TOKEN',
-      });
-      return;
-    }
+    const redis = ensureRedis(res);
+    if (!redis) return;
 
-    // ✅ 核心：Redis 取数据操作 (GET 命令)
-    // 格式：redis.get(键名)
-    const value = await redis.get('test_node_key');
+    const hashData = await redis.hgetall(TODO_HASH_KEY);
+    const todoList = mapHashToList(hashData).sort((a, b) => b.id - a.id);
 
-    // 返回读取结果
-    res.status(200).json({
-      success: true,
-      message: '✅ 从 Redis 读取数据成功！',
-      redis_get_result: value, // 读取到的真实数据，无数据时为 null
-      data: { key: 'test_key', value: value }
-    });
+    sendSuccess(res, '✅ 获取待办列表成功', todoList);
   } catch (error) {
-    res.status(501).json({
-      success: false,
-      message: '❌ 数据读取失败',
-      error: error.message
-    });
+    sendError(res, '❌ 获取数据失败', error.message);
   }
 }
