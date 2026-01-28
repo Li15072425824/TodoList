@@ -1,19 +1,29 @@
 import { defineStore } from 'pinia'
 import { fetchRedisData } from '../api/redisData'
 
-// 定义并导出Pinia仓库，id必须唯一
+/**
+ * 待办事项状态管理仓库
+ * 负责维护全局待办列表、筛选状态以及相关的增删改查逻辑
+ */
 export const useTodoStore = defineStore('todo', {
-  // state：存储全局状态（所有待办数据、当前筛选状态）
+  /**
+   * 状态定义
+   */
   state: () => ({
-    // 待办列表，数组形式，每个元素是对象，包含id/内容/完成状态
+    // 待办列表：{ id: number, content: string, isDone: boolean }[]
     todoList: [],
-    // 筛选状态：all-全部，done-已完成，undone-未完成
+    // 筛选类型：'all' | 'done' | 'undone'
     filterType: 'all'
   }),
 
-  // getters：计算属性，基于state派生新数据，自动缓存
+  /**
+   * 计算属性
+   */
   getters: {
-    // 筛选后的待办列表，页面展示的就是这个数据
+    /**
+     * 根据当前筛选类型返回过滤后的列表
+     * @returns {Array} 过滤后的待办数组
+     */
     filterTodoList() {
       switch (this.filterType) {
         case 'done':
@@ -26,12 +36,17 @@ export const useTodoStore = defineStore('todo', {
     }
   },
 
-  // actions：处理业务逻辑，修改state，支持同步/异步
+  /**
+   * 业务逻辑
+   */
   actions: {
-    // ========== 1. 初始化：通过本地 Node 接口获取待办数据 ==========
+    /**
+     * 初始化：从远端接口获取待办数据
+     */
     async initTodoList() {
       try {
         const data = await fetchRedisData()
+        // 兼容不同的后端返回结构
         const serverList =
           (data && Array.isArray(data.redis_get_result) && data.redis_get_result) ||
           (data && data.data && Array.isArray(data.data.value) && data.data.value) ||
@@ -43,21 +58,25 @@ export const useTodoStore = defineStore('todo', {
       }
     },
 
-    // ========== 2. 新增待办 ==========
+    /**
+     * 新增待办
+     * @param {string} content - 待办内容
+     */
     addTodo(content) {    
-      // 判空：内容为空时不添加
       if (!content.trim()) return
-      // 构造待办对象
+      
       const newTodo = {
-        id: Date.now(), // 用时间戳做唯一ID，简单高效
+        id: Date.now(),
         content: content.trim(),
-        isDone: false // 默认未完成
+        isDone: false
       }
-      // 添加到数组头部，最新的待办在最上面
       this.todoList.unshift(newTodo)
     },
 
-    // ========== 3. 切换待办完成状态 ===========
+    /**
+     * 切换待办完成状态
+     * @param {number} id - 待办项ID
+     */
     toggleTodoDone(id) {
       const todo = this.todoList.find(item => item.id === id)
       if (todo) {
@@ -65,17 +84,25 @@ export const useTodoStore = defineStore('todo', {
       }
     },
 
-    // ========== 4. 删除单个待办 ==========
+    /**
+     * 删除单个待办
+     * @param {number} id - 待办项ID
+     */
     deleteTodo(id) {
       this.todoList = this.todoList.filter(item => item.id !== id)
     },
 
-    // ========== 5. 切换筛选类型 ==========
+    /**
+     * 切换筛选类型
+     * @param {string} type - 筛选类型 ('all' | 'done' | 'undone')
+     */
     changeFilter(type) {
       this.filterType = type
     },
 
-    // ========== 6. 清空所有待办 ==========
+    /**
+     * 清空所有待办
+     */
     clearAllTodo() {
       this.todoList = []
     }

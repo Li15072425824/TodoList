@@ -4,46 +4,37 @@
     <input 
       type="checkbox" 
       :checked="todo.isDone"
-      @change="handleToggle"
       class="todo-checkbox"
+      @change="$emit('toggle', todo.id)"
     />
     <!-- 待办内容：完成状态自动划线变灰 -->
     <span class="todo-content" :class="{ done: todo.isDone }">{{ todo.content }}</span>
     <!-- 删除按钮：鼠标悬浮显示，点击删除 -->
-    <button class="todo-delete" @click="handleDelete">×</button>
+    <button class="todo-delete" @click="$emit('delete', todo.id)">×</button>
   </li>
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-import { useTodoStore } from '../stores/todoStore'
+/**
+ * 待办项组件
+ * 负责展示单个待办任务，并将交互事件向上抛出
+ */
 
-// 接收父组件传递的待办数据
-const props = defineProps({
+defineProps({
+  /**
+   * 待办对象数据
+   * @type {Object}
+   * @property {number} id - 任务ID
+   * @property {string} content - 任务内容
+   * @property {boolean} isDone - 是否完成
+   */
   todo: {
     type: Object,
-    required: true,
-    // 约束待办对象的结构
-    shape: {
-      id: Number,
-      content: String,
-      isDone: Boolean
-    }
+    required: true
   }
 })
 
-// 获取Pinia仓库实例
-const todoStore = useTodoStore()
-
-// 切换完成状态
-const handleToggle = () => {
-  todoStore.toggleTodoDone(props.todo.id)
-}
-
-// 删除当前待办
-const handleDelete = () => {
-  todoStore.deleteTodo(props.todo.id)
-}
+defineEmits(['toggle', 'delete'])
 </script>
 
 <style scoped>
@@ -91,6 +82,9 @@ const handleDelete = () => {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 .todo-delete:hover {
   background-color: #fff2f0;
