@@ -44,7 +44,7 @@ export const useTodoStore = defineStore('todo', {
     },
 
     // ========== 2. 新增待办 ==========
-    addTodo(content) {  
+    addTodo(content) {    
       // 判空：内容为空时不添加
       if (!content.trim()) return
       // 构造待办对象
