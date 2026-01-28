@@ -17,4 +17,5 @@ Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://
    然后运行 node api/server.js 启动Node服务，浏览器访问 http://localhost:3000/api/get-data 即可查看Redis数据。
 ## 六期使用eslint 进行代码规范检查
 ## 七期使用jest 进行单元测试
+   使用 npm run test 进行测试
 ## 八期使用element-plus 进行UI组件库的开发
