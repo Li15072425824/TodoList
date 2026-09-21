@@ -20,7 +20,9 @@
     "node": "22.14.0"
   },
   "dependencies": {
+    "@alova/adapter-axios": "^2.0.17",
     "@upstash/redis": "^1.36.1",
+    "alova": "^3.5.0",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "pinia": "^3.0.4",

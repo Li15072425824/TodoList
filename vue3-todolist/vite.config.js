@@ -5,7 +5,7 @@ import { HttpsProxyAgent } from 'https-proxy-agent'
 // ================= 配置区域 =================
 
 // 模式切换开关：true = 连线上 Vercel 后端；false = 连本地 Node 后端
-const USE_ONLINE_BACKEND = process.env.VITE_USE_ONLINE_BACKEND === 'true'
+const USE_ONLINE_BACKEND = true
 
 // 配置参数
 const CONFIG = {
