@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>3D 魔方</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  body { background: radial-gradient(1200px 800px at 50% 30%, #2b3040 0%, #171a22 60%, #10121a 100%); }
+  canvas { display: block; touch-action: none; cursor: grab; }
+  canvas.dragging { cursor: grabbing; }
+  #ui { position: fixed; top: 20px; left: 20px; color: #e8eaf0; user-select: none; -webkit-user-select: none; }
+  h1 { margin: 0 0 12px; font-size: 20px; font-weight: 600; letter-spacing: 1px;
+       text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+  .btns { display: flex; gap: 10px; margin-bottom: 10px; }
+  button { padding: 9px 18px; border: none; border-radius: 22px; font-size: 14px; cursor: pointer;
+           color: #fff; background: rgba(255,255,255,.12); backdrop-filter: blur(8px); transition: .15s; }
+  button:hover:not(:disabled) { background: rgba(255,255,255,.25); transform: translateY(-1px); }
+  button:disabled { opacity: .35; cursor: not-allowed; }
+  #btnSolve { background: rgba(64,158,255,.35); }
+  #btnSolve:hover:not(:disabled) { background: rgba(64,158,255,.55); }
+  #status { font-size: 13px; color: rgba(232,234,240,.75); min-height: 18px; }
+</style>
+</head>
+<body>
+<div id="ui">
+  <h1>🧊 3D 魔方</h1>
+  <div class="btns">
+    <button id="btnScramble">🎲 打乱</button>
+    <button id="btnSolve">✨ 复原</button>
+    <button id="btnReset">↺ 重置</button>
+  </div>
+  <div id="status"></div>
+</div>
+
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+/* ---------------- 场景与灯光 ---------------- */
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.1, 100);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+const canvas = renderer.domElement;
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0x33364a, 0.9));
+const sun = new THREE.DirectionalLight(0xffffff, 1.4);
+sun.position.set(6, 10, 7);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 1, far: 30 });
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0x8899ff, 0.35);
+fill.position.set(-6, 4, -6);
+scene.add(fill);
+
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(40, 40),
+  new THREE.ShadowMaterial({ opacity: 0.28 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -3.2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+/* ---------------- 相机（球坐标轨道） ---------------- */
+let radius = 8.5, theta = Math.PI * 0.22, phi = Math.PI * 0.38;
+function updateCamera() {
+  camera.position.set(
+    radius * Math.sin(phi) * Math.sin(theta),
+    radius * Math.cos(phi),
+    radius * Math.sin(phi) * Math.cos(theta)
+  );
+  camera.lookAt(0, 0, 0);
+}
+updateCamera();
+
+/* ---------------- 魔方本体 ---------------- */
+const CUBE = new THREE.Group();
+scene.add(CUBE);
+
+const FACES = [
+  { dir: [ 1, 0, 0], color: 0xd0312d }, // 右 红
+  { dir: [-1, 0, 0], color: 0xff5800 }, // 左 橙
+  { dir: [ 0, 1, 0], color: 0xf5f5f5 }, // 上 白
+  { dir: [ 0,-1, 0], color: 0xffd500 }, // 下 黄
+  { dir: [ 0, 0, 1], color: 0x009b48 }, // 前 绿
+  { dir: [ 0, 0,-1], color: 0x0045ad }, // 后 蓝
+];
+
+const bodyGeo = new THREE.BoxGeometry(0.97, 0.97, 0.97);
+const bodyMat = new THREE.MeshStandardMaterial({ color: 0x15161a, roughness: 0.4, metalness: 0.2 });
+
+function roundedRect(w, h, r) {
+  const s = new THREE.Shape(), x = -w / 2, y = -h / 2;
+  s.moveTo(x + r, y);
+  s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
+  s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
+  s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
+  return s;
+}
+const stickerGeo = new THREE.ExtrudeGeometry(roundedRect(0.82, 0.82, 0.14), {
+  depth: 0.012, bevelEnabled: true, bevelThickness: 0.006,
+  bevelSize: 0.006, bevelSegments: 3, curveSegments: 8,
+});
+
+const cubies = [];
+for (let x = -1; x <= 1; x++)
+for (let y = -1; y <= 1; y++)
+for (let z = -1; z <= 1; z++) {
+  if (!x && !y && !z) continue; // 中心块不可见，跳过
+  const g = new THREE.Group();
+  g.userData.isCubie = true;
+  const body = new THREE.Mesh(bodyGeo, bodyMat);
+  body.castShadow = body.receiveShadow = true;
+  g.add(body);
+  for (const f of FACES) {
+    const [fx, fy, fz] = f.dir;
+    if (x * fx + y * fy + z * fz !== 1) continue; // 只在外侧面贴贴纸
+    const st = new THREE.Mesh(stickerGeo,
+      new THREE.MeshStandardMaterial({ color: f.color, roughness: 0.25, metalness: 0.05 }));
+    st.castShadow = true;
+    if (fz === 1)        st.position.z = 0.48;
+    else if (fz === -1) { st.rotation.y = Math.PI;     st.position.z = -0.48; }
+    else if (fx === 1)  { st.rotation.y = Math.PI / 2; st.position.x = 0.48; }
+    else if (fx === -1) { st.rotation.y = -Math.PI / 2; st.position.x = -0.48; }
+    else if (fy === 1)  { st.rotation.x = -Math.PI / 2; st.position.y = 0.48; }
+    else                { st.rotation.x = Math.PI / 2;  st.position.y = -0.48; }
+    g.add(st);
+  }
+  g.position.set(x, y, z);
+  g.userData.home = new THREE.Vector3(x, y, z);
+  CUBE.add(g);
+  cubies.push(g);
+}
+
+/* ---------------- 转动引擎 ---------------- */
+let history = [];   // 已执行、待撤销的步（打乱 + 用户手动转动）
+let queue = [];
+let processing = false, solving = false, animating = false;
+const DUR = 240, SOLVE_DUR = 200;
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+function snap(c) { // 消除浮点误差：位置取整、旋转矩阵归整到 -1/0/1
+  c.position.set(Math.round(c.position.x), Math.round(c.position.y), Math.round(c.position.z));
+  const m = new THREE.Matrix4().makeRotationFromQuaternion(c.quaternion);
+  for (let i = 0; i < 16; i++) m.elements[i] = Math.round(m.elements[i]);
+  c.quaternion.setFromRotationMatrix(m);
+}
+
+function performMove(move, dur = DUR) {
+  return new Promise(resolve => {
+    animating = true;
+    const pivot = new THREE.Group();
+    CUBE.add(pivot);
+    const affected = cubies.filter(c => Math.round(c.position[move.axis]) === move.layer);
+    affected.forEach(c => pivot.attach(c));
+    const target = move.dir * Math.PI / 2;
+    const t0 = performance.now();
+    (function tick() {
+      const t = Math.min(1, (performance.now() - t0) / dur);
+      pivot.rotation[move.axis] = target * easeOut(t);
+      if (t < 1) { requestAnimationFrame(tick); return; }
+      pivot.rotation[move.axis] = target;
+      affected.forEach(c => { CUBE.attach(c); snap(c); });
+      CUBE.remove(pivot);
+      animating = false;
+      resolve();
+    })();
+  });
+}
+
+async function processQueue() {
+  if (processing) return;
+  processing = true; updateUI();
+  while (queue.length) {
+    const mv = queue.shift();
+    if (mv.record) history.push({ axis: mv.axis, layer: mv.layer, dir: mv.dir });
+    await performMove(mv);
+    updateUI();
+  }
+  processing = false; updateUI();
+}
+
+function scramble() {
+  if (solving || processing) return;
+  const axes = ['x', 'y', 'z'];
+  let prev = null;
+  for (let i = 0; i < 20; i++) {
+    let m;
+    do {
+      m = { axis: axes[Math.random() * 3 | 0], layer: [-1, 0, 1][Math.random() * 3 | 0],
+            dir: Math.random() < 0.5 ? 1 : -1, record: true };
+    } while (prev && prev.axis === m.axis && prev.layer === m.layer); // 避免连续抵消
+    prev = m;
+    queue.push(m);
+  }
+  processQueue();
+}
+
+async function solve() { // 逐步逆放历史记录
+  if (solving || processing || animating || !history.length) return;
+  solving = true; updateUI();
+  while (history.length) {
+    const m = history.pop();
+    await performMove({ axis: m.axis, layer: m.layer, dir: -m.dir }, SOLVE_DUR);
+    updateUI();
+  }
+  solving = false; updateUI();
+}
+
+function reset() {
+  if (solving || processing) return;
+  queue.length = 0; history = [];
+  cubies.forEach(c => { c.position.copy(c.userData.home); c.quaternion.identity(); });
+  updateUI();
+}
+
+/* ---------------- UI ---------------- */
+const btnScramble = document.getElementById('btnScramble');
+const btnSolve = document.getElementById('btnSolve');
+const btnReset = document.getElementById('btnReset');
+const statusEl = document.getElementById('status');
+
+function updateUI() {
+  btnScramble.disabled = solving || processing;
+  btnSolve.disabled = solving || processing || !history.length;
+  btnReset.disabled = solving || processing;
+  statusEl.textContent = solving
+    ? `复原中… 剩余 ${history.length} 步`
+    : processing
+      ? `转动中… 待复原 ${history.length} 步`
+      : history.length
+        ? `已打乱，待复原 ${history.length} 步`
+        : '已复原 · 拖动魔方开始把玩吧';
+}
+btnScramble.onclick = scramble;
+btnSolve.onclick = solve;
+btnReset.onclick = reset;
+updateUI();
+
+/* ---------------- 交互：拖方块转层 / 拖空白转视角 ---------------- */
+const raycaster = new THREE.Raycaster();
+const ndc = new THREE.Vector2();
+
+function setNDC(e) {
+  ndc.x = (e.clientX / innerWidth) * 2 - 1;
+  ndc.y = -(e.clientY / innerHeight) * 2 + 1;
+}
+function dominantAxis(v) {
+  const ax = Math.abs(v.x), ay = Math.abs(v.y), az = Math.abs(v.z);
+  return ax >= ay && ax >= az ? 'x' : (ay >= az ? 'y' : 'z');
+}
+function pick(e) {
+  setNDC(e);
+  raycaster.setFromCamera(ndc, camera);
+  const hits = raycaster.intersectObjects(cubies, true);
+  if (!hits.length) return null;
+  const h = hits[0];
+  let o = h.object;
+  while (o && !o.userData.isCubie) o = o.parent;
+  if (!o) return null;
+  // 由命中点相对块中心的主轴方向确定被点到的面法线
+  const rel = h.point.clone().sub(o.getWorldPosition(new THREE.Vector3()));
+  const ax = dominantAxis(rel);
+  const normal = new THREE.Vector3();
+  normal[ax] = Math.sign(rel[ax]) || 1;
+  return { point: h.point.clone(), cubie: o, normal };
+}
+function rayToPlane(e, point, normal) {
+  setNDC(e);
+  raycaster.setFromCamera(ndc, camera);
+  const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(normal, point);
+  const out = new THREE.Vector3();
+  return raycaster.ray.intersectPlane(plane, out) ? out : null;
+}
+
+let drag = null;
+canvas.addEventListener('pointerdown', e => {
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
+  canvas.classList.add('dragging');
+  const canTurn = !solving && !processing && !animating;
+  const hit = canTurn ? pick(e) : null;
+  drag = hit ? { mode: 'turn', hit, sx: e.clientX, sy: e.clientY }
+             : { mode: 'orbit', sx: e.clientX, sy: e.clientY };
+  canvas.setPointerCapture(e.pointerId);
+});
+
+canvas.addEventListener('pointermove', e => {
+  if (!drag) return;
+  if (drag.mode === 'orbit') {
+    theta -= (e.clientX - drag.sx) * 0.0055;
+    phi = Math.min(Math.PI - 0.25, Math.max(0.25, phi - (e.clientY - drag.sy) * 0.0055));
+    drag.sx = e.clientX; drag.sy = e.clientY;
+    updateCamera();
+    return;
+  }
+  if (drag.done) return;
+  if (Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) < 8) return;
+  const p = rayToPlane(e, drag.hit.point, drag.hit.normal);
+  if (!p) return;
+  const d = p.sub(drag.hit.point);
+  if (d.length() < 0.08) return;
+  // 物理规律：欲使命中点沿 d 方向运动，转轴 a ∝ hitPoint × d
+  const a = new THREE.Vector3().crossVectors(drag.hit.point, d);
+  a.addScaledVector(drag.hit.normal, -a.dot(drag.hit.normal)); // 去掉法向分量
+  if (a.lengthSq() < 1e-6) return;
+  const ax = dominantAxis(a);
+  const dir = Math.sign(a[ax]) || 1;
+  const layer = Math.round(drag.hit.cubie.position[ax]);
+  queue.push({ axis: ax, layer, dir, record: true });
+  processQueue();
+  drag.done = true; // 一次手势只转一层
+});
+
+const endDrag = () => { drag = null; canvas.classList.remove('dragging'); };
+canvas.addEventListener('pointerup', endDrag);
+canvas.addEventListener('pointercancel', endDrag);
+
+addEventListener('wheel', e => {
+  radius = Math.min(16, Math.max(5, radius + e.deltaY * 0.004));
+  updateCamera();
+}, { passive: true });
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+renderer.setAnimationLoop(() => renderer.render(scene, camera));
+</script>
+</body>
+</html>

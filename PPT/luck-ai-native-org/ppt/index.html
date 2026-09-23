@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>能让 AI 做的，就尽量别让人做 · 鹿客陈彬</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ============ 主题色(默认:🖋 墨水经典) ============
+       切换主题:从 references/themes.md 复制对应的 :root 块
+       整体替换这几行(--ink / --ink-rgb / --paper / --paper-rgb)
+       其他地方散落的 rgba() 都走 var(--ink-rgb) / var(--paper-rgb),无需逐处改 */
+    --ink:#0a1f3d;
+    --ink-rgb:10,31,61;
+    --paper:#f1f3f5;
+    --paper-rgb:241,243,245;
+    --paper-tint:#e4e8ec;
+    --ink-tint:#152a4a;
+
+    /* ============ 字体(跨主题固定) ============ */
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --serif-en:"Playfair Display","Source Serif 4",Georgia,serif;
+    --serif-body-en:"Source Serif 4",Georgia,serif;
+    --serif-zh:"Noto Serif SC",source-han-serif-sc,serif;
+    --sans-zh:"Noto Sans SC",source-han-sans-sc,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--paper);font-family:var(--sans-zh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+  /* ============ WebGL 双背景 ============ */
+  canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;transition:opacity 1.2s ease}
+  canvas#bg-light{opacity:0}
+  canvas#bg-dark{opacity:1}
+  body.light-bg canvas#bg-light{opacity:1}
+  body.light-bg canvas#bg-dark{opacity:0}
+  body.low-power canvas.bg{display:none!important}
+
+  /* ============ Deck 容器 + 翻页 ============ */
+  /* width: NSLIDES * 100vw，会在 JS 里动态矫正 */
+  #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
+  .slide{width:100vw;height:100vh;flex:0 0 100vw;position:relative;padding:6vh 6vw 10vh 6vw;display:flex;flex-direction:column;overflow:hidden}
+  .slide.light{color:var(--ink);background:var(--paper)}
+  .slide.dark{color:var(--paper);background:var(--ink)}
+
+  /* 默认页：遮罩较厚，保证文字可读 */
+  .slide::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;transition:background .7s ease}
+  .slide.light::before{background:rgba(var(--paper-rgb),.78);backdrop-filter:blur(3px)}
+  .slide.dark::before{background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(3px)}
+  /* Hero 页：遮罩大幅降低，让 WebGL 背景明显透出 */
+  .slide.hero.light::before{background:rgba(var(--paper-rgb),.16);backdrop-filter:none}
+  .slide.hero.dark::before{background:rgba(var(--ink-rgb),.12);backdrop-filter:none}
+  /* Hero 页顶底微弱渐隐，保证 chrome/foot 区域可读 */
+  .slide.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
+  .slide.hero.light::after{background:linear-gradient(180deg,rgba(var(--paper-rgb),.28) 0%,rgba(var(--paper-rgb),0) 14%,rgba(var(--paper-rgb),0) 86%,rgba(var(--paper-rgb),.28) 100%)}
+  .slide.hero.dark::after{background:linear-gradient(180deg,rgba(var(--ink-rgb),.32) 0%,rgba(var(--ink-rgb),0) 14%,rgba(var(--ink-rgb),0) 86%,rgba(var(--ink-rgb),.32) 100%)}
+
+  /* ============ Magazine chrome：顶部 meta + 底部 foot ============ */
+  .chrome{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+  .chrome .left,.chrome .right{display:flex;gap:2.4em;align-items:center}
+  .chrome .sep{width:40px;height:1px;background:currentColor;opacity:.4}
+  .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+  .foot .title{font-family:var(--serif-zh);font-weight:400;letter-spacing:.05em;text-transform:none;opacity:.75;font-size:13px}
+
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border:1px solid currentColor;opacity:.85}
+  .rule{width:100%;height:1px;background:currentColor;opacity:.25;margin:3vh 0}
+  .rule.v{width:1px;height:100%;margin:0}
+
+  /* ============ 字体规则 ============
+     · 衬线（Noto Serif SC / Playfair）：大标题、重点金句、数字
+     · 非衬线（Noto Sans SC）：正文描述、body、补充说明
+     · 等宽（IBM Plex Mono）：kicker、meta 小标签、foot 右侧
+  */
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:2.6vh}
+  .display{font-family:var(--serif-en);font-weight:700;font-size:11vw;line-height:.92;letter-spacing:-.025em}
+  .display-zh{font-family:var(--serif-zh);font-weight:700;font-size:7.8vw;line-height:1.04;letter-spacing:-.005em}
+  .h1-zh{font-family:var(--serif-zh);font-weight:700;font-size:4.6vw;line-height:1.12;letter-spacing:-.005em}
+  .h2-zh{font-family:var(--serif-zh);font-weight:600;font-size:3.2vw;line-height:1.2;letter-spacing:0}
+  .h3-zh{font-family:var(--serif-zh);font-weight:500;font-size:1.9vw;line-height:1.35}
+  .body-zh{font-family:var(--sans-zh);font-weight:400;font-size:max(15px,1.22vw);line-height:1.75;opacity:.82;letter-spacing:.01em}
+  .body-serif{font-family:var(--serif-zh);font-weight:400;font-size:max(15px,1.3vw);line-height:1.65;opacity:.88}
+  .lead{font-family:var(--serif-zh);font-weight:400;font-size:1.9vw;line-height:1.4;opacity:.85}
+  .meta{font-family:var(--mono);font-size:max(11px,.88vw);letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+  .big-num{font-family:var(--serif-en);font-weight:800;font-size:10vw;line-height:.85;letter-spacing:-.03em;font-feature-settings:"tnum"}
+  .mid-num{font-family:var(--serif-en);font-weight:700;font-size:5.5vw;line-height:.88;letter-spacing:-.02em;font-feature-settings:"tnum"}
+  .ghost{font-family:var(--serif-en);font-weight:900;font-size:34vw;line-height:.8;opacity:.06;letter-spacing:-.04em;position:absolute;font-feature-settings:"tnum"}
+  em{font-style:italic;font-family:var(--serif-en)}
+  .en{font-family:var(--serif-en);font-style:italic;font-weight:500}
+
+  /* ============ 布局工具 ============ */
+  .col{display:flex;flex-direction:column;gap:2.4vh}
+  .row{display:flex;align-items:center;gap:3vw}
+  .grid-6{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:4vw 6vw;flex:1;align-content:center;padding:2vh 0}
+  .grid-9{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:3vh 4vw;flex:1;align-content:center}
+  .grid-4{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:4vh 6vw;flex:1;align-content:center}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;flex:1;align-content:center}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:4vw;flex:1;align-items:center}
+  .split-55{display:grid;grid-template-columns:55fr 45fr;gap:5vw;flex:1;align-items:stretch}
+  .fill{flex:1}
+  .center{align-items:center;justify-content:center;text-align:center}
+  .bottom-left{position:absolute;left:6vw;bottom:9vh;max-width:50vw}
+  .bottom-right{position:absolute;right:6vw;bottom:9vh;max-width:50vw;text-align:right}
+  .top-right{position:absolute;right:6vw;top:6vh;text-align:right}
+
+  /* ============ Stat（数字矩阵） ============ */
+  .stat{display:flex;flex-direction:column;gap:1vh;align-items:flex-start}
+  .stat .n{font-family:var(--serif-en);font-weight:800;font-size:8vw;line-height:.88;letter-spacing:-.03em;font-feature-settings:"tnum"}
+  .stat .l{font-family:var(--sans-zh);font-size:max(13px,1.05vw);opacity:.7;margin-top:1vh;font-weight:400;line-height:1.5}
+  .stat .m{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.5;margin-bottom:.2vh}
+
+  /* ============ Callout（引用框） ============ */
+  .callout{padding:3vh 2.4vw;border-left:3px solid currentColor;position:relative;font-family:var(--serif-zh);font-size:max(15px,1.2vw);line-height:1.55;opacity:.92}
+  .slide.light .callout{background:rgba(var(--ink-rgb),.05)}
+  .slide.dark .callout{background:rgba(var(--paper-rgb),.06)}
+  .callout .cite{display:block;margin-top:1.6vh;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+  .callout .q-big{font-family:var(--serif-zh);font-weight:600;font-size:max(17px,1.6vw);line-height:1.42}
+
+  /* ============ Platform（平台卡） ============ */
+  .plat{display:flex;flex-direction:column;justify-content:flex-end;padding:2vh 0;border-top:1px solid currentColor;border-color:rgba(127,127,127,.35)}
+  .plat .name{font-family:var(--serif-zh);font-weight:700;font-size:1.8vw;margin-bottom:.6vh}
+  .plat .nb{font-family:var(--serif-en);font-weight:700;font-size:3.2vw;letter-spacing:-.02em;line-height:1;font-feature-settings:"tnum"}
+  .plat .sub{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.55;margin-top:.6vh}
+  .plat .fill{font-family:var(--sans-zh);font-weight:300;font-size:2.4vw;opacity:.28;letter-spacing:-.01em;line-height:1}
+
+  /* ============ Rowline（表格行） ============ */
+  .rowline{display:grid;grid-template-columns:1fr 2fr 1fr;gap:2vw;padding:2.2vh 0;border-top:1px solid currentColor;align-items:center;border-color:rgba(127,127,127,.25)}
+  .rowline:last-child{border-bottom:1px solid currentColor;border-color:rgba(127,127,127,.25)}
+  .rowline .k{font-family:var(--serif-zh);font-weight:700;font-size:1.7vw}
+  .rowline .v{font-family:var(--sans-zh);font-weight:400;font-size:max(14px,1.2vw);opacity:.85;line-height:1.55}
+  .rowline .m{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;justify-self:end}
+
+  /* ============ Pillar（支柱卡片） ============ */
+  .pillar{display:flex;flex-direction:column;gap:1.8vh}
+  .pillar .ic{font-family:var(--serif-en);font-style:italic;font-size:2.6vw;opacity:.45;font-weight:400}
+  .pillar .ic svg{width:2.8vw;height:2.8vw;stroke-width:1.2;opacity:.7}
+  .pillar .t{font-family:var(--serif-zh);font-weight:700;font-size:2.4vw;line-height:1.1}
+  .pillar .d{font-family:var(--sans-zh);font-weight:400;font-size:max(14px,1.1vw);opacity:.76;line-height:1.6}
+
+  /* ============ Signature / Highlight ============ */
+  .sign{font-family:var(--serif-en);font-style:italic;font-weight:500;font-size:2vw;opacity:.7}
+  .hi{position:relative;display:inline}
+  .slide.dark .hi::after{content:"";position:absolute;left:-.1em;right:-.1em;bottom:-.05em;height:.28em;background:rgba(var(--paper-rgb),.15);z-index:-1}
+  .slide.light .hi::after{content:"";position:absolute;left:-.1em;right:-.1em;bottom:-.05em;height:.28em;background:rgba(var(--ink-rgb),.08);z-index:-1}
+
+  /* ============ Icons（Lucide via CDN） ============ */
+  .ico{width:1em;height:1em;display:inline-block;vertical-align:-.12em;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+  .ico-lg,.ico-md,.ico-sm{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+  .ico-lg{width:2.6vw;height:2.6vw;stroke-width:1.2;display:inline-block}
+  .ico-md{width:1.8vw;height:1.8vw;stroke-width:1.3;display:inline-block;vertical-align:-.4em}
+  .ico-sm{width:1.1vw;height:1.1vw;stroke-width:1.4;display:inline-block;vertical-align:-.15em;opacity:.7}
+
+  /* ============ 图片占位（虚线框，提示设计师位置） ============ */
+  .img-slot{border:1.5px dashed rgba(127,127,127,.4);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1vh;padding:2vh 2vw;font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.55;position:relative;aspect-ratio:16/9;width:100%;max-height:56vh;margin-inline:auto;box-sizing:border-box}
+  .img-slot::before{content:"";position:absolute;inset:8px;border:1px solid currentColor;opacity:.2}
+  .img-slot .plus{font-size:2vw;font-weight:300;opacity:.5;letter-spacing:0}
+  .img-slot .label{position:relative;z-index:2;text-align:center}
+  .img-slot.r-4x3{aspect-ratio:4/3}
+  .img-slot.r-3x2{aspect-ratio:3/2}
+  .img-slot.r-1x1{aspect-ratio:1/1}
+
+  /* ============ 图片实填框（关键：固定高度 + 只裁底部） ============
+     重要约束：高度用内联 height:Nvh 精确控制，不要用 aspect-ratio（会撑破布局）
+     object-position:top center 保证严禁裁剪顶部和左右，只裁剪底部
+  */
+  .frame-img{overflow:hidden;position:relative;background:rgba(0,0,0,.04);box-sizing:border-box;width:100%;border-radius:4px}
+  .slide.dark .frame-img{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
+  .frame-img > img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .frame-img.fit-contain > img{object-fit:contain;object-position:center center}
+  .frame-img.r-16x9{aspect-ratio:16/9;max-height:64vh}
+  .frame-img.r-16x10{aspect-ratio:16/10;max-height:56vh}
+  .frame-img.r-4x3{aspect-ratio:4/3;max-height:56vh}
+  .frame-img.r-3x2{aspect-ratio:3/2;max-height:46vh}
+  .frame-img.r-3x4{aspect-ratio:3/4;max-height:60vh}
+  .frame-img.r-1x1{aspect-ratio:1/1;max-height:50vh}
+  .frame-img.h-16{height:16vh}
+  .frame-img.h-18{height:18vh}
+  .frame-img.h-22{height:22vh}
+  .frame-img.h-26{height:26vh}
+  .frame-img.h-28{height:28vh}
+  .frame-cap{display:flex;justify-content:space-between;align-items:baseline;gap:1vw;margin-top:.8vh;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.72}
+  .frame-cap .pf{font-family:var(--serif-zh);font-weight:600;font-size:max(13px,1vw);letter-spacing:.04em;text-transform:none;opacity:.94}
+  .frame-cap .nb{font-family:var(--serif-en);font-style:italic;font-size:max(15px,1.2vw);letter-spacing:.02em;text-transform:none;opacity:.88}
+  .frame-cap .idx{font-family:var(--mono);opacity:.5}
+  figure.tile{display:flex;flex-direction:column;margin:0;min-width:0}
+  figure.tile > .frame-img{flex:0 0 auto}
+
+  /* ============ 导航 ============ */
+  #nav{position:fixed;left:50%;bottom:2.6vh;transform:translateX(-50%);z-index:30;display:flex;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  #nav .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s ease;border:0;padding:0}
+  #nav .dot:hover{background:rgba(255,255,255,.5);transform:scale(1.15)}
+  #nav .dot.active{background:rgba(255,255,255,.95);width:22px;border-radius:999px}
+  body.light-bg #nav{background:rgba(255,255,255,.25)}
+  body.light-bg #nav .dot{background:rgba(var(--ink-rgb),.25)}
+  body.light-bg #nav .dot.active{background:rgba(var(--ink-rgb),.9)}
+  #hint{position:fixed;bottom:3vh;right:3vw;z-index:30;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;mix-blend-mode:difference;color:#aaa}
+  body.low-power #hint{opacity:.72;color:var(--paper);mix-blend-mode:normal}
+  body.light-bg.low-power #hint{color:var(--ink)}
+
+  /* ============================================================
+     ============ LAYOUTS API · 面向 agent 的类（v2）============
+     所有 layouts.md 中的骨架都基于下面这套命名。
+     如果你在 layouts.md 里看到某个类，它必须在下面有定义。
+     ============================================================ */
+
+  /* ---------- .frame：每页主内容容器 ---------- */
+  .frame{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  /* 当 .frame 同时加了 grid 类时，grid 的 display:grid 覆盖 flex */
+  .frame.grid-2-7-5,
+  .frame.grid-2-6-6,
+  .frame.grid-2-8-4,
+  .frame.grid-3-3,
+  .frame.grid-6{display:grid}
+
+  /* ---------- 标题层级（API 名称，衬线为主） ---------- */
+  .h-hero{
+    font-family:var(--serif-zh);
+    font-weight:900;
+    font-size:10vw;
+    line-height:.96;
+    letter-spacing:-.02em;
+  }
+  .h-xl{
+    font-family:var(--serif-zh);
+    font-weight:700;
+    font-size:6.2vw;
+    line-height:1.08;
+    letter-spacing:-.01em;
+  }
+  .h-sub{
+    font-family:var(--serif-zh);
+    font-weight:500;
+    font-size:3.1vw;
+    line-height:1.25;
+    letter-spacing:0;
+    opacity:.7;
+  }
+  .h-md{
+    font-family:var(--serif-zh);
+    font-weight:600;
+    font-size:2.3vw;
+    line-height:1.3;
+  }
+  /* 英文标题专用（Playfair 衬线） */
+  .h-hero-en,.h-xl-en{font-family:var(--serif-en);letter-spacing:-.025em}
+
+  /* ---------- lead 引语 ---------- */
+  .lead{
+    font-family:var(--serif-zh);
+    font-weight:400;
+    font-size:1.75vw;
+    line-height:1.5;
+    opacity:.86;
+  }
+
+  /* ---------- meta-row 底部元数据 ---------- */
+  .meta-row{
+    display:flex;
+    gap:1.2em;
+    align-items:baseline;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:max(12px,.92vw);
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    opacity:.6;
+  }
+
+  /* ---------- stat-card（数据大字报用） ---------- */
+  .stat-card{
+    display:flex;
+    flex-direction:column;
+    gap:.8vh;
+    align-items:flex-start;
+    padding-top:1.6vh;
+    border-top:1px solid currentColor;
+    border-color:rgba(127,127,127,.3);
+  }
+  .stat-card .stat-label{
+    font-family:var(--mono);
+    font-size:max(10px,.78vw);
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    opacity:.55;
+  }
+  .stat-card .stat-nb{
+    font-family:var(--serif-en);
+    font-weight:800;
+    font-size:5.8vw;
+    line-height:.9;
+    letter-spacing:-.03em;
+    font-feature-settings:"tnum";
+    margin-top:.4vh;
+  }
+  .stat-card .stat-nb .stat-unit{
+    font-family:var(--serif-zh);
+    font-weight:500;
+    font-size:.38em;
+    letter-spacing:0;
+    opacity:.72;
+    margin-left:.14em;
+  }
+  .stat-card .stat-note{
+    font-family:var(--sans-zh);
+    font-weight:400;
+    font-size:max(13px,1.05vw);
+    line-height:1.5;
+    opacity:.72;
+    margin-top:.6vh;
+  }
+  /* 当 stat-card 用于 grid-4（2x2），数字适度放大；若页面有标题+引文在上方，可内联 style 覆盖为更小值 */
+  .grid-4 .stat-card .stat-nb{font-size:5vw}
+  /* 当只有 3 个，字也可以稍大 */
+  .grid-3 .stat-card .stat-nb{font-size:6.8vw}
+
+  /* ---------- pipeline（流水线） ---------- */
+  .pipeline-section{
+    margin-top:4.4vh;
+    padding-top:2.8vh;
+    border-top:1px dashed rgba(127,127,127,.32);
+  }
+  .pipeline-section:first-of-type{
+    border-top:0;
+    padding-top:0;
+    margin-top:3vh;
+  }
+  .pipeline-label{
+    font-family:var(--mono);
+    font-size:max(11px,.85vw);
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    opacity:.62;
+    margin-bottom:2.2vh;
+  }
+  .pipeline{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:1.2vw;
+  }
+  .pipeline[data-cols="3"]{grid-template-columns:repeat(3,1fr)}
+  .pipeline[data-cols="4"]{grid-template-columns:repeat(4,1fr)}
+  .pipeline[data-cols="6"]{grid-template-columns:repeat(6,1fr)}
+  .step{
+    display:flex;
+    flex-direction:column;
+    gap:.8vh;
+    padding-top:1.4vh;
+    border-top:1px solid currentColor;
+    border-color:rgba(127,127,127,.35);
+  }
+  .step-nb{
+    font-family:var(--serif-en);
+    font-style:italic;
+    font-weight:500;
+    font-size:1.15vw;
+    opacity:.45;
+  }
+  .step-title{
+    font-family:var(--sans-zh);
+    font-weight:700;
+    font-size:1.55vw;
+    letter-spacing:.01em;
+    line-height:1.2;
+  }
+  .step-desc{
+    font-family:var(--sans-zh);
+    font-weight:400;
+    font-size:max(12px,.95vw);
+    line-height:1.45;
+    opacity:.72;
+  }
+
+  /* ---------- 网格（layouts.md 所用） ---------- */
+  /* 这些类独立挂到任何容器上都能生效，不依赖 .frame 复合选择器 */
+  .grid-2-7-5{display:grid;grid-template-columns:7fr 5fr;gap:3vw 4vh;align-items:start}
+  .grid-2-6-6{display:grid;grid-template-columns:1fr 1fr;gap:3vw 4vh;align-items:start}
+  .grid-2-8-4{display:grid;grid-template-columns:8fr 4fr;gap:3vw 4vh;align-items:start}
+  .grid-3-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:minmax(0,1fr);
+    gap:2.4vh 2vw;
+  }
+  /* grid-6 已在旧样式里定义为 3x2，这里仅补 align */
+
+  /* ---------- 图片 frame-img（layouts.md 主命名） ---------- */
+  /* 在旧样式里已定义，这里补 img-cap 命名别名与增强 */
+  figure.frame-img{margin:0;display:flex;flex-direction:column;min-width:0}
+  .img-cap{
+    display:block;
+    margin-top:.8vh;
+    font-family:var(--mono);
+    font-size:max(10px,.8vw);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    opacity:.6;
+  }
+  /* callout src 命名别名 */
+  .callout-src{
+    display:block;
+    margin-top:1.6vh;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    opacity:.6;
+  }
+
+  /* ---------- chrome & foot 补位（layouts.md 简单写法） ---------- */
+  .chrome{font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.2em;text-transform:uppercase;opacity:.62}
+  .foot{font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.18em;text-transform:uppercase;opacity:.5}
+
+  /* ============ 动效系统(Motion One 驱动) ============
+     所有 [data-anim] 元素默认隐藏,进入页面时由 JS 逐个揭示。
+     - cascade(默认):按 DOM 顺序 stagger 120ms 淡入 + y:16→0
+     - hero(hero 页自动):慢一点的 stagger 180ms
+     - quote(含 [data-anim="line"]):逐行 600ms 淡入
+     - directional(含 [data-anim="left|right"]):左→分隔线→右
+     - pipeline(data-animate="pipeline"):Space/→ 手动推进
+     Motion One 没加载成功时(CDN 断 + 本地丢),所有 [data-anim] 会兜底显示。
+  */
+  [data-anim]{opacity:1}
+  body.motion-ready [data-anim]{opacity:0}
+  body.motion-ready [data-anim="left"]{transform:translateX(-24px)}
+  body.motion-ready [data-anim="right"]{transform:translateX(24px)}
+  body.motion-ready [data-anim="line"]{opacity:0;transform:translateY(10px)}
+  body.motion-ready [data-animate="pipeline"] [data-anim]{opacity:.15}
+  body.low-power #deck{transition:none!important}
+  body.low-power *,
+  body.low-power *::before,
+  body.low-power *::after{animation:none!important;transition:none!important}
+  body.low-power.motion-ready [data-anim],
+  body.low-power [data-anim]{opacity:1!important;transform:none!important}
+
+  /* ---------- 响应式降级 ---------- */
+  @media (max-width:900px){
+    .display{font-size:16vw}
+    .display-zh{font-size:12vw}
+    .h1-zh{font-size:7vw}
+    .h-hero{font-size:14vw}
+    .h-xl{font-size:9vw}
+    .pipeline{grid-template-columns:repeat(2,1fr)}
+    .grid-2-7-5,.grid-2-6-6,.grid-2-8-4{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<script>
+  (function(){
+    const KEY = 'guizang-ppt-low-power';
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const stored = localStorage.getItem(KEY);
+    window.__lowPowerMode = stored === '1' || (stored === null && reduced);
+    function updateHint(){
+      const hint = document.getElementById('hint');
+      if(hint) hint.textContent = `← → 翻页 · B ${window.__lowPowerMode ? '动态' : '静态'} · ESC 索引`;
+    }
+    window.__setLowPowerMode = function(on, opts={}){
+      window.__lowPowerMode = !!on;
+      document.body.classList.toggle('low-power', window.__lowPowerMode);
+      if(opts.persist !== false) localStorage.setItem(KEY, window.__lowPowerMode ? '1' : '0');
+      if(window.__lowPowerMode && document.getAnimations){
+        document.getAnimations().forEach(a=>a.cancel());
+      }
+      updateHint();
+      dispatchEvent(new CustomEvent('ppt-low-power-change', {detail:{on:window.__lowPowerMode}}));
+      if(window.__playSlide) window.__playSlide(window.__currentSlideIndex || 0);
+    };
+    document.body.classList.toggle('low-power', window.__lowPowerMode);
+    addEventListener('DOMContentLoaded', updateHint, {once:true});
+  })();
+</script>
+
+<canvas id="bg-dark" class="bg"></canvas>
+<canvas id="bg-light" class="bg"></canvas>
+<div id="hint">← → 翻页 · B 静态 · ESC 索引</div>
+
+<div id="deck">
+
+<!-- ============================================================
+     SLIDES 插入区 · 在此处填充所有 <section class="slide ..."> 页面
+     每页模板参考 references/page-patterns.md
+     页面组件参考 references/components.md
+     ============================================================ -->
+
+<!-- ============ P01 · 封面 ============ -->
+<section class="slide hero dark">
+  <div class="chrome">
+    <div>AI炼金术 · 对话录</div>
+    <div>Vol.01 · 鹿客</div>
+  </div>
+  <div class="frame" style="display:grid; gap:3.6vh; align-content:center; min-height:80vh">
+    <div class="kicker" data-anim>对话 · 鹿客创始人 陈彬</div>
+    <h1 class="h-hero" style="font-size:6.6vw" data-anim>能让 AI 做的，<br>就尽量别让人做。</h1>
+    <h2 class="h-sub" data-anim>一份 AI Native 组织的施工记录</h2>
+    <p class="lead" style="max-width:58vw" data-anim>
+      鹿客 12 周年，主题叫「从 1 到 0」：假设从零开始，手里有这些 AI 工具，原来的组织、流程、甚至产品都不存在，你应该怎么干？
+    </p>
+    <div class="meta-row" data-anim>
+      <span>陈彬</span><span>·</span><span>鹿客创始人 · 前索尼 / 百度</span><span>·</span><span>创业 12 年</span>
+    </div>
+  </div>
+  <div class="foot">
+    <div>一场关于 AI · 组织 · 权力的实验</div>
+    <div>— 2026.09 —</div>
+  </div>
+</section>
+
+<!-- ============ P02 · 数据大字报 ============ -->
+<section class="slide light">
+  <div class="chrome">
+    <div>关键数字 · By The Numbers</div>
+    <div>Act I · 02 / 16</div>
+  </div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker" data-anim>先看数字，再谈方法。</div>
+    <h2 class="h-xl" data-anim>这家公司怎么干</h2>
+    <p class="lead" style="margin-top:2vh; margin-bottom:2vh" data-anim>不是宣言，是一份已经动工的记录。</p>
+
+    <div class="grid-6" style="margin-top:4vh">
+      <div class="stat-card" data-anim>
+        <div class="stat-label">创业历程</div>
+        <div class="stat-nb">12 <span class="stat-unit">年</span></div>
+        <div class="stat-note">2014 年创业，智能锁品牌</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">行业地位</div>
+        <div class="stat-nb">70<span class="stat-unit">%</span></div>
+        <div class="stat-note">小米智能锁由鹿客研发制造</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">变革火种</div>
+        <div class="stat-nb">5<span class="stat-unit">%</span></div>
+        <div class="stat-note">的人就能搅动整个公司的变革</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">内部报名</div>
+        <div class="stat-nb">3 <span class="stat-unit">轮</span></div>
+        <div class="stat-note">重新起立再重新坐下，选出 10–20%</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">AI 管培生</div>
+        <div class="stat-nb">50 <span class="stat-unit">人</span></div>
+        <div class="stat-note">年底目标，已接近 20 人</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">流程提速</div>
+        <div class="stat-nb">2<span class="stat-unit">×</span></div>
+        <div class="stat-note">SP→BP 从 3–6 个月到 2 个月</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>数据 · 鹿客 HARO 变革记录</div>
+    <div>Act I · Numbers</div>
+  </div>
+</section>
+
+<!-- ============ P03 · 幕封 Act I ============ -->
+<section class="slide hero light">
+  <div class="chrome">
+    <div>第一幕 · 理念</div>
+    <div>Act I · 03 / 16</div>
+  </div>
+  <div class="frame" style="display:grid; gap:5vh; align-content:center; min-height:80vh">
+    <div class="kicker" data-anim>Act I · The Reset</div>
+    <h1 class="h-hero" style="font-size:9vw" data-anim>从 1 到 0</h1>
+    <p class="lead" style="max-width:55vw" data-anim>
+      回到一个人创业的初衷：假设一切不存在，手里有这些 AI 工具，你应该怎么干？
+    </p>
+  </div>
+  <div class="foot">
+    <div>第一幕引子 · 理念先行</div>
+    <div>— · —</div>
+  </div>
+</section>
+
+<!-- ============ P04 · 大引用：核心定义 ============ -->
+<section class="slide dark" data-animate="quote">
+  <div class="chrome">
+    <div>AI 原生的定义</div>
+    <div>04 / 16</div>
+  </div>
+  <div class="frame" style="display:grid; gap:4vh; align-content:center; min-height:80vh">
+    <div class="kicker" data-anim>Definition · 先假设流程不存在</div>
+    <blockquote style="font-family:var(--serif-zh); font-weight:700; font-size:4.6vw; line-height:1.25; letter-spacing:-.01em; max-width:76vw">
+      <span data-anim="line" style="display:block">「什么东西能让 AI 做，</span>
+      <span data-anim="line" style="display:block">就尽量不要让人做。」</span>
+    </blockquote>
+    <p class="lead" style="max-width:66vw; opacity:.75" data-anim>
+      不是给现有流程提速，而是先假设组织流程都不存在——原来的组织、流程，很可能都是错的，甚至都不应该存在。
+    </p>
+    <div class="meta-row" data-anim>
+      <span>— 陈彬</span><span>·</span><span>鹿客创始人</span>
+    </div>
+    <div class="callout" style="max-width:66vw" data-anim>
+      很多公司做的是「给流程提速」，以为自己在做「从零重构」。这是两件事。
+      <div class="callout-src">— 采访者观察</div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 04 · 核心定义</div>
+    <div>— · —</div>
+  </div>
+</section>
+
+<!-- ============ P05 · HARO 结构 ============ -->
+<section class="slide light">
+  <div class="chrome">
+    <div>组织设计 · HARO</div>
+    <div>Act I · 05 / 16</div>
+  </div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker" data-anim>从「从 1 到 0」推出的第一个结论</div>
+    <h2 class="h-xl" data-anim>CEO 就该是 HR 一号位</h2>
+    <p class="lead" style="margin-top:2vh" data-anim>
+      HARO = Human AI Resource Office。硅基的人和碳基的人放在一起，反正都算资源，由他来调配。
+    </p>
+
+    <div class="grid-3" style="margin-top:5vh; align-items:stretch">
+      <div class="pillar" data-anim>
+        <div class="ic">01</div>
+        <div class="t">一号位必须懂业务</div>
+        <div class="d">人选是长线创业伙伴：技术出身、前百度架构师、当过 CEO，做过产品线、研发、品牌、IT——有从经营到技术的闭环经历。</div>
+      </div>
+      <div class="pillar" data-anim>
+        <div class="ic">02</div>
+        <div class="t">实线 · AIO</div>
+        <div class="d">原 IT 改名 AI Office，运维在内，未来以 AI 为主做 agent builder 的活。</div>
+      </div>
+      <div class="pillar" data-anim>
+        <div class="ic">03</div>
+        <div class="t">虚线 · FDE</div>
+        <div class="d">每个业务领域挑对业务擅长、或对 AI 改革意愿很强的人，虚线向 HARO 汇报。</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:3vh; max-width:72vw; padding:2vh 2.4vw" data-anim>
+      配人顺序反过来了：先换一个技术导向的一号位，再给他配对人敏感的 HRBP。<b>先懂 AI 再配懂人的，而不是先懂人再学 AI。</b>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 05 · Human AI Resource Office</div>
+    <div>Act I · HARO</div>
+  </div>
+</section>
+
+<!-- ============ P06 · 流水线：三轮内部报名 ============ -->
+<section class="slide light" data-animate="pipeline">
+  <div class="chrome">
+    <div>选人机制 · 三轮报名</div>
+    <div>Act I · 06 / 16</div>
+  </div>
+  <div class="frame">
+    <div class="kicker" data-anim>圈子重构 · 就是让大家重新站起来，再重新坐下</div>
+    <h2 class="h-xl">三轮内部报名</h2>
+
+    <div class="pipeline-section">
+      <div class="pipeline-label">报名 · 答辩 · 入圈</div>
+      <div class="pipeline">
+        <div class="step" data-anim="step">
+          <div class="step-nb">01</div>
+          <div class="step-title">增量岗位</div>
+          <div class="step-desc">不开大会，发邮件。公司级需要一二十个 agent，及对应的 builder 和 FDE</div>
+        </div>
+        <div class="step" data-anim="step">
+          <div class="step-nb">02</div>
+          <div class="step-title">圈子空缺</div>
+          <div class="step-desc">圈子成立后缺什么角色，空缺、紧急的放进邮件，谁愿意来报名</div>
+        </div>
+        <div class="step" data-anim="step">
+          <div class="step-nb">03</div>
+          <div class="step-title">自我评估</div>
+          <div class="step-desc">先弄清自己擅长什么、能力项在哪，判断与角色是否匹配</div>
+        </div>
+        <div class="step" data-anim="step">
+          <div class="step-nb">04</div>
+          <div class="step-title">答辩 + AI</div>
+          <div class="step-desc">每人 3–5 分钟；AI 分析会议纪要与讲话，做全部匹配</div>
+        </div>
+        <div class="step" data-anim="step">
+          <div class="step-nb">05</div>
+          <div class="step-title">入圈</div>
+          <div class="step-desc">100 人报名 → 二三十人入选；三轮共挑出公司 10–20% 的人</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-section">
+      <div class="pipeline-label">为什么有 100 人报名 · 不是工资高</div>
+      <div class="pipeline" data-cols="2">
+        <div class="step" data-anim="step">
+          <div class="step-nb">A</div>
+          <div class="step-title">资源倾斜</div>
+          <div class="step-desc">培训、token 与 API、个人订阅报销——只有进圈子、进启航员计划的人才能拿</div>
+        </div>
+        <div class="step" data-anim="step">
+          <div class="step-nb">B</div>
+          <div class="step-title">内在动力</div>
+          <div class="step-desc">危机感：原岗位可能不存在了；主动意愿：三四年的岗位已经乏味</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 06 · 重新起立，重新坐下</div>
+    <div>Act I · Mechanism</div>
+  </div>
+</section>
+
+<!-- ============ P07 · 幕封 Act II ============ -->
+<section class="slide hero dark">
+  <div class="chrome">
+    <div>第二幕 · 权力重构</div>
+    <div>Act II · 07 / 16</div>
+  </div>
+  <div class="frame" style="display:grid; gap:5vh; align-content:center; min-height:80vh">
+    <div class="kicker" data-anim>Act II · The Circles</div>
+    <h1 class="h-hero" style="font-size:7.6vw" data-anim>圈子不是项目组</h1>
+    <p class="lead" style="max-width:56vw" data-anim>
+      端到端价值闭环的小团队，故意把职能的权力和边界抹掉。
+    </p>
+  </div>
+  <div class="foot">
+    <div>第二幕引子 · 权力去哪了</div>
+    <div>— · —</div>
+  </div>
+</section>
+
+<!-- ============ P08 · 对比：项目组 vs 圈子 ============ -->
+<section class="slide light" data-animate="directional">
+  <div class="chrome">
+    <div>旧 vs 新 · The Shift</div>
+    <div>Act II · 08 / 16</div>
+  </div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker" data-anim>让职能的权力变小，让圈长的权力变大</div>
+    <h2 class="h-xl" style="margin-bottom:4vh" data-anim>从双线到单线</h2>
+
+    <div class="grid-2-6-6" style="gap:5vw 4vh">
+      <div data-anim="left" style="padding:3vh 2vw; border-left:3px solid currentColor; opacity:.55">
+        <div class="kicker" style="opacity:.9">Before · 项目组</div>
+        <h3 class="h-md" style="margin-top:2vh">借人干活，绩效不归你</h3>
+        <ul style="margin-top:3vh; padding-left:1.2em; display:flex; flex-direction:column; gap:1.4vh; font-family:var(--sans-zh); font-size:max(14px,1.1vw); line-height:1.55">
+          <li>双线汇报，向职能部门借人</li>
+          <li>绩效是职能老大打的</li>
+          <li>工资、激励由职能那边定</li>
+          <li>职能权力覆盖用人与激励</li>
+        </ul>
+      </div>
+      <div data-anim="right" style="padding:3vh 2vw; border-left:3px solid currentColor">
+        <div class="kicker" style="opacity:.9">After · 圈子</div>
+        <h3 class="h-md" style="margin-top:2vh">进圈就是创业小团队</h3>
+        <ul style="margin-top:3vh; padding-left:1.2em; display:flex; flex-direction:column; gap:1.4vh; font-family:var(--sans-zh); font-size:max(14px,1.1vw); line-height:1.55">
+          <li>单线汇报：前线老板是谁，老板就是谁</li>
+          <li>圈长管奖金包，HR 与职能只有建议权</li>
+          <li>用人权、激励、奖金分配都到圈子里</li>
+          <li>人和 agent 怎么搭配，圈长说了算</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="lead" style="margin-top:5vh; opacity:.75; max-width:70vw" data-anim>
+      职能不会完全去掉——未来改叫委员会（如技术委员会），提升能力。变革的半年到一年内，以打仗这条线为主，先试点消费者业务。
+    </p>
+  </div>
+  <div class="foot">
+    <div>Page 08 · 圈子 ≠ 华为产品线</div>
+    <div>Before / After</div>
+  </div>
+</section>
+
+<!-- ============ P09 · AI Buff 量化 ============ -->
+<section class="slide light">
+  <div class="chrome">
+    <div>度量体系 · AI Buff</div>
+    <div>Act II · 09 / 16</div>
+  </div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker" data-anim>组织设计可视化 · 价值闭环</div>
+    <h2 class="h-xl" data-anim>把 AI 的 buff 量出来</h2>
+    <p class="lead" style="margin-top:2vh" data-anim>
+      一个圈子里三个人加十个 agent，AI buff 是多少？AI 的占比是不是在不断提升？
+    </p>
+
+    <div class="grid-4" style="margin-top:3vh">
+      <div class="stat-card" data-anim>
+        <div class="stat-label">圈子配置</div>
+        <div class="stat-nb">3<span class="stat-unit">人+10 agents</span></div>
+        <div class="stat-note">每圈 8–10 人，圈长 + 班委 + HRBP；每个角色由人还是 AI 干，点开可见</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">奖金分配</div>
+        <div class="stat-nb">1%<span class="stat-unit">→ 1 万</span></div>
+        <div class="stat-note">奖金包 100 万，你占 1% 分 1 万，占 10% 分 10 万</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">能力分级</div>
+        <div class="stat-nb">L1–L4</div>
+        <div class="stat-note">L2 起为「AI 启航员」，再往上是「领航员」——FDE 和 builder 从这里挑</div>
+      </div>
+      <div class="stat-card" data-anim>
+        <div class="stat-label">过程指标</div>
+        <div class="stat-nb">Token</div>
+        <div class="stat-note">在跟经营完全闭环之前，先看 token 用量、多少个 agent 进了十几个业务流</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:1.6vh; max-width:72vw; padding:1.6vh 2.4vw" data-anim>
+      用价值闭环的量化，慢慢取代原来的 S、A、B、C 和几个月年终奖。
+      <div class="callout-src">— 陈彬 · 论绩效</div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 09 · Xcircle 落地工具</div>
+    <div>Act II · Metrics</div>
+  </div>
+</section>
+
+<!-- ============ P10 · 大引用：取代焦虑 ============ -->
+<section class="slide dark" data-animate="quote">
+  <div class="chrome">
+    <div>The Anxiety · 取代焦虑</div>
+    <div>10 / 16</div>
+  </div>
+  <div class="frame" style="display:grid; gap:4vh; align-content:center; min-height:80vh">
+    <div class="kicker" data-anim>管培生宣讲会上，真的有人问</div>
+    <blockquote style="font-family:var(--serif-zh); font-weight:700; font-size:4.2vw; line-height:1.3; letter-spacing:-.01em; max-width:78vw">
+      <span data-anim="line" style="display:block">「取代大家的不是 AI，</span>
+      <span data-anim="line" style="display:block">是用 AI 的人。」</span>
+    </blockquote>
+    <p class="lead" style="max-width:66vw; opacity:.78" data-anim>
+      经验的折旧也快了：别人干三个月、半年，可能就把你过去三年、五年的经验抹平。竞争不是跟公司内部，是跟整个行业——行业是流动的。
+    </p>
+    <div class="meta-row" data-anim>
+      <span>— 陈彬</span><span>·</span><span>论竞争</span>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 10 · 成为先用好 AI 的那 5%</div>
+    <div>— · —</div>
+  </div>
+</section>
+
+<!-- ============ P11 · AI 管培生 ============ -->
+<section class="slide light">
+  <div class="chrome">
+    <div>源头活水 · AI 管培生</div>
+    <div>Act II · 11 / 16</div>
+  </div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker" data-anim>「他们比我们想象的要用得更好。」</div>
+    <h2 class="h-xl" data-anim>不叫岗位，叫领域</h2>
+
+    <div class="grid-2-6-6" style="margin-top:4vh; gap:4vw 4vh">
+      <div style="display:flex; flex-direction:column; gap:3vh">
+        <div class="pillar" data-anim>
+          <div class="t">门槛 L2 以上</div>
+          <div class="d">不是只跟豆包或 GPT 对话：要把 skills 用好、能输出 skills、能做 agent；到 L3 才能编工作流。2027 届学生大学一入学就在用，做事没有畏惧感。</div>
+        </div>
+        <div class="pillar" data-anim>
+          <div class="t">一二十个领域</div>
+          <div class="d">专业领域加 AI 能力：做 FDE、做 builder、做洞察。有管培生拿 AI 做增长、做海外 GTM，自己跑闭环；还有人参加飞书 AI 大赛拿了奖。</div>
+        </div>
+        <div class="pillar" data-anim>
+          <div class="t">支持体系</div>
+          <div class="d">招聘负责人任管培生总头；每人有业务 mentor + 生活 mentor；陈彬自己参加周会，问题会上解决。</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; justify-content:space-between; gap:3vh">
+        <div class="callout" data-anim>
+          「这里不给你培训，<br>全是真实的问题。」
+          <div class="callout-src">— 鹿客 AI 管培生招聘文案</div>
+        </div>
+        <div class="stat-card" data-anim>
+          <div class="stat-label">考察期</div>
+          <div class="stat-nb">1–3 <span class="stat-unit">个月</span></div>
+          <div class="stat-note">三个月能不能用 AI 真的给业务带来改变——只有带来业务改变，才放进圈子。「不是光看他 AI 用得好。」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 11 · 年底 50 人，已近 20</div>
+    <div>Act II · Talent</div>
+  </div>
+</section>
+
+<!-- ============ P12 · 哪些不能动 ============ -->
+<section class="slide light">
+  <div class="chrome">
+    <div>The Untouchables · 不动清单</div>
+    <div>Act III · 12 / 16</div>
+  </div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker" data-anim>最激进的人，圈出这些不能跳过</div>
+    <h2 class="h-xl" data-anim>IPD 留着，流程提速</h2>
+
+    <div style="margin-top:4vh; max-width:86vw">
+      <div class="rowline" data-anim>
+        <div class="k">IPD 框架</div>
+        <div class="v">沉淀过的、非常合理的框架——AI 只能干掉本身不合理、特别冗余的流程，IPD 节点还在</div>
+        <div class="m">保留</div>
+      </div>
+      <div class="rowline" data-anim>
+        <div class="k">DSTE</div>
+        <div class="v">SP→BP 原来要 3 个月到半年，现在 2 个月提交；五次会变两三次</div>
+        <div class="m">提速 2×</div>
+      </div>
+      <div class="rowline" data-anim>
+        <div class="k">五看三定</div>
+        <div class="v">看市场、看竞争、看自己、看技术、看机会——本质还在，原来看三周，现在三天甚至一天</div>
+        <div class="m">3 周 → 3 天</div>
+      </div>
+      <div class="rowline" data-anim>
+        <div class="k">轮岗路径</div>
+        <div class="v">只做技术的产品经理成不了产品线经理——华为 3 年轮一岗，鹿客半年到一年，速度加快、路径不变</div>
+        <div class="m">不变</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:2.4vh; max-width:72vw; padding:2vh 2.4vw" data-anim>
+      AI 原生组织不是把所有东西推倒重来，是<b>先假设一切不存在，再一条条把该留的捡回来。</b>
+      <div class="callout-src">— 采访者结语</div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 12 · 加速，但不 bypass 大框架</div>
+    <div>Act III · Discipline</div>
+  </div>
+</section>
+
+<!-- ============ P13 · 阻力与回应 ============ -->
+<section class="slide dark">
+  <div class="chrome">
+    <div>The Resistance · 真正的阻力</div>
+    <div>Act III · 13 / 16</div>
+  </div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker" data-anim>不是「AI 取代我们」，而是——</div>
+    <h2 class="h-xl" data-anim>「AI 只加数量，不加质量」</h2>
+
+    <div class="grid-2-6-6" style="margin-top:4vh; gap:5vw 4vh">
+      <div data-anim="left" style="padding:3vh 2vw; border-left:3px solid currentColor; opacity:.6">
+        <div class="kicker" style="opacity:.9">质疑 · The Doubt</div>
+        <h3 class="h-md" style="margin-top:2vh">60 分的东西，留存不下来</h3>
+        <ul style="margin-top:3vh; padding-left:1.2em; display:flex; flex-direction:column; gap:1.4vh; font-family:var(--sans-zh); font-size:max(14px,1.15vw); line-height:1.6">
+          <li>用 AI 做设计、视频、内容，数量十倍百倍</li>
+          <li>但做不出两三年后还能沉淀的精品</li>
+          <li>营销、品牌发更多内容，so what？正反馈没到之前，还是会怀疑</li>
+        </ul>
+      </div>
+      <div data-anim="right" style="padding:3vh 2vw; border-left:3px solid currentColor">
+        <div class="kicker" style="opacity:.9">回应 · The Answer</div>
+        <h3 class="h-md" style="margin-top:2vh">这是精英思维</h3>
+        <ul style="margin-top:3vh; padding-left:1.2em; display:flex; flex-direction:column; gap:1.4vh; font-family:var(--sans-zh); font-size:max(14px,1.15vw); line-height:1.6">
+          <li>要有经营思维：种草能不能带来转化？带不来就看 PMF 出了什么问题</li>
+          <li>AI 不只是 productivity，也是 capability——以前做不了的事现在能做了</li>
+          <li>「连面包都吃不上，追求艺术没有意义」</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="lead" style="margin-top:5vh; opacity:.75; max-width:72vw" data-anim>
+      正反馈有时间差：越年轻、越小白越容易（一个月内），已经做得很好的人可能要六个月。核心团队的阻碍已经被提前消化——不拥抱 AI 的，去年下半年起要么淘汰、要么边缘化。
+    </p>
+  </div>
+  <div class="foot">
+    <div>Page 13 · 阻力不是反对，是惯性</div>
+    <div>Act III · Resistance</div>
+  </div>
+</section>
+
+<!-- ============ P14 · 彩蛋：不同公司不同速度 ============ -->
+<section class="slide light">
+  <div class="chrome">
+    <div>彩蛋 · 三家老板的提问</div>
+    <div>Act III · 14 / 16</div>
+  </div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker" data-anim>奶茶店 · PCB 工厂 · 十万人 Call Center，都想要 AI 转型</div>
+    <h2 class="h-xl" data-anim>不是每家公司都要跑这么快</h2>
+
+    <div class="grid-3" style="margin-top:4vh; align-items:stretch">
+      <div class="pillar" data-anim>
+        <div class="t">PCB 工厂</div>
+        <div class="d">到了物理世界，要等物理 AI、机器人成熟——三年五年甚至十年。没遇到经营性问题就先别动，晚一两年没关系。</div>
+      </div>
+      <div class="pillar" data-anim>
+        <div class="t">奶茶连锁</div>
+        <div class="d">渠道、运营驱动：AI 能快速做用户端到供应链端的反馈闭环，C2B 的供应链改造能产生更大作用。</div>
+      </div>
+      <div class="pillar" data-anim>
+        <div class="t">出海 SaaS</div>
+        <div class="d">真正的赢家：五六十人做一个领域，现在同样人力做十个领域，产能扩十倍。一个领域三个人：builder、reviewer、service。</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:3vh; max-width:72vw; padding:2vh 2.4vw" data-anim>
+      越是传统行业，AI 带来的价值越低，可以慢一点，等别人把坑踩完；越是前沿科技行业，越要早拥抱。<b>AI 不一定是救命稻草——本质是你对行业和品类的选择。</b>
+      <div class="callout-src">— 陈彬 · 论节奏</div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 14 · 鹿客跑得快，是因为要做 AI 硬件</div>
+    <div>Act III · Pacing</div>
+  </div>
+</section>
+
+<!-- ============ P15 · 大引用：收束 ============ -->
+<section class="slide dark" data-animate="quote">
+  <div class="chrome">
+    <div>The Takeaway · 收束</div>
+    <div>15 / 16</div>
+  </div>
+  <div class="frame" style="display:grid; gap:4vh; align-content:center; min-height:80vh">
+    <div class="kicker" data-anim>Trinity · 三位一体才成飞轮</div>
+    <blockquote style="font-family:var(--serif-zh); font-weight:700; font-size:3.8vw; line-height:1.32; letter-spacing:-.01em; max-width:80vw">
+      <span data-anim="line" style="display:block">组织 AI Native × 产品 AI 驱动</span>
+      <span data-anim="line" style="display:block">× 商业模型软件订阅——</span>
+      <span data-anim="line" style="display:block">三个一起动，才形成飞轮。</span>
+    </blockquote>
+    <p class="lead" style="max-width:66vw; opacity:.78" data-anim>
+      CEO 可复制的那一层，交给 agent 去蒸馏；最后剩下的 0 到 0.1——使命、愿景、一线的体感和直觉，是创始人不可取代的部分。
+    </p>
+    <div class="meta-row" data-anim>
+      <span>— 陈彬</span><span>·</span><span>论创始人的 0.1</span>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 15 · 十年后：一堆 CEO 的公司</div>
+    <div>— · —</div>
+  </div>
+</section>
+
+<!-- ============ P16 · 封底问题 ============ -->
+<section class="slide hero dark">
+  <div class="chrome">
+    <div>留给你的问题</div>
+    <div>16 / 16</div>
+  </div>
+  <div class="frame" style="display:grid; gap:6vh; align-content:center; min-height:80vh">
+    <div class="kicker" data-anim>The Question</div>
+    <h1 class="h-hero" style="font-size:4.8vw; line-height:1.25">
+      <span data-anim style="display:block">如果你的公司只能先动一件事——</span>
+      <span data-anim style="display:block">是先让 CEO 兼任 HR 一号位，</span>
+      <span data-anim style="display:block">还是先挑出那 5% 自己掏钱买订阅的人？</span>
+    </h1>
+    <p class="lead" style="max-width:52vw" data-anim>
+      AI 组织转型最小的切口，就是内部培养 FDE——只是这个词的含义，已经完全变了。
+    </p>
+    <div class="meta-row" data-anim>
+      <span>完 · Fin</span><span>·</span><span>来源：AI炼金术《鹿客陈彬：能让 AI 做的，就尽量别让人做》</span>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Page 16 · The Question</div>
+    <div>— 2026 —</div>
+  </div>
+</section>
+
+</div>
+
+<div id="nav"></div>
+
+<script>
+/* =============== WebGL 双背景 ===============
+   深色页：Holographic Dispersion（全息色散 · 钛金暗流）—— 彩虹微扰、鼠标径向涟漪
+   浅色页：Spiral Vortex（旋转涡流 · 银色珍珠）—— domain-warp 流动、无中心
+   修改风格请参考 references/webgl-backgrounds.md
+*/
+const VS = `attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}`;
+
+const FS_DARK = `precision highp float;
+uniform vec2 u_resolution;uniform float u_time;uniform vec2 u_mouse;
+vec3 palette(float t,vec3 a,vec3 b,vec3 c,vec3 d){return a+b*cos(6.28318*(c*t+d));}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_resolution.xy;
+  vec2 p=uv*2.0-1.0;p.x*=u_resolution.x/u_resolution.y;
+  vec2 m=u_mouse*2.0-1.0;m.x*=u_resolution.x/u_resolution.y;
+  float md=length(p-m);
+  float mr=sin(md*15.0-u_time*4.0)*exp(-md*3.0);p+=mr*0.08;
+  vec2 p0=p;
+  for(float i=1.0;i<4.0;i++){
+    p.x+=0.1/i*sin(i*3.0*p.y+u_time*0.4)+0.05;
+    p.y+=0.1/i*cos(i*2.0*p.x+u_time*0.3)-0.05;
+  }
+  float r=length(p);float ang=atan(p.y,p.x);
+  vec3 a=vec3(0.12,0.12,0.13);
+  vec3 b=vec3(0.03,0.04,0.05);
+  vec3 c=vec3(1.0,1.0,1.0);
+  vec3 d=vec3(0.1,0.2,0.4);
+  vec3 col=palette(r*1.5+p0.x*0.5+u_time*0.1,a,b,c,d);
+  float disp=sin(r*25.0-u_time*1.5+ang*2.0)*0.5+0.5;
+  col+=vec3(disp*0.015,disp*0.01,disp*0.02);
+  float hi=pow(sin(p.x*4.0+p.y*3.0+u_time)*0.5+0.5,8.0);
+  col+=hi*0.08;
+  vec3 base=vec3(0.05,0.05,0.06);
+  col=mix(base,col,0.85);
+  gl_FragColor=vec4(col,1.0);
+}`;
+
+const FS_LIGHT = `precision highp float;
+uniform vec2 u_resolution;uniform float u_time;uniform vec2 u_mouse;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){
+  vec2 i=floor(p),f=fract(p);
+  float a=hash(i),b=hash(i+vec2(1,0));
+  float c=hash(i+vec2(0,1)),d=hash(i+vec2(1,1));
+  vec2 u=f*f*(3.0-2.0*f);
+  return mix(a,b,u.x)+(c-a)*u.y*(1.0-u.x)+(d-b)*u.x*u.y;
+}
+float fbm(vec2 p){
+  float v=0.0,a=0.5;
+  mat2 m=mat2(0.80,0.60,-0.60,0.80);
+  for(int i=0;i<5;i++){v+=a*noise(p);p=m*p*2.02;a*=0.5;}
+  return v;
+}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_resolution.xy;
+  vec2 p=uv;p.x*=u_resolution.x/u_resolution.y;
+  vec2 m=u_mouse;m.x*=u_resolution.x/u_resolution.y;
+  vec2 md=p-m;float dl=length(md);
+  p+=normalize(md+vec2(0.0001))*exp(-dl*5.0)*0.03;
+  vec2 q=vec2(fbm(p*1.8+u_time*0.07),fbm(p*1.8+vec2(5.2,1.3)+u_time*0.06));
+  vec2 r=vec2(fbm(p*2.0+q*1.3+vec2(1.7,9.2)+u_time*0.05),
+              fbm(p*2.0+q*1.3+vec2(8.3,2.8)+u_time*0.04));
+  float f=fbm(p*2.2+r*1.5);
+  vec3 silverDark=vec3(0.86,0.85,0.84);
+  vec3 paper=vec3(0.955,0.945,0.925);
+  vec3 col=mix(silverDark,paper,f);
+  float ph=r.x*2.2+u_time*0.35;
+  col+=vec3(0.78,0.62,0.92)*sin(ph)*0.055;
+  col+=vec3(0.55,0.72,0.95)*sin(ph*0.8+2.0)*0.05;
+  float hl=smoothstep(0.48,0.92,f);
+  col+=hl*0.06;
+  gl_FragColor=vec4(col,1.0);
+}`;
+
+const mouse={x:0.5,y:0.5};
+addEventListener('mousemove',e=>{mouse.x=e.clientX/innerWidth;mouse.y=e.clientY/innerHeight});
+
+function bootGL(canvasId, fsSrc){
+  const canvas=document.getElementById(canvasId);
+  const gl=canvas.getContext('webgl',{alpha:false,antialias:true});
+  if(!gl) return ()=>false;
+  const mk=(t,s)=>{const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh};
+  const prog=gl.createProgram();
+  gl.attachShader(prog,mk(gl.VERTEX_SHADER,VS));
+  gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,fsSrc));
+  gl.linkProgram(prog);gl.useProgram(prog);
+  const buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+  const pos=gl.getAttribLocation(prog,'position');
+  gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
+  const lRes=gl.getUniformLocation(prog,'u_resolution');
+  const lT=gl.getUniformLocation(prog,'u_time');
+  const lM=gl.getUniformLocation(prog,'u_mouse');
+  const resize=()=>{
+    const d=Math.min(window.devicePixelRatio||1,2);
+    canvas.width=innerWidth*d;canvas.height=innerHeight*d;
+    gl.viewport(0,0,canvas.width,canvas.height);
+  };
+  addEventListener('resize',resize);resize();
+  return (tSec)=>{
+    gl.uniform2f(lRes,canvas.width,canvas.height);
+    gl.uniform1f(lT,tSec);
+    gl.uniform2f(lM,mouse.x,1-mouse.y);
+    gl.drawArrays(gl.TRIANGLES,0,6);
+    return true;
+  };
+}
+let drawDark=null, drawLight=null, glRAF=0, glT0=Date.now();
+function startGL(){
+  if(window.__lowPowerMode || glRAF) return;
+  if(!drawDark) drawDark=bootGL('bg-dark',FS_DARK);
+  if(!drawLight) drawLight=bootGL('bg-light',FS_LIGHT);
+  glT0=Date.now();
+  function loop(){
+    if(window.__lowPowerMode){glRAF=0;return;}
+    const t=(Date.now()-glT0)/1000;
+    drawDark(t);drawLight(t);
+    glRAF=requestAnimationFrame(loop);
+  }
+  glRAF=requestAnimationFrame(loop);
+}
+function stopGL(){
+  if(glRAF) cancelAnimationFrame(glRAF);
+  glRAF=0;
+}
+startGL();
+addEventListener('ppt-low-power-change', e=>{e.detail.on ? stopGL() : startGL();});
+
+// =============== 导航（翻页 / 圆点 / 键盘 / 滚轮 / 触屏） ===============
+const deck=document.getElementById('deck');
+const slides=deck.querySelectorAll('.slide');
+const nav=document.getElementById('nav');
+let idx=0,total=slides.length,lock=false;
+
+// 关键：矫正 deck 宽度为 total * 100vw，否则翻页会错位
+deck.style.width=(total*100)+'vw';
+
+slides.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.className='dot';b.dataset.i=i;b.setAttribute('aria-label','Page '+(i+1));
+  b.onclick=()=>go(i);
+  nav.appendChild(b);
+});
+
+function go(n){
+  if(lock)return;
+  idx=Math.max(0,Math.min(total-1,n));
+  window.__currentSlideIndex = idx;
+  deck.style.transform=`translateX(${-idx*100}vw)`;
+  nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  /* 主题切换：优先读 data-theme，其次从 class（light/dark）推断 */
+  const el=slides[idx];
+  const th=el.dataset.theme || (el.classList.contains('light')?'light':(el.classList.contains('dark')?'dark':'dark'));
+  document.body.classList.toggle('light-bg',th==='light');
+  /* 动效：翻页过渡中段触发当前页的入场动画（由 motion-boot 注册） */
+  if(window.__playSlide) setTimeout(()=>window.__playSlide(idx), 450);
+  lock=true;setTimeout(()=>lock=false,700);
+}
+
+/* =============== ESC 索引视图 =============== */
+let overviewOn=false;
+const ov=document.createElement('div');
+ov.id='overview';
+ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(var(--ink-rgb),.92);backdrop-filter:blur(12px);display:none;overflow-y:auto;padding:4vh 4vw';
+document.body.appendChild(ov);
+
+function buildOverview(){
+  ov.innerHTML='';
+  const grid=document.createElement('div');
+  grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:2vh 1.6vw;max-width:90vw;margin:0 auto';
+  slides.forEach((s,i)=>{
+    const card=document.createElement('div');
+    card.style.cssText='cursor:pointer;border-radius:6px;overflow:hidden;border:2px solid '+(i===idx?'rgba(var(--paper-rgb),.8)':'rgba(var(--paper-rgb),.15)')+';transition:border-color .2s';
+    card.onmouseenter=()=>card.style.borderColor='rgba(var(--paper-rgb),.6)';
+    card.onmouseleave=()=>card.style.borderColor=i===idx?'rgba(var(--paper-rgb),.8)':'rgba(var(--paper-rgb),.15)';
+    const wrap=document.createElement('div');
+    wrap.style.cssText='width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;pointer-events:none;background:'+(s.classList.contains('light')?'var(--paper)':'var(--ink)');
+    const clone=s.cloneNode(true);
+    clone.style.cssText='width:100vw;height:100vh;transform:scale('+(1/4.5)+');transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none';
+    wrap.appendChild(clone);
+    const label=document.createElement('div');
+    label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper);opacity:.7';
+    label.textContent=(i+1)+' / '+total;
+    card.appendChild(wrap);
+    card.appendChild(label);
+    card.onclick=()=>{toggleOverview();go(i)};
+    grid.appendChild(card);
+  });
+  ov.appendChild(grid);
+}
+
+function toggleOverview(){
+  overviewOn=!overviewOn;
+  if(overviewOn){buildOverview();ov.style.display='block';}
+  else{ov.style.display='none';}
+}
+
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();toggleOverview();return;}
+  if(e.key && e.key.toLowerCase()==='b' && !e.metaKey && !e.ctrlKey && !e.altKey){
+    e.preventDefault();
+    window.__setLowPowerMode(!window.__lowPowerMode);
+    return;
+  }
+  if(overviewOn)return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='ArrowDown'){
+    if(window.__pipeAdvance && window.__pipeAdvance()) return;
+    go(idx+1);
+    return;
+  }
+  if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='ArrowUp')go(idx-1);
+  if(e.key==='Home')go(0);
+  if(e.key==='End')go(total-1);
+});
+
+let wheelTO=null,wheelAcc=0;
+addEventListener('wheel',e=>{
+  wheelAcc+=e.deltaY+e.deltaX;
+  if(Math.abs(wheelAcc)>50){
+    if(wheelAcc>0 && window.__pipeAdvance && window.__pipeAdvance()){
+      wheelAcc=0;
+    }else{
+      go(idx+(wheelAcc>0?1:-1));wheelAcc=0;
+    }
+  }
+  clearTimeout(wheelTO);wheelTO=setTimeout(()=>wheelAcc=0,150);
+},{passive:true});
+
+let tx=0,ty=0;
+addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{
+  const dx=(e.changedTouches[0].clientX-tx);
+  const dy=(e.changedTouches[0].clientY-ty);
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){
+    if(dx<0 && window.__pipeAdvance && window.__pipeAdvance()) return;
+    go(idx+(dx<0?1:-1));
+  }
+},{passive:true});
+
+go(0);
+/* 支持 #页码 直达（如 index.html#9），便于分享定位与截图核对 */
+const __h=parseInt(location.hash.slice(1));
+if(!isNaN(__h)&&__h>=1&&__h<=total)setTimeout(()=>go(__h-1),760);
+/* ?static=1 静态模式：跳过动效与 WebGL，便于核对版式 */
+if(new URLSearchParams(location.search).has('static'))window.__setLowPowerMode(true,{persist:false});
+</script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
+
+<!-- ============ Motion One 动效引擎（本地优先,CDN 兜底） ============
+     加载策略:先 ./assets/motion.min.js(本地,离线可用),失败 fallback 到 jsDelivr CDN
+     加载完成后挂 window.__playSlide / window.__pipeAdvance,
+     导航脚本会在翻页中段调用 __playSlide(idx),键盘/滚轮/触屏会在翻页前调用 __pipeAdvance()
+     双双失败时会兜底把所有 [data-anim] 设为可见,不让动效破坏阅读
+-->
+<script type="module">
+let motion;
+try {
+  motion = await import('./assets/motion.min.js');
+} catch(e1) {
+  try {
+    motion = await import('https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm');
+  } catch(e2) {
+    console.warn('[motion] local + CDN both failed, disabling animations', e1, e2);
+    document.querySelectorAll('[data-anim]').forEach(el=>{el.style.opacity='1';el.style.transform='none'});
+    document.querySelectorAll('[data-animate="pipeline"] [data-anim]').forEach(el=>el.style.opacity='1');
+  }
+}
+
+if(motion){
+  const { animate, stagger } = motion;
+  document.body.classList.add('motion-ready');
+  const EASE = [.22, 1, .36, 1];
+  const slides = [...document.querySelectorAll('.slide')];
+  let pipeStep = -1;
+  let lastIdx = -1;
+
+  function resetAnims(slide){
+    slide.querySelectorAll('[data-anim]').forEach(el=>{
+      el.style.opacity='';
+      el.style.transform='';
+    });
+  }
+
+  function revealStatic(slide){
+    resetAnims(slide);
+    document.getAnimations?.().forEach(a=>a.cancel());
+    slide.querySelectorAll('[data-anim]').forEach(el=>{
+      el.style.opacity='1';
+      el.style.transform='none';
+    });
+  }
+
+  function playSlide(i){
+    const slide = slides[i];
+    if(!slide) return;
+    lastIdx = i;
+    const recipe = slide.dataset.animate || (slide.classList.contains('hero') ? 'hero' : 'cascade');
+
+    if(window.__lowPowerMode){
+      revealStatic(slide);
+      return;
+    }
+
+    if(recipe === 'pipeline'){
+      pipeStep = -1;
+      slide.querySelectorAll('[data-anim]').forEach(el=>{
+        el.style.opacity='0.15';
+        el.style.transform='none';
+      });
+      return;
+    }
+
+    resetAnims(slide);
+    const all = [...slide.querySelectorAll('[data-anim]')];
+    if(!all.length) return;
+
+    if(recipe === 'directional'){
+      const lefts  = all.filter(el=>el.dataset.anim==='left');
+      const divs   = all.filter(el=>el.dataset.anim==='divider');
+      const rights = all.filter(el=>el.dataset.anim==='right');
+      const others = all.filter(el=>!['left','right','divider'].includes(el.dataset.anim));
+      if(others.length) animate(others, {opacity:[0,1], y:[12,0]}, {duration:.6, delay:stagger(.1, {start:.15}), easing:EASE});
+      if(lefts.length)  animate(lefts,  {opacity:[0,1], x:[-24,0]}, {duration:.8, delay:.35, easing:EASE});
+      if(divs.length)   animate(divs,   {opacity:[0,.25]},          {duration:.5, delay:.9});
+      if(rights.length) animate(rights, {opacity:[0,1], x:[24,0]},  {duration:.8, delay:1.0, easing:EASE});
+      return;
+    }
+
+    if(recipe === 'quote'){
+      const lines = all.filter(el=>el.dataset.anim==='line');
+      const others = all.filter(el=>el.dataset.anim!=='line');
+      if(others.length) animate(others, {opacity:[0,1], y:[8,0]},    {duration:.6, delay:stagger(.12, {start:.2}), easing:EASE});
+      if(lines.length)  animate(lines,  {opacity:[.35,1], y:[10,0]}, {duration:.8, delay:stagger(.55, {start:.5}), easing:EASE});
+      return;
+    }
+
+    if(recipe === 'hero'){
+      animate(all, {opacity:[0,1], y:[14,0]}, {duration:.9, delay:stagger(.16, {start:.2}), easing:EASE});
+      return;
+    }
+
+    // default: cascade
+    animate(all, {opacity:[0,1], y:[16,0]}, {duration:.75, delay:stagger(.1, {start:.15}), easing:EASE});
+  }
+
+  function pipeAdvance(){
+    if(window.__lowPowerMode) return false;
+    const slide = slides[lastIdx];
+    if(!slide || slide.dataset.animate !== 'pipeline') return false;
+    const steps  = [...slide.querySelectorAll('[data-anim="step"]')];
+    const arrows = [...slide.querySelectorAll('[data-anim="arrow"]')];
+    if(pipeStep >= steps.length - 1) return false;
+    pipeStep++;
+    animate(steps[pipeStep], {opacity:[0.15,1], y:[8,0]}, {duration:.5, easing:EASE});
+    if(pipeStep > 0 && arrows[pipeStep-1]){
+      animate(arrows[pipeStep-1], {opacity:[0.15,.7]}, {duration:.3, delay:.15});
+    }
+    return true;
+  }
+
+  window.__playSlide = playSlide;
+  window.__pipeAdvance = pipeAdvance;
+
+  // 首屏:go(0) 已跑过(同步),没来得及触发动效 → 这里补一下
+  playSlide(0);
+}
+</script>
+</body>
+</html>
