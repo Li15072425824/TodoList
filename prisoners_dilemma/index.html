@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>囚徒困境实验室 · Prisoner's Dilemma Lab</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface-1: #fcfcfb;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --series-a: #2a78d6;      /* slot 1 blue  —— 玩家 A / 累计得分 */
+    --series-b: #eb6834;      /* slot 2 orange —— 玩家 B / 合作率 */
+    --act-c: #1baf7a;         /* slot 3 aqua   —— 合作 C */
+    --act-d: #e34948;         /* slot 8 red    —— 背叛 D */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d;
+      --surface-1: #1a1a19;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --series-a: #3987e5;
+      --series-b: #d95926;
+      --act-c: #199e70;
+      --act-d: #e66767;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 16px 64px; }
+
+  header h1 { font-size: 22px; margin: 0 0 2px; }
+  header .sub { color: var(--text-secondary); font-size: 13px; margin-bottom: 16px; }
+
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .tabs button {
+    appearance: none; border: none; background: transparent; color: var(--text-secondary);
+    font: inherit; font-size: 14px; padding: 8px 14px; cursor: pointer;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .tabs button.active { color: var(--text-primary); font-weight: 600; border-bottom-color: var(--series-a); }
+
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px; margin-bottom: 16px;
+  }
+  .card h2 { font-size: 15px; margin: 0 0 12px; }
+  .card h2 .hint { font-weight: 400; color: var(--text-muted); font-size: 12px; margin-left: 8px; }
+
+  .config-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px 16px; align-items: end;
+  }
+  label.field { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--text-secondary); }
+  label.field .val { color: var(--text-primary); font-weight: 600; }
+  select, input[type=number] {
+    font: inherit; font-size: 13px; color: var(--text-primary);
+    background: var(--page); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px;
+  }
+  input[type=range] { width: 100%; accent-color: var(--series-a); }
+  .payoff-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .payoff-row label.field { max-width: 84px; }
+
+  button.primary {
+    font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+    color: #fff; background: var(--series-a); border: none; border-radius: 8px; padding: 9px 20px;
+  }
+  button.primary:hover { filter: brightness(1.08); }
+  button.ghost {
+    font: inherit; font-size: 12px; cursor: pointer; color: var(--text-secondary);
+    background: transparent; border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px;
+  }
+  button.ghost:hover { color: var(--text-primary); }
+  button.danger:hover { color: var(--act-d); border-color: var(--act-d); }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 4px; }
+  .tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; }
+  .tile .label { font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+  .tile .value { font-size: 30px; font-weight: 700; margin-top: 2px; }
+  .tile .sub { font-size: 12px; color: var(--text-muted); }
+  .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
+  .winner-line { font-size: 13px; color: var(--text-secondary); margin: 8px 0 0; }
+
+  .chart-block { margin-top: 16px; }
+  .chart-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .chart-head .title { font-size: 14px; font-weight: 600; }
+  .legend { display: flex; gap: 14px; font-size: 12px; color: var(--text-secondary); }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  canvas { display: block; width: 100%; }
+  .tooltip {
+    position: fixed; pointer-events: none; z-index: 10; display: none;
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15); padding: 8px 10px; font-size: 12px; color: var(--text-primary);
+    min-width: 150px;
+  }
+  .tooltip .tt-title { font-weight: 600; margin-bottom: 4px; color: var(--text-secondary); }
+  .tooltip table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .tooltip td { padding: 1px 6px 1px 0; }
+
+  table.data { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+  table.data th, table.data td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--grid); }
+  table.data th { color: var(--text-muted); font-weight: 500; font-size: 12px; }
+  table.data td.num, table.data th.num { text-align: right; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data .rank-1 td:first-child { font-weight: 700; }
+
+  .hist-item {
+    display: flex; align-items: center; gap: 12px; padding: 10px 4px;
+    border-bottom: 1px solid var(--grid); font-size: 13px; flex-wrap: wrap;
+  }
+  .hist-item:last-child { border-bottom: none; }
+  .hist-item .meta { flex: 1; min-width: 240px; }
+  .hist-item .meta .t { font-weight: 600; }
+  .hist-item .meta .d { color: var(--text-muted); font-size: 12px; }
+  .hist-item .scores { color: var(--text-secondary); font-variant-numeric: tabular-nums; font-size: 12px; }
+  .empty { color: var(--text-muted); font-size: 13px; padding: 12px 4px; }
+  .toolbar { display: flex; gap: 8px; margin-bottom: 8px; }
+
+  .hidden { display: none; }
+  footer { margin-top: 24px; color: var(--text-muted); font-size: 12px; }
+  code { background: var(--page); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>囚徒困境实验室</h1>
+    <div class="sub">行为如何影响结果 —— 任选策略对战 / 全场锦标赛 / 每次执行自动存档</div>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="duel" class="active">对战实验</button>
+    <button data-tab="tournament">全场锦标赛</button>
+    <button data-tab="history">历史记录</button>
+  </nav>
+
+  <!-- ============ 对战实验 ============ -->
+  <section id="tab-duel">
+    <div class="card">
+      <h2>实验设置</h2>
+      <div class="config-grid">
+        <label class="field">玩家 A 策略
+          <select id="a-strategy"></select>
+        </label>
+        <label class="field">玩家 B 策略
+          <select id="b-strategy"></select>
+        </label>
+        <label class="field">博弈轮数 <span class="val" id="rounds-val">200</span>
+          <input type="range" id="rounds" min="10" max="2000" step="10" value="200">
+        </label>
+        <label class="field">噪声 ε（误执行概率） <span class="val" id="noise-val">5%</span>
+          <input type="range" id="noise" min="0" max="30" step="1" value="5">
+        </label>
+        <label class="field">随机种子（可复现）
+          <input type="number" id="seed" value="42" min="0" max="999999">
+        </label>
+        <button class="primary" id="run-duel">▶ 运行实验</button>
+      </div>
+      <details style="margin-top:12px">
+        <summary style="font-size:12px;color:var(--text-secondary);cursor:pointer">收益矩阵（T/R/P/S）</summary>
+        <div class="payoff-row" style="margin-top:8px">
+          <label class="field">T 背叛诱惑 <input type="number" id="p-t" value="5" step="0.5"></label>
+          <label class="field">R 合作奖励 <input type="number" id="p-r" value="3" step="0.5"></label>
+          <label class="field">P 背叛惩罚 <input type="number" id="p-p" value="1" step="0.5"></label>
+          <label class="field">S 傻瓜收益 <input type="number" id="p-s" value="0" step="0.5"></label>
+        </div>
+      </details>
+    </div>
+
+    <div id="duel-results" class="hidden">
+      <div class="tiles" id="duel-tiles"></div>
+      <p class="winner-line" id="winner-line"></p>
+
+      <div class="card chart-block">
+        <div class="chart-head">
+          <span class="title">累计得分</span>
+          <div class="legend">
+            <span><i class="swatch" style="background:var(--series-a)"></i><span id="legend-a"></span></span>
+            <span><i class="swatch" style="background:var(--series-b)"></i><span id="legend-b"></span></span>
+          </div>
+        </div>
+        <canvas id="chart-cum" height="260"></canvas>
+      </div>
+
+      <div class="card chart-block">
+        <div class="chart-head">
+          <span class="title">合作率（滑动窗口 20 轮）</span>
+          <div class="legend">
+            <span><i class="swatch" style="background:var(--series-a)"></i><span id="legend-a2"></span></span>
+            <span><i class="swatch" style="background:var(--series-b)"></i><span id="legend-b2"></span></span>
+          </div>
+        </div>
+        <canvas id="chart-coop" height="220"></canvas>
+      </div>
+
+      <div class="card chart-block">
+        <div class="chart-head">
+          <span class="title">逐轮动作时间线</span>
+          <div class="legend">
+            <span><i class="swatch" style="background:var(--act-c)"></i>合作 C</span>
+            <span><i class="swatch" style="background:var(--act-d)"></i>背叛 D</span>
+          </div>
+        </div>
+        <canvas id="chart-timeline" height="90"></canvas>
+      </div>
+
+      <div class="card chart-block">
+        <h2>前 20 轮明细</h2>
+        <div style="overflow-x:auto"><table class="data" id="round-table"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 全场锦标赛 ============ -->
+  <section id="tab-tournament" class="hidden">
+    <div class="card">
+      <h2>锦标赛设置 <span class="hint">9 种策略两两配对（含自战），按平均每轮得分排名 —— Axelrod 式</span></h2>
+      <div class="config-grid">
+        <label class="field">每场轮数 <span class="val" id="tr-rounds-val">200</span>
+          <input type="range" id="tr-rounds" min="50" max="1000" step="50" value="200">
+        </label>
+        <label class="field">噪声 ε <span class="val" id="tr-noise-val">0%</span>
+          <input type="range" id="tr-noise" min="0" max="30" step="1" value="0">
+        </label>
+        <label class="field">随机种子
+          <input type="number" id="tr-seed" value="42" min="0" max="999999">
+        </label>
+        <label class="field">种子数（多种子取平均，消除单种子偶然性）
+          <select id="tr-seeds">
+            <option value="1">单种子</option>
+            <option value="10">10 个种子</option>
+            <option value="20" selected>20 个种子</option>
+            <option value="50">50 个种子</option>
+          </select>
+        </label>
+        <button class="primary" id="run-tournament">▶ 运行锦标赛</button>
+      </div>
+    </div>
+    <div id="tr-results" class="hidden">
+      <div class="card">
+        <h2>排行榜 <span class="hint">得分为平均每轮得分（自己 vs 自己两场也算在内）</span></h2>
+        <div style="overflow-x:auto"><table class="data" id="tr-table"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 历史记录 ============ -->
+  <section id="tab-history" class="hidden">
+    <div class="card">
+      <h2>执行存档 <span class="hint">每一次运行（对战 / 锦标赛）都会自动保存在浏览器 localStorage</span></h2>
+      <div class="toolbar">
+        <button class="ghost" id="export-json">导出全部 JSON</button>
+        <button class="ghost danger" id="clear-history">清空历史</button>
+      </div>
+      <div id="history-list"></div>
+    </div>
+  </section>
+
+  <footer>
+    规则：每轮双方同时选 合作C / 背叛D。双方C各得 R；双方D各得 P；一方D一方C时 D 方得 T、C 方得 S（T&gt;R&gt;P&gt;S）。噪声 ε 表示动作有小概率被"误执行"。
+  </footer>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+'use strict';
+
+/* ================= 策略库 ================= */
+// decide(ctx) -> 'C' | 'D'
+// ctx: { round, myHist, oppHist, myLast, oppLast, payoffs, rnd }
+const STRATEGIES = {
+  always_c: { name: 'Always Cooperate · 老好人', tag: '善良', decide: () => 'C' },
+  always_d: { name: 'Always Defect · 老骗子', tag: '恶意', decide: () => 'D' },
+  random:   { name: 'Random · 随机', tag: '不可预测', decide: (c) => c.rnd() < 0.5 ? 'C' : 'D' },
+  tft:      { name: 'Tit-for-Tat · 以牙还牙', tag: '善良·立刻报复',
+    decide: (c) => c.round === 0 ? 'C' : c.oppLast },
+  tf2t:     { name: 'Tit-for-Two-Tats · 两报还一报', tag: '善良·宽容',
+    decide: (c) => {
+      const n = c.oppHist.length;
+      return (n >= 2 && c.oppHist[n-1] === 'D' && c.oppHist[n-2] === 'D') ? 'D' : 'C';
+    } },
+  grudger:  { name: 'Grudger · 记仇者', tag: '善良·零宽容',
+    decide: (c) => c.oppHist.includes('D') ? 'D' : 'C' },
+  pavlov:   { name: 'Pavlov · 赢留输变', tag: '机会主义',
+    decide: (c) => {
+      if (c.round === 0) return 'C';
+      // 赢（R：CC / T：DC）重复自己动作；输（P：DD / S：CD）换动作
+      if (c.oppLast === 'C') return c.myLast;
+      return c.myLast === 'C' ? 'D' : 'C';
+    } },
+  prober:   { name: 'Prober · 试探者', tag: '善良·爱占便宜',
+    decide: (c) => {
+      if (c.round === 0) return 'D';
+      if (c.round === 1 || c.round === 2) return 'C';
+      if (c.oppHist[0] === 'C' && c.oppHist[1] === 'C' && c.oppHist[2] === 'C') return 'D';
+      return c.oppLast; // 否则打 TFT
+    } },
+  joss:     { name: 'Joss · 偷袭的 TFT', tag: '剥削者',
+    decide: (c) => {
+      if (c.round === 0) return 'C';
+      if (c.oppLast === 'D') return 'D';
+      return c.rnd() < 0.1 ? 'D' : 'C';
+    } },
+};
+const STRAT_KEYS = Object.keys(STRATEGIES);
+
+/* ================= 随机数（可复现） ================= */
+function mulberry32(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/* ================= 博弈引擎 ================= */
+function payoffOf(my, opp, p) {
+  if (my === 'C' && opp === 'C') return p.R;
+  if (my === 'C' && opp === 'D') return p.S;
+  if (my === 'D' && opp === 'C') return p.T;
+  return p.P;
+}
+
+// 一场 N 轮对局，返回完整记录
+function playDuel(keyA, keyB, rounds, noise, payoffs, seed) {
+  const rnd = mulberry32(seed);
+  const histA = [], histB = [];
+  const cumA = [0], cumB = [0];
+  const coopWin = Math.min(20, rounds);
+  const coopA = [], coopB = [];
+  let scoreA = 0, scoreB = 0;
+  let noiseFlips = 0;
+
+  for (let round = 0; round < rounds; round++) {
+    const ctxA = { round, myHist: histA, oppHist: histB,
+      myLast: histA[round-1], oppLast: histB[round-1], payoffs, rnd };
+    const ctxB = { round, myHist: histB, oppHist: histA,
+      myLast: histB[round-1], oppLast: histA[round-1], payoffs, rnd };
+    let a = STRATEGIES[keyA].decide(ctxA);
+    let b = STRATEGIES[keyB].decide(ctxB);
+    // 噪声：动作被误执行
+    if (noise > 0) {
+      if (rnd() < noise) { a = a === 'C' ? 'D' : 'C'; noiseFlips++; }
+      if (rnd() < noise) { b = b === 'C' ? 'D' : 'C'; noiseFlips++; }
+    }
+    const pa = payoffOf(a, b, payoffs);
+    const pb = payoffOf(b, a, payoffs);
+    scoreA += pa; scoreB += pb;
+    histA.push(a); histB.push(b);
+    cumA.push(scoreA); cumB.push(scoreB);
+    const from = Math.max(0, round + 1 - coopWin);
+    let ca = 0, cb = 0;
+    for (let i = from; i <= round; i++) { if (histA[i]==='C') ca++; if (histB[i]==='C') cb++; }
+    const w = round + 1 - from;
+    coopA.push(ca / w); coopB.push(cb / w);
+  }
+
+  return {
+    rounds, noise, payoffs, seed,
+    finalA: scoreA, finalB: scoreB,
+    coopRateA: histA.filter(x => x === 'C').length / rounds,
+    coopRateB: histB.filter(x => x === 'C').length / rounds,
+    cumA, cumB, coopA, coopB, actionsA: histA, actionsB: histB,
+    noiseFlips,
+  };
+}
+
+// 全场锦标赛：所有策略两两配对（含自战）；nSeeds>1 时跑多个种子取平均，
+// 并统计每个策略在各个种子下的名次波动范围
+function playTournament(rounds, noise, payoffs, baseSeed, nSeeds) {
+  const n = STRAT_KEYS.length;
+  const games = n * (n + 1) / 2;
+  const totals = Array.from({ length: n }, () => Array(nSeeds).fill(0));
+  const coops  = Array.from({ length: n }, () => Array(nSeeds).fill(0));
+  for (let s = 0; s < nSeeds; s++) {
+    let seedI = (baseSeed + s * 7919) >>> 0;
+    for (let i = 0; i < n; i++) {
+      for (let j = i; j < n; j++) {
+        seedI = (seedI * 1103515245 + 12345) >>> 0;
+        const r = playDuel(STRAT_KEYS[i], STRAT_KEYS[j], rounds, noise, payoffs, seedI);
+        totals[i][s] += r.finalA; coops[i][s] += r.coopRateA;
+        totals[j][s] += r.finalB; coops[j][s] += r.coopRateB;
+      }
+    }
+  }
+  const perSeedAvg = totals.map(t => t.map(v => v / n / rounds)); // 每个策略参与 n 场对局
+  const rows = STRAT_KEYS.map((k, i) => {
+    const avg = perSeedAvg[i].reduce((a, b) => a + b, 0) / nSeeds;
+    let rankMin = 1, rankMax = 1;
+    for (let s = 0; s < nSeeds; s++) {
+      const rank = 1 + perSeedAvg.filter(arr => arr[s] > perSeedAvg[i][s] + 1e-12).length;
+      rankMin = Math.min(rankMin, rank); rankMax = Math.max(rankMax, rank);
+    }
+    return {
+      key: k, name: STRATEGIES[k].name, tag: STRATEGIES[k].tag,
+      avg, total: avg * n * rounds,
+      coopRate: coops[i].reduce((a, b) => a + b, 0) / nSeeds,
+      rankMin, rankMax,
+    };
+  });
+  rows.sort((a, b) => b.avg - a.avg);
+  return rows;
+}
+
+/* ================= 存档（localStorage） ================= */
+const LS_KEY = 'pd_lab_runs_v1';
+function loadRuns() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; }
+  catch (e) { return []; }
+}
+function saveRuns(runs) {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(runs)); return true; }
+  catch (e) { alert('存档失败（localStorage 已满？）：' + e.message); return false; }
+}
+function addRun(record) {
+  const runs = loadRuns();
+  runs.unshift(record);
+  saveRuns(runs);
+  renderHistory();
+}
+function deleteRun(id) {
+  saveRuns(loadRuns().filter(r => r.id !== id));
+  renderHistory();
+}
+function fmtTime(ts) {
+  const d = new Date(ts);
+  const p = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+}
+
+/* ================= 画图 ================= */
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+function setupCanvas(canvas) {
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = Math.round(rect.width * dpr);
+  canvas.height = Math.round(parseInt(canvas.getAttribute('height'), 10) * dpr);
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { ctx, w: rect.width, h: parseInt(canvas.getAttribute('height'), 10) };
+}
+
+// 通用折线图：series = [{label, color, data:[0..1 归一化或原始值], min, max, fmt}]
+function drawLineChart(canvas, series, opts) {
+  const { ctx, w, h } = setupCanvas(canvas);
+  const padL = 46, padR = 16, padT = 12, padB = 26;
+  const pw = w - padL - padR, ph = h - padT - padB;
+  const n = series[0].data.length;
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = '11px system-ui, sans-serif';
+
+  const yMin = opts.yMin, yMax = opts.yMax;
+  const X = i => padL + (n <= 1 ? 0 : (i / (n - 1)) * pw);
+  const Y = v => padT + (1 - (v - yMin) / (yMax - yMin)) * ph;
+
+  // 网格 + y 刻度
+  ctx.strokeStyle = cssVar('--grid');
+  ctx.fillStyle = cssVar('--text-muted');
+  ctx.lineWidth = 1;
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+  const ticks = 5;
+  for (let t = 0; t <= ticks; t++) {
+    const v = yMin + (yMax - yMin) * t / ticks;
+    const y = Y(v);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL + pw, y); ctx.stroke();
+    ctx.fillText(opts.fmtTick(v), padL - 6, y);
+  }
+  // x 刻度
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  for (let t = 0; t <= 5; t++) {
+    const i = Math.round((n - 1) * t / 5);
+    ctx.fillText(String(i), X(i), padT + ph + 6);
+  }
+  // 基线
+  ctx.strokeStyle = cssVar('--baseline');
+  ctx.beginPath(); ctx.moveTo(padL, padT + ph); ctx.lineTo(padL + pw, padT + ph); ctx.stroke();
+
+  // 折线（2px）
+  series.forEach(s => {
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const x = X(i), y = Y(Math.min(Math.max(s.data[i], yMin), yMax));
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    // 末端直接标注（次级编码）
+    const lastY = Y(Math.min(Math.max(s.data[n-1], yMin), yMax));
+    ctx.fillStyle = s.color;
+    ctx.beginPath(); ctx.arc(padL + pw, lastY, 3.5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = cssVar('--text-primary');
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(s.endLabel, padL + pw - ctx.measureText(s.endLabel).width, Math.min(lastY - 5, padT + ph));
+  });
+
+  // 保存 hover 映射
+  canvas._hover = { padL, pw, n, X, series, opts };
+}
+
+function drawTimeline(canvas, actionsA, actionsB) {
+  const { ctx, w, h } = setupCanvas(canvas);
+  const n = actionsA.length;
+  const padL = 46, padR = 16, padT = 8;
+  const pw = w - padL - padR;
+  const rows = [
+    { label: canvas._labelA || 'A', acts: actionsA },
+    { label: canvas._labelB || 'B', acts: actionsB },
+  ];
+  ctx.clearRect(0, 0, w, h);
+  const rowH = (h - padT - 24) / 2;
+  const bw = Math.max(1, pw / n);
+  const cC = cssVar('--act-c'), cD = cssVar('--act-d');
+  rows.forEach((r, ri) => {
+    const y = padT + ri * (rowH + 6);
+    ctx.font = '11px system-ui, sans-serif';
+    ctx.fillStyle = cssVar('--text-muted');
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    ctx.fillText(r.label, padL - 6, y + rowH / 2);
+    for (let i = 0; i < n; i++) {
+      ctx.fillStyle = r.acts[i] === 'C' ? cC : cD;
+      ctx.fillRect(padL + i * bw, y, Math.max(0.5, bw - (bw > 3 ? 1 : 0)), rowH);
+    }
+  });
+  // 轮数轴
+  ctx.fillStyle = cssVar('--text-muted');
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  for (let t = 0; t <= 5; t++) {
+    const i = Math.round((n - 1) * t / 5);
+    ctx.fillText(String(i), padL + (n <= 1 ? 0 : (i / (n - 1)) * pw), h - 18);
+  }
+  canvas._tlHover = { padL, pw, n };
+}
+
+/* ---- hover tooltip ---- */
+const tooltip = document.getElementById('tooltip');
+function bindLineHover(canvas, buildTip) {
+  canvas.addEventListener('mousemove', (e) => {
+    const hv = canvas._hover; if (!hv) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    if (mx < hv.padL || mx > hv.padL + hv.pw) { tooltip.style.display = 'none'; return; }
+    const i = Math.round(((mx - hv.padL) / hv.pw) * (hv.n - 1));
+    const idx = Math.min(Math.max(i, 0), hv.n - 1);
+    tooltip.innerHTML = buildTip(idx, hv);
+    tooltip.style.display = 'block';
+    const tw = tooltip.offsetWidth;
+    tooltip.style.left = Math.min(e.clientX + 14, window.innerWidth - tw - 10) + 'px';
+    tooltip.style.top = (e.clientY + 14) + 'px';
+    drawCrosshair(canvas, idx);
+  });
+  canvas.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; if (canvas._redraw) canvas._redraw(); });
+}
+function drawCrosshair(canvas, idx) {
+  if (canvas._redraw) canvas._redraw();
+  const { ctx } = setupCanvas(canvas);
+  const hv = canvas._hover;
+  const padT = 12, ph = canvas.getBoundingClientRect().height - 12 - 26;
+  const x = hv.X(idx);
+  ctx.strokeStyle = cssVar('--baseline');
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, padT + ph); ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+function bindTimelineHover(canvas, current) {
+  canvas.addEventListener('mousemove', (e) => {
+    const hv = canvas._tlHover; if (!hv || !current) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    if (mx < hv.padL || mx > hv.padL + hv.pw) { tooltip.style.display = 'none'; return; }
+    const i = Math.min(Math.max(Math.round(((mx - hv.padL) / hv.pw) * (hv.n - 1)), 0), hv.n - 1);
+    const a = current.actionsA[i], b = current.actionsB[i];
+    tooltip.innerHTML = `<div class="tt-title">第 ${i + 1} 轮</div>
+      <table><tr><td style="color:var(--text-muted)">A</td><td>${a === 'C' ? '合作 C' : '背叛 D'}</td></tr>
+      <tr><td style="color:var(--text-muted)">B</td><td>${b === 'C' ? '合作 C' : '背叛 D'}</td></tr></table>`;
+    tooltip.style.display = 'block';
+    const tw = tooltip.offsetWidth;
+    tooltip.style.left = Math.min(e.clientX + 14, window.innerWidth - tw - 10) + 'px';
+    tooltip.style.top = (e.clientY + 14) + 'px';
+  });
+  canvas.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+}
+
+/* ================= 对战渲染 ================= */
+let currentDuel = null;
+
+function fmtPayoffs(p) { return `T=${p.T} R=${p.R} P=${p.P} S=${p.S}`; }
+
+function renderDuel(res, keyA, keyB) {
+  currentDuel = res;
+  const nameA = STRATEGIES[keyA].name, nameB = STRATEGIES[keyB].name;
+  document.getElementById('duel-results').classList.remove('hidden');
+  document.getElementById('legend-a').textContent = 'A · ' + nameA;
+  document.getElementById('legend-b').textContent = 'B · ' + nameB;
+  document.getElementById('legend-a2').textContent = 'A · ' + nameA;
+  document.getElementById('legend-b2').textContent = 'B · ' + nameB;
+
+  const avgA = res.finalA / res.rounds, avgB = res.finalB / res.rounds;
+  const winner = res.finalA > res.finalB ? 'A' : (res.finalB > res.finalA ? 'B' : null);
+  document.getElementById('duel-tiles').innerHTML = `
+    <div class="tile"><div class="label"><i class="swatch" style="background:var(--series-a)"></i>A 最终得分 · ${nameA}</div>
+      <div class="value">${res.finalA}</div><div class="sub">平均 ${avgA.toFixed(2)} / 轮 · 合作率 ${(res.coopRateA*100).toFixed(0)}%</div></div>
+    <div class="tile"><div class="label"><i class="swatch" style="background:var(--series-b)"></i>B 最终得分 · ${nameB}</div>
+      <div class="value">${res.finalB}</div><div class="sub">平均 ${avgB.toFixed(2)} / 轮 · 合作率 ${(res.coopRateB*100).toFixed(0)}%</div></div>
+    <div class="tile"><div class="label">实验参数</div>
+      <div class="value" style="font-size:20px;line-height:38px">${res.rounds} 轮</div>
+      <div class="sub">ε=${(res.noise*100).toFixed(0)}% · seed=${res.seed} · 误执行 ${res.noiseFlips} 次</div></div>`;
+  document.getElementById('winner-line').innerHTML = winner
+    ? `🏆 <b>玩家 ${winner}</b> 获胜（${winner === 'A' ? nameA : nameB}）— ${fmtPayoffs(res.payoffs)}`
+    : `🤝 平局 — ${fmtPayoffs(res.payoffs)}`;
+
+  // 累计得分图
+  const cumCanvas = document.getElementById('chart-cum');
+  const maxCum = Math.max(res.cumA[res.rounds], res.cumB[res.rounds], 10);
+  const redrawCum = () => drawLineChart(cumCanvas, [
+    { label: 'A', color: cssVar('--series-a'), data: res.cumA, endLabel: String(res.cumA[res.rounds]) },
+    { label: 'B', color: cssVar('--series-b'), data: res.cumB, endLabel: String(res.cumB[res.rounds]) },
+  ], { yMin: 0, yMax: maxCum, fmtTick: v => String(Math.round(v)) });
+  cumCanvas._redraw = redrawCum; redrawCum();
+  bindLineHover(cumCanvas, (idx, hv) => {
+    const rows = hv.series.map(s => `<tr><td><i class="swatch" style="background:${s.color}"></i></td><td>${s.label}</td><td>${Math.round(s.data[idx])}</td></tr>`).join('');
+    const a = res.actionsA[idx], b = res.actionsB[idx];
+    return `<div class="tt-title">第 ${idx + 1} 轮 · A:${a} B:${b}</div><table>${rows}</table>`;
+  });
+
+  // 合作率图
+  const coopCanvas = document.getElementById('chart-coop');
+  const redrawCoop = () => drawLineChart(coopCanvas, [
+    { label: 'A', color: cssVar('--series-a'), data: res.coopA, endLabel: (res.coopA[res.rounds-1]*100).toFixed(0) + '%' },
+    { label: 'B', color: cssVar('--series-b'), data: res.coopB, endLabel: (res.coopB[res.rounds-1]*100).toFixed(0) + '%' },
+  ], { yMin: 0, yMax: 1, fmtTick: v => Math.round(v * 100) + '%' });
+  coopCanvas._redraw = redrawCoop; redrawCoop();
+  bindLineHover(coopCanvas, (idx, hv) => {
+    const rows = hv.series.map(s => `<tr><td><i class="swatch" style="background:${s.color}"></i></td><td>${s.label}</td><td>${(s.data[idx]*100).toFixed(0)}%</td></tr>`).join('');
+    return `<div class="tt-title">第 ${idx + 1} 轮</div><table>${rows}</table>`;
+  });
+
+  // 时间线
+  const tl = document.getElementById('chart-timeline');
+  tl._labelA = 'A'; tl._labelB = 'B';
+  tl._redraw = () => drawTimeline(tl, res.actionsA, res.actionsB);
+  tl._redraw();
+  bindTimelineHover(tl, res);
+
+  // 明细表
+  let html = '<tr><th>轮</th><th class="num">A 动作</th><th class="num">B 动作</th><th class="num">A 得分</th><th class="num">B 得分</th><th class="num">A 累计</th><th class="num">B 累计</th></tr>';
+  let ca = 0, cb = 0;
+  for (let i = 0; i < Math.min(20, res.rounds); i++) {
+    const a = res.actionsA[i], b = res.actionsB[i];
+    ca += payoffOf(a, b, res.payoffs); cb += payoffOf(b, a, res.payoffs);
+    html += `<tr><td>${i + 1}</td><td class="num">${a}</td><td class="num">${b}</td><td class="num">${payoffOf(a,b,res.payoffs)}</td><td class="num">${payoffOf(b,a,res.payoffs)}</td><td class="num">${ca}</td><td class="num">${cb}</td></tr>`;
+  }
+  document.getElementById('round-table').innerHTML = html;
+}
+
+/* ================= 锦标赛渲染 ================= */
+function renderTournament(rows, nSeeds) {
+  document.getElementById('tr-results').classList.remove('hidden');
+  const showRange = (nSeeds || 1) > 1;
+  let html = '<tr><th>#</th><th>策略</th><th>行为特征</th><th class="num">平均每轮得分</th><th class="num">总得分</th><th class="num">合作率</th>' +
+    (showRange ? '<th class="num">名次波动（各种子下）</th>' : '') + '</tr>';
+  rows.forEach((r, i) => {
+    const range = showRange ? (r.rankMin === r.rankMax ? String(r.rankMin) : `${r.rankMin} – ${r.rankMax}`) : '—';
+    html += `<tr class="${i === 0 ? 'rank-1' : ''}"><td>${i + 1}${i === 0 ? ' 🏆' : ''}</td><td>${r.name}</td><td>${r.tag}</td><td class="num">${r.avg.toFixed(3)}</td><td class="num">${Math.round(r.total)}</td><td class="num">${(r.coopRate * 100).toFixed(0)}%</td>` +
+      (showRange ? `<td class="num">${range}</td>` : '') + '</tr>';
+  });
+  document.getElementById('tr-table').innerHTML = html;
+}
+
+/* ================= 历史渲染 ================= */
+function renderHistory() {
+  const runs = loadRuns();
+  const el = document.getElementById('history-list');
+  if (!runs.length) { el.innerHTML = '<div class="empty">还没有记录 —— 去运行一场实验吧。</div>'; return; }
+  el.innerHTML = runs.map(r => {
+    let meta, scores;
+    if (r.type === 'duel') {
+      meta = `<div class="t">⚔ 对战：${r.nameA} vs ${r.nameB}</div>
+              <div class="d">${fmtTime(r.ts)} · ${r.rounds}轮 · ε=${(r.noise*100).toFixed(0)}% · seed=${r.seed}</div>`;
+      scores = `<span>A ${r.finalA}</span> ｜ <span>B ${r.finalB}</span>`;
+    } else {
+      meta = `<div class="t">🏆 锦标赛：${r.rows.length} 策略全场对抗</div>
+              <div class="d">${fmtTime(r.ts)} · ${r.rounds}轮 · ε=${(r.noise*100).toFixed(0)}% · seed=${r.seed}</div>`;
+      scores = `<span>冠军：${r.rows[0].name.split(' · ')[0]}</span>`;
+    }
+    return `<div class="hist-item">
+      <div class="meta">${meta}</div>
+      <div class="scores">${scores}</div>
+      <button class="ghost" data-view="${r.id}">查看</button>
+      <button class="ghost danger" data-del="${r.id}">删除</button>
+    </div>`;
+  }).join('');
+}
+
+/* ================= 事件绑定 ================= */
+document.querySelectorAll('.tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['duel', 'tournament', 'history'].forEach(t =>
+      document.getElementById('tab-' + t).classList.toggle('hidden', t !== btn.dataset.tab));
+    window.dispatchEvent(new Event('resize'));
+  });
+});
+
+// 填充策略下拉
+function fillStratSelect(id, def) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = STRAT_KEYS.map(k => `<option value="${k}">${STRATEGIES[k].name}</option>`).join('');
+  sel.value = def;
+}
+fillStratSelect('a-strategy', 'tft');
+fillStratSelect('b-strategy', 'always_d');
+
+document.getElementById('rounds').addEventListener('input', e =>
+  document.getElementById('rounds-val').textContent = e.target.value);
+document.getElementById('noise').addEventListener('input', e =>
+  document.getElementById('noise-val').textContent = e.target.value + '%');
+document.getElementById('tr-rounds').addEventListener('input', e =>
+  document.getElementById('tr-rounds-val').textContent = e.target.value);
+document.getElementById('tr-noise').addEventListener('input', e =>
+  document.getElementById('tr-noise-val').textContent = e.target.value + '%');
+
+function readPayoffs() {
+  return {
+    T: parseFloat(document.getElementById('p-t').value),
+    R: parseFloat(document.getElementById('p-r').value),
+    P: parseFloat(document.getElementById('p-p').value),
+    S: parseFloat(document.getElementById('p-s').value),
+  };
+}
+
+document.getElementById('run-duel').addEventListener('click', () => {
+  const keyA = document.getElementById('a-strategy').value;
+  const keyB = document.getElementById('b-strategy').value;
+  const rounds = parseInt(document.getElementById('rounds').value, 10);
+  const noise = parseInt(document.getElementById('noise').value, 10) / 100;
+  const seed = parseInt(document.getElementById('seed').value, 10) || 0;
+  const payoffs = readPayoffs();
+  const res = playDuel(keyA, keyB, rounds, noise, payoffs, seed);
+  renderDuel(res, keyA, keyB);
+  addRun({
+    id: 'r' + Date.now() + Math.floor(Math.random() * 1000),
+    type: 'duel', ts: Date.now(),
+    keyA, keyB, nameA: STRATEGIES[keyA].name, nameB: STRATEGIES[keyB].name,
+    rounds, noise, seed, payoffs,
+    finalA: res.finalA, finalB: res.finalB,
+    coopRateA: res.coopRateA, coopRateB: res.coopRateB,
+    cumA: res.cumA, cumB: res.cumB, coopA: res.coopA, coopB: res.coopB,
+    actionsA: res.actionsA, actionsB: res.actionsB, noiseFlips: res.noiseFlips,
+  });
+});
+
+document.getElementById('run-tournament').addEventListener('click', () => {
+  const rounds = parseInt(document.getElementById('tr-rounds').value, 10);
+  const noise = parseInt(document.getElementById('tr-noise').value, 10) / 100;
+  const seed = parseInt(document.getElementById('tr-seed').value, 10) || 0;
+  const nSeeds = parseInt(document.getElementById('tr-seeds').value, 10);
+  const payoffs = readPayoffs();
+  const rows = playTournament(rounds, noise, payoffs, seed, nSeeds);
+  renderTournament(rows, nSeeds);
+  addRun({
+    id: 't' + Date.now() + Math.floor(Math.random() * 1000),
+    type: 'tournament', ts: Date.now(),
+    rounds, noise, seed, nSeeds, payoffs, rows,
+  });
+});
+
+document.getElementById('history-list').addEventListener('click', (e) => {
+  const viewId = e.target.dataset.view, delId = e.target.dataset.del;
+  if (delId) { deleteRun(delId); return; }
+  if (!viewId) return;
+  const run = loadRuns().find(r => r.id === viewId);
+  if (!run) return;
+  if (run.type === 'duel') {
+    document.querySelector('.tabs button[data-tab="duel"]').click();
+    document.getElementById('a-strategy').value = run.keyA;
+    document.getElementById('b-strategy').value = run.keyB;
+    renderDuel(run, run.keyA, run.keyB);
+  } else {
+    document.querySelector('.tabs button[data-tab="tournament"]').click();
+    renderTournament(run.rows, run.nSeeds || 1);
+  }
+});
+
+document.getElementById('export-json').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(loadRuns(), null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'pd_lab_runs.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+document.getElementById('clear-history').addEventListener('click', () => {
+  if (confirm('确定清空全部历史记录？')) { saveRuns([]); renderHistory(); }
+});
+
+window.addEventListener('resize', () => {
+  if (currentDuel && !document.getElementById('duel-results').classList.contains('hidden')) {
+    ['chart-cum', 'chart-coop', 'chart-timeline'].forEach(id => {
+      const c = document.getElementById(id);
+      if (c._redraw) c._redraw();
+    });
+  }
+});
+
+renderHistory();
+</script>
+</body>
+</html>
