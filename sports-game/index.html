@@ -1,0 +1,2495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>领跑人生 · Pace for Life</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface-1: #fcfcfb;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --border: rgba(11,11,11,0.10);
+    --accent: #2a78d6;
+    --good: #1baf7a;
+    --warn: #eb6834;
+    --bad: #e34948;
+    --gold: #c99000;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d;
+      --surface-1: #1a1a19;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --grid: #2c2c2a;
+      --border: rgba(255,255,255,0.10);
+      --accent: #3987e5;
+      --good: #199e70;
+      --warn: #d95926;
+      --bad: #e66767;
+      --gold: #e0b23a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 20px 16px 72px; }
+
+  header .hd-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  header h1 { font-size: 22px; margin: 0; }
+  header .sub { color: var(--text-secondary); font-size: 13px; margin: 2px 0 12px; }
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .badge {
+    font-size: 12px; padding: 3px 10px; border-radius: 999px;
+    background: var(--surface-1); border: 1px solid var(--border); color: var(--text-secondary);
+  }
+  .badge b { color: var(--text-primary); }
+  .badge.injury { color: var(--bad); border-color: var(--bad); }
+
+  .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); margin-bottom: 18px; overflow-x: auto; }
+  .tabs button {
+    appearance: none; border: none; background: transparent; color: var(--text-secondary);
+    font: inherit; font-size: 14px; padding: 8px 14px; cursor: pointer; white-space: nowrap;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .tabs button.active { color: var(--text-primary); font-weight: 600; border-bottom-color: var(--accent); }
+
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px; margin-bottom: 16px;
+  }
+  .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .card h2 .hint { font-weight: 400; color: var(--text-muted); font-size: 12px; }
+
+  button.primary {
+    font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+    color: #fff; background: var(--accent); border: none; border-radius: 8px; padding: 9px 20px;
+  }
+  button.primary:hover { filter: brightness(1.08); }
+  button.primary:disabled { opacity: 0.45; cursor: not-allowed; }
+  button.ghost {
+    font: inherit; font-size: 12px; cursor: pointer; color: var(--text-secondary);
+    background: transparent; border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px;
+  }
+  button.ghost:hover { color: var(--text-primary); }
+  button.gold { background: var(--gold); }
+  .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; margin-bottom: 12px; }
+  .day-card {
+    border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px;
+    background: var(--page); cursor: pointer; min-height: 74px; transition: border-color .15s;
+  }
+  .day-card:hover { border-color: var(--accent); }
+  .day-card .dow { font-size: 11px; color: var(--text-muted); }
+  .day-card .tname { font-size: 13px; font-weight: 600; margin-top: 2px; }
+  .day-card .tload { font-size: 11px; color: var(--text-secondary); }
+  .day-card.empty .tname { color: var(--text-muted); font-weight: 400; }
+  .day-card.running { border-color: var(--warn); }
+  .day-card.done { opacity: 0.65; }
+
+  .log { margin-top: 10px; }
+  .log-entry {
+    font-size: 13px; padding: 7px 10px; border-left: 3px solid var(--accent);
+    background: var(--page); border-radius: 4px; margin-bottom: 6px;
+  }
+  .log-entry.bad { border-left-color: var(--bad); }
+  .log-entry.good { border-left-color: var(--good); }
+  .log-entry .ev { color: var(--text-secondary); font-size: 12px; }
+  .log-entry .ev.exec { color: var(--text); border-left: 3px solid var(--accent); padding-left: 8px; }
+  .chip {
+    display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 999px;
+    background: var(--surface-1); border: 1px solid var(--border); color: var(--text-secondary);
+    margin: 2px 4px 0 0; font-variant-numeric: tabular-nums;
+  }
+  .chip.pos { color: var(--good); border-color: var(--good); }
+  .chip.neg { color: var(--bad); border-color: var(--bad); }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 8px; }
+  .tile { background: var(--page); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; }
+  .tile .label { font-size: 11px; color: var(--text-secondary); }
+  .tile .value { font-size: 21px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .tile .unit { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+
+  .bar-row { display: grid; grid-template-columns: 62px 1fr 46px; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; }
+  .bar-row .name { color: var(--text-secondary); }
+  .bar-row .track { height: 8px; border-radius: 99px; background: var(--grid); overflow: hidden; }
+  .bar-row .fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width .3s; }
+  .bar-row .val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .bar-row.mood .fill { background: var(--good); }
+  .bar-row.fatigue .fill { background: var(--warn); }
+  .bar-row.fatigue.high .fill { background: var(--bad); }
+
+  canvas { display: block; width: 100%; }
+  .chart-note { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+
+  .kb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+  .kb-card {
+    border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 13px;
+    background: var(--page); cursor: default;
+  }
+  .kb-card.unlocked { cursor: pointer; }
+  .kb-card.unlocked:hover { border-color: var(--accent); }
+  .kb-card .tag { font-size: 10px; color: var(--accent); letter-spacing: .04em; }
+  .kb-card .title { font-weight: 600; margin: 2px 0; }
+  .kb-card.locked .title, .kb-card.locked .tag { color: var(--text-muted); }
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .filter-row button {
+    font: inherit; font-size: 12px; padding: 4px 12px; border-radius: 999px; cursor: pointer;
+    background: var(--page); color: var(--text-secondary); border: 1px solid var(--border);
+  }
+  .filter-row button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .hist-item { padding: 9px 4px; border-bottom: 1px solid var(--grid); font-size: 13px; display: flex; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+  .hist-item:last-child { border-bottom: none; }
+  .hist-item .t { font-weight: 600; }
+  .hist-item .d { color: var(--text-muted); font-size: 12px; }
+  .empty { color: var(--text-muted); font-size: 13px; padding: 10px 4px; }
+
+  .overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 50;
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+  }
+  .modal {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
+    max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 20px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.28);
+  }
+  .modal .m-icon { font-size: 34px; line-height: 1; }
+  .modal h3 { margin: 6px 0 8px; font-size: 17px; }
+  .modal p { margin: 0 0 12px; font-size: 14px; color: var(--text-secondary); }
+  .opt-btn {
+    display: block; width: 100%; text-align: left; margin-bottom: 8px;
+    font: inherit; font-size: 13.5px; cursor: pointer; color: var(--text-primary);
+    background: var(--page); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px;
+  }
+  .opt-btn:hover { border-color: var(--accent); }
+  .opt-btn[disabled] { opacity: .6; cursor: default; }
+  .opt-btn.correct { border-color: var(--good); }
+  .opt-btn.wrong { border-color: var(--bad); }
+  .after-box { font-size: 13px; color: var(--text-secondary); background: var(--page); border-radius: 8px; padding: 10px 12px; margin: 8px 0; }
+  .after-box b { color: var(--text-primary); }
+  .kb-pop { border: 1px solid var(--accent); background: var(--page); border-radius: 8px; padding: 10px 12px; margin: 8px 0; font-size: 13px; }
+  .kb-pop .kbt { font-weight: 600; color: var(--accent); font-size: 12px; margin-bottom: 4px; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; flex-wrap: wrap; }
+  .splits { font-size: 12px; color: var(--text-secondary); font-variant-numeric: tabular-nums; max-height: 130px; overflow-y: auto; margin: 6px 0; }
+  .race-bar { height: 10px; background: var(--grid); border-radius: 99px; overflow: hidden; margin: 10px 0; }
+  .race-bar .fill { height: 100%; width: 0; background: var(--accent); transition: width .15s; }
+
+  .toast-wrap { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 80; display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
+  .toast {
+    background: var(--text-primary); color: var(--page); font-size: 12.5px; padding: 8px 16px;
+    border-radius: 999px; box-shadow: 0 6px 24px rgba(0,0,0,0.25); animation: toastIn .2s ease-out;
+    max-width: 88vw;
+  }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* 选择判定：最优 / 代价 */
+  .verdict { border-radius: 10px; padding: 10px 12px; margin: 10px 0 8px; font-size: 13px; animation: verdictPop .32s ease-out; }
+  .verdict .v-title { font-weight: 700; font-size: 13.5px; }
+  .verdict.best { background: rgba(67, 181, 129, .12); border: 1px solid var(--good); }
+  .verdict.cost { background: rgba(224, 93, 93, .12); border: 1px solid var(--bad); }
+  .verdict.ok { background: rgba(240, 173, 78, .12); border: 1px solid var(--warn); }
+  .verdict .cost-chips { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .verdict .cost-chips span { padding: 2px 8px; border-radius: 99px; background: rgba(224, 93, 93, .14); color: var(--bad); font-size: 12px; }
+  .verdict.ok .cost-chips span { background: rgba(240, 173, 78, .16); color: var(--warn); }
+  .verdict .v-best { margin-top: 6px; font-size: 12.5px; color: var(--text-secondary); }
+  .verdict .v-best b { color: var(--accent); }
+  @keyframes verdictPop { from { transform: scale(.97); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* 周身体反馈弹窗 */
+  .body-wrap { display: flex; gap: 14px; align-items: center; margin: 8px 0 4px; flex-wrap: wrap; }
+  .body-col { flex: 0 0 136px; display: flex; flex-direction: column; align-items: center; }
+  .body-svg { width: 136px; height: 210px; animation: bodyBreathe 3.2s ease-in-out infinite; }
+  .body-svg .p { fill: var(--text-muted); opacity: .35; stroke: var(--surface-1); stroke-width: .8; transition: fill .3s, opacity .3s; }
+  .body-svg .p.bad { fill: var(--bad); animation: partPulseBad 1.15s ease-in-out infinite; }
+  .body-svg .p.good { fill: var(--good); animation: partPulseGood 1.6s ease-in-out infinite; }
+  .body-bubble {
+    max-width: 140px; margin-top: 4px; padding: 6px 10px; border-radius: 12px; font-size: 11.5px;
+    background: var(--page); border: 1px solid var(--border); color: var(--text-primary); text-align: center;
+    animation: bubbleIn .45s ease-out;
+  }
+  .body-bubble.bad { border-color: var(--bad); }
+  .body-bubble.good { border-color: var(--good); }
+  .body-note { flex: 1 1 190px; min-width: 170px; }
+  .body-note .row { display: flex; gap: 8px; align-items: flex-start; margin: 7px 0; font-size: 12.5px; color: var(--text-secondary); }
+  .body-note .row b { color: var(--text-primary); }
+  .body-note .dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex: 0 0 8px; }
+  .body-note .dot.bad { background: var(--bad); box-shadow: 0 0 9px var(--bad); animation: dotBlink 1.15s ease-in-out infinite; }
+  .body-note .dot.good { background: var(--good); box-shadow: 0 0 9px var(--good); animation: dotBlink 1.6s ease-in-out infinite; }
+  @keyframes bodyBreathe { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+  @keyframes partPulseBad {
+    0%,100% { opacity: .55; filter: drop-shadow(0 0 2px var(--bad)); }
+    50% { opacity: 1; filter: drop-shadow(0 0 9px var(--bad)); }
+  }
+  @keyframes partPulseGood {
+    0%,100% { opacity: .6; filter: drop-shadow(0 0 2px var(--good)); }
+    50% { opacity: 1; filter: drop-shadow(0 0 9px var(--good)); }
+  }
+  @keyframes bubbleIn { from { opacity: 0; transform: translateY(4px) scale(.96); } to { opacity: 1; transform: none; } }
+  @keyframes dotBlink { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
+
+  .hidden { display: none !important; }
+  footer { margin-top: 24px; color: var(--text-muted); font-size: 12px; }
+  code { background: var(--page); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 12px; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 14px 12px 64px; }
+    .plan-grid { grid-template-columns: repeat(2, 1fr); }
+    .bar-row { grid-template-columns: 54px 1fr 42px; }
+    .modal { padding: 16px; border-radius: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="hd-top">
+      <h1>领跑人生</h1>
+      <span style="color:var(--text-muted);font-size:13px;">Pace for Life</span>
+    </div>
+    <div class="sub">扮演教练，从新手跑者练到全马完赛——在每个选择里学会科学运动</div>
+    <div class="badges" id="badges"></div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="week" class="active">训练周</button>
+    <button data-tab="athlete">运动员</button>
+    <button data-tab="kb">知识图鉴</button>
+    <button data-tab="history">记录</button>
+  </nav>
+
+  <main>
+    <section id="tab-week">
+      <div class="card">
+        <h2>训练周 <span class="hint" id="week-hint">点选每一天安排训练</span></h2>
+        <div class="plan-grid" id="plan-grid"></div>
+        <div class="toolbar">
+          <button class="ghost" id="btn-recommend">推荐计划</button>
+          <button class="primary" id="btn-start">开始本周</button>
+          <button class="ghost hidden" id="btn-race">上周复盘</button>
+          <button class="ghost" id="btn-new">新开档</button>
+        </div>
+        <div class="log" id="week-log"></div>
+      </div>
+    </section>
+
+    <section id="tab-athlete" class="hidden">
+      <div class="card">
+        <h2>运动员状态</h2>
+        <div class="tiles" id="athlete-tiles"></div>
+        <div id="attr-bars"></div>
+        <div id="injury-card"></div>
+      </div>
+      <div class="card">
+        <h2>负荷管理 <span class="hint">急性负荷 vs 慢性负荷（ACWR）</span></h2>
+        <canvas id="load-chart" height="180"></canvas>
+        <div class="chart-note" id="chart-note"></div>
+      </div>
+    </section>
+
+    <section id="tab-kb" class="hidden">
+      <div class="card">
+        <h2>知识图鉴 <span class="hint" id="kb-hint"></span></h2>
+        <div class="filter-row" id="kb-filters"></div>
+        <div class="kb-grid" id="kb-grid"></div>
+      </div>
+    </section>
+
+    <section id="tab-history" class="hidden">
+      <div class="card">
+        <h2>记录 <span class="hint">比赛成绩与阶段达成</span></h2>
+        <div id="history-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    存档保存在浏览器 localStorage（<code>sports_coach_save_v1</code>），知识图鉴跨周目保留。<br>
+    本游戏内容为运动科学普及，不构成医疗建议；出现持续疼痛请就医。
+  </footer>
+</div>
+
+<div class="overlay hidden" id="overlay"><div class="modal" id="modal"></div></div>
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script>
+'use strict';
+// ============================================================
+// 1. 数据层 DATA
+// ============================================================
+
+const SAVE_KEY = 'sports_coach_save_v1';
+const KB_KEY = 'sports_coach_kb_v1';
+const DOW = ['周一','周二','周三','周四','周五','周六','周日'];
+
+const STAGES = [
+  { title:'新手跑者', icon:'🌱', longKm:5,
+    race:{ km:5, target:35*60, label:'5K 测试赛', need:{endurance:35} } },
+  { title:'5km 完赛者', icon:'🏃', longKm:8,
+    race:{ km:10, target:72*60, label:'10K 测试赛', need:{endurance:48, speed:36} } },
+  { title:'10km 挑战者', icon:'🔟', longKm:12,
+    race:{ km:21.0975, target:2*3600+20*60, label:'半程马拉松', need:{endurance:65} } },
+  { title:'半马跑者', icon:'🏅', longKm:25,
+    race:{ km:42.195, target:4*3600+30*60, label:'全程马拉松', need:{endurance:85, technique:55} } },
+  { title:'全马跑者', icon:'🏆', longKm:35, race:null },
+];
+
+const TRAINING_TYPES = [
+  { id:'rest', name:'完全休息', icon:'😴', load:0, minStage:0, run:false, gains:{},
+    desc:'睡好、放松，让身体完成超量恢复', tip:'kb_sleep' },
+  { id:'stretch', name:'拉伸/瑜伽', icon:'🧘', load:5, minStage:0, run:false, gains:{flexibility:4},
+    desc:'动态热身 + 静态拉伸，降低受伤风险', tip:'kb_warmup' },
+  { id:'easyRun', name:'轻松跑', icon:'🏃', load:18, minStage:0, run:true, gains:{endurance:3, technique:2},
+    desc:'能边跑边说话的配速，打有氧基础', tip:'kb_pace' },
+  { id:'core', name:'核心训练', icon:'🧱', load:12, minStage:0, run:false, gains:{technique:4, strength:1},
+    desc:'平板支撑、臀桥，稳定跑姿', tip:'kb_cadence' },
+  { id:'strengthBody', name:'徒手力量', icon:'💪', load:20, minStage:0, run:false, gains:{strength:4},
+    desc:'深蹲/箭步蹲/俯卧撑，给关节上护甲', tip:'kb_48h' },
+  { id:'longRun', name:'长距离跑', icon:'🛣️', load:30, minStage:1, run:true, gains:{endurance:5},
+    desc:'慢而长，提升耐力上限', tip:'kb_carb' },
+  { id:'tempo', name:'乳酸门槛跑', icon:'🔥', load:26, minStage:1, run:true, gains:{endurance:2, speed:4},
+    desc:'略快于舒适区的持续跑，推迟乳酸堆积', tip:'kb_lactate' },
+  { id:'cross', name:'交叉训练', icon:'🚴', load:15, minStage:1, run:false, gains:{endurance:1, flexibility:1},
+    desc:'游泳/骑行，低冲击维持体能', tip:'kb_cross' },
+  { id:'interval', name:'间歇跑', icon:'⚡', load:32, minStage:2, run:true, gains:{speed:6, endurance:1},
+    desc:'400m×8 冲刺 + 充分组间休息，提升 VO2max', tip:'kb_vo2' },
+  { id:'strengthBarbell', name:'杠铃力量', icon:'🏋️', load:28, minStage:2, run:false, gains:{strength:5, technique:2},
+    desc:'深蹲/硬拉，渐进超负荷提升跑力', tip:'kb_strength' },
+];
+const TRAINING_BY_ID = Object.fromEntries(TRAINING_TYPES.map(t => [t.id, t]));
+
+const KB_TAGS = ['训练','负荷与恢复','损伤防护','营养与环境','综合'];
+const KNOWLEDGE = [
+  { id:'kb_pace', tag:'训练', title:'配速分级',
+    content:'轻松跑（E）：能边跑边说话，占周跑量 70-80%；马拉松配速（M）；门槛跑（T）：略快于舒适区，20-40 分钟；间歇跑（I）：接近最大摄氧，短间歇。业余跑者 80% 的跑量应该是轻松的——练太狠是进步慢的常见原因。' },
+  { id:'kb_warmup', tag:'损伤防护', title:'动态热身 vs 静态拉伸',
+    content:'跑前做动态热身（高抬腿、弓步走、开合跳 5-10 分钟）提升体温与神经激活；跑后做静态拉伸（每个动作 20-30 秒）放松肌肉。跑前长时间静态拉伸会短暂降低力量输出。' },
+  { id:'kb_10pct', tag:'训练', title:'10% 增量原则',
+    content:'每周跑量增幅不超过上周的 10%，且每 3-4 周安排一个减量周。冒进加量是跑者受伤的头号原因。新手从零开始更应保守：能连续轻松跑 30 分钟再谈进阶。' },
+  { id:'kb_acwr', tag:'负荷与恢复', title:'急性 vs 慢性负荷（ACWR）',
+    content:'ACWR = 本周负荷 ÷ 近 4 周平均负荷。理想区间约 0.8-1.3；超过 1.3 说明你加量太猛，受伤风险显著上升。负荷管理比意志力更能保护你。' },
+  { id:'kb_doms', tag:'负荷与恢复', title:'延迟性肌肉酸痛（DOMS）',
+    content:'训练后 24-72 小时出现的酸痛来自肌肉微损伤与炎症，不是「练到位」的勋章。轻度酸痛可做低强度主动恢复；明显疼痛时休息，不要带痛硬练。' },
+  { id:'kb_48h', tag:'负荷与恢复', title:'48 小时肌肉恢复',
+    content:'同一肌群的力量训练建议间隔 48 小时。肌肉在休息时修复与生长；天天练同一部位不会更快变强，只会更累更弱。' },
+  { id:'kb_lactate', tag:'训练', title:'乳酸阈值',
+    content:'乳酸阈值是身体清除乳酸的速度开始跟不上产生的速度的强度。门槛跑（T）训练能提高这个阈值，让你在更快配速下仍不堆积乳酸——这是提升比赛成绩的关键。' },
+  { id:'kb_vo2', tag:'训练', title:'最大摄氧量（VO2max）',
+    content:'VO2max 是身体每分钟能利用的最大氧气量，决定耐力上限。间歇跑（如 400m×8，组间充分休息）是提升 VO2max 最有效的训练之一。' },
+  { id:'kb_rice', tag:'损伤防护', title:'RICE 急性损伤处理',
+    content:'Rest（休息）、Ice（冰敷 15-20 分钟）、Compression（加压包扎）、Elevation（抬高患肢）。适用于急性扭伤/拉伤头 48 小时。持续疼痛超过 1 周请就医。' },
+  { id:'kb_water', tag:'营养与环境', title:'补水与电解质',
+    content:'训练前 2 小时补水 400-600ml；途中每 20 分钟少量多次 100-200ml。超过 1 小时的运动应补充含电解质的饮料，只喝白水可能稀释血钠。口渴时往往已经轻度脱水。' },
+  { id:'kb_carb', tag:'营养与环境', title:'碳水与长跑',
+    content:'长距离跑超过 90 分钟时，肌肉糖原逐渐耗尽，需在途中补充碳水（每小时 30-60g）。跑前 2-3 小时吃易消化碳水；跑后 30-60 分钟内补碳水 + 蛋白质帮助恢复。' },
+  { id:'kb_sleep', tag:'负荷与恢复', title:'睡眠与恢复',
+    content:'睡眠是恢复的核心：深度睡眠时生长激素分泌，肌肉修复、糖原补充都在此时进行。连续睡眠不足会让训练收益打折、受伤风险上升。睡够 7-9 小时比任何补剂都有效。' },
+  { id:'kb_cadence', tag:'损伤防护', title:'步频 180',
+    content:'优秀跑者的步频普遍在 180 步/分钟左右。步频过低、步幅过大意味着落地点在重心前方，冲击力更大。适度提高步频（每次 +5%）能让落点更靠近身体重心，减少膝踝负担。' },
+  { id:'kb_shoe', tag:'损伤防护', title:'跑鞋选择',
+    content:'新鞋先短距离磨合 30-50km 再用于长距离或比赛。跑鞋寿命约 500-800km。鞋不合脚或袜子摩擦是水泡的常见原因；比赛日永远穿磨合好的鞋。' },
+  { id:'kb_cross', tag:'综合', title:'交叉训练的价值',
+    content:'游泳、骑行等低冲击训练能维持心肺能力，同时让跑步相关的肌肉和关节休息。受伤期间、天气恶劣时、或需要增加训练量又不想增加冲击时尤其有用。' },
+  { id:'kb_heat', tag:'营养与环境', title:'高温运动风险',
+    content:'高温高湿环境让核心体温快速上升，中暑风险大增。应避开正午、提前补水、降低强度、循序渐进做热适应（1-2 周）。出现头晕、恶心、停止出汗要立即停止运动并降温。' },
+  { id:'kb_cold', tag:'营养与环境', title:'寒冷天热身',
+    content:'寒冷时肌肉黏滞性增加、关节活动度下降，拉伤风险更高。冷天热身时间要更长（15 分钟以上），可分层穿衣，跑热后脱掉外层。' },
+  { id:'kb_taper', tag:'负荷与恢复', title:'赛前减量（Taper）',
+    content:'比赛前 1-3 周逐步减少训练量（保留少量强度），让身体在比赛日达到最佳状态。赛前一周还猛练，比赛成绩一定崩——疲劳是配速最大的敌人。' },
+  { id:'kb_strength', tag:'综合', title:'力量训练对跑者的价值',
+    content:'力量训练提升跑步经济性、增强肌腱与关节抗伤能力，是预防伤病的关键。推荐每周 2 次、以复合动作为主（深蹲、硬拉、箭步蹲），重量渐进超负荷，别和长距离跑排同一天。' },
+  { id:'kb_variety', tag:'综合', title:'训练多样化',
+    content:'长期只做同一种训练会让身体适应、进步停滞且枯燥。把轻松跑、质量课、力量、交叉训练合理搭配，既降低受伤风险也保持动力。' },
+  { id:'kb_weather', tag:'营养与环境', title:'天气与训练调整',
+    content:'雨天跑步要减速、缩短步幅、避开湿滑路面；雾霾天改室内；大风天逆风缩小步幅保持步频。天气不可控，但训练计划可以灵活调整——改到室内、换成交叉训练或顺延一天，都比硬扛更聪明。' },
+];
+const KB_BY_ID = Object.fromEntries(KNOWLEDGE.map(k => [k.id, k]));
+
+// 事件库：cond(ctx) 判定可触发；ctx = {training, yesterdayTraining, acuteLoad, chronicLoad}
+const EVENTS = [
+  // ---------- 天气类 ----------
+  { id:'ev_rain', cat:'天气', icon:'🌧️', weight:10, minStage:0,
+    cond: c => c.training.run,
+    title:'突降大雨',
+    text:'出门时还是阴天，跑到一半大雨倾盆。今天的课表还没完成……',
+    options:[
+      { label:'照常户外完成训练', risk:0.04, fx:{fatigue:6, technique:2, mood:2},
+        after:'淋雨完成了训练，意志力 +1。但湿滑路面要缩短步幅、避开积水路面——雨天可以跑，风险要控制。', kb:'kb_weather' },
+      { label:'改到跑步机完成', fx:{fatigue:3, mood:-2},
+        after:'跑步机是不错的替代方案，把坡度设为 1% 可以模拟户外风阻。只是单调会消耗一点心情。', kb:'kb_weather' },
+      { label:'取消，改休息一天', fx:{fatigue:-4, mood:-2},
+        after:'安全第一。计划缺口不要第二天补练——宁可少练一天，也不要报复性加量。', kb:'kb_10pct' },
+    ] },
+  { id:'ev_heat', cat:'天气', icon:'🥵', weight:8, minStage:2,
+    cond: c => c.training.run,
+    title:'高温预警',
+    text:'气温 35℃，湿度也高。今天的跑量不小，你决定……',
+    options:[
+      { label:'清晨或傍晚出门', fx:{fatigue:2, mood:2},
+        after:'避开高温时段，训练前补水 400ml，途中少量多次。做得漂亮。', kb:'kb_heat' },
+      { label:'正午硬扛，意志力训练', risk:0.08, fx:{fatigue:12, mood:-4},
+        after:'高温 + 高湿让核心体温飙升，中暑风险大增。热适应需要 1-2 周渐进，不是靠意志力扛出来的。', kb:'kb_heat' },
+      { label:'改室内交叉训练（游泳/骑行）', fx:{flexibility:1, fatigue:-2},
+        after:'高温天游泳是很好的替代方案，低冲击还能维持心肺。', kb:'kb_cross' },
+    ] },
+  { id:'ev_coldwave', cat:'天气', icon:'🥶', weight:7, minStage:0,
+    cond: c => c.training.run,
+    title:'寒潮来袭',
+    text:'早上气温骤降到 2℃，肌肉有点发紧。怎么开练？',
+    options:[
+      { label:'延长动态热身到 15 分钟再跑', fx:{technique:1, fatigue:1, mood:1},
+        after:'冷天肌肉黏滞性高，热身要更充分。这一课学得很扎实。', kb:'kb_cold' },
+      { label:'出门边跑边热，省时间', risk:0.05, fx:{fatigue:4},
+        after:'冷身直接上强度，腘绳肌和小腿拉伤风险明显上升。省下的 10 分钟可能要用 3 周养伤。', kb:'kb_cold' },
+      { label:'换成室内力量训练', fx:{strength:2},
+        after:'寒冷天换力量训练是合理调整，但别忘了先做热身组。', kb:'kb_warmup' },
+    ] },
+  { id:'ev_wind', cat:'天气', icon:'💨', weight:6, minStage:0,
+    cond: c => c.training.run,
+    title:'大风逆风',
+    text:'今天风很大，出门就顶风。原定的配速明显跑不动了。',
+    options:[
+      { label:'顺风加速、逆风慢跑', fx:{speed:1, endurance:1, mood:1},
+        after:'逆风时缩小步幅、保持步频，别为了配速硬拼。风不会改变你的有氧能力。', kb:'kb_pace' },
+      { label:'坚持原定配速不妥协', fx:{fatigue:6, mood:-1},
+        after:'逆风硬撑配速，实际强度远超计划，疲劳快速累积。训练看的是目的，不是数字。', kb:'kb_pace' },
+      { label:'把课表挪到明天', fx:{mood:-1},
+        after:'天气不可控，灵活调整计划本身就是训练的一部分。', kb:'kb_weather' },
+    ] },
+  { id:'ev_smog', cat:'天气', icon:'🌫️', weight:6, minStage:0,
+    cond: c => c.training.run,
+    title:'雾霾天',
+    text:'空气质量指数爆表，户外跑步会吸入大量污染物。',
+    options:[
+      { label:'改室内跑步机或交叉训练', fx:{fatigue:0},
+        after:'空气质量差时，室内训练保护呼吸道。', kb:'kb_weather' },
+      { label:'戴运动口罩照常跑', fx:{fatigue:5, mood:-2},
+        after:'运动口罩会增加呼吸阻力，高强度训练不建议。', kb:'kb_weather' },
+    ] },
+  { id:'ev_slip', cat:'天气', icon:'💦', weight:5, minStage:1,
+    cond: c => c.training.run && c.training.load >= 18,
+    title:'雨后湿滑',
+    text:'刚下过雨，路面很滑。你今天想跑一个质量课，赶时间去刷 PB。',
+    options:[
+      { label:'减速，缩短步幅，注意落脚', fx:{fatigue:2, technique:1},
+        after:'雨天跑步要缩短步幅、提高步频，落地点靠近身体重心，能大幅降低滑倒风险。', kb:'kb_cadence' },
+      { label:'赶时间，按 PB 配速冲', risk:0.10, fx:{speed:1},
+        after:'湿滑路面强行提速是崴脚的高发场景，PB 改天再刷。', kb:'kb_rice' },
+    ] },
+
+  // ---------- 身体类 ----------
+  { id:'ev_doms', cat:'身体', icon:'🦵', weight:9, minStage:0,
+    cond: c => c.yesterdayTraining && c.yesterdayTraining.load >= 25,
+    title:'肌肉酸痛',
+    text:'昨天练得有点狠，今天大腿明显酸痛，下楼梯都费劲。',
+    options:[
+      { label:'照常完成今天的训练', risk:0.05, fx:{fatigue:8, mood:-3},
+        after:'DOMS（延迟性肌肉酸痛）是正常的，但带痛硬练会拖长恢复。区分「酸痛」和「疼痛」很重要。', kb:'kb_doms' },
+      { label:'换成轻松活动：散步 + 拉伸', fx:{flexibility:1, fatigue:-3, mood:1},
+        after:'主动恢复（低强度活动）往往比完全躺平恢复更快。', kb:'kb_doms' },
+      { label:'完全休息一天', fx:{fatigue:-6, mood:1},
+        after:'酸痛明显时休息一天不丢人——恢复也是训练的一部分。', kb:'kb_sleep' },
+    ] },
+  { id:'ev_knee', cat:'身体', icon:'🩹', weight:7, minStage:0,
+    cond: () => true,
+    title:'膝盖刺痛',
+    text:'跑到一半，膝盖外侧出现一阵刺痛。还能跑，但不太舒服。',
+    options:[
+      { label:'咬牙坚持，把课表跑完', risk:0.12, fx:{fatigue:5, mood:-3},
+        after:'膝盖刺痛是典型的过用伤信号。坚持训练往往把小问题拖成慢性伤——职业运动员也怕这个。', kb:'kb_rice' },
+      { label:'立即停练，冰敷 + 抬高', fx:{fatigue:-3, mood:1},
+        after:'急性期遵循 RICE：休息、冰敷、加压、抬高。疼痛持续超过 1 周请就医。', kb:'kb_rice' },
+      { label:'换成低冲击交叉训练', risk:0.04, fx:{technique:1, fatigue:2},
+        after:'换低冲击项目可以维持体能，但疼痛部位仍然需要减负。', kb:'kb_cross' },
+    ] },
+  { id:'ev_sick', cat:'身体', icon:'🤧', weight:8, minStage:0,
+    cond: () => true,
+    title:'感冒前兆',
+    text:'嗓子有点痒，头有点沉，感觉快要感冒了。今天还有训练计划。',
+    options:[
+      { label:'带病训练，出出汗就好了', risk:0.06, fx:{fatigue:10, mood:-4},
+        after:'症状在脖子以上可以轻量活动；发烧或全身酸痛必须停练——免疫窗口期硬练会让病情加重。', kb:'kb_sleep' },
+      { label:'休息 + 多喝水', fx:{fatigue:-4, mood:-1},
+        after:'早两天休息，比病一周划算。', kb:'kb_sleep' },
+      { label:'只做拉伸和散步', fx:{flexibility:1, mood:1},
+        after:'轻量活动可以，但别追求训练量。', kb:'kb_warmup' },
+    ] },
+  { id:'ev_badsleep', cat:'身体', icon:'😵', weight:8, minStage:0,
+    cond: () => true,
+    title:'昨晚没睡好',
+    text:'辗转反侧只睡了 5 个小时，早上起来头昏脑涨。',
+    options:[
+      { label:'按原计划训练', fx:{fatigue:4, mood:-2},
+        after:'睡眠不足时训练收益打折扣，疲劳也清不掉。', kb:'kb_sleep' },
+      { label:'把强度课改成轻松跑', fx:{endurance:1, mood:1},
+        after:'睡眠不足的一天，低强度是更明智的选择。', kb:'kb_sleep' },
+      { label:'补觉，训练改到明天', fx:{fatigue:-3, mood:2},
+        after:'一晚没睡好别硬扛，恢复优先。', kb:'kb_sleep' },
+    ] },
+  { id:'ev_blister', cat:'身体', icon:'🦶', weight:6, minStage:0,
+    cond: () => true,
+    title:'脚上磨出水泡',
+    text:'脚趾侧面磨出了一个水泡，走路有点疼。',
+    options:[
+      { label:'挑破，贴块创可贴继续跑', risk:0.03, fx:{fatigue:3, mood:-2},
+        after:'水泡别乱挑，感染风险高。小水泡贴创可贴保护，大水泡应消毒后无菌引流。', kb:'kb_shoe' },
+      { label:'换双鞋，贴防磨贴再训练', fx:{mood:1},
+        after:'水泡多来自鞋不合脚或袜子摩擦。新鞋一定要先磨合再跑长距离。', kb:'kb_shoe' },
+      { label:'停跑两天等恢复', fx:{fatigue:-4},
+        after:'保护足部没错，但要检查是不是鞋的问题，否则还会复发。', kb:'kb_shoe' },
+    ] },
+  { id:'ev_48h', cat:'身体', icon:'🏋️', weight:7, minStage:0,
+    cond: c => c.yesterdayTraining && (c.yesterdayTraining.id==='strengthBody' || c.yesterdayTraining.id==='strengthBarbell'),
+    title:'力量训练后 48 小时',
+    text:'昨天刚练完腿，今天大腿还有点胀。今天原计划再练一次力量。',
+    options:[
+      { label:'继续练同一肌群，练得更狠', risk:0.05, fx:{strength:1, fatigue:6},
+        after:'同一肌群建议间隔 48 小时。练太密肌肉来不及修复，越练越弱。', kb:'kb_48h' },
+      { label:'换成跑步或上肢训练', fx:{endurance:2, fatigue:2},
+        after:'换部位或换项目，让昨天练的肌群休息 48 小时。', kb:'kb_48h' },
+      { label:'完全休息', fx:{fatigue:-5, mood:1},
+        after:'恢复日不是偷懒——肌肉就是在休息时变强的。', kb:'kb_sleep' },
+    ] },
+
+  // ---------- 生活类 ----------
+  { id:'ev_overtime', cat:'生活', icon:'💼', weight:8, minStage:0,
+    cond: () => true,
+    title:'临时加班',
+    text:'临时被拉去加班，今天的训练时间被压缩到只剩 1 小时。',
+    options:[
+      { label:'压缩训练时间，练个短的', fx:{endurance:1, fatigue:2, mood:-1},
+        after:'15 分钟也比 0 分钟强，但别为了补量熬夜。', kb:'kb_variety' },
+      { label:'下班后熬夜补练', sleepBad:true, fx:{fatigue:8, mood:-4},
+        after:'熬夜补练 = 双重消耗，第二天状态更差。', kb:'kb_sleep' },
+      { label:'调休，把课表挪到周末', fx:{mood:1},
+        after:'计划是死的，人是活的。把课表挪走比硬塞进疲惫的一天更好。', kb:'kb_variety' },
+    ] },
+  { id:'ev_party', cat:'生活', icon:'🍻', weight:7, minStage:0,
+    cond: () => true,
+    title:'朋友聚会',
+    text:'好久不见的朋友约今晚聚餐，明天一早还有训练。',
+    options:[
+      { label:'豪饮几杯，尽兴再说', sleepBad:true, fx:{mood:3, weight:0.5},
+        after:'酒精抑制肌肉蛋白合成，还破坏睡眠质量——第二天训练基本白给。', kb:'kb_sleep' },
+      { label:'适量喝点，早点回家', fx:{mood:2, weight:0.2},
+        after:'社交和训练可以平衡，控制量就好。', kb:'kb_sleep' },
+      { label:'婉拒，训练优先', fx:{mood:-3},
+        after:'自律值得肯定，但长期脱离社交也会消耗动力——可持续才最重要。', kb:'kb_variety' },
+    ] },
+  { id:'ev_lateball', cat:'生活', icon:'📺', weight:6, minStage:0,
+    cond: () => true,
+    title:'熬夜看球',
+    text:'凌晨三点有你最喜欢的球队比赛。明天还有训练。',
+    options:[
+      { label:'看完再睡，明天照常练', sleepBad:true, fx:{fatigue:3, mood:1},
+        after:'睡眠债会累积。连续熬夜后，训练收益会明显下降。', kb:'kb_sleep' },
+      { label:'定闹钟看半场', fx:{mood:1},
+        after:'折中方案不错，保证基本睡眠时长。', kb:'kb_sleep' },
+      { label:'看录播，早点睡', fx:{mood:-1, fatigue:-2},
+        after:'录播也是球，良好睡眠才是明天的状态保证。', kb:'kb_sleep' },
+    ] },
+  { id:'ev_family', cat:'生活', icon:'👨‍👩‍👧', weight:5, minStage:0,
+    cond: () => true,
+    title:'家人来加油',
+    text:'家人说今天要来看你训练，还准备了运动饮料。',
+    options:[
+      { label:'带家人一起去公园慢跑', fx:{mood:4, endurance:1},
+        after:'家人支持是最强的坚持动力，这比任何补剂都管用。', kb:'kb_variety' },
+      { label:'让他们在终点等你', fx:{mood:3},
+        after:'被期待的感觉会显著提高训练的投入度。', kb:'kb_variety' },
+    ] },
+  { id:'ev_food', cat:'生活', icon:'🍢', weight:6, minStage:0,
+    cond: () => true,
+    title:'深夜美食诱惑',
+    text:'晚上十点，闻到楼下烧烤摊的香味，肚子开始叫。',
+    options:[
+      { label:'来一顿烧烤，犒劳自己', fx:{mood:3, weight:0.5, fatigue:1},
+        after:'偶尔放纵没问题，但重油高盐会影响明天状态和长期体重控制。', kb:'kb_carb' },
+      { label:'吃点水果或酸奶', fx:{mood:1},
+        after:'训练后补充碳水 + 蛋白质是合理的，深夜吃轻一点。', kb:'kb_carb' },
+      { label:'忍住不吃', fx:{mood:-2},
+        after:'长期压抑容易报复性进食，学会规划加餐比硬忍更可持续。', kb:'kb_carb' },
+    ] },
+  { id:'ev_shoes', cat:'生活', icon:'👟', weight:5, minStage:0,
+    cond: () => true,
+    title:'新跑鞋到货',
+    text:'期待已久的碳板跑鞋终于到了，明天就是长距离训练。',
+    options:[
+      { label:'明天长距离直接穿新鞋', risk:0.05, fx:{fatigue:2},
+        after:'新鞋没磨合就跑长距离，水泡和足底不适高发。', kb:'kb_shoe' },
+      { label:'先短距离磨合 30-50km', fx:{mood:2, technique:1},
+        after:'新鞋先短距离磨合，比赛和长距离穿熟悉的鞋。', kb:'kb_shoe' },
+      { label:'先放鞋柜，以后再穿', fx:{mood:-1},
+        after:'跑鞋也有寿命，约 500-800km 就该考虑更换。', kb:'kb_shoe' },
+    ] },
+
+  // ---------- 教练问答 ----------
+  { id:'ev_q_pace', cat:'问答', icon:'🎓', weight:8, minStage:1,
+    cond: () => true,
+    title:'教练提问：测试赛配速',
+    text:'明天是 5km 测试。枪响后你该用什么配速起跑？',
+    options:[
+      { label:'前 1km 冲最快，后面靠意志顶', fx:{mood:-3},
+        after:'✗ 开局过快会让乳酸提前堆积，后程必然掉速。正确做法：匀速或前慢后快，跑出负分割。', kb:'kb_pace' },
+      { label:'以目标配速略慢 5-10 秒起步', correct:true, fx:{mood:5},
+        after:'✓ 匀速是业余跑者最省力的策略。前 1km 慢几秒，后半程会感谢自己。', kb:'kb_pace' },
+      { label:'跟着前面的高手跑', fx:{mood:-3},
+        after:'✗ 跑别人的配速是最容易崩的跑法。心率与体感才是你的配速表。', kb:'kb_pace' },
+    ] },
+  { id:'ev_q_warmup', cat:'问答', icon:'🎓', weight:6, minStage:0,
+    cond: () => true,
+    title:'教练提问：热身',
+    text:'跑前应该做哪种热身？',
+    options:[
+      { label:'静态拉伸：压腿、拉腘绳肌 10 分钟', fx:{mood:-3},
+        after:'✗ 跑前长时间静态拉伸会短暂降低肌肉力量输出。正确顺序：跑前动态热身，跑后静态拉伸。', kb:'kb_warmup' },
+      { label:'动态热身：高抬腿、弓步走、开合跳', correct:true, fx:{mood:5},
+        after:'✓ 动态热身升高体温、激活神经肌肉，是跑前的标准流程。', kb:'kb_warmup' },
+      { label:'不用热身，慢跑第一公里就是热身', fx:{mood:-3},
+        after:'✗ 慢跑开头有帮助，但关节活动度和神经激活不够，容易在质量课里拉伤。', kb:'kb_warmup' },
+    ] },
+  { id:'ev_q_water', cat:'问答', icon:'🎓', weight:6, minStage:0,
+    cond: () => true,
+    title:'教练提问：补水',
+    text:'长距离训练中该怎么补水？',
+    options:[
+      { label:'口渴了再喝', fx:{mood:-3},
+        after:'✗ 口渴出现时往往已经轻度脱水。训练前 2 小时补水 400-600ml，途中少量多次。', kb:'kb_water' },
+      { label:'每 20 分钟少量多次补 100-200ml', correct:true, fx:{mood:5},
+        after:'✓ 少量多次比一次猛灌更利于吸收。超过 1 小时可补电解质。', kb:'kb_water' },
+      { label:'一次喝一大瓶，省得麻烦', fx:{mood:-3},
+        after:'✗ 一次大量饮水容易引起胃部不适，吸收也慢。', kb:'kb_water' },
+    ] },
+  { id:'ev_q_increase', cat:'问答', icon:'🎓', weight:7, minStage:1,
+    cond: () => true,
+    title:'教练提问：加量幅度',
+    text:'上周总跑量 40km，这周想进步。跑量加到多少比较合理？',
+    options:[
+      { label:'50km，拼一把', fx:{mood:-3},
+        after:'✗ 单周加量 25%，ACWR 陡增，受伤风险显著上升。', kb:'kb_10pct' },
+      { label:'44km，增加 10%', correct:true, fx:{mood:5},
+        after:'✓ 每周加量不超过上周 10%，并且每 3-4 周安排一个减量周。', kb:'kb_10pct' },
+      { label:'60km，别人都跑这么多', fx:{mood:-3},
+        after:'✗ 别人的跑量建立在别人的基础上。你的身体只认你的负荷曲线。', kb:'kb_10pct' },
+    ] },
+
+  // ---------- 进阶事件 ----------
+  { id:'ev_prerace', cat:'身体', icon:'😰', weight:6, minStage:2,
+    cond: () => true,
+    title:'赛前紧张睡不着',
+    text:'明天有一场重要测试，晚上越想睡越清醒。',
+    options:[
+      { label:'强迫自己睡着，数羊', fx:{fatigue:2, mood:-2},
+        after:'越想睡越睡不着。赛前轻度紧张是正常的，做几次深呼吸放松即可。', kb:'kb_sleep' },
+      { label:'深呼吸放松，接受睡不好', fx:{mood:2},
+        after:'研究显示，一晚睡眠不足对短距离成绩影响有限——别自己吓自己。', kb:'kb_sleep' },
+      { label:'刷手机到凌晨', sleepBad:true, fx:{fatigue:6, mood:-2},
+        after:'蓝光和焦虑双重打击，第二天状态必崩。', kb:'kb_sleep' },
+    ] },
+  { id:'ev_overload', cat:'负荷', icon:'📈', weight:9, minStage:1,
+    cond: c => c.chronicLoad > 0 && c.acuteLoad > c.chronicLoad * 1.3,
+    title:'负荷警报',
+    text:'你这周的累计负荷已经超过近 4 周平均值的 1.3 倍——受伤高危区。',
+    options:[
+      { label:'按计划继续推进', risk:0.08, fx:{fatigue:6},
+        after:'急性负荷远超慢性负荷时，肌腱、骨骼来不及适应，受伤概率显著上升。', kb:'kb_acwr' },
+      { label:'今天改成休息/拉伸', fx:{fatigue:-6, mood:2},
+        after:'主动减量是聪明的教练决策。训练效果 = 刺激 + 恢复。', kb:'kb_acwr' },
+      { label:'降强度，但照常完成', fx:{fatigue:1},
+        after:'降强度有帮助，但负荷管理看的是总量——急性负荷依然偏高。', kb:'kb_acwr' },
+    ] },
+];
+
+// 训练执行情境题库：按训练类型索引，训练执行中按进度弹出
+// 结构：{id, train:[训练id], icon, weight, cond?, title, text, options:[{label, fx, risk?, after, kb, correct?}]}
+const EXEC_QUESTIONS = [
+  // ============ 拉伸 / 瑜伽 ============
+  { id:'xs_order', train:['stretch'], icon:'🧘', weight:10,
+    title:'拉伸的顺序',
+    text:'训练结束后你准备拉伸。先做哪一部分？',
+    options:[
+      { label:'先静态拉伸大腿后侧，每侧 30 秒 × 2 组', correct:true, fx:{flexibility:1, mood:1},
+        after:'✓ 跑后静态拉伸放松肌肉、降低紧张度，每个动作 20-30 秒是标准时长。', kb:'kb_warmup' },
+      { label:'每个部位拉 5 秒，整套动作快速过一遍', fx:{},
+        after:'✗ 5 秒太短，肌肉还没进入放松状态就结束了——这就是「拉了但等于没拉」。', kb:'kb_warmup' },
+      { label:'直接躺下休息，今天不拉了', fx:{mood:-1},
+        after:'✗ 训练后的 10 分钟拉伸是恢复性价比最高的时间，别浪费。', kb:'kb_warmup' },
+    ] },
+  { id:'xs_hamstring_form', train:['stretch'], icon:'🦵', weight:9,
+    title:'腘绳肌拉伸的姿势',
+    text:'拉伸大腿后侧时，你想把手压得更深一点。正确的做法是？',
+    options:[
+      { label:'弓背猛压，够得越远越好', risk:0.03, fx:{fatigue:1},
+        after:'✗ 弓背代偿会把负荷转移到腰椎，真正的腘绳肌并没有被拉到位，还容易闪腰。', kb:'kb_warmup' },
+      { label:'保持背部中立，有轻微牵拉感就停', correct:true, fx:{flexibility:1},
+        after:'✓ 拉伸感在 3-5 分（满分 10）即可，动作标准比幅度重要。', kb:'kb_warmup' },
+      { label:'弹震式快速下压，反复弹 20 次', risk:0.04, fx:{},
+        after:'✗ 训练后弹震拉伸会刺激牵张反射，肌肉反而更紧，拉伤风险上升。', kb:'kb_warmup' },
+    ] },
+  { id:'xs_short_time', train:['stretch'], icon:'⏱️', weight:8,
+    title:'只有 3 分钟',
+    text:'时间很紧，今天的拉伸只有 3 分钟。怎么安排？',
+    options:[
+      { label:'精选小腿、腘绳肌、髋屈肌，各 30 秒 × 2', correct:true, fx:{flexibility:1, mood:1},
+        after:'✓ 跑步最容易紧张的三块肌群优先处理，短时间也能有质量。', kb:'kb_warmup' },
+      { label:'每个动作 5 秒，把 15 个动作全过一遍', fx:{},
+        after:'✗ 时间短不等于每个动作都缩水，宁可少而到位。', kb:'kb_warmup' },
+      { label:'算了，跳过', fx:{mood:-1},
+        after:'✗ 3 分钟也够做一次有效放松，跳过只会让紧张累积到明天。', kb:'kb_warmup' },
+    ] },
+  { id:'xs_breath', train:['stretch'], icon:'🌬️', weight:7,
+    title:'拉伸时的呼吸',
+    text:'拉伸保持时，你该怎样呼吸？',
+    options:[
+      { label:'憋气，用力保持', fx:{fatigue:1},
+        after:'✗ 憋气会让肌肉持续紧张，降低拉伸效果。', kb:'kb_warmup' },
+      { label:'深长呼吸，随呼气缓慢加深幅度', correct:true, fx:{flexibility:1},
+        after:'✓ 呼气时副交感神经占优，肌肉更容易放松。', kb:'kb_warmup' },
+      { label:'大口快速喘气', fx:{mood:-1},
+        after:'✗ 呼吸节奏乱会让身体更紧张，拉伸感也更容易变成疼痛。', kb:'kb_warmup' },
+    ] },
+  { id:'xs_wrist', train:['stretch'], icon:'🤸', weight:6,
+    title:'下犬式手腕痛',
+    text:'瑜伽下犬式时手腕明显不舒服。怎么办？',
+    options:[
+      { label:'忍痛撑完这节瑜伽课', risk:0.03, fx:{fatigue:2},
+        after:'✗ 手腕痛多来自负荷集中在掌根。硬撑容易发展成腕部劳损。', kb:'kb_rice' },
+      { label:'垫高手掌或微屈膝，把重量后移', correct:true, fx:{flexibility:1},
+        after:'✓ 调整支撑角度、减轻手腕负荷，动作质量优先于「标准姿势」。', kb:'kb_cadence' },
+      { label:'直接放弃整节瑜伽', fx:{mood:-2},
+        after:'✗ 一个动作不适不代表整节课无效，改动作比放弃更聪明。', kb:'kb_variety' },
+    ] },
+  { id:'xs_pain', train:['stretch'], icon:'😖', weight:6,
+    title:'拉到什么程度',
+    text:'拉伸到什么程度算合适？',
+    options:[
+      { label:'越痛越有效，忍到表情扭曲', risk:0.03, fx:{fatigue:1},
+        after:'✗ 疼痛会触发肌肉保护性收缩，反而越拉越紧，还增加拉伤风险。', kb:'kb_warmup' },
+      { label:'轻微牵拉感（3-5 分），能正常呼吸', correct:true, fx:{flexibility:1, mood:1},
+        after:'✓ 拉伸不是越痛越好，安全范围才能长期坚持。', kb:'kb_warmup' },
+      { label:'完全没感觉才有效', fx:{},
+        after:'✗ 没感觉通常意味着幅度或时间不够，收益有限。', kb:'kb_warmup' },
+    ] },
+
+  // ============ 轻松跑 ============
+  { id:'xe_easy_pace', train:['easyRun'], icon:'🏃', weight:10,
+    title:'轻松跑该多快',
+    text:'今天轻松跑，出门后你觉得身体很轻，想跑快点。配速怎么定？',
+    options:[
+      { label:'能边跑边完整说话的配速', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 轻松跑的价值在于有氧基础，80% 的训练都应该是轻松的。', kb:'kb_pace' },
+      { label:'今天感觉好，按比赛配速跑', fx:{fatigue:2},
+        after:'✗ 轻松跑跑成比赛配速，就变成了「垃圾中等强度」——又累又没针对性。', kb:'kb_pace' },
+      { label:'看手表上最大心率区间硬顶', fx:{fatigue:1},
+        after:'✗ 轻松跑看体感（能聊天），比死盯数字更可靠。', kb:'kb_pace' },
+    ] },
+  { id:'xe_add_distance', train:['easyRun'], icon:'🌤️', weight:10,
+    title:'天气太好，还想再跑 3km',
+    text:'今天天气很好，已经跑了 5km，状态不错，你还想再跑 3km。',
+    options:[
+      { label:'直接加 3km，保持原配速', risk:0.04, fx:{endurance:1, fatigue:3},
+        after:'✗ 计划外的距离同样计入周跑量。轻松跑偷偷加量，是很多跑者「不知不觉」受伤的起点——加可以，但要算进每周 10% 的限额。', kb:'kb_10pct' },
+      { label:'加 2-3km，但全程降速，并确认本周总量没超标', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 想多跑没问题：用更慢的配速，同时检查本周负荷是否仍在安全范围（ACWR ≤ 1.3）。', kb:'kb_acwr' },
+      { label:'按计划结束，把状态留给明天', fx:{mood:1},
+        after:'✓ 按计划收手同样是正确选择——训练是长期工程，不差这一次。', kb:'kb_variety' },
+    ] },
+  { id:'xe_stitch', train:['easyRun','longRun'], icon:'🫁', weight:7,
+    title:'岔气了',
+    text:'跑到一半右侧肋骨下方突然一阵刺痛，呼吸变浅。',
+    options:[
+      { label:'减速，深呼吸，用手按压疼痛处', correct:true, fx:{endurance:1},
+        after:'✓ 岔气多与呼吸节奏和膈肌痉挛有关。减速、规律深呼吸，多数几分钟内缓解。', kb:'kb_water' },
+      { label:'保持配速，用意志力顶过去', fx:{fatigue:2, mood:-1},
+        after:'✗ 顶着岔气跑会让呼吸更浅，疼痛加剧，也影响后续状态。', kb:'kb_pace' },
+      { label:'立刻停下，今天不跑了', fx:{mood:-1},
+        after:'✗ 通常会自行缓解。先减速调整，持续剧痛再停止。', kb:'kb_pace' },
+    ] },
+  { id:'xe_traffic', train:['easyRun'], icon:'🚦', weight:6,
+    title:'红绿灯',
+    text:'路口马上要变红灯，距离停止线还有几米。',
+    options:[
+      { label:'加速抢在变灯前冲过去', risk:0.04, fx:{fatigue:1},
+        after:'✗ 突然加速打乱节奏，路口盲区也更危险。几秒钟不值得。', kb:'kb_pace' },
+      { label:'减速停下，原地垫步等灯', correct:true, fx:{mood:1},
+        after:'✓ 路口安全第一，原地小幅活动还能保持肌肉温度。', kb:'kb_pace' },
+      { label:'直接横穿', risk:0.06, fx:{fatigue:1},
+        after:'✗ 绝对不能。训练计划值得为安全让路。', kb:'kb_rice' },
+    ] },
+  { id:'xe_form', train:['easyRun','longRun','tempo','interval'], icon:'👣', weight:7,
+    title:'跑姿检查',
+    text:'跑着跑着，你意识到自己步子迈得很大、脚步声很重。怎么调整？',
+    options:[
+      { label:'缩小步幅、提高步频，让落点靠近身体重心', correct:true, fx:{technique:1},
+        after:'✓ 大步幅脚跟着地会放大冲击力；小步幅高步频能显著降低膝踝负担。', kb:'kb_cadence' },
+      { label:'继续保持，大步幅才跑得快', fx:{fatigue:1},
+        after:'✗ 过度跨步只是看起来快，实际在踩刹车。', kb:'kb_cadence' },
+      { label:'刻意前脚掌重重落地', risk:0.03, fx:{fatigue:1},
+        after:'✗ 强行改变落地方式，小腿和跟腱负荷会骤增。步频比落脚点更值得先调。', kb:'kb_cadence' },
+    ] },
+  { id:'xe_tired', train:['easyRun'], icon:'😮‍💨', weight:6,
+    title:'跑着跑着变累了',
+    text:'跑到一半明显感觉腿沉、呼吸变重，但距离还没跑完。',
+    options:[
+      { label:'降速，回到能聊天的强度跑完', correct:true, fx:{endurance:1},
+        after:'✓ 轻松跑就是靠强度控制来产生训练效果。累了就慢下来，而不是放弃。', kb:'kb_pace' },
+      { label:'硬顶原配速，磨练意志', fx:{fatigue:2, mood:-1},
+        after:'✗ 轻松跑硬顶变成质量课，明天会更累，得不偿失。', kb:'kb_pace' },
+      { label:'立刻停下回家', fx:{fatigue:-1, mood:-1},
+        after:'✗ 除非有疼痛或不适，否则降速完成更划算。', kb:'kb_variety' },
+    ] },
+
+  // ============ 长距离跑 ============
+  { id:'xl_pace', train:['longRun'], icon:'🛣️', weight:9,
+    title:'长距离配速',
+    text:'长距离跑应该用什么强度？',
+    options:[
+      { label:'比轻松跑再慢一点，全程可控', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 长距离跑的收益来自时间和距离，配速快反而增加恢复负担。', kb:'kb_pace' },
+      { label:'用门槛跑的速度，练得更值', fx:{fatigue:3},
+        after:'✗ 长距离跑成门槛配速，会大幅拖慢恢复，影响整周训练。', kb:'kb_lactate' },
+      { label:'越快越好，冲个个人纪录', risk:0.04, fx:{fatigue:3},
+        after:'✗ 长距离不是测试日，硬冲会让后面几天的训练全部打折。', kb:'kb_taper' },
+    ] },
+  { id:'xl_fuel', train:['longRun'], icon:'🍌', weight:8,
+    title:'超过 90 分钟的长跑',
+    text:'今天的长跑要跑 1 小时 40 分钟，你的补给方案是？',
+    options:[
+      { label:'只喝水，不需要吃东西', fx:{fatigue:2},
+        after:'✗ 超过 90 分钟，肌肉糖原开始明显消耗，只喝水容易「撞墙」。', kb:'kb_carb' },
+      { label:'每 45-60 分钟补一次碳水（能量胶/香蕉）', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 每小时 30-60g 碳水，能延缓糖原耗尽，让后半程保持质量。', kb:'kb_carb' },
+      { label:'出发前吃很饱，途中就不吃了', fx:{fatigue:1},
+        after:'✗ 出发前吃太饱容易胃部不适，途中补给仍是必要的。', kb:'kb_carb' },
+    ] },
+  { id:'xl_toilet', train:['longRun'], icon:'🚻', weight:6,
+    title:'中途想上厕所',
+    text:'跑到一半经过一家便利店，肚子有点急。',
+    options:[
+      { label:'憋着跑完，别打乱节奏', fx:{fatigue:2, mood:-2},
+        after:'✗ 长跑中憋尿/憋便既不舒服也影响动作，停下来解决是正常操作。', kb:'kb_variety' },
+      { label:'停下解决，再继续跑', correct:true, fx:{mood:1},
+        after:'✓ 职业选手也会中途进补给站。暂停一分钟不会毁掉训练。', kb:'kb_variety' },
+      { label:'直接结束今天的训练', fx:{mood:-1},
+        after:'✗ 如果身体没有其他不适，解决完继续更划算。', kb:'kb_variety' },
+    ] },
+  { id:'xl_add', train:['longRun'], icon:'➕', weight:6,
+    title:'状态好，想延长长跑',
+    text:'长跑状态出奇地好，还剩 2km 时你想把距离延长到 30km。',
+    options:[
+      { label:'延长，长距离练越多越好', risk:0.05, fx:{endurance:1, fatigue:4},
+        after:'✗ 单次长跑大幅超量，会让接下来一周的恢复严重滞后——这是典型的「今天爽，明天废」。', kb:'kb_10pct' },
+      { label:'最多延长原计划的 10%，并用更慢配速完成', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 想加量也要守 10% 原则，同时观察本周总负荷。', kb:'kb_10pct' },
+      { label:'按原计划收尾', fx:{mood:1},
+        after:'✓ 稳妥且正确。状态好说明恢复到位，保持周计划的完整性更重要。', kb:'kb_10pct' },
+    ] },
+  { id:'xl_slowdown', train:['longRun'], icon:'🐢', weight:7,
+    title:'后半程掉速',
+    text:'长跑后半程配速比前段慢了 40 秒，你有点沮丧。',
+    options:[
+      { label:'硬撑前段配速，把时间追回来', risk:0.04, fx:{fatigue:3},
+        after:'✗ 后半程掉速是疲劳的正常表现。硬追配速只会让动作变形、风险上升。', kb:'kb_pace' },
+      { label:'允许掉速，保持动作和呼吸', correct:true, fx:{endurance:1},
+        after:'✓ 长距离训练看的是完成质量。掉速时保持姿势，反而能强化耐力。', kb:'kb_pace' },
+      { label:'立刻停下，今天练失败了', fx:{mood:-2},
+        after:'✗ 掉速不等于失败，坚持完成剩余距离更有价值。', kb:'kb_variety' },
+    ] },
+  { id:'xl_after', train:['longRun'], icon:'🍽️', weight:6,
+    title:'长跑结束后',
+    text:'长跑终于结束，你累得想直接躺下。接下来做什么？',
+    options:[
+      { label:'直接躺床上休息', fx:{fatigue:1},
+        after:'✗ 突然静止不利于血液循环，也可能加重头晕。', kb:'kb_sleep' },
+      { label:'慢走 5-10 分钟 + 30 分钟内补碳水蛋白', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 主动冷却 + 及时补给，能显著加快恢复速度。', kb:'kb_carb' },
+      { label:'马上再来一组拉伸就结束', fx:{flexibility:1},
+        after:'✓ 拉伸不错，但别忘了先慢走冷却和补水补碳水。', kb:'kb_warmup' },
+    ] },
+
+  // ============ 门槛跑 ============
+  { id:'xt_effort', train:['tempo'], icon:'🔥', weight:9,
+    title:'门槛跑的强度',
+    text:'门槛跑进行到第 10 分钟，你该是什么感觉？',
+    options:[
+      { label:'很轻松，能随便聊天', fx:{},
+        after:'✗ 太轻松了，没有刺激到乳酸阈值，训练效果有限。', kb:'kb_lactate' },
+      { label:'舒适地吃力：只能说短句，但能坚持', correct:true, fx:{speed:1, mood:1},
+        after:'✓ 这是经典的「门槛强度」体感，能维持 20-40 分钟。', kb:'kb_lactate' },
+      { label:'全力冲刺，越快越好', risk:0.03, fx:{fatigue:3},
+        after:'✗ 门槛跑不是全力跑，冲太快会进入无氧区，坚持不了也恢复慢。', kb:'kb_lactate' },
+    ] },
+  { id:'xt_structure', train:['tempo'], icon:'📏', weight:7,
+    title:'20 分钟门槛跑怎么跑',
+    text:'今天的课表是 20 分钟门槛跑。你打算怎么安排？',
+    options:[
+      { label:'20 分钟连续跑，配速保持稳定', correct:true, fx:{speed:1, endurance:1},
+        after:'✓ 经典门槛跑就是持续、稳定、略吃力。稳定配速是它的灵魂。', kb:'kb_lactate' },
+      { label:'拆成 10 组 2 分钟冲刺，中间休息', fx:{fatigue:2},
+        after:'✗ 那是间歇跑的练法，强度更高、恢复更慢，不是今天的目标。', kb:'kb_vo2' },
+      { label:'先慢跑 15 分钟，最后 5 分钟加速', fx:{},
+        after:'✗ 这样主要练的是冲刺，不是门槛耐力。', kb:'kb_lactate' },
+    ] },
+  { id:'xt_warmup', train:['tempo'], icon:'🔥', weight:7,
+    title:'门槛跑前的热身',
+    text:'今天要跑门槛配速，出门后你准备怎么开始？',
+    options:[
+      { label:'直接上门槛配速，省时间', risk:0.04, fx:{fatigue:2},
+        after:'✗ 冷身直接上强度，心率和肌肉都没准备好，拉伤和提前疲劳的风险都高。', kb:'kb_warmup' },
+      { label:'10-15 分钟慢跑 + 动态热身，再进门槛', correct:true, fx:{technique:1, mood:1},
+        after:'✓ 质量课前充分热身，才能保证主课的配速质量。', kb:'kb_warmup' },
+      { label:'跑 1 公里就当热身了', fx:{fatigue:1},
+        after:'✗ 1 公里偏短，至少 10 分钟慢跑加动态动作。', kb:'kb_warmup' },
+    ] },
+  { id:'xt_drift', train:['tempo'], icon:'📉', weight:6,
+    title:'配速漂移',
+    text:'门槛跑跑到一半，你发现自己越跑越慢。',
+    options:[
+      { label:'刻意压住目标配速', correct:true, fx:{speed:1, fatigue:1},
+        after:'✓ 门槛跑的价值在于稳定刺激。配速漂移时主动稳住，而不是被动滑落。', kb:'kb_lactate' },
+      { label:'干脆放慢，跑完就行', fx:{mood:1},
+        after:'✗ 训练强度不足，收益会打折扣。尽量守住目标配速。', kb:'kb_lactate' },
+      { label:'加速冲完剩下的距离', risk:0.03, fx:{fatigue:2},
+        after:'✗ 前半程已掉速说明疲劳，后程硬冲容易过度。', kb:'kb_taper' },
+    ] },
+  { id:'xt_freq', train:['tempo'], icon:'📅', weight:6,
+    title:'门槛跑频率',
+    text:'你很喜欢门槛跑，想每天都跑。这样合理吗？',
+    options:[
+      { label:'可以，每天练效果最好', risk:0.04, fx:{fatigue:3},
+        after:'✗ 质量课需要恢复时间，每天都跑门槛很容易过用受伤。', kb:'kb_10pct' },
+      { label:'每周 1-2 次，与其他轻松训练搭配', correct:true, fx:{speed:1, mood:1},
+        after:'✓ 质量课是调味料不是主食。每周 1-2 次足够刺激。', kb:'kb_variety' },
+      { label:'只在比赛前一周练', fx:{},
+        after:'✗ 临时抱佛脚没用，门槛能力是长期积累的。', kb:'kb_taper' },
+    ] },
+
+  // ============ 间歇跑 ============
+  { id:'xi_rest', train:['interval'], icon:'⏸️', weight:9,
+    title:'组间休息',
+    text:'400m 冲刺组之间，你应该怎么休息？',
+    options:[
+      { label:'完全不休息，连续冲', fx:{fatigue:3},
+        after:'✗ 间歇跑的核心是「高强度 + 充分恢复」，休息不足就变成无氧耐力测试了。', kb:'kb_vo2' },
+      { label:'慢跑或走动，等心率降下来再下一组', correct:true, fx:{speed:1, mood:1},
+        after:'✓ 组间慢跑恢复，保证每组都能接近目标配速——这才是提升 VO2max 的关键。', kb:'kb_vo2' },
+      { label:'坐下休息，完全静止', fx:{},
+        after:'✗ 静态休息恢复慢，还容易让肌肉冷却。慢跑恢复更优。', kb:'kb_vo2' },
+    ] },
+  { id:'xi_last', train:['interval'], icon:'⚡', weight:8,
+    title:'最后一组冲不冲',
+    text:'400m × 8 的最后一组，你还剩不少力气。要全力冲吗？',
+    options:[
+      { label:'每组配速保持一致最重要', correct:true, fx:{speed:1, mood:1},
+        after:'✓ 间歇训练的质量在于组间一致性。最后一组明显快于前面，说明前几组没跑到位。', kb:'kb_vo2' },
+      { label:'最后一组越快越有成就感', fx:{fatigue:2},
+        after:'✗ 最后一组大幅提速，往往只是情绪释放，训练刺激并不更好。', kb:'kb_vo2' },
+      { label:'再加 8 组，今天状态好', risk:0.04, fx:{fatigue:4},
+        after:'✗ 课表之外的加组会让恢复时间大幅延长，影响后续几天。', kb:'kb_10pct' },
+    ] },
+  { id:'xi_warmup', train:['interval'], icon:'🔥', weight:7,
+    title:'间歇跑之前',
+    text:'间歇跑需要接近最大摄氧的强度。跑前你打算？',
+    options:[
+      { label:'直接开始第一组冲刺', risk:0.06, fx:{fatigue:2},
+        after:'✗ 高强度前必须充分热身，否则肌肉拉伤和心率飙升风险很高。', kb:'kb_warmup' },
+      { label:'15 分钟慢跑 + 动态热身 + 2-3 组加速跑', correct:true, fx:{technique:1, mood:1},
+        after:'✓ 这是间歇跑的标准热身流程，能让第一组就跑出质量。', kb:'kb_warmup' },
+      { label:'做 10 分钟静态拉伸代替热身', fx:{},
+        after:'✗ 静态拉伸不能替代热身，跑前应以动态动作为主。', kb:'kb_warmup' },
+    ] },
+  { id:'xi_freq', train:['interval'], icon:'📅', weight:6,
+    title:'间歇跑频率',
+    text:'间歇跑很有效，你想每周多练几次。怎么安排合理？',
+    options:[
+      { label:'每周 1-2 次，避免紧接着长距离跑', correct:true, fx:{speed:1, mood:1},
+        after:'✓ 高强度日之间要留恢复，别把两次关键课排在一起。', kb:'kb_variety' },
+      { label:'每周 4 次，练得越多进步越快', risk:0.05, fx:{fatigue:4},
+        after:'✗ 高强度课恢复需求大，堆太多只会让你一直处于疲劳状态。', kb:'kb_acwr' },
+      { label:'每天做，反正每组有休息', fx:{fatigue:2},
+        after:'✗ 组间休息不等于身体已经恢复，神经系统和肌腱都需要 48 小时。', kb:'kb_48h' },
+    ] },
+  { id:'xi_pain', train:['interval'], icon:'😣', weight:6,
+    title:'冲刺时小腿发紧',
+    text:'第 4 组冲刺时小腿明显发紧，之后还有 4 组。',
+    options:[
+      { label:'继续冲，跑完再说', risk:0.06, fx:{fatigue:2},
+        after:'✗ 发紧可能是抽筋前兆。继续高强度冲刺会显著增加拉伤风险。', kb:'kb_rice' },
+      { label:'降速完成剩余组，或提前结束', correct:true, fx:{mood:1},
+        after:'✓ 训练可以打折，伤病不能。降速或结束是明智选择。', kb:'kb_rice' },
+      { label:'把剩下的组改成走路', fx:{mood:1},
+        after:'✓ 安全优先。今天的强度刺激已经足够。', kb:'kb_rice' },
+    ] },
+
+  // ============ 力量训练 ============
+  { id:'xw_warmup_sets', train:['strengthBody','strengthBarbell'], icon:'🏋️', weight:9,
+    title:'热身组',
+    text:'今天练深蹲。第一组你打算直接上大重量吗？',
+    options:[
+      { label:'直接上最大重量，状态正热', risk:0.05, fx:{fatigue:2},
+        after:'✗ 冷身直接大重量是腰部/膝踝受伤的高发场景。', kb:'kb_warmup' },
+      { label:'先用空杆/轻重量做 2 组热身', correct:true, fx:{strength:1, mood:1},
+        after:'✓ 热身组让关节滑液分泌、神经募集启动，是力量训练的标准流程。', kb:'kb_warmup' },
+      { label:'跑 5 分钟就当热身了', fx:{},
+        after:'✗ 全身热身有帮助，但目标肌群还需要专门的轻重热身组。', kb:'kb_warmup' },
+    ] },
+  { id:'xw_form_knee', train:['strengthBody','strengthBarbell'], icon:'⚠️', weight:8,
+    title:'深蹲膝盖内扣',
+    text:'做深蹲时，你发现膝盖会不自觉往内扣。',
+    options:[
+      { label:'不管它，重量够就行', risk:0.05, fx:{fatigue:1},
+        after:'✗ 膝内扣让内侧韧带和半月板承受异常负荷，长期会导致膝痛。', kb:'kb_strength' },
+      { label:'降低重量，让膝盖对准脚尖方向', correct:true, fx:{strength:1, technique:1},
+        after:'✓ 动作标准优先于重量。降重量重建控制，比硬加重量更有效。', kb:'kb_strength' },
+      { label:'加快速度，靠惯性完成', risk:0.04, fx:{},
+        after:'✗ 惯性会掩盖控制力不足，伤害更大。', kb:'kb_strength' },
+    ] },
+  { id:'xw_progressive', train:['strengthBody','strengthBarbell'], icon:'📈', weight:8,
+    title:'渐进超负荷',
+    text:'最近动作已经很标准了，想继续变强。怎么加负荷？',
+    options:[
+      { label:'每周都挑战新的最大重量', risk:0.04, fx:{fatigue:3},
+        after:'✗ 一直冲极限会很快碰到恢复瓶颈，受伤风险上升。', kb:'kb_strength' },
+      { label:'在动作标准前提下，小幅加重或增加次数', correct:true, fx:{strength:1, mood:1},
+        after:'✓ 渐进超负荷是长期小幅推进，不是每次刷新纪录。', kb:'kb_strength' },
+      { label:'只加次数，重量永远不变', fx:{},
+        after:'✗ 次数增加也有效，但长期需要循序渐进地增加负荷。', kb:'kb_strength' },
+    ] },
+  { id:'xw_failure', train:['strengthBody','strengthBarbell'], icon:'💥', weight:7,
+    title:'每组都练到力竭？',
+    text:'你听说「练到力竭」才有效，准备每组都练到完全动不了。',
+    options:[
+      { label:'每组都练到完全力竭', fx:{fatigue:3},
+        after:'✗ 每组力竭会大幅增加疲劳和恢复时间，对跑者尤其不划算。', kb:'kb_48h' },
+      { label:'保留 1-2 次余力，最后一组接近力竭', correct:true, fx:{strength:1, mood:1},
+        after:'✓ 对以跑步为主的运动员，保留余力能兼顾力量增长与恢复。', kb:'kb_strength' },
+      { label:'只做轻重量多次数', fx:{},
+        after:'✗ 轻重量对力量增长刺激有限，应结合中等重量。', kb:'kb_strength' },
+    ] },
+  { id:'xw_breath', train:['strengthBarbell'], icon:'🌬️', weight:7,
+    title:'杠铃下的呼吸',
+    text:'做大重量深蹲/硬拉时，怎么呼吸？',
+    options:[
+      { label:'全程憋气完成动作', risk:0.03, fx:{fatigue:1},
+        after:'✗ 全程憋气会让血压骤升。可用瓦氏动作，但要有控制，结束立即呼气。', kb:'kb_strength' },
+      { label:'下放吸气、发力呼气，核心保持收紧', correct:true, fx:{strength:1},
+        after:'✓ 规律呼吸配合核心收紧，既稳定又安全。', kb:'kb_strength' },
+      { label:'随便呼吸，不刻意控制', fx:{},
+        after:'✗ 大重量下呼吸节奏失控会影响稳定性。', kb:'kb_strength' },
+    ] },
+  { id:'xw_schedule', train:['strengthBody','strengthBarbell'], icon:'📅', weight:7,
+    title:'力量与跑步怎么排',
+    text:'这周你有长距离跑和力量训练，怎么安排更合理？',
+    options:[
+      { label:'长距离跑当天再练腿，一次练到位', risk:0.05, fx:{fatigue:4},
+        after:'✗ 长跑和练腿同一天，恢复负担翻倍，还影响长跑质量。', kb:'kb_48h' },
+      { label:'把力量训练和关键跑课隔开至少一天', correct:true, fx:{strength:1, mood:1},
+        after:'✓ 力量日和关键跑课错开，才能兼顾两者质量。', kb:'kb_48h' },
+      { label:'只在跑休日练力量，强度随意', fx:{},
+        after:'✓ 跑休日练力量不错，但强度仍需渐进规划，别练到影响第二天。', kb:'kb_strength' },
+    ] },
+
+  // ============ 核心训练 ============
+  { id:'xc_plank', train:['core'], icon:'🧱', weight:8,
+    title:'平板支撑的姿势',
+    text:'做平板支撑时，撑到后面腰开始往下塌。',
+    options:[
+      { label:'塌着腰撑满 3 分钟', risk:0.04, fx:{fatigue:2},
+        after:'✗ 塌腰会让腰椎承受压力，核心也没真正练到。', kb:'kb_cadence' },
+      { label:'降到 30-60 秒 × 3 组，身体保持一条直线', correct:true, fx:{technique:1, mood:1},
+        after:'✓ 核心训练质量优先于时长，姿势正确才有意义。', kb:'kb_cadence' },
+      { label:'换成仰卧起坐狂做 100 个', fx:{fatigue:1},
+        after:'✗ 大量仰卧起坐对腰椎不友好，也不是跑步需要的核心稳定。', kb:'kb_cadence' },
+    ] },
+  { id:'xc_freq', train:['core'], icon:'📅', weight:6,
+    title:'核心训练频率',
+    text:'核心训练每天做可以吗？',
+    options:[
+      { label:'可以，每天练核心更好', fx:{fatigue:1},
+        after:'✗ 核心肌群同样需要恢复，每天高强度练并不划算。', kb:'kb_48h' },
+      { label:'每周 2-3 次，穿插在跑休或轻松日', correct:true, fx:{technique:1, mood:1},
+        after:'✓ 核心训练强度不高，但也要给恢复留空间。', kb:'kb_variety' },
+      { label:'只在比赛前突击练', fx:{},
+        after:'✗ 核心稳定是长期积累，临阵磨枪没有意义。', kb:'kb_variety' },
+    ] },
+  { id:'xc_vs_time', train:['core'], icon:'⏱️', weight:6,
+    title:'时长 vs 质量',
+    text:'你看到「平板支撑 5 分钟挑战」，想试试。',
+    options:[
+      { label:'挑战 5 分钟，撑住就是胜利', risk:0.03, fx:{fatigue:2},
+        after:'✗ 静态支撑超过 1-2 分钟，姿势往往已变形，收益不大。', kb:'kb_cadence' },
+      { label:'保持标准姿势，每组 30-60 秒', correct:true, fx:{technique:1},
+        after:'✓ 核心训练的收益在控制质量，不在时长纪录。', kb:'kb_cadence' },
+      { label:'改做动态核心动作，增加多样性', fx:{technique:1, mood:1},
+        after:'✓ 死虫、鸟狗式等动态动作能提升稳定性，也很好。', kb:'kb_variety' },
+    ] },
+  { id:'xc_purpose', train:['core'], icon:'❓', weight:5,
+    title:'为什么跑者要练核心',
+    text:'朋友问你：跑步为什么要练核心？',
+    options:[
+      { label:'为了好看，和跑步无关', fx:{},
+        after:'✗ 核心稳定直接决定跑姿和能量传递效率。', kb:'kb_cadence' },
+      { label:'核心稳定能让跑姿更稳、减少能量泄漏和伤病', correct:true, fx:{technique:1, mood:2},
+        after:'✓ 躯干稳定，腿才能真正发力。核心是跑步的「传动轴」。', kb:'kb_cadence' },
+      { label:'为了能举起更重的东西', fx:{},
+        after:'✗ 那更偏力量训练目标，对跑者来说核心的意义在稳定性。', kb:'kb_cadence' },
+    ] },
+
+  // ============ 交叉训练 ============
+  { id:'xx_intensity', train:['cross'], icon:'🚴', weight:8,
+    title:'交叉训练的强度',
+    text:'今天交叉训练，骑 40 分钟。强度怎么控制？',
+    options:[
+      { label:'按跑步配速换算，骑到喘不过气', fx:{fatigue:2},
+        after:'✗ 交叉训练通常作为低冲击补充，中低强度更合适。', kb:'kb_cross' },
+      { label:'中等强度，心率接近轻松跑', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 交叉训练的目标是维持心肺、减少冲击，不需要拼强度。', kb:'kb_cross' },
+      { label:'一直很慢，越轻松越好', fx:{},
+        after:'✗ 太轻松收益有限，中等强度更均衡。', kb:'kb_cross' },
+    ] },
+  { id:'xx_replace', train:['cross'], icon:'🔄', weight:6,
+    title:'能替代跑步吗',
+    text:'朋友说：游泳比跑步好，以后不用跑了。你同意吗？',
+    options:[
+      { label:'完全同意，跑步伤膝盖', fx:{},
+        after:'✗ 合理跑量并不伤膝，交叉训练不能完全替代跑步专项。', kb:'kb_cross' },
+      { label:'交叉训练能维持心肺，但不能完全替代跑步专项', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 交叉训练是补充，不是替代。专项适应需要专项训练。', kb:'kb_cross' },
+      { label:'交叉训练完全没意义', fx:{},
+        after:'✗ 交叉训练在受伤、天气差时非常有价值。', kb:'kb_cross' },
+    ] },
+  { id:'xx_bike_fit', train:['cross'], icon:'🚲', weight:5,
+    title:'骑行座椅高度',
+    text:'骑动感单车时，座椅高度怎么调？',
+    options:[
+      { label:'越低越安全，脚能全脚掌踩地', fx:{fatigue:1},
+        after:'✗ 座椅过低会让膝盖屈曲角过大，长时间骑行容易膝痛。', kb:'kb_cross' },
+      { label:'调到最低点膝盖微屈，踩踏时髋部不摇晃', correct:true, fx:{mood:1},
+        after:'✓ 合适的座高保护膝关节，也让发力更高效。', kb:'kb_cross' },
+      { label:'越高越练腿，调到最后', risk:0.03, fx:{fatigue:2},
+        after:'✗ 座高过高会导致髋部左右摇摆，腘绳肌和腰背负担增加。', kb:'kb_cross' },
+    ] },
+  { id:'xx_injury', train:['cross'], icon:'🩹', weight:6,
+    title:'受伤期间的交叉训练',
+    text:'脚踝扭伤恢复中，医生允许做低冲击运动。今天怎么安排？',
+    options:[
+      { label:'完全躺平不动，等伤好', fx:{mood:-1},
+        after:'✗ 允许范围内的低冲击训练能维持心肺，不用完全静止。', kb:'kb_cross' },
+      { label:'游泳或骑行，避开受伤部位', correct:true, fx:{endurance:1, mood:1},
+        after:'✓ 低冲击交叉训练是受伤期的标准替代方案。', kb:'kb_cross' },
+      { label:'偷偷跑个 5km，试试脚踝', risk:0.08, fx:{fatigue:2},
+        after:'✗ 恢复期擅自加跑，很可能让伤势反复，得不偿失。', kb:'kb_rice' },
+    ] },
+
+  // ============ 完全休息 ============
+  { id:'xr_day', train:['rest'], icon:'😴', weight:9,
+    title:'休息日做什么',
+    text:'今天是完全休息日，你打算怎么过？',
+    options:[
+      { label:'彻底躺一天，手机刷到凌晨', sleepBad:true, fx:{mood:1},
+        after:'✗ 躺着不等于恢复，熬夜会毁掉休息日的价值。', kb:'kb_sleep' },
+      { label:'散步、早睡、补充蛋白质', correct:true, fx:{fatigue:-1, mood:1},
+        after:'✓ 主动恢复 + 充足睡眠，是休息日的最佳组合。', kb:'kb_sleep' },
+      { label:'偷偷去跑个 5km，反正没人知道', risk:0.04, fx:{fatigue:2},
+        after:'✗ 计划中的休息日被占用，会打乱整个负荷节奏。', kb:'kb_10pct' },
+    ] },
+  { id:'xr_sleep', train:['rest'], icon:'🌙', weight:8,
+    title:'今晚几点睡',
+    text:'休息日的晚上，你准备怎么安排睡眠？',
+    options:[
+      { label:'比平时早睡 1 小时', correct:true, fx:{fatigue:-2, mood:1},
+        after:'✓ 睡眠是恢复的核心，深度睡眠时肌肉修复和糖原补充最活跃。', kb:'kb_sleep' },
+      { label:'熬夜补剧，明天不用早起训练', sleepBad:true, fx:{fatigue:3},
+        after:'✗ 休息日熬夜，等于把恢复时间还回去了。', kb:'kb_sleep' },
+      { label:'正常时间睡，不做特别调整', fx:{mood:1},
+        after:'✓ 保持规律作息也不错，但比平时早一点更有利于恢复。', kb:'kb_sleep' },
+    ] },
+  { id:'xr_food', train:['rest'], icon:'🥗', weight:6,
+    title:'休息日怎么吃',
+    text:'休息日不用训练，饮食怎么安排？',
+    options:[
+      { label:'放开吃，反正今天消耗少', fx:{weight:0.4, mood:1},
+        after:'✗ 休息日热量盈余更容易转化为脂肪，影响体重和跑步经济性。', kb:'kb_carb' },
+      { label:'正常吃，保证蛋白质摄入', correct:true, fx:{mood:1},
+        after:'✓ 恢复日需要蛋白质修复肌肉，不需要刻意节食或放纵。', kb:'kb_carb' },
+      { label:'干脆少吃一顿，控制体重', fx:{fatigue:1},
+        after:'✗ 恢复期热量不足会拖慢修复，得不偿失。', kb:'kb_carb' },
+    ] },
+];
+// ============================================================
+// 2. 状态层 STATE
+// ============================================================
+
+let state = null;
+let eventRisk = 0; // 当日事件带来的额外受伤风险
+
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const avg = arr => arr.length ? arr.reduce((s, v) => s + v, 0) / arr.length : 0;
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+function defaultState() {
+  return {
+    version: 1,
+    week: 1, day: 1, stage: 0, running: false,
+    athlete: {
+      endurance: 20, speed: 20, strength: 15, flexibility: 15, technique: 15,
+      fatigue: 0, mood: 70, weight: 68, injury: null,
+    },
+    weekPlan: [null, null, null, null, null, null, null],
+    weekLog: [], weekLoad: 0, weekEventsUsed: [], weekExecUsed: [],
+    loadHistory: [],
+    unlockedKnowledge: loadKbStore(),
+    history: [],
+    sleepBad: false,
+    lastSummary: null,
+    _yesterday: null,
+  };
+}
+
+function loadKbStore() {
+  try {
+    const raw = localStorage.getItem(KB_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr.filter(id => KB_BY_ID[id]) : [];
+  } catch (e) { return []; }
+}
+
+function save() {
+  if (!state || state.running) return; // 周中不落盘，避免读到不一致状态
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); } catch (e) { /* ignore */ }
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return null;
+    const s = JSON.parse(raw);
+    if (!s || s.version !== 1 || !s.athlete) return null;
+    if (!Array.isArray(s.weekPlan) || s.weekPlan.length !== 7) s.weekPlan = [null, null, null, null, null, null, null];
+    if (!Array.isArray(s.loadHistory)) s.loadHistory = [];
+    if (!Array.isArray(s.history)) s.history = [];
+    if (!Array.isArray(s.unlockedKnowledge)) s.unlockedKnowledge = loadKbStore();
+    if (!Array.isArray(s.weekEventsUsed)) s.weekEventsUsed = [];
+    if (!Array.isArray(s.weekExecUsed)) s.weekExecUsed = [];
+    s.running = false;
+    s._yesterday = null;
+    return s;
+  } catch (e) { return null; }
+}
+
+function unlockKb(id) {
+  if (!id || !KB_BY_ID[id]) return false;
+  if (state.unlockedKnowledge.includes(id)) return false;
+  state.unlockedKnowledge.push(id);
+  try { localStorage.setItem(KB_KEY, JSON.stringify(state.unlockedKnowledge)); } catch (e) { /* ignore */ }
+  return true;
+}
+
+// ============================================================
+// 3. 逻辑层 CORE
+// ============================================================
+
+function chronicLoad() {
+  const last = state.loadHistory.slice(-4);
+  return Math.max(60, avg(last));
+}
+function currentAcwr() {
+  const chronic = chronicLoad();
+  return (state.weekLoad + (state.running ? 0 : 0)) / chronic;
+}
+
+const GAIN_SCALE = 0.30; // 全局成长节奏旋钮：让属性在 40-60 周内自然逼近上限
+
+function calcGain(base, attr, a, running) {
+  let g = base * GAIN_SCALE * (1 - attr / 120);
+  g *= a.mood >= 70 ? 1.1 : (a.mood >= 40 ? 1.0 : 0.8);
+  g *= clamp(1 - a.fatigue / 150, 0.3, 1);
+  if (running) g *= clamp(68 / a.weight, 0.85, 1.15);
+  return g;
+}
+
+function injuryRisk(extra) {
+  const a = state.athlete;
+  const acwr = state.weekLoad / chronicLoad();
+  let risk = extra || 0;
+  const threshold = 60 + state.stage * 4;
+  if (a.fatigue > threshold) risk += (a.fatigue - threshold) * 0.004;
+  if (acwr > 1.3) risk += (acwr - 1.3) * 0.15;
+  if (a.flexibility < 30) risk += 0.01;
+  return risk;
+}
+
+function pickEvent(ctx, used) {
+  const pool = EVENTS.filter(e =>
+    e.minStage <= state.stage && !used.includes(e.id) && (!e.cond || e.cond(ctx)));
+  if (!pool.length) return null;
+  let r = Math.random() * pool.reduce((s, e) => s + e.weight, 0);
+  for (const e of pool) { r -= e.weight; if (r <= 0) return e; }
+  return pool[pool.length - 1];
+}
+
+// 执行情境题：按当天训练类型抽题，每周不重复
+function pickExec(t) {
+  const ctx = { training: t, weekLoad: state.weekLoad, athlete: state.athlete };
+  const pool = EXEC_QUESTIONS.filter(q =>
+    q.train.includes(t.id) && !state.weekExecUsed.includes(q.id) && (!q.cond || q.cond(ctx)));
+  if (!pool.length) return null;
+  let r = Math.random() * pool.reduce((s, q) => s + q.weight, 0);
+  for (const q of pool) { r -= q.weight; if (r <= 0) return q; }
+  return pool[pool.length - 1];
+}
+
+function applyFx(opt) {
+  const a = state.athlete;
+  eventRisk += opt.risk || 0;
+  if (opt.sleepBad) state.sleepBad = true;
+  for (const [k, v] of Object.entries(opt.fx || {})) {
+    if (k === 'fatigue') a.fatigue = clamp(a.fatigue + v, 0, 100);
+    else if (k === 'weight') a.weight = clamp(a.weight + v, 45, 110);
+    else if (k === 'mood') a.mood = clamp(a.mood + v, 0, 100);
+    else if (typeof a[k] === 'number') a[k] = clamp(a[k] + v, 0, 100);
+  }
+}
+
+// 结算一天。choiceFn(event) 返回选项索引（可为 Promise），debug 模式用自动选择。
+async function resolveDayCore(day, choiceFn) {
+  const a = state.athlete;
+  eventRisk = 0;
+
+  const planned = TRAINING_BY_ID[state.weekPlan[day - 1]] || TRAINING_BY_ID.rest;
+  let t = planned;
+  const notes = [];
+  if (a.injury && t.load > 15) {
+    t = TRAINING_BY_ID.rest;
+    notes.push(`受伤恢复期：${planned.name} → 完全休息`);
+  }
+
+  // 1) 训练收益 + 疲劳累积
+  const gains = {};
+  for (const [k, base] of Object.entries(t.gains)) {
+    const g = calcGain(base, a[k], a, t.run);
+    a[k] = clamp(a[k] + g, 0, 100);
+    gains[k] = g;
+  }
+  a.fatigue = clamp(a.fatigue + t.load * 1.15 * (1 - a.endurance / 250), 0, 100);
+  if (t.id === 'rest') a.fatigue = Math.max(0, a.fatigue - 8);
+  if (t.id === 'stretch') a.fatigue = Math.max(0, a.fatigue - 2);
+  state.weekLoad += t.load;
+
+  // 2) 单调训练惩罚
+  const y = state._yesterday;
+  if (y && t.id === y.id && t.load > 0) a.mood = clamp(a.mood - 5, 0, 100);
+
+  // 3) 训练执行情境（按训练类型出题，模拟执行中的真实决策）
+  let execInfo = null;
+  if (Math.random() < 0.72) {
+    const q = pickExec(t);
+    if (q) {
+      state.weekExecUsed.push(q.id);
+      const idx = await choiceFn(q, { kind: 'exec', training: t });
+      const opt = q.options[Math.max(0, Math.min(Number(idx) || 0, q.options.length - 1))];
+      applyFx(opt);
+      const isNewKb = opt.kb ? unlockKb(opt.kb) : false;
+      execInfo = {
+        title: q.title, icon: q.icon, optionLabel: opt.label, after: opt.after,
+        kb: opt.kb || null, isNewKb, correct: opt.correct, risk: opt.risk || 0,
+      };
+    }
+  }
+
+  // 4) 随机事件（当天已有执行情境题时降低概率，避免连续弹窗）
+  let evInfo = null;
+  if (Math.random() < (execInfo ? 0.28 : 0.5)) {
+    const ctx = {
+      training: t, yesterdayTraining: y || null,
+      acuteLoad: state.weekLoad, chronicLoad: chronicLoad(),
+    };
+    const ev = pickEvent(ctx, state.weekEventsUsed);
+    if (ev) {
+      state.weekEventsUsed.push(ev.id);
+      const idx = await choiceFn(ev);
+      const opt = ev.options[Math.max(0, Math.min(Number(idx) || 0, ev.options.length - 1))];
+      applyFx(opt);
+      const isNewKb = opt.kb ? unlockKb(opt.kb) : false;
+      evInfo = {
+        title: ev.title, icon: ev.icon, optionLabel: opt.label, after: opt.after,
+        kb: opt.kb || null, isNewKb, risk: opt.risk || 0, correct: opt.correct,
+      };
+    }
+  }
+
+  // 4) 每日恢复
+  const sleepGood = !state.sleepBad;
+  const recovery = 6 + (sleepGood ? 4 : 0) + (t.load === 0 ? 8 : 0)
+    + a.flexibility / 40 + a.strength / 50 + (t.id === 'stretch' ? 2 : 0);
+  a.fatigue = clamp(a.fatigue - recovery, 0, 100);
+  state.sleepBad = false;
+
+  // 5) 心情：高疲劳惩罚
+  if (a.fatigue > 80) a.mood = clamp(a.mood - 3, 0, 100);
+
+  // 6) 伤病倒计时 / 受伤判定
+  let injuryNote = null;
+  if (a.injury) {
+    a.injury.daysLeft -= 1;
+    a.mood = clamp(a.mood - 1, 0, 100);
+    if (a.injury.daysLeft <= 0) {
+      injuryNote = `伤愈复出（${a.injury.part}）`;
+      a.injury = null;
+    }
+  } else {
+    const risk = injuryRisk(eventRisk);
+    if (risk > 0 && Math.random() < risk) {
+      const severe = risk >= 0.20;
+      const part = pick(['脚踝', '膝盖', '小腿胫骨', '足底筋膜', '大腿后侧腘绳肌', '腰部']);
+      const days = severe ? 14 + Math.floor(Math.random() * 8) : 3 + Math.floor(Math.random() * 5);
+      a.injury = { part, daysLeft: days, severe };
+      a.mood = clamp(a.mood - 6, 0, 100);
+      injuryNote = `受伤！${part}${severe ? '（重伤）' : '（轻伤）'}，需要休养 ${days} 天`;
+    }
+  }
+
+  state._yesterday = t;
+  const entry = {
+    day, trainId: t.id, trainName: t.name, icon: t.icon, load: t.load,
+    gains, notes, exec: execInfo, event: evInfo, injuryNote,
+  };
+  state.weekLog.push(entry);
+  state.day = day + 1;
+  return entry;
+}
+
+function weekWrapUp() {
+  const a = state.athlete;
+  const log = state.weekLog.slice();
+  let aerobic = 0, strength = 0;
+  for (const e of log) {
+    const t = TRAINING_BY_ID[e.trainId];
+    if (!t) continue;
+    if (t.run || t.id === 'cross') aerobic += t.load;
+    if (t.id === 'strengthBody' || t.id === 'strengthBarbell' || t.id === 'core') strength += t.load;
+  }
+  if (aerobic >= 80) a.weight = clamp(a.weight - 0.3, 45, 110);
+  if (strength >= 60) a.weight = clamp(a.weight + 0.2, 45, 110);
+  if (log.length === 7) a.mood = clamp(a.mood + 3, 0, 100);
+
+  state.loadHistory.push(state.weekLoad);
+  const summary = { week: state.week, load: state.weekLoad, log, advice: [] };
+  const execLogs = log.filter(e => e.exec);
+  summary.exec = {
+    total: execLogs.length,
+    correct: execLogs.filter(e => e.exec.correct === true).length,
+  };
+  summary.advice = coachAdvice(summary);
+
+  state.lastSummary = summary;
+  state.weekLog = [];
+  state.weekLoad = 0;
+  state.weekEventsUsed = [];
+  state.weekExecUsed = [];
+  state._yesterday = null;
+  state.running = false;
+  state.week += 1;
+  state.day = 1;
+  return summary;
+}
+
+function coachAdvice(summary) {
+  const a = state.athlete;
+  const tips = [];
+  const lh = state.loadHistory;
+  const acute = lh[lh.length - 1] || 0;
+  const prev = lh.slice(-5, -1);
+  const chronic = prev.length ? avg(prev) : acute;
+  const acwr = chronic > 0 ? acute / chronic : 1;
+
+  if (acwr > 1.3) {
+    tips.push({ lvl: 'bad', text: `本周负荷 ${Math.round(acute)}，比近几周平均高 ${Math.round((acwr - 1) * 100)}%——已进入受伤高危区（ACWR > 1.3）。下周建议减量 20-30%。`, kb: 'kb_acwr' });
+  } else if (acwr < 0.8 && lh.length >= 3) {
+    tips.push({ lvl: 'warn', text: '本周是减量周，有利于恢复——但连续两周负荷过低会让体能下滑。', kb: 'kb_acwr' });
+  }
+  if (a.fatigue > 70) {
+    tips.push({ lvl: 'bad', text: `疲劳 ${Math.round(a.fatigue)} 偏高，下周至少安排 2 个休息/拉伸日。`, kb: 'kb_sleep' });
+  }
+  if (a.mood < 40) {
+    tips.push({ lvl: 'warn', text: '心情低落。连续高强度或单一日程会消耗动力，试试交叉训练或和朋友一起跑。', kb: 'kb_variety' });
+  }
+  const types = new Set(summary.log.map(e => e.trainId));
+  if (types.size <= 2) {
+    tips.push({ lvl: 'warn', text: '本周训练种类太少，长期单项训练会进步更慢，也更容易受伤。', kb: 'kb_variety' });
+  }
+  if (a.injury) {
+    tips.push({ lvl: 'bad', text: `${a.injury.part}受伤中，剩 ${a.injury.daysLeft} 天。恢复期只安排休息/拉伸/交叉训练。`, kb: 'kb_rice' });
+  }
+  const race = STAGES[state.stage].race;
+  if (race) {
+    const needOk = Object.entries(race.need).every(([k, v]) => a[k] >= v);
+    if (needOk && !a.injury) {
+      tips.push({ lvl: 'good', text: `能力已达到 ${race.label} 参赛门槛。建议先安排一个减量周再报名比赛日——赛前减量能让成绩明显更好。`, kb: 'kb_taper' });
+    }
+  }
+  if (!tips.length) {
+    tips.push({ lvl: 'good', text: '本周安排均衡，负荷平稳。保持节奏，慢慢变强。', kb: null });
+  }
+  return tips;
+}
+
+// ---- 比赛 ----
+function raceNeedsOk() {
+  const race = STAGES[state.stage].race;
+  if (!race) return false;
+  return Object.entries(race.need).every(([k, v]) => state.athlete[k] >= v);
+}
+function raceReady() {
+  return STAGES[state.stage].race && raceNeedsOk() && !state.athlete.injury;
+}
+
+function isTapered() {
+  const lh = state.loadHistory;
+  if (lh.length < 2) return false;
+  const last = lh[lh.length - 1];
+  const prev = lh.slice(-4, -1);
+  return last < avg(prev) * 0.85;
+}
+
+function simulateRace() {
+  const race = STAGES[state.stage].race;
+  if (!race) return null;
+  const a = state.athlete;
+  const taper = isTapered();
+  const basePace = 560
+    * (1 - a.endurance / 400 - a.speed / 500 - a.technique / 500)
+    * (1 + 0.25 * (race.km / 42.195) * (1 - a.endurance / 100))
+    * (1 + a.fatigue / 250)
+    * (a.mood < 40 ? 1.03 : 1)
+    * (1 + (a.weight - 62) / 300)
+    * (taper ? 0.98 : 1);
+
+  const splits = [];
+  let total = 0;
+  const wholeKms = Math.ceil(race.km);
+  for (let km = 1; km <= wholeKms; km++) {
+    const d = Math.min(1, race.km - (km - 1));
+    const pace = basePace * (0.98 + Math.random() * 0.04);
+    total += pace * d;
+    splits.push({ km, time: total, pace });
+  }
+  const pass = total <= race.target;
+  return { race, total, pass, splits, taper };
+}
+
+function applyStageUp() {
+  const a = state.athlete;
+  state.stage = Math.min(STAGES.length - 1, state.stage + 1);
+  a.mood = clamp(a.mood + 10, 0, 100);
+  const week = state.lastSummary ? state.lastSummary.week : state.week - 1;
+  state.history.push({ type: 'stage', week, stage: state.stage, title: STAGES[state.stage].title });
+}
+
+function unlockedAt(stage) {
+  return TRAINING_TYPES.filter(t => t.minStage === stage);
+}
+
+// ============================================================
+// 4. UI 层 RENDER
+// ============================================================
+
+const $ = sel => document.querySelector(sel);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const ATTR_NAME = { endurance: '耐力', speed: '速度', strength: '力量', flexibility: '柔韧', technique: '技术' };
+
+const PLANS = {
+  0: ['easyRun', 'core', 'rest', 'easyRun', 'stretch', 'strengthBody', 'rest'],
+  1: ['easyRun', 'tempo', 'rest', 'easyRun', 'stretch', 'longRun', 'rest'],
+  2: ['easyRun', 'interval', 'rest', 'tempo', 'strengthBody', 'longRun', 'rest'],
+  3: ['easyRun', 'tempo', 'stretch', 'interval', 'strengthBarbell', 'longRun', 'rest'],
+  4: ['easyRun', 'tempo', 'stretch', 'interval', 'strengthBarbell', 'longRun', 'rest'],
+};
+
+function fmtTime(sec) {
+  sec = Math.round(sec);
+  const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+  const mm = String(m).padStart(h ? 2 : 1, '0');
+  const ss = String(s).padStart(2, '0');
+  return h ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
+}
+function fmtPace(secPerKm) {
+  return fmtTime(Math.round(secPerKm)) + '/km';
+}
+
+function openModal(html) {
+  const ov = $('#overlay'), m = $('#modal');
+  m.innerHTML = html;
+  ov.classList.remove('hidden');
+  return m;
+}
+function closeModal() {
+  $('#overlay').classList.add('hidden');
+  $('#modal').innerHTML = '';
+}
+
+function toast(msg) {
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  $('#toast-wrap').appendChild(el);
+  setTimeout(() => el.remove(), 2800);
+}
+
+// ---- 顶部状态 ----
+function renderHeader() {
+  const a = state.athlete, st = STAGES[state.stage];
+  let html = `
+    <span class="badge">第 <b>${state.week}</b> 周</span>
+    <span class="badge">${st.icon} <b>${st.title}</b></span>
+    <span class="badge">疲劳 <b>${Math.round(a.fatigue)}</b></span>
+    <span class="badge">心情 <b>${Math.round(a.mood)}</b></span>`;
+  if (a.injury) {
+    html += `<span class="badge injury">${a.injury.part}受伤 · 剩 ${a.injury.daysLeft} 天</span>`;
+  }
+  $('#badges').innerHTML = html;
+}
+
+// ---- 训练周 ----
+function gainText(t) {
+  const parts = Object.entries(t.gains).map(([k, v]) => `${ATTR_NAME[k]}+${v}`);
+  return parts.length ? parts.join(' ') : '纯恢复';
+}
+
+function renderWeek() {
+  const grid = $('#plan-grid');
+  grid.innerHTML = '';
+  state.weekPlan.forEach((id, i) => {
+    const day = i + 1;
+    const t = id ? TRAINING_BY_ID[id] : null;
+    const done = state.running && day < state.day;
+    const current = state.running && day === state.day;
+    const card = document.createElement('div');
+    card.className = 'day-card' + (!t ? ' empty' : '') + (done ? ' done' : '') + (current ? ' running' : '');
+    card.innerHTML = `
+      <div class="dow">${DOW[i]}${current ? ' · 进行中' : done ? ' · 已完成' : ''}</div>
+      <div class="tname">${t ? `${t.icon} ${t.name}` : '未安排'}</div>
+      <div class="tload">${t ? `负荷 ${t.load} · ${gainText(t)}` : '点击安排'}</div>`;
+    if (!state.running) card.onclick = () => pickTraining(day);
+    grid.appendChild(card);
+  });
+
+  const startBtn = $('#btn-start');
+  startBtn.disabled = state.running;
+  startBtn.textContent = state.running ? '本周进行中…' : '开始本周';
+  startBtn.classList.toggle('hidden', state.running);
+
+  const raceBtn = $('#btn-race');
+  raceBtn.classList.toggle('hidden', !state.lastSummary);
+
+  $('#week-hint').textContent = state.running
+    ? `第 ${Math.min(state.day, 7)} / 7 天`
+    : (state.athlete.injury ? '受伤恢复期：高强度训练会被自动替换为休息' : '点选每一天安排训练');
+
+  renderWeekLog();
+}
+
+function entryHtml(e) {
+  const chips = Object.entries(e.gains)
+    .filter(([, v]) => Math.abs(v) >= 0.05)
+    .map(([k, v]) => `<span class="chip pos">${ATTR_NAME[k]} +${v.toFixed(1)}</span>`).join('');
+  const ex = e.exec
+    ? `<div class="ev exec">🧭 执行 · ${e.exec.icon} ${e.exec.title} → ${e.exec.optionLabel}<br>${e.exec.after}</div>`
+    : '';
+  const ev = e.event
+    ? `<div class="ev">🎲 ${e.event.icon} ${e.event.title} → ${e.event.optionLabel}<br>${e.event.after}</div>`
+    : '';
+  const notes = (e.notes || []).map(n => `<div class="ev">⚠️ ${n}</div>`).join('');
+  const inj = e.injuryNote
+    ? `<div class="ev" style="color:var(--bad)">🚑 ${e.injuryNote}</div>` : '';
+  const cls = e.injuryNote ? 'bad'
+    : ((e.exec && e.exec.correct === true) || (e.event && e.event.correct === true)) ? 'good' : '';
+  return `<div class="log-entry ${cls}">
+    <b>${DOW[e.day - 1]}</b> · ${e.icon} ${e.trainName}
+    <span class="chip">负荷 ${e.load}</span>${chips}
+    ${notes}${ex}${ev}${inj}
+  </div>`;
+}
+
+function renderWeekLog() {
+  const el = $('#week-log');
+  if (!state.weekLog.length) { el.innerHTML = ''; return; }
+  el.innerHTML = state.weekLog.map(entryHtml).join('');
+}
+
+function pickTraining(day) {
+  if (state.running) return;
+  const list = TRAINING_TYPES.filter(t => t.minStage <= state.stage);
+  const m = openModal(`
+    <h3>${DOW[day - 1]} · 安排训练</h3>
+    <p style="font-size:13px">负荷越高收益越大，但疲劳与受伤风险也越高。留出恢复日同样重要。</p>
+    <div id="pick-list"></div>
+    <div class="modal-actions"><button class="ghost" id="pick-close">取消</button></div>`);
+  const wrap = m.querySelector('#pick-list');
+  for (const t of list) {
+    const b = document.createElement('button');
+    b.className = 'opt-btn';
+    b.innerHTML = `<b>${t.icon} ${t.name}</b> <span class="chip">负荷 ${t.load}</span><br>
+      <span style="color:var(--text-secondary);font-size:12px">${t.desc} · ${gainText(t)}</span>`;
+    b.onclick = () => {
+      state.weekPlan[day - 1] = t.id;
+      closeModal();
+      renderWeek();
+      save();
+    };
+    wrap.appendChild(b);
+  }
+  m.querySelector('#pick-close').onclick = closeModal;
+}
+
+function recommendPlan() {
+  if (state.running) return;
+  let plan = (PLANS[state.stage] || PLANS[0]).slice();
+  if (state.athlete.injury) {
+    plan = plan.map(id => TRAINING_BY_ID[id].load > 15 ? 'rest' : id);
+  }
+  if (state.athlete.fatigue > 65) {
+    plan = plan.map((id, i) => TRAINING_BY_ID[id].load >= 26 ? (i % 2 ? 'stretch' : 'rest') : id);
+  }
+  state.weekPlan = plan;
+  renderWeek();
+  save();
+  toast('已填入推荐课表，可自行调整');
+}
+
+// ---- 事件选择 ----
+// 有唯一正确答案的题给出判定：最优 → 恭喜；非最优 → 列出代价并揭示更优解
+function optionVerdict(o, ev) {
+  if (!ev.options.some(x => x.correct === true)) return null;
+  if (o.correct === true) return { kind: 'best', title: '🎉 恭喜，这是最优选择！', chips: [] };
+  const f = o.fx || {};
+  const chips = [];
+  if (o.sleepBad) chips.push('当晚睡眠恢复 −4');
+  if (f.fatigue > 0) chips.push(`疲劳 +${f.fatigue}`);
+  if (f.mood < 0) chips.push(`心情 ${f.mood}`);
+  if (f.weight > 0) chips.push(`体重 +${f.weight.toFixed(1)}kg`);
+  ['endurance', 'speed', 'strength', 'flexibility', 'technique'].forEach(k => {
+    if (f[k] < 0) chips.push(`${ATTR_NAME[k]} ${f[k]}`);
+  });
+  if (o.risk) chips.push(`当日受伤风险 +${Math.round(o.risk * 100)}%`);
+  const costly = o.sleepBad || o.risk || f.fatigue > 0 || f.mood < 0 || f.weight > 0
+    || ['endurance', 'speed', 'strength', 'flexibility', 'technique'].some(k => f[k] < 0);
+  if (costly) return { kind: 'cost', title: '⚠️ 这不是最优选择，代价是：', chips };
+  if (Object.values(f).some(v => v > 0)) {
+    return { kind: 'ok', title: '✅ 稳妥的选择，但还有更优解。', chips: [] };
+  }
+  return { kind: 'cost', title: '⚠️ 执行质量打了折扣', chips: ['这次训练没有获得额外收益'] };
+}
+
+function eventChoiceUI(ev, meta) {
+  const isExec = !!(meta && meta.kind === 'exec');
+  return new Promise(resolve => {
+    const m = openModal(`
+      ${isExec ? `<div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px">
+        训练执行中 · ${meta.training.icon} ${meta.training.name}</div>` : ''}
+      <div class="m-icon">${isExec ? '🧭' : ev.icon}</div>
+      <h3>${ev.title}</h3>
+      ${isExec ? `<div class="race-bar"><div class="fill" id="exec-fill" style="transition:width .7s"></div></div>
+        <div style="font-size:11px;color:var(--text-muted);text-align:right;margin-top:-4px" id="exec-pct">进度 0% · 热身中</div>` : ''}
+      <p id="ev-text"${isExec ? ' style="opacity:0;transition:opacity .3s"' : ''}>${ev.text}</p>
+      <div id="ev-opts"></div>`);
+    const wrap = m.querySelector('#ev-opts');
+    const fill = m.querySelector('#exec-fill');
+    const pct = m.querySelector('#exec-pct');
+    const text = m.querySelector('#ev-text');
+
+    const mountOptions = () => {
+      if (isExec) {
+        text.style.opacity = '1';
+        if (fill) fill.style.width = '55%';
+        if (pct) pct.textContent = '进度 55% · 主训练中';
+      }
+      ev.options.forEach((o, i) => {
+        const b = document.createElement('button');
+        b.className = 'opt-btn';
+        b.textContent = o.label;
+        b.onclick = () => {
+          Array.from(wrap.children).forEach(c => { c.disabled = true; });
+          if ('correct' in o) b.classList.add(o.correct ? 'correct' : 'wrong');
+          if (isExec) {
+            if (fill) fill.style.width = '100%';
+            if (pct) pct.textContent = '进度 100% · 完成';
+          }
+          const kb = o.kb ? KB_BY_ID[o.kb] : null;
+          const verdict = optionVerdict(o, ev);
+          const best = ev.options.find(x => x.correct === true);
+          const verdictHtml = verdict ? `
+            <div class="verdict ${verdict.kind}">
+              <div class="v-title">${verdict.title}</div>
+              ${verdict.chips.length ? `<div class="cost-chips">${verdict.chips.map(c => `<span>${c}</span>`).join('')}</div>` : ''}
+              ${verdict.kind !== 'best' && best ? `<div class="v-best">更优解：<b>${best.label}</b></div>` : ''}
+            </div>` : '';
+          const extra = document.createElement('div');
+          extra.innerHTML = `
+            ${verdictHtml}
+            <div class="after-box"><b>结果：</b>${o.after}</div>
+            ${kb ? `<div class="kb-pop"><div class="kbt">📖 ${kb.title} · ${kb.tag}</div>${kb.content}</div>` : ''}
+            <div class="modal-actions"><button class="primary" id="ev-continue">继续</button></div>`;
+          m.appendChild(extra);
+          m.querySelector('#ev-continue').onclick = () => { closeModal(); resolve(i); };
+        };
+        wrap.appendChild(b);
+      });
+    };
+
+    if (isExec) setTimeout(mountOptions, 700);
+    else mountOptions();
+  });
+}
+
+// ---- 运动员 ----
+function renderAthlete() {
+  const a = state.athlete;
+  const acwr = state.weekLoad / chronicLoad();
+  $('#athlete-tiles').innerHTML = `
+    <div class="tile"><div class="label">疲劳</div><div class="value">${Math.round(a.fatigue)}<span class="unit"> / 100</span></div></div>
+    <div class="tile"><div class="label">心情</div><div class="value">${Math.round(a.mood)}<span class="unit"> / 100</span></div></div>
+    <div class="tile"><div class="label">体重</div><div class="value">${a.weight.toFixed(1)}<span class="unit"> kg</span></div></div>
+    <div class="tile"><div class="label">本周累计负荷</div><div class="value">${Math.round(state.weekLoad)}<span class="unit"> · ACWR ${acwr.toFixed(2)}</span></div></div>`;
+
+  const attrs = ['endurance', 'speed', 'strength', 'flexibility', 'technique'];
+  let bars = attrs.map(k => `
+    <div class="bar-row">
+      <span class="name">${ATTR_NAME[k]}</span>
+      <div class="track"><div class="fill" style="width:${a[k]}%"></div></div>
+      <span class="val">${a[k].toFixed(1)}</span>
+    </div>`).join('');
+  bars += `
+    <div class="bar-row mood">
+      <span class="name">心情</span>
+      <div class="track"><div class="fill" style="width:${a.mood}%"></div></div>
+      <span class="val">${Math.round(a.mood)}</span>
+    </div>
+    <div class="bar-row fatigue ${a.fatigue > 70 ? 'high' : ''}">
+      <span class="name">疲劳</span>
+      <div class="track"><div class="fill" style="width:${a.fatigue}%"></div></div>
+      <span class="val">${Math.round(a.fatigue)}</span>
+    </div>`;
+  $('#attr-bars').innerHTML = bars;
+
+  const ic = $('#injury-card');
+  if (a.injury) {
+    ic.innerHTML = `<div class="after-box" style="border-left:3px solid var(--bad)">
+      🚑 <b>${a.injury.part}${a.injury.severe ? '（重伤）' : '（轻伤）'}</b> · 还需休养 ${a.injury.daysLeft} 天。
+      恢复期高强度课表会被自动替换为休息；只安排拉伸与交叉训练能更快回来。</div>`;
+  } else {
+    ic.innerHTML = `<div class="after-box" style="border-left:3px solid var(--good)">✅ 无伤状态。保持负荷平稳（ACWR 0.8-1.3）是最有效的防伤手段。</div>`;
+  }
+
+  renderChart();
+}
+
+function renderChart() {
+  const canvas = $('#load-chart');
+  if (!canvas || canvas.closest('.hidden')) return;
+  const dpr = window.devicePixelRatio || 1;
+  const W = Math.max(280, canvas.parentElement.clientWidth - 32);
+  const H = 180;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const css = getComputedStyle(document.documentElement);
+  const accent = css.getPropertyValue('--accent').trim();
+  const warn = css.getPropertyValue('--warn').trim();
+  const muted = css.getPropertyValue('--text-muted').trim();
+  const grid = css.getPropertyValue('--grid').trim();
+
+  if (!state.loadHistory.length) {
+    ctx.fillStyle = muted;
+    ctx.font = '13px system-ui';
+    ctx.fillText('完成第一周训练后，这里会显示负荷曲线', 10, H / 2);
+    return;
+  }
+
+  const loads = state.loadHistory.slice(-8);
+  const chronicSeries = [];
+  for (let i = state.loadHistory.length - loads.length; i < state.loadHistory.length; i++) {
+    const slice = state.loadHistory.slice(Math.max(0, i - 3), i + 1);
+    chronicSeries.push(avg(slice));
+  }
+  const maxY = Math.max(100, ...loads, ...chronicSeries) * 1.15;
+  const padL = 34, padR = 10, padT = 12, padB = 22;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const n = loads.length;
+  const x = i => padL + (n === 1 ? plotW / 2 : (i * plotW) / (n - 1));
+  const y = v => padT + plotH - (v / maxY) * plotH;
+
+  // 网格
+  ctx.strokeStyle = grid; ctx.lineWidth = 1;
+  for (let g = 0; g <= 2; g++) {
+    const yy = padT + (plotH * g) / 2;
+    ctx.beginPath(); ctx.moveTo(padL, yy); ctx.lineTo(W - padR, yy); ctx.stroke();
+    ctx.fillStyle = muted; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxY * (1 - g / 2)), padL - 6, yy + 3);
+  }
+  ctx.textAlign = 'left';
+
+  // 负荷柱
+  const barW = Math.max(6, Math.min(26, plotW / n / 2));
+  loads.forEach((v, i) => {
+    ctx.fillStyle = accent;
+    ctx.globalAlpha = 0.75;
+    ctx.fillRect(x(i) - barW / 2, y(v), barW, padT + plotH - y(v));
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = muted; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    const wk = state.loadHistory.length - n + i + 1;
+    ctx.fillText('W' + wk, x(i), H - 6);
+  });
+
+  // 慢性负荷线
+  ctx.strokeStyle = warn; ctx.lineWidth = 2; ctx.beginPath();
+  chronicSeries.forEach((v, i) => { i ? ctx.lineTo(x(i), y(v)) : ctx.moveTo(x(i), y(v)); });
+  ctx.stroke();
+  ctx.fillStyle = warn;
+  chronicSeries.forEach((v, i) => {
+    ctx.beginPath(); ctx.arc(x(i), y(v), 2.5, 0, Math.PI * 2); ctx.fill();
+  });
+  ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('— 慢性负荷(4周均)', W - padR, padT + 2);
+
+  const chronic = chronicLoad();
+  const acwr = state.weekLoad / chronic;
+  $('#chart-note').textContent = state.weekLoad === 0 && !state.running
+    ? `本周尚未开始 · 慢性负荷（近 4 周均）${Math.round(chronic)}`
+    : `当前周累计负荷 ${Math.round(state.weekLoad)} · 慢性负荷 ${Math.round(chronic)} · ACWR ${acwr.toFixed(2)}` +
+      (acwr > 1.3 ? '（偏高，受伤风险↑）' : acwr < 0.8 ? '（偏低，恢复周）' : '（适宜区间）');
+}
+
+// ---- 知识图鉴 ----
+let kbFilter = '全部';
+function renderKb() {
+  const tags = ['全部', ...KB_TAGS];
+  $('#kb-filters').innerHTML = tags.map(t =>
+    `<button class="${t === kbFilter ? 'active' : ''}" data-tag="${t}">${t}</button>`).join('');
+  $('#kb-filters').querySelectorAll('button').forEach(b => {
+    b.onclick = () => { kbFilter = b.dataset.tag; renderKb(); };
+  });
+
+  const unlocked = state.unlockedKnowledge;
+  $('#kb-hint').textContent = `已解锁 ${unlocked.length} / ${KNOWLEDGE.length} 张`;
+  const list = KNOWLEDGE.filter(k => kbFilter === '全部' || k.tag === kbFilter);
+  $('#kb-grid').innerHTML = list.map(k => {
+    const has = unlocked.includes(k.id);
+    return `<div class="kb-card ${has ? 'unlocked' : 'locked'}" data-kb="${has ? k.id : ''}">
+      <div class="tag">${has ? k.tag : '???'}</div>
+      <div class="title">${has ? k.title : '未解锁的知识'}</div>
+      <div style="font-size:12px;color:var(--text-muted)">${has ? k.content.slice(0, 38) + '…' : '完成相关训练或做出正确选择后解锁'}</div>
+    </div>`;
+  }).join('');
+  $('#kb-grid').querySelectorAll('.kb-card').forEach(card => {
+    card.onclick = () => {
+      if (!card.dataset.kb) { toast('完成相关训练或事件后可解锁这张卡片'); return; }
+      showKbCard(card.dataset.kb);
+    };
+  });
+}
+
+function showKbCard(id) {
+  const k = KB_BY_ID[id];
+  if (!k) return;
+  const m = openModal(`
+    <div class="m-icon">📖</div>
+    <h3>${k.title}</h3>
+    <p style="color:var(--accent);font-size:12px;margin-bottom:6px">${k.tag}</p>
+    <div class="after-box">${k.content}</div>
+    <div class="modal-actions"><button class="primary" id="kb-close">知道了</button></div>`);
+  m.querySelector('#kb-close').onclick = closeModal;
+}
+
+// ---- 记录 ----
+function renderHistory() {
+  const el = $('#history-list');
+  const rows = state.history.slice().reverse();
+  if (!rows.length) { el.innerHTML = '<div class="empty">还没有比赛或升阶记录。完成训练、报名比赛日吧。</div>'; return; }
+  el.innerHTML = rows.map(h => {
+    if (h.type === 'stage') {
+      return `<div class="hist-item"><span>🎖</span><span class="t">升阶：${h.title}</span>
+        <span class="d">第 ${h.week} 周</span></div>`;
+    }
+    return `<div class="hist-item">
+      <span>${h.pass ? '✅' : '❌'}</span>
+      <span class="t">${h.label}</span>
+      <span class="d">第 ${h.week} 周 · ${h.km.toFixed(1)} km</span>
+      <span style="font-variant-numeric:tabular-nums">${fmtTime(h.time)} / 目标 ${fmtTime(h.target)}</span>
+    </div>`;
+  }).join('');
+}
+
+// ---- 周复盘 ----
+function weeklyGainTotals(log) {
+  const totals = {};
+  for (const e of log) for (const [k, v] of Object.entries(e.gains)) totals[k] = (totals[k] || 0) + v;
+  return totals;
+}
+
+async function reviewModal(summary) {
+  const a = state.athlete;
+  const stage = STAGES[state.stage];
+  const canRace = !!(stage.race && raceNeedsOk() && !a.injury && !summary.raceDone);
+  const totals = weeklyGainTotals(summary.log);
+  const gainChips = Object.entries(totals).filter(([, v]) => v >= 0.05)
+    .map(([k, v]) => `<span class="chip pos">${ATTR_NAME[k]} +${v.toFixed(1)}</span>`).join('');
+  const tips = summary.advice.map((t, i) => `
+    <div class="after-box" data-tip="${i}" style="border-left:3px solid var(--${t.lvl === 'bad' ? 'bad' : t.lvl === 'warn' ? 'warn' : 'good'})">
+      ${t.text}
+      ${t.kb ? `<a href="javascript:void(0)" class="kblink" data-tipkb="${i}" style="color:var(--accent);font-size:12px">📖 查看知识卡</a>` : ''}
+    </div>`).join('');
+  const logHtml = summary.log.map(entryHtml).join('');
+
+  const m = openModal(`
+    <div class="m-icon">📋</div>
+    <h3>第 ${summary.week} 周复盘</h3>
+    <p>本周总负荷 <b>${Math.round(summary.load)}</b>${gainChips ? ' · ' + gainChips : ''}</p>
+    ${summary.exec && summary.exec.total ? `<p style="font-size:13px;color:var(--text-secondary)">
+      🧭 执行阶段决策：<b>${summary.exec.correct} / ${summary.exec.total}</b> 次判断正确${summary.exec.correct === summary.exec.total ? ' · 完美执行！' : ''}</p>` : ''}
+    ${tips}
+    <details style="font-size:13px;margin:8px 0"><summary style="cursor:pointer;color:var(--text-secondary)">查看本周训练明细</summary><div class="log">${logHtml}</div></details>
+    <div class="modal-actions">
+      ${canRace ? `<button class="primary gold" id="rv-race">🏁 报名${stage.race.label}</button>` : ''}
+      <button class="primary" id="rv-next">进入下一周</button>
+    </div>`);
+
+  m.querySelectorAll('.kblink').forEach(link => {
+    link.onclick = () => {
+      const t = summary.advice[Number(link.dataset.tipkb)];
+      const tipEl = link.closest('.after-box');
+      if (tipEl.querySelector('.kb-pop')) { tipEl.querySelector('.kb-pop').remove(); return; }
+      const k = KB_BY_ID[t.kb];
+      if (!k) return;
+      const pop = document.createElement('div');
+      pop.className = 'kb-pop';
+      pop.innerHTML = `<div class="kbt">📖 ${k.title} · ${k.tag}</div>${k.content}`;
+      tipEl.appendChild(pop);
+    };
+  });
+
+  m.querySelector('#rv-next').onclick = () => {
+    closeModal();
+    renderAll();
+    save();
+  };
+  const raceBtn = m.querySelector('#rv-race');
+  if (raceBtn) {
+    raceBtn.onclick = async () => {
+      closeModal();
+      await stateRaceFlow(summary);
+    };
+  }
+}
+
+// ---- 比赛日 ----
+async function stateRaceFlow(summary) {
+  const sim = simulateRace();
+  if (!sim) return;
+  const race = sim.race;
+  const m = openModal(`
+    <div class="m-icon">🏁</div>
+    <h3>${race.label}</h3>
+    <p>距离 ${race.km.toFixed(1)} km · 目标 ${fmtTime(race.target)}${sim.taper ? ' · 赛前减量生效' : ' · 未减量'}</p>
+    <div class="race-bar"><div class="fill" id="race-fill"></div></div>
+    <div class="splits" id="splits"></div>`);
+  const fill = m.querySelector('#race-fill');
+  const splitsEl = m.querySelector('#splits');
+  const steps = 20;
+  for (let i = 1; i <= steps; i++) {
+    await sleep(60);
+    fill.style.width = (i / steps * 100) + '%';
+    const idx = Math.min(sim.splits.length - 1, Math.round((i / steps) * (sim.splits.length - 1)));
+    splitsEl.innerHTML = sim.splits.slice(Math.max(0, idx - 3), idx + 1)
+      .map(s => `第 ${s.km} km · ${fmtTime(s.time)} · ${fmtPace(s.pace)}`).join('<br>');
+  }
+
+  summary.raceDone = true;
+  state.history.push({
+    type: 'race', week: summary.week, label: race.label, km: race.km,
+    time: sim.total, target: race.target, pass: sim.pass,
+  });
+
+  const a = state.athlete;
+  const passed = sim.pass;
+  let html = `
+    <div class="m-icon">${passed ? '🎉' : '😣'}</div>
+    <h3>${passed ? '达标！' : '未达标'}</h3>
+    <p>完赛成绩 <b>${fmtTime(sim.total)}</b> · 目标 ${fmtTime(race.target)}
+      ${passed ? '' : ` · 差 ${fmtTime(sim.total - race.target)}`}</p>`;
+  if (!passed) {
+    const reasons = [];
+    if (a.fatigue > 40) reasons.push(`赛前疲劳偏高（${Math.round(a.fatigue)}）——下次赛前安排 1-2 周减量。`);
+    if (!sim.taper) reasons.push('这次没有做赛前减量（taper），成绩受影响。');
+    const missing = Object.entries(race.need).filter(([k, v]) => a[k] < v);
+    if (missing.length) reasons.push(`基础能力还差一点：${missing.map(([k, v]) => `${ATTR_NAME[k]} ${a[k].toFixed(0)}/${v}`).join('，')}。`);
+    if (!reasons.length) reasons.push('配速策略或状态还不够稳，再积累几周训练，先减量再来一次。');
+    html += `<div class="after-box">${reasons.map(r => '· ' + r).join('<br>')}</div>
+      <div class="kb-pop"><div class="kbt">📖 赛前减量（Taper）</div>${KB_BY_ID.kb_taper.content}</div>`;
+  }
+  html += `<div class="modal-actions"><button class="primary" id="race-continue">继续</button></div>`;
+  m.innerHTML = html;
+
+  m.querySelector('#race-continue').onclick = () => {
+    const oldStage = state.stage;
+    if (passed) applyStageUp();
+    closeModal();
+    renderAll();
+    save();
+    if (passed) showStageUpModal(oldStage);
+  };
+}
+
+function showStageUpModal(oldStage) {
+  const st = STAGES[state.stage];
+  const unlocked = unlockedAt(state.stage);
+  const unlockHtml = unlocked.length
+    ? `<p>解锁新训练：${unlocked.map(t => `${t.icon} ${t.name}`).join('、')}</p>`
+    : '';
+  const nextRace = st.race
+    ? `<p>下一关：${st.race.label} · 目标 ${fmtTime(st.race.target)}</p>`
+    : `<p>你已经是全马跑者——恭喜通关！知识图鉴收集仍在继续。</p>`;
+  const m = openModal(`
+    <div class="m-icon">🎖️</div>
+    <h3>升阶：${st.title}</h3>
+    <p>你的运动员正式成为 <b>${st.title}</b>！心情 +10。</p>
+    ${unlockHtml}${nextRace}
+    <div class="modal-actions"><button class="primary" id="su-close">继续前行</button></div>`);
+  m.querySelector('#su-close').onclick = () => {
+    closeModal();
+    renderAll();
+    save();
+  };
+}
+
+// ---- 周推进 ----
+// ---- 周身体反馈：最后一次训练后的部位感受 ----
+const BODY_REGION_LABEL = {
+  knee: '膝盖', calf: '小腿', thigh: '大腿后侧', ankle: '脚踝',
+  foot: '脚底', waist: '腰', hip: '髋部',
+};
+const INJURY_REGION = {
+  '脚踝': 'ankle', '膝盖': 'knee', '小腿胫骨': 'calf',
+  '足底筋膜': 'foot', '大腿后侧腘绳肌': 'thigh', '腰部': 'waist',
+};
+const RUN_IDS = ['easyRun', 'longRun', 'tempo', 'interval'];
+
+function bodyFeedback(summary) {
+  const a = state.athlete;
+  const log = summary.log || [];
+  const side = () => Math.random() < 0.5 ? 'L' : 'R';
+  const runDays = log.filter(e => RUN_IDS.includes(e.trainId));
+  const strengthDays = log.filter(e => ['strengthBody', 'strengthBarbell', 'core'].includes(e.trainId));
+  const stretchDays = log.filter(e => e.trainId === 'stretch');
+  const last = log[log.length - 1];
+  const rows = [];
+  let badCount = 0, goodCount = 0;
+  const add = (ids, status, title, text, bubble) => {
+    if (status === 'bad' && badCount >= 3) return;
+    if (status === 'good' && goodCount >= 1) return;
+    if (status === 'bad') badCount++; else goodCount++;
+    rows.push({ ids, status, title, text, bubble: bubble || title });
+  };
+
+  // 1) 现有伤病优先
+  if (a.injury) {
+    const region = INJURY_REGION[a.injury.part] || 'knee';
+    const label = BODY_REGION_LABEL[region] || '身体';
+    add([region + side()], 'bad', `${a.injury.part}还没好`,
+      `跑完最后一天，${a.injury.part}仍有${a.injury.severe ? '明显' : '轻微'}的不适。恢复期别急着上强度，先把炎症和负荷控制住。`,
+      `${label}还在隐隐作痛…`);
+  }
+
+  // 2) 本周负荷涨太快 → 膝/小腿
+  const prev = state.loadHistory.slice(0, -1).slice(-4);
+  const chronic = Math.max(60, avg(prev));
+  const acwr = summary.load / chronic;
+  if (acwr > 1.3) {
+    add(['kneeL', 'kneeR'], 'bad', '双膝有点发紧',
+      `本周负荷比过去四周平均高 ${Math.round((acwr - 1) * 100)}%，膝关节多承担了一截冲击。下周先别再涨量，给身体适应的时间。`,
+      '膝盖有点发紧，像被提醒了…');
+  }
+
+  // 3) 执行阶段的错误决策：风险、拉伸不到位、动作变形
+  for (const e of log) {
+    if (e.exec && e.exec.risk > 0) {
+      const riskyRegion = RUN_IDS.includes(e.trainId) || e.trainId === 'strengthBody' || e.trainId === 'strengthBarbell' ? 'knee' : 'waist';
+      add([riskyRegion + side()], 'bad', `${e.exec.title}留下了代价`,
+        `${DOW[e.day - 1]}的「${e.exec.title}」你选了「${e.exec.optionLabel}」。${(e.exec.after || '').replace(/^[✓✗]\s*/, '')}`,
+        `${BODY_REGION_LABEL[riskyRegion] || '身体'}有点不舒服…`);
+    }
+    if (e.exec && !e.exec.correct && /拉伸|瑜伽/.test(e.trainName)) {
+      add(['thigh' + side(), 'hip'], 'bad', '大腿后侧偏紧',
+        `这周的拉伸执行不到位（${e.exec.optionLabel}）。肌肉没完全放松，跑完会觉得后侧发紧。下次每个动作保持 20-30 秒，有牵拉感即可。`,
+        '大腿后侧紧紧的…');
+    }
+    if (e.exec && !e.exec.correct && /膝内扣/.test(e.exec.title)) {
+      add(['kneeL', 'kneeR'], 'bad', '膝盖不太舒服',
+        '力量训练时膝盖内扣的负荷会在跑后显现。降重量、让膝盖对准脚尖，比硬撑重量更重要。',
+        '膝盖内侧有点别扭…');
+    }
+  }
+
+  // 4) 高疲劳 / 柔韧不足
+  if (a.fatigue > 60) {
+    add(['waist', 'calfL', 'calfR'], 'bad', '全身还没缓过来',
+      `周末疲劳仍有 ${Math.round(a.fatigue)}。这不是受伤，是身体在说：睡眠、拉伸和轻松日不能省。`,
+      '整个人沉沉的…');
+  }
+  if (a.flexibility < 30 && runDays.length >= 3 && stretchDays.length < 2) {
+    add(['thighL', 'thighR', 'hip'], 'bad', '髋和大腿发紧',
+      '柔韧属性偏低，跑量一上来就容易觉得髋部发紧。下周安排 1-2 次拉伸/瑜伽。',
+      '髋部发紧…');
+  }
+
+  // 5) 正反馈：排除伤病的部位后，给「变强了」的感受
+  const legBad = rows.some(r => r.status === 'bad' && r.ids.some(id => /thigh|calf|knee|ankle|foot/.test(id)));
+  if (!a.injury && !legBad && runDays.length >= 2) {
+    add(['thighL', 'thighR', 'calfL', 'calfR'], 'good', '腿部更有力了',
+      `本周完成 ${runDays.length} 次跑步，负荷${acwr > 0.95 ? '稳步推进' : '控制得很稳'}。跑完最后一天，腿虽然累，但那种「能撑住」的感觉变强了。`,
+      '我感觉自己变强了！');
+  }
+  if (!a.injury && strengthDays.length >= 2 && a.fatigue < 70) {
+    add(['armL', 'armR', 'chest'], 'good', '上肢和核心更稳',
+      '力量训练让摆臂和躯干稳定度提升，跑步时能量泄漏更少。',
+      '核心和手臂更有劲了！');
+  }
+  if (!a.injury && stretchDays.length >= 2 && !legBad) {
+    add(['hip'], 'good', '髋部更灵活',
+      '规律拉伸让髋部活动度变好，步幅更自然。',
+      '身体拉开了，很舒服！');
+  }
+  if (!rows.length) {
+    if (a.fatigue < 40) {
+      add(['chest', 'core'], 'good', '身体恢复得不错',
+        '这周负荷平稳，最后一天结束时呼吸轻松、肌肉没有明显酸胀。科学训练的感觉正在形成。',
+        '我感觉自己变强了！');
+    } else {
+      add(['waist'], 'bad', '腰背有点酸',
+        '本周负荷不算高，但疲劳没有完全消化。下周多安排睡眠和轻松日。',
+        '腰背有点酸…');
+    }
+  }
+
+  const bad = rows.filter(r => r.status === 'bad');
+  return { rows, bad, bubbleRow: bad[0] || rows[0], acwr, last, hasBad: bad.length > 0 };
+}
+
+function bodyFigureSvg(rows) {
+  const cls = {};
+  rows.forEach(r => r.ids.forEach(id => { cls[id] = r.status; }));
+  const c = id => cls[id] ? ` class="p ${cls[id]}"` : ' class="p"';
+  return `<svg class="body-svg" viewBox="0 0 200 315" aria-hidden="true">
+    <circle cx="100" cy="28" r="17"${c('head')}/>
+    <rect x="92" y="44" width="16" height="12" rx="5"${c('neck')}/>
+    <rect x="52" y="58" width="14" height="88" rx="7"${c('armL')}/>
+    <rect x="134" y="58" width="14" height="88" rx="7"${c('armR')}/>
+    <rect x="74" y="54" width="52" height="56" rx="16"${c('chest')}/>
+    <rect x="80" y="108" width="40" height="30" rx="10"${c('core')}/>
+    <rect x="74" y="126" width="52" height="14" rx="7"${c('waist')}/>
+    <rect x="78" y="138" width="44" height="22" rx="9"${c('hip')}/>
+    <rect x="78" y="160" width="18" height="66" rx="9"${c('thighL')}/>
+    <rect x="104" y="160" width="18" height="66" rx="9"${c('thighR')}/>
+    <circle cx="87" cy="232" r="9"${c('kneeL')}/>
+    <circle cx="113" cy="232" r="9"${c('kneeR')}/>
+    <rect x="79" y="240" width="16" height="50" rx="8"${c('calfL')}/>
+    <rect x="105" y="240" width="16" height="50" rx="8"${c('calfR')}/>
+    <rect x="80" y="292" width="14" height="9" rx="4"${c('ankleL')}/>
+    <rect x="106" y="292" width="14" height="9" rx="4"${c('ankleR')}/>
+    <rect x="74" y="301" width="22" height="9" rx="4"${c('footL')}/>
+    <rect x="104" y="301" width="22" height="9" rx="4"${c('footR')}/>
+  </svg>`;
+}
+
+function bodyCheckUI(summary) {
+  const fb = bodyFeedback(summary);
+  return new Promise(resolve => {
+    const m = openModal(`
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:2px">
+        第 ${summary.week} 周 · 最后一次训练：${fb.last ? `${DOW[fb.last.day - 1]} ${fb.last.icon} ${fb.last.trainName}` : '休息'}</div>
+      <h3>${fb.hasBad ? '🧍 身体给你发来一条反馈' : '💪 身体感觉不错'}</h3>
+      <p>${fb.hasBad
+        ? '最后一天训练结束，你停下来感受身体——有些地方在提醒你，但它们还不是伤病，只是下一次该怎么练的线索。'
+        : '最后一天训练结束，你停下来感受身体——呼吸平稳，肌肉有力量感，你感觉自己变强了。'}</p>
+      <div class="body-wrap">
+        <div class="body-col">
+          ${bodyFigureSvg(fb.rows)}
+          <div class="body-bubble ${fb.bubbleRow.status}">
+            ${fb.bubbleRow.status === 'bad' ? '😣' : '😄'} ${fb.bubbleRow.bubble}</div>
+        </div>
+        <div class="body-note">
+          ${fb.rows.map(r => `<div class="row"><span class="dot ${r.status}"></span>
+            <span><b>${r.title}</b><br>${r.text}</span></div>`).join('')}
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px">身体反馈只是训练信号，不构成医疗建议；持续疼痛请就医。</div>
+      <div class="modal-actions"><button class="primary" id="body-ok">我记住了</button></div>`);
+    m.querySelector('#body-ok').onclick = () => { closeModal(); resolve(); };
+  });
+}
+
+async function runWeekUI() {
+  if (state.running) return;
+  if (state.weekPlan.some(x => !x)) { toast('请先把 7 天都安排上训练'); return; }
+  state.running = true;
+  state.day = 1;
+  state.weekLog = [];
+  state.weekLoad = 0;
+  state.weekEventsUsed = [];
+  state._yesterday = null;
+  renderHeader();
+  renderWeek();
+  try {
+    for (let d = 1; d <= 7; d++) {
+      await resolveDayCore(d, eventChoiceUI);
+      renderHeader();
+      renderWeek();
+      renderAthlete();
+      await sleep(280);
+    }
+  } catch (err) {
+    state.running = false;
+    console.error(err);
+    toast('出了点问题，已中止本周');
+    renderAll();
+    return;
+  }
+  const summary = weekWrapUp();
+  renderAll();
+  await bodyCheckUI(summary);
+  await reviewModal(summary);
+}
+
+// ============================================================
+// 5. 入口 & 调试
+// ============================================================
+
+let currentTab = 'week';
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  ['week', 'athlete', 'kb', 'history'].forEach(t => {
+    $('#tab-' + t).classList.toggle('hidden', t !== tab);
+  });
+  if (tab === 'athlete') requestAnimationFrame(renderChart);
+}
+
+function renderAll() {
+  renderHeader();
+  renderWeek();
+  renderAthlete();
+  renderKb();
+  renderHistory();
+}
+
+function init() {
+  state = loadState() || defaultState();
+  document.querySelectorAll('#tabs button').forEach(b => {
+    b.onclick = () => switchTab(b.dataset.tab);
+  });
+  $('#btn-start').onclick = runWeekUI;
+  $('#btn-recommend').onclick = recommendPlan;
+  $('#btn-race').onclick = () => {
+    if (state.lastSummary) reviewModal(state.lastSummary);
+  };
+  $('#btn-new').onclick = () => {
+    if (!confirm('重新开档？当前进度将清空（知识图鉴保留）。')) return;
+    state = defaultState();
+    save();
+    renderAll();
+    switchTab('week');
+    toast('已新开一档，加油！');
+  };
+  renderAll();
+  if (state.week > 1) toast(`欢迎回来：第 ${state.week} 周 · ${STAGES[state.stage].title}`);
+}
+
+function planForStrategy(strategy, stage) {
+  if (strategy === 'hard') {
+    const seq = ['easyRun', 'strengthBody', 'tempo', 'longRun', 'interval', 'strengthBarbell', 'core'];
+    return seq.map(id => TRAINING_BY_ID[id].minStage <= stage ? id : 'easyRun');
+  }
+  let plan = (PLANS[Math.min(stage, 4)] || PLANS[0]).slice();
+  const a = state.athlete;
+  if (a.injury) plan = plan.map(id => TRAINING_BY_ID[id].load > 15 ? 'rest' : id);
+  if (a.fatigue > 65) plan = plan.map(id => TRAINING_BY_ID[id].load >= 26 ? 'stretch' : id);
+  return plan;
+}
+
+function autoChoice(ev, strategy) {
+  if (strategy === 'hard') return 0;
+  const correctIdx = ev.options.findIndex(o => o.correct);
+  if (correctIdx >= 0) return correctIdx;
+  let best = Infinity, bi = 0;
+  ev.options.forEach((o, i) => {
+    const fx = o.fx || {};
+    const gain = (fx.endurance || 0) + (fx.speed || 0) + (fx.strength || 0)
+      + (fx.technique || 0) + (fx.flexibility || 0);
+    const score = (fx.fatigue || 0) + (o.risk || 0) * 100 - (fx.mood || 0) * 0.5 - gain;
+    if (score < best) { best = score; bi = i; }
+  });
+  return bi;
+}
+
+// 控制台平衡性自测：__debug(40, 'smart') / __debug(20, 'hard')
+async function __debug(weeks = 40, strategy = 'smart', verbose = true) {
+  const backup = state;
+  state = defaultState();
+  state.unlockedKnowledge = [];
+  const res = { strategy, weeksRun: 0, injuries: 0, severe: 0, races: [], finalStage: '', maxFatigue: 0, maxAcwr: 0 };
+  let wasInjured = false;
+  for (let w = 1; w <= weeks && state.stage < STAGES.length - 1; w++) {
+    state.weekPlan = planForStrategy(strategy, state.stage);
+    state.running = true;
+    state.weekLog = [];
+    state.weekLoad = 0;
+    state.weekEventsUsed = [];
+    state._yesterday = null;
+    for (let d = 1; d <= 7; d++) {
+      await resolveDayCore(d, ev => autoChoice(ev, strategy));
+      res.maxFatigue = Math.max(res.maxFatigue, state.athlete.fatigue);
+      res.maxAcwr = Math.max(res.maxAcwr, state.weekLoad / chronicLoad());
+      const inj = !!state.athlete.injury;
+      if (inj && !wasInjured) { res.injuries++; if (state.athlete.injury.severe) res.severe++; }
+      wasInjured = inj;
+    }
+    const summary = weekWrapUp();
+    res.weeksRun = w;
+    const race = STAGES[state.stage].race;
+    if (race && raceNeedsOk() && !state.athlete.injury && state.athlete.fatigue < 45) {
+      const sim = simulateRace();
+      res.races.push({
+        week: w, label: race.label, time: fmtTime(sim.total),
+        target: fmtTime(race.target), pass: sim.pass, taper: sim.taper,
+      });
+      if (sim.pass) applyStageUp();
+    }
+    void summary;
+  }
+  res.finalStage = STAGES[state.stage].title;
+  res.finalAttrs = Object.fromEntries(
+    ['endurance', 'speed', 'strength', 'flexibility', 'technique', 'fatigue', 'mood', 'weight']
+      .map(k => [k, Number(state.athlete[k].toFixed(1))]));
+  state = backup;
+  if (verbose) console.log('[领跑人生 debug]', JSON.stringify(res, null, 2));
+  return res;
+}
+
+if (typeof window !== 'undefined') window.__debug = __debug;
+if (typeof document !== 'undefined') init();
+</script>
+</body>
+</html>
