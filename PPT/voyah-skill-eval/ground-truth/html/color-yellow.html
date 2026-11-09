@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>色彩-黄色</title>
+<style>
+  :root {
+    --page-bg: #FFFFFF;
+    --header-bg: #F9F9F9;
+    --text-title: #111111;
+    --text-primary: #333333;
+    --text-secondary: #4A4A4A;
+    --text-caption: #999999;
+    --token-text: #4D5559;
+    --hex-text: #9B9EA0;
+    --group-title: #373D41;
+    --color-yellow-1: #FFF3B6; /* 主色 1 阶：浅色 */
+    --color-yellow-2: #FFE355; /* 主色 2 阶：hover */
+    --color-yellow-3: #FFD400; /* 主色 3 阶：常规 */
+    --color-yellow-4: #F6B41A; /* 主色 4 阶：深色/按下 */
+    --yellow-palette-1: #FFF4BC;
+    --yellow-palette-2: #FFEFA1;
+    --yellow-palette-3: #FFE876;
+    --yellow-palette-4: #FFE14A;
+    --yellow-palette-5: #FFD500;
+    --yellow-palette-6: #FFC300;
+    --yellow-palette-7: #F6B41A;
+    --yellow-palette-8: #EBAA11;
+    --yellow-palette-9: #E19E04;
+    --yellow-palette-10: #D19300;
+    --yellow-palette-11: #C58A00;
+    --color-warning-3: #FFA800; /* token: 提醒色；事件提醒的颜色 */
+    --color-warning-4: #EA8C00; /* token: 提醒-按下 */
+    --color-success-3: #00D115; /* token: 成功色；提交确认等成功的颜色 */
+    --color-error-4: #CF2E2E; /* token: 警告-按下；用于按钮按下 */
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  body { font-family: "PingFang SC", sans-serif; }
+  #canvas { width:1440px; height:2570px; min-height:2570px; position:relative; overflow:hidden; border-radius:6px; background:#FFFFFF; margin:0 auto; }
+  .section { position:absolute; }
+  .text { position:absolute; margin:0; padding:0; white-space:nowrap; font-family:"PingFang SC",sans-serif; font-weight:400; }
+  .svg { position:absolute; width:40px; height:40px; }
+  .svg > svg { display:block; width:100%; height:100%; }
+  .token { font-size:14px; color:#4D5559; line-height:normal; }
+  .hex { font-size:12px; color:#9B9EA0; line-height:normal; }
+  .usage { font-size:12px; color:#999999; line-height:normal; }
+  .letter { font-size:12px; line-height:normal; }
+  .category { font-size:18px; color:#373D41; line-height:normal; }
+</style>
+</head>
+<body>
+<main id="canvas" aria-label="色彩-黄色">
+  <!-- Section 0 / 组 4 -->
+  <section class="section" data-section="0" style="left:0;top:0;width:1440px;height:202px;">
+    <div style="position:absolute;left:0;top:0;width:1440px;height:202px;background:#F9F9F9;"></div>
+    <h1 class="text" style="left:80px;top:47px;width:96px;height:72px;font-size:48px;font-weight:500;line-height:0.72;color:#111111;">色彩</h1>
+    <p class="text" style="left:80px;top:131px;width:507px;height:24px;font-size:16px;line-height:24px;color:#333333;">色彩在B端产品中首要任务是传递信息和建立层级，其次才是品牌传达。</p>
+    <img src="https://image-resource.mastergo.com/64625781371459/64625781371461/720c545cc943ace29f300c2a0dafac3d.png" alt="" style="position:absolute;left:1138px;top:36px;width:246px;height:130px;object-fit:fill;">
+  </section>
+  <!-- Sections 1-7 / 标题与说明 -->
+  <div class="text" data-section="1" style="left:80px;top:257px;width:72px;height:32px;font-size:24px;font-weight:600;line-height:32px;color:#333333;">基础色</div>
+  <div class="text" data-section="2" style="left:80px;top:858px;width:72px;height:32px;font-size:24px;font-weight:600;line-height:32px;color:#333333;">中立色</div>
+  <div class="text" data-section="3" style="left:80px;top:1486px;width:72px;height:32px;font-size:24px;font-weight:600;line-height:32px;color:#333333;">辅助色</div>
+  <div class="text" data-section="4" style="left:80px;top:326px;width:96px;height:22px;font-size:16px;color:#4A4A4A;">系统主色序列</div>
+  <div class="text" data-section="5" style="left:80px;top:585px;width:80px;height:22px;font-size:16px;color:#4A4A4A;">主色调色阶</div>
+  <div class="text" data-section="6" style="left:80px;top:619px;width:276px;height:20px;font-size:12px;line-height:20px;color:#999999;">主色调色值会在不同场景里为了区分业务单元而调配</div>
+  <div class="text" data-section="7" style="left:80px;top:356px;width:204px;height:20px;font-size:12px;line-height:20px;color:#999999;">后续的组件示例中皆以此颜色为主色调</div>
+  <!-- Section 8 / Group 18 填充 -->
+  <section class="section" data-section="8" style="left:80px;top:1334px;width:532px;height:68.3199462890625px;">
+    <div class="svg" style="left:0;top:1.239990234375px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1.239990234375 40 40" width="532" height="68.3199462890625"><path d="M4,1.239990234375L36,1.239990234375C38.209141,1.239990234375,40,3.030850934375,40,5.239990234375L40,37.239990234375C40,39.449131234375,38.209141,41.239990234375,36,41.239990234375L4.000001,41.239990234375C1.7908607,41.239990234375,0,39.449131234375,0,37.239990234375L0,5.239991234375C0,3.030850934375,1.7908607,1.239990234375,4,1.239990234375" fill="#FAFAFA" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:201px;top:1.239990234375px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="201 1.239990234375 40 40" width="532" height="68.3199462890625"><path d="M205,1.239990234375L237,1.239990234375C239.209141,1.239990234375,241,3.030850934375,241,5.239990234375L241,37.239990234375C241,39.449131234375,239.209141,41.239990234375,237,41.239990234375L205.000001,41.239990234375C202.7908607,41.239990234375,201,39.449131234375,201,37.239990234375L201,5.239991234375C201,3.030850934375,202.7908607,1.239990234375,205,1.239990234375" fill="#F2F3F7" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:400px;top:1.239990234375px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 1.239990234375 40 40" width="532" height="68.3199462890625"><path d="M404,1.239990234375L436,1.239990234375C438.209141,1.239990234375,440,3.030850934375,440,5.239990234375L440,37.239990234375C440,39.449131234375,438.209141,41.239990234375,436,41.239990234375L404.000001,41.239990234375C401.7908607,41.239990234375,400,39.449131234375,400,37.239990234375L400,5.239991234375C400,3.030850934375,401.7908607,1.239990234375,404,1.239990234375" fill="#F5F5F5" fill-rule="evenodd"/></svg></div>
+    <span class="text token" style="left:60px;top:0;width:70px;height:20px;">@filling1-1</span>
+    <span class="text hex" style="left:60px;top:21.3199462890625px;width:52px;height:17px;">#FAFAFA</span>
+    <span class="text token" style="left:260px;top:0;width:70px;height:20px;">@filling1-2</span>
+    <span class="text hex" style="left:260px;top:21.3199462890625px;width:48px;height:17px;">#F3F4F7</span>
+    <span class="text token" style="left:460px;top:0;width:70px;height:20px;">@filling1-3</span>
+    <span class="text hex" style="left:460px;top:21.3199462890625px;width:50px;height:17px;">#F5F5F5</span>
+    <span class="text usage" style="left:0;top:51.3199462890625px;width:144px;height:17px;">提示框底色，提示文字背景</span>
+    <span class="text usage" style="left:200px;top:51.3199462890625px;width:96px;height:17px;">页面内容区块底色</span>
+    <span class="text usage" style="left:400px;top:51.3199462890625px;width:132px;height:17px;">标签背景、下拉选中背景</span>
+    <span class="text letter" style="left:17px;top:11.3199462890625px;width:7px;height:17px;color:#333333;">F</span>
+    <span class="text letter" style="left:216px;top:11.3199462890625px;width:7px;height:17px;color:#333333;">F</span>
+    <span class="text letter" style="left:417px;top:11.3199462890625px;width:7px;height:17px;color:#333333;">F</span>
+  </section>
+  <div class="text" data-section="9" style="left:83px;top:1282px;width:36px;height:26px;font-size:18px;color:#4A4A4A;">填充</div>
+  <!-- Section 10 / Group 19：首次请求及一次重试均返回 10001 请求超限，按规则跳过。 -->
+  <!-- Section 11 / 组（线条）：首次请求及一次重试均返回 10001 请求超限，按规则跳过。 -->
+  <!-- Section 12 / 蒙版组（字体）：首次请求及一次重试均返回 10001 请求超限，按规则跳过。 -->
+  <div class="text" data-section="13" style="left:83px;top:932px;width:36px;height:26px;font-size:18px;color:#4A4A4A;">字体</div>
+  <!-- Section 14 / Group 20 其他 -->
+  <section class="section" data-section="14" style="left:80px;top:2191px;width:766px;height:92.8798828125px;">
+    <div class="svg" style="left:0;top:51.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 51.8798828125 40 40" width="766" height="92.8798828125"><path d="M4,51.8798828125L36,51.8798828125C38.209141,51.8798828125,40,53.6707435125,40,55.8798828125L40,87.8798828125C40,90.0890238125,38.209141,91.8798828125,36,91.8798828125L4.000001,91.8798828125C1.7908607,91.8798828125,0,90.0890238125,0,87.8798828125L0,55.8798838125C0,53.6707435125,1.7908607,51.8798828125,4,51.8798828125" fill="#8F44FF"/></svg></div>
+    <div class="svg" style="left:601px;top:52.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="601 52.8798828125 40 40" width="766" height="92.8798828125"><path d="M605,52.8798828125L637,52.8798828125C639.209141,52.8798828125,641,54.6707435125,641,56.8798828125L641,88.8798828125C641,91.0890238125,639.209141,92.8798828125,637,92.8798828125L605.000001,92.8798828125C602.7908607,92.8798828125,601,91.0890238125,601,88.8798828125L601,56.8798838125C601,54.6707435125,602.7908607,52.8798828125,605,52.8798828125" fill="#D0B0FF"/></svg></div>
+    <div class="svg" style="left:200px;top:51.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 51.8798828125 40 40" width="766" height="92.8798828125"><path d="M204,51.8798828125L236,51.8798828125C238.209141,51.8798828125,240,53.6707435125,240,55.8798828125L240,87.8798828125C240,90.0890238125,238.209141,91.8798828125,236,91.8798828125L204.000001,91.8798828125C201.7908607,91.8798828125,200,90.0890238125,200,87.8798828125L200,55.8798838125C200,53.6707435125,201.7908607,51.8798828125,204,51.8798828125" fill="#5000C8"/></svg></div>
+    <div class="svg" style="left:400px;top:51.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 51.8798828125 40 40" width="766" height="92.8798828125"><path d="M404,51.8798828125L436,51.8798828125C438.209141,51.8798828125,440,53.6707435125,440,55.8798828125L440,87.8798828125C440,90.0890238125,438.209141,91.8798828125,436,91.8798828125L404.000001,91.8798828125C401.7908607,91.8798828125,400,90.0890238125,400,87.8798828125L400,55.8798838125C400,53.6707435125,401.7908607,51.8798828125,404,51.8798828125" fill="#F5EFFF"/></svg></div>
+    <span class="text category" style="left:0;top:0;width:36px;height:26px;">其他</span>
+    <span class="text token" style="left:60px;top:50.639892578125px;width:106px;height:20px;">@color-purple-3</span>
+    <span class="text hex" style="left:60px;top:71.9599609375px;width:50px;height:17px;">#8F44FF</span>
+    <span class="text letter" style="left:16px;top:61.9599609375px;width:8px;height:17px;color:#FFFFFF;">B</span>
+    <span class="text token" style="left:260px;top:50.639892578125px;width:106px;height:20px;">@color-purple-4</span>
+    <span class="text hex" style="left:260px;top:71.9599609375px;width:50px;height:17px;">#5000C8</span>
+    <span class="text letter" style="left:215px;top:61.9599609375px;width:8px;height:17px;color:#FFFFFF;">B</span>
+    <span class="text token" style="left:449px;top:50.639892578125px;width:106px;height:20px;">@color-purple-1</span>
+    <span class="text hex" style="left:449px;top:73.9599609375px;width:47px;height:17px;">#F5EFFF</span>
+    <span class="text letter" style="left:416px;top:61.9599609375px;width:8px;height:17px;color:#6700FF;">B</span>
+    <span class="text token" style="left:660px;top:51.639892578125px;width:106px;height:20px;">@color-purple-2</span>
+    <span class="text hex" style="left:660px;top:71.9599609375px;width:51px;height:17px;">#D0B0FF</span>
+    <span class="text letter" style="left:617px;top:62.9599609375px;width:8px;height:17px;color:#FFFFFF;">B</span>
+  </section>
+  <!-- Section 15 / Group 21 帮助 -->
+  <section class="section" data-section="15" style="left:80px;top:2030px;width:752px;height:92.8798828125px;">
+    <div class="svg" style="left:0;top:51.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 51.8798828125 40 40" width="752" height="92.8798828125"><path d="M4,51.8798828125L36,51.8798828125C38.209141,51.8798828125,40,53.6707435125,40,55.8798828125L40,87.8798828125C40,90.0890238125,38.209141,91.8798828125,36,91.8798828125L4.000001,91.8798828125C1.7908607,91.8798828125,0,90.0890238125,0,87.8798828125L0,55.8798838125C0,53.6707435125,1.7908607,51.8798828125,4,51.8798828125" fill="#3773DB"/></svg></div>
+    <div class="svg" style="left:601px;top:52.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="601 52.8798828125 40 40" width="752" height="92.8798828125"><path d="M605,52.8798828125L637,52.8798828125C639.209141,52.8798828125,641,54.6707435125,641,56.8798828125L641,88.8798828125C641,91.0890238125,639.209141,92.8798828125,637,92.8798828125L605.000001,92.8798828125C602.7908607,92.8798828125,601,91.0890238125,601,88.8798828125L601,56.8798838125C601,54.6707435125,602.7908607,52.8798828125,605,52.8798828125" fill="#B3CBF4"/></svg></div>
+    <div class="svg" style="left:200px;top:52px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 52 40 40" width="752" height="92.8798828125"><path d="M204,52L236,52C238.209141,52,240,53.7908607,240,56L240,88C240,90.209141,238.209141,92,236,92L204.000001,92C201.7908607,92,200,90.209141,200,88L200,56.000001C200,53.7908607,201.7908607,52,204,52" fill="#1C5AC4"/></svg></div>
+    <div class="svg" style="left:400px;top:51.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 51.8798828125 40 40" width="752" height="92.8798828125"><path d="M404,51.8798828125L436,51.8798828125C438.209141,51.8798828125,440,53.6707435125,440,55.8798828125L440,87.8798828125C440,90.0890238125,438.209141,91.8798828125,436,91.8798828125L404.000001,91.8798828125C401.7908607,91.8798828125,400,90.0890238125,400,87.8798828125L400,55.8798838125C400,53.6707435125,401.7908607,51.8798828125,404,51.8798828125" fill="#ECF3FF"/></svg></div>
+    <span class="text category" style="left:0;top:0;width:36px;height:26px;">帮助</span>
+    <span class="text token" style="left:60px;top:50.639892578125px;width:92px;height:20px;">@color-help-3</span>
+    <span class="text hex" style="left:60px;top:71.9599609375px;width:52px;height:17px;">#3773DB</span>
+    <span class="text letter" style="left:16px;top:61.9599609375px;width:8px;height:17px;color:#FFFFFF;">B</span>
+    <span class="text token" style="left:260px;top:50.639892578125px;width:92px;height:20px;">@color-help-4</span>
+    <span class="text hex" style="left:260px;top:71.9599609375px;width:52px;height:17px;">#1C5AC4</span>
+    <span class="text letter" style="left:216px;top:63px;width:8px;height:17px;color:#FFFFFF;">B</span>
+    <span class="text token" style="left:449px;top:50.639892578125px;width:92px;height:20px;">@color-help-1</span>
+    <span class="text hex" style="left:449px;top:73.9599609375px;width:52px;height:17px;">#ECF3FF</span>
+    <span class="text letter" style="left:416px;top:61.9599609375px;width:8px;height:17px;color:#3773DB;">B</span>
+    <span class="text token" style="left:660px;top:51.639892578125px;width:92px;height:20px;">@color-help-2</span>
+    <span class="text hex" style="left:660px;top:71.9599609375px;width:54px;height:17px;">#B3CBF4</span>
+    <span class="text letter" style="left:617px;top:62.9599609375px;width:8px;height:17px;color:#3773DB;">B</span>
+  </section>
+  <!-- Section 16 / Group 23 警告-强 -->
+  <section class="section" data-section="16" style="left:80px;top:1870px;width:758px;height:92.8800048828125px;">
+    <div class="svg" style="left:601px;top:51.8800048828125px;opacity:0.9054989814758301;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="601 51.8800048828125 40 40" width="758" height="92.8800048828125"><path d="M605,51.8800048828125L637,51.8800048828125C639.209141,51.8800048828125,641,53.6708655828125,641,55.8800048828125L641,87.8800048828125C641,90.0891458828125,639.209141,91.8800048828125,637,91.8800048828125L605.000001,91.8800048828125C602.7908607,91.8800048828125,601,90.0891458828125,601,87.8800048828125L601,55.8800058828125C601,53.6708655828125,602.7908607,51.8800048828125,605,51.8800048828125" fill="#FDA2A4" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:0;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 51.8800048828125 40 40" width="758" height="92.8800048828125"><path d="M4,51.8800048828125L36,51.8800048828125C38.209141,51.8800048828125,40,53.6708655828125,40,55.8800048828125L40,87.8800048828125C40,90.0891458828125,38.209141,91.8800048828125,36,91.8800048828125L4.000001,91.8800048828125C1.7908607,91.8800048828125,0,90.0891458828125,0,87.8800048828125L0,55.8800058828125C0,53.6708655828125,1.7908607,51.8800048828125,4,51.8800048828125" fill="#FF2020" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:200px;top:52.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 52.8800048828125 40 40" width="758" height="92.8800048828125"><path d="M204,52.8800048828125L236,52.8800048828125C238.209141,52.8800048828125,240,54.6708655828125,240,56.8800048828125L240,88.8800048828125C240,91.0891458828125,238.209141,92.8800048828125,236,92.8800048828125L204.000001,92.8800048828125C201.7908607,92.8800048828125,200,91.0891458828125,200,88.8800048828125L200,56.8800058828125C200,54.6708655828125,201.7908607,52.8800048828125,204,52.8800048828125" fill="#CF2E2E" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:400px;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 51.8800048828125 40 40" width="758" height="92.8800048828125"><path d="M404,51.8800048828125L436,51.8800048828125C438.209141,51.8800048828125,440,53.6708655828125,440,55.8800048828125L440,87.8800048828125C440,90.0891458828125,438.209141,91.8800048828125,436,91.8800048828125L404.000001,91.8800048828125C401.7908607,91.8800048828125,400,90.0891458828125,400,87.8800048828125L400,55.8800058828125C400,53.6708655828125,401.7908607,51.8800048828125,404,51.8800048828125" fill="#FCEBEA" fill-rule="evenodd"/></svg></div>
+    <span class="text category" style="left:1px;top:0;width:60px;height:26px;">警告-强</span>
+    <span class="text token" style="left:60px;top:50.6400146484375px;width:102px;height:20px;">@color-rerror-3</span>
+    <span class="text hex" style="left:60px;top:72.9599609375px;width:50px;height:17px;">#FF2020</span>
+    <span class="text letter" style="left:16px;top:61.9599609375px;width:8px;height:17px;color:#FFFFFF;">R</span>
+    <span class="text token" style="left:260px;top:50.6400146484375px;width:97px;height:20px;">@color-error-4</span>
+    <span class="text hex" style="left:260px;top:71.9599609375px;width:49px;height:17px;">#CF2E2E</span>
+    <span class="text letter" style="left:215px;top:62.9599609375px;width:8px;height:17px;color:#FFFFFF;">R</span>
+    <span class="text token" style="left:460px;top:50.6400146484375px;width:97px;height:20px;">@color-error-1</span>
+    <span class="text hex" style="left:460px;top:71.9599609375px;width:51px;height:17px;">#FCEBEA</span>
+    <span class="text letter" style="left:416px;top:61.9599609375px;width:8px;height:17px;color:#D90D00;">R</span>
+    <span class="text token" style="left:661px;top:50.6400146484375px;width:97px;height:20px;">@color-error-2</span>
+    <span class="text hex" style="left:661px;top:71.9599609375px;width:52px;height:17px;">#FDA2A4</span>
+    <span class="text letter" style="left:617px;top:61.9599609375px;width:8px;height:17px;color:#D90D00;">R</span>
+  </section>
+  <!-- Section 17 / Group 24 警告-弱 -->
+  <section class="section" data-section="17" style="left:80px;top:1710px;width:777px;height:92.8800048828125px;">
+    <div class="svg" style="left:0;top:52.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 52.8800048828125 40 40" width="777" height="92.8800048828125"><path d="M4,52.8800048828125L36,52.8800048828125C38.209141,52.8800048828125,40,54.6708655828125,40,56.8800048828125L40,88.8800048828125C40,91.0891458828125,38.209141,92.8800048828125,36,92.8800048828125L4.000001,92.8800048828125C1.7908607,92.8800048828125,0,91.0891458828125,0,88.8800048828125L0,56.8800058828125C0,54.6708655828125,1.7908607,52.8800048828125,4,52.8800048828125" fill="#FFA800" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:601px;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="601 51.8800048828125 40 40" width="777" height="92.8800048828125"><path d="M605,51.8800048828125L637,51.8800048828125C639.209141,51.8800048828125,641,53.6708655828125,641,55.8800048828125L641,87.8800048828125C641,90.0891458828125,639.209141,91.8800048828125,637,91.8800048828125L605.000001,91.8800048828125C602.7908607,91.8800048828125,601,90.0891458828125,601,87.8800048828125L601,55.8800058828125C601,53.6708655828125,602.7908607,51.8800048828125,605,51.8800048828125" fill="#FFD77E" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:200px;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 51.8800048828125 40 40" width="777" height="92.8800048828125"><path d="M204,51.8800048828125L236,51.8800048828125C238.209141,51.8800048828125,240,53.6708655828125,240,55.8800048828125L240,87.8800048828125C240,90.0891458828125,238.209141,91.8800048828125,236,91.8800048828125L204.000001,91.8800048828125C201.7908607,91.8800048828125,200,90.0891458828125,200,87.8800048828125L200,55.8800058828125C200,53.6708655828125,201.7908607,51.8800048828125,204,51.8800048828125" fill="#EA8C00" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:400px;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 51.8800048828125 40 40" width="777" height="92.8800048828125"><path d="M404,51.8800048828125L436,51.8800048828125C438.209141,51.8800048828125,440,53.6708655828125,440,55.8800048828125L440,87.8800048828125C440,90.0891458828125,438.209141,91.8800048828125,436,91.8800048828125L404.000001,91.8800048828125C401.7908607,91.8800048828125,400,90.0891458828125,400,87.8800048828125L400,55.8800058828125C400,53.6708655828125,401.7908607,51.8800048828125,404,51.8800048828125" fill="#FFF1DB" fill-rule="evenodd"/></svg></div>
+    <span class="text category" style="left:1px;top:0;width:60px;height:26px;">警告-弱</span>
+    <span class="text token" style="left:60px;top:50.6400146484375px;width:117px;height:20px;">@color-warning-3</span>
+    <span class="text hex" style="left:60px;top:71.9599609375px;width:51px;height:17px;">#FFA800</span>
+    <span class="text letter" style="left:16px;top:62.9599609375px;width:7px;height:17px;color:#FFFFFF;">Y</span>
+    <span class="text token" style="left:260px;top:50.6400146484375px;width:117px;height:20px;">@color-warning-4</span>
+    <span class="text hex" style="left:260px;top:71.9599609375px;width:51px;height:17px;">#EA8C00</span>
+    <span class="text letter" style="left:215px;top:61.9599609375px;width:7px;height:17px;color:#FFFFFF;">Y</span>
+    <span class="text token" style="left:460px;top:50.6400146484375px;width:117px;height:20px;">@color-warning-1</span>
+    <span class="text hex" style="left:460px;top:71.9599609375px;width:50px;height:17px;">#FFF1DB</span>
+    <span class="text letter" style="left:416px;top:61.9599609375px;width:7px;height:17px;color:#FFA800;">Y</span>
+    <span class="text token" style="left:660px;top:50.6400146484375px;width:117px;height:20px;">@color-warning-2</span>
+    <span class="text hex" style="left:661px;top:71.9599609375px;width:50px;height:17px;">#FFD77E</span>
+    <span class="text letter" style="left:617px;top:61.9599609375px;width:8px;height:17px;color:#F3A000;">R</span>
+  </section>
+  <!-- Section 18 / Group 25 成功 -->
+  <section class="section" data-section="18" style="left:80px;top:1550px;width:785px;height:95.8800048828125px;">
+    <div style="position:absolute;left:0;top:51.8800048828125px;width:785px;height:44px;background:#FFFFFF;"></div>
+    <div class="svg" style="left:0;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1.239990234375 40 40" width="773" height="42.3199462890625"><path d="M4,1.239990234375L36,1.239990234375C38.209141,1.239990234375,40,3.030850934375,40,5.239990234375L40,37.239990234375C40,39.449131234375,38.209141,41.239990234375,36,41.239990234375L4.000001,41.239990234375C1.7908607,41.239990234375,0,39.449131234375,0,37.239990234375L0,5.239991234375C0,3.030850934375,1.7908607,1.239990234375,4,1.239990234375" fill="#00D115" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:200px;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 1.239990234375 40 40" width="773" height="42.3199462890625"><path d="M204,1.239990234375L236,1.239990234375C238.209141,1.239990234375,240,3.030850934375,240,5.239990234375L240,37.239990234375C240,39.449131234375,238.209141,41.239990234375,236,41.239990234375L204.000001,41.239990234375C201.7908607,41.239990234375,200,39.449131234375,200,37.239990234375L200,5.239991234375C200,3.030850934375,201.7908607,1.239990234375,204,1.239990234375" fill="#00A611" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:601px;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="601 1.239990234375 40 40" width="773" height="42.3199462890625"><path d="M605,1.239990234375L637,1.239990234375C639.209141,1.239990234375,641,3.030850934375,641,5.239990234375L641,37.239990234375C641,39.449131234375,639.209141,41.239990234375,637,41.239990234375L605.000001,41.239990234375C602.7908607,41.239990234375,601,39.449131234375,601,37.239990234375L601,5.239991234375C601,3.030850934375,602.7908607,1.239990234375,605,1.239990234375" fill="#A8E1A6" fill-rule="evenodd"/></svg></div>
+    <div class="svg" style="left:400px;top:51.8800048828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 1.239990234375 40 40" width="773" height="42.3199462890625"><path d="M404,1.239990234375L436,1.239990234375C438.209141,1.239990234375,440,3.030850934375,440,5.239990234375L440,37.239990234375C440,39.449131234375,438.209141,41.239990234375,436,41.239990234375L404.000001,41.239990234375C401.7908607,41.239990234375,400,39.449131234375,400,37.239990234375L400,5.239991234375C400,3.030850934375,401.7908607,1.239990234375,404,1.239990234375" fill="#E3F8E8" fill-rule="evenodd"/></svg></div>
+    <span class="text category" style="left:0;top:0;width:36px;height:26px;">成功</span>
+    <span class="text token" style="left:60px;top:51.6400146484375px;width:113px;height:20px;">@color-success-3</span>
+    <span class="text hex" style="left:60px;top:71.9599609375px;width:47px;height:17px;">#00D115</span>
+    <span class="text letter" style="left:15px;top:61.9599609375px;width:9px;height:17px;color:#FFFFFF;">G</span>
+    <span class="text token" style="left:261px;top:51.6400146484375px;width:113px;height:20px;">@color-success-4</span>
+    <span class="text hex" style="left:261px;top:75.9599609375px;width:50px;height:17px;">#00A611</span>
+    <span class="text letter" style="left:215px;top:61.9599609375px;width:9px;height:17px;color:#FFFFFF;">G</span>
+    <span class="text token" style="left:461px;top:51.6400146484375px;width:113px;height:20px;">@color-success-1</span>
+    <span class="text hex" style="left:461px;top:71.9599609375px;width:48px;height:17px;">#E3F8E8</span>
+    <span class="text letter" style="left:416px;top:61.9599609375px;width:9px;height:17px;color:#00A611;">G</span>
+    <span class="text token" style="left:660px;top:50.6400146484375px;width:113px;height:20px;">@color-success-2</span>
+    <span class="text hex" style="left:660px;top:71.9599609375px;width:51px;height:17px;">#A8E1A6</span>
+    <span class="text letter" style="left:617px;top:61.9599609375px;width:9px;height:17px;color:#00A611;">G</span>
+  </section>
+  <!-- Sections 19-29 / 黄色 11 阶色板，顺序按画布 x 坐标排列。 -->
+  <div data-section="22" data-palette-step="1" data-hex="#FFF4BC" style="position:absolute;left:80px;top:667px;width:64px;height:64px;background:#FFF4BC;"></div>
+  <div data-section="20" data-palette-step="2" data-hex="#FFEFA1" style="position:absolute;left:144px;top:667px;width:64px;height:64px;background:#FFEFA1;"></div>
+  <div data-section="24" data-palette-step="3" data-hex="#FFE876" style="position:absolute;left:208px;top:667px;width:64px;height:64px;background:#FFE876;"></div>
+  <div data-section="19" data-palette-step="4" data-hex="#FFE14A" style="position:absolute;left:272px;top:667px;width:64px;height:64px;background:#FFE14A;"></div>
+  <div data-section="23" data-palette-step="5" data-hex="#FFD500" style="position:absolute;left:336px;top:667px;width:64px;height:64px;background:#FFD500;"></div>
+  <div data-section="21" data-palette-step="6" data-hex="#FFC300" style="position:absolute;left:400px;top:667px;width:64px;height:64px;background:#FFC300;"></div>
+  <div data-section="25" data-palette-step="7" data-hex="#F6B41A" style="position:absolute;left:464px;top:667px;width:64px;height:64px;background:#F6B41A;"></div>
+  <div data-section="26" data-palette-step="8" data-hex="#EBAA11" style="position:absolute;left:528px;top:667px;width:64px;height:64px;background:#EBAA11;"></div>
+  <div data-section="27" data-palette-step="9" data-hex="#E19E04" style="position:absolute;left:592px;top:667px;width:64px;height:64px;background:#E19E04;"></div>
+  <div data-section="28" data-palette-step="10" data-hex="#D19300" style="position:absolute;left:656px;top:667px;width:64px;height:64px;background:#D19300;"></div>
+  <div data-section="29" data-palette-step="11" data-hex="#C58A00" style="position:absolute;left:720px;top:667px;width:64px;height:64px;background:#C58A00;"></div>
+  <!-- Section 30 / 组 7：主色序列 4 阶；token/hex 通过 data 与 title 完整标注，保持设计可见文字不变。 -->
+  <section class="section" data-section="30" style="left:83px;top:418px;width:520px;height:91px;">
+    <div data-token="@color-yellow-3" data-hex="#FFD400" data-usage="常规" title="@color-yellow-3 / #FFD400 / 常规" style="position:absolute;left:0;top:0;width:72px;height:64px;border-radius:8px;background:#FFD400;"></div>
+    <div data-token="@color-yellow-1" data-hex="#FFF3B6" data-usage="浅色" title="@color-yellow-1 / #FFF3B6 / 浅色" style="position:absolute;left:144px;top:0;width:72px;height:64px;border-radius:8px;background:#FFF3B6;"></div>
+    <div data-token="@color-yellow-4" data-hex="#F6B41A" data-usage="深色/按下" title="@color-yellow-4 / #F6B41A / 深色/按下" style="position:absolute;left:288px;top:0;width:72px;height:64px;border-radius:8px;background:#F6B41A;"></div>
+    <div data-token="@color-yellow-2" data-hex="#FFE355" data-usage="hover" title="@color-yellow-2 / #FFE355 / hover" style="position:absolute;left:448px;top:0;width:72px;height:64px;border-radius:8px;background:#FFE355;"></div>
+    <span class="text" style="left:23.5px;top:74px;width:24px;height:17px;font-size:12px;color:#999999;text-align:center;">常规</span>
+    <span class="text" style="left:169px;top:74px;width:24px;height:17px;font-size:12px;color:#999999;text-align:center;">浅色</span>
+    <span class="text" style="left:296.5px;top:74px;width:54px;height:17px;font-size:12px;color:#999999;text-align:center;">深色/按下</span>
+    <span class="text" style="left:468px;top:74px;width:31px;height:17px;font-size:12px;color:#999999;text-align:center;">hover</span>
+  </section>
+  <!-- Section 31 / Group 26 其他 -->
+  <section class="section" data-section="31" style="left:81px;top:2344px;width:752px;height:92.8798828125px;">
+    <div class="svg" style="left:0;top:51.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 51.8798828125 40 40" width="752" height="92.8798828125"><path d="M4,51.8798828125L36,51.8798828125C38.209141,51.8798828125,40,53.6707435125,40,55.8798828125L40,87.8798828125C40,90.0890238125,38.209141,91.8798828125,36,91.8798828125L4.000001,91.8798828125C1.7908607,91.8798828125,0,90.0890238125,0,87.8798828125L0,55.8798838125C0,53.6707435125,1.7908607,51.8798828125,4,51.8798828125" fill="#54A7B2"/></svg></div>
+    <div class="svg" style="left:601px;top:52.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="601 52.8798828125 40 40" width="752" height="92.8798828125"><path d="M605,52.8798828125L637,52.8798828125C639.209141,52.8798828125,641,54.6707435125,641,56.8798828125L641,88.8798828125C641,91.0890238125,639.209141,92.8798828125,637,92.8798828125L605.000001,92.8798828125C602.7908607,92.8798828125,601,91.0890238125,601,88.8798828125L601,56.8798838125C601,54.6707435125,602.7908607,52.8798828125,605,52.8798828125" fill="#A6D2D8"/></svg></div>
+    <div class="svg" style="left:200px;top:52px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 52 40 40" width="752" height="92.8798828125"><path d="M204,52L236,52C238.209141,52,240,53.7908607,240,56L240,88C240,90.209141,238.209141,92,236,92L204.000001,92C201.7908607,92,200,90.209141,200,88L200,56.000001C200,53.7908607,201.7908607,52,204,52" fill="#38929F"/></svg></div>
+    <div class="svg" style="left:400px;top:51.8798828125px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 51.8798828125 40 40" width="752" height="92.8798828125"><path d="M404,51.8798828125L436,51.8798828125C438.209141,51.8798828125,440,53.6707435125,440,55.8798828125L440,87.8798828125C440,90.0890238125,438.209141,91.8798828125,436,91.8798828125L404.000001,91.8798828125C401.7908607,91.8798828125,400,90.0890238125,400,87.8798828125L400,55.8798838125C400,53.6707435125,401.7908607,51.8798828125,404,51.8798828125" fill="#E8F6F9"/></svg></div>
+    <span class="text category" style="left:0;top:0;width:36px;height:25px;">其他</span>
+    <span class="text token" style="left:60px;top:50.639892578125px;width:92px;height:20px;">@color-help-3</span>
+    <span class="text hex" style="left:60px;top:71.9599609375px;width:52px;height:17px;">#54A7B2</span>
+    <span class="text letter" style="left:16px;top:61.9599609375px;width:8px;height:17px;color:#FFFFFF;">B</span>
+    <span class="text token" style="left:260px;top:50.639892578125px;width:92px;height:20px;">@color-help-4</span>
+    <span class="text hex" style="left:260px;top:71.9599609375px;width:51px;height:17px;">#38929F</span>
+    <span class="text letter" style="left:216px;top:63px;width:8px;height:17px;color:#FFFFFF;">B</span>
+    <span class="text token" style="left:449px;top:50.639892578125px;width:92px;height:20px;">@color-help-1</span>
+    <span class="text hex" style="left:449px;top:73.9599609375px;width:51px;height:17px;">#E8F6F9</span>
+    <span class="text letter" style="left:416px;top:61.9599609375px;width:8px;height:17px;color:#54A7B2;">B</span>
+    <span class="text token" style="left:660px;top:51.639892578125px;width:92px;height:20px;">@color-help-2</span>
+    <span class="text hex" style="left:660px;top:71.9599609375px;width:54px;height:17px;">#6EACB4</span>
+    <span class="text letter" style="left:617px;top:62.9599609375px;width:8px;height:17px;color:#54A7B2;">B</span>
+  </section>
+</main>
+</body>
+</html>

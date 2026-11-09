@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>车辆信息登记 · 岚图车队管理平台</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  /* ===== 布局（仅布局，颜色全部走 token） ===== */
+  .app { min-height: 100vh; background: var(--vx-bg-layout); }
+  /* design.md §3.3 页面内容 padding：上16 左右24 下24 */
+  .page { max-width: 1120px; margin: 0 auto; padding: var(--vx-space-md) var(--vx-space-xl) var(--vx-space-xl); }
+
+  /* 顶部导航 */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; gap: var(--vx-space-xl);
+    height: 56px; padding: 0 var(--vx-space-xl);
+    background: var(--vx-bg-base);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .brand { display: flex; align-items: center; gap: var(--vx-space-xs); font-weight: 600; color: var(--vx-text-title); font-size: var(--vx-font-size-lg); }
+  .brand-icon { display: inline-flex; color: var(--vx-primary); }
+  .topnav { display: flex; gap: var(--vx-space-xxs); flex: 1; }
+  .topnav-item {
+    display: inline-flex; align-items: center; gap: var(--vx-space-xxs);
+    height: var(--vx-control-height); padding: 0 var(--vx-space-md);
+    border-radius: var(--vx-radius-md); cursor: pointer;
+    color: var(--vx-text-secondary); font-size: var(--vx-font-size-md);
+  }
+  .topnav-item:hover { background: var(--vx-fill-3); color: var(--vx-text-primary); }
+  .topnav-item-active { background: var(--vx-primary-bg); color: var(--vx-primary); font-weight: 500; }
+  .topnav-item-active:hover { background: var(--vx-primary-bg); color: var(--vx-primary); }
+  .topbar-right { display: flex; align-items: center; gap: var(--vx-space-md); }
+  .topbar-search { width: 200px; height: var(--vx-control-height-sm); font-size: var(--vx-font-size-sm); }
+  .icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border: none; background: transparent;
+    border-radius: var(--vx-radius-md); cursor: pointer; color: var(--vx-text-secondary);
+  }
+  .icon-btn:hover { background: var(--vx-fill-3); color: var(--vx-text-primary); }
+
+  /* 页头 */
+  .page-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: var(--vx-space-lg); }
+  .breadcrumb { font-size: var(--vx-font-size-sm); color: var(--vx-text-caption); margin-bottom: var(--vx-space-xxs); }
+  .breadcrumb a { color: var(--vx-text-secondary); }
+  .breadcrumb a:hover { color: var(--vx-primary); }
+  .page-title { font-size: var(--vx-font-size-h1); font-weight: 600; }
+  .page-desc { margin-top: var(--vx-space-xxs); color: var(--vx-text-caption); font-size: var(--vx-font-size-sm); }
+
+  /* 主体栅格 */
+  .grid { display: grid; grid-template-columns: 1fr 320px; gap: var(--vx-space-md); align-items: start; }
+  .stack { display: flex; flex-direction: column; gap: var(--vx-space-md); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--vx-space-md) var(--vx-space-xl); }
+  .form-item { display: flex; flex-direction: column; gap: var(--vx-space-xxs); }
+  .form-item-full { grid-column: 1 / -1; }
+  .form-label { font-size: var(--vx-font-size-md); color: var(--vx-text-primary); }
+  .form-label .required { color: var(--vx-error); margin-right: 2px; }
+  .form-help { font-size: var(--vx-font-size-sm); color: var(--vx-text-caption); }
+  .form-error-text { font-size: var(--vx-font-size-sm); color: var(--vx-error-dark); display: none; }
+  .form-item.is-error .form-error-text { display: block; }
+  .form-item.is-error .vx-input { border-color: var(--vx-error); }
+  .form-item.is-error .vx-input:focus { box-shadow: 0 0 0 2px var(--vx-error-bg); }
+  textarea.vx-textarea {
+    width: 100%; min-height: 72px; padding: var(--vx-space-xs) var(--vx-space-sm);
+    background: var(--vx-bg-base); color: var(--vx-text-primary);
+    border: 1px solid var(--vx-line-2); border-radius: var(--vx-radius-md);
+    font-size: var(--vx-font-size-md); font-family: inherit; line-height: var(--vx-line-height);
+    outline: none; resize: vertical; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  textarea.vx-textarea::placeholder { color: var(--vx-text-disabled); }
+  textarea.vx-textarea:hover { border-color: var(--vx-line-hover); }
+  textarea.vx-textarea:focus { border-color: var(--vx-primary); box-shadow: 0 0 0 2px var(--vx-primary-bg); }
+  select.vx-input { cursor: pointer; }
+
+  .form-footer {
+    display: flex; align-items: center; gap: var(--vx-space-sm);
+    padding-top: var(--vx-space-md); border-top: 1px solid var(--vx-line-1);
+  }
+
+  /* 车辆列表行 */
+  .veh-row {
+    display: flex; align-items: center; gap: var(--vx-space-sm);
+    padding: var(--vx-space-sm) 0; border-bottom: 1px solid var(--vx-line-1);
+  }
+  .veh-row:last-child { border-bottom: none; }
+  .veh-name { color: var(--vx-text-title); font-weight: 500; }
+  .veh-meta { color: var(--vx-text-caption); font-size: var(--vx-font-size-sm); }
+  .veh-actions { margin-left: auto; display: flex; gap: var(--vx-space-xxs); }
+
+  /* Modal 弹窗 */
+  .modal-mask {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--vx-bg-mask);
+    display: none; align-items: flex-start; justify-content: center;
+    padding-top: 15vh;
+  }
+  .modal-mask.open { display: flex; animation: fadeIn 0.2s ease; }
+  .modal {
+    width: 420px; max-width: calc(100vw - var(--vx-space-xl));
+    background: var(--vx-bg-base); border-radius: var(--vx-radius-lg);
+    box-shadow: var(--vx-shadow-2); animation: zoomIn 0.2s ease;
+  }
+  .modal-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--vx-space-md) var(--vx-space-lg);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .modal-title { font-size: var(--vx-font-size-lg); font-weight: 600; color: var(--vx-text-title); }
+  .modal-body { padding: var(--vx-space-lg); color: var(--vx-text-primary); }
+  .modal-footer {
+    display: flex; justify-content: flex-end; gap: var(--vx-space-sm);
+    padding: var(--vx-space-md) var(--vx-space-lg);
+    border-top: 1px solid var(--vx-line-1);
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes zoomIn { from { opacity: 0; transform: scale(0.96) translateY(-8px); } to { opacity: 1; transform: none; } }
+
+  /* Notification 通知（右上角 toast 容器） */
+  .notify-wrap { position: fixed; top: var(--vx-space-lg); right: var(--vx-space-lg); z-index: 1100; display: flex; flex-direction: column; gap: var(--vx-space-sm); }
+  .notify-wrap .vx-notification { min-width: 300px; animation: slideIn 0.25s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== design.md §4.4 按钮状态矩阵（tokens.css 未含的按钮类型，按矩阵实现） ===== */
+  /* 禁用态统一：文字 #C1C1C1 / 底 #FAFAFA / 边 #DEDEDE（覆盖 tokens.css 的 opacity 方案） */
+  .vx-btn:disabled {
+    opacity: 1; cursor: not-allowed;
+    color: var(--vx-text-disabled) !important;
+    background: var(--vx-disabled-bg) !important;
+    border: 1px solid var(--vx-disabled-border) !important;
+    box-shadow: none !important;
+  }
+  /* 危险按钮：#FF2020 → hover #FF8A5D → click #CF2E2E */
+  .vx-btn-danger { background: var(--vx-btn-danger); color: var(--vx-text-inverse); border: 1px solid transparent; }
+  .vx-btn-danger:hover:not(:disabled) { background: var(--vx-btn-danger-hover); }
+  .vx-btn-danger:active:not(:disabled) { background: var(--vx-btn-danger-active); }
+  /* 线框按钮：文字 #1F56E8 / 边框 #3773DB */
+  .vx-btn-outline { background: transparent; color: var(--vx-outline-text); border: 1px solid var(--vx-primary); }
+  .vx-btn-outline:hover:not(:disabled) { color: var(--vx-primary-hover); border-color: var(--vx-primary-hover); }
+  .vx-btn-outline:active:not(:disabled) { color: var(--vx-primary-active); border-color: var(--vx-primary-active); }
+  /* 提示按钮：#FFA800（hover 不变）→ click #EA8C00 */
+  .vx-btn-prompt { background: var(--vx-btn-warning); color: var(--vx-text-inverse); border: 1px solid transparent; }
+  .vx-btn-prompt:hover:not(:disabled) { background: var(--vx-btn-warning); }
+  .vx-btn-prompt:active:not(:disabled) { background: var(--vx-btn-warning-active); }
+  /* 反白按钮：#666 / #FAFAFA / #DEDEDE */
+  .vx-btn-whiteline { background: var(--vx-fill-1); color: var(--vx-text-secondary); border: 1px solid var(--vx-line-2); }
+  .vx-btn-whiteline:hover:not(:disabled) { color: var(--vx-primary-hover); border-color: var(--vx-primary-hover); }
+  .vx-btn-whiteline:active:not(:disabled) { color: var(--vx-primary-active); border-color: var(--vx-primary-active); }
+  /* 次要按钮：#333 / #FAFAFA / #DEDEDE，hover 边框与文字 #568EEE */
+  .vx-btn-secondary { background: var(--vx-fill-1); color: var(--vx-text-primary); border: 1px solid var(--vx-line-2); }
+  .vx-btn-secondary:hover:not(:disabled) { background: transparent; color: var(--vx-primary-hover); border-color: var(--vx-primary-hover); }
+  .vx-btn-secondary:active:not(:disabled) { background: transparent; color: var(--vx-primary-active); border-color: var(--vx-primary-active); }
+  /* 文字链接 hover 为独立值 #6691DB（§4.4 文字链接行） */
+  .vx-btn-link:hover:not(:disabled) { color: var(--vx-primary-visited); }
+  .vx-btn-link:active:not(:disabled) { color: var(--vx-primary-active); }
+
+  .matrix-row { display: flex; align-items: center; gap: var(--vx-space-sm); flex-wrap: wrap; }
+  .matrix-label { width: 64px; flex-shrink: 0; font-size: var(--vx-font-size-sm); color: var(--vx-text-caption); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== 顶部导航（测试：导航、图标、Badge、搜索输入框） ===== -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l-1.5-5.5A2 2 0 0 1 6.4 9h11.2a2 2 0 0 1 1.9 2.5L18 17"/><path d="M7 11l1.2-3.6A2 2 0 0 1 10.1 6h3.8a2 2 0 0 1 1.9 1.4L17 11"/></svg>
+      </span>
+      岚图车队管理平台
+    </div>
+    <nav class="topnav">
+      <span class="topnav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+        工作台
+      </span>
+      <span class="topnav-item topnav-item-active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l-1.5-5.5A2 2 0 0 1 6.4 9h11.2a2 2 0 0 1 1.9 2.5L18 17"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
+        车辆管理
+      </span>
+      <span class="topnav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18v3h3l5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 3.7-3.7z"/></svg>
+        维修保养
+      </span>
+      <span class="topnav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 17V9M12 17V5M18 17v-6"/></svg>
+        数据报表
+      </span>
+    </nav>
+    <div class="topbar-right">
+      <input class="vx-input topbar-search" placeholder="搜索车牌号 / 车架号" />
+      <span class="vx-badge">
+        <button class="icon-btn" title="通知">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        </button>
+        <span class="vx-badge-count">5</span>
+      </span>
+      <span class="vx-avatar vx-avatar-primary">李</span>
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- ===== 页头标题（测试：标题、面包屑、Segmented） ===== -->
+    <div class="page-head">
+      <div>
+        <div class="breadcrumb"><a href="#">车辆管理</a> / 车辆信息登记</div>
+        <h1 class="page-title">车辆信息登记</h1>
+        <div class="page-desc">登记新车入库信息，带 * 为必填项，提交后进入审核流程</div>
+      </div>
+      <div class="vx-segmented" id="filterSeg">
+        <span class="vx-segmented-item vx-segmented-item-selected">全部车辆</span>
+        <span class="vx-segmented-item">在库</span>
+        <span class="vx-segmented-item">已出库</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- 左列 -->
+      <div class="stack">
+
+        <!-- 提示（测试：Alert 四种语义） -->
+        <div class="vx-alert vx-alert-warning">
+          <span class="vx-alert-icon">⚠</span>
+          <span>请确保车辆识别代号（VIN）与行驶证一致，提交后不可修改。</span>
+        </div>
+
+        <!-- 表单卡片（测试：Card、标题、Tabs、Input、Select、Radio、Checkbox、Switch、Textarea、校验错误态） -->
+        <div class="vx-card">
+          <div class="vx-card-head" style="display:block; padding: 0 var(--vx-space-md);">
+            <div class="vx-tabs" id="formTabs" style="gap: var(--vx-space-lg);">
+              <span class="vx-tab vx-tab-active" data-tab="base">基础信息</span>
+              <span class="vx-tab" data-tab="extra">增值服务</span>
+            </div>
+          </div>
+          <div class="vx-card-body" style="padding: var(--vx-space-lg) var(--vx-space-md);">
+
+            <!-- Tab 1：基础信息 -->
+            <div id="tab-base" class="form-grid">
+              <div class="form-item" id="fi-name">
+                <label class="form-label"><span class="required">*</span>车主姓名</label>
+                <input class="vx-input" id="inpName" placeholder="请输入车主姓名" />
+                <span class="form-error-text">请输入车主姓名</span>
+              </div>
+              <div class="form-item" id="fi-phone">
+                <label class="form-label"><span class="required">*</span>联系电话</label>
+                <input class="vx-input" id="inpPhone" placeholder="请输入 11 位手机号" />
+                <span class="form-error-text">手机号格式不正确</span>
+              </div>
+              <div class="form-item">
+                <label class="form-label"><span class="required">*</span>车牌号</label>
+                <input class="vx-input" placeholder="如：鄂A·12345" />
+                <span class="form-help">新能源车牌请包含字母 D / F</span>
+              </div>
+              <div class="form-item">
+                <label class="form-label">品牌车型</label>
+                <select class="vx-input">
+                  <option>岚图 FREE</option>
+                  <option>岚图梦想家</option>
+                  <option>岚图追光</option>
+                  <option>其他品牌</option>
+                </select>
+              </div>
+              <div class="form-item">
+                <label class="form-label">车辆类型</label>
+                <div style="display:flex; gap: var(--vx-space-lg); height: 32px; align-items:center;">
+                  <label class="vx-radio"><input type="radio" name="vtype" checked /><span class="vx-radio-box"></span>轿车</label>
+                  <label class="vx-radio"><input type="radio" name="vtype" /><span class="vx-radio-box"></span>SUV</label>
+                  <label class="vx-radio"><input type="radio" name="vtype" /><span class="vx-radio-box"></span>MPV</label>
+                </div>
+              </div>
+              <div class="form-item">
+                <label class="form-label">购车日期</label>
+                <input class="vx-input" type="date" />
+              </div>
+              <div class="form-item form-item-full">
+                <label class="form-label">备注说明</label>
+                <textarea class="vx-textarea" placeholder="选填，最多 200 字（测试 Textarea 场景）"></textarea>
+              </div>
+            </div>
+
+            <!-- Tab 2：增值服务（测试：Checkbox、Switch、Tag、dashed 按钮） -->
+            <div id="tab-extra" style="display:none;">
+              <div class="form-grid">
+                <div class="form-item form-item-full">
+                  <label class="form-label">附加服务</label>
+                  <div style="display:flex; gap: var(--vx-space-lg); flex-wrap:wrap;">
+                    <label class="vx-checkbox"><input type="checkbox" checked /><span class="vx-checkbox-box">✓</span>道路救援</label>
+                    <label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span>代客充电</label>
+                    <label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span>上门取送车</label>
+                    <label class="vx-checkbox"><input type="checkbox" checked /><span class="vx-checkbox-box">✓</span>年度体检</label>
+                  </div>
+                </div>
+                <div class="form-item form-item-full">
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding: var(--vx-space-sm) var(--vx-space-md); background: var(--vx-fill-1); border-radius: var(--vx-radius-md);">
+                    <div>
+                      <div style="color: var(--vx-text-title);">保险到期自动续保</div>
+                      <div style="font-size: var(--vx-font-size-sm); color: var(--vx-text-caption);">开启后将在到期前 15 天自动生成续保工单</div>
+                    </div>
+                    <input type="checkbox" class="vx-switch" checked />
+                  </div>
+                </div>
+                <div class="form-item form-item-full">
+                  <label class="form-label">当前标签预览</label>
+                  <div style="display:flex; gap: var(--vx-space-xs); flex-wrap:wrap;">
+                    <span class="vx-tag">新车</span>
+                    <span class="vx-tag vx-tag-primary">在库</span>
+                    <span class="vx-tag vx-tag-success">已投保</span>
+                    <span class="vx-tag vx-tag-warning">待审核</span>
+                    <span class="vx-tag vx-tag-error">已报废</span>
+                  </div>
+                </div>
+                <div class="form-item form-item-full">
+                  <button class="vx-btn vx-btn-dashed" onclick="showNotify('自定义字段功能开发中', 'info')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                    添加自定义字段
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 表单底部操作（测试：主/默认/文本/链接按钮） -->
+            <div class="form-footer">
+              <button class="vx-btn vx-btn-primary" onclick="submitForm()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                提交登记
+              </button>
+              <button class="vx-btn vx-btn-default">暂存草稿</button>
+              <button class="vx-btn vx-btn-text" onclick="resetForm()">重置</button>
+              <a class="vx-btn vx-btn-link" href="#" onclick="showNotify('填写说明已打开', 'info'); return false;">查看填写说明</a>
+              <span style="margin-left:auto; font-size: var(--vx-font-size-sm); color: var(--vx-text-caption);">上次保存：今天 14:32</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 列表卡片（测试：小按钮、链接按钮、禁用态、Tag 状态、图标按钮） -->
+        <div class="vx-card">
+          <div class="vx-card-head">
+            <span class="vx-card-title">本批次待审核车辆（3）</span>
+            <button class="vx-btn vx-btn-text vx-btn-sm">更多</button>
+          </div>
+          <div class="vx-card-body">
+            <div class="veh-row">
+              <span class="vx-avatar">F</span>
+              <div>
+                <div class="veh-name">鄂A·12345 · 岚图 FREE</div>
+                <div class="veh-meta">王建国 · 139****2861 · 2026-10-28 入库</div>
+              </div>
+              <span class="vx-tag vx-tag-success" style="margin-left: var(--vx-space-sm);">在库</span>
+              <div class="veh-actions">
+                <button class="vx-btn vx-btn-text vx-btn-sm">编辑</button>
+                <button class="vx-btn vx-btn-danger vx-btn-sm" onclick="openModal('鄂A·12345')">删除</button>
+              </div>
+            </div>
+            <div class="veh-row">
+              <span class="vx-avatar">M</span>
+              <div>
+                <div class="veh-name">鄂A·D67890 · 岚图梦想家</div>
+                <div class="veh-meta">刘雨欣 · 158****0912 · 2026-11-01 入库</div>
+              </div>
+              <span class="vx-tag vx-tag-warning" style="margin-left: var(--vx-space-sm);">维修中</span>
+              <div class="veh-actions">
+                <button class="vx-btn vx-btn-text vx-btn-sm">编辑</button>
+                <button class="vx-btn vx-btn-danger vx-btn-sm" onclick="openModal('鄂A·D67890')">删除</button>
+              </div>
+            </div>
+            <div class="veh-row">
+              <span class="vx-avatar">Z</span>
+              <div>
+                <div class="veh-name">鄂A·F24680 · 岚图追光</div>
+                <div class="veh-meta">张一鸣 · 186****7734 · 2026-11-03 入库</div>
+              </div>
+              <span class="vx-tag vx-tag-error" style="margin-left: var(--vx-space-sm);">已锁定</span>
+              <div class="veh-actions">
+                <button class="vx-btn vx-btn-text vx-btn-sm">编辑</button>
+                <button class="vx-btn vx-btn-danger vx-btn-sm" onclick="openModal('鄂A·F24680')">删除</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右列 -->
+      <div class="stack">
+
+        <!-- 审核进度卡片（测试：ThoughtChain 风格步骤、语义色） -->
+        <div class="vx-card">
+          <div class="vx-card-head"><span class="vx-card-title">登记流程</span></div>
+          <div class="vx-card-body">
+            <div class="vx-thought-chain">
+              <div class="vx-thought-item"><span class="vx-thought-status vx-thought-status-done"></span>填写基础信息</div>
+              <div class="vx-thought-item"><span class="vx-thought-status vx-thought-status-running"></span>等待提交审核</div>
+              <div class="vx-thought-item"><span class="vx-thought-status"></span>风控复核</div>
+              <div class="vx-thought-item"><span class="vx-thought-status"></span>生成车辆档案</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 按钮规格速览（测试：lg/sm/disabled/图标按钮 全形态） -->
+        <div class="vx-card">
+          <div class="vx-card-head"><span class="vx-card-title">快捷操作</span></div>
+          <div class="vx-card-body" style="display:flex; flex-direction:column; gap: var(--vx-space-sm); align-items:flex-start;">
+            <button class="vx-btn vx-btn-primary vx-btn-lg" style="width:100%;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              批量导入车辆
+            </button>
+            <button class="vx-btn vx-btn-primary vx-btn-sm">导出 Excel</button>
+            <button class="vx-btn vx-btn-default vx-btn-sm">打印标签</button>
+            <button class="vx-btn vx-btn-primary" disabled>提交（禁用态）</button>
+          </div>
+        </div>
+
+        <!-- 按钮状态矩阵（测试：design.md §4.1 八种类型 + §4.4 四态） -->
+        <div class="vx-card">
+          <div class="vx-card-head"><span class="vx-card-title">按钮类型矩阵</span></div>
+          <div class="vx-card-body" style="display:flex; flex-direction:column; gap: var(--vx-space-sm);">
+            <div class="matrix-row">
+              <span class="matrix-label">Normal</span>
+              <button class="vx-btn vx-btn-primary">主要</button>
+              <button class="vx-btn vx-btn-secondary">次要</button>
+              <button class="vx-btn vx-btn-outline">线框</button>
+            </div>
+            <div class="matrix-row">
+              <span class="matrix-label"></span>
+              <button class="vx-btn vx-btn-danger">危险</button>
+              <button class="vx-btn vx-btn-prompt">提示</button>
+              <button class="vx-btn vx-btn-whiteline">反白</button>
+            </div>
+            <div class="matrix-row">
+              <span class="matrix-label"></span>
+              <button class="vx-btn vx-btn-link">链接·主色</button>
+              <button class="vx-btn vx-btn-text" style="color: var(--vx-text-primary);">链接·深色</button>
+              <button class="vx-btn vx-btn-dashed">虚线</button>
+            </div>
+            <div class="matrix-row" style="padding-top: var(--vx-space-xs); border-top: 1px solid var(--vx-line-1);">
+              <span class="matrix-label">Disabled</span>
+              <button class="vx-btn vx-btn-primary" disabled>主要</button>
+              <button class="vx-btn vx-btn-secondary" disabled>次要</button>
+              <button class="vx-btn vx-btn-danger" disabled>危险</button>
+            </div>
+            <div class="form-help" style="color: var(--vx-text-caption);">悬停/按下可验证 §4.4 状态色：hover #568EEE 系变浅、click #1C5AC4 系变深、危险 hover #FF8A5D、禁用 #C1C1C1/#FAFAFA/#DEDEDE</div>
+          </div>
+        </div>
+
+        <!-- 消息提示卡片（测试：Alert info / success / error + Notification 静态样式） -->
+        <div class="vx-card">
+          <div class="vx-card-head"><span class="vx-card-title">系统提示</span></div>
+          <div class="vx-card-body" style="display:flex; flex-direction:column; gap: var(--vx-space-sm);">
+            <div class="vx-alert vx-alert-info"><span class="vx-alert-icon">ℹ</span><span>每周五 18:00 系统维护，请提前保存。</span></div>
+            <div class="vx-alert vx-alert-success"><span class="vx-alert-icon">✓</span><span>今日已成功登记 12 台车辆。</span></div>
+            <div class="vx-alert vx-alert-error"><span class="vx-alert-icon">✕</span><span>有 2 条记录缺少行驶证照片。</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Modal 删除确认弹窗（测试：弹窗、遮罩、标题、按钮、图标） ===== -->
+<div class="modal-mask" id="modalDelete">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="modal-title">删除确认</span>
+      <button class="icon-btn" onclick="closeModal('modalDelete')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="vx-alert vx-alert-error" style="margin-bottom: var(--vx-space-md);">
+        <span class="vx-alert-icon">✕</span>
+        <span>删除后该车辆的档案、保养记录将一并清除。</span>
+      </div>
+      确定要删除车辆 <strong id="modalPlate" style="color: var(--vx-text-title);">—</strong> 吗？此操作不可恢复。
+    </div>
+    <div class="modal-footer">
+      <button class="vx-btn vx-btn-default" onclick="closeModal('modalDelete')">取消</button>
+      <button class="vx-btn vx-btn-danger" onclick="confirmDelete()">确认删除</button>
+    </div>
+  </div>
+</div>
+
+<!-- 通知 toast 容器 -->
+<div class="notify-wrap" id="notifyWrap"></div>
+
+<script>
+  // Tabs 切换
+  document.querySelectorAll('#formTabs .vx-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('#formTabs .vx-tab').forEach(function (t) { t.classList.remove('vx-tab-active'); });
+      tab.classList.add('vx-tab-active');
+      document.getElementById('tab-base').style.display = tab.dataset.tab === 'base' ? 'grid' : 'none';
+      document.getElementById('tab-extra').style.display = tab.dataset.tab === 'extra' ? 'grid' : 'none';
+    });
+  });
+
+  // Segmented 切换
+  document.querySelectorAll('#filterSeg .vx-segmented-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      document.querySelectorAll('#filterSeg .vx-segmented-item').forEach(function (i) { i.classList.remove('vx-segmented-item-selected'); });
+      item.classList.add('vx-segmented-item-selected');
+    });
+  });
+
+  // Modal
+  function openModal(plate) {
+    document.getElementById('modalPlate').textContent = plate;
+    document.getElementById('modalDelete').classList.add('open');
+  }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+  function confirmDelete() {
+    closeModal('modalDelete');
+    showNotify('车辆档案已删除', 'success');
+  }
+  document.getElementById('modalDelete').addEventListener('click', function (e) {
+    if (e.target === this) closeModal('modalDelete');
+  });
+
+  // Notification toast
+  function showNotify(title, type) {
+    var icons = { success: '✓', error: '✕', info: 'ℹ' };
+    var n = document.createElement('div');
+    n.className = 'vx-notification';
+    n.innerHTML = '<span style="color: var(--vx-' + (type === 'error' ? 'error-dark' : type === 'success' ? 'success-dark' : 'primary') + ');">' + (icons[type] || 'ℹ') + '</span>' +
+      '<div><div class="vx-notification-title">' + title + '</div>' +
+      '<div class="vx-notification-description">车队管理平台 · 系统通知</div></div>';
+    document.getElementById('notifyWrap').appendChild(n);
+    setTimeout(function () { n.style.opacity = '0'; n.style.transition = 'opacity .3s'; }, 2600);
+    setTimeout(function () { n.remove(); }, 3000);
+  }
+
+  // 表单校验（测试 Input 错误态 + 成功通知）
+  function submitForm() {
+    var ok = true;
+    var name = document.getElementById('inpName');
+    var phone = document.getElementById('inpPhone');
+    document.getElementById('fi-name').classList.toggle('is-error', !name.value.trim());
+    if (!name.value.trim()) ok = false;
+    var phoneOk = /^1\d{10}$/.test(phone.value.trim());
+    document.getElementById('fi-phone').classList.toggle('is-error', !phoneOk);
+    if (!phoneOk) ok = false;
+    if (ok) {
+      showNotify('车辆信息提交成功，进入审核流程', 'success');
+      document.getElementById('modalDelete').classList.remove('open');
+    } else {
+      showNotify('表单校验未通过，请检查标红字段', 'error');
+    }
+  }
+  function resetForm() {
+    document.querySelectorAll('.vx-input, .vx-textarea').forEach(function (el) { el.value = ''; });
+    document.querySelectorAll('.form-item').forEach(function (el) { el.classList.remove('is-error'); });
+  }
+</script>
+</body>
+</html>

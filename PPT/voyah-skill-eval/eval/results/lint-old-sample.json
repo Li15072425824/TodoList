@@ -1,0 +1,12 @@
+{
+  "target": "/Users/lixing/WorkRep/TodoList/voyah-ui-test/index.html",
+  "specSource": "fallback:tokens.css",
+  "filesScanned": 1,
+  "stats": {
+    "violations": 0,
+    "p0": 0,
+    "varRefs": 162,
+    "hardcodedColors": 0
+  },
+  "violations": []
+}

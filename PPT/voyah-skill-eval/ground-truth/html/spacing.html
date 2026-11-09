@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>间距</title>
+<!-- Design tokens (from DSL globalVars): paint_2:177 = 主色调/蓝 #3773DB ; paint_2:1901 = 主色调/深蓝 #1F56E8 -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#EEEEEE;}
+.page{position:relative;width:1440px;height:2228px;background:#FFFFFF;overflow:hidden;border-radius:6px;margin:0 auto;}
+.abs{position:absolute;}
+.t{position:absolute;white-space:nowrap;}
+svg{display:block;}
+.f48{font:500 48px/0.72 'PingFang SC';color:#111111;}
+.f16{font:400 16px/24px 'PingFang SC';color:#333333;}
+.f24h{font:600 24px 'PingFang SC';color:#333333;}
+.f14{font:400 14px 'PingFang SC';color:#555555;}
+.f18{font:400 18px 'PingFang SC';color:#222222;}
+.f18g{font:400 18px 'PingFang SC';color:#4A4A4A;}
+.fhv18{font:400 18px 'Helvetica';color:#4A4A4A;}
+.f12{font:400 12px 'PingFang SC';color:#333333;}
+.f12ph{font:400 12px/20px 'PingFang SC';color:#888888;}
+.f10b{font:400 10px/20px 'PingFang SC';color:#1F56E8;}
+.f10b2{font:400 10px 'PingFang SC';color:#1F56E8;}
+.fsl{font:400 12px 'PingFang SC';color:#777F84;}
+.fbtnw{font:500 12px/20px 'PingFang SC';color:#FFFFFF;}
+.fbtnd{font:500 12px/20px 'PingFang SC';color:#333333;}
+.fbad{font:400 12px 'Helvetica';color:#FFFFFF;}
+.f16r{font:400 16px 'PingFang SC';color:#111111;}
+.f16m{font:500 16px 'PingFang SC';color:#111111;}
+.bar-y{position:absolute;background:#EDBE58;opacity:0.3;}
+.bar-g{position:absolute;background:#A3E9A3;opacity:0.5;}
+.bar-r{position:absolute;background:#FFA2A2;opacity:0.5;}
+.mline{position:absolute;background:#9A12B3;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- S0 页头 -->
+<div class="abs" style="left:0;top:0;width:1440px;height:202px;background:#F9F9F9;"></div>
+<div class="t f48" style="left:80px;top:47px;width:96px;height:72px;">间距</div>
+<div class="t f16" style="left:80px;top:131px;width:320px;height:24px;">页面内布局间、模块间、模块内的各部件距离</div>
+<div class="abs" style="left:1138px;top:36px;width:246px;height:130px;background:url('https://image-resource.mastergo.com/64625781371459/64625781371461/720c545cc943ace29f300c2a0dafac3d.png') no-repeat center/cover;"></div>
+
+<!-- S3 规则 / S6 规则说明 / S67 公式 -->
+<div class="t f24h" style="left:81px;top:256px;width:48px;height:34px;">规则</div>
+<div class="t f14" style="left:81px;top:342px;width:481px;height:20px;">所有组件依据4px倍数设定尺寸和距离，避免出现6，9，11等非4的倍数存在。</div>
+<div class="t f18" style="left:82px;top:307px;width:201px;height:26px;">Sn = 4px * n，n为正整数</div>
+
+<!-- S7~S66 间距梯度 S1~S20 -->
+<div class="t fsl" style="left:80px;top:385.08px;width:14px;height:17px;">S1</div><div class="t f10b" style="left:84px;top:405.4px;width:6px;height:20px;">4</div>
+<div class="abs" style="left:84px;top:425px;width:1px;height:10px;background:#3773DB;"></div>
+<div class="abs" style="left:90px;top:425px;width:1px;height:10px;background:#3773DB;"></div>
+<div class="abs" style="left:85px;top:430px;width:4px;height:1px;background:#3773DB;"></div>
+<div class="t fsl" style="left:105px;top:385px;width:14px;height:17px;">S2</div><div class="t f10b" style="left:109px;top:405px;width:6px;height:20px;">8</div>
+<span class="abs" style="left:107px;top:425px;width:10px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 11.000004520000001 11.00000426" width="10" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M9.49999774,-0.50000226L9.5,0L9.5,10L9.49999774,10.500002L10.50000226,10.500002L10.5,10L10.5,0L10.50000226,-0.50000226L9.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L9,5.5L9.5000019,5.5000022600000005L9.5000019,4.4999977399999995L9,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:133px;top:385px;width:14px;height:17px;">S3</div><div class="t f10b" style="left:134px;top:405px;width:12px;height:20px;">12</div>
+<span class="abs" style="left:134px;top:425px;width:13px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 14.000004520000001 11.00000426" width="13" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M12.49999774,-0.50000226L12.5,0L12.5,10L12.49999774,10.500002L13.50000226,10.500002L13.5,10L13.5,0L13.50000226,-0.50000226L12.49999774,-0.50000226Z" fill="#3773DB"/><path d="M-0.50000226,5.5000022600000005L0,5.5L12,5.5L12.500002,5.5000022600000005L12.500002,4.4999977399999995L12,4.5L0,4.5L-0.50000226,4.4999977399999995L-0.50000226,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:166px;top:385px;width:14px;height:17px;">S4</div><div class="t f10b" style="left:167px;top:405px;width:12px;height:20px;">16</div>
+<span class="abs" style="left:164px;top:425px;width:18px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 19.000004519999997 11.00000426" width="18" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M17.49999774,-0.50000226L17.5,0L17.5,10L17.49999774,10.500002L18.50000226,10.500002L18.5,10L18.5,0L18.50000226,-0.50000226L17.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L17,5.5L17.500002,5.5000022600000005L17.500002,4.4999977399999995L17,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:202px;top:385px;width:14px;height:17px;">S5</div><div class="t f10b" style="left:203px;top:405px;width:12px;height:20px;">20</div>
+<span class="abs" style="left:198px;top:425px;width:22px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 23.000004519999997 11.00000426" width="22" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M21.49999774,-0.50000226L21.5,0L21.5,10L21.49999774,10.500002L22.50000226,10.500002L22.5,10L22.5,0L22.50000226,-0.50000226L21.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L21,5.5L21.500002,5.5000022600000005L21.500002,4.4999977399999995L21,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:242px;top:385px;width:14px;height:17px;">S6</div><div class="t f10b2" style="left:243px;top:407px;width:12px;height:14px;">24</div>
+<span class="abs" style="left:236px;top:425px;width:26px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 27.000004519999997 11.00000426" width="26" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M25.49999774,-0.50000226L25.5,0L25.5,10L25.49999774,10.500002L26.50000226,10.500002L26.5,10L26.5,0L26.50000226,-0.50000226L25.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L25,5.5L25.500002,5.5000022600000005L25.500002,4.4999977399999995L25,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:286px;top:385px;width:14px;height:17px;">S7</div><div class="t f10b" style="left:287px;top:405px;width:12px;height:20px;">28</div>
+<span class="abs" style="left:278px;top:425px;width:30px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 31.000004519999997 11.00000426" width="30" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#006EFF"/><path d="M29.49999774,-0.50000226L29.5,0L29.5,10L29.49999774,10.500002L30.50000226,10.500002L30.5,10L30.5,0L30.50000226,-0.50000226L29.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L29,5.5L29.500002,5.5000022600000005L29.500002,4.4999977399999995L29,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:334px;top:385px;width:14px;height:17px;">S8</div><div class="t f10b" style="left:335px;top:405px;width:12px;height:20px;">32</div>
+<span class="abs" style="left:324px;top:425px;width:34px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 35.000004520000005 11.00000426" width="34" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M33.49999774,-0.50000226L33.5,0L33.5,10L33.49999774,10.500002L34.50000226,10.500002L34.5,10L34.5,0L34.50000226,-0.50000226L33.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L33,5.5L33.500004,5.5000022600000005L33.500004,4.4999977399999995L33,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:386px;top:385px;width:14px;height:17px;">S9</div><div class="t f10b" style="left:387px;top:405px;width:12px;height:20px;">36</div>
+<span class="abs" style="left:374px;top:425px;width:38px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 39.000004520000005 11.00000426" width="38" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M37.49999774,-0.50000226L37.5,0L37.5,10L37.49999774,10.500002L38.50000226,10.500002L38.5,10L38.5,0L38.50000226,-0.50000226L37.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L37,5.5L37.500004,5.5000022600000005L37.500004,4.4999977399999995L37,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:439px;top:385px;width:21px;height:17px;">S10</div><div class="t f10b" style="left:443px;top:405px;width:12px;height:20px;">40</div>
+<span class="abs" style="left:428px;top:425px;width:42px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 43.000004520000005 11.00000426" width="42" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M41.49999774,-0.50000226L41.5,0L41.5,10L41.49999774,10.500002L42.50000226,10.500002L42.5,10L42.5,0L42.50000226,-0.50000226L41.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L41,5.5L41.500004,5.5000022600000005L41.500004,4.4999977399999995L41,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:499px;top:385px;width:21px;height:17px;">S11</div><div class="t f10b" style="left:503px;top:405px;width:12px;height:20px;">44</div>
+<span class="abs" style="left:486px;top:425px;width:46px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 47.000004520000005 11.00000426" width="46" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M45.49999774,-0.50000226L45.5,0L45.5,10L45.49999774,10.500002L46.50000226,10.500002L46.5,10L46.5,0L46.50000226,-0.50000226L45.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L45,5.5L45.500004,5.5000022600000005L45.500004,4.4999977399999995L45,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:563px;top:385px;width:21px;height:17px;">S12</div><div class="t f10b" style="left:567px;top:405px;width:12px;height:20px;">48</div>
+<span class="abs" style="left:548px;top:425px;width:50px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 51.000004520000005 11.00000426" width="50" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M49.49999774,-0.50000226L49.5,0L49.5,10L49.49999774,10.500002L50.50000226,10.500002L50.5,10L50.5,0L50.50000226,-0.50000226L49.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L49,5.5L49.500004,5.5000022600000005L49.500004,4.4999977399999995L49,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:631px;top:385px;width:21px;height:17px;">S13</div><div class="t f10b" style="left:635px;top:405px;width:12px;height:20px;">52</div>
+<span class="abs" style="left:614px;top:425px;width:54px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 55.000004520000005 11.00000426" width="54" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M53.49999774,-0.50000226L53.5,0L53.5,10L53.49999774,10.500002L54.50000226,10.500002L54.5,10L54.5,0L54.50000226,-0.50000226L53.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L53,5.5L53.500004,5.5000022600000005L53.500004,4.4999977399999995L53,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:703px;top:385px;width:21px;height:17px;">S14</div><div class="t f10b" style="left:707px;top:405px;width:12px;height:20px;">56</div>
+<span class="abs" style="left:684px;top:425px;width:58px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 59.000004520000005 11.00000426" width="58" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M57.49999774,-0.50000226L57.5,0L57.5,10L57.49999774,10.500002L58.50000226,10.500002L58.5,10L58.5,0L58.50000226,-0.50000226L57.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L57,5.5L57.500004,5.5000022600000005L57.500004,4.4999977399999995L57,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:779px;top:385px;width:21px;height:17px;">S15</div><div class="t f10b" style="left:783px;top:405px;width:12px;height:20px;">60</div>
+<span class="abs" style="left:758px;top:425px;width:62px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 63.000004520000005 11.00000426" width="62" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M61.49999774,-0.50000226L61.5,0L61.5,10L61.49999774,10.500002L62.50000226,10.500002L62.5,10L62.5,0L62.50000226,-0.50000226L61.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L61,5.5L61.500004,5.5000022600000005L61.500004,4.4999977399999995L61,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:859px;top:385px;width:21px;height:17px;">S16</div><div class="t f10b" style="left:863px;top:405px;width:12px;height:20px;">64</div>
+<span class="abs" style="left:836px;top:425px;width:66px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 67.00000452 11.00000426" width="66" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M65.49999774,-0.50000226L65.5,0L65.5,10L65.49999774,10.500002L66.50000226,10.500002L66.5,10L66.5,0L66.50000226,-0.50000226L65.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L65,5.5L65.5,5.5000022600000005L65.5,4.4999977399999995L65,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:943px;top:385px;width:21px;height:17px;">S17</div><div class="t f10b" style="left:947px;top:405px;width:12px;height:20px;">68</div>
+<span class="abs" style="left:918px;top:425px;width:70px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 71.00000452 11.00000426" width="70" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M69.49999774,-0.50000226L69.5,0L69.5,10L69.49999774,10.500002L70.50000226,10.500002L70.5,10L70.5,0L70.50000226,-0.50000226L69.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L69,5.5L69.5,5.5000022600000005L69.5,4.4999977399999995L69,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:1031px;top:385px;width:21px;height:17px;">S18</div><div class="t f10b" style="left:1035px;top:405px;width:12px;height:20px;">72</div>
+<span class="abs" style="left:1004px;top:425px;width:74px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 75.00000452 11.00000426" width="74" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M73.49999774,-0.50000226L73.5,0L73.5,10L73.49999774,10.500002L74.50000226,10.500002L74.5,10L74.5,0L74.50000226,-0.50000226L73.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L73,5.5L73.5,5.5000022600000005L73.5,4.4999977399999995L73,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:1123px;top:385px;width:21px;height:17px;">S19</div><div class="t f10b" style="left:1127px;top:405px;width:12px;height:20px;">76</div>
+<span class="abs" style="left:1094px;top:425px;width:78px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 79.00000452 11.00000426" width="78" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M77.49999774,-0.50000226L77.5,0L77.5,10L77.49999774,10.500002L78.50000226,10.500002L78.5,10L78.5,0L78.50000226,-0.50000226L77.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L77,5.5L77.5,5.5000022600000005L77.5,4.4999977399999995L77,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+<div class="t fsl" style="left:1218px;top:385px;width:21px;height:17px;">S20</div><div class="t f10b" style="left:1223px;top:405px;width:12px;height:20px;">80</div>
+<span class="abs" style="left:1188px;top:425px;width:82px;height:10px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.50000226 -0.50000226 83.00000452 11.00000426" width="82" height="10"><path d="M-0.50000226,-0.50000226L-0.5,0L-0.5,10L-0.50000226,10.500002L0.50000226,10.500002L0.5,10L0.5,0L0.50000226,-0.50000226L-0.50000226,-0.50000226Z" fill="#3773DB"/><path d="M81.49999774,-0.50000226L81.5,0L81.5,10L81.49999774,10.500002L82.50000226,10.500002L82.5,10L82.5,0L82.50000226,-0.50000226L81.49999774,-0.50000226Z" fill="#3773DB"/><path d="M0.49999773999999997,5.5000022600000005L1,5.5L81,5.5L81.5,5.5000022600000005L81.5,4.4999977399999995L81,4.5L1,4.5L0.49999773999999997,4.4999977399999995L0.49999773999999997,5.5000022600000005Z" fill="#3773DB"/></svg></span>
+
+<!-- S4 常用尺寸 / S68 说明 -->
+<div class="t f24h" style="left:81px;top:504px;width:96px;height:34px;">常用尺寸</div>
+<div class="t f14" style="left:80px;top:552px;width:604px;height:20px;">根据各元素之间的亲密性，提四种常用尺寸S6（24px）、S4（16px）、S3（12px）、S2（8px）</div>
+<div class="t f14" style="left:80px;top:574px;width:882px;height:20px;">相关性越强的元素之间间距越小，关联性越弱则间距越大。设计者可根据内容整体的致密和疏松偏好，灵活配置这四种间距对应的的具体数值。</div>
+
+<!-- S70 / S71 示例标题 -->
+<div class="t f18" style="left:80px;top:636px;width:108px;height:26px;">纵向间距示例</div>
+<div class="t f18" style="left:580px;top:636px;width:108px;height:26px;">横向间距示例</div>
+
+<!-- S69 建议 + 例： -->
+<div class="t f14" style="left:80px;top:1164px;width:544px;height:20px;">建议组件之间的间距为8px，输入框内容adding值为12px，按钮左右Padding值为16px。</div>
+<div class="t f14" style="left:80px;top:1186px;width:28px;height:20px;">例：</div>
+
+<!-- 弹窗 1 -->
+<div class="abs" style="left:80px;top:716px;width:477px;height:410px;">
+  <div class="abs" style="left:0;top:0;width:477px;height:410px;background:#FFFFFF;border-radius:12px;box-shadow:0px 1px 20px 0px rgba(0,0,0,0.08);"></div>
+  <!-- 标题栏 -->
+  <span class="abs" style="left:0;top:0;width:477px;height:56px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477 56" width="477" height="56"><path d="M0,12L0,56L477,56L477,12C477,5.372582,471.62741,0,465,0L12,0C5.372582,0,0,5.372582,0,12Z" fill="#FFFFFF"/></svg></span>
+  <div class="t f16m" style="left:24px;top:14.44px;width:64px;height:22px;">弹框标题</div>
+  <span class="abs" style="left:441px;top:22px;width:12px;height:12px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="16" height="16"><path d="M12,1.2082672L10.791733,0L6,4.7917328L1.2082672,0L0,1.2082672L4.7917328,6L0,10.791733L1.2082672,12L6,7.2082672L10.791733,12L12,10.791733L7.2082672,6L12,1.2082672Z" fill="#999999"/></svg></span>
+  <!-- 标注 -->
+  <div class="abs" style="left:24px;top:56px;width:429px;height:290px;">
+    <div class="bar-g" style="left:0;top:0;width:429px;height:8px;"></div>
+    <div class="bar-g" style="left:0;top:30px;width:429px;height:8px;"></div>
+    <div class="bar-g" style="left:0;top:58px;width:429px;height:8px;"></div>
+    <div class="bar-y" style="left:0;top:86px;width:429px;height:16px;"></div>
+    <div class="bar-g" style="left:0;top:122px;width:429px;height:8px;"></div>
+    <div class="bar-g" style="left:0;top:150px;width:429px;height:8px;"></div>
+    <div class="bar-y" style="left:0;top:180px;width:429px;height:16px;"></div>
+    <div class="bar-g" style="left:0;top:218px;width:429px;height:8px;"></div>
+    <div class="bar-g" style="left:0;top:246px;width:429px;height:8px;"></div>
+    <div class="bar-y" style="left:0;top:274px;width:429px;height:16px;"></div>
+  </div>
+  <!-- 高级标题 行1 -->
+  <div class="abs" style="left:24px;top:64px;width:96px;height:22px;background:#FFFFFF;"></div>
+  <div class="abs" style="left:24px;top:68.24px;width:2px;height:14px;background:#C1C1C1;"></div>
+  <div class="t f14" style="left:34px;top:64px;width:56px;height:20px;">高级标题</div>
+  <!-- 选项行1 -->
+  <div class="abs" style="left:34px;top:94px;width:409px;height:48px;background:#FFFFFF;"></div>
+  <div class="t f12" style="left:34px;top:94.08px;width:48px;height:17px;">选项名称</div>
+  <div class="t f12" style="left:128px;top:94.08px;width:50px;height:17px;">Option A</div>
+  <div class="t f12" style="left:216px;top:94.08px;width:50px;height:17px;">Option B</div>
+  <div class="t f12" style="left:304px;top:94.08px;width:50px;height:17px;">Option C</div>
+  <div class="t f12" style="left:393px;top:94.08px;width:51px;height:17px;">Option D</div>
+  <span class="abs" style="left:194.5px;top:97.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737,10.0898508737,13,6.5,13C2.9101491263000003,13,0,10.0898508737,0,6.5C0,2.9101491263000003,2.9101491263000003,0,6.5,0C10.0898508737,0,13,2.9101491263000003,13,6.5Z" fill="#FFFFFF"/><path d="M10,6.5C10,8.4329966243,8.4329966243,10,6.5,10C4.567003375700001,10,3,8.4329966243,3,6.5C3,4.567003375700001,4.567003375700001,3,6.5,3C8.4329966243,3,10,4.567003375700001,10,6.5Z" fill="#0083EE"/></svg></span>
+  <span class="abs" style="left:106.5px;top:97.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:97.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:97.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <div class="t f12" style="left:128px;top:122.08px;width:49px;height:17px;">Option E</div>
+  <div class="t f12" style="left:216px;top:122.08px;width:48px;height:17px;">Option F</div>
+  <div class="t f12" style="left:304px;top:122.08px;width:51px;height:17px;">Option G</div>
+  <div class="t f12" style="left:393px;top:122.08px;width:51px;height:17px;">Option H</div>
+  <span class="abs" style="left:194.5px;top:125.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="#FFFFFF"/></svg></span>
+  <span class="abs" style="left:106.5px;top:125.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:125.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:125.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <!-- 高级标题 行2 -->
+  <div class="abs" style="left:24px;top:158px;width:96px;height:22px;background:#FFFFFF;"></div>
+  <div class="abs" style="left:24px;top:162.24px;width:2px;height:14px;background:#C1C1C1;"></div>
+  <div class="t f14" style="left:34px;top:158px;width:56px;height:20px;">高级标题</div>
+  <!-- 选项行2 -->
+  <div class="abs" style="left:34px;top:188px;width:409px;height:48px;background:#FFFFFF;"></div>
+  <div class="t f12" style="left:34px;top:188.08px;width:48px;height:17px;">选项名称</div>
+  <div class="t f12" style="left:128px;top:188.08px;width:50px;height:17px;">Option A</div>
+  <div class="t f12" style="left:216px;top:188.08px;width:50px;height:17px;">Option B</div>
+  <div class="t f12" style="left:304px;top:188.08px;width:50px;height:17px;">Option C</div>
+  <div class="t f12" style="left:393px;top:188.08px;width:51px;height:17px;">Option D</div>
+  <span class="abs" style="left:194.5px;top:191.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737,10.0898508737,13,6.5,13C2.9101491263000003,13,0,10.0898508737,0,6.5C0,2.9101491263000003,2.9101491263000003,0,6.5,0C10.0898508737,0,13,2.9101491263000003,13,6.5Z" fill="#FFFFFF"/><path d="M10,6.5C10,8.4329966243,8.4329966243,10,6.5,10C4.567003375700001,10,3,8.4329966243,3,6.5C3,4.567003375700001,4.567003375700001,3,6.5,3C8.4329966243,3,10,4.567003375700001,10,6.5Z" fill="#0083EE"/></svg></span>
+  <span class="abs" style="left:106.5px;top:191.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:191.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:191.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <div class="t f12" style="left:128px;top:216.08px;width:49px;height:17px;">Option E</div>
+  <div class="t f12" style="left:216px;top:216.08px;width:48px;height:17px;">Option F</div>
+  <div class="t f12" style="left:304px;top:216.08px;width:51px;height:17px;">Option G</div>
+  <div class="t f12" style="left:393px;top:216.08px;width:51px;height:17px;">Option H</div>
+  <span class="abs" style="left:194.5px;top:219.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="#FFFFFF"/></svg></span>
+  <span class="abs" style="left:106.5px;top:219.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:219.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:219.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <!-- 高级标题 行3 -->
+  <div class="abs" style="left:24px;top:252px;width:96px;height:22px;background:#FFFFFF;"></div>
+  <div class="abs" style="left:24px;top:256.24px;width:2px;height:14px;background:#C1C1C1;"></div>
+  <div class="t f14" style="left:34px;top:252px;width:56px;height:20px;">高级标题</div>
+  <!-- 选项行3 -->
+  <div class="abs" style="left:34px;top:282px;width:409px;height:48px;background:#FFFFFF;"></div>
+  <div class="t f12" style="left:34px;top:282.08px;width:48px;height:17px;">选项名称</div>
+  <div class="t f12" style="left:128px;top:282.08px;width:50px;height:17px;">Option A</div>
+  <div class="t f12" style="left:216px;top:282.08px;width:50px;height:17px;">Option B</div>
+  <div class="t f12" style="left:304px;top:282.08px;width:50px;height:17px;">Option C</div>
+  <div class="t f12" style="left:393px;top:282.08px;width:51px;height:17px;">Option D</div>
+  <span class="abs" style="left:194.5px;top:285.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737,10.0898508737,13,6.5,13C2.9101491263000003,13,0,10.0898508737,0,6.5C0,2.9101491263000003,2.9101491263000003,0,6.5,0C10.0898508737,0,13,2.9101491263000003,13,6.5Z" fill="#FFFFFF"/><path d="M10,6.5C10,8.4329966243,8.4329966243,10,6.5,10C4.567003375700001,10,3,8.4329966243,3,6.5C3,4.567003375700001,4.567003375700001,3,6.5,3C8.4329966243,3,10,4.567003375700001,10,6.5Z" fill="#0083EE"/></svg></span>
+  <span class="abs" style="left:106.5px;top:285.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:285.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:285.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <div class="t f12" style="left:128px;top:310.08px;width:49px;height:17px;">Option E</div>
+  <div class="t f12" style="left:216px;top:310.08px;width:48px;height:17px;">Option F</div>
+  <div class="t f12" style="left:304px;top:310.08px;width:51px;height:17px;">Option G</div>
+  <div class="t f12" style="left:393px;top:310.08px;width:51px;height:17px;">Option H</div>
+  <span class="abs" style="left:194.5px;top:313.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="#FFFFFF"/></svg></span>
+  <span class="abs" style="left:106.5px;top:313.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:313.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:313.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <!-- 底部按钮 -->
+  <span class="abs" style="left:0;top:346px;width:477px;height:64px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477 64" width="477" height="64"><path d="M0,52C0,58.627419,5.372582,64,11.999995,64L465,64C471.62741,64,477,58.627419,477,52L477,0L0,0L0,52Z" fill="#FFFFFF"/></svg></span>
+  <div class="abs" style="left:333px;top:362px;width:56px;height:32px;background:#3773DB;border-radius:6px;"></div>
+  <div class="t fbtnw" style="left:349px;top:368px;width:24px;height:20px;">提交</div>
+  <div class="abs" style="left:397px;top:362px;width:56px;height:32px;background:#FAFAFA;border:1px solid #DEDEDE;border-radius:6px;"></div>
+  <div class="t fbtnd" style="left:413px;top:368px;width:24px;height:20px;">取消</div>
+</div>
+
+<!-- 弹窗 2 -->
+<div class="abs" style="left:580px;top:716px;width:477px;height:410px;">
+  <div class="abs" style="left:0;top:0;width:477px;height:410px;background:#FFFFFF;border-radius:12px;box-shadow:0px 1px 20px 0px rgba(0,0,0,0.08);"></div>
+  <span class="abs" style="left:0;top:0;width:477px;height:56px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477 56" width="477" height="56"><path d="M0,12L0,56L477,56L477,12C477,5.372582,471.62741,0,465,0L12,0C5.372582,0,0,5.372582,0,12Z" fill="#FFFFFF"/></svg></span>
+  <span class="abs" style="left:0;top:0;width:477px;height:56px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477 56" width="477" height="56"><path d="M0,56L477,56L477,12C477,5.372582,471.62741,0,465,0L12,0C5.372582,0,0,5.372582,0,12L0,56Z" fill="#FFFFFF"/></svg></span>
+  <div class="t f16r" style="left:24px;top:14.44px;width:64px;height:23px;">弹框标题</div>
+  <span class="abs" style="left:441px;top:22px;width:12px;height:12px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path d="M12,1.2082672L10.791733,0L6,4.7917328L1.2082672,0L0,1.2082672L4.7917328,6L0,10.791733L1.2082672,12L6,7.2082672L10.791733,12L12,10.791733L7.2082672,6L12,1.2082672Z" fill="#999999"/></svg></span>
+  <!-- 标注2 -->
+  <div class="abs" style="left:0;top:11px;width:477px;height:391px;">
+    <div class="bar-r" style="left:0;top:0;width:24px;height:34px;"></div>
+    <div class="bar-g" style="left:26px;top:53px;width:8px;height:52px;"></div>
+    <div class="bar-r" style="left:82px;top:84px;width:24px;height:45px;"></div>
+    <div class="bar-g" style="left:120px;top:84px;width:8px;height:45px;"></div>
+    <div class="bar-y" style="left:178px;top:84px;width:16px;height:45px;"></div>
+    <div class="bar-g" style="left:208px;top:84px;width:8px;height:45px;"></div>
+    <div class="bar-y" style="left:266px;top:84px;width:16px;height:45px;"></div>
+    <div class="bar-g" style="left:296px;top:84px;width:8px;height:45px;"></div>
+    <div class="bar-y" style="left:355px;top:84px;width:16px;height:45px;"></div>
+    <div class="bar-g" style="left:385px;top:84px;width:8px;height:45px;"></div>
+    <div class="bar-r" style="left:453px;top:344px;width:24px;height:46px;"></div>
+  </div>
+  <!-- 高级标题（两行折行） -->
+  <div class="abs" style="left:24px;top:64px;width:66px;height:22px;background:#FFFFFF;"></div>
+  <div class="abs" style="left:24px;top:68.24px;width:2px;height:14px;background:#C1C1C1;"></div>
+  <div class="t f14" style="left:34px;top:64px;width:42px;height:20px;">高级标</div>
+  <div class="t f14" style="left:34px;top:86px;width:14px;height:20px;">题</div>
+  <!-- 选项行1 -->
+  <div class="abs" style="left:34px;top:94px;width:409px;height:48px;background:#FFFFFF;"></div>
+  <div class="t f12" style="left:34px;top:94.08px;width:48px;height:17px;">选项名称</div>
+  <div class="t f12" style="left:128px;top:94.08px;width:50px;height:17px;">Option A</div>
+  <div class="t f12" style="left:216px;top:94.08px;width:50px;height:17px;">Option B</div>
+  <div class="t f12" style="left:304px;top:94.08px;width:50px;height:17px;">Option C</div>
+  <div class="t f12" style="left:393px;top:94.08px;width:51px;height:17px;">Option D</div>
+  <span class="abs" style="left:194.5px;top:97.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737,10.0898508737,13,6.5,13C2.9101491263000003,13,0,10.0898508737,0,6.5C0,2.9101491263000003,2.9101491263000003,0,6.5,0C10.0898508737,0,13,2.9101491263000003,13,6.5Z" fill="#FFFFFF"/><path d="M10,6.5C10,8.4329966243,8.4329966243,10,6.5,10C4.567003375700001,10,3,8.4329966243,3,6.5C3,4.567003375700001,4.567003375700001,3,6.5,3C8.4329966243,3,10,4.567003375700001,10,6.5Z" fill="#0083EE"/></svg></span>
+  <span class="abs" style="left:106.5px;top:97.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:97.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:97.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <div class="t f12" style="left:128px;top:122.08px;width:49px;height:17px;">Option E</div>
+  <div class="t f12" style="left:216px;top:122.08px;width:48px;height:17px;">Option F</div>
+  <div class="t f12" style="left:304px;top:122.08px;width:51px;height:17px;">Option G</div>
+  <div class="t f12" style="left:393px;top:122.08px;width:51px;height:17px;">Option H</div>
+  <span class="abs" style="left:194.5px;top:125.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="#FFFFFF"/></svg></span>
+  <span class="abs" style="left:106.5px;top:125.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:125.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:125.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <!-- 高级标题 行2 -->
+  <div class="abs" style="left:24px;top:158px;width:96px;height:22px;background:#FFFFFF;"></div>
+  <div class="abs" style="left:24px;top:162.24px;width:2px;height:14px;background:#C1C1C1;"></div>
+  <div class="t f14" style="left:34px;top:158px;width:56px;height:20px;">高级标题</div>
+  <!-- 选项行2 -->
+  <div class="abs" style="left:34px;top:188px;width:409px;height:48px;background:#FFFFFF;"></div>
+  <div class="t f12" style="left:34px;top:188.08px;width:48px;height:17px;">选项名称</div>
+  <div class="t f12" style="left:128px;top:188.08px;width:50px;height:17px;">Option A</div>
+  <div class="t f12" style="left:216px;top:188.08px;width:50px;height:17px;">Option B</div>
+  <div class="t f12" style="left:304px;top:188.08px;width:50px;height:17px;">Option C</div>
+  <div class="t f12" style="left:393px;top:188.08px;width:51px;height:17px;">Option D</div>
+  <span class="abs" style="left:194.5px;top:191.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737,10.0898508737,13,6.5,13C2.9101491263000003,13,0,10.0898508737,0,6.5C0,2.9101491263000003,2.9101491263000003,0,6.5,0C10.0898508737,0,13,2.9101491263000003,13,6.5Z" fill="#FFFFFF"/><path d="M10,6.5C10,8.4329966243,8.4329966243,10,6.5,10C4.567003375700001,10,3,8.4329966243,3,6.5C3,4.567003375700001,4.567003375700001,3,6.5,3C8.4329966243,3,10,4.567003375700001,10,6.5Z" fill="#0083EE"/></svg></span>
+  <span class="abs" style="left:106.5px;top:191.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:191.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:191.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <div class="t f12" style="left:128px;top:216.08px;width:49px;height:17px;">Option E</div>
+  <div class="t f12" style="left:216px;top:216.08px;width:48px;height:17px;">Option F</div>
+  <div class="t f12" style="left:304px;top:216.08px;width:51px;height:17px;">Option G</div>
+  <div class="t f12" style="left:393px;top:216.08px;width:51px;height:17px;">Option H</div>
+  <span class="abs" style="left:194.5px;top:219.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="#FFFFFF"/></svg></span>
+  <span class="abs" style="left:106.5px;top:219.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:219.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:219.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <!-- 高级标题 行3 -->
+  <div class="abs" style="left:24px;top:252px;width:96px;height:22px;background:#FFFFFF;"></div>
+  <div class="abs" style="left:24px;top:256.24px;width:2px;height:14px;background:#C1C1C1;"></div>
+  <div class="t f14" style="left:34px;top:252px;width:56px;height:20px;">高级标题</div>
+  <!-- 选项行3 -->
+  <div class="abs" style="left:34px;top:282px;width:409px;height:48px;background:#FFFFFF;"></div>
+  <div class="t f12" style="left:34px;top:282.08px;width:48px;height:17px;">选项名称</div>
+  <div class="t f12" style="left:128px;top:282.08px;width:50px;height:17px;">Option A</div>
+  <div class="t f12" style="left:216px;top:282.08px;width:50px;height:17px;">Option B</div>
+  <div class="t f12" style="left:304px;top:282.08px;width:50px;height:17px;">Option C</div>
+  <div class="t f12" style="left:393px;top:282.08px;width:51px;height:17px;">Option D</div>
+  <span class="abs" style="left:194.5px;top:285.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737,10.0898508737,13,6.5,13C2.9101491263000003,13,0,10.0898508737,0,6.5C0,2.9101491263000003,2.9101491263000003,0,6.5,0C10.0898508737,0,13,2.9101491263000003,13,6.5Z" fill="#FFFFFF"/><path d="M10,6.5C10,8.4329966243,8.4329966243,10,6.5,10C4.567003375700001,10,3,8.4329966243,3,6.5C3,4.567003375700001,4.567003375700001,3,6.5,3C8.4329966243,3,10,4.567003375700001,10,6.5Z" fill="#0083EE"/></svg></span>
+  <span class="abs" style="left:106.5px;top:285.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:285.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:285.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <div class="t f12" style="left:128px;top:310.08px;width:49px;height:17px;">Option E</div>
+  <div class="t f12" style="left:216px;top:310.08px;width:48px;height:17px;">Option F</div>
+  <div class="t f12" style="left:304px;top:310.08px;width:51px;height:17px;">Option G</div>
+  <div class="t f12" style="left:393px;top:310.08px;width:51px;height:17px;">Option H</div>
+  <span class="abs" style="left:194.5px;top:313.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="#FFFFFF"/></svg></span>
+  <span class="abs" style="left:106.5px;top:313.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:282.5px;top:313.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <span class="abs" style="left:371.5px;top:313.5px;width:13px;height:13px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M13,6.5C13,10.0898508737 10.0898508737,13 6.5,13C2.9101491263000003,13 0,10.0898508737 0,6.5C0,2.9101491263000003 2.9101491263000003,0 6.5,0C10.0898508737,0 13,2.9101491263000003 13,6.5Z" fill="none"/></svg></span>
+  <!-- 底部按钮 -->
+  <span class="abs" style="left:0;top:346px;width:477px;height:64px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477 64" width="477" height="64"><path d="M0,52C0,58.627419,5.372582,64,11.999995,64L465,64C471.62741,64,477,58.627419,477,52L477,0L0,0L0,52Z" fill="#FFFFFF"/></svg></span>
+  <div class="abs" style="left:333px;top:362px;width:56px;height:32px;background:#3773DB;border-radius:6px;"></div>
+  <div class="t fbtnw" style="left:349px;top:368px;width:24px;height:20px;">提交</div>
+  <div class="abs" style="left:397px;top:362px;width:56px;height:32px;background:#FAFAFA;border:1px solid #DEDEDE;border-radius:6px;"></div>
+  <div class="t fbtnd" style="left:413px;top:368px;width:24px;height:20px;">取消</div>
+</div>
+
+<!-- S92 常用尺寸图例（右上） -->
+<div class="abs" style="left:1111px;top:716px;width:160px;height:128px;background:#FFFFFF;"></div>
+<div class="abs" style="left:1111.5px;top:728.5px;width:7px;height:7px;background:#A3E9A3;border:1px solid #83D883;"></div>
+<div class="abs" style="left:1111.5px;top:760.5px;width:7px;height:7px;background:#A3D5FF;border:1px solid #339EF6;"></div>
+<div class="abs" style="left:1111.5px;top:792.5px;width:7px;height:7px;background:#FFF5CC;border:1px solid #EDBE58;"></div>
+<div class="abs" style="left:1111.5px;top:824.5px;width:7px;height:7px;background:#FFA2A2;border:1px solid #EE2821;"></div>
+<div class="t f14" style="left:1130px;top:720.76px;width:117px;height:20px;">S2 = 4px * 2  = 8px</div>
+<div class="t f14" style="left:1130px;top:752.76px;width:125px;height:20px;">S3 = 4px * 3  = 12px</div>
+<div class="t f14" style="left:1130px;top:784.76px;width:125px;height:20px;">S4 = 4px * 4  = 16px</div>
+<div class="t f14" style="left:1130px;top:816.76px;width:125px;height:20px;">S6 = 4px * 6  = 24px</div>
+
+<!-- S93 常用尺寸图例（左下） -->
+<div class="abs" style="left:685px;top:1284px;width:160px;height:128px;background:#FFFFFF;"></div>
+<div class="abs" style="left:685.5px;top:1296.5px;width:7px;height:7px;background:#A3E9A3;border:1px solid #83D883;"></div>
+<div class="abs" style="left:685.5px;top:1328.5px;width:7px;height:7px;background:#A3D5FF;border:1px solid #339EF6;"></div>
+<div class="abs" style="left:685.5px;top:1360.5px;width:7px;height:7px;background:#FFF5CC;border:1px solid #EDBE58;"></div>
+<div class="abs" style="left:685.5px;top:1392.5px;width:7px;height:7px;background:#FFA2A2;border:1px solid #EE2821;"></div>
+<div class="t f14" style="left:704px;top:1288.76px;width:117px;height:20px;">S2 = 4px * 2  = 8px</div>
+<div class="t f14" style="left:704px;top:1320.76px;width:125px;height:20px;">S3 = 4px * 3  = 12px</div>
+<div class="t f14" style="left:704px;top:1352.76px;width:125px;height:20px;">S4 = 4px * 4  = 16px</div>
+<div class="t f14" style="left:704px;top:1384.76px;width:125px;height:20px;">S6 = 4px * 6  = 24px</div>
+
+<!-- S94/S95 按钮 -->
+<div class="abs" style="left:89px;top:1284px;width:92px;height:32px;background:#3773DB;border-radius:6px;"></div>
+<div class="t fbtnw" style="left:105px;top:1290px;width:60px;height:20px;">新建用户组</div>
+<div class="abs" style="left:89px;top:1383px;width:92px;height:32px;background:#3773DB;border-radius:6px;"></div>
+<div class="t fbtnw" style="left:105px;top:1389px;width:60px;height:20px;">新建用户组</div>
+
+<!-- S96 白色蒙版 -->
+<div class="abs" style="left:528px;top:1285px;width:78px;height:32px;background:#FFFFFF;"></div>
+
+<!-- S97~S99 标注色条 -->
+<span class="abs" style="left:181px;top:1271px;width:8px;height:56px;opacity:0.5;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="181 1271 8 56" width="8" height="56"><path d="M181,1271L189,1271L189,1327L181,1327L181,1271Z" fill="#A3E9A3" fill-rule="evenodd"/></svg></span>
+<span class="abs" style="left:520px;top:1271px;width:8px;height:56px;opacity:0.5;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="520 1271 8 56" width="8" height="56"><path d="M520,1271L528,1271L528,1327L520,1327L520,1271Z" fill="#A3E9A3" fill-rule="evenodd"/></svg></span>
+<span class="abs" style="left:520px;top:1370px;width:8px;height:56px;opacity:0.5;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="520 1370 8 56" width="8" height="56"><path d="M520,1370L528,1370L528,1426L520,1426L520,1370Z" fill="#A3E9A3" fill-rule="evenodd"/></svg></span>
+<!-- S100~S102 -->
+<div class="abs" style="left:89px;top:1371px;width:16px;height:56px;background:#EDBE58;opacity:0.3;"></div>
+<div class="abs" style="left:165px;top:1371px;width:16px;height:56px;background:#EDBE58;opacity:0.3;"></div>
+<div class="abs" style="left:189px;top:1371px;width:12px;height:56px;background:#339EF6;opacity:0.3;"></div>
+
+<!-- S103 8px 标注 -->
+<div class="abs" style="left:171px;top:1239px;width:29px;height:22px;background:#9A12B3;border-radius:2px;"></div>
+<div class="t fbad" style="left:176px;top:1244.08px;width:20px;height:12px;">8px</div>
+<span class="abs" style="left:182px;top:1257px;width:8px;height:8px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="11 18 8 8" width="29" height="31"><path d="M11,22L15,18L19,22L15,26L11,22Z" fill="#9A12B3" fill-rule="evenodd"/></svg></span>
+<div class="mline" style="left:181px;top:1267px;width:8px;height:1px;"></div>
+<div class="mline" style="left:181px;top:1265px;width:1px;height:5px;"></div>
+<div class="mline" style="left:188px;top:1265px;width:1px;height:5px;"></div>
+
+<!-- S104 16px 标注 -->
+<div class="abs" style="left:80px;top:1340px;width:35px;height:22px;background:#9A12B3;border-radius:2px;"></div>
+<div class="t fbad" style="left:84px;top:1345px;width:27px;height:12px;">16px</div>
+<span class="abs" style="left:94px;top:1358px;width:8px;height:8px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="14 18 8 8" width="35" height="31"><path d="M14,22L18,18L22,22L18,26L14,22Z" fill="#9A12B3" fill-rule="evenodd"/></svg></span>
+<div class="mline" style="left:89px;top:1368px;width:16px;height:1px;"></div>
+<div class="mline" style="left:89px;top:1366px;width:1px;height:5px;"></div>
+<div class="mline" style="left:104px;top:1366px;width:1px;height:5px;"></div>
+
+<!-- S105 16px 标注 -->
+<div class="abs" style="left:156px;top:1340px;width:35px;height:22px;background:#9A12B3;border-radius:2px;"></div>
+<div class="t fbad" style="left:160px;top:1345px;width:27px;height:12px;">16px</div>
+<span class="abs" style="left:170px;top:1358px;width:8px;height:8px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="14 18 8 8" width="35" height="31"><path d="M14,22L18,18L22,22L18,26L14,22Z" fill="#9A12B3" fill-rule="evenodd"/></svg></span>
+<div class="mline" style="left:165px;top:1368px;width:16px;height:1px;"></div>
+<div class="mline" style="left:165px;top:1366px;width:1px;height:5px;"></div>
+<div class="mline" style="left:180px;top:1366px;width:1px;height:5px;"></div>
+
+<!-- S106 12px 标注 -->
+<div class="abs" style="left:177px;top:1438px;width:35px;height:22px;background:#9A12B3;border-radius:2px;"></div>
+<div class="t fbad" style="left:181px;top:1443.08px;width:27px;height:12px;">12px</div>
+<span class="abs" style="left:191px;top:1434px;width:8px;height:8px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="14 5 8 8" width="35" height="31"><path d="M14,9L18,5L22,9L18,13L14,9Z" fill="#9A12B3" fill-rule="evenodd"/></svg></span>
+<div class="mline" style="left:189px;top:1431px;width:12px;height:1px;"></div>
+<div class="mline" style="left:189px;top:1429px;width:1px;height:5px;"></div>
+<div class="mline" style="left:200px;top:1429px;width:1px;height:5px;"></div>
+
+<!-- S107 8px 标注 -->
+<div class="abs" style="left:510px;top:1239px;width:29px;height:22px;background:#9A12B3;border-radius:2px;"></div>
+<div class="t fbad" style="left:514px;top:1240.08px;width:20px;height:12px;">8px</div>
+<span class="abs" style="left:521px;top:1257px;width:8px;height:8px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="11 18 8 8" width="29" height="31"><path d="M11,22L15,18L19,22L15,26L11,22Z" fill="#9A12B3" fill-rule="evenodd"/></svg></span>
+<div class="mline" style="left:520px;top:1267px;width:8px;height:1px;"></div>
+<div class="mline" style="left:520px;top:1265px;width:1px;height:5px;"></div>
+<div class="mline" style="left:527px;top:1265px;width:1px;height:5px;"></div>
+
+<!-- S108 搜索图标区 -->
+<div class="abs" style="left:292px;top:1291px;width:188px;height:20px;background:#FFFFFF;"></div>
+<span class="abs" style="left:496px;top:1295px;width:12px;height:12px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.072998 12.069946" width="12" height="11.9974365234375"><path d="M9.45401,8.3900146L11.781006,10.719971C12.072998,11.01001,12.072998,11.48999,11.781006,11.780029C11.488007,12.069946,11.013,12.069946,10.718994,11.780029L8.3940125,9.4499512C7.5169983,10.109985,6.4289856,10.5,5.25,10.5C2.3500061,10.5,0,8.1500244,0,5.25C0,2.3499756,2.3500061,0,5.25,0C8.1489868,0,10.498993,2.3499756,10.498993,5.25C10.498993,6.4300537,10.110992,7.5200195,9.45401,8.3900146Z
+M1.5,5.25C1.5,7.3199463,3.1789856,9,5.25,9C7.3210144,9,8.9989929,7.3199463,8.9989929,5.25C8.9989929,3.1800537,7.3210144,1.5,5.25,1.5C3.1789856,1.5,1.5,3.1800537,1.5,5.25Z" fill="#5A5A5A" fill-rule="evenodd"/></svg></span>
+<span class="abs" style="left:496px;top:1295px;width:12px;height:12px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.072998 12.069946" width="12" height="11.9974365234375"><path d="M9.45401,8.3900146L11.781006,10.719971C12.072998,11.01001,12.072998,11.48999,11.781006,11.780029C11.488007,12.069946,11.013,12.069946,10.718994,11.780029L8.3940125,9.4499512C7.5169983,10.109985,6.4289856,10.5,5.25,10.5C2.3500061,10.5,0,8.1500244,0,5.25C0,2.3499756,2.3500061,0,5.25,0C8.1489868,0,10.498993,2.3499756,10.498993,5.25C10.498993,6.4300537,10.110992,7.5200195,9.45401,8.3900146Z
+M1.5,5.25C1.5,7.3199463,3.1789856,9,5.25,9C7.3210144,9,8.9989929,7.3199463,8.9989929,5.25C8.9989929,3.1800537,7.3210144,1.5,5.25,1.5C3.1789856,1.5,1.5,3.1800537,1.5,5.25Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M0,0L12,0L12,12L0,12L0,0Z" fill="#C1C1C1" fill-rule="evenodd"/></svg></span>
+
+<!-- S109 输入框 -->
+<span class="abs" style="left:189px;top:1285px;width:92px;height:32px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 32" width="92" height="32"><path d="M0,0L92,0L92,32L0,32L0,0Z" fill="#FFFFFF" fill-rule="evenodd"/></svg></span>
+<span class="abs" style="left:189px;top:1285px;width:92px;height:32px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.000008 32" width="92" height="32"><path d="M3.5384617,0L92.000008,0L92.000008,32L3.5384617,32C1.5842212,32,0,30.37941,0,28.387096L0,3.6129031C0,1.6205896,1.5842212,0,3.5384617,0Z
+M3.5384617,1L91.000015,1L91.000015,31L3.5384617,31Q2.4937901,31,1.7510223,30.241165Q0.99999964,29.473898,0.9999997,28.387096L1,3.6129031Q1,2.5261028,1.7510223,1.7588348Q2.4937904,1,3.5384617,1Z" fill="#DEDEDE"/></svg></span>
+<div class="abs" style="left:201px;top:1291px;width:68px;height:20px;background:#FFFFFF;"></div>
+<div class="t f12ph" style="left:205px;top:1292px;width:60px;height:20px;">请输入内容</div>
+
+<!-- S110~S111 表格色块 -->
+<span class="abs" style="left:80.5px;top:1790px;width:172px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 62.5 173 64" width="172" height="63"><path d="M172.5,63L172.5,126L0.5,126L0.5,63L172.5,63Z" fill="#F5F5F5"/><path d="M0,126.5L0,62.5L173,62.5L173,126.5L0,126.5Z
+M172,63.5L1,63.5L1,125.5L172,125.5L172,63.5Z" fill="#EBEBEB"/></svg></span>
+<span class="abs" style="left:252px;top:1790.5px;width:853px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="171.5 63 854 64" width="853" height="63"><path d="M1025,63.5L1025,126.5L172,126.5L172,63.5L1025,63.5Z" fill="#FFFFFF"/><path d="M171.5,127L171.5,63L1025.5,63L1025.5,127L171.5,127Z
+M1024.5,64L172.5,64L172.5,126L1024.5,126L1024.5,64Z" fill="#EBEBEB"/></svg></span>
+<!-- S112~S116 表头数值 -->
+<div class="t fhv18" style="left:292px;top:1812.5px;width:21px;height:18px;">24</div>
+<div class="t fhv18" style="left:502px;top:1812.5px;width:21px;height:18px;">24</div>
+<div class="t fhv18" style="left:712px;top:1812.5px;width:18px;height:18px;">—</div>
+<div class="t fhv18" style="left:921px;top:1812.5px;width:18px;height:18px;">—</div>
+<div class="t f18g" style="left:105px;top:1805.62px;width:36px;height:26px;">导航</div>
+<!-- S117 表格首列色块 -->
+<span class="abs" style="left:80.5px;top:1727px;width:1025px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 1026 64" width="1025" height="63"><path d="M1025.5,0L1025.5,63L0.5,63L0.5,0L1025.5,0Z" fill="#F5F5F5"/><path d="M0,63.5L0,-0.5L1026,-0.5L1026,63.5L0,63.5Z
+M1025,0.5L1,0.5L1,62.5L1025,62.5L1025,0.5Z" fill="#EBEBEB"/></svg></span>
+<!-- S118~S121 L/R/T/B -->
+<div class="t fhv18" style="left:279px;top:1750.5px;width:11px;height:18px;">L</div>
+<div class="t f18g" style="left:289px;top:1742.5px;width:64px;height:26px;">（left）</div>
+<div class="t fhv18" style="left:477px;top:1750.5px;width:13px;height:18px;">R</div>
+<div class="t f18g" style="left:490px;top:1742.5px;width:77px;height:26px;">（right）</div>
+<div class="t fhv18" style="left:699px;top:1750.5px;width:11px;height:18px;">T</div>
+<div class="t f18g" style="left:710px;top:1742.5px;width:65px;height:26px;">（top）</div>
+<div class="t fhv18" style="left:890px;top:1750.5px;width:13px;height:18px;">B</div>
+<div class="t f18g" style="left:902px;top:1742.5px;width:99px;height:26px;">（bottom）</div>
+
+<!-- S122 页面内容行 -->
+<div class="abs" style="left:80px;top:1852.5px;width:1026px;height:64px;background:#FFFFFF;"></div>
+<span class="abs" style="left:80.5px;top:1853px;width:172px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 173 64" width="1024.5" height="63.5"><path d="M172,0L172,63L0,63L0,0L172,0Z" fill="#F5F5F5"/><path d="M-0.5,63.5L-0.5,-0.5L172.5,-0.5L172.5,63.5L-0.5,63.5Z
+M171.5,0.5L0.5,0.5L0.5,62.5L171.5,62.5L171.5,0.5Z" fill="#EBEBEB"/></svg></span>
+<span class="abs" style="left:252px;top:1853px;width:853px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="171 0 854 64" width="1024.5" height="63.5"><path d="M1024.5,0.5L1024.5,63.5L171.5,63.5L171.5,0.5L1024.5,0.5Z" fill="#FFFFFF"/><path d="M171,64L171,0L1025,0L1025,64L171,64Z
+M1024,1L172,1L172,63L1024,63L1024,1Z" fill="#EBEBEB"/></svg></span>
+<div class="t f18g" style="left:105px;top:1868.12px;width:72px;height:26px;">页面内容</div>
+<div class="t fhv18" style="left:292px;top:1876px;width:21px;height:18px;">24</div>
+<div class="t fhv18" style="left:503px;top:1876px;width:21px;height:18px;">24</div>
+<div class="t fhv18" style="left:712px;top:1876px;width:21px;height:18px;">16</div>
+<div class="t fhv18" style="left:921px;top:1876px;width:21px;height:18px;">24</div>
+
+<!-- S123 弹窗行 -->
+<div class="abs" style="left:80px;top:1915.5px;width:1026px;height:64px;background:#FFFFFF;"></div>
+<span class="abs" style="left:80.5px;top:1916px;width:172px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 173 64" width="1024.5" height="63.5"><path d="M172,0L172,63L0,63L0,0L172,0Z" fill="#F5F5F5"/><path d="M-0.5,63.5L-0.5,-0.5L172.5,-0.5L172.5,63.5L-0.5,63.5Z
+M171.5,0.5L0.5,0.5L0.5,62.5L171.5,62.5L171.5,0.5Z" fill="#EBEBEB"/></svg></span>
+<span class="abs" style="left:252px;top:1916px;width:853px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="171 0 854 64" width="1024.5" height="63.5"><path d="M1024.5,0.5L1024.5,63.5L171.5,63.5L171.5,0.5L1024.5,0.5Z" fill="#FFFFFF"/><path d="M171,64L171,0L1025,0L1025,64L171,64Z
+M1024,1L172,1L172,63L1024,63L1024,1Z" fill="#EBEBEB"/></svg></span>
+<div class="t f18g" style="left:105px;top:1931.12px;width:36px;height:26px;">弹窗</div>
+<div class="t fhv18" style="left:292px;top:1938px;width:21px;height:18px;">24</div>
+<div class="t fhv18" style="left:503px;top:1938px;width:21px;height:18px;">24</div>
+<div class="t fhv18" style="left:711.5px;top:1938px;width:18px;height:18px;">—</div>
+<div class="t fhv18" style="left:920.5px;top:1938px;width:18px;height:18px;">—</div>
+
+<!-- S124 卡片行 -->
+<div class="abs" style="left:80px;top:1978.5px;width:1026px;height:64px;background:#FFFFFF;"></div>
+<span class="abs" style="left:80.5px;top:1979px;width:172px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 173 64" width="1024.5" height="63.5"><path d="M172,0L172,63L0,63L0,0L172,0Z" fill="#F5F5F5"/><path d="M-0.5,63.5L-0.5,-0.5L172.5,-0.5L172.5,63.5L-0.5,63.5Z
+M171.5,0.5L0.5,0.5L0.5,62.5L171.5,62.5L171.5,0.5Z" fill="#EBEBEB"/></svg></span>
+<span class="abs" style="left:252px;top:1979px;width:853px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="171 0 854 64" width="1024.5" height="63.5"><path d="M1024.5,0.5L1024.5,63.5L171.5,63.5L171.5,0.5L1024.5,0.5Z" fill="#FFFFFF"/><path d="M171,64L171,0L1025,0L1025,64L171,64Z
+M1024,1L172,1L172,63L1024,63L1024,1Z" fill="#EBEBEB"/></svg></span>
+<div class="t f18g" style="left:105px;top:1994.12px;width:40px;height:26px;">卡片</div>
+<div class="t fhv18" style="left:292px;top:2001px;width:21px;height:18px;">16</div>
+<div class="t fhv18" style="left:503px;top:2001px;width:21px;height:18px;">16</div>
+<div class="t fhv18" style="left:712px;top:2001px;width:21px;height:18px;">16</div>
+<div class="t fhv18" style="left:921px;top:2001px;width:21px;height:18px;">16</div>
+
+<!-- S125 输入框内容行 -->
+<div class="abs" style="left:80px;top:2042.5px;width:1026px;height:64px;background:#FFFFFF;"></div>
+<span class="abs" style="left:80.5px;top:2043px;width:172px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 0 173 64" width="1024.5" height="63.5"><path d="M172,0.5L172,63.5L0,63.5L0,0.5L172,0.5Z" fill="#F5F5F5"/><path d="M-0.5,64L-0.5,0L172.5,0L172.5,64L-0.5,64Z
+M171.5,1L0.5,1L0.5,63L171.5,63L171.5,1Z" fill="#EBEBEB"/></svg></span>
+<span class="abs" style="left:252px;top:2042.5px;width:853px;height:63px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="171 -0.5 854 64" width="1024.5" height="63.5"><path d="M1024.5,0L1024.5,63L171.5,63L171.5,0L1024.5,0Z" fill="#FFFFFF"/><path d="M171,63.5L171,-0.5L1025,-0.5L1025,63.5L171,63.5Z
+M1024,0.5L172,0.5L172,62.5L1024,62.5L1024,0.5Z" fill="#EBEBEB"/></svg></span>
+<div class="t f18g" style="left:105px;top:2058.62px;width:90px;height:26px;">输入框内容</div>
+<div class="t fhv18" style="left:292px;top:2064.5px;width:21px;height:18px;">12</div>
+<div class="t fhv18" style="left:503px;top:2064.5px;width:21px;height:18px;">12</div>
+<div class="t fhv18" style="left:719.5px;top:2064.5px;width:11px;height:18px;">6</div>
+<div class="t fhv18" style="left:928.5px;top:2064.5px;width:11px;height:18px;">6</div>
+
+<!-- S1 搜索输入框（大） -->
+<span class="abs" style="left:280px;top:1384px;width:240px;height:32px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 32" width="240" height="32"><path d="M0,0L0,32L236.48537,32C238.42644,32,240,30.37941,240,28.387096L240,3.6129031C240,1.6205896,238.42644,0,236.48537,0L0,0Z
+M236.48538,1L1,1L1,31L236.48538,31Q237.51819,31,238.2536,30.243584Q239,29.475872,239,28.387096L239,3.6129031Q239,2.5241308,238.2536,1.756418Q237.51819,1,236.48538,1Z" fill="#DEDEDE"/></svg></span>
+<div class="t f12ph" style="left:293px;top:1390px;width:60px;height:20px;">请输入内容</div>
+<span class="abs" style="left:496px;top:1394px;width:12px;height:12px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.072998 12.069946" width="12" height="11.9974365234375"><path d="M9.45401,8.3900146L11.781006,10.719971C12.072998,11.01001,12.072998,11.48999,11.781006,11.780029C11.488007,12.069946,11.013,12.069946,10.718994,11.780029L8.3940125,9.4499512C7.5169983,10.109985,6.4289856,10.5,5.25,10.5C2.3500061,10.5,0,8.1500244,0,5.25C0,2.3499756,2.3500061,0,5.25,0C8.1489868,0,10.498993,2.3499756,10.498993,5.25C10.498993,6.4300537,10.110992,7.5200195,9.45401,8.3900146Z
+M1.5,5.25C1.5,7.3199463,3.1789856,9,5.25,9C7.3210144,9,8.9989929,7.3199463,8.9989929,5.25C8.9989929,3.1800537,7.3210144,1.5,5.25,1.5C3.1789856,1.5,1.5,3.1800537,1.5,5.25Z" fill="#5A5A5A" fill-rule="evenodd"/></svg></span>
+<span class="abs" style="left:496px;top:1394px;width:12px;height:12px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.072998 12.069946" width="12" height="11.9974365234375"><path d="M9.45401,8.3900146L11.781006,10.719971C12.072998,11.01001,12.072998,11.48999,11.781006,11.780029C11.488007,12.069946,11.013,12.069946,10.718994,11.780029L8.3940125,9.4499512C7.5169983,10.109985,6.4289856,10.5,5.25,10.5C2.3500061,10.5,0,8.1500244,0,5.25C0,2.3499756,2.3500061,0,5.25,0C8.1489868,0,10.498993,2.3499756,10.498993,5.25C10.498993,6.4300537,10.110992,7.5200195,9.45401,8.3900146Z
+M1.5,5.25C1.5,7.3199463,3.1789856,9,5.25,9C7.3210144,9,8.9989929,7.3199463,8.9989929,5.25C8.9989929,3.1800537,7.3210144,1.5,5.25,1.5C3.1789856,1.5,1.5,3.1800537,1.5,5.25Z" fill="#FFFFFF" fill-rule="evenodd"/><path d="M0,0L12,0L12,12L0,12L0,0Z" fill="#C1C1C1" fill-rule="evenodd"/></svg></span>
+
+<!-- S2 输入框（小） -->
+<span class="abs" style="left:189px;top:1384px;width:92px;height:32px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.000008 32" width="92" height="32"><path d="M3.5384617,0L92.000008,0L92.000008,32L3.5384617,32C1.5842212,32,0,30.37941,0,28.387096L0,3.6129031C0,1.6205896,1.5842212,0,3.5384617,0Z
+M3.5384617,1L91.000015,1L91.000015,31L3.5384617,31Q2.4937901,31,1.7510223,30.241165Q0.99999964,29.473898,0.9999997,28.387096L1,3.6129031Q1,2.5261028,1.7510223,1.7588348Q2.4937904,1,3.5384617,1Z" fill="#DEDEDE"/></svg></span>
+<div class="t f12ph" style="left:205px;top:1390px;width:60px;height:20px;">请输入内容</div>
+
+<!-- S131/S132 搜索框 + 占位 -->
+<span class="abs" style="left:280px;top:1285px;width:240px;height:32px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="280 1285 240 31.999998000000005" width="240" height="32"><path d="M280,1285L280,1316.999998L516.48537,1316.999998C518.42644,1316.999998,520,1315.379412,520,1313.387096L520,1288.6129031C520,1286.6205897,518.42644,1285,516.48537,1285L280,1285Z
+M516.48538,1286L281,1286L281,1315.999998L516.48538,1315.999998Q517.51819,1315.999998,518.2536,1315.243582Q519,1314.475868,519,1313.387096L519,1288.6129031Q519,1287.5241308,518.2536,1286.756418Q517.51819,1286,516.48538,1286Z" fill="#DEDEDE"/></svg></span>
+<div class="t f12ph" style="left:292px;top:1291px;width:60px;height:20px;">请输入内容</div>
+
+<!-- S133~S137 刷新按钮 -->
+<div class="abs" style="left:528px;top:1285px;width:78px;height:32px;background:#FAFAFA;border:1px solid #EBEBEB;border-radius:4px;"></div>
+<span class="abs" style="left:544px;top:1293px;width:14px;height:14px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.58319092 -0.61694336 14.58300792 14.63000536" width="13.99981689453125" height="14.0030517578125"><path d="M10.386841,3.322998C8.5678101,1.6530762,5.803833,1.5631104,3.8778076,3.1030273C1.9518433,4.6530762,1.4388428,7.3630371,2.6697998,9.5030518C3.6758423,11.243042,5.6248169,12.213013,7.6188354,11.963013C9.612793,11.713013,11.264832,10.303101,11.811829,8.3630371C11.908813,8.0230713,12.181824,7.7530518,12.528809,7.6630859C12.874817,7.5830078,13.241821,7.6831055,13.490845,7.9429932C13.740845,8.1929932,13.833801,8.5631104,13.736816,8.9130859C12.881836,11.933105,10.119812,14.013062,6.9797974,14.003052C3.8398438,13.993042,1.0898438,11.893066,0.25384521,8.8730469C-0.58319092,5.8430176,0.69781494,2.6330566,3.3878174,1.0030518C6.0768433,-0.61694336,9.5168457,-0.24694824,11.801819,1.9130859L13.145813,0.56311035C13.288818,0.4230957,13.503845,0.37304688,13.690796,0.45300293C13.878845,0.53308105,13.999817,0.7130127,13.999817,0.91308594L13.999817,5.2130127C13.999817,5.4830322,13.775818,5.7130127,13.499817,5.7130127L9.2058105,5.7130127C9.0038452,5.7130127,8.8218384,5.5930176,8.744812,5.4030762C8.6678467,5.2130127,8.7098389,5.0030518,8.8528442,4.8530273L10.386841,3.322998Z" fill="#888888"/></svg></span>
+<div class="t f12ph" style="left:566px;top:1291px;width:24px;height:20px;color:#555555;">刷新</div>
+<div class="abs" style="left:528px;top:1384px;width:78px;height:32px;background:#FAFAFA;border:1px solid #EBEBEB;border-radius:4px;"></div>
+<div class="t f12ph" style="left:566px;top:1390px;width:24px;height:20px;color:#555555;">刷新</div>
+
+<!-- S138~S140 -->
+<div class="abs" style="left:528px;top:1370px;width:16px;height:56px;background:#EDBE58;opacity:0.3;"></div>
+<div class="abs" style="left:591px;top:1371px;width:16px;height:56px;background:#EDBE58;opacity:0.3;"></div>
+<span class="abs" style="left:544px;top:1393px;width:14px;height:14px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="543.41680908 1392.38305664 14.58300792 14.630005360000041" width="13.99981689453125" height="14.0030517578125"><path d="M554.386841,1396.322998C552.5678101,1394.6530762,549.803833,1394.5631104,547.8778076,1396.1030273C545.9518433,1397.6530762,545.4388428,1400.3630371,546.6697998,1402.5030518C547.6758423,1404.243042,549.6248169,1405.213013,551.6188354,1404.963013C553.612793,1404.713013,555.264832,1403.303101,555.811829,1401.3630371C555.908813,1401.0230713,556.181824,1400.7530518,556.528809,1400.6630859C556.874817,1400.5830078,557.241821,1400.6831055,557.490845,1400.9429932C557.740845,1401.1929932,557.833801,1401.5631104,557.736816,1401.9130859C556.881836,1404.933105,554.119812,1407.013062,550.9797974,1407.003052C547.8398438,1406.993042,545.0898438,1404.893066,544.25384521,1401.8730469C543.41680908,1398.8430176,544.69781494,1395.6330566,547.3878174,1394.0030518C550.0768433,1392.38305664,553.5168457,1392.75305176,555.801819,1394.9130859L557.145813,1393.56311035C557.288818,1393.4230957,557.503845,1393.37304688,557.690796,1393.45300293C557.878845,1393.53308105,557.999817,1393.7130127,557.999817,1393.91308594L557.999817,1398.2130127C557.999817,1398.4830322,557.775818,1398.7130127,557.499817,1398.7130127L553.2058105,1398.7130127C553.0038452,1398.7130127,552.8218384,1398.5930176,552.744812,1398.4030762C552.6678467,1398.2130127,552.7098389,1398.0030518,552.8528442,1397.8530273L554.386841,1396.322998Z" fill="#888888"/></svg></span>
+
+</div>
+</body>
+</html>

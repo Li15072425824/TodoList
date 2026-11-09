@@ -1,0 +1,13 @@
+# GEN-10 混合密度页(六级文字层级同页)
+
+covers: [font.h1, font.h2, font.body, font.longtext, font.caption, font.weight.*, color.text.*, space.*]
+
+请生成一个「规范自检」混合密度页 demo(单个 HTML 文件),在同一页面内同时展示:
+- 页面大标题(18~24px 档)
+- 模块小标题(16px 档)
+- 正文(14px 档)在四种场景中的实例:表单字段、表格单元格、按钮文字、左侧导航项
+- 大段描述(14~16px 档,多行)
+- 辅助说明(12~13px 档):时间戳、备注、输入框提示
+- 三种字重对照:Regular/Medium/Bold
+每个实例旁用小字标注它声称使用的字号/行高/颜色 token,便于自动比对实际 computed style。
+要求:严格遵循岚图 Voyah UI/UE 设计规范,同类场景取值必须统一。

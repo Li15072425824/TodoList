@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>color-green</title>
+<style>
+:root{
+  --page-bg:#FFFFFF;--header-bg:#F9F9F9;--heading:#333333;--title:#111111;--subheading:#4A4A4A;--caption:#999999;
+  --token-text:#4D5559;--hex-text:#9B9EA0;--palette-heading:#373D41;
+  --filling1-1:#FAFAFA;--filling1-2:#F3F4F7;--filling1-3:#F5F5F5;
+  --line1-1:#EBEBEB;--line1-2:#DEDEDE;--line1-4:#737373;--line-blue:#3773DB;
+  --text-title:#111111;--text-primary:#333333;--text-secondary:#666666;--text-caption:#999999;--text-disable:#C1C1C1;
+  --color-help-1:#ECF3FF;--color-help-2:#B3CBF4;--color-help-3:#3773DB;--color-help-4:#1C5AC4;
+  --color-error-1:#FCEBEA;--color-error-2:#FDA2A4;--color-error-3:#FF2020;--color-error-4:#CF2E2E;
+  --color-warning-1:#FFF1DB;--color-warning-2:#FFD77E;--color-warning-3:#FFA800;--color-warning-4:#EA8C00;
+  --color-success-1:#E3F8E8;--color-success-2:#A8E1A6;--color-success-3:#00D115;--color-success-4:#00A611;
+  /* 主色序列：常规 */--color-primary-regular:#20A870;
+  /* 主色序列：浅色 */--color-primary-light:#D6F1E0;
+  /* 主色序列：深色/按下 */--color-primary-pressed:#097E4F;
+  /* 主色序列：hover */--color-primary-hover:#2ECA8A;
+  --other-1:#E8F6F9;--other-2:#A6D2D8;--other-3:#54A7B2;--other-4:#38929F;
+  --green-1:#BDF9E0;--green-2:#8EF1C8;--green-3:#53E1A6;--green-4:#38C78C;--green-5:#2ECA8A;--green-6:#2AB57C;--green-7:#20A870;--green-8:#179964;--green-9:#0F905C;--green-10:#097E4F;--green-11:#087247;--green-12:#00663D;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#FFFFFF}
+body{font-family:"PingFang SC",sans-serif;-webkit-font-smoothing:antialiased}
+.page{position:relative;width:1440px;min-height:2431px;height:2431px;margin:0 auto;overflow:hidden;border-radius:6px;background:var(--page-bg)}
+.section{position:absolute}
+.text{position:absolute;margin:0;white-space:nowrap;font-family:"PingFang SC",sans-serif;font-weight:400}
+.section-title{color:var(--heading);font-size:24px;line-height:32px;font-weight:600}
+.sub-title{color:var(--subheading);font-size:16px;line-height:22px}
+.desc{color:var(--caption);font-size:12px;line-height:20px}
+.palette-title{color:var(--palette-heading);font-size:18px;line-height:26px}
+.category-title{color:var(--subheading);font-size:18px;line-height:26px}
+.token{color:var(--token-text);font-size:14px;line-height:20px}
+.hex{color:var(--hex-text);font-size:12px;line-height:17px}
+.usage{color:var(--hex-text);font-size:12px;line-height:17px}
+.glyph{font-size:12px;line-height:17px;color:#333333}
+.swatch{position:absolute;display:block;width:40px;height:40px}
+.swatch svg{display:block;width:40px;height:40px}
+.color-chip{position:absolute;width:40px;height:40px;border-radius:4px}
+.header-bg{position:absolute;left:0;top:0;width:1440px;height:202px;background:var(--header-bg)}
+.header-title{left:80px;top:47px;width:96px;height:72px;color:var(--title);font-size:48px;line-height:.72;font-weight:500}
+.header-desc{left:80px;top:131px;width:507px;height:24px;color:var(--heading);font-size:16px;line-height:24px}
+.header-logo{position:absolute;left:1138px;top:36px;width:246px;height:130px;object-fit:contain}
+.primary-chip{position:absolute;top:0;width:72px;height:64px;border-radius:8px}
+.primary-label{top:74px;height:17px;color:var(--caption);font-size:12px;line-height:17px;text-align:center}
+.ramp-chip{position:absolute;top:0;width:64px;height:64px}
+</style>
+</head>
+<body>
+<main class="page" aria-label="色彩">
+  <!-- Section 0: 340:23693 -->
+  <section class="section" style="left:0;top:0;width:1440px;height:202px" data-section="0">
+    <div class="header-bg"></div>
+    <h1 class="text header-title">色彩</h1>
+    <p class="text header-desc">色彩在B端产品中首要任务是传递信息和建立层级，其次才是品牌传达。</p>
+    <img class="header-logo" src="https://image-resource.mastergo.com/64625781371459/64625781371461/720c545cc943ace29f300c2a0dafac3d.png" alt="">
+  </section>
+
+  <!-- Sections 1–5: headings -->
+  <h2 class="text section-title" style="left:80px;top:257px;width:72px;height:32px" data-section="1">基础色</h2>
+  <h2 class="text section-title" style="left:80px;top:858px;width:72px;height:32px" data-section="2">中立色</h2>
+  <h2 class="text section-title" style="left:80px;top:1486px;width:72px;height:32px" data-section="3">辅助色</h2>
+  <p class="text sub-title" style="left:80px;top:326px;width:96px;height:22px" data-section="4">系统主色序列</p>
+  <p class="text desc" style="left:80px;top:356px;width:204px;height:20px" data-section="5">后续的组件示例中皆以此颜色为主色调</p>
+
+  <!-- Section 6: Group 18 / filling -->
+  <section class="section" style="left:80px;top:1334px;width:532px;height:68.3199462890625px" data-section="6">
+    <span class="color-chip" style="left:0;top:1.239990234375px;background:var(--filling1-1)"></span>
+    <span class="color-chip" style="left:201px;top:1.239990234375px;background:var(--filling1-2)"></span>
+    <span class="color-chip" style="left:400px;top:1.239990234375px;background:var(--filling1-3)"></span>
+    <p class="text token" style="left:60px;top:0;width:70px;height:20px">@filling1-1</p>
+    <p class="text token" style="left:260px;top:0;width:70px;height:20px">@filling1-2</p>
+    <p class="text token" style="left:460px;top:0;width:70px;height:20px">@filling1-3</p>
+    <p class="text hex" style="left:60px;top:21.3199462890625px;width:52px;height:17px">#FAFAFA</p>
+    <p class="text hex" style="left:260px;top:21.3199462890625px;width:48px;height:17px">#F3F4F7</p>
+    <p class="text hex" style="left:460px;top:21.3199462890625px;width:50px;height:17px">#F5F5F5</p>
+    <p class="text usage" style="left:0;top:51.3199462890625px;width:144px;height:17px">提示框底色，提示文字背景</p>
+    <p class="text usage" style="left:200px;top:51.3199462890625px;width:96px;height:17px">页面内容区块底色</p>
+    <p class="text usage" style="left:400px;top:51.3199462890625px;width:132px;height:17px">标签背景、下拉选中背景</p>
+    <p class="text glyph" style="left:17px;top:11.3199462890625px;width:7px;height:17px">F</p>
+    <p class="text glyph" style="left:216px;top:11.3199462890625px;width:7px;height:17px">F</p>
+    <p class="text glyph" style="left:417px;top:11.3199462890625px;width:7px;height:17px">F</p>
+  </section>
+  <p class="text category-title" style="left:83px;top:1282px;width:36px;height:26px" data-section="7">填充</p>
+
+  <!-- Section 8: Group 19 / line -->
+  <section class="section" style="left:80px;top:1154px;width:732px;height:68.3199462890625px" data-section="8">
+    <span class="color-chip" style="left:200px;top:1.239990234375px;background:var(--line1-2)"></span>
+    <span class="color-chip" style="left:0;top:1.239990234375px;background:var(--line1-1)"></span>
+    <span class="color-chip" style="left:400px;top:1.239990234375px;background:var(--line1-4)"></span>
+    <span class="color-chip" style="left:601px;top:1.239990234375px;background:var(--line-blue)"></span>
+    <p class="text token" style="left:49px;top:0;width:57px;height:20px">@line1-1</p>
+    <p class="text token" style="left:249px;top:0;width:57px;height:20px">@line1-2</p>
+    <p class="text token" style="left:460px;top:0;width:57px;height:20px">@line1-4</p>
+    <p class="text token" style="left:661px;top:0;width:71px;height:20px">@line-Blue</p>
+    <p class="text hex" style="left:49px;top:23.3199462890625px;width:55px;height:17px">#EBEBEB</p>
+    <p class="text hex" style="left:249px;top:23.3199462890625px;width:56px;height:17px">#DEDEDE</p>
+    <p class="text hex" style="left:460px;top:23.3199462890625px;width:49px;height:17px">#737373</p>
+    <p class="text hex" style="left:661px;top:23.3199462890625px;width:52px;height:17px">#3773DB</p>
+    <p class="text usage" style="left:0;top:51.3199462890625px;width:111px;height:17px">组件边框 标题分割线</p>
+    <p class="text usage" style="left:200px;top:51.3199462890625px;width:48px;height:17px">表单边框</p>
+    <p class="text usage" style="left:400px;top:51.3199462890625px;width:106px;height:17px">组件边框Hover效果</p>
+    <p class="text usage" style="left:601px;top:51.3199462890625px;width:101px;height:17px">较重要程度/高层级</p>
+    <p class="text glyph" style="left:16px;top:11.3199462890625px;width:7px;height:17px">L</p>
+    <p class="text glyph" style="left:216px;top:11.3199462890625px;width:7px;height:17px">L</p>
+    <p class="text glyph" style="left:416px;top:11.3199462890625px;width:7px;height:17px;color:#FFFFFF">L</p>
+    <p class="text glyph" style="left:617px;top:11.3199462890625px;width:7px;height:17px;color:#FFFFFF">L</p>
+  </section>
+  <p class="text category-title" style="left:83px;top:1102px;width:36px;height:26px" data-section="9">线条</p>
+
+  <!-- Sections 10–11: section DSL skipped after two rate-limit responses; geometry/colors restored from section list and rootMetadata. -->
+  <section class="section" style="left:80px;top:985px;width:956px;height:71px" data-section="10" data-dsl-skipped="rate-limit">
+    <div class="color-chip" style="left:0;top:1.24px;background:var(--text-title)"></div><div class="color-chip" style="left:200px;top:1.24px;background:var(--text-primary)"></div><div class="color-chip" style="left:400px;top:1.24px;background:var(--text-secondary)"></div><div class="color-chip" style="left:600px;top:1.24px;background:var(--text-caption)"></div><div class="color-chip" style="left:800px;top:1.24px;background:var(--text-disable)"></div>
+    <p class="text token" style="left:60px;top:0">@text-Title</p><p class="text token" style="left:260px;top:0">@text-Primary</p><p class="text token" style="left:460px;top:0">@text-Secondary</p><p class="text token" style="left:660px;top:0">@text-Caption</p><p class="text token" style="left:860px;top:0">@text-Disable</p>
+    <p class="text hex" style="left:60px;top:23.32px">#111</p><p class="text hex" style="left:260px;top:23.32px">#333</p><p class="text hex" style="left:460px;top:23.32px">#666</p><p class="text hex" style="left:660px;top:23.32px">#999</p><p class="text hex" style="left:860px;top:23.32px">#C1C1C1</p>
+    <p class="text usage" style="left:600px;top:51.32px">默认图形icon</p><p class="text usage" style="left:800px;top:51.32px">默认图形icon hover</p>
+    <p class="text glyph" style="left:16px;top:11.32px;color:#FFFFFF">T</p><p class="text glyph" style="left:216px;top:11.32px;color:#FFFFFF">T</p><p class="text glyph" style="left:416px;top:11.32px;color:#FFFFFF">T</p><p class="text glyph" style="left:616px;top:11.32px;color:#FFFFFF">T</p><p class="text glyph" style="left:816px;top:11.32px">T</p>
+  </section>
+  <p class="text category-title" style="left:83px;top:932px;width:36px;height:26px" data-section="11" data-dsl-skipped="rate-limit">字体</p>
+
+  <!-- Sections 12–14: section DSL skipped after two rate-limit responses; visible token metadata comes from rootMetadata.allTexts. -->
+  <section class="section" style="left:80px;top:2030px;width:752px;height:92.8798828125px" data-section="12" data-dsl-skipped="rate-limit">
+    <p class="text palette-title" style="left:0;top:0;width:36px;height:26px">帮助</p>
+    <div class="color-chip" style="left:0;top:51.88px;background:var(--color-help-3)"></div><div class="color-chip" style="left:200px;top:52px;background:var(--color-help-4)"></div><div class="color-chip" style="left:400px;top:51.88px;background:var(--color-help-1)"></div><div class="color-chip" style="left:601px;top:52.88px;background:var(--color-help-2)"></div>
+    <p class="text token" style="left:60px;top:50.64px">@color-help-3</p><p class="text token" style="left:260px;top:50.64px">@color-help-4</p><p class="text token" style="left:449px;top:50.64px">@color-help-1</p><p class="text token" style="left:660px;top:51.64px">@color-help-2</p>
+    <p class="text hex" style="left:60px;top:71.96px">#3773DB</p><p class="text hex" style="left:260px;top:71.96px">#1C5AC4</p><p class="text hex" style="left:449px;top:73.96px">#ECF3FF</p><p class="text hex" style="left:660px;top:71.96px">#B3CBF4</p>
+    <p class="text glyph" style="left:16px;top:61.96px;color:#FFFFFF">B</p><p class="text glyph" style="left:216px;top:63px;color:#FFFFFF">B</p><p class="text glyph" style="left:416px;top:61.96px;color:#3773DB">B</p><p class="text glyph" style="left:617px;top:62.96px;color:#3773DB">B</p>
+  </section>
+  <section class="section" style="left:80px;top:1870px;width:758px;height:92.8800048828125px" data-section="13" data-dsl-skipped="rate-limit">
+    <p class="text palette-title" style="left:0;top:0">警告-强</p>
+    <div class="color-chip" style="left:0;top:51.88px;background:var(--color-error-3)"></div><div class="color-chip" style="left:200px;top:52px;background:var(--color-error-4)"></div><div class="color-chip" style="left:400px;top:51.88px;background:var(--color-error-1)"></div><div class="color-chip" style="left:601px;top:52.88px;background:var(--color-error-2)"></div>
+    <p class="text token" style="left:60px;top:50.64px">@color-rerror-3</p><p class="text token" style="left:260px;top:50.64px">@color-error-4</p><p class="text token" style="left:449px;top:50.64px">@color-error-1</p><p class="text token" style="left:660px;top:51.64px">@color-error-2</p>
+    <p class="text hex" style="left:60px;top:71.96px">#FF2020</p><p class="text hex" style="left:260px;top:71.96px">#CF2E2E</p><p class="text hex" style="left:449px;top:73.96px">#FCEBEA</p><p class="text hex" style="left:660px;top:71.96px">#FDA2A4</p>
+    <p class="text glyph" style="left:16px;top:61.96px;color:#FFFFFF">R</p><p class="text glyph" style="left:216px;top:63px;color:#FFFFFF">R</p><p class="text glyph" style="left:416px;top:61.96px;color:#CF2E2E">R</p><p class="text glyph" style="left:617px;top:62.96px;color:#CF2E2E">R</p>
+  </section>
+  <section class="section" style="left:80px;top:1710px;width:777px;height:92.8800048828125px" data-section="14" data-dsl-skipped="rate-limit">
+    <p class="text palette-title" style="left:0;top:0">警告-弱</p>
+    <div class="color-chip" style="left:0;top:51.88px;background:var(--color-warning-3)"></div><div class="color-chip" style="left:200px;top:52px;background:var(--color-warning-4)"></div><div class="color-chip" style="left:400px;top:51.88px;background:var(--color-warning-1)"></div><div class="color-chip" style="left:601px;top:52.88px;background:var(--color-warning-2)"></div>
+    <p class="text token" style="left:60px;top:50.64px">@color-warning-3</p><p class="text token" style="left:260px;top:50.64px">@color-warning-4</p><p class="text token" style="left:449px;top:50.64px">@color-warning-1</p><p class="text token" style="left:660px;top:51.64px">@color-warning-2</p>
+    <p class="text hex" style="left:60px;top:71.96px">#FFA800</p><p class="text hex" style="left:260px;top:71.96px">#EA8C00</p><p class="text hex" style="left:449px;top:73.96px">#FFF1DB</p><p class="text hex" style="left:660px;top:71.96px">#FFD77E</p>
+    <p class="text glyph" style="left:16px;top:61.96px;color:#FFFFFF">Y</p><p class="text glyph" style="left:216px;top:63px;color:#FFFFFF">Y</p><p class="text glyph" style="left:416px;top:61.96px;color:#EA8C00">Y</p><p class="text glyph" style="left:617px;top:62.96px;color:#EA8C00">Y</p>
+  </section>
+
+  <!-- Section 15: Group 25 / success -->
+  <section class="section" style="left:80px;top:1550px;width:785px;height:95.8800048828125px" data-section="15">
+    <p class="text palette-title" style="left:0;top:0;width:36px;height:26px">成功</p>
+    <span class="swatch" style="left:0;top:53.1199951171875px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1.239990234375 40 40" width="773" height="42.3199462890625"><path d="M4,1.239990234375L36,1.239990234375C38.209141,1.239990234375,40,3.030850934375,40,5.239990234375L40,37.239990234375C40,39.449131234375,38.209141,41.239990234375,36,41.239990234375L4.000001,41.239990234375C1.7908607,41.239990234375,0,39.449131234375,0,37.239990234375L0,5.239991234375C0,3.030850934375,1.7908607,1.239990234375,4,1.239990234375" fill="#00D115" fill-rule="evenodd"/></svg></span><span class="swatch" style="left:200px;top:53.1199951171875px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 1.239990234375 40 40" width="773" height="42.3199462890625"><path d="M204,1.239990234375L236,1.239990234375C238.209141,1.239990234375,240,3.030850934375,240,5.239990234375L240,37.239990234375C240,39.449131234375,238.209141,41.239990234375,236,41.239990234375L204.000001,41.239990234375C201.7908607,41.239990234375,200,39.449131234375,200,37.239990234375L200,5.239991234375C200,3.030850934375,201.7908607,1.239990234375,204,1.239990234375" fill="#00A611" fill-rule="evenodd"/></svg></span><span class="swatch" style="left:601px;top:53.1199951171875px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="601 1.239990234375 40 40" width="773" height="42.3199462890625"><path d="M605,1.239990234375L637,1.239990234375C639.209141,1.239990234375,641,3.030850934375,641,5.239990234375L641,37.239990234375C641,39.449131234375,639.209141,41.239990234375,637,41.239990234375L605.000001,41.239990234375C602.7908607,41.239990234375,601,39.449131234375,601,37.239990234375L601,5.239991234375C601,3.030850934375,602.7908607,1.239990234375,605,1.239990234375" fill="#A8E1A6" fill-rule="evenodd"/></svg></span><span class="swatch" style="left:400px;top:53.1199951171875px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 1.239990234375 40 40" width="773" height="42.3199462890625"><path d="M404,1.239990234375L436,1.239990234375C438.209141,1.239990234375,440,3.030850934375,440,5.239990234375L440,37.239990234375C440,39.449131234375,438.209141,41.239990234375,436,41.239990234375L404.000001,41.239990234375C401.7908607,41.239990234375,400,39.449131234375,400,37.239990234375L400,5.239991234375C400,3.030850934375,401.7908607,1.239990234375,404,1.239990234375" fill="#E3F8E8" fill-rule="evenodd"/></svg></span>
+    <p class="text token" style="left:60px;top:52.8800048828125px;width:113px;height:20px">@color-success-3</p><p class="text token" style="left:261px;top:52.8800048828125px;width:113px;height:20px">@color-success-4</p><p class="text token" style="left:461px;top:52.8800048828125px;width:113px;height:20px">@color-success-1</p><p class="text token" style="left:660px;top:51.8800048828125px;width:113px;height:20px">@color-success-2</p>
+    <p class="text hex" style="left:60px;top:73.199951171875px;width:47px;height:17px">#00D115</p><p class="text hex" style="left:261px;top:77.199951171875px;width:50px;height:17px">#00A611</p><p class="text hex" style="left:461px;top:73.199951171875px;width:48px;height:17px">#E3F8E8</p><p class="text hex" style="left:660px;top:73.199951171875px;width:51px;height:17px">#A8E1A6</p>
+    <p class="text glyph" style="left:15px;top:63.199951171875px;width:9px;height:17px;color:#FFFFFF">G</p><p class="text glyph" style="left:215px;top:63.199951171875px;width:9px;height:17px;color:#FFFFFF">G</p><p class="text glyph" style="left:416px;top:63.199951171875px;width:9px;height:17px;color:#00A611">G</p><p class="text glyph" style="left:617px;top:63.199951171875px;width:9px;height:17px;color:#00A611">G</p>
+  </section>
+
+  <!-- Section 16: primary sequence; token/hex retained as data attributes because the design displays only the four usage labels. -->
+  <section class="section" style="left:83px;top:418px;width:520px;height:91px" data-section="16">
+    <div class="primary-chip" data-token="常规" data-hex="#20A870" data-usage="常规" style="left:0;background:var(--color-primary-regular)"></div>
+    <div class="primary-chip" data-token="浅色" data-hex="#D6F1E0" data-usage="浅色" style="left:144px;background:var(--color-primary-light)"></div>
+    <div class="primary-chip" data-token="深色/按下" data-hex="#097E4F" data-usage="深色/按下" style="left:288px;background:var(--color-primary-pressed)"></div>
+    <div class="primary-chip" data-token="hover" data-hex="#2ECA8A" data-usage="hover" style="left:448px;background:var(--color-primary-hover)"></div>
+    <p class="text primary-label" style="left:23.5px;width:24px">常规</p><p class="text primary-label" style="left:169px;width:24px">浅色</p><p class="text primary-label" style="left:296.5px;width:54px">深色/按下</p><p class="text primary-label" style="left:468px;width:31px">hover</p>
+  </section>
+
+  <!-- Section 17: Group 26 / other -->
+  <section class="section" style="left:81px;top:2190px;width:752px;height:92.8798828125px" data-section="17">
+    <p class="text palette-title" style="left:0;top:0;width:36px;height:25px">其他</p>
+    <span class="swatch" style="left:0;top:51.8798828125px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 51.8798828125 40 40" width="752" height="92.8798828125"><path d="M4,51.8798828125L36,51.8798828125C38.209141,51.8798828125,40,53.6707435125,40,55.8798828125L40,87.8798828125C40,90.0890238125,38.209141,91.8798828125,36,91.8798828125L4.000001,91.8798828125C1.7908607,91.8798828125,0,90.0890238125,0,87.8798828125L0,55.8798838125C0,53.6707435125,1.7908607,51.8798828125,4,51.8798828125" fill="#54A7B2"/></svg></span><span class="swatch" style="left:601px;top:52.8798828125px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="601 52.8798828125 40 40" width="752" height="92.8798828125"><path d="M605,52.8798828125L637,52.8798828125C639.209141,52.8798828125,641,54.6707435125,641,56.8798828125L641,88.8798828125C641,91.0890238125,639.209141,92.8798828125,637,92.8798828125L605.000001,92.8798828125C602.7908607,92.8798828125,601,91.0890238125,601,88.8798828125L601,56.8798838125C601,54.6707435125,602.7908607,52.8798828125,605,52.8798828125" fill="#A6D2D8"/></svg></span><span class="swatch" style="left:200px;top:52px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 52 40 40" width="752" height="92.8798828125"><path d="M204,52L236,52C238.209141,52,240,53.7908607,240,56L240,88C240,90.209141,238.209141,92,236,92L204.000001,92C201.7908607,92,200,90.209141,200,88L200,56.000001C200,53.7908607,201.7908607,52,204,52" fill="#38929F"/></svg></span><span class="swatch" style="left:400px;top:51.8798828125px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="400 51.8798828125 40 40" width="752" height="92.8798828125"><path d="M404,51.8798828125L436,51.8798828125C438.209141,51.8798828125,440,53.6707435125,440,55.8798828125L440,87.8798828125C440,90.0890238125,438.209141,91.8798828125,436,91.8798828125L404.000001,91.8798828125C401.7908607,91.8798828125,400,90.0890238125,400,87.8798828125L400,55.8798838125C400,53.6707435125,401.7908607,51.8798828125,404,51.8798828125" fill="#E8F6F9"/></svg></span>
+    <p class="text token" style="left:60px;top:50.639892578125px;width:92px;height:20px">@color-help-3</p><p class="text token" style="left:260px;top:50.639892578125px;width:92px;height:20px">@color-help-4</p><p class="text token" style="left:449px;top:50.639892578125px;width:92px;height:20px">@color-help-1</p><p class="text token" style="left:660px;top:51.639892578125px;width:92px;height:20px">@color-help-2</p>
+    <p class="text hex" style="left:60px;top:71.9599609375px;width:52px;height:17px">#54A7B2</p><p class="text hex" style="left:260px;top:71.9599609375px;width:51px;height:17px">#38929F</p><p class="text hex" style="left:449px;top:73.9599609375px;width:51px;height:17px">#E8F6F9</p><p class="text hex" style="left:660px;top:71.9599609375px;width:54px;height:17px">#6EACB4</p>
+    <p class="text glyph" style="left:16px;top:61.9599609375px;width:8px;height:17px;color:#FFFFFF">B</p><p class="text glyph" style="left:216px;top:63px;width:8px;height:17px;color:#FFFFFF">B</p><p class="text glyph" style="left:416px;top:61.9599609375px;width:8px;height:17px;color:#54A7B2">B</p><p class="text glyph" style="left:617px;top:62.9599609375px;width:8px;height:17px;color:#54A7B2">B</p>
+  </section>
+
+  <!-- Sections 18–19: ramp headings -->
+  <p class="text sub-title" style="left:84px;top:611px;width:80px;height:22px" data-section="18">主色调色阶</p>
+  <p class="text desc" style="left:84px;top:645px;width:276px;height:20px" data-section="19">主色调色值会在不同场景里为了区分业务单元而调配</p>
+
+  <!-- Sections 20–30: main color ramp -->
+  <div class="section" style="left:84px;top:693px;width:64px;height:64px" data-section="20"><div class="ramp-chip" style="background:var(--green-1)"></div></div>
+  <div class="section" style="left:340px;top:693px;width:64px;height:64px" data-section="21"><div class="ramp-chip" style="background:var(--green-6)"></div></div>
+  <div class="section" style="left:212px;top:693px;width:64px;height:64px" data-section="22"><div class="ramp-chip" style="background:var(--green-3)"></div></div>
+  <div class="section" style="left:468px;top:693px;width:64px;height:64px" data-section="23"><div class="ramp-chip" style="background:var(--green-8)"></div></div>
+  <div class="section" style="left:148px;top:693px;width:64px;height:64px" data-section="24"><div class="ramp-chip" style="background:var(--green-2)"></div></div>
+  <div class="section" style="left:404px;top:693px;width:64px;height:64px" data-section="25"><div class="ramp-chip" style="background:var(--green-7)"></div></div>
+  <div class="section" style="left:596px;top:693px;width:64px;height:64px" data-section="26"><div class="ramp-chip" style="background:var(--green-10)"></div></div>
+  <div class="section" style="left:660px;top:693px;width:64px;height:64px" data-section="27"><div class="ramp-chip" style="background:var(--green-11)"></div></div>
+  <div class="section" style="left:276px;top:693px;width:64px;height:64px" data-section="28"><div class="ramp-chip" style="background:var(--green-4)"></div></div>
+  <div class="section" style="left:532px;top:693px;width:64px;height:64px" data-section="29"><div class="ramp-chip" style="background:var(--green-9)"></div></div>
+  <div class="section" style="left:724px;top:693px;width:64px;height:64px" data-section="30"><div class="ramp-chip" style="background:var(--green-12)"></div></div>
+</main>
+</body>
+</html>

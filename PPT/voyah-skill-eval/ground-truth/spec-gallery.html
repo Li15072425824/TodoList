@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>岚图数字化 UI/UE 规范 · 验收 Gallery v2</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:#333;background:#F5F5F5;font-size:14px}
+  header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #EBEBEB;padding:12px 24px}
+  header h1{font-size:18px;font-weight:600;color:#111}
+  header .sub{font-size:12px;color:#999;margin-top:2px;line-height:1.6}
+  .toolbar{display:flex;gap:12px;align-items:center;margin-top:8px;flex-wrap:wrap}
+  .toolbar button{border:1px solid #DEDEDE;background:#fff;border-radius:4px;padding:4px 12px;cursor:pointer;font-size:12px}
+  .toolbar button:hover{border-color:#737373}
+  #progressbar{flex:1;min-width:240px;height:8px;background:#EBEBEB;border-radius:4px;overflow:hidden}
+  #progressbar .p{height:100%;background:#3773DB}
+  #progress-text{font-size:12px;color:#666}
+  nav.toc{position:fixed;left:0;top:118px;bottom:0;width:150px;background:#fff;border-right:1px solid #EBEBEB;padding:16px 0;font-size:13px;overflow-y:auto}
+  nav.toc a{display:block;padding:8px 16px;color:#666;text-decoration:none}
+  nav.toc a:hover{color:#3773DB;background:#F7F9FE}
+  nav.toc a .st{float:right;font-size:11px}
+  main{margin-left:166px;padding:24px;max-width:1250px}
+  section.block{background:#fff;border:1px solid #EBEBEB;border-radius:8px;padding:24px;margin-bottom:24px}
+  section.block>h2{font-size:16px;font-weight:600;color:#111;border-left:4px solid #3773DB;padding-left:10px;margin-bottom:6px}
+  section.block>.desc{font-size:12px;color:#999;margin-bottom:16px;line-height:1.6}
+  h3.grp{font-size:14px;font-weight:600;color:#111;margin:20px 0 10px}
+  .grplabel{width:100%;font-weight:600;color:#111;margin-top:10px;font-size:13px}
+  .swgrid{display:flex;flex-wrap:wrap;gap:14px}
+  .el{width:198px;border:1px solid #EBEBEB;border-radius:6px;overflow:hidden;position:relative}
+  .el .chip{height:56px;display:flex;align-items:flex-end;justify-content:flex-end;padding:4px 8px}
+  .el .meta{padding:8px 10px;font-size:12px;line-height:1.6}
+  .el .token{font-weight:600;color:#111}
+  .el .hex{color:#666;font-family:Menlo,monospace;font-size:11px}
+  .el .usage{color:#666}
+  .flag{display:inline-block;font-size:11px;color:#B25E00;background:#FFF1DB;border:1px solid #FFD77E;border-radius:3px;padding:0 5px;margin-top:4px}
+  .uflag{display:inline-block;font-size:11px;color:#0B7A47;background:#E3F8E8;border:1px solid #A8E1A6;border-radius:3px;padding:0 5px;margin-top:4px}
+  .ctrl{display:flex;gap:6px;padding:0 10px 10px;font-size:12px}
+  .ctrl button{border:1px solid #DEDEDE;background:#fff;border-radius:3px;padding:2px 8px;cursor:pointer}
+  .ctrl button.pass.on{background:#D6F1E0;border-color:#20A870;color:#097E4F}
+  .ctrl button.fail.on{background:#FCEBEA;border-color:#FF2020;color:#CF2E2E}
+  .el.locked .ctrl button{cursor:default;opacity:.85}
+  .el .lock{position:absolute;top:6px;right:6px;font-size:12px}
+  .el .note{display:none;margin:0 10px 10px}
+  .el.rejected .note{display:block}
+  .el .note input{width:100%;border:1px solid #DEDEDE;border-radius:3px;padding:3px 6px;font-size:12px}
+  .el.passed{outline:2px solid #20A870;outline-offset:-2px}
+  .el.rejected{outline:2px solid #FF2020;outline-offset:-2px}
+  .statusband{font-size:11px;padding:2px 10px 0;color:#999}
+  /* 主题切换 */
+  .themebtns{display:flex;gap:8px;margin:8px 0 16px;flex-wrap:wrap}
+  .themebtns button{border:1px solid #DEDEDE;background:#fff;border-radius:16px;padding:5px 18px;cursor:pointer;font-size:13px;color:#333}
+  .themebtns button.on{color:#fff;border-color:transparent;font-weight:500}
+  /* 按钮示例 */
+  .btnrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .vbtn{display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid transparent;white-space:nowrap}
+  .iconph{display:inline-block;background:currentColor;border-radius:1px}
+</style>
+</head>
+<body>
+<header>
+  <h1>岚图数字化 UI/UE 规范 · 验收 Gallery v2</h1>
+  <div class="sub">v2 变更:① 上轮已通过的 82 项已锁定(🔒),问题项与未填项统一显示为「未填写」待复检 ② 主题色切换(选主题后显示该主题对应的中立色/辅助色/主色) ③ 按钮按批注重做(宽度随内容,真实 padding/字号/icon 规格) ④ 绿色主题删除 ⑤ 图标模块按指示取消 ⑥ 填充色语义按批注修正</div>
+  <div class="toolbar">
+    <button onclick="exportLog()">⬇ 导出 review-log.json</button>
+    <button id="filter-btn" onclick="toggleFilter()">⊒ 只显示待复核(隐藏已通过)</button>
+    <button onclick="if(confirm('清空全部检核状态(含上轮锁定)?')){localStorage.removeItem(KEY);location.reload()}">重置</button>
+    <div id="progressbar"><div class="p" id="progress-fill"></div></div>
+    <span id="progress-text"></span>
+  </div>
+</header>
+<nav class="toc" id="toc"></nav>
+<main id="main"></main>
+
+<script>
+const KEY='voyah-gallery-review-v2';
+let filterOpen=false;
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+
+/* ============ 上轮人工检核结果(Downloads/review-log.json,已通过项锁定) ============ */
+const V1_PASS=["color.text.title","color.text.primary","color.text.caption","color.text.disable","color.line.1","color.line.2","color.line.4","color.line.blue","color.fill.1","color.aux.success.1","color.aux.success.2","color.aux.success.3","color.aux.success.4","color.aux.warn.1","color.aux.warn.2","color.aux.warn.3","color.aux.warn.4","color.aux.error.1","color.aux.error.2","color.aux.error.3","color.aux.error.4","color.aux.help.1","color.aux.help.3","color.aux.purple.1","color.aux.purple.2","color.aux.purple.3","color.aux.purple.4","color.theme.blue.1","color.theme.blue.2","color.theme.blue.3","color.theme.blue.4","color.theme.yellow.1","color.theme.yellow.2","color.theme.yellow.3","color.theme.yellow.4","color.theme.purple.1","color.theme.purple.2","color.theme.purple.3","color.theme.purple.4","color.theme.cuiqing.1","color.theme.cuiqing.2","color.theme.cuiqing.3","color.theme.cuiqing.4","color.theme.red.1","color.theme.red.2","color.theme.red.3","color.theme.red.4","color.theme.biqing.1","color.theme.biqing.2","color.theme.biqing.3","color.theme.biqing.4","line.width.0.5.solid","line.width.1.solid","line.width.2.solid","line.width.3.solid","line.width.0.5.dashed","line.width.1.dashed","line.width.2.dashed","line.width.3.dashed","line.color.1","line.color.2","line.color.3","line.color.4","line.color.5","line.divider.h","line.divider.v","font.family.en","font.family.num","font.weight.400","font.weight.500","font.weight.600","font.level.page-title","font.level.module-title","font.level.body","font.level.caption","font.level.longform","font.color.page-title","font.color.body","font.color.aux","font.color.hint","font.color.disable","font.color.special"];
+const V1_NOTES={"color.text.secondary":"还是默认图形 icon hover","color.fill.2":"使用 F3F4F7,用在页面内容区块底色","color.fill.3":"用于标签背景,下拉选中背景","color.aux.help.4":"后面还有一个 6EACB4 的颜色为什么没有","color.theme.green.1":"删除绿色","font.family.cn":"这个是 MAC 的,还有 windows 的默认字体没有纳入进来","button.size.large":"高度 40,宽度没有限定,左右留边距 16px,上下留边距 8px,字号 16px,行高 24px","button.size.middle":"宽度无限定,高 32,圆角 6,左右 padding 16px,上下 padding 6px,文字行高 20,字号 12","button.size.small":"宽度无限定,高度 24,padding:2px 8px,行高 20px,字号 12px","button.variant.icon-large":"icon 12px 的宽高,和文字之间 gap 4px","button.variant.icon-middle":"icon 8px 的宽高,和文字之间 gap 4px","button.variant.icon-small":"icon 8px 的宽高,和文字之间 gap 4px"};
+/* 初始化:通过→锁定;问题/未填→未填写(备注保留展示) */
+/* ============ 第二轮检核结果(review-log (1).json,2026-11-06) ============ */
+const V2_PASS=["color.text.title","color.text.primary","color.text.secondary","color.text.caption","color.text.disable","color.line.1","color.line.2","color.line.4","color.line.blue","color.fill.1","color.fill.2","color.fill.3","color.aux.success.1","color.aux.success.2","color.aux.success.3","color.aux.success.4","color.aux.warn.1","color.aux.warn.2","color.aux.warn.3","color.aux.warn.4","color.aux.error.1","color.aux.error.2","color.aux.error.3","color.aux.error.4","color.aux.purple.1","color.aux.purple.2","color.aux.purple.3","color.aux.purple.4","color.aux.help-teal.1","color.aux.help-teal.3","color.theme.blue.1","color.theme.blue.2","color.theme.blue.3","color.theme.blue.4","line.width.0.5.solid","line.width.1.solid","line.width.2.solid","line.width.3.solid","line.width.0.5.dashed","line.width.1.dashed","line.width.2.dashed","line.width.3.dashed","line.color.1","line.color.2","line.color.3","line.color.4","line.color.5","line.divider.h","line.divider.v","font.family.cn","font.family.en","font.family.num","font.weight.400","font.weight.500","font.weight.600","font.level.page-title","font.level.module-title","font.level.body","font.level.caption","font.level.longform","font.color.page-title","font.color.body","font.color.aux","font.color.hint","font.color.disable","font.color.special","button.size.large","button.size.middle","button.size.small","button.variant.icon-large","button.variant.icon-middle","button.variant.icon-small","button.primary.normal","button.primary.hover","button.primary.click","button.primary.disabled","button.secondary.normal","button.secondary.disabled","button.outline.normal","button.outline.disabled","button.danger.normal","button.danger.hover","button.danger.click","button.danger.disabled","button.prompt.normal","button.prompt.disabled","button.whiteline.disabled","spacing.s1","spacing.s2","spacing.s3","spacing.s4","spacing.s5","spacing.s6","spacing.s7","spacing.s8","spacing.s9","spacing.s10","spacing.s11","spacing.s12","spacing.s13","spacing.s14","spacing.s15","spacing.s16","spacing.s17","spacing.s18","spacing.s19","spacing.s20","spacing.common.s6","spacing.common.s4","spacing.common.s3","spacing.common.s2","spacing.rule.component","spacing.rule.input","spacing.rule.button","spacing.padding.page","spacing.padding.modal","spacing.padding.card","spacing.padding.input","spacing.shadow.modal"];
+const V2_FAIL=[
+ {id:"button.secondary.hover",note:"这里 text和 border 都是 568EEE fill:FFF"},
+ {id:"button.secondary.click",note:"text 和 border:1C5AC4;背景是#FFF"},
+ {id:"button.outline.hover",note:"text 和border #568EEE。为什么会出现这个困惑?"},
+ {id:"button.outline.click",note:"text #1C5AC4 / fill #fff / border #1C5AC4"},
+ {id:"button.whiteline.normal",note:"text: #666666 fill: #FAFAFA border:#DEDEDE"},
+ {id:"button.whiteline.hover",note:"text: #568EEE fill: #FAFAFA border: #568EEE"},
+ {id:"button.whiteline.click",note:"text: #1C5AC4 fill: #FFF border: #1C5AC4"},
+];
+(function seed(){
+  let changed=false;
+  /* 第一轮:旧 help 组展示的是蓝页(青色系)帮助板,id 映射到新 help-teal */
+  const V1_MAP={'color.aux.help.1':'color.aux.help-teal.1','color.aux.help.3':'color.aux.help-teal.3'};
+  V1_PASS.forEach(id=>{
+    const nid=V1_MAP[id]||id;
+    if(!state[nid]){state[nid]={status:'pass',locked:true};changed=true}
+  });
+  const NOTE_MAP={'color.aux.help.4':'color.aux.help-teal.4'};
+  Object.keys(V1_NOTES).forEach(id=>{
+    const nid=NOTE_MAP[id]||id;
+    if(!state[nid]||!state[nid].status){state[nid]={status:'',note:V1_NOTES[id],prevNote:true};changed=true}
+  });
+  /* 第二轮:通过→锁定;有问题→保留问题态与批注(第二轮结果优先于第一轮) */
+  V2_PASS.forEach(id=>{const cur=state[id]||{};if(!cur.locked){state[id]={status:'pass',locked:true,note:cur.note||''};changed=true}});
+  V2_FAIL.forEach(f=>{state[f.id]={status:'fail',locked:false,note:f.note};changed=true});
+  /* 第三轮(2026-11-06 review-log (2).json):通过→锁定;问题项按裁决更新渲染但保留问题态待复核 */
+  const V3_PASS=["color.text.title","color.text.primary","color.text.secondary","color.text.caption","color.text.disable","color.line.1","color.line.2","color.line.4","color.line.blue","color.fill.1","color.fill.2","color.fill.3","color.aux.success.1","color.aux.success.2","color.aux.success.3","color.aux.success.4","color.aux.warn.1","color.aux.warn.2","color.aux.warn.3","color.aux.warn.4","color.aux.error.1","color.aux.error.2","color.aux.error.3","color.aux.error.4","color.aux.purple.1","color.aux.purple.2","color.aux.purple.3","color.aux.purple.4","color.aux.help-blue.1","color.aux.help-blue.2","color.aux.help-blue.3","color.aux.help-blue.4","color.theme.biqing.1","color.theme.biqing.2","color.theme.biqing.3","color.theme.biqing.4","color.theme.biqing.ladder.1","color.theme.biqing.ladder.2","color.theme.biqing.ladder.3","color.theme.biqing.ladder.4","color.theme.biqing.ladder.5","color.theme.biqing.ladder.6","color.theme.biqing.ladder.7","color.theme.biqing.ladder.8","color.theme.biqing.ladder.9","color.theme.biqing.ladder.10","color.theme.biqing.ladder.11","line.width.0.5.solid","line.width.1.solid","line.width.2.solid","line.width.3.solid","line.width.0.5.dashed","line.width.1.dashed","line.width.2.dashed","line.width.3.dashed","line.color.1","line.color.2","line.color.3","line.color.4","line.color.5","line.divider.h","line.divider.v","font.family.cn","font.family.en","font.family.num","font.weight.400","font.weight.500","font.weight.600","font.level.page-title","font.level.module-title","font.level.body","font.level.caption","font.level.longform","font.color.page-title","font.color.body","font.color.aux","font.color.hint","font.color.disable","font.color.special","button.size.large","button.size.middle","button.size.small","button.variant.icon-large","button.variant.icon-middle","button.variant.icon-small","button.primary.normal","button.primary.hover","button.primary.click","button.primary.disabled","button.secondary.normal","button.secondary.disabled","button.outline.normal","button.outline.disabled","button.danger.normal","button.danger.hover","button.danger.click","button.danger.disabled","button.prompt.normal","button.prompt.click","button.prompt.disabled","button.whiteline.disabled","spacing.s1","spacing.s2","spacing.s3","spacing.s4","spacing.s5","spacing.s6","spacing.s7","spacing.s8","spacing.s9","spacing.s10","spacing.s11","spacing.s12","spacing.s13","spacing.s14","spacing.s15","spacing.s16","spacing.s17","spacing.s18","spacing.s19","spacing.s20","spacing.common.s6","spacing.common.s4","spacing.common.s3","spacing.common.s2","spacing.rule.component","spacing.rule.input","spacing.rule.button","spacing.padding.page","spacing.padding.modal","spacing.padding.card","spacing.padding.input","spacing.shadow.modal"];
+  const V3_FAIL=[
+   {id:"color.theme.biqing.line-blue",note:"#3773DB 使用这个(Q9 裁决,渲染已更新为 #3773DB)"},
+   {id:"button.secondary.hover",note:"这里 text和 border 都是 568EEE fill:FFF"},
+   {id:"button.secondary.click",note:"text 和 border:1C5AC4;背景是#FFF"},
+   {id:"button.outline.hover",note:"text 和border #568EEE。为什么会出现这个困惑?"},
+   {id:"button.outline.click",note:"text #1C5AC4 / fill #fff / border #1C5AC4"},
+   {id:"button.prompt.hover",note:"#FFA800 为主(Q8 裁决,渲染已更新为 #FFA800)"},
+   {id:"button.whiteline.normal",note:"text: #666666 fill: #FAFAFA border:#DEDEDE"},
+   {id:"button.whiteline.hover",note:"text: #568EEE fill: #FAFAFA border: #568EEE"},
+   {id:"button.whiteline.click",note:"text: #1C5AC4 fill: #FFF border: #1C5AC4"},
+  ];
+  V3_PASS.forEach(id=>{const cur=state[id]||{};if(!cur.locked){state[id]={status:'pass',locked:true,note:cur.note||''};changed=true}});
+  V3_FAIL.forEach(f=>{state[f.id]={status:'fail',locked:false,note:f.note};changed=true});
+  if(changed)localStorage.setItem(KEY,JSON.stringify(state));
+})();
+
+/* ============ 规范数据 ============ */
+/* 主题定义(绿色主题按批注删除)。help:'blue'|'teal' 为该主题帮助组;helpExtra=true 表示该主题页另有一组青色系色板——青色系仅在蓝主题下作为帮助生效,其余主题归属「其他」 */
+const THEMES=[
+ {key:'blue',   label:'蓝',   primary:['#3773DB','#568EEE','#1C5AC4','#ECF3FF'],help:'teal',helpExtra:false,lineBlue:'#3773DB',ladder:['#CBDBF7','#B3CBF4','#9EBCF0','#7CA5ED','#6090E2','#3773DB','#2662CA','#1B56BC','#2553A5','#1C4692','#133A81']},
+ {key:'yellow', label:'黄',   primary:['#FFD400','#FFE355','#F6B41A','#FFF3B6'],help:'blue',helpExtra:true, lineBlue:'#3773DB',ladder:['#FFF4BC','#FFEFA1','#FFE876','#FFE14A','#FFD500','#FFC300','#F6B41A','#EBAA11','#E19E04','#D19300','#C58A00']},
+ {key:'purple', label:'紫',   primary:['#8F44FF','#9660E5','#5000C8','#F5EFFF'],help:'blue',helpExtra:true, lineBlue:'#3773DB',ladder:['#F5EFFF','#E9DAFF','#CDADFC','#B481FF','#9E5FFC','#8F44FF','#7F2AFF','#7315FF','#5F02E8','#5000C8','#4200A5']},
+ {key:'cuiqing',label:'翠青', primary:['#54A7B2','#6EACB4','#2A7F8C','#E8F6F9'],help:'blue',helpExtra:false,lineBlue:'#3773DB',ladder:null},
+ {key:'red',    label:'红',   primary:['#D82128','#E85E63','#AA0209','#FFDADA'],help:'blue',helpExtra:true, lineBlue:'#3773DB',ladder:['#FFDADA','#FFBFC2','#F7A2A6','#E8787D','#E55359','#D82128','#C4181F','#B5131A','#AA0209','#9C050B','#900C12']},
+ {key:'biqing', label:'碧青', primary:['#406670','#66828A','#325862','#C5E7F0'],help:'blue',helpExtra:false,lineBlue:'#3773DB',ladder:['#C5E7F0','#A6CFDB','#87B3BF','#66939F','#527D89','#406670','#3B5F69','#325862','#2E505A','#264852','#1E3D46']},
+];
+const HELP_PALETTES={
+ blue:{name:'蓝色系帮助',vals:['#ECF3FF','#B3CBF4','#3773DB','#1C5AC4']},
+ teal:{name:'青色系帮助(=翠青主色同值)',vals:['#E8F6F9','#6EACB4','#54A7B2','#38929F']},
+};
+const AUX_STAGE=['1 浅色','2 hover','3 常规','4 深色/按下'];
+const THEME_STAGE=['常规','hover','深色/按下','浅色'];
+let curTheme='blue';
+
+const DATA=[
+ {id:'color',title:'一、色彩',desc:'共享中立色与辅助色 + 主题切换区(帮助色板/主色序列随主题变化)。规则:青色系帮助仅在基础色为蓝色时作为「帮助」生效;其他主题的帮助=蓝色系,青色系那组归属「其他」。',groups:[]},
+ {id:'line',title:'二、线条(分割线/边框)',desc:'4 档线宽 × 实虚两套 × 5 级颜色;文字分割线。规律:元素重要性/可操作提示越强,颜色越深。',groups:[]},
+ {id:'font',title:'三、字体',desc:'字体族 / 字重三档 / 五级文字层级 / 文字色场景映射。',groups:[]},
+ {id:'button',title:'四、按钮(按批注重做)',desc:'宽度随内容(不固定);尺寸规格按上轮批注修正;6 类型 × 4 态矩阵重置为未填写,待按新渲染复检。',groups:[]},
+ {id:'spacing',title:'五、间距',desc:'梯度 Sn=4n(S1~S20 = 4→80px)+ 常用尺寸 + padding 实例 + 弹窗阴影。',groups:[]},
+];
+/* 图标模块按用户指示取消,不再列入 */
+
+/* ---- 色彩:共享组 ---- */
+DATA[0].groups=[
+ {name:'中立色 · 文字(5 级)',items:[
+  {id:'color.text.title',   token:'@text-Title',    hex:'#111111',usage:'标题',sample:{bg:'#111111',text:'标题 #111111',fg:'#fff'}},
+  {id:'color.text.primary', token:'@text-Primary',  hex:'#333333',usage:'正文',sample:{bg:'#333333',text:'正文 #333333',fg:'#fff'}},
+  {id:'color.text.secondary',token:'@text-Secondary',hex:'#666666',usage:'次要文字;默认图形 icon hover(按批注补)',sample:{bg:'#666666',text:'次要 #666666',fg:'#fff'}},
+  {id:'color.text.caption', token:'@text-Caption',  hex:'#999999',usage:'说明文字(辅助说明)',sample:{bg:'#999999',text:'说明 #999999',fg:'#fff'}},
+  {id:'color.text.disable', token:'@text-Disable',  hex:'#C1C1C1',usage:'禁用文字;默认图形 icon',sample:{bg:'#C1C1C1',text:'禁用 #C1C1C1',fg:'#fff'}},
+ ]},
+ {name:'中立色 · 线条(色页 4 档;line-Blue 随主题变化,见 Q9)',items:[
+  {id:'color.line.1',token:'@line1-1',hex:'#EBEBEB',usage:'组件边框、标题分割线(最弱)',sample:{bg:'#EBEBEB',text:'#EBEBEB',fg:'#333333'}},
+  {id:'color.line.2',token:'@line1-2',hex:'#DEDEDE',usage:'表单边框',sample:{bg:'#DEDEDE',text:'#DEDEDE',fg:'#333333'}},
+  {id:'color.line.4',token:'@line1-4',hex:'#737373',usage:'组件边框 Hover 效果',sample:{bg:'#737373',text:'#737373',fg:'#fff'}},
+  {id:'color.line.blue',token:'@line-Blue',hex:'#3773DB',usage:'较重要程度 / 高层级、可操作提示(最强)',flag:'Q9 已裁决:全主题统一 #3773DB(各主题页 #406670 废弃)',sample:{bg:'#3773DB',text:'line-Blue',fg:'#fff'}},
+ ]},
+ {name:'中立色 · 填充(3 级,语义已按批注修正)',items:[
+  {id:'color.fill.1',token:'@filling1-1',hex:'#FAFAFA',usage:'提示框底色、提示文字背景',sample:{bg:'#FAFAFA',text:'#FAFAFA',fg:'#333333'}},
+  {id:'color.fill.2',token:'@filling1-2',hex:'#F3F4F7',usage:'页面内容区块底色(按批注修正;黄色页同)',flag:'Q2 色块实际填充 #F2F3F7 与标注 #F3F4F7 不一致',sample:{bg:'#F3F4F7',text:'#F3F4F7',fg:'#333333'}},
+  {id:'color.fill.3',token:'@filling1-3',hex:'#F5F5F5',usage:'标签背景、下拉选中背景(按批注修正;黄色页同)',sample:{bg:'#F5F5F5',text:'#F5F5F5',fg:'#333333'}},
+ ]},
+ {name:'辅助色 · 全主题共享(4 组 × 4 阶:浅 / hover / 常规 / 深色·按下)',items:[]},
+];
+const AUX=[
+ {key:'success',label:'成功',vals:['#E3F8E8','#A8E1A6','#00D115','#00A611'],sem:'提交确认等成功状态'},
+ {key:'warn',label:'警告-弱(提醒)',vals:['#FFF1DB','#FFD77E','#FFA800','#EA8C00'],sem:'事件提醒'},
+ {key:'error',label:'错误(警告-强)',vals:['#FCEBEA','#FDA2A4','#FF2020','#CF2E2E'],sem:'错误提示、警告-按下'},
+ {key:'purple',label:'紫(其他/扩展)',vals:['#F5EFFF','#D0B0FF','#8F44FF','#5000C8'],sem:'扩展色'},
+];
+AUX.forEach(a=>{
+  a.vals.forEach((v,i)=>{
+    DATA[0].groups[3].items.push({id:`color.aux.${a.key}.${i+1}`,token:`${a.label}-${AUX_STAGE[i]}`,hex:v,usage:a.sem,
+      sample:{bg:v,text:v,fg:i<2?'#333333':'#fff'}});
+  });
+});
+/* 主题切换区(动态渲染) */
+DATA[0].themeGroups=()=>{const t=THEMES.find(x=>x.key===curTheme),hp=HELP_PALETTES[t.help],items=[];
+  items.push({name:`帮助色板(当前主题:${t.label} → ${hp.name})`,items:[]});
+  hp.vals.forEach((v,i)=>{
+    items[0].items.push({id:`color.aux.help-${t.help}.${i+1}`,token:`帮助-${AUX_STAGE[i]}`,hex:v,
+      usage:`${t.label} 主题帮助色 ${AUX_STAGE[i]}`+(t.help==='teal'&&i===1?' ⚠ Q3 色块实际填充 #A6D2D8,标注 #6EACB4(按批注采用标注值)':''),
+      flag:t.help==='teal'&&i===1?'上轮批注:6EACB4 缺失,已补':undefined,
+      sample:{bg:v,text:v,fg:i<2?'#333333':'#fff'}});
+  });
+  if(t.helpExtra){
+    /* 青色系仅在蓝主题下作为「帮助」生效;其余主题页出现的青色组归属「其他」(人工裁决) */
+    const teal=HELP_PALETTES.teal;
+    items[0].items.push({id:`color.aux.other-teal.${t.key}.label`,labelOnly:true,text:`其他(青色系)— 青色系仅在基础色为蓝色时作为「帮助」生效;${t.label} 主题下该组归属「其他」`});
+    teal.vals.forEach((v,i)=>items[0].items.push({id:`color.aux.other-teal.${t.key}.${i+1}`,token:`其他(青色系)-${AUX_STAGE[i]}`,hex:v,usage:`${t.label} 主题下的其他/扩展色(青色系)`,sample:{bg:v,text:v,fg:i<2?'#333333':'#fff'}}));
+  }
+  items.push({name:`主题主色序列(当前:${t.label})`,items:[]});
+  t.primary.forEach((v,i)=>items[1].items.push({id:`color.theme.${t.key}.${i+1}`,token:`${t.label}-${THEME_STAGE[i]}`,hex:v,
+    usage:`主题「${t.label}」主色 ${THEME_STAGE[i]} 态`,sample:{bg:v,text:v,fg:i===3?'#333333':'#fff'}}));
+  if(t.ladder){
+    items.push({name:`主色调色阶(当前:${t.label},11 级)`,items:t.ladder.map((v,i)=>({id:`color.theme.${t.key}.ladder.${i+1}`,token:`色阶 ${i+1}`,hex:v,
+      usage:`${t.label} 主色调色阶第 ${i+1} 级`,sample:{bg:v,text:v,fg:i<3||i>6?'#333333':'#fff'}}))});
+  } else {
+    items.push({name:`主色调色阶(当前:${t.label})`,items:[{id:`color.theme.${t.key}.ladder.missing`,labelOnly:true,text:'⚠ 翠青页未还原到色阶行(还原时段落缺失),如需色阶请对照 MasterGo 原稿补'}]});
+  }
+  items.push({name:'该主题页线条行(line-Blue 已按 Q9 裁决统一 #3773DB)',items:[
+    {id:`color.theme.${t.key}.line-blue`,token:'@line-Blue(该主题页)',hex:t.lineBlue,usage:'该主题页「较重要程度/高层级」线条色',flag:'Q9 已裁决:统一 #3773DB,原 #406670 废弃',sample:{bg:t.lineBlue,text:t.lineBlue,fg:'#fff'}},
+  ]});
+  return items;
+};
+
+/* ---- 线条 ---- */
+const LINE_COLORS=['#EBEBEB','#DEDEDE','#888888','#737373','#3773DB'];
+DATA[1].groups=[
+ {name:'线宽 × 实线',items:[
+   {id:'line.width.0.5.solid',demo:{w:'0.5px',style:'solid'},token:'line-width 0.5px',hex:'0.5px solid',usage:'最细分隔(浅色场景)'},
+   {id:'line.width.1.solid',  demo:{w:'1px',  style:'solid'},token:'line-width 1px',  hex:'1px solid',  usage:'标准边框/分割线(默认)'},
+   {id:'line.width.2.solid',  demo:{w:'2px',  style:'solid'},token:'line-width 2px',  hex:'2px solid',  usage:'强调分割'},
+   {id:'line.width.3.solid',  demo:{w:'3px',  style:'solid'},token:'line-width 3px',  hex:'3px solid',  usage:'最强分割/选中指示'},
+ ]},
+ {name:'线宽 × 虚线',items:[
+   {id:'line.width.0.5.dashed',demo:{w:'0.5px',style:'dashed'},token:'0.5px dashed',hex:'0.5px dashed',usage:'弱提示性分隔'},
+   {id:'line.width.1.dashed',  demo:{w:'1px',  style:'dashed'},token:'1px dashed',  hex:'1px dashed',  usage:'拖放区/占位边界等'},
+   {id:'line.width.2.dashed',  demo:{w:'2px',  style:'dashed'},token:'2px dashed',  hex:'2px dashed',  usage:'强调虚线'},
+   {id:'line.width.3.dashed',  demo:{w:'3px',  style:'dashed'},token:'3px dashed',  hex:'3px dashed',  usage:'最强虚线'},
+ ]},
+ {name:'分割线颜色 5 级(1px 实线示例)',items:LINE_COLORS.map((c,i)=>({
+   id:`line.color.${i+1}`,token:['@line1-1','@line1-2','@line1-3','@line1-4','@line-Blue'][i],hex:c,
+   usage:['组件边框、标题分割线','表单边框','默认图形 icon','组件边框 Hover','较重要/高层级可操作提示'][i],
+   demo:{w:'1px',style:'solid',color:c}}))},
+ {name:'文字分割线',items:[
+   {id:'line.divider.h',token:'水平文字分割线',hex:'74px × 1px #DEDEDE',usage:'标题下方水平短线',demo:{hdivider:true}},
+   {id:'line.divider.v',token:'垂直文字分割线',hex:'1px × 12px #DEDEDE',usage:'相邻操作之间垂直短线',demo:{vdivider:true}},
+ ]},
+];
+
+/* ---- 字体(family.cn 按批注补 Windows 默认字体) ---- */
+DATA[2].groups=[
+ {name:'字体族',items:[
+  {id:'font.family.cn',demo:{font:'中文 PingFang SC(Mac)/ Microsoft YaHei(Windows)',css:'font-family:"PingFang SC","Microsoft YaHei",sans-serif'},token:'PingFang SC + Microsoft YaHei',hex:'Mac/iOS:PingFang SC;Windows:微软雅黑',usage:'全部中文文本(按批注补 Windows 默认字体)'},
+  {id:'font.family.en',demo:{font:'English / Helvetica Neue 0123',css:'font-family:"Helvetica Neue",Arial,sans-serif'},token:'Helvetica Neue',hex:'备选 Arial',usage:'英文文本'},
+  {id:'font.family.num',demo:{font:'D-DIN 0123456789',css:'font-family:"D-DIN","HarmonyOS Sans","Inter",sans-serif'},token:'D-DIN',hex:'备选 HarmonyOS Sans / Inter',usage:'数字展示(数据看板/指标)'},
+ ]},
+ {name:'字重(仅三档)',items:[
+  {id:'font.weight.400',demo:{font:'Regular 400 常规正文',css:'font-weight:400'},token:'Regular',hex:'400',usage:'正文默认字重'},
+  {id:'font.weight.500',demo:{font:'Medium 500 中等强调',css:'font-weight:500'},token:'Medium',hex:'500',usage:'小标题/按钮/强调'},
+  {id:'font.weight.600',demo:{font:'Bold 600 页面标题',css:'font-weight:600'},token:'Bold',hex:'600',usage:'页面大标题/数字强调'},
+ ]},
+ {name:'五级文字层级(真实例句 + 使用场景)',items:[
+  {id:'font.level.page-title',demo:{font:'页面大标题 18~24px · 行高 32~40',css:'font-size:20px;line-height:32px;font-weight:600;color:#111111'},token:'页面大标题',hex:'18~24px / 32~40px(1.6~1.7)',usage:'页面顶部标题、重要数据展示'},
+  {id:'font.level.module-title',demo:{font:'模块小标题 16px · 行高 24~28',css:'font-size:16px;line-height:24px;font-weight:500;color:#111111'},token:'模块小标题',hex:'16px / 24~28px(1.5~1.75)',usage:'卡片标题、弹窗标题'},
+  {id:'font.level.body',demo:{font:'正文 14px · 行高 22 — 表单、表格、按钮、常规段落、左侧导航栏',css:'font-size:14px;line-height:22px;font-weight:400;color:#333333'},token:'正文(主字号)',hex:'14px / 22px(1.57)',usage:'表单、表格、按钮、常规段落、左侧导航栏'},
+  {id:'font.level.caption',demo:{font:'辅助说明 12~13px · 行高 20 — 提示、备注、时间戳',css:'font-size:12px;line-height:20px;font-weight:400;color:#999999'},token:'辅助说明',hex:'12~13px / 20px(1.5~1.67)',usage:'提示文字、备注、时间戳'},
+  {id:'font.level.longform',demo:{font:'大段描述 14~16px · 行高 24~28 — 帮助文档、详情页说明',css:'font-size:15px;line-height:28px;font-weight:400;color:#333333'},token:'大段描述',hex:'14~16px / 24~28px(1.6~1.75)',usage:'帮助文档、详情页说明'},
+ ]},
+ {name:'字体颜色 → 场景映射',items:[
+  {id:'font.color.page-title',token:'#111111 → 页面大标题',hex:'#111111',usage:'页面大标题',sample:{bg:'#111111',text:'标题 #111111',fg:'#fff'}},
+  {id:'font.color.body',token:'#333333 → 默认正文',hex:'#333333',usage:'默认正文文字',sample:{bg:'#333333',text:'正文 #333333',fg:'#fff'}},
+  {id:'font.color.aux',token:'#666666 → 辅助类文字',hex:'#666666',usage:'辅助类文字',sample:{bg:'#666666',text:'辅助 #666666',fg:'#fff'}},
+  {id:'font.color.hint',token:'#999999 → 提示性文字',hex:'#999999',usage:'提示性文字',sample:{bg:'#999999',text:'提示 #999999',fg:'#fff'}},
+  {id:'font.color.disable',token:'#C1C1C1 → 禁用/置灰',hex:'#C1C1C1',usage:'禁用 / 置灰',sample:{bg:'#C1C1C1',text:'禁用 #C1C1C1',fg:'#fff'}},
+  {id:'font.color.special',token:'特殊情况:#222/#444/#555/#888',hex:'#222222 · #444444 · #555555 · #888888',usage:'特殊情况允许使用(设计稿原文注明)',
+   demo:{font:'#222 / #444 / #555 / #888 特殊场景可用',css:'font-size:13px;color:#444444'}},
+ ]},
+];
+
+/* ---- 按钮(按批注重做:宽度随内容、真实 padding/字号/icon 规格) ---- */
+const BTN={
+ primary:{label:'主要 Primary',normal:{bg:'#3773DB',fg:'#fff',bd:'#3773DB'},hover:{bg:'#568EEE',fg:'#fff',bd:'#568EEE'},click:{bg:'#1C5AC4',fg:'#fff',bd:'#1C5AC4'},disabled:{bg:'#FAFAFA',fg:'#C1C1C1',bd:'#DEDEDE'}},
+ secondary:{label:'次要 Secondary',normal:{bg:'#FAFAFA',fg:'#333333',bd:'#DEDEDE'},hover:{bg:'#FFFFFF',fg:'#568EEE',bd:'#568EEE'},click:{bg:'#FFFFFF',fg:'#1C5AC4',bd:'#1C5AC4'},disabled:{bg:'#FAFAFA',fg:'#C1C1C1',bd:'#DEDEDE'}},
+ outline:{label:'描边 Outline',normal:{bg:'#fff',fg:'#1F56E8',bd:'#3773DB'},hover:{bg:'#fff',fg:'#568EEE',bd:'#568EEE'},click:{bg:'#fff',fg:'#1C5AC4',bd:'#1C5AC4'},disabled:{bg:'#FAFAFA',fg:'#C1C1C1',bd:'#DEDEDE'}},
+ danger:{label:'危险 Danger',normal:{bg:'#FF2020',fg:'#fff',bd:'#FF2020'},hover:{bg:'#FF5A5D',fg:'#fff',bd:'#FF5A5D'},click:{bg:'#CF2E2E',fg:'#fff',bd:'#CF2E2E'},disabled:{bg:'#FAFAFA',fg:'#C1C1C1',bd:'#DEDEDE'}},
+ prompt:{label:'提示 Prompt',normal:{bg:'#FFA800',fg:'#fff',bd:'#FFA800'},hover:{bg:'#FFA800',fg:'#fff',bd:'#FFA800'},click:{bg:'#EA8C00',fg:'#fff',bd:'#EA8C00'},disabled:{bg:'#FAFAFA',fg:'#C1C1C1',bd:'#DEDEDE'}},
+ whiteline:{label:'反白 Whiteline(深底)',normal:{bg:'#FAFAFA',fg:'#666666',bd:'#DEDEDE',dark:true},hover:{bg:'#FAFAFA',fg:'#568EEE',bd:'#568EEE',dark:true},click:{bg:'#FFFFFF',fg:'#1C5AC4',bd:'#1C5AC4',dark:true},disabled:{bg:'#FAFAFA',fg:'#C1C1C1',bd:'#DEDEDE',dark:true}},
+};
+const BTN_STATE=[['normal','Normal'],['hover','Hover'],['click','Click'],['disabled','Disabled']];
+const BTN_SIZES={
+ large:{h:40,pad:'8px 16px',font:'16px/24px',r:6,icon:12},
+ middle:{h:32,pad:'6px 16px',font:'12px/20px',r:6,icon:8},
+ small:{h:24,pad:'2px 8px',font:'12px/20px',r:4,icon:8},
+};
+function renderBtn(size,v,icon){
+  const s=BTN_SIZES[size];
+  const inner=icon?`<span class="iconph" style="width:${s.icon}px;height:${s.icon}px"></span><span style="margin-left:4px">按钮</span>`:'按钮';
+  return `<span class="vbtn" style="height:${s.h}px;padding:${s.pad};border-radius:${s.r}px;background:${v.bg};color:${v.fg};border-color:${v.bd};font-size:${s.font.split('/')[0]};line-height:${s.font.split('/')[1]}">${inner}</span>`;
+}
+function btnDemoHTML(it){
+  const d=it.demo,v=d.btn,s=BTN_SIZES[d.size];
+  const inner=d.icon?`<span class="iconph" style="width:${s.icon}px;height:${s.icon}px"></span><span style="margin-left:4px">按钮</span>`:'按钮';
+  return `<div class="chip" style="height:auto;min-height:56px;align-items:center;justify-content:center;${d.dark?'background:#333333;':''}">
+    <span class="vbtn" style="height:${s.h}px;padding:${s.pad};border-radius:${s.r}px;background:${v.bg};color:${v.fg};border-color:${v.bd};font-size:${s.font.split('/')[0]};line-height:${s.font.split('/')[1]}">${inner}</span></div>`;
+}
+DATA[3].groups=[
+ {name:'3 尺寸规格(按批注修正:宽度不固定,padding 撑开)',items:[
+  {id:'button.size.large',demo:{size:'large',btn:BTN.primary.normal},token:'Large',hex:'高 40 · padding 8px 16px · 字 16px/行高 24 · 圆角 6 · 宽度随内容',usage:'页面主操作',uflag:'按批注修正'},
+  {id:'button.size.middle',demo:{size:'middle',btn:BTN.primary.normal},token:'Middle',hex:'高 32 · padding 6px 16px · 字 12px/行高 20 · 圆角 6 · 宽度随内容',usage:'常规场景默认',uflag:'按批注修正'},
+  {id:'button.size.small',demo:{size:'small',btn:BTN.primary.normal},token:'Small',hex:'高 24 · padding 2px 8px · 字 12px/行高 20 · 圆角 4 · 宽度随内容',usage:'紧凑场景',uflag:'按批注修正'},
+ ]},
+ {name:'icon + 文本变体(按批注:icon 12/8/8px,与文字 gap 4px)',items:[
+  {id:'button.variant.icon-large',demo:{size:'large',btn:BTN.primary.normal,icon:true},token:'Large + icon',hex:'icon 12×12 · gap 4px',usage:'图标+文本 Large',uflag:'按批注修正'},
+  {id:'button.variant.icon-middle',demo:{size:'middle',btn:BTN.primary.normal,icon:true},token:'Middle + icon',hex:'icon 8×8 · gap 4px',usage:'图标+文本 Middle',uflag:'按批注修正'},
+  {id:'button.variant.icon-small',demo:{size:'small',btn:BTN.primary.normal,icon:true},token:'Small + icon',hex:'icon 8×8 · gap 4px',usage:'图标+文本 Small',uflag:'按批注修正'},
+ ]},
+ {name:'6 类型 × 4 态矩阵(Middle 规格;上轮渲染与 UI 稿差距大,已按新规格重做,全部重置为未填写待复检)',items:[]},
+];
+Object.keys(BTN).forEach(k=>{
+  const b=BTN[k];
+  DATA[3].groups[2].items.push({id:`button.${k}.label`,labelOnly:true,text:`${b.label}${k==='whiteline'?'(深色 #333333 衬底展示)':''}`});
+  BTN_STATE.forEach(([st,name])=>{
+    const v=b[st];
+    DATA[3].groups[2].items.push({id:`button.${k}.${st}`,token:`${b.label} · ${name}`,demo:{size:'middle',btn:v,dark:v.dark},
+      hex:`text ${v.fg} / fill ${v.bg} / border ${v.bd}`,
+      usage:`${b.label}按钮 ${name} 态${st==='hover'&&k==='danger'?' ⚠ Q1 已裁决 #FF5A5D':st==='hover'&&k==='prompt'?' ✎ Q8 已裁决:hover=#FFA800(标注值优先,#FFC24D 废弃),待复核':st==='hover'&&(k==='secondary'||k==='outline'||k==='whiteline')?' ✎ 按批注修正:字色=边色 #568EEE(Q7 已裁决),待复核':st==='click'&&(k==='secondary'||k==='outline'||k==='whiteline')?' ✎ 按批注修正:字色=边色 #1C5AC4,fill #FFF,待复核':''}`});
+  });
+});
+
+/* ---- 间距 ---- */
+const SP_SIZES=[6,4,3,2];
+DATA[4].groups=[
+ {name:'间距梯度 S1~S20(Sn = 4×n,即 4px→80px;红色标尺即实际间距)',items:[]},
+ {name:'常用尺寸(按元素亲密性取值)',items:SP_SIZES.map(n=>({
+   id:`spacing.common.s${n}`,token:`S${n} = ${n*4}px`,hex:`${n*4}px`,
+   usage:['最常用组件间距','区块间较大间距','输入框内容 padding 等','紧凑元素间距(图标与文字等)'][SP_SIZES.indexOf(n)],
+   demo:{gap:n*4}}))},
+ {name:'建议值(设计稿原文)',items:[
+  {id:'spacing.rule.component',token:'组件间距',hex:'8px',usage:'组件之间统一用 8px(S2)',demo:{gap:8}},
+  {id:'spacing.rule.input',token:'输入框内容 padding',hex:'12px',usage:'输入框内容与边框间距(S3)',demo:{gap:12}},
+  {id:'spacing.rule.button',token:'按钮左右 padding',hex:'16px',usage:'按钮内文字左右留白(S4;与按钮批注 padding 16px 一致)',demo:{gap:16}},
+ ]},
+ {name:'页面/弹窗/卡片/输入框 Padding(L/R/T/B,渲染为示意框)',items:[
+  {id:'spacing.padding.page',token:'页面内容',hex:'L24 R24 T16 B24',usage:'页面级容器内边距',demo:{pad:[24,24,16,24],label:'页面\n24/24/16/24'}},
+  {id:'spacing.padding.modal',token:'弹窗',hex:'L24 R24(T/B 未标注)',usage:'弹窗内容内边距',demo:{pad:[24,24,24,24],label:'弹窗\n24/24'}},
+  {id:'spacing.padding.card',token:'卡片',hex:'16 × 4 边',usage:'卡片内边距',demo:{pad:[16,16,16,16],label:'卡片\n16×4'}},
+  {id:'spacing.padding.input',token:'输入框内容',hex:'L12 R12 T6 B6',usage:'⚠ 6px 为设计稿故意展示的非 4 倍数豁免示例',demo:{pad:[12,12,6,6],label:'输入框\n12/12/6/6'}},
+ ]},
+ {name:'其他',items:[
+  {id:'spacing.shadow.modal',token:'弹窗阴影',hex:'0 1px 20px rgba(0,0,0,0.08)',usage:'弹窗投影',demo:{shadow:'0px 1px 20px 0px rgba(0,0,0,0.08)'}},
+ ]},
+];
+for(let n=1;n<=20;n++){
+  DATA[4].groups[0].items.push({id:`spacing.s${n}`,token:`S${n}`,hex:`${n*4}px`,usage:`间距梯度第 ${n} 档`,demo:{gap:n*4}});
+}
+
+/* ============ 渲染 ============ */
+function chipHTML(it){
+  if(it.labelOnly)return `<div class="chip" style="height:auto;background:#FAFAFA;padding:6px 10px;font-weight:600;color:#111">${it.text}</div>`;
+  if(it.demo){
+    const d=it.demo;
+    if(d.size)return btnDemoHTML(it);
+    if(d.gap!==undefined)
+      return `<div class="chip" style="height:auto;min-height:56px;justify-content:center"><div style="display:flex;align-items:center"><div style="width:24px;height:16px;background:#3773DB;border-radius:2px"></div><div style="width:${d.gap}px;min-width:2px;height:10px;background:#FFA2A2"></div><div style="width:24px;height:16px;background:#3773DB;border-radius:2px"></div></div><span style="font-size:11px;color:#999;margin-left:8px">${d.gap}px</span></div>`;
+    if(d.pad){
+      const[a,r,b,l]=d.pad;
+      return `<div class="chip" style="height:auto;min-height:56px;justify-content:center;background:#F5F5F5"><div style="width:120px;border:1px dashed #9A12B3;padding:${a}px ${r}px ${b}px ${l}px;border-radius:4px;background:#fff"><div style="height:16px;background:#3773DB;border-radius:2px"></div></div><span style="font-size:10px;color:#666;margin-left:6px;white-space:pre-line;text-align:left">${d.label}</span></div>`;
+    }
+    if(d.shadow)
+      return `<div class="chip" style="height:auto;min-height:56px;justify-content:center;background:#F5F5F5"><div style="width:96px;height:36px;background:#fff;border-radius:6px;box-shadow:${d.shadow};display:flex;align-items:center;justify-content:center;font-size:12px;color:#333">弹窗</div></div>`;
+    if(d.hdivider)return `<div class="chip" style="flex-direction:column;justify-content:center;align-items:center;height:56px"><div style="font-size:13px;color:#111;margin-bottom:6px">标题</div><div style="width:74px;height:1px;background:#DEDEDE"></div></div>`;
+    if(d.vdivider)return `<div class="chip" style="justify-content:center;height:56px"><span style="font-size:13px;color:#111">复制</span><div style="width:1px;height:12px;background:#DEDEDE;margin:0 8px"></div><span style="font-size:13px;color:#111">删除</span></div>`;
+    return `<div class="chip" style="flex-direction:column;justify-content:center;align-items:center;height:56px"><div style="width:160px;border-top:${d.w} ${d.style} ${d.color||'#3773DB'}"></div><span style="font-size:11px;color:#999;margin-top:8px">${d.w} ${d.style}</span></div>`;
+  }
+  const s=it.sample;
+  return `<div class="chip ${s.fg==='#fff'?'sample-text':''}" style="background:${s.bg};color:${s.fg}">${s.text}</div>`;
+}
+function groupsOf(sec){
+  return sec.id==='color'?sec.groups.concat(sec.themeGroups()):sec.groups;
+}
+function render(){
+  const main=document.getElementById('main');main.innerHTML='';
+  const toc=document.getElementById('toc');toc.innerHTML='';
+  /* 主题切换条 */
+  const secC=document.createElement('section');secC.className='block';secC.id='sec-color';
+  const tb=document.createElement('div');tb.className='themebtns';
+  THEMES.forEach(t=>{
+    const btn=document.createElement('button');
+    btn.textContent=t.label;
+    btn.style.background=t.key===curTheme?t.primary[0]:'';
+    if(t.key===curTheme)btn.classList.add('on');
+    btn.onclick=()=>{curTheme=t.key;render()};
+    tb.appendChild(btn);
+  });
+  secC.innerHTML=`<h2>${DATA[0].title}</h2><div class="desc">${DATA[0].desc}</div>`;
+  secC.appendChild(tb);
+  DATA[0].groups.forEach(g=>secC.appendChild(renderGroup(g)));
+  DATA[0].themeGroups().forEach(g=>secC.appendChild(renderGroup(g)));
+  main.appendChild(secC);
+  const a=document.createElement('a');a.href='#sec-color';
+  a.innerHTML=`${DATA[0].title}<span class="st" id="toc-st-color"></span>`;toc.appendChild(a);
+  DATA.slice(1).forEach(sec=>{
+    const na=document.createElement('a');na.href='#sec-'+sec.id;
+    na.innerHTML=`${sec.title}<span class="st" id="toc-st-${sec.id}"></span>`;toc.appendChild(na);
+    const s=document.createElement('section');s.className='block';s.id='sec-'+sec.id;
+    let inner=`<h2>${sec.title}</h2><div class="desc">${sec.desc}</div>`;
+    sec.groups.forEach(g=>{inner+=renderGroupHTML(g)});
+    s.innerHTML=inner;main.appendChild(s);
+  });
+  applyState();
+}
+function renderGroupHTML(g){
+  if(!g.items.length)return '';
+  let inner=`<h3 class="grp">${g.name}</h3><div class="swgrid">`;
+  g.items.forEach(it=>{
+    if(it.labelOnly){inner+=`<div class="grplabel">${it.text}</div>`;return;}
+    inner+=`<div class="el" data-spec-id="${it.id}" id="el-${it.id}">
+      ${chipHTML(it)}
+      <div class="statusband"></div>
+      <div class="meta"><div class="token">${it.token}</div>
+        ${it.hex?`<div class="hex">${it.hex}</div>`:''}
+        ${it.usage?`<div class="usage">${it.usage}</div>`:''}
+        ${it.flag?`<div class="flag">⚠ ${it.flag}</div>`:''}
+        ${it.uflag?`<div class="uflag">✎ ${it.uflag}</div>`:''}
+      </div>
+      <div class="ctrl">
+        <button class="pass" onclick="setSt('${it.id}','pass')">✔ 通过</button>
+        <button class="fail" onclick="setSt('${it.id}','fail')">✘ 问题</button>
+      </div>
+      <div class="note"><input placeholder="问题描述…" oninput="setNote('${it.id}',this.value)"></div>
+    </div>`;
+  });
+  return inner+`</div>`;
+}
+function renderGroup(g){
+  const div=document.createElement('div');div.innerHTML=renderGroupHTML(g);
+  const frag=document.createDocumentFragment();
+  while(div.firstChild)frag.appendChild(div.firstChild);
+  return frag;
+}
+function applyState(){
+  document.querySelectorAll('.el[data-spec-id]').forEach(el=>{
+    const id=el.dataset.specId,st=state[id]||{},locked=!!st.locked;
+    el.classList.toggle('passed',st.status==='pass');
+    el.classList.toggle('rejected',st.status==='fail');
+    el.classList.toggle('locked',locked);
+    const band=el.querySelector('.statusband');
+    band.textContent=locked?'🔒 已通过(上轮锁定,不可改)':st.status==='pass'?'✔ 已通过':st.status==='fail'?'✘ 有问题':'未填写';
+    band.style.color=locked||st.status==='pass'?'#097E4F':st.status==='fail'?'#CF2E2E':'#999';
+    const passBtn=el.querySelector('.pass'),failBtn=el.querySelector('.fail');
+    passBtn.classList.toggle('on',st.status==='pass');
+    failBtn.classList.toggle('on',st.status==='fail');
+    if(locked){passBtn.onclick=null;failBtn.onclick=null;passBtn.style.pointerEvents='none';failBtn.style.pointerEvents='none';
+      if(!el.querySelector('.lock')){const lk=document.createElement('span');lk.className='lock';lk.textContent='🔒';el.appendChild(lk);}}
+    if(st.note)el.querySelector('.note input').value=st.note;
+  });
+  updateProgress();
+  applyFilter();
+}
+function setSt(id,st){
+  const cur=state[id]||{};
+  if(cur.locked)return;
+  state[id]=Object.assign({},cur,{status:st===cur.status?'':st});
+  if(!state[id].status)delete state[id].status;
+  localStorage.setItem(KEY,JSON.stringify(state));applyState();
+}
+function setNote(id,v){const cur=state[id]||{};state[id]=Object.assign({},cur,{note:v});localStorage.setItem(KEY,JSON.stringify(state));}
+function visibleIds(){
+  const ids=[];
+  DATA.forEach(s=>{const gs=s.id==='color'?s.groups.concat(s.themeGroups()):s.groups;
+    gs.forEach(g=>g.items.forEach(it=>{if(!it.labelOnly)ids.push(it.id)}))});
+  return ids;
+}
+function updateProgress(){
+  const ids=visibleIds();
+  const done=ids.filter(i=>state[i]&&state[i].status).length,
+        pass=ids.filter(i=>state[i]&&state[i].status==='pass').length,
+        fail=ids.filter(i=>state[i]&&state[i].status==='fail').length;
+  document.getElementById('progress-fill').style.width=ids.length?((done/ids.length)*100).toFixed(1)+'%':'0%';
+  document.getElementById('progress-text').textContent=`已检核 ${done}/${ids.length} · 通过 ${pass} · 问题 ${fail} · 未填写 ${ids.length-done}`;
+  DATA.forEach(s=>{
+    const el=document.getElementById('toc-st-'+s.id);if(!el)return;
+    const gs=s.id==='color'?s.groups.concat(s.themeGroups()):s.groups;
+    const sid=[];gs.forEach(g=>g.items.forEach(it=>{if(!it.labelOnly)sid.push(it.id)}));
+    const d=sid.filter(i=>state[i]&&state[i].status).length,f=sid.filter(i=>state[i]&&state[i].status==='fail').length;
+    el.textContent=d?`${d}/${sid.length}${f?' ('+f+'✘)':''}`:'';
+  });
+}
+function toggleFilter(){
+  filterOpen=!filterOpen;
+  const btn=document.getElementById('filter-btn');
+  btn.style.background=filterOpen?'#3773DB':'';btn.style.color=filterOpen?'#fff':'';
+  applyState();
+}
+function applyFilter(){
+  document.querySelectorAll('#main .el[data-spec-id]').forEach(el=>{
+    const st=state[el.dataset.specId]||{};
+    /* 只隐藏「已通过」;问题项与未填写项保留待复核 */
+    el.style.display=(filterOpen&&st.status==='pass')?'none':'';
+  });
+  if(filterOpen){
+    document.querySelectorAll('#main h3.grp').forEach(h=>{
+      let sib=h.nextElementSibling,shown=false;
+      while(sib&&!sib.classList.contains('grp')){
+        if(sib.classList&&sib.classList.contains('swgrid')){
+          shown=[...sib.querySelectorAll('.el[data-spec-id]')].some(e=>e.style.display!=='none');
+          // 分组说明行(grplabel)有可见内容也算
+          if(!shown)shown=[...sib.querySelectorAll('.grplabel')].some(e=>e.offsetParent!==null||e.style.display!=='none');
+        }
+        sib=sib.nextElementSibling;
+      }
+      h.style.display=shown?'':'none';
+      // 该 h3 之后的 swgrid 若整组隐藏也要隐藏(含 label 行)
+      let s2=h.nextElementSibling;
+      while(s2&&!s2.classList.contains('grp')){
+        if(s2.classList&&s2.classList.contains('swgrid'))s2.style.display=shown?'':'none';
+        s2=s2.nextElementSibling;
+      }
+    });
+  } else {
+    document.querySelectorAll('#main h3.grp,#main .swgrid').forEach(e=>e.style.display='');
+  }
+}
+function exportLog(){
+  const ids=visibleIds();
+  const log={exportedAt:new Date().toISOString(),galleryVersion:'v2',
+    summary:{total:ids.length,
+    pass:ids.filter(i=>state[i]&&state[i].status==='pass').length,
+    fail:ids.filter(i=>state[i]&&state[i].status==='fail').length,
+    unchecked:ids.filter(i=>!state[i]||!state[i].status).length},
+    items:ids.map(i=>({specId:i,status:(state[i]&&state[i].status)||'unchecked',locked:!!(state[i]&&state[i].locked),note:(state[i]&&state[i].note)||''}))};
+  const blob=new Blob([JSON.stringify(log,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='review-log.json';a.click();
+}
+render();
+</script>
+</body>
+</html>

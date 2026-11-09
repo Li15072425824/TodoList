@@ -1,0 +1,4828 @@
+{
+  "sections": 803,
+  "placeholders": 2219,
+  "unavailablePaths": 835,
+  "uniqueSvgKeys": 2219,
+  "templateBytes": 1002591,
+  "template": "/Users/lixing/WorkRep/TodoList/PPT/voyah-skill-eval/ground-truth/notes/icon-template.html",
+  "sectionStats": [
+    {
+      "sectionIndex": 0,
+      "id": "2:912",
+      "name": "组 4",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 1,
+      "id": "4:5156",
+      "name": "按钮类型",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 2,
+      "id": "4:7288",
+      "name": "深浅渐变图标",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 3,
+      "id": "26:2689",
+      "name": "组 15379",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 4,
+      "id": "4:17573",
+      "name": "保存_save",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 5,
+      "id": "4:20243",
+      "name": "保存硬盘_save-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 6,
+      "id": "4:20250",
+      "name": "标签_tag-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 7,
+      "id": "4:20255",
+      "name": "标签_tag",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 8,
+      "id": "4:20260",
+      "name": "不喜欢_dislike-two",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 9,
+      "id": "4:20268",
+      "name": "不喜欢_dislike",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 10,
+      "id": "4:20272",
+      "name": "不喜欢_unlike",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 11,
+      "id": "4:20278",
+      "name": "订阅_rss",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 12,
+      "id": "4:20284",
+      "name": "法案_bill",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 13,
+      "id": "4:20291",
+      "name": "翻译_translate",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 14,
+      "id": "4:20299",
+      "name": "放大_zoom-in",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 15,
+      "id": "4:20306",
+      "name": "分享_share",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 16,
+      "id": "4:20312",
+      "name": "分享3_share-three",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 17,
+      "id": "4:20318",
+      "name": "更多_more-app",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 18,
+      "id": "4:20327",
+      "name": "更多_more",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 19,
+      "id": "4:20333",
+      "name": "更多1_more-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 20,
+      "id": "4:20339",
+      "name": "更多2_more-two",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 21,
+      "id": "4:20346",
+      "name": "工具_tool",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 22,
+      "id": "4:20350",
+      "name": "汉堡图标_hamburger-button",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 23,
+      "id": "4:20356",
+      "name": "加载_loading",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 24,
+      "id": "4:20361",
+      "name": "加载4_loading-four",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 25,
+      "id": "4:20365",
+      "name": "均衡器_equalizer",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 26,
+      "id": "4:20375",
+      "name": "开关_power",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 27,
+      "id": "4:20380",
+      "name": "雷达_radar",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 28,
+      "id": "4:20388",
+      "name": "瞄准_aiming",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 29,
+      "id": "4:20400",
+      "name": "男性_male",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 30,
+      "id": "4:20406",
+      "name": "女性_female",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 31,
+      "id": "4:20413",
+      "name": "配置_config",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 32,
+      "id": "4:20418",
+      "name": "瀑布流横向_waterfalls-h",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 33,
+      "id": "4:20425",
+      "name": "瀑布流纵向_waterfalls-v",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 34,
+      "id": "4:20432",
+      "name": "全部_all-application",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 35,
+      "id": "4:20439",
+      "name": "沙漏空_hourglass-null",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 36,
+      "id": "4:20446",
+      "name": "沙漏满_hourglass-full",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 37,
+      "id": "4:20455",
+      "name": "删除_delete-two",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 38,
+      "id": "4:20461",
+      "name": "闪电_lightning",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 39,
+      "id": "4:20465",
+      "name": "设置_setting-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 40,
+      "id": "4:20470",
+      "name": "设置_setting-three",
+      "placeholders": 9
+    },
+    {
+      "sectionIndex": 41,
+      "id": "4:20482",
+      "name": "设置_setting-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 42,
+      "id": "4:20487",
+      "name": "设置_setting",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 43,
+      "id": "4:20492",
+      "name": "设置配置_setting-config",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 44,
+      "id": "4:20504",
+      "name": "首页_home",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 45,
+      "id": "4:20510",
+      "name": "书签_bookmark-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 46,
+      "id": "4:20515",
+      "name": "书签_bookmark",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 47,
+      "id": "4:20521",
+      "name": "刷新_refresh",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 48,
+      "id": "4:20527",
+      "name": "睡眠_sleep",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 49,
+      "id": "4:20532",
+      "name": "搜索_search",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 50,
+      "id": "4:20538",
+      "name": "缩小_zoom-out",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 51,
+      "id": "4:20544",
+      "name": "提示_tips",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 52,
+      "id": "4:20550",
+      "name": "喜欢_like",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 53,
+      "id": "4:20554",
+      "name": "系统_system",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 54,
+      "id": "4:20561",
+      "name": "相机_camera",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 55,
+      "id": "4:20567",
+      "name": "预览-打开_preview-open",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 56,
+      "id": "4:20572",
+      "name": "预览-关闭_preview-close-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 57,
+      "id": "4:20578",
+      "name": "预览-关闭_preview-close",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 58,
+      "id": "4:20586",
+      "name": "照片_pic",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 59,
+      "id": "4:20695",
+      "name": "输入文本",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 60,
+      "id": "4:20733",
+      "name": "基础",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 61,
+      "id": "4:20930",
+      "name": "安全&防护",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 62,
+      "id": "4:25754",
+      "name": "办公&文档",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 63,
+      "id": "4:26828",
+      "name": "编辑",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 64,
+      "id": "7:7517",
+      "name": "抽象性图标",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 65,
+      "id": "4:20592",
+      "name": "安全_shield",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 66,
+      "id": "4:20596",
+      "name": "安全增加_shield-add",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 67,
+      "id": "4:20602",
+      "name": "保护_protect",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 68,
+      "id": "4:20607",
+      "name": "保护_protection",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 69,
+      "id": "4:20613",
+      "name": "报错_caution",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 70,
+      "id": "4:20619",
+      "name": "程序问题_bug",
+      "placeholders": 9
+    },
+    {
+      "sectionIndex": 71,
+      "id": "4:20632",
+      "name": "辐射_radiation",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 72,
+      "id": "4:20637",
+      "name": "警报_alarm",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 73,
+      "id": "4:20819",
+      "name": "举报_report",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 74,
+      "id": "4:20827",
+      "name": "灭火器_fire-extinguisher",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 75,
+      "id": "4:20834",
+      "name": "瀑布流横向_waterfalls-h",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 76,
+      "id": "4:20841",
+      "name": "失衡天平_imbalance",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 77,
+      "id": "4:20852",
+      "name": "天平_balance-two",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 78,
+      "id": "4:20863",
+      "name": "危害_harm",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 79,
+      "id": "4:20869",
+      "name": "钥匙_key",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 80,
+      "id": "4:20875",
+      "name": "钥匙孔_keyhole",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 81,
+      "id": "4:20880",
+      "name": "雨伞_umbrella-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 82,
+      "id": "4:20885",
+      "name": "雨伞_umbrella-two",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 83,
+      "id": "4:20891",
+      "name": "雨伞_umbrella",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 84,
+      "id": "4:20897",
+      "name": "安全_security",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 85,
+      "id": "4:20904",
+      "name": "报纸折叠_newspaper-folding",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 86,
+      "id": "4:20942",
+      "name": "笔记_notes",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 87,
+      "id": "4:20948",
+      "name": "笔记本_notebook-one",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 88,
+      "id": "4:20957",
+      "name": "笔记本_notebook",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 89,
+      "id": "4:20967",
+      "name": "笔记本和笔_notebook-and-pen",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 90,
+      "id": "4:20978",
+      "name": "编辑_editor",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 91,
+      "id": "4:20986",
+      "name": "编辑文件_file-editing",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 92,
+      "id": "4:20992",
+      "name": "编辑文件1_file-editing-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 93,
+      "id": "4:20998",
+      "name": "标签_label",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 94,
+      "id": "4:21003",
+      "name": "表格_table",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 95,
+      "id": "4:21011",
+      "name": "播放器_play-two",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 96,
+      "id": "4:21016",
+      "name": "成功文件_file-success",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 97,
+      "id": "4:21022",
+      "name": "成功文件1_file-success-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 98,
+      "id": "4:21028",
+      "name": "成功文件夹_folder-success",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 99,
+      "id": "4:21033",
+      "name": "成功文件夹1_folder-success-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 100,
+      "id": "4:21038",
+      "name": "存疑文件_file-question",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 101,
+      "id": "4:21045",
+      "name": "代码文件_file-code",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 102,
+      "id": "4:21052",
+      "name": "代码文件1_file-code-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 103,
+      "id": "4:21059",
+      "name": "代码文件夹_folder-code",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 104,
+      "id": "4:21065",
+      "name": "代码文件夹1_folder-code-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 105,
+      "id": "4:21071",
+      "name": "到期文件_file-date",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 106,
+      "id": "4:21078",
+      "name": "到期文件1_file-date-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 107,
+      "id": "4:21085",
+      "name": "订单_order",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 108,
+      "id": "4:21091",
+      "name": "定时发送_timed-mail",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 109,
+      "id": "4:21098",
+      "name": "发送邮件_send-email",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 110,
+      "id": "4:21105",
+      "name": "复制_copy-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 111,
+      "id": "4:21113",
+      "name": "高质量文件夹_folder-quality",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 112,
+      "id": "4:21118",
+      "name": "高质量文件夹1_folder-quality-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 113,
+      "id": "4:21123",
+      "name": "格式_format",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 114,
+      "id": "4:21129",
+      "name": "公告_announcement",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 115,
+      "id": "4:21136",
+      "name": "盒子_box",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 116,
+      "id": "4:21142",
+      "name": "回传数据_date-comes-back",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 117,
+      "id": "4:21150",
+      "name": "回形针_paperclip",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 118,
+      "id": "4:21154",
+      "name": "级别_level",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 119,
+      "id": "4:21159",
+      "name": "记事本_notepad",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 120,
+      "id": "4:21164",
+      "name": "加密文件_file-lock",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 121,
+      "id": "4:21171",
+      "name": "加密文件1_file-lock-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 122,
+      "id": "4:21178",
+      "name": "加密文件夹_folder-lock",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 123,
+      "id": "4:21184",
+      "name": "加密文件夹1_folder-lock-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 124,
+      "id": "4:21190",
+      "name": "加印_add-print",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 125,
+      "id": "4:21197",
+      "name": "剪切板_clipboard",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 126,
+      "id": "4:21202",
+      "name": "检查_inspection",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 127,
+      "id": "4:21211",
+      "name": "健康认知_healthy-recognition",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 128,
+      "id": "4:21219",
+      "name": "接收库_receive",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 129,
+      "id": "4:21226",
+      "name": "接受邮件_accept-email",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 130,
+      "id": "4:21233",
+      "name": "禁用文件夹_folder-block",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 131,
+      "id": "4:21239",
+      "name": "禁用文件夹1_folder-block-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 132,
+      "id": "4:21245",
+      "name": "井号文件_file-hash",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 133,
+      "id": "4:21254",
+      "name": "井号文件1_file-hash-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 134,
+      "id": "4:21263",
+      "name": "警示文件_file-tips",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 135,
+      "id": "4:21270",
+      "name": "警示文件1_file-tips-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 136,
+      "id": "4:21277",
+      "name": "链接_link",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 137,
+      "id": "4:21281",
+      "name": "列表视图_list-view",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 138,
+      "id": "4:21290",
+      "name": "美化_optimize",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 139,
+      "id": "4:21295",
+      "name": "票_ticket-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 140,
+      "id": "4:21303",
+      "name": "瀑布流横向_waterfalls-h",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 141,
+      "id": "4:21310",
+      "name": "权限_permissions",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 142,
+      "id": "4:21318",
+      "name": "券_ticket",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 143,
+      "id": "4:21325",
+      "name": "人事文件_file-staff",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 144,
+      "id": "4:21332",
+      "name": "人事文件1_file-staff-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 145,
+      "id": "4:21339",
+      "name": "日程表_schedule",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 146,
+      "id": "4:21347",
+      "name": "日志_log",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 147,
+      "id": "4:21354",
+      "name": "沙漏_hourglass",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 148,
+      "id": "4:21366",
+      "name": "失败文件夹_folder-failed",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 149,
+      "id": "4:21372",
+      "name": "失败文件夹1_folder-failed-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 150,
+      "id": "4:21378",
+      "name": "失效文件_invalid-files",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 151,
+      "id": "4:21385",
+      "name": "市场分析_market-analysis",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 152,
+      "id": "4:21394",
+      "name": "视频_video-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 153,
+      "id": "4:21399",
+      "name": "视频会议_video-conference",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 154,
+      "id": "4:21406",
+      "name": "视频文件_video-file",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 155,
+      "id": "4:21412",
+      "name": "收件成功_inbox-success",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 156,
+      "id": "4:21418",
+      "name": "收件上载_inbox-out",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 157,
+      "id": "4:21425",
+      "name": "收件下载_inbox-in",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 158,
+      "id": "4:21432",
+      "name": "收件箱_inbox-r",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 159,
+      "id": "4:21441",
+      "name": "收件箱_inbox",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 160,
+      "id": "4:21448",
+      "name": "收件箱成功_inbox-success-r",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 161,
+      "id": "4:21456",
+      "name": "收件箱上传_inbox-upload-r",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 162,
+      "id": "4:21465",
+      "name": "收件箱下载_inbox-download-r",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 163,
+      "id": "4:21474",
+      "name": "收藏文件_collection-files",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 164,
+      "id": "4:21479",
+      "name": "收藏文件_file-collection",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 165,
+      "id": "4:21485",
+      "name": "收藏文件1_file-collection-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 166,
+      "id": "4:21491",
+      "name": "收藏文件夹_folder-focus",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 167,
+      "id": "4:21496",
+      "name": "收藏文件夹1_folder-focus-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 168,
+      "id": "4:21501",
+      "name": "书籍_book",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 169,
+      "id": "4:21506",
+      "name": "书籍_bookshelf",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 170,
+      "id": "4:21511",
+      "name": "书籍-打开_book-open",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 171,
+      "id": "4:21516",
+      "name": "书籍1_book-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 172,
+      "id": "4:21522",
+      "name": "数据统计工具_excel",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 173,
+      "id": "4:21532",
+      "name": "数据文件_data-file",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 174,
+      "id": "4:21540",
+      "name": "搜查_find-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 175,
+      "id": "4:21546",
+      "name": "搜索文件夹_folder-search",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 176,
+      "id": "4:21552",
+      "name": "搜索文件夹1_folder-search-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 177,
+      "id": "4:21558",
+      "name": "锁定网页_locking-web",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 178,
+      "id": "4:21567",
+      "name": "添加网页_add-web",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 179,
+      "id": "4:21576",
+      "name": "图片_moving-picture",
+      "placeholders": 11
+    },
+    {
+      "sectionIndex": 180,
+      "id": "4:21591",
+      "name": "图片_picture",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 181,
+      "id": "4:21597",
+      "name": "图片成功_success-picture",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 182,
+      "id": "4:21604",
+      "name": "图片错误_error-picture",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 183,
+      "id": "4:21612",
+      "name": "图片错误_fail-picture",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 184,
+      "id": "4:21619",
+      "name": "图片禁用_disabled-picture",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 185,
+      "id": "4:21627",
+      "name": "图片上传_upload-picture",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 186,
+      "id": "4:21635",
+      "name": "图片收集_collect-picture",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 187,
+      "id": "4:21642",
+      "name": "图片锁定_locking-picture",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 188,
+      "id": "4:21651",
+      "name": "图片添加_add-picture",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 189,
+      "id": "4:21659",
+      "name": "图片文件_image-files",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 190,
+      "id": "4:21666",
+      "name": "图片下载_down-picture",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 191,
+      "id": "4:21674",
+      "name": "退出文件夹_folder-withdrawal",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 192,
+      "id": "4:21680",
+      "name": "退出文件夹1_folder-withdrawal-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 193,
+      "id": "4:21686",
+      "name": "网页_web-page",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 194,
+      "id": "4:21693",
+      "name": "网页代码_source-code",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 195,
+      "id": "4:21702",
+      "name": "网页禁用_disabaled-web",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 196,
+      "id": "4:21711",
+      "name": "网页上传_upload-web",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 197,
+      "id": "4:21720",
+      "name": "网页设置_setting-web",
+      "placeholders": 11
+    },
+    {
+      "sectionIndex": 198,
+      "id": "4:21734",
+      "name": "网页下载_download-web",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 199,
+      "id": "4:21743",
+      "name": "文本文件_file-text",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 200,
+      "id": "4:21750",
+      "name": "文本文件1_file-text-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 201,
+      "id": "4:21757",
+      "name": "文档_file-doc",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 202,
+      "id": "4:21769",
+      "name": "文档成功_doc-success",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 203,
+      "id": "4:21776",
+      "name": "文档架子_document-folder",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 204,
+      "id": "4:21784",
+      "name": "文档失败_doc-fail",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 205,
+      "id": "4:21792",
+      "name": "文档搜索_doc-search-two",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 206,
+      "id": "4:21801",
+      "name": "文档搜索_doc-search",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 207,
+      "id": "4:21809",
+      "name": "文档添加_doc-add",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 208,
+      "id": "4:21817",
+      "name": "文档详情_doc-detail",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 209,
+      "id": "4:21824",
+      "name": "文件-excel_file-excel",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 210,
+      "id": "4:21830",
+      "name": "文件-gif_file-gif",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 211,
+      "id": "4:21835",
+      "name": "文件-jpg_file-jpg",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 212,
+      "id": "4:21842",
+      "name": "文件-pdf_file-pdf",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 213,
+      "id": "4:21848",
+      "name": "文件-txt_file-txt",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 214,
+      "id": "4:21854",
+      "name": "文件-word_file-word",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 215,
+      "id": "4:21859",
+      "name": "文件保护_file-protection",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 216,
+      "id": "4:21865",
+      "name": "文件保护1_file-protection-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 217,
+      "id": "4:21871",
+      "name": "文件查找_file-search",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 218,
+      "id": "4:21882",
+      "name": "文件撤销_file-withdrawal",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 219,
+      "id": "4:21889",
+      "name": "文件撤销1_file-withdrawal-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 220,
+      "id": "4:21896",
+      "name": "文件柜_file-cabinet",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 221,
+      "id": "4:21905",
+      "name": "文件夹_folder",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 222,
+      "id": "4:21915",
+      "name": "文件夹_seo-folder",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 223,
+      "id": "4:21921",
+      "name": "文件夹-关_folder-close",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 224,
+      "id": "4:21928",
+      "name": "文件夹-开_folder-open",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 225,
+      "id": "4:21933",
+      "name": "文件夹-删除_folder-minus",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 226,
+      "id": "4:21938",
+      "name": "文件夹-上传_folder-upload",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 227,
+      "id": "4:21944",
+      "name": "文件夹-添加_folder-plus",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 228,
+      "id": "4:21950",
+      "name": "文件夹-下载_folder-download",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 229,
+      "id": "4:21956",
+      "name": "文件夹保护_folder-protection",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 230,
+      "id": "4:21961",
+      "name": "文件夹保护1_folder-protection-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 231,
+      "id": "4:21966",
+      "name": "文件夹设置_folder-settings",
+      "placeholders": 10
+    },
+    {
+      "sectionIndex": 232,
+      "id": "4:21979",
+      "name": "文件夹设置1_folder-settings-one",
+      "placeholders": 10
+    },
+    {
+      "sectionIndex": 233,
+      "id": "4:21992",
+      "name": "文件设置_file-settings",
+      "placeholders": 11
+    },
+    {
+      "sectionIndex": 234,
+      "id": "4:22006",
+      "name": "文件设置1_file-settings-one",
+      "placeholders": 11
+    },
+    {
+      "sectionIndex": 235,
+      "id": "4:22020",
+      "name": "文件失败_file-failed",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 236,
+      "id": "4:22027",
+      "name": "文件失败1_file-failed-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 237,
+      "id": "4:22034",
+      "name": "文件搜索_file-search-two",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 238,
+      "id": "4:22041",
+      "name": "文件搜索1_file-search-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 239,
+      "id": "4:22048",
+      "name": "文件添加_file-addition",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 240,
+      "id": "4:22055",
+      "name": "文件添加1_file-addition-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 241,
+      "id": "4:22062",
+      "name": "文字识别_text-recognition",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 242,
+      "id": "4:22071",
+      "name": "文字讯息_text-message",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 243,
+      "id": "4:22080",
+      "name": "显示文件_file-display",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 244,
+      "id": "4:22087",
+      "name": "显示文件1_file-display-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 245,
+      "id": "4:22094",
+      "name": "相册_picture-album",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 246,
+      "id": "4:22103",
+      "name": "详情列表_view-list",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 247,
+      "id": "4:22113",
+      "name": "协议_agreement",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 248,
+      "id": "4:22120",
+      "name": "新图片_new-picture",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 249,
+      "id": "4:22128",
+      "name": "信封_envelope",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 250,
+      "id": "4:22135",
+      "name": "信封1_envelope-one",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 251,
+      "id": "4:22143",
+      "name": "形式_form-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 252,
+      "id": "4:22153",
+      "name": "压缩_compression",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 253,
+      "id": "4:22162",
+      "name": "压缩文件_file-zip",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 254,
+      "id": "4:22174",
+      "name": "移除文件_file-removal",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 255,
+      "id": "4:22180",
+      "name": "移除文件1_file-removal-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 256,
+      "id": "4:22186",
+      "name": "已读邮件_mail-open",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 257,
+      "id": "4:22191",
+      "name": "异常_abnormal",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 258,
+      "id": "4:22200",
+      "name": "音乐文件_file-music",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 259,
+      "id": "4:22207",
+      "name": "音乐文件1_file-music-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 260,
+      "id": "4:22214",
+      "name": "音乐文件夹_folder-music",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 261,
+      "id": "4:22220",
+      "name": "音乐文件夹1_folder-music-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 262,
+      "id": "4:22226",
+      "name": "音频文件_audio-file",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 263,
+      "id": "4:22232",
+      "name": "隐藏文件_file-hiding",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 264,
+      "id": "4:22242",
+      "name": "隐藏文件1_file-hiding-one",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 265,
+      "id": "4:22252",
+      "name": "应用效果_application-effect",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 266,
+      "id": "4:22258",
+      "name": "英文_english",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 267,
+      "id": "4:22267",
+      "name": "优质文件_file-quality",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 268,
+      "id": "4:22273",
+      "name": "优质文件1_file-quality-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 269,
+      "id": "4:22279",
+      "name": "邮件_mail",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 270,
+      "id": "4:22286",
+      "name": "邮件安全_email-security",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 271,
+      "id": "4:22292",
+      "name": "邮件包_mail-package",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 272,
+      "id": "4:22301",
+      "name": "邮件编辑_mail-edit",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 273,
+      "id": "4:22307",
+      "name": "邮件查阅_mail-review",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 274,
+      "id": "4:22315",
+      "name": "邮件打开_mail-unpacking",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 275,
+      "id": "4:22321",
+      "name": "邮件发送成功_email-successfully",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 276,
+      "id": "4:22327",
+      "name": "邮件发送失败_email-fail",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 277,
+      "id": "4:22334",
+      "name": "邮件屏蔽_email-block",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 278,
+      "id": "4:22341",
+      "name": "邮件删除_email-delect",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 279,
+      "id": "4:22348",
+      "name": "邮件搜索_email-search",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 280,
+      "id": "4:22355",
+      "name": "邮件锁定_email-lock",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 281,
+      "id": "4:22362",
+      "name": "邮件推送_email-push",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 282,
+      "id": "4:22369",
+      "name": "邮件下载_email-down",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 283,
+      "id": "4:22376",
+      "name": "邮件下载_mail-download",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 284,
+      "id": "4:22383",
+      "name": "涨幅_increase",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 285,
+      "id": "4:22392",
+      "name": "指令_instruction",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 286,
+      "id": "4:22400",
+      "name": "中文_chinese",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 287,
+      "id": "4:22406",
+      "name": "中文1_chinese-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 288,
+      "id": "4:22413",
+      "name": "终止文件_termination-file",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 289,
+      "id": "4:22423",
+      "name": "重点文件_file-focus",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 290,
+      "id": "4:22429",
+      "name": "重点文件1_file-focus-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 291,
+      "id": "4:22435",
+      "name": "转变_transform",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 292,
+      "id": "4:22442",
+      "name": "转换文件_file-conversion",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 293,
+      "id": "4:22451",
+      "name": "转换文件1_file-conversion-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 294,
+      "id": "4:22460",
+      "name": "转换文件夹_folder-conversion",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 295,
+      "id": "4:22468",
+      "name": "转换文件夹1_folder-conversion-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 296,
+      "id": "4:22476",
+      "name": "字体搜索_font-search",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 297,
+      "id": "4:22483",
+      "name": "pdf文件_file-pdf-one",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 298,
+      "id": "4:22497",
+      "name": "ppt文件_file-ppt",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 299,
+      "id": "4:22511",
+      "name": "txt文件_file-txt-one",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 300,
+      "id": "4:22525",
+      "name": "16宫格_grid-sixteen",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 301,
+      "id": "4:22535",
+      "name": "半自动模式_intermediate-mode",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 302,
+      "id": "4:22923",
+      "name": "帮助中心_helpcenter",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 303,
+      "id": "4:22929",
+      "name": "背景颜色_background-color",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 304,
+      "id": "4:22937",
+      "name": "比例缩放_proportional-scaling",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 305,
+      "id": "4:22944",
+      "name": "编辑_edit",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 306,
+      "id": "4:22949",
+      "name": "编辑_repair",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 307,
+      "id": "4:22956",
+      "name": "编辑1_edit-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 308,
+      "id": "4:22963",
+      "name": "编辑2_edit-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 309,
+      "id": "4:22968",
+      "name": "编辑撰写_writing-fluently",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 310,
+      "id": "4:22973",
+      "name": "标题_h1",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 311,
+      "id": "4:22980",
+      "name": "标题1_h2",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 312,
+      "id": "4:22987",
+      "name": "标题2_h3",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 313,
+      "id": "4:22994",
+      "name": "标题级别_title-level",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 314,
+      "id": "4:23002",
+      "name": "表格_excel-one",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 315,
+      "id": "4:23010",
+      "name": "布局1_layout-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 316,
+      "id": "4:23019",
+      "name": "布局2_layout-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 317,
+      "id": "4:23026",
+      "name": "布局3_layout-three",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 318,
+      "id": "4:23035",
+      "name": "布局4_layout-four",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 319,
+      "id": "4:23046",
+      "name": "布局5_layout-five",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 320,
+      "id": "4:23057",
+      "name": "裁切_cutting-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 321,
+      "id": "4:23067",
+      "name": "裁切_cutting",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 322,
+      "id": "4:23073",
+      "name": "插入表_insert-table",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 323,
+      "id": "4:23081",
+      "name": "查找_find",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 324,
+      "id": "4:23089",
+      "name": "差异集_difference-set",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 325,
+      "id": "4:23094",
+      "name": "拆分单元格_split-cells",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 326,
+      "id": "4:23103",
+      "name": "成组_group",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 327,
+      "id": "4:23115",
+      "name": "传入_afferent-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 328,
+      "id": "4:23121",
+      "name": "传入_afferent",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 329,
+      "id": "4:23127",
+      "name": "创建_newlybuild",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 330,
+      "id": "4:23134",
+      "name": "垂直对齐_align-vertically",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 331,
+      "id": "4:23139",
+      "name": "垂直翻转_flip-vertically",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 332,
+      "id": "4:23145",
+      "name": "垂直分布_distribute-vertically",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 333,
+      "id": "4:23151",
+      "name": "垂直间距_vertical-spacing-between-items",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 334,
+      "id": "4:23157",
+      "name": "垂直间距分布_distribute-vertical-spacing",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 335,
+      "id": "4:23163",
+      "name": "垂直居中_margin",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 336,
+      "id": "4:23173",
+      "name": "垂直居中对齐_alignment-vertical-center",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 337,
+      "id": "4:23180",
+      "name": "垂直居中对齐_vertically-centered",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 338,
+      "id": "4:23186",
+      "name": "垂直居中对齐2_align-vertical-center-two",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 339,
+      "id": "4:23192",
+      "name": "垂直右对齐_alignment-vertical-right",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 340,
+      "id": "4:23199",
+      "name": "垂直整理_vertical-tidy-up",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 341,
+      "id": "4:23205",
+      "name": "垂直左对齐_alignment-vertical-left",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 342,
+      "id": "4:23212",
+      "name": "大纲视图_mindmap-list",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 343,
+      "id": "4:23221",
+      "name": "大括号_code-brackets",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 344,
+      "id": "4:23226",
+      "name": "大头钉_pin",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 345,
+      "id": "4:23231",
+      "name": "代码_code",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 346,
+      "id": "4:23237",
+      "name": "单选_radio-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 347,
+      "id": "4:23242",
+      "name": "等比_equal-ratio",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 348,
+      "id": "4:23250",
+      "name": "等比缩放_scale",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 349,
+      "id": "4:23257",
+      "name": "底部右对齐_alignment-bottom-right",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 350,
+      "id": "4:23264",
+      "name": "底部中心对齐_alignment-bottom-center",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 351,
+      "id": "4:23271",
+      "name": "底部左对齐_alignment-bottom-left",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 352,
+      "id": "4:23278",
+      "name": "底对齐_align-bottom",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 353,
+      "id": "4:23283",
+      "name": "底栏_bottom-bar",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 354,
+      "id": "4:23290",
+      "name": "点_dot",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 355,
+      "id": "4:23294",
+      "name": "电波_electric-wave",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 356,
+      "id": "4:23299",
+      "name": "顶部居中对齐_alignment-top-center",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 357,
+      "id": "4:23306",
+      "name": "顶部右对齐_alignment-top-right",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 358,
+      "id": "4:23313",
+      "name": "顶部左对齐_alignment-top-left",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 359,
+      "id": "4:23320",
+      "name": "顶对齐_align-top",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 360,
+      "id": "4:23325",
+      "name": "顶栏_top-bar",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 361,
+      "id": "4:23332",
+      "name": "端点位移_endpoint-displacement",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 362,
+      "id": "4:23343",
+      "name": "段落截断_paragraph-cut",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 363,
+      "id": "4:23350",
+      "name": "段落溢出_paragraph-unfold",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 364,
+      "id": "4:23359",
+      "name": "段落折行_paragraph-break-two",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 365,
+      "id": "4:23367",
+      "name": "段落折行_paragraph-break",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 366,
+      "id": "4:23374",
+      "name": "对勾_check-correct",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 367,
+      "id": "4:23380",
+      "name": "对焦_focus",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 368,
+      "id": "4:23389",
+      "name": "对焦1_focus-one",
+      "placeholders": 10
+    },
+    {
+      "sectionIndex": 369,
+      "id": "4:23402",
+      "name": "多对多_many-to-many",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 370,
+      "id": "4:23410",
+      "name": "多图轮播_multi-picture-carousel",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 371,
+      "id": "4:23419",
+      "name": "多选框_checkbox",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 372,
+      "id": "4:23424",
+      "name": "多选列表_list-checkbox",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 373,
+      "id": "4:23436",
+      "name": "翻译_translation",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 374,
+      "id": "4:23442",
+      "name": "反转镜头_invert-camera",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 375,
+      "id": "4:23451",
+      "name": "反转相机_reverse-lens-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 376,
+      "id": "4:23460",
+      "name": "方头端点_endpoint-flat",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 377,
+      "id": "4:23465",
+      "name": "方头节点_node-flat",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 378,
+      "id": "4:23471",
+      "name": "方向_direction",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 379,
+      "id": "4:23480",
+      "name": "方向校准_direction-adjustment-three",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 380,
+      "id": "4:23484",
+      "name": "方向校准_direction-adjustment-two",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 381,
+      "id": "4:23492",
+      "name": "方向校准_direction-adjustment",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 382,
+      "id": "4:23500",
+      "name": "分割线_dividing-line-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 383,
+      "id": "4:23510",
+      "name": "分界线_dividing-line",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 384,
+      "id": "4:23520",
+      "name": "分散对齐_scatter-alignment",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 385,
+      "id": "4:23526",
+      "name": "分享2_share-two",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 386,
+      "id": "4:23530",
+      "name": "复制_copy",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 387,
+      "id": "4:23535",
+      "name": "复制链接_copy-link",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 388,
+      "id": "4:23544",
+      "name": "高亮_high-light",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 389,
+      "id": "4:23549",
+      "name": "更多_more-four",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 390,
+      "id": "4:23556",
+      "name": "故障图_damage-map",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 391,
+      "id": "4:23562",
+      "name": "关锁_lock-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 392,
+      "id": "4:23568",
+      "name": "光圈优先_aperture-priority",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 393,
+      "id": "4:23575",
+      "name": "合并_merge",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 394,
+      "id": "4:23580",
+      "name": "合并_sum",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 395,
+      "id": "4:23584",
+      "name": "合并单元格_merge-cells",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 396,
+      "id": "4:23593",
+      "name": "合并选择_union-selection",
+      "placeholders": 9
+    },
+    {
+      "sectionIndex": 397,
+      "id": "4:23605",
+      "name": "幻灯片_powerpoint",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 398,
+      "id": "4:23611",
+      "name": "计划_plan",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 399,
+      "id": "4:23619",
+      "name": "继续_go-on",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 400,
+      "id": "4:23624",
+      "name": "加减调整_adjustment",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 401,
+      "id": "4:23632",
+      "name": "减去上一层_subtract-selection-one",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 402,
+      "id": "4:23641",
+      "name": "减去下一层_subtract-selection",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 403,
+      "id": "4:23650",
+      "name": "减少小数位_reduce-decimal-places",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 404,
+      "id": "4:23657",
+      "name": "剪辑_editing",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 405,
+      "id": "4:23664",
+      "name": "降序排序_sort-amount-down",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 406,
+      "id": "4:23673",
+      "name": "交集_intersection",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 407,
+      "id": "4:23679",
+      "name": "截屏_screenshot-two",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 408,
+      "id": "4:23687",
+      "name": "截屏_screenshot",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 409,
+      "id": "4:23694",
+      "name": "截图_screenshot-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 410,
+      "id": "4:23702",
+      "name": "解锁_unlock",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 411,
+      "id": "4:23708",
+      "name": "解组_ungroup",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 412,
+      "id": "4:23723",
+      "name": "进出口_import-and-export",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 413,
+      "id": "4:23731",
+      "name": "禁止拍照_no-shooting",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 414,
+      "id": "4:23738",
+      "name": "井号_pound-sign",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 415,
+      "id": "4:23745",
+      "name": "井号_pound",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 416,
+      "id": "4:23752",
+      "name": "镜头对准_lens-alignment",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 417,
+      "id": "4:23765",
+      "name": "镜头反转_reverse-lens",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 418,
+      "id": "4:23772",
+      "name": "九宫格_grid-nine",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 419,
+      "id": "4:23780",
+      "name": "居中对齐_center-alignment",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 420,
+      "id": "4:23786",
+      "name": "矩形段落_paragraph-rectangle",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 421,
+      "id": "4:23794",
+      "name": "卡片查看模式_view-grid-card",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 422,
+      "id": "4:23802",
+      "name": "开锁_unlock-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 423,
+      "id": "4:23808",
+      "name": "块公式_inline",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 424,
+      "id": "4:23814",
+      "name": "快门优先_shutter-priority",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 425,
+      "id": "4:23820",
+      "name": "链接_deeplink",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 426,
+      "id": "4:23829",
+      "name": "链接_link-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 427,
+      "id": "4:23836",
+      "name": "链接_link-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 428,
+      "id": "4:23841",
+      "name": "链接断开_unlink",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 429,
+      "id": "4:23848",
+      "name": "亮度_brightness",
+      "placeholders": 10
+    },
+    {
+      "sectionIndex": 430,
+      "id": "4:23861",
+      "name": "列_column",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 431,
+      "id": "4:23866",
+      "name": "列表_list-bottom",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 432,
+      "id": "4:23875",
+      "name": "列表_list-middle",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 433,
+      "id": "4:23884",
+      "name": "列表_list-top",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 434,
+      "id": "4:23893",
+      "name": "列表_list",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 435,
+      "id": "4:23902",
+      "name": "列表2_list-two",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 436,
+      "id": "4:23911",
+      "name": "列表查看模式_view-grid-list",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 437,
+      "id": "4:23921",
+      "name": "马赛克_mosaic",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 438,
+      "id": "4:23937",
+      "name": "魔法棒_magic-wand",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 439,
+      "id": "4:23944",
+      "name": "脑图_mind-mapping",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 440,
+      "id": "4:23953",
+      "name": "内部扩大_internal-expansion",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 441,
+      "id": "4:23959",
+      "name": "内左下投影_inner-shadow-bottom-left",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 442,
+      "id": "4:23964",
+      "name": "扭曲_distortion",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 443,
+      "id": "4:23968",
+      "name": "排除选择_exclude-selection",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 444,
+      "id": "4:23981",
+      "name": "平头端点_endpoint-square",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 445,
+      "id": "4:23987",
+      "name": "平头节点_node-square",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 446,
+      "id": "4:23993",
+      "name": "切换完成_switching-done",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 447,
+      "id": "4:24000",
+      "name": "切换主题_switch-themes",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 448,
+      "id": "4:24008",
+      "name": "清除_clear",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 449,
+      "id": "4:24017",
+      "name": "清除格式_clear-format",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 450,
+      "id": "4:24024",
+      "name": "曲线调整_curve-adjustment",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 451,
+      "id": "4:24029",
+      "name": "取景器_viewfinder",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 452,
+      "id": "4:24038",
+      "name": "全局放大_full-screen",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 453,
+      "id": "4:24045",
+      "name": "全局缩小_off-screen",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 454,
+      "id": "4:24052",
+      "name": "全宽_fullwidth",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 455,
+      "id": "4:24056",
+      "name": "日历_calendar",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 456,
+      "id": "4:24067",
+      "name": "三角段落_paragraph-triangle",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 457,
+      "id": "4:24075",
+      "name": "扫描_scan",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 458,
+      "id": "4:24092",
+      "name": "扫描_scanning-two",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 459,
+      "id": "4:24102",
+      "name": "扫描_scanning",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 460,
+      "id": "4:24112",
+      "name": "筛选_filter",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 461,
+      "id": "4:24116",
+      "name": "筛选1_filter-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 462,
+      "id": "4:24122",
+      "name": "删除_delete-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 463,
+      "id": "4:24129",
+      "name": "删除_delete-three",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 464,
+      "id": "4:24136",
+      "name": "删除_delete",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 465,
+      "id": "4:24144",
+      "name": "删除4_delete-four",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 466,
+      "id": "4:24150",
+      "name": "删除5_delete-five",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 467,
+      "id": "4:24158",
+      "name": "删除模式_delete-mode",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 468,
+      "id": "4:24163",
+      "name": "删除主题_delete-themes",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 469,
+      "id": "4:24170",
+      "name": "闪光模式_flashlamp",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 470,
+      "id": "4:24175",
+      "name": "上层_bring-forward",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 471,
+      "id": "4:24183",
+      "name": "上传日志_upload-logs",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 472,
+      "id": "4:24191",
+      "name": "上对齐2_align-top-two",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 473,
+      "id": "4:24197",
+      "name": "上投影_drop-shadow-up",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 474,
+      "id": "4:24202",
+      "name": "上一步_back",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 475,
+      "id": "4:24206",
+      "name": "失败列表_list-fail",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 476,
+      "id": "4:24215",
+      "name": "视频_video-two",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 477,
+      "id": "4:24223",
+      "name": "收缩_reduce-two",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 478,
+      "id": "4:24231",
+      "name": "输入键盘_enter-the-keyboard",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 479,
+      "id": "4:24239",
+      "name": "数据图_chart-pie-one",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 480,
+      "id": "4:24244",
+      "name": "数字列表_list-numbers",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 481,
+      "id": "4:24253",
+      "name": "刷新_refresh-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 482,
+      "id": "4:24263",
+      "name": "水平对齐_align-horizontally",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 483,
+      "id": "4:24268",
+      "name": "水平翻转_flip-horizontally",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 484,
+      "id": "4:24274",
+      "name": "水平分布_distribute-horizontally",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 485,
+      "id": "4:24280",
+      "name": "水平间距_horizontal-spacing-between-items",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 486,
+      "id": "4:24286",
+      "name": "水平间距分布_distribute-horizontal-spacing",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 487,
+      "id": "4:24292",
+      "name": "水平居中_margin-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 488,
+      "id": "4:24302",
+      "name": "水平居中对齐_alignment-horizontal-center",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 489,
+      "id": "4:24309",
+      "name": "水平居中对齐_horizontally-centered",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 490,
+      "id": "4:24315",
+      "name": "水平居中对齐2_align-horizontal-center-two",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 491,
+      "id": "4:24321",
+      "name": "水平上对齐_alignment-horizontal-top",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 492,
+      "id": "4:24328",
+      "name": "水平下对齐_alignment-horizontal-bottom",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 493,
+      "id": "4:24335",
+      "name": "水平校准_level-adjustment",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 494,
+      "id": "4:24340",
+      "name": "水平整理_horizontal-tidy-up",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 495,
+      "id": "4:24346",
+      "name": "思维导图_mindmap-map",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 496,
+      "id": "4:24353",
+      "name": "锁定_lock",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 497,
+      "id": "4:24359",
+      "name": "拓展_extend",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 498,
+      "id": "4:24367",
+      "name": "添加_add-four",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 499,
+      "id": "4:24376",
+      "name": "添加_add-three",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 500,
+      "id": "4:24389",
+      "name": "添加同级条目_add-item",
+      "placeholders": 20
+    },
+    {
+      "sectionIndex": 501,
+      "id": "4:24412",
+      "name": "添加子条目_add-subset",
+      "placeholders": 18
+    },
+    {
+      "sectionIndex": 502,
+      "id": "4:24433",
+      "name": "透视_perspective",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 503,
+      "id": "4:24437",
+      "name": "图层_layers",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 504,
+      "id": "4:24444",
+      "name": "图钉_pushpin",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 505,
+      "id": "4:24448",
+      "name": "图片_picture-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 506,
+      "id": "4:24454",
+      "name": "拖拽_drag",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 507,
+      "id": "4:24459",
+      "name": "完成全部_done-all",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 508,
+      "id": "4:24464",
+      "name": "网格2_grid-two",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 509,
+      "id": "4:24470",
+      "name": "网格3_grid-three",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 510,
+      "id": "4:24476",
+      "name": "文本换行-截断_text-wrap-truncation",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 511,
+      "id": "4:24482",
+      "name": "文本换行-溢出_text-wrap-overflow",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 512,
+      "id": "4:24490",
+      "name": "文本旋转-上_text-rotation-up",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 513,
+      "id": "4:24495",
+      "name": "文本旋转-无_text-rotation-none",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 514,
+      "id": "4:24500",
+      "name": "文本旋转-下_text-rotation-down",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 515,
+      "id": "4:24505",
+      "name": "文本样式_text-style-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 516,
+      "id": "4:24513",
+      "name": "文本样式_text-style",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 517,
+      "id": "4:24521",
+      "name": "文档_word",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 518,
+      "id": "4:24526",
+      "name": "文字_add-text-two",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 519,
+      "id": "4:24532",
+      "name": "文字_text",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 520,
+      "id": "4:24539",
+      "name": "文字大小_add-text",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 521,
+      "id": "4:24546",
+      "name": "文字底对齐_align-text-bottom",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 522,
+      "id": "4:24553",
+      "name": "文字底对齐1_align-text-bottom-one",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 523,
+      "id": "4:24559",
+      "name": "文字顶对齐_align-text-top",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 524,
+      "id": "4:24566",
+      "name": "文字顶对齐1_align-text-top-one",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 525,
+      "id": "4:24572",
+      "name": "文字加粗_text-bold",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 526,
+      "id": "4:24577",
+      "name": "文字居右_align-text-right",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 527,
+      "id": "4:24584",
+      "name": "文字居右1_align-text-right-one",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 528,
+      "id": "4:24591",
+      "name": "文字居中_align-text-center",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 529,
+      "id": "4:24598",
+      "name": "文字居中1_align-text-center-one",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 530,
+      "id": "4:24605",
+      "name": "文字居左_align-text-left",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 531,
+      "id": "4:24612",
+      "name": "文字居左1_align-text-left-one",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 532,
+      "id": "4:24619",
+      "name": "文字两边对齐_align-text-both",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 533,
+      "id": "4:24626",
+      "name": "文字两边对齐1_align-text-both-one",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 534,
+      "id": "4:24633",
+      "name": "文字下划线_text-underline",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 535,
+      "id": "4:24638",
+      "name": "文字斜体_text-italic",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 536,
+      "id": "4:24644",
+      "name": "文字右对齐_align-right-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 537,
+      "id": "4:24651",
+      "name": "文字域_textarea",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 538,
+      "id": "4:24657",
+      "name": "文字中间对齐_align-text-middle",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 539,
+      "id": "4:24665",
+      "name": "文字中间对齐1_align-text-middle-one",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 540,
+      "id": "4:24671",
+      "name": "文字左对齐_align-left-one",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 541,
+      "id": "4:24678",
+      "name": "无序列表_unordered-list",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 542,
+      "id": "4:24691",
+      "name": "下层_send-backward",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 543,
+      "id": "4:24699",
+      "name": "下对齐2_align-bottom-two",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 544,
+      "id": "4:24705",
+      "name": "下拉列表_drop-down-list",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 545,
+      "id": "4:24711",
+      "name": "下投影_drop-shadow-down",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 546,
+      "id": "4:24716",
+      "name": "下一步_next",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 547,
+      "id": "4:24720",
+      "name": "下载_download-four",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 548,
+      "id": "4:24726",
+      "name": "下载代码_code-download",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 549,
+      "id": "4:24733",
+      "name": "相交选择_intersect-selection",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 550,
+      "id": "4:24740",
+      "name": "相邻条目_adjacent-item",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 551,
+      "id": "4:24749",
+      "name": "详情查看模式_view-grid-detail",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 552,
+      "id": "4:24758",
+      "name": "向外连接_link-out",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 553,
+      "id": "4:24768",
+      "name": "向右展开_right-expand",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 554,
+      "id": "4:24773",
+      "name": "向左展开_left-expand",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 555,
+      "id": "4:24778",
+      "name": "写作_write",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 556,
+      "id": "4:24783",
+      "name": "星星_star",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 557,
+      "id": "4:24787",
+      "name": "行内公式_block",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 558,
+      "id": "4:24793",
+      "name": "修改_modify-two",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 559,
+      "id": "4:24803",
+      "name": "修改_modify",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 560,
+      "id": "4:24812",
+      "name": "旋转_rotate-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 561,
+      "id": "4:24818",
+      "name": "选择_full-selection",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 562,
+      "id": "4:24827",
+      "name": "选中_selected",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 563,
+      "id": "4:24838",
+      "name": "选中焦点_selected-focus",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 564,
+      "id": "4:24849",
+      "name": "压缩文件_zip",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 565,
+      "id": "4:24857",
+      "name": "钥匙1_key-one",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 566,
+      "id": "4:24865",
+      "name": "钥匙2_key-two",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 567,
+      "id": "4:24872",
+      "name": "夜晚模式_dark-mode",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 568,
+      "id": "4:24877",
+      "name": "一对多_one-to-many",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 569,
+      "id": "4:24885",
+      "name": "一对一_one-to-one",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 570,
+      "id": "4:24893",
+      "name": "移到底部_minus-the-bottom",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 571,
+      "id": "4:24898",
+      "name": "移到顶部_minus-the-top",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 572,
+      "id": "4:24903",
+      "name": "移到后面_send-to-back",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 573,
+      "id": "4:24909",
+      "name": "移到前面_bring-to-front-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 574,
+      "id": "4:24916",
+      "name": "移动_move-in-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 575,
+      "id": "4:24921",
+      "name": "移动_move-one",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 576,
+      "id": "4:24925",
+      "name": "引用_quote",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 577,
+      "id": "4:24930",
+      "name": "应用_application-two",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 578,
+      "id": "4:24937",
+      "name": "应用菜单_application-menu",
+      "placeholders": 9
+    },
+    {
+      "sectionIndex": 579,
+      "id": "4:24949",
+      "name": "影片剪辑_edit-movie",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 580,
+      "id": "4:24959",
+      "name": "邮票_stamp",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 581,
+      "id": "4:24964",
+      "name": "有序列表_ordered-list",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 582,
+      "id": "4:24977",
+      "name": "右侧居中对齐_alignment-right-center",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 583,
+      "id": "4:24984",
+      "name": "右侧上对齐_alignment-right-top",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 584,
+      "id": "4:24991",
+      "name": "右侧下对齐_alignment-right-bottom",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 585,
+      "id": "4:24998",
+      "name": "右对齐_align-right",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 586,
+      "id": "4:25003",
+      "name": "右对齐2_align-right-two",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 587,
+      "id": "4:25009",
+      "name": "右栏_right-bar",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 588,
+      "id": "4:25016",
+      "name": "右连接_link-right",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 589,
+      "id": "4:25024",
+      "name": "右缩进_indent-right",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 590,
+      "id": "4:25032",
+      "name": "右投影_drop-shadow-right",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 591,
+      "id": "4:25037",
+      "name": "圆头端点_endpoint-round",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 592,
+      "id": "4:25043",
+      "name": "圆头节点_node-round",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 593,
+      "id": "4:25049",
+      "name": "圆形段落_paragraph-round",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 594,
+      "id": "4:25057",
+      "name": "增加模式_add-mode",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 595,
+      "id": "4:25063",
+      "name": "增加图片_add-pic",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 596,
+      "id": "4:25070",
+      "name": "增加小数位_increase-the-scale",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 597,
+      "id": "4:25078",
+      "name": "展开_expand-down",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 598,
+      "id": "4:25086",
+      "name": "展开_expand-left",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 599,
+      "id": "4:25094",
+      "name": "展开_expand-right",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 600,
+      "id": "4:25102",
+      "name": "展开_expand-up",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 601,
+      "id": "4:25110",
+      "name": "遮罩_mask-two",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 602,
+      "id": "4:25119",
+      "name": "整体缩小_overall-reduction",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 603,
+      "id": "4:25127",
+      "name": "字号大小_font-size",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 604,
+      "id": "4:25133",
+      "name": "字节跳动小程序_bytedance-applets",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 605,
+      "id": "4:25141",
+      "name": "字母倒序_alphabetical-sorting-two",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 606,
+      "id": "4:25148",
+      "name": "字母段落_paragraph-alphabet",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 607,
+      "id": "4:25157",
+      "name": "字母列表_list-alphabet",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 608,
+      "id": "4:25167",
+      "name": "字母顺序_alphabetical-sorting",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 609,
+      "id": "4:25174",
+      "name": "自定对焦_auto-focus",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 610,
+      "id": "4:25183",
+      "name": "自动高度1_auto-height-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 611,
+      "id": "4:25191",
+      "name": "自动宽度_auto-width",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 612,
+      "id": "4:25197",
+      "name": "自动宽度1_auto-width-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 613,
+      "id": "4:25205",
+      "name": "自动列宽_auto-line-width",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 614,
+      "id": "4:25213",
+      "name": "自动行高_auto-line-height",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 615,
+      "id": "4:25221",
+      "name": "自然模式_natural-mode",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 616,
+      "id": "4:25227",
+      "name": "组件_components",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 617,
+      "id": "4:25234",
+      "name": "最上层_bring-to-front",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 618,
+      "id": "4:25245",
+      "name": "最下层_sent-to-back",
+      "placeholders": 9
+    },
+    {
+      "sectionIndex": 619,
+      "id": "4:25257",
+      "name": "左侧居中对齐_alignment-left-center",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 620,
+      "id": "4:25264",
+      "name": "左侧上对齐_alignment-left-top",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 621,
+      "id": "4:25271",
+      "name": "左侧下对齐_alignment-left-bottom",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 622,
+      "id": "4:25278",
+      "name": "左对齐_align-left",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 623,
+      "id": "4:25283",
+      "name": "左对齐_left-alignment",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 624,
+      "id": "4:25289",
+      "name": "左对齐2_align-left-two",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 625,
+      "id": "4:25295",
+      "name": "左栏_left-bar",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 626,
+      "id": "4:25302",
+      "name": "左链接_link-left",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 627,
+      "id": "4:25310",
+      "name": "左缩进_indent-left",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 628,
+      "id": "4:25318",
+      "name": "左投影_drop-shadow-left",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 629,
+      "id": "4:25323",
+      "name": "左右扩大_expand-left-and-right",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 630,
+      "id": "4:25327",
+      "name": "h_h",
+      "placeholders": 0
+    },
+    {
+      "sectionIndex": 631,
+      "id": "4:25333",
+      "name": "半圆_misaligned-semicircle",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 632,
+      "id": "4:25340",
+      "name": "包容网关_inclusive-gateway",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 633,
+      "id": "4:25345",
+      "name": "宝箱_treasure-chest",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 634,
+      "id": "4:25352",
+      "name": "报表_table-report",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 635,
+      "id": "4:25359",
+      "name": "奔驰_benz",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 636,
+      "id": "4:25365",
+      "name": "并行网关_parallel-gateway",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 637,
+      "id": "4:25371",
+      "name": "出库_outbound",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 638,
+      "id": "4:25378",
+      "name": "错误提示_error-prompt",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 639,
+      "id": "4:25385",
+      "name": "打开_open-one",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 640,
+      "id": "4:25394",
+      "name": "大X_rectangle-x",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 641,
+      "id": "4:25400",
+      "name": "导出_export",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 642,
+      "id": "4:25406",
+      "name": "对称_symmetry",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 643,
+      "id": "4:25412",
+      "name": "多层圆球_multilayer-sphere",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 644,
+      "id": "4:25806",
+      "name": "多方形_multi-rectangle",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 645,
+      "id": "4:25812",
+      "name": "多三角_multi-triangular-four",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 646,
+      "id": "4:25819",
+      "name": "多三角_multi-triangular-three",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 647,
+      "id": "4:25826",
+      "name": "多三角_multi-triangular-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 648,
+      "id": "4:25831",
+      "name": "多三角_multi-triangular",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 649,
+      "id": "4:25838",
+      "name": "多圆环_multi-ring",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 650,
+      "id": "4:25849",
+      "name": "多圆形_multi-circular",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 651,
+      "id": "4:25855",
+      "name": "分类管理_category-management",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 652,
+      "id": "4:25862",
+      "name": "分离_split-branch",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 653,
+      "id": "4:25869",
+      "name": "更新_update-rotation",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 654,
+      "id": "4:25875",
+      "name": "关键线_keyline",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 655,
+      "id": "4:25882",
+      "name": "关联_association",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 656,
+      "id": "4:25888",
+      "name": "光晕_halo",
+      "placeholders": 10
+    },
+    {
+      "sectionIndex": 657,
+      "id": "4:25901",
+      "name": "广告产品_ad-product",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 658,
+      "id": "4:25909",
+      "name": "皇冠_crown-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 659,
+      "id": "4:25914",
+      "name": "徽章提醒_badge",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 660,
+      "id": "4:25919",
+      "name": "汇聚网关_converging-gateway",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 661,
+      "id": "4:25927",
+      "name": "几何花_geometric-flowers",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 662,
+      "id": "4:25934",
+      "name": "交叉环_cross-ring",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 663,
+      "id": "4:25944",
+      "name": "解除组件_figma-reset-instance",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 664,
+      "id": "4:25950",
+      "name": "九点连接_nine-points-connected",
+      "placeholders": 13
+    },
+    {
+      "sectionIndex": 665,
+      "id": "4:25966",
+      "name": "矩形撕裂_rectangle-tear",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 666,
+      "id": "4:25973",
+      "name": "矩形椎体_rectangular-vertebra",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 667,
+      "id": "4:25982",
+      "name": "立体透视_stereo-perspective",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 668,
+      "id": "4:25992",
+      "name": "两个三角_two-triangles-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 669,
+      "id": "4:25997",
+      "name": "两个椭圆_two-ellipses",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 670,
+      "id": "4:26002",
+      "name": "六边立体_hexagonal",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 671,
+      "id": "4:26012",
+      "name": "六边条_hexagon-strip",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 672,
+      "id": "4:26016",
+      "name": "六个点_six-points",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 673,
+      "id": "4:26026",
+      "name": "模块箭头_blocks-and-arrows",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 674,
+      "id": "4:26033",
+      "name": "魔比斯环_cross-ring-two",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 675,
+      "id": "4:26037",
+      "name": "魔方_cube-five",
+      "placeholders": 11
+    },
+    {
+      "sectionIndex": 676,
+      "id": "4:26053",
+      "name": "魔方_cube-four",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 677,
+      "id": "4:26061",
+      "name": "魔方_cube-three",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 678,
+      "id": "4:26071",
+      "name": "魔方_cube-two",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 679,
+      "id": "4:26078",
+      "name": "魔方_cube",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 680,
+      "id": "4:26091",
+      "name": "内部传输_internal-transmission",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 681,
+      "id": "4:26098",
+      "name": "内部数据\n_internal-data",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 682,
+      "id": "4:26106",
+      "name": "逆向运行_reverse-operation-out",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 683,
+      "id": "4:26113",
+      "name": "排他网关_exclusive-gateway",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 684,
+      "id": "4:26119",
+      "name": "嵌套箭头_nested-arrows",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 685,
+      "id": "4:26126",
+      "name": "嵌套图形_stereo-nesting",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 686,
+      "id": "4:26131",
+      "name": "切换_app-switch",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 687,
+      "id": "4:26137",
+      "name": "切换对比_switch-contrast",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 688,
+      "id": "4:26143",
+      "name": "入库_warehousing",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 689,
+      "id": "4:26150",
+      "name": "三个菱形_three-hexagons",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 690,
+      "id": "4:26156",
+      "name": "三个三角_three-triangles",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 691,
+      "id": "4:26163",
+      "name": "三角形_refraction",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 692,
+      "id": "4:26172",
+      "name": "三角圆矩形_triangle-round-rectangle",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 693,
+      "id": "4:26178",
+      "name": "三棱锥_triangular-pyramid",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 694,
+      "id": "4:26183",
+      "name": "三斜杠_three-slashes",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 695,
+      "id": "4:26189",
+      "name": "双半圆_two-semicircles",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 696,
+      "id": "4:26194",
+      "name": "双X符号_symbol-double-x",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 697,
+      "id": "4:26201",
+      "name": "四点连接_four-point-connection",
+      "placeholders": 12
+    },
+    {
+      "sectionIndex": 698,
+      "id": "4:26218",
+      "name": "四点连接_four-round-point-connection",
+      "placeholders": 13
+    },
+    {
+      "sectionIndex": 699,
+      "id": "4:26234",
+      "name": "四个箭头_four-arrows",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 700,
+      "id": "4:26244",
+      "name": "四棱锥_quadrangular-pyramid",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 701,
+      "id": "4:26251",
+      "name": "四片叶子_four-leaves",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 702,
+      "id": "4:26258",
+      "name": "搜索引擎_seo",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 703,
+      "id": "4:26266",
+      "name": "同步_sync",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 704,
+      "id": "4:26271",
+      "name": "同向运行_reverse-operation-in",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 705,
+      "id": "4:26278",
+      "name": "图形分割_rectangular-circular-separation",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 706,
+      "id": "4:26284",
+      "name": "图形连接_rectangular-circular-connection",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 707,
+      "id": "4:26290",
+      "name": "图形设计_graphic-design",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 708,
+      "id": "4:26295",
+      "name": "图形组合_graphic-design-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 709,
+      "id": "4:26300",
+      "name": "椭圆爱心_oval-love-two",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 710,
+      "id": "4:26305",
+      "name": "椭圆爱心_oval-love",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 711,
+      "id": "4:26311",
+      "name": "外部传输_external-transmission",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 712,
+      "id": "4:26318",
+      "name": "纹理_texture-two",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 713,
+      "id": "4:26330",
+      "name": "纹理_texture",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 714,
+      "id": "4:26340",
+      "name": "纹路_process-line",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 715,
+      "id": "4:26354",
+      "name": "无穷尽_endless",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 716,
+      "id": "4:26358",
+      "name": "五个椭圆_five-ellipses",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 717,
+      "id": "4:26366",
+      "name": "显示屏_display",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 718,
+      "id": "4:26374",
+      "name": "销售_sales-report",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 719,
+      "id": "4:26381",
+      "name": "星号_asterisk",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 720,
+      "id": "4:26388",
+      "name": "星星_two-triangles",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 721,
+      "id": "4:26395",
+      "name": "旋风_whirlwind",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 722,
+      "id": "4:26403",
+      "name": "旋转_one-third-rotation",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 723,
+      "id": "4:26410",
+      "name": "循环_cycle-one",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 724,
+      "id": "4:26417",
+      "name": "循环箭头_cycle-arrow",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 725,
+      "id": "4:26423",
+      "name": "应用_application-one",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 726,
+      "id": "4:26429",
+      "name": "游戏表情_game-emoji",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 727,
+      "id": "4:26435",
+      "name": "右运行_right-run",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 728,
+      "id": "4:26442",
+      "name": "圆球_sphere",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 729,
+      "id": "4:26448",
+      "name": "圆圈_circle-five-line",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 730,
+      "id": "4:26460",
+      "name": "圆圈_circle-four-line",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 731,
+      "id": "4:26471",
+      "name": "圆圈_circle-four",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 732,
+      "id": "4:26479",
+      "name": "圆圈_circle-three",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 733,
+      "id": "4:26486",
+      "name": "圆圈_circle-two-line",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 734,
+      "id": "4:26493",
+      "name": "圆圈_circles-seven",
+      "placeholders": 7
+    },
+    {
+      "sectionIndex": 735,
+      "id": "4:26503",
+      "name": "圆形和三角_circles-and-triangles",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 736,
+      "id": "4:26508",
+      "name": "圆形卡钳_round-caliper",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 737,
+      "id": "4:26516",
+      "name": "圆形连接_circular-connection",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 738,
+      "id": "4:26525",
+      "name": "圆形连接_six-circular-connection",
+      "placeholders": 11
+    },
+    {
+      "sectionIndex": 739,
+      "id": "4:26541",
+      "name": "圆形扭曲_round-distortion",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 740,
+      "id": "4:26547",
+      "name": "圆形遮罩_round-mask",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 741,
+      "id": "4:26552",
+      "name": "圆形组合_graphic-stitching-four",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 742,
+      "id": "4:26563",
+      "name": "圆形组合_graphic-stitching-three",
+      "placeholders": 8
+    },
+    {
+      "sectionIndex": 743,
+      "id": "4:26574",
+      "name": "圆形组合_graphic-stitching",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 744,
+      "id": "4:26581",
+      "name": "圆柱_cylinder",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 745,
+      "id": "4:26588",
+      "name": "圆锥_cone",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 746,
+      "id": "4:26594",
+      "name": "智能优化_smart-optimization",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 747,
+      "id": "4:26600",
+      "name": "组件_figma-component",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 748,
+      "id": "4:26607",
+      "name": "左运行_run-left",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 749,
+      "id": "4:26614",
+      "name": "坐标系_cones",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 750,
+      "id": "4:26620",
+      "name": "坐标系统_coordinate-system",
+      "placeholders": 6
+    },
+    {
+      "sectionIndex": 751,
+      "id": "4:26630",
+      "name": "API 应用_api-app",
+      "placeholders": 4
+    },
+    {
+      "sectionIndex": 752,
+      "id": "7:7437",
+      "name": "组 14582",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 753,
+      "id": "7:7380",
+      "name": "组 14583",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 754,
+      "id": "7:7409",
+      "name": "组 14591",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 755,
+      "id": "7:7302",
+      "name": "组 14584",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 756,
+      "id": "7:7364",
+      "name": "组 14585",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 757,
+      "id": "7:7320",
+      "name": "组 14581",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 758,
+      "id": "7:7454",
+      "name": "组 14586",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 759,
+      "id": "7:7421",
+      "name": "组 14587",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 760,
+      "id": "7:7340",
+      "name": "组 14578",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 761,
+      "id": "7:7485",
+      "name": "组 14592",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 762,
+      "id": "7:7469",
+      "name": "组 14589",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 763,
+      "id": "7:7393",
+      "name": "组 14590",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 764,
+      "id": "26:2683",
+      "name": "组 15376",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 765,
+      "id": "26:2685",
+      "name": "组 15377",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 766,
+      "id": "26:2687",
+      "name": "组 15378",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 767,
+      "id": "26:2691",
+      "name": "组 15380",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 768,
+      "id": "26:2705",
+      "name": "组 15383",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 769,
+      "id": "26:2707",
+      "name": "组 15384",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 770,
+      "id": "26:2709",
+      "name": "组 15385",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 771,
+      "id": "26:2725",
+      "name": "组 15393",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 772,
+      "id": "26:2723",
+      "name": "组 15392",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 773,
+      "id": "26:2721",
+      "name": "组 15391",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 774,
+      "id": "26:2719",
+      "name": "组 15390",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 775,
+      "id": "26:2717",
+      "name": "组 15389",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 776,
+      "id": "26:2715",
+      "name": "组 15388",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 777,
+      "id": "26:2713",
+      "name": "组 15387",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 778,
+      "id": "26:2711",
+      "name": "组 15386",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 779,
+      "id": "26:2727",
+      "name": "组 15394",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 780,
+      "id": "26:2729",
+      "name": "组 15395",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 781,
+      "id": "26:2731",
+      "name": "组 15396",
+      "placeholders": 3
+    },
+    {
+      "sectionIndex": 782,
+      "id": "26:2733",
+      "name": "组 15397",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 783,
+      "id": "26:2735",
+      "name": "组 15398",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 784,
+      "id": "26:2745",
+      "name": "组 15401",
+      "placeholders": 5
+    },
+    {
+      "sectionIndex": 785,
+      "id": "26:2743",
+      "name": "组 15400",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 786,
+      "id": "26:2747",
+      "name": "组 15402",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 787,
+      "id": "26:2763",
+      "name": "组 15410",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 788,
+      "id": "26:2761",
+      "name": "组 15409",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 789,
+      "id": "26:2759",
+      "name": "组 15408",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 790,
+      "id": "26:2757",
+      "name": "组 15407",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 791,
+      "id": "26:2755",
+      "name": "组 15406",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 792,
+      "id": "26:2753",
+      "name": "组 15405",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 793,
+      "id": "26:2751",
+      "name": "组 15404",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 794,
+      "id": "26:2749",
+      "name": "组 15403",
+      "placeholders": 2
+    },
+    {
+      "sectionIndex": 795,
+      "id": "26:2765",
+      "name": "组 15411",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 796,
+      "id": "26:2767",
+      "name": "组 15412",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 797,
+      "id": "26:2769",
+      "name": "组 15413",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 798,
+      "id": "26:2771",
+      "name": "组 15414",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 799,
+      "id": "26:2773",
+      "name": "组 15415",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 800,
+      "id": "26:2775",
+      "name": "组 15416",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 801,
+      "id": "26:2777",
+      "name": "组 15417",
+      "placeholders": 1
+    },
+    {
+      "sectionIndex": 802,
+      "id": "26:2779",
+      "name": "组 15418",
+      "placeholders": 1
+    }
+  ]
+}

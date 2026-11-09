@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>字体</title>
+<style>
+/* ===== design tokens (from MasterGo DSL styles) =====
+   paint_2:5=#FFFFFF | paint_2:695=#F9F9F9 | paint_2:66=#333333 | paint_2:334=#111111
+   paint_2:0145=#4A4A4A | paint_2:6043=#555555 | paint_2:1807=#333333 | paint_2:2018=#111111
+   paint_2:0201=#999999 | paint_2:2010=#666666 | paint_2:1502=#C1C1C1 | paint_2:2733=#373D41
+   paint_4:589=#3B1818 | paint_4:0960=#FAFAFA | paint_2:1815=#F5F5F5 | paint_2:1950=#EBEBEB
+   paint_2:1924=#DEDEDE
+   font_2:399=PingFang SC 48/500 lh0.72 | font_4:27350=PingFang SC 24/600 lh32
+   font_2:61=PingFang SC 16/400 lh24 | font_2:3335=PingFang SC 18/400 lh28
+   font_2:3341=Helvetica 18/400 lh28 | font_2:0186=PingFang SC 14/400 lh auto
+   font_2:0143=PingFang SC 18/400 lh auto | font_2:6558=PingFang SC 36/400 lh auto
+   font_2:6683=PingFang SC 36/500 lh auto | font_2:6732=PingFang SC 36/600 lh auto
+   font_4:537=PingFang SC 14/400 lh20 | font_7:5420=PingFang SC 14/600 lh20
+*/
+:root{
+  --font-zh:'PingFang SC',sans-serif;
+  --font-en:'Helvetica',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#e9e9e9;}
+.page{position:relative;width:1440px;min-height:2064px;background:#FFFFFF;border-radius:6px;overflow:hidden;font-family:var(--font-zh);}
+.abs{position:absolute;}
+.t{position:absolute;white-space:nowrap;text-align:left;}
+.cell{position:absolute;border:1px solid #EBEBEB;}
+.svgbox svg{display:block;width:100%;height:100%;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- S0 组 4 header band -->
+  <div class="abs" style="left:0;top:0;width:1440px;height:202px;background:#F9F9F9;"></div>
+  <div class="t" style="left:80px;top:47px;width:96px;height:72px;font-family:var(--font-zh);font-size:48px;font-weight:500;line-height:0.72;color:#111111;">字体</div>
+  <div class="t" style="left:80px;top:131px;width:384px;height:24px;font-family:var(--font-zh);font-size:16px;font-weight:400;line-height:24px;color:#333333;">产品阅读密度大，字体规范的核心是易读性和层级感。</div>
+  <img class="abs" style="left:1138px;top:36px;width:246px;height:130px;" src="https://image-resource.mastergo.com/64625781371459/64625781371461/720c545cc943ace29f300c2a0dafac3d.png" alt="英文横版-标准色_副本">
+
+  <!-- S1 蒙版组 : font family table -->
+  <div class="abs" style="left:81px;top:367px;width:876px;height:127px;">
+    <!-- S1#0..S1#8 grid cells — raw SVG from mcp__extractSvg (layer 2:3445), injected verbatim -->
+    <svg class="abs" style="left:0;top:0;width:875px;height:190px;" xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 875 190" width="875" height="190">
+      <path d="M172,63L172,126L0,126L0,63L172,63Z" fill="#F5F5F5"/>
+      <path d="M-0.5,126.5L-0.5,62.5L172.5,62.5L172.5,126.5L-0.5,126.5Z M171.5,63.5L0.5,63.5L0.5,125.5L171.5,125.5L171.5,63.5Z" fill="#EBEBEB"/>
+      <path d="M172,126L172,189L0,189L0,126L172,126Z" fill="#F5F5F5"/>
+      <path d="M-0.5,189.5L-0.5,125.5L172.5,125.5L172.5,189.5L-0.5,189.5Z M171.5,126.5L0.5,126.5L0.5,188.5L171.5,188.5L171.5,126.5Z" fill="#EBEBEB"/>
+      <path d="M172,1L172,64L0,64L0,1L172,1Z" fill="#F5F5F5"/>
+      <path d="M-0.5,64.5L-0.5,0.5L172.5,0.5L172.5,64.5L-0.5,64.5Z M171.5,1.5L0.5,1.5L0.5,63.5L171.5,63.5L171.5,1.5Z" fill="#EBEBEB"/>
+      <path d="M502,63L502,126L171,126L171,63L502,63Z" fill="#FFFFFF"/>
+      <path d="M170.5,126.5L170.5,62.5L502.5,62.5L502.5,126.5L170.5,126.5Z M501.5,63.5L171.5,63.5L171.5,125.5L501.5,125.5L501.5,63.5Z" fill="#EBEBEB"/>
+      <path d="M502,126L502,189L171,189L171,126L502,126Z" fill="#FFFFFF"/>
+      <path d="M170.5,189.5L170.5,125.5L502.5,125.5L502.5,189.5L170.5,189.5Z M501.5,126.5L171.5,126.5L171.5,188.5L501.5,188.5L501.5,126.5Z" fill="#EBEBEB"/>
+      <path d="M502,0L502,63L171,63L171,0L502,0Z" fill="#FFFFFF"/>
+      <path d="M170.5,63.5L170.5,-0.5L502.5,-0.5L502.5,63.5L170.5,63.5Z M501.5,0.5L171.5,0.5L171.5,62.5L501.5,62.5L501.5,0.5Z" fill="#EBEBEB"/>
+      <path d="M874,0L874,63L502,63L502,0L874,0Z" fill="#FFFFFF"/>
+      <path d="M501.5,63.5L501.5,-0.5L874.5,-0.5L874.5,63.5L501.5,63.5Z M873.5,0.5L502.5,0.5L502.5,62.5L873.5,62.5L873.5,0.5Z" fill="#EBEBEB"/>
+      <path d="M874,63L874,126L502,126L502,63L874,63Z" fill="#FFFFFF"/>
+      <path d="M501.5,126.5L501.5,62.5L874.5,62.5L874.5,126.5L501.5,126.5Z M873.5,63.5L502.5,63.5L502.5,125.5L873.5,125.5L873.5,63.5Z" fill="#EBEBEB"/>
+      <path d="M874,126L874,189L502,189L502,126L874,126Z" fill="#FFFFFF"/>
+      <path d="M501.5,189.5L501.5,125.5L874.5,125.5L874.5,189.5L501.5,189.5Z M873.5,126.5L502.5,126.5L502.5,188.5L873.5,188.5L873.5,126.5Z" fill="#EBEBEB"/>
+    </svg>
+    <div class="t" style="left:24px;top:18px;width:72px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">中文字体</div>
+    <div class="t" style="left:211px;top:18px;width:191px;height:28px;font-family:var(--font-en);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">PingFang SC | Mac/iOS</div>
+    <div class="t" style="left:442px;top:18px;width:36px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">系统</div>
+    <div class="t" style="left:24px;top:81px;width:72px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">英文字体</div>
+    <div class="t" style="left:211px;top:81px;width:132px;height:28px;font-family:var(--font-en);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">Helvetica Neue |</div>
+    <div class="t" style="left:406px;top:81px;width:72px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">首选字体</div>
+    <div class="t" style="left:24px;top:144px;width:72px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">数字展示</div>
+    <div class="t" style="left:211px;top:144px;width:50px;height:28px;font-family:var(--font-en);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">D-DIN </div>
+    <div class="t" style="left:406px;top:144px;width:72px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">首选字体</div>
+    <div class="t" style="left:532px;top:18px;width:214px;height:28px;font-family:var(--font-en);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">Microsoft YaHei | Windows</div>
+    <div class="t" style="left:814px;top:18px;width:36px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">系统</div>
+    <div class="t" style="left:532px;top:81px;width:46px;height:28px;font-family:var(--font-en);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">Arial |</div>
+    <div class="t" style="left:598px;top:81px;width:72px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">备选字体</div>
+    <div class="t" style="left:532px;top:144px;width:201px;height:28px;font-family:var(--font-en);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">HarmonyOS Sans |  Inter</div>
+    <div class="t" style="left:814px;top:144px;width:36px;height:28px;font-family:var(--font-zh);font-size:18px;font-weight:400;line-height:28px;color:#4A4A4A;">备选</div>
+  </div>
+
+  <!-- S2 正文字体建议 -->
+  <div class="t" style="left:80px;top:300px;width:144px;height:32px;font-family:var(--font-zh);font-size:24px;font-weight:600;line-height:32px;color:#333333;">正文字体建议</div>
+
+  <!-- S3 大小、行高 -->
+  <div class="t" style="left:80px;top:671px;width:120px;height:32px;font-family:var(--font-zh);font-size:24px;font-weight:600;line-height:32px;color:#333333;">大小、行高</div>
+
+  <!-- S4 字重 -->
+  <div class="t" style="left:80px;top:1165px;width:48px;height:32px;font-family:var(--font-zh);font-size:24px;font-weight:600;line-height:32px;color:#333333;">字重</div>
+
+  <!-- S5 字体颜色 -->
+  <div class="t" style="left:80px;top:1611px;width:96px;height:32px;font-family:var(--font-zh);font-size:24px;font-weight:600;line-height:32px;color:#333333;">字体颜色</div>
+
+  <!-- S6 字重说明 -->
+  <div class="t" style="left:80px;top:1214px;width:579px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;color:#555555;">字重出现 regular 以及 medium 、bold的三种字体重量，分别对应代码中的 400  500  600。</div>
+
+  <!-- S7 字体颜色说明 -->
+  <div class="t" style="left:80px;top:1662px;width:437px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;color:#555555;">字体颜色默认为5种，特殊情况可以使用#222、#444、#555、#888等</div>
+
+  <!-- S8 组 9 Regular 400 -->
+  <div class="abs" style="left:80px;top:1254px;width:239px;height:233px;">
+    <div class="abs" style="left:0;top:0;width:239px;height:199px;border:1px solid #DEDEDE;"></div>
+    <div class="t" style="left:47px;top:40px;width:144px;height:52px;font-family:var(--font-zh);font-size:36px;font-weight:400;color:#333333;">中文简体</div>
+    <div class="t" style="left:58px;top:102px;width:123px;height:52px;font-family:var(--font-zh);font-size:36px;font-weight:400;color:#333333;">English</div>
+    <div class="t" style="left:69px;top:208px;width:103px;height:25px;font-family:var(--font-zh);font-size:18px;font-weight:400;color:#4A4A4A;">Regular 400</div>
+  </div>
+
+  <!-- S9 组 10 Medium 500 -->
+  <div class="abs" style="left:357px;top:1255px;width:239px;height:232px;">
+    <div class="abs" style="left:0;top:0;width:239px;height:199px;border:1px solid #DEDEDE;"></div>
+    <div class="t" style="left:48px;top:39px;width:144px;height:50px;font-family:var(--font-zh);font-size:36px;font-weight:500;color:#373D41;">中文简体</div>
+    <div class="t" style="left:58px;top:101px;width:124px;height:50px;font-family:var(--font-zh);font-size:36px;font-weight:500;color:#373D41;">English</div>
+    <div class="t" style="left:66px;top:207px;width:105px;height:25px;font-family:var(--font-zh);font-size:18px;font-weight:400;color:#4A4A4A;">Medium 500</div>
+  </div>
+
+  <!-- S10 组 11 Bold 600 -->
+  <div class="abs" style="left:636px;top:1255px;width:239px;height:232px;">
+    <div class="abs" style="left:0;top:0;width:239px;height:199px;border:1px solid #DEDEDE;"></div>
+    <div class="t" style="left:48px;top:39px;width:144px;height:50px;font-family:var(--font-zh);font-size:36px;font-weight:600;color:#373D41;">中文简体</div>
+    <div class="t" style="left:58px;top:101px;width:125px;height:50px;font-family:var(--font-zh);font-size:36px;font-weight:600;color:#373D41;">English</div>
+    <div class="t" style="left:82px;top:207px;width:76px;height:25px;font-family:var(--font-zh);font-size:18px;font-weight:400;color:#4A4A4A;">Bold 600</div>
+  </div>
+
+  <!-- ============ 大小、行高 table (S12-S98) ============ -->
+  <!-- header row y745 : cells fill #FAFAFA -->
+  <div class="cell" style="left:80px;top:745px;width:190px;height:56px;background:#FAFAFA;"></div>
+  <div class="cell" style="left:269px;top:745px;width:190px;height:56px;background:#FAFAFA;"></div>
+  <div class="cell" style="left:458px;top:745px;width:190px;height:56px;background:#FAFAFA;"></div>
+  <div class="cell" style="left:647px;top:745px;width:190px;height:56px;background:#FAFAFA;"></div>
+  <div class="cell" style="left:836px;top:745px;width:314px;height:56px;background:#FAFAFA;"></div>
+  <div class="t" style="left:96px;top:763px;width:56px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:600;line-height:20px;color:#333333;">文字层级</div>
+  <div class="t" style="left:285px;top:763px;width:28px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:600;line-height:20px;color:#333333;">字号</div>
+  <div class="t" style="left:474px;top:763px;width:56px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:600;line-height:20px;color:#333333;">推荐行高</div>
+  <div class="t" style="left:663px;top:763px;width:28px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:600;line-height:20px;color:#333333;">倍数</div>
+  <div class="t" style="left:852px;top:763px;width:56px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:600;line-height:20px;color:#333333;">使用场景</div>
+
+  <!-- row1 y800 页面大标题 -->
+  <div class="cell" style="left:80px;top:800px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:269px;top:800px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:458px;top:800px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:647px;top:800px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:836px;top:800px;width:314px;height:56px;"></div>
+  <div class="t" style="left:96px;top:818px;width:70px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">页面大标题</div>
+  <div class="t" style="left:285px;top:818px;width:61px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">18～24px</div>
+  <div class="t" style="left:474px;top:818px;width:63px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">32～40px</div>
+  <div class="t" style="left:663px;top:818px;width:49px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">1.6～1.7</div>
+  <div class="t" style="left:852px;top:818px;width:182px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">页面顶部标题、重要数据展示</div>
+
+  <!-- row2 y855 模块小标题 -->
+  <div class="cell" style="left:80px;top:855px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:269px;top:855px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:458px;top:855px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:647px;top:855px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:836px;top:855px;width:314px;height:56px;"></div>
+  <div class="t" style="left:96px;top:873px;width:70px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">模块小标题</div>
+  <div class="t" style="left:285px;top:873px;width:30px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">16px</div>
+  <div class="t" style="left:474px;top:873px;width:63px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">24～28px</div>
+  <div class="t" style="left:663px;top:873px;width:58px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">1.5～1.75</div>
+  <div class="t" style="left:852px;top:873px;width:126px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">卡片标题、弹窗标题</div>
+
+  <!-- row3 y910 正文（主字号） -->
+  <div class="cell" style="left:80px;top:910px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:269px;top:910px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:458px;top:910px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:647px;top:910px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:836px;top:910px;width:314px;height:56px;"></div>
+  <div class="t" style="left:96px;top:928px;width:98px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">正文（主字号）</div>
+  <div class="t" style="left:285px;top:928px;width:30px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">14px</div>
+  <div class="t" style="left:474px;top:928px;width:33px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">22px</div>
+  <div class="t" style="left:663px;top:928px;width:26px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">1.57</div>
+  <div class="t" style="left:852px;top:928px;width:266px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">表单、表格、按钮、常规段落、左侧导航栏</div>
+
+  <!-- row4 y965 辅助说明 -->
+  <div class="cell" style="left:80px;top:965px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:269px;top:965px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:458px;top:965px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:647px;top:965px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:836px;top:965px;width:314px;height:56px;"></div>
+  <div class="t" style="left:96px;top:981px;width:56px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">辅助说明</div>
+  <div class="t" style="left:285px;top:981px;width:58px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">12～13px</div>
+  <div class="t" style="left:474px;top:981px;width:33px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">20px</div>
+  <div class="t" style="left:663px;top:981px;width:58px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">1.5～1.67</div>
+  <div class="t" style="left:852px;top:981px;width:154px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">提示文字、备注、时间戳</div>
+
+  <!-- row5 y1020 大段描述 -->
+  <div class="cell" style="left:80px;top:1020px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:269px;top:1020px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:458px;top:1020px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:647px;top:1020px;width:190px;height:56px;"></div>
+  <div class="cell" style="left:836px;top:1020px;width:314px;height:56px;"></div>
+  <div class="t" style="left:96px;top:1036px;width:56px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">大段描述</div>
+  <div class="t" style="left:285px;top:1036px;width:58px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">14～16px</div>
+  <div class="t" style="left:474px;top:1036px;width:63px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">24～28px</div>
+  <div class="t" style="left:663px;top:1036px;width:58px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">1.6～1.75</div>
+  <div class="t" style="left:852px;top:1036px;width:140px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">帮助文档、详情页说明</div>
+
+  <!-- ============ 字体颜色 table (S11-S74) ============ -->
+  <!-- row1 y1698 -->
+  <div class="cell" style="left:80px;top:1698px;width:152px;height:56px;"></div>
+  <div class="cell" style="left:231px;top:1698px;width:152px;height:56px;"></div>
+  <div class="cell" style="left:382px;top:1698px;width:152px;height:56px;background:#F5F5F5;"></div>
+  <div class="t" style="left:96px;top:1716px;width:70px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">页面大标题</div>
+  <div class="t" style="left:265px;top:1714px;width:43px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#3B1818;">#111111</div>
+  <div class="t" style="left:419px;top:1714px;width:57px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#111111;">#111111</div>
+
+  <!-- row2 y1753 (col2 cell absent in DSL) -->
+  <div class="cell" style="left:80px;top:1753px;width:152px;height:56px;"></div>
+  <div class="cell" style="left:382px;top:1753px;width:152px;height:56px;background:#F5F5F5;"></div>
+  <div class="t" style="left:96px;top:1771px;width:84px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">默认正文文字</div>
+  <div class="t" style="left:265px;top:1769px;width:57px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">#333333</div>
+  <div class="t" style="left:419px;top:1769px;width:57px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">#333333</div>
+
+  <!-- row3 y1808 -->
+  <div class="cell" style="left:80px;top:1808px;width:152px;height:56px;"></div>
+  <div class="cell" style="left:231px;top:1808px;width:152px;height:56px;"></div>
+  <div class="cell" style="left:382px;top:1808px;width:152px;height:56px;background:#F5F5F5;"></div>
+  <div class="t" style="left:96px;top:1826px;width:70px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">辅助类文字</div>
+  <div class="t" style="left:265px;top:1826px;width:57px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#666666;">#666666</div>
+  <div class="t" style="left:419px;top:1826px;width:57px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#666666;">#666666</div>
+
+  <!-- row4 y1863 (col2 cell absent in DSL) -->
+  <div class="cell" style="left:80px;top:1863px;width:152px;height:56px;"></div>
+  <div class="cell" style="left:382px;top:1863px;width:152px;height:56px;background:#F5F5F5;"></div>
+  <div class="t" style="left:96px;top:1879px;width:70px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">提示性文字</div>
+  <div class="t" style="left:265px;top:1885px;width:57px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#999999;">#999999</div>
+  <div class="t" style="left:419px;top:1885px;width:57px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#999999;">#999999</div>
+
+  <!-- row5 y1918 -->
+  <div class="cell" style="left:80px;top:1918px;width:152px;height:56px;"></div>
+  <div class="cell" style="left:231px;top:1918px;width:152px;height:56px;"></div>
+  <div class="cell" style="left:382px;top:1918px;width:152px;height:56px;background:#F5F5F5;"></div>
+  <div class="t" style="left:96px;top:1934px;width:73px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#333333;">禁用 / 置灰</div>
+  <div class="t" style="left:265px;top:1936px;width:61px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#C1C1C1;">#c1c1c1</div>
+  <div class="t" style="left:419px;top:1936px;width:61px;height:20px;font-family:var(--font-zh);font-size:14px;font-weight:400;line-height:20px;color:#C1C1C1;">#c1c1c1</div>
+
+</div>
+</body>
+</html>
