@@ -364,6 +364,7 @@ function chipHTML(it){
     }
     if(d.shadow)
       return `<div class="chip" style="height:auto;min-height:56px;justify-content:center;background:#F5F5F5"><div style="width:96px;height:36px;background:#fff;border-radius:6px;box-shadow:${d.shadow};display:flex;align-items:center;justify-content:center;font-size:12px;color:#333">弹窗</div></div>`;
+    if(d.css)return `<div class="chip" style="height:auto;min-height:56px;justify-content:center"><div class="fontdemo" style="max-width:180px;${d.css}">${d.font}</div></div>`;
     if(d.hdivider)return `<div class="chip" style="flex-direction:column;justify-content:center;align-items:center;height:56px"><div style="font-size:13px;color:#111;margin-bottom:6px">标题</div><div style="width:74px;height:1px;background:#DEDEDE"></div></div>`;
     if(d.vdivider)return `<div class="chip" style="justify-content:center;height:56px"><span style="font-size:13px;color:#111">复制</span><div style="width:1px;height:12px;background:#DEDEDE;margin:0 8px"></div><span style="font-size:13px;color:#111">删除</span></div>`;
     return `<div class="chip" style="flex-direction:column;justify-content:center;align-items:center;height:56px"><div style="width:160px;border-top:${d.w} ${d.style} ${d.color||'#3773DB'}"></div><span style="font-size:11px;color:#999;margin-top:8px">${d.w} ${d.style}</span></div>`;
