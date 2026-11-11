@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-09",
+  "topic": "line",
+  "question": "表单边框的默认色和组件边框 hover 色分别是什么?",
+  "answer": "表单边框默认色：`--vx-line-2`（`#DEDEDE`），来源 color.line.2。\n组件边框 hover 色：`--vx-line-4`（`#737373`），来源 color.line.4。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.036015,
+  "subtype": "success",
+  "at": "2026-11-09T10:17:50.524Z"
+}

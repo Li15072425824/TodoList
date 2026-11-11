@@ -1,0 +1,162 @@
+{
+  "product": "eval/products/round1/a/gen-09-longform/index.html",
+  "alignRate": 1,
+  "checks": 19,
+  "passed": 19,
+  "p0": 0,
+  "p1": 0,
+  "tokenRefRate": 0.966,
+  "expectedTheme": null,
+  "allThemes": false,
+  "htmlTheme": "blue",
+  "themeAttrs": [
+    "blue"
+  ],
+  "staticIssues": {
+    "hex": [],
+    "forbidden": [],
+    "gradient": [],
+    "weight": [],
+    "black": [],
+    "spacing": [],
+    "border": [],
+    "errors": []
+  },
+  "violations": [],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "全部色值均来自冻结基线"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无渐变"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": true,
+      "detail": "字重 ∈ {400,500,600}"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": true,
+      "detail": "间距均为 4n 或豁免"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.exists",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无按钮（按钮检查不适用）"
+    },
+    {
+      "id": "sim.primary",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无主按钮（四态不适用）"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "pass": true,
+      "detail": "主题声明: html=blue, 其他=1 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = -apple-system, \"PingFang SC\", \"Microsoft YaHei\", \"Helvetica Neue\", Arial, sans-serif"
+    }
+  ],
+  "costNote": null
+}

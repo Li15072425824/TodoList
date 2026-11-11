@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-17",
+  "topic": "spacing",
+  "question": "页面内容容器的 padding 四边(L/R/T/B)是多少?",
+  "answer": "项目目录为空，没有可用的设计规范文件或 skill。按通用设计规范知识回答：\n\n页面内容容器的 padding 四边通常为：\n\n- **左右 (L/R)**: 24px（移动端常用 16px）\n- **上下 (T/B)**: 24px（或根据具体设计系统为 16px / 32px）\n\n不同设计系统的常见取值：\n\n| 设计系统 | 容器 padding |\n|---------|-------------|\n| Ant Design Pro | 24px (四边) |\n| Material UI | 24px (左右), 16–24px (上下) |\n| Arco Design | 20px (左右), 16px (上下) |\n| 通用后台系统 | 24px (四边) |\n\n**最常见的默认值：四边均为 24px。**",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0377706,
+  "subtype": "success",
+  "at": "2026-11-09T09:46:08.736Z"
+}

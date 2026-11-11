@@ -1,6 +1,6 @@
 # GEN-09 长文阅读页
 
-covers: [font.longtext, font.caption, font.h1, font.h2, color.text.*, space.page, line.divider, line.text-divider]
+covers: [font.level.longform, font.level.caption, font.level.page-title, font.level.module-title, color.text.primary, spacing.padding.page, line.divider.h, line.divider.v, line.width.*, line.color.*]
 
 请生成一个「帮助文档 / 使用手册」长文页 demo(单个 HTML 文件),包含:
 - 文档大标题 + 更新时间 + 作者(辅助说明样式)

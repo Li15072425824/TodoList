@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-06-empty-icons",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-06-empty-icons",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.31952579999999997,
+  "denials": [],
+  "resultText": "Demo 已生成到 `index.html`，单文件包含所有样式与 SVG 图标。\n\n**结构概览：**\n\n- **左侧导航** — 8 个菜单项（总览/列表/项目/数据/用户/设置/消息/帮助），图标 18px，含 active / disabled 态，带徽标与分组标题\n- **资源列表** — 5 行数据，行内前缀图标 16px（文档/图片/链接/文件夹/日程），每行右侧操作列含「编辑 / 刷新 / 删除」三个 16px 图标按钮，删除用功能红\n- **空状态区** — 80px 线性插画图标（空盒子）+ 标题 + 说明文字 + 主按钮「新建资源」\n- **图标四态对照** — 默认 / 悬停 / 激活 / 禁用 四格卡片，颜色随文字色变化（#4D4D4D → #0066FF → #BFBFBF）\n- **尺寸规格展示** — 14/16/18/24/48px 五档应用场景\n\n**遵循 Voyah 规范要点：**\n- 单色线性 SVG，全部使用 `currentColor` 继承父元素颜色\n- 主色 `#0066FF` 品牌蓝，圆角 4/6/8px 三级\n- 文字四层级（primary/secondary/tertiary/disabled）\n- stroke-width 1.8，linecap/linejoin round\n\n直接用浏览器打开 `index.html` 即可预览。",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-06-empty-icons/index.html",
+    "alignRate": 0.607,
+    "checks": 28,
+    "passed": 17,
+    "p0": 8,
+    "p1": 3,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:55:01.249Z"
+}

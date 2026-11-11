@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-15",
+  "topic": "spacing",
+  "question": "间距梯度的公式是什么?S6 等于多少 px?组件之间的推荐间距是多少?",
+  "answer": "间距梯度公式：**Sn = 4px × n**（S1~S20 = 4→80px），一律 4 的倍数。\n\nS6 = 4 × 6 = **24px**。\n\n组件之间的推荐间距：**8px**。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0415866,
+  "subtype": "success",
+  "at": "2026-11-09T10:18:53.263Z"
+}

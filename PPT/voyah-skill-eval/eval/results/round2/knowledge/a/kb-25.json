@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-25",
+  "topic": "button-disabled",
+  "question": "按钮禁用态统一的文字色、填充色和边框色是什么?",
+  "answer": "按钮禁用态全类型全主题统一为：\n\n- **文字色**：`#C1C1C1`（`--vx-text-disabled`）\n- **填充色**：`#FAFAFA`（`--vx-fill-1`）\n- **边框色**：`#DEDEDE`（`--vx-line-2`）\n\n即 `#C1C1C1 / #FAFAFA / #DEDEDE`（字 / 底 / 边）。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.11440739999999999,
+  "subtype": "success",
+  "at": "2026-11-10T03:53:37.396Z"
+}

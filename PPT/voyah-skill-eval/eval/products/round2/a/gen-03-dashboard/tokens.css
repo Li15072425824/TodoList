@@ -1,0 +1,366 @@
+/* ============================================================
+   岚图（Voyah）数字化 UI/UE 规范 — Demo 设计变量（skill v2）
+   唯一真值来源：PPT/voyah-skill-eval/ground-truth/spec.json
+   （由冻结的验收基线 spec-gallery.html 提取，tag baseline-v4）
+   所有颜色只能引用 var(--vx-*)；白 #FFFFFF 可用；
+   主题切换：<html data-vx-theme="blue|yellow|purple|cuiqing|red|biqing">
+   ============================================================ */
+
+/* ---------- 默认主题：蓝 ---------- */
+:root {
+  /* 主题主色 4 阶（蓝） */
+  --vx-primary: #3773DB;          /* 常规 */
+  --vx-primary-hover: #568EEE;    /* hover */
+  --vx-primary-active: #1C5AC4;   /* 深色/按下 */
+  --vx-primary-bg: #ECF3FF;       /* 浅色 */
+
+  /* 帮助色（蓝主题 = 青色系） */
+  --vx-help: #54A7B2;
+  --vx-help-hover: #6EACB4;
+  --vx-help-active: #38929F;
+  --vx-help-bg: #E8F6F9;
+
+  /* 其他（青色系）：仅在非蓝主题下作为「其他/扩展」使用 */
+  --vx-other-teal: #54A7B2;
+  --vx-other-teal-hover: #6EACB4;
+  --vx-other-teal-dark: #38929F;
+  --vx-other-teal-bg: #E8F6F9;
+
+  /* 主色调色阶 11 级（蓝；常规=第 6 阶） */
+  --vx-primary-l1: #CBDBF7;  --vx-primary-l2: #B3CBF4;  --vx-primary-l3: #9EBCF0;
+  --vx-primary-l4: #7CA5ED;  --vx-primary-l5: #6090E2;  --vx-primary-l6: #3773DB;
+  --vx-primary-l7: #2662CA;  --vx-primary-l8: #1B56BC;  --vx-primary-l9: #2553A5;
+  --vx-primary-l10: #1C4692; --vx-primary-l11: #133A81;
+
+  /* ---------- 中立色 · 文字 5 级（全主题共享） ---------- */
+  --vx-text-title: #111111;
+  --vx-text-primary: #333333;
+  --vx-text-secondary: #666666;   /* 次要文字；默认图形 icon hover */
+  --vx-text-caption: #999999;
+  --vx-text-disabled: #C1C1C1;    /* 禁用文字；默认图形 icon */
+  --vx-text-inverse: #FFFFFF;
+  /* 特殊情况可用：#222222 / #444444 / #555555 / #888888 */
+
+  /* ---------- 中立色 · 线条（全主题共享；line-5 全主题统一 #3773DB） ---------- */
+  --vx-line-1: #EBEBEB;   /* 组件边框、标题分割线 */
+  --vx-line-2: #DEDEDE;   /* 表单边框 */
+  --vx-line-3: #888888;   /* 默认图形 icon 描边 */
+  --vx-line-4: #737373;   /* 组件边框 hover */
+  --vx-line-5: #3773DB;   /* @line-Blue 较重要程度/高层级（Q9 全主题统一） */
+
+  /* ---------- 中立色 · 填充 3 级（语义按人工裁决修正） ---------- */
+  --vx-fill-1: #FAFAFA;   /* 提示框底色、提示文字背景 */
+  --vx-fill-2: #F3F4F7;   /* 页面内容区块底色 */
+  --vx-fill-3: #F5F5F5;   /* 标签背景、下拉选中背景、页面整体底色 */
+  --vx-bg-base: #FFFFFF;
+  --vx-bg-layout: #F5F5F5;
+
+  /* ---------- 辅助色 4 组（全主题共享，浅 / hover / 常规 / 深色） ---------- */
+  --vx-success-bg: #E3F8E8;     --vx-success-hover: #A8E1A6;
+  --vx-success: #00D115;        --vx-success-dark: #00A611;
+  --vx-warning-bg: #FFF1DB;     --vx-warning-hover: #FFD77E;
+  --vx-warning: #FFA800;        --vx-warning-dark: #EA8C00;
+  --vx-error-bg: #FCEBEA;       --vx-error-hover: #FDA2A4;
+  --vx-error: #FF2020;          --vx-error-dark: #CF2E2E;
+  --vx-purple-bg: #F5EFFF;      --vx-purple-hover: #D0B0FF;
+  --vx-purple: #8F44FF;         --vx-purple-dark: #5000C8;
+
+  /* ---------- 字体 ---------- */
+  --vx-font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --vx-font-family-number: "D-DIN", "HarmonyOS Sans", "Inter",
+    "Helvetica Neue", Arial, sans-serif;
+  /* 五级：页面大标题 18~24/32~40 · 模块小标题 16/24~28 · 正文 14/22
+     辅助说明 12~13/20 · 大段描述 14~16/24~28 */
+  --vx-font-size-xs: 12px;
+  --vx-font-size-sm: 13px;
+  --vx-font-size-md: 14px;        /* 正文默认 */
+  --vx-font-size-lg: 16px;
+  --vx-font-size-xl: 18px;
+  --vx-font-size-xxl: 20px;
+  --vx-font-size-h1: 24px;
+  --vx-line-height-page-title: 32px;
+  --vx-line-height-module-title: 24px;
+  --vx-line-height-body: 22px;
+  --vx-line-height-caption: 20px;
+  --vx-line-height-longform: 28px;
+  --vx-font-weight-regular: 400;
+  --vx-font-weight-medium: 500;
+  --vx-font-weight-bold: 600;
+
+  /* ---------- 尺寸 / 圆角 ---------- */
+  --vx-control-height-sm: 24px;
+  --vx-control-height: 32px;
+  --vx-control-height-lg: 40px;
+  --vx-radius-xs: 2px;
+  --vx-radius-sm: 4px;      /* Small 按钮、Tag */
+  --vx-radius-md: 6px;      /* Middle/Large 按钮、Input */
+  --vx-radius-lg: 8px;      /* Card、会话项 */
+  --vx-radius-xl: 12px;     /* Bubble、Prompts */
+  --vx-radius-pill: 100px;  /* Switch */
+  --vx-radius-sender: 20px;
+
+  /* ---------- 间距：Sn = 4px × n（S1~S20 = 4→80px） ---------- */
+  --vx-space-1: 4px;    --vx-space-2: 8px;    --vx-space-3: 12px;
+  --vx-space-4: 16px;   --vx-space-5: 20px;   --vx-space-6: 24px;
+  --vx-space-7: 28px;   --vx-space-8: 32px;   --vx-space-9: 36px;
+  --vx-space-10: 40px;  --vx-space-11: 44px;  --vx-space-12: 48px;
+  --vx-space-13: 52px;  --vx-space-14: 56px;  --vx-space-15: 60px;
+  --vx-space-16: 64px;  --vx-space-17: 68px;  --vx-space-18: 72px;
+  --vx-space-19: 76px;  --vx-space-20: 80px;
+  --vx-space-xxs: 4px;  --vx-space-xs: 8px;   --vx-space-sm: 12px;
+  --vx-space-md: 16px;  --vx-space-lg: 20px;  --vx-space-xl: 24px;
+  --vx-space-xxl: 32px;
+
+  /* Padding（L/R/T/B）：页面 24/24/16/24 · 弹窗 24 · 卡片 16 · 输入框内容 12/12/6/6 */
+  --vx-padding-page: 16px 24px 24px;
+  --vx-padding-modal: 24px;
+  --vx-padding-card: 16px;
+  --vx-padding-input: 6px 12px;
+
+  /* ---------- 按钮（6 类型 × 4 态，按人工批注修正） ---------- */
+  /* 宽度一律随内容，由 padding 撑开 */
+  --vx-btn-secondary-text: #333333;
+  --vx-btn-secondary-hover-bg: #FFFFFF;
+  --vx-btn-secondary-hover: #568EEE;
+  --vx-btn-secondary-active: #1C5AC4;
+  --vx-btn-outline-text: #1F56E8;
+  --vx-btn-danger-hover: #FF5A5D;      /* Q1 裁决（v1 的 #FF8A5D 废弃） */
+  --vx-btn-prompt-hover: #FFA800;      /* Q8 裁决：hover 与常规同值 */
+  --vx-btn-prompt-active: #EA8C00;
+  --vx-btn-whiteline-text: #666666;
+  --vx-btn-whiteline-hover-bg: #FAFAFA;
+  --vx-btn-whiteline-active-bg: #FFFFFF;
+  --vx-btn-disabled-text: #C1C1C1;
+  --vx-btn-disabled-bg: #FAFAFA;
+  --vx-btn-disabled-border: #DEDEDE;
+
+  /* ---------- 阴影 ---------- */
+  --vx-shadow-modal: 0px 1px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ============ 非蓝主题覆盖：主色 / 色阶 / 帮助=蓝色系 / 青色归「其他」 ============ */
+[data-vx-theme="yellow"] {
+  --vx-primary: #FFD400; --vx-primary-hover: #FFE355; --vx-primary-active: #F6B41A; --vx-primary-bg: #FFF3B6;
+  --vx-help: #3773DB; --vx-help-hover: #B3CBF4; --vx-help-active: #1C5AC4; --vx-help-bg: #ECF3FF;
+  --vx-primary-l1: #FFF4BC; --vx-primary-l2: #FFEFA1; --vx-primary-l3: #FFE876; --vx-primary-l4: #FFE14A;
+  --vx-primary-l5: #FFD500; --vx-primary-l6: #FFC300; --vx-primary-l7: #F6B41A; --vx-primary-l8: #EBAA11;
+  --vx-primary-l9: #E19E04; --vx-primary-l10: #D19300; --vx-primary-l11: #C58A00;
+}
+[data-vx-theme="purple"] {
+  --vx-primary: #8F44FF; --vx-primary-hover: #9660E5; --vx-primary-active: #5000C8; --vx-primary-bg: #F5EFFF;
+  --vx-help: #3773DB; --vx-help-hover: #B3CBF4; --vx-help-active: #1C5AC4; --vx-help-bg: #ECF3FF;
+  --vx-primary-l1: #F5EFFF; --vx-primary-l2: #E9DAFF; --vx-primary-l3: #CDADFC; --vx-primary-l4: #B481FF;
+  --vx-primary-l5: #9E5FFC; --vx-primary-l6: #8F44FF; --vx-primary-l7: #7F2AFF; --vx-primary-l8: #7315FF;
+  --vx-primary-l9: #5F02E8; --vx-primary-l10: #5000C8; --vx-primary-l11: #4200A5;
+}
+[data-vx-theme="cuiqing"] {
+  --vx-primary: #54A7B2; --vx-primary-hover: #6EACB4; --vx-primary-active: #2A7F8C; --vx-primary-bg: #E8F6F9;
+  --vx-help: #3773DB; --vx-help-hover: #B3CBF4; --vx-help-active: #1C5AC4; --vx-help-bg: #ECF3FF;
+  /* 翠青 11 级色阶设计稿还原缺失，如需请对照 MasterGo 原稿补充 */
+}
+[data-vx-theme="red"] {
+  --vx-primary: #D82128; --vx-primary-hover: #E85E63; --vx-primary-active: #AA0209; --vx-primary-bg: #FFDADA;
+  --vx-help: #3773DB; --vx-help-hover: #B3CBF4; --vx-help-active: #1C5AC4; --vx-help-bg: #ECF3FF;
+  --vx-primary-l1: #FFDADA; --vx-primary-l2: #FFBFC2; --vx-primary-l3: #F7A2A6; --vx-primary-l4: #E8787D;
+  --vx-primary-l5: #E55359; --vx-primary-l6: #D82128; --vx-primary-l7: #C4181F; --vx-primary-l8: #B5131A;
+  --vx-primary-l9: #AA0209; --vx-primary-l10: #9C050B; --vx-primary-l11: #900C12;
+}
+[data-vx-theme="biqing"] {
+  --vx-primary: #406670; --vx-primary-hover: #66828A; --vx-primary-active: #325862; --vx-primary-bg: #C5E7F0;
+  --vx-help: #3773DB; --vx-help-hover: #B3CBF4; --vx-help-active: #1C5AC4; --vx-help-bg: #ECF3FF;
+  --vx-primary-l1: #C5E7F0; --vx-primary-l2: #A6CFDB; --vx-primary-l3: #87B3BF; --vx-primary-l4: #66939F;
+  --vx-primary-l5: #527D89; --vx-primary-l6: #406670; --vx-primary-l7: #3B5F69; --vx-primary-l8: #325862;
+  --vx-primary-l9: #2E505A; --vx-primary-l10: #264852; --vx-primary-l11: #1E3D46;
+}
+
+/* ============ 基础重置 ============ */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--vx-font-family);
+  font-size: var(--vx-font-size-md);
+  line-height: var(--vx-line-height-body);
+  color: var(--vx-text-primary);
+  background: var(--vx-bg-base);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6 { color: var(--vx-text-title); margin: 0; }
+a { color: var(--vx-primary); text-decoration: none; }
+a:hover { color: var(--vx-primary-hover); }
+a:active { color: var(--vx-primary-active); }
+
+/* ============ Button（6 类型 × 4 态 × 3 尺寸） ============ */
+.vx-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--vx-space-1);
+  height: var(--vx-control-height);
+  padding: 6px var(--vx-space-4);
+  border-radius: var(--vx-radius-md);
+  border: 1px solid transparent;
+  font-family: inherit; font-size: var(--vx-font-size-xs);
+  line-height: var(--vx-line-height-caption);
+  font-weight: var(--vx-font-weight-medium);
+  cursor: pointer; white-space: nowrap; user-select: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.vx-btn-lg {
+  height: var(--vx-control-height-lg);
+  padding: 8px var(--vx-space-4);
+  border-radius: var(--vx-radius-md);
+  font-size: var(--vx-font-size-lg);
+  line-height: 24px;
+}
+.vx-btn-sm {
+  height: var(--vx-control-height-sm);
+  padding: 2px var(--vx-space-xs);
+  border-radius: var(--vx-radius-sm);
+  font-size: var(--vx-font-size-xs);
+  line-height: var(--vx-line-height-caption);
+}
+.vx-btn-icon-only { width: 24px; padding-left: 0; padding-right: 0; }
+.vx-btn-icon { width: 8px; height: 8px; flex-shrink: 0; background: currentColor; border-radius: var(--vx-radius-xs); }
+.vx-btn-lg .vx-btn-icon { width: 12px; height: 12px; }
+
+.vx-btn-primary { background: var(--vx-primary); color: var(--vx-text-inverse); border-color: var(--vx-primary); }
+.vx-btn-primary:hover:not(:disabled) { background: var(--vx-primary-hover); border-color: var(--vx-primary-hover); }
+.vx-btn-primary:active:not(:disabled) { background: var(--vx-primary-active); border-color: var(--vx-primary-active); }
+
+.vx-btn-secondary { background: var(--vx-fill-1); color: var(--vx-btn-secondary-text); border-color: var(--vx-line-2); }
+.vx-btn-secondary:hover:not(:disabled) { background: var(--vx-btn-secondary-hover-bg); color: var(--vx-btn-secondary-hover); border-color: var(--vx-btn-secondary-hover); }
+.vx-btn-secondary:active:not(:disabled) { background: var(--vx-btn-secondary-hover-bg); color: var(--vx-btn-secondary-active); border-color: var(--vx-btn-secondary-active); }
+
+.vx-btn-outline { background: var(--vx-bg-base); color: var(--vx-btn-outline-text); border-color: var(--vx-primary); }
+.vx-btn-outline:hover:not(:disabled) { background: var(--vx-bg-base); color: var(--vx-btn-secondary-hover); border-color: var(--vx-btn-secondary-hover); }
+.vx-btn-outline:active:not(:disabled) { background: var(--vx-bg-base); color: var(--vx-btn-secondary-active); border-color: var(--vx-btn-secondary-active); }
+
+.vx-btn-danger { background: var(--vx-error); color: var(--vx-text-inverse); border-color: var(--vx-error); }
+.vx-btn-danger:hover:not(:disabled) { background: var(--vx-btn-danger-hover); border-color: var(--vx-btn-danger-hover); }
+.vx-btn-danger:active:not(:disabled) { background: var(--vx-error-dark); border-color: var(--vx-error-dark); }
+
+.vx-btn-prompt { background: var(--vx-btn-prompt-hover); color: var(--vx-text-inverse); border-color: var(--vx-btn-prompt-hover); }
+.vx-btn-prompt:hover:not(:disabled) { background: var(--vx-btn-prompt-hover); border-color: var(--vx-btn-prompt-hover); }
+.vx-btn-prompt:active:not(:disabled) { background: var(--vx-btn-prompt-active); border-color: var(--vx-btn-prompt-active); }
+
+/* 反白按钮：仅用于深色（#333333 衬底）区域 */
+.vx-btn-whiteline { background: var(--vx-fill-1); color: var(--vx-btn-whiteline-text); border-color: var(--vx-line-2); }
+.vx-btn-whiteline:hover:not(:disabled) { background: var(--vx-btn-whiteline-hover-bg); color: var(--vx-btn-secondary-hover); border-color: var(--vx-btn-secondary-hover); }
+.vx-btn-whiteline:active:not(:disabled) { background: var(--vx-btn-whiteline-active-bg); color: var(--vx-btn-secondary-active); border-color: var(--vx-btn-secondary-active); }
+
+.vx-btn:disabled { background: var(--vx-btn-disabled-bg); color: var(--vx-btn-disabled-text); border-color: var(--vx-btn-disabled-border); cursor: not-allowed; }
+
+/* ============ Input ============ */
+.vx-input {
+  width: 100%; min-height: var(--vx-control-height);
+  padding: var(--vx-padding-input);
+  background: var(--vx-bg-base); color: var(--vx-text-primary);
+  border: 1px solid var(--vx-line-2); border-radius: var(--vx-radius-md);
+  font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-caption);
+  font-family: inherit; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.vx-input::placeholder { color: var(--vx-text-caption); }
+.vx-input:hover { border-color: var(--vx-line-4); }
+.vx-input:focus { border-color: var(--vx-primary); box-shadow: 0 0 0 2px var(--vx-primary-bg); }
+
+/* ============ Card / Tag / Alert ============ */
+.vx-card { background: var(--vx-bg-base); border: 1px solid var(--vx-line-1); border-radius: var(--vx-radius-lg); overflow: hidden; }
+.vx-card-head { display: flex; align-items: center; justify-content: space-between; padding: var(--vx-space-4); border-bottom: 1px solid var(--vx-line-1); }
+.vx-card-title { font-size: var(--vx-font-size-lg); line-height: var(--vx-line-height-module-title); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); }
+.vx-card-body { padding: var(--vx-padding-card); color: var(--vx-text-primary); }
+
+.vx-tag { display: inline-flex; align-items: center; height: 24px; padding: 0 var(--vx-space-xs); border-radius: var(--vx-radius-sm); font-size: var(--vx-font-size-xs); line-height: var(--vx-line-height-caption); background: var(--vx-fill-3); color: var(--vx-text-primary); border: 1px solid transparent; }
+.vx-tag-primary { background: var(--vx-primary-bg); color: var(--vx-primary); }
+.vx-tag-success { background: var(--vx-success-bg); color: var(--vx-success-dark); }
+.vx-tag-warning { background: var(--vx-warning-bg); color: var(--vx-warning-dark); }
+.vx-tag-error { background: var(--vx-error-bg); color: var(--vx-error-dark); }
+
+.vx-alert { display: flex; align-items: flex-start; gap: var(--vx-space-xs); padding: var(--vx-space-xs) var(--vx-space-sm); border-radius: var(--vx-radius-md); font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-body); }
+.vx-alert-info { background: var(--vx-primary-bg); border: 1px solid var(--vx-primary-bg); }
+.vx-alert-info .vx-alert-icon { color: var(--vx-primary); }
+.vx-alert-success { background: var(--vx-success-bg); border: 1px solid var(--vx-success-hover); }
+.vx-alert-success .vx-alert-icon { color: var(--vx-success-dark); }
+.vx-alert-warning { background: var(--vx-warning-bg); border: 1px solid var(--vx-warning-hover); }
+.vx-alert-warning .vx-alert-icon { color: var(--vx-warning-dark); }
+.vx-alert-error { background: var(--vx-error-bg); border: 1px solid var(--vx-error-hover); }
+.vx-alert-error .vx-alert-icon { color: var(--vx-error-dark); }
+.vx-alert-help { background: var(--vx-help-bg); border: 1px solid var(--vx-help-hover); }
+.vx-alert-help .vx-alert-icon { color: var(--vx-help); }
+
+/* ============ Switch / Checkbox / Radio ============ */
+.vx-switch { position: relative; width: 44px; height: 24px; border-radius: var(--vx-radius-pill); background: var(--vx-line-3); cursor: pointer; transition: background 0.2s; border: none; outline: none; }
+.vx-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--vx-bg-base); transition: left 0.2s; }
+.vx-switch:checked { background: var(--vx-primary); }
+.vx-switch:checked::after { left: 20px; }
+
+.vx-checkbox, .vx-radio { display: inline-flex; align-items: center; gap: var(--vx-space-xs); height: 24px; cursor: pointer; font-size: var(--vx-font-size-md); color: var(--vx-text-primary); }
+.vx-checkbox-box, .vx-radio-box { width: 16px; height: 16px; flex-shrink: 0; border: 1px solid var(--vx-line-2); background: var(--vx-bg-base); display: inline-flex; align-items: center; justify-content: center; }
+.vx-checkbox-box { border-radius: var(--vx-radius-xs); }
+.vx-radio-box { border-radius: 50%; }
+.vx-checkbox input, .vx-radio input { display: none; }
+.vx-checkbox input:checked + .vx-checkbox-box,
+.vx-radio input:checked + .vx-radio-box { background: var(--vx-primary); border-color: var(--vx-primary); color: var(--vx-text-inverse); font-size: var(--vx-font-size-xs); }
+
+/* ============ Avatar / Badge / Tabs / Segmented ============ */
+.vx-avatar { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--vx-fill-3); color: var(--vx-text-secondary); font-size: var(--vx-font-size-lg); overflow: hidden; flex-shrink: 0; }
+.vx-avatar-lg { width: 40px; height: 40px; font-size: var(--vx-font-size-xl); }
+.vx-avatar-primary { background: var(--vx-primary); color: var(--vx-text-inverse); }
+
+.vx-badge { position: relative; display: inline-block; }
+.vx-badge-count { position: absolute; top: 0; right: 0; transform: translate(50%, -50%); min-width: 20px; height: 20px; padding: 0 var(--vx-space-xs); border-radius: var(--vx-radius-lg); background: var(--vx-error); color: var(--vx-text-inverse); font-size: var(--vx-font-size-xs); display: inline-flex; align-items: center; justify-content: center; }
+
+.vx-tabs { display: flex; gap: var(--vx-space-xl); border-bottom: 1px solid var(--vx-line-1); }
+.vx-tab { position: relative; padding: var(--vx-space-sm) 0; color: var(--vx-text-secondary); cursor: pointer; font-size: var(--vx-font-size-md); }
+.vx-tab:hover { color: var(--vx-primary); }
+.vx-tab-active { color: var(--vx-text-primary); font-weight: var(--vx-font-weight-medium); }
+.vx-tab-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--vx-primary); border-radius: 1px; }
+
+.vx-segmented { display: inline-flex; height: var(--vx-control-height); padding: 2px; background: var(--vx-fill-3); border-radius: var(--vx-radius-md); }
+.vx-segmented-item { height: 28px; padding: 0 var(--vx-space-4); display: inline-flex; align-items: center; border-radius: var(--vx-radius-sm); color: var(--vx-text-secondary); cursor: pointer; font-size: var(--vx-font-size-xs); }
+.vx-segmented-item-selected { background: var(--vx-bg-base); color: var(--vx-text-primary); border: 1px solid var(--vx-line-2); }
+
+/* ============ AI 对话组件 ============ */
+.vx-bubble { display: flex; gap: var(--vx-space-sm); margin-bottom: var(--vx-space-lg); }
+.vx-bubble-avatar { flex-shrink: 0; }
+.vx-bubble-main { display: flex; flex-direction: column; gap: var(--vx-space-1); max-width: 72%; }
+.vx-bubble-header { font-size: var(--vx-font-size-xs); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-primary); }
+.vx-bubble-content { padding: var(--vx-space-sm) var(--vx-space-lg); border-radius: var(--vx-radius-xl); min-height: 44px; width: fit-content; font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-body); color: var(--vx-text-primary); word-break: break-word; }
+.vx-bubble-filled { background: var(--vx-fill-3); }
+.vx-bubble-outlined { background: transparent; border: 1px solid var(--vx-line-1); }
+.vx-bubble-user { flex-direction: row-reverse; }
+.vx-bubble-user .vx-bubble-main { align-items: flex-end; }
+.vx-bubble-user .vx-bubble-content { background: var(--vx-primary); color: var(--vx-text-inverse); }
+.vx-bubble-footer { font-size: var(--vx-font-size-md); color: var(--vx-text-secondary); }
+
+.vx-sender { display: flex; align-items: flex-end; gap: var(--vx-space-xs); padding: var(--vx-space-sm) var(--vx-space-4); background: var(--vx-bg-base); border: 1px solid var(--vx-line-2); border-radius: var(--vx-radius-sender); }
+.vx-sender:focus-within { border-color: var(--vx-primary); }
+.vx-sender-input { flex: 1; border: none; outline: none; resize: none; font-family: inherit; font-size: var(--vx-font-size-md); color: var(--vx-text-primary); line-height: var(--vx-line-height-body); min-height: 22px; max-height: 132px; padding: var(--vx-space-1) 0; background: transparent; }
+.vx-sender-input::placeholder { color: var(--vx-text-caption); }
+.vx-sender-send { height: var(--vx-control-height); min-width: 32px; padding: 0 var(--vx-space-sm); border: none; border-radius: var(--vx-radius-md); background: var(--vx-primary); color: var(--vx-text-inverse); cursor: pointer; font-family: inherit; font-size: var(--vx-font-size-xs); }
+.vx-sender-send:disabled { background: var(--vx-fill-1); color: var(--vx-text-disabled); cursor: not-allowed; }
+
+.vx-conversations { display: flex; flex-direction: column; gap: var(--vx-space-1); }
+.vx-conversation-item { display: flex; align-items: center; gap: var(--vx-space-xs); height: 40px; padding: 0 var(--vx-space-sm); border-radius: var(--vx-radius-lg); color: var(--vx-text-primary); cursor: pointer; font-size: var(--vx-font-size-md); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vx-conversation-item:hover { background: var(--vx-fill-3); }
+.vx-conversation-item-active { background: var(--vx-fill-3); font-weight: var(--vx-font-weight-medium); }
+
+.vx-welcome { display: flex; align-items: center; gap: var(--vx-space-sm); padding: var(--vx-space-sm) var(--vx-space-4); background: var(--vx-fill-2); border-radius: var(--vx-radius-lg); }
+.vx-welcome-icon { font-size: var(--vx-font-size-h1); flex-shrink: 0; }
+.vx-welcome-title { font-size: var(--vx-font-size-xl); line-height: var(--vx-line-height-module-title); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); }
+.vx-welcome-description { font-size: var(--vx-font-size-md); color: var(--vx-text-secondary); }
+
+.vx-prompts { display: flex; flex-wrap: wrap; gap: var(--vx-space-sm); }
+.vx-prompt-item { display: flex; align-items: center; gap: var(--vx-space-md); padding: var(--vx-space-sm) var(--vx-space-4); background: var(--vx-fill-1); border: 1px solid var(--vx-line-1); border-radius: var(--vx-radius-xl); cursor: pointer; font-size: var(--vx-font-size-md); color: var(--vx-text-primary); transition: border-color 0.2s; }
+.vx-prompt-item:hover { border-color: var(--vx-primary); }
+.vx-prompt-icon { color: var(--vx-primary); flex-shrink: 0; }
+
+.vx-thought-chain { display: flex; flex-direction: column; gap: var(--vx-space-xs); }
+.vx-thought-item { display: flex; align-items: center; gap: var(--vx-space-xs); padding: var(--vx-space-xs) var(--vx-space-4); background: var(--vx-fill-3); border-radius: var(--vx-radius-lg); font-size: var(--vx-font-size-xs); color: var(--vx-text-primary); }
+.vx-thought-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.vx-thought-status-running { background: var(--vx-primary); }
+.vx-thought-status-done { background: var(--vx-success); }
+.vx-thought-status-error { background: var(--vx-error); }
+
+.vx-notification { display: flex; gap: var(--vx-space-sm); padding: var(--vx-space-4); background: var(--vx-bg-base); border: 1px solid var(--vx-line-1); border-radius: var(--vx-radius-lg); box-shadow: var(--vx-shadow-modal); }
+.vx-notification-title { font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); }
+.vx-notification-description { color: var(--vx-text-secondary); font-size: var(--vx-font-size-md); }

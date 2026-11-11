@@ -1,0 +1,214 @@
+{
+  "product": "eval/products/round1/b/gen-05-alerts/index.html",
+  "alignRate": 0.789,
+  "checks": 19,
+  "passed": 15,
+  "p0": 2,
+  "p1": 2,
+  "tokenRefRate": 0,
+  "expectedTheme": null,
+  "allThemes": false,
+  "htmlTheme": null,
+  "themeAttrs": [],
+  "staticIssues": {
+    "hex": [
+      "#0A2A5E",
+      "#1A3D7A",
+      "#E8EEF7",
+      "#00A870",
+      "#E6F7F0",
+      "#B3E5D0",
+      "#F59A23",
+      "#FEF4E6",
+      "#F9DBA8",
+      "#E53935",
+      "#FBECEB",
+      "#F5C2C0",
+      "#2979FF",
+      "#EAF1FE",
+      "#B7CFFB",
+      "#7C4DFF",
+      "#F0EBFF",
+      "#D4C4FF",
+      "#1A1A1A",
+      "#4D4D4D",
+      "#8C8C8C",
+      "#D9D9D9",
+      "#C77A12"
+    ],
+    "forbidden": [],
+    "gradient": [],
+    "weight": [
+      "700"
+    ],
+    "black": [],
+    "spacing": [
+      "padding: 14px",
+      "padding: 10px"
+    ],
+    "border": [],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #0A2A5E #1A3D7A #E8EEF7 #00A870 #E6F7F0 #B3E5D0 #F59A23 #FEF4E6 #F9DBA8 #E53935 #FBECEB #F5C2C0"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "detail": "非法字重: 700"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "detail": "非 4n 间距: padding: 14px; padding: 10px"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "detail": "主题声明: html=无, 其他=0 个"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #0A2A5E #1A3D7A #E8EEF7 #00A870 #E6F7F0 #B3E5D0 #F59A23 #FEF4E6 #F9DBA8 #E53935 #FBECEB #F5C2C0"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无渐变"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": false,
+      "detail": "非法字重: 700"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非 4n 间距: padding: 14px; padding: 10px"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.exists",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无按钮（按钮检查不适用）"
+    },
+    {
+      "id": "sim.primary",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无主按钮（四态不适用）"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "pass": false,
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = \"PingFang SC\", \"Microsoft YaHei\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, sans-serif"
+    }
+  ],
+  "costNote": null
+}

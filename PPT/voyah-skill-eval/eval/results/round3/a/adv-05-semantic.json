@@ -1,0 +1,23 @@
+{
+  "round": "3",
+  "group": "a",
+  "case": "adv-05-semantic",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round3/a/adv-05-semantic",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.1270458,
+  "denials": [],
+  "resultText": "已生成 `index.html`，单文件包含全部样式。内容包括：\n\n- **全局提示条 Alert**：成功（红）/失败（绿）/警告（黄）/信息（蓝）四种\n- **悬浮提示 Toast**：成功/失败两种\n- **操作结果页**：成功页（红渐变+对勾）、失败页（绿渐变+叉号）各一个，带操作按钮\n- **批量操作状态列表**：四宫格展示成功/失败/等待状态\n- **进度反馈**：成功进度条（红）、失败中止进度条（绿）\n- 底部有反向语义配色说明\n\n直接用浏览器打开 `index.html` 即可查看。",
+  "runtime": {
+    "product": "eval/products/round3/a/adv-05-semantic/index.html",
+    "alignRate": 0.536,
+    "checks": 28,
+    "passed": 15,
+    "p0": 9,
+    "p1": 4,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-10T06:08:55.312Z"
+}

@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "adv-04-gradient",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/b/adv-04-gradient",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.1323258,
+  "denials": [],
+  "resultText": "已生成 `index.html`，单文件包含所有样式。\n\n设计要点：\n- **主按钮**：蓝色到紫色渐变 (`#3b82f6 → #8b5cf6`)，带蓝紫色光晕外发光，hover 上浮\n- **卡片发光阴影**：四张卡片分别配蓝 / 紫 / 粉 / 青四种彩色发光 `box-shadow`，深色玻璃质感\n- **标题**：`font-style: italic` + `font-weight: 800` 斜体超粗，部分文字做渐变描边\n- 整体深色太空感背景 + 径向光晕，stats 区块也做了渐变发光容器\n\n直接在浏览器打开 `index.html` 就能预览。",
+  "runtime": {
+    "product": "eval/products/round1/b/adv-04-gradient/index.html",
+    "alignRate": 0.5,
+    "checks": 28,
+    "passed": 14,
+    "p0": 10,
+    "p1": 4,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T09:34:25.442Z"
+}

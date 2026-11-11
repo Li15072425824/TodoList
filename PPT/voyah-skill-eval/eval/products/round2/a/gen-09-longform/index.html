@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>帮助文档 / 使用手册</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body { background: var(--vx-bg-base); }
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: var(--vx-space-6) var(--vx-space-6) var(--vx-space-10);
+  }
+
+  /* ---------- 文档大标题区 ---------- */
+  .doc-header { margin-bottom: var(--vx-space-6); }
+  .doc-title {
+    font-size: var(--vx-font-size-h1);
+    line-height: 40px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-2);
+  }
+  .doc-meta {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    display: flex;
+    gap: var(--vx-space-3);
+    align-items: center;
+  }
+  .doc-meta .sep { color: var(--vx-line-2); }
+
+  /* ---------- 章节 ---------- */
+  .doc-section { margin-bottom: var(--vx-space-8); }
+  .doc-section-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: 28px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-3);
+  }
+  .doc-section-body {
+    font-size: var(--vx-font-size-md);
+    line-height: 28px;
+    color: var(--vx-text-primary);
+  }
+  .doc-section-body p {
+    margin: 0 0 var(--vx-space-3);
+  }
+  .doc-section-body p:last-child { margin-bottom: 0; }
+
+  /* ---------- 辅助说明 / 备注 ---------- */
+  .doc-caption {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+  }
+  .doc-note {
+    margin-top: var(--vx-space-3);
+    padding: var(--vx-space-xs) var(--vx-space-sm);
+    background: var(--vx-fill-1);
+    border-radius: var(--vx-radius-md);
+    font-size: var(--vx-font-size-sm);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-secondary);
+  }
+
+  /* ---------- 章节分割线 ---------- */
+  .doc-divider {
+    height: 1px;
+    background: var(--vx-line-1);
+    margin: var(--vx-space-8) 0;
+    border: 0;
+  }
+
+  /* ---------- 水平文字分割线 ---------- */
+  .doc-text-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-4);
+    margin: var(--vx-space-8) 0;
+  }
+  .doc-text-divider::before,
+  .doc-text-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--vx-line-1);
+  }
+  .doc-text-divider span {
+    font-size: var(--vx-font-size-sm);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-secondary);
+    font-weight: var(--vx-font-weight-medium);
+    white-space: nowrap;
+  }
+
+  /* ---------- 相关文档列表 ---------- */
+  .doc-related {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-3);
+  }
+  .doc-related-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--vx-space-sm) var(--vx-space-md);
+    background: var(--vx-fill-1);
+    border-radius: var(--vx-radius-md);
+    border: 1px solid var(--vx-line-1);
+  }
+  .doc-related-item-title {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-primary);
+    line-height: var(--vx-line-height-body);
+  }
+  .doc-related-item-meta {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+  }
+
+  /* ---------- 页脚 ---------- */
+  .doc-footer {
+    margin-top: var(--vx-space-10);
+    padding-top: var(--vx-space-6);
+    border-top: 1px solid var(--vx-line-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+  }
+  .doc-footer a {
+    color: var(--vx-text-secondary);
+    padding: 0 var(--vx-space-md);
+  }
+  .doc-footer a:hover { color: var(--vx-primary); }
+  .doc-footer .divider-v {
+    width: 1px;
+    height: 12px;
+    background: var(--vx-line-2);
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 文档大标题 + 更新时间 + 作者 -->
+  <header class="doc-header">
+    <h1 class="doc-title">岚图 Voyah Design 组件使用手册</h1>
+    <div class="doc-meta">
+      <span>更新时间：2026-11-10</span>
+      <span class="sep">|</span>
+      <span>作者：设计系统团队</span>
+      <span class="sep">|</span>
+      <span>版本 v2.4.1</span>
+    </div>
+  </header>
+
+  <p class="doc-caption">
+    本文档面向前端开发与交互设计师，旨在统一岚图数字化产品的视觉与交互规范，
+    所有组件均基于人工验收冻结的基线 spec-gallery.html 落地实现。
+  </p>
+
+  <hr class="doc-divider" />
+
+  <!-- 章节一 -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">一、设计原则</h2>
+    <div class="doc-section-body">
+      <p>
+        岚图 Voyah Design 以「简洁、克制、高效」为核心设计原则，在视觉表达上追求层次分明、
+        重点突出，在交互体验上强调一步到位、减少用户思考成本。每一个组件的诞生，
+        都需要经过需求分析、方案评审、可用性测试和工程验收四个阶段，确保从设计到落地的一致性。
+      </p>
+      <p>
+        在颜色体系中，我们采用蓝主题为主色系，辅以成功、警告、错误、帮助、紫色五种语义色，
+        并通过五级文字、五级线条、三级填充构建完整的视觉层级。所有 token 均经过 WCAG 2.1
+        对比度校验，确保在正常视力和色弱场景下均可清晰辨识。
+      </p>
+      <p>
+        在间距体系中，我们遵循 4px 基线网格，所有元素的内外边距均为 4 的倍数，
+        从 S1（4px）到 S20（80px）共二十级，覆盖从组件内间距到页面留白的全部需求。
+        这种统一的节奏让页面呼吸均匀，信息密度可控。
+      </p>
+    </div>
+    <div class="doc-note">
+      提示：在实现组件时，请优先引用 tokens.css 中的 CSS 变量，
+      避免在业务代码中硬编码色值或尺寸，以便后续主题切换与统一迭代。
+    </div>
+  </section>
+
+  <hr class="doc-divider" />
+
+  <!-- 章节二 -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">二、基础组件规范</h2>
+    <div class="doc-section-body">
+      <p>
+        基础组件是构成页面的最小单元，包括按钮、输入框、卡片、标签、提示、开关、
+        复选框、单选框、头像、徽标、标签页、分段控制器等十二类。每一类组件都定义了
+        默认、悬浮、按下、禁用四种状态，以及大、中、小三种尺寸，确保在不同业务场景下
+        都有对应的视觉表达。
+      </p>
+      <p>
+        按钮是交互频次最高的组件之一，我们规定按钮宽度一律随内容由 padding 撑开，
+        不做固定宽度。主按钮用于确认、提交等正向操作；次要按钮用于取消、返回等中性操作；
+        描边按钮用于次级强调；危险按钮用于删除、解除等不可逆操作；提示按钮用于引导用户注意；
+        反白按钮仅用于深色衬底区域。
+      </p>
+      <p>
+        输入框的内容内边距固定为上下 6px、左右 12px，其中纵向 6px 为设计稿明示的豁免值，
+        其余场景均遵循 4 的倍数原则。带前后缀图标的输入框应使用 flex 内层布局，
+        不得通过扩大右内边距的方式让位图标，以保证在不同语言、不同字号下的对齐一致性。
+      </p>
+      <p>
+        卡片组件采用 8px 圆角、1px line-1 边框、16px 内边距的标准配置，
+        头部与内容区之间通过一条 1px 的 line-1 分割线过渡。卡片标题使用 16px / 24px 的
+        模块小标题规格，字重 600，颜色为 text-title。
+      </p>
+    </div>
+    <div class="doc-note">
+      备注：所有按钮必须携带 .vx-btn 基础类 + 类型类 + 尺寸类，
+      状态样式由 tokens.css 统一提供，禁止在业务代码中手写 hover / active / disabled 效果。
+    </div>
+  </section>
+
+  <hr class="doc-divider" />
+
+  <!-- 章节三 -->
+  <section class="doc-section">
+    <h2 class="doc-section-title">三、AI 对话组件规范</h2>
+    <div class="doc-section-body">
+      <p>
+        AI 对话组件是岚图智能助手产品线的核心视觉容器，包含气泡、输入发送框、
+        会话列表、欢迎语、提示集、思维链、通知卡片等七类组件。整体布局采用左侧会话列表 +
+        右侧对话主区的经典两栏结构，主区顶部为欢迎语与快捷提示，中部为消息流，
+        底部为发送输入框。
+      </p>
+      <p>
+        对话气泡区分 AI 消息与用户消息两种方向：AI 消息居左，头像为岚图品牌主色填充，
+        气泡内容区使用 fill-3 灰色填充，圆角 12px，内边距 12px 纵向 / 20px 横向；
+        用户消息居右，头像为灰色背景，气泡内容区使用主色填充、白色文字，保持与 AI 消息的
+        视觉对称与方向区分。
+      </p>
+      <p>
+        发送输入框（Sender）采用 20px 胶囊圆角，默认状态为 line-2 边框，
+        获取焦点后边框切换为主色。输入区域使用 textarea 实现，支持自动换行与高度自适应，
+        最大高度限制为 6 行（132px），超出后内部滚动。左侧工具按钮（附件、表情等）
+        使用 Secondary 小按钮，右侧发送按钮使用主色填充。
+      </p>
+      <p>
+        思维链组件用于展示 AI 的多步执行过程，每一步包含状态指示点与描述文字。
+        状态分为已完成（绿色）、进行中（主色）、错误（红色）三种，通过 8px 圆点
+        与左侧对齐，形成可视化的执行进度。思维链整体背景为 fill-3，圆角 8px，
+        内边距 8px 纵向 / 16px 横向。
+      </p>
+    </div>
+  </section>
+
+  <!-- 水平文字分割线 + 相关文档 -->
+  <div class="doc-text-divider">
+    <span>相关文档</span>
+  </div>
+
+  <div class="doc-related">
+    <a href="#" class="doc-related-item">
+      <span class="doc-related-item-title">《Voyah Design 视觉风格指南》</span>
+      <span class="doc-related-item-meta">PDF · 2.3 MB · 2026-10-20 更新</span>
+    </a>
+    <a href="#" class="doc-related-item">
+      <span class="doc-related-item-title">《组件接入与主题切换开发文档》</span>
+      <span class="doc-related-item-meta">在线文档 · 2026-09-15 更新</span>
+    </a>
+    <a href="#" class="doc-related-item">
+      <span class="doc-related-item-title">《设计评审 Checklist v2》</span>
+      <span class="doc-related-item-meta">Notion · 2026-11-01 更新</span>
+    </a>
+    <a href="#" class="doc-related-item">
+      <span class="doc-related-item-title">《MasterGo 组件库源文件》</span>
+      <span class="doc-related-item-meta">MasterGo · 2026-10-28 更新</span>
+    </a>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="doc-footer">
+    <a href="#">关于我们</a>
+    <span class="divider-v"></span>
+    <a href="#">使用条款</a>
+    <span class="divider-v"></span>
+    <a href="#">隐私政策</a>
+    <span class="divider-v"></span>
+    <a href="#">反馈建议</a>
+    <span class="divider-v"></span>
+    <a href="#">联系支持</a>
+  </footer>
+
+</div>
+</body>
+</html>

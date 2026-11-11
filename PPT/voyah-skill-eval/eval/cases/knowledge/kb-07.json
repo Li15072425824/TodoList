@@ -1,0 +1,12 @@
+{
+  "id": "kb-07",
+  "topic": "fill-semantics",
+  "question": "标签背景、下拉选中背景应使用哪个填充 token?色值是多少?",
+  "golden_answer": "@filling1-3,色值 #F5F5F5。",
+  "required": [
+    "F5F5F5"
+  ],
+  "specIds": [
+    "color.fill.3"
+  ]
+}

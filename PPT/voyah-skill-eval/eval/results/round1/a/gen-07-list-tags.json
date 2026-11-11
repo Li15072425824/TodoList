@@ -1,0 +1,27 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-07-list-tags",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-07-list-tags",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.4040304,
+  "denials": [
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Demo 已生成。文件位于 `/private/tmp/vx-eval/r1/a/gen-07-list-tags/index.html`，同目录有 `tokens.css`。\n\n包含内容：\n- **Tabs**：全部 / 待审批（带红色 Badge 计数 5）/ 已通过 / 已拒绝，选中项底部 2px 主色下划线\n- **Segmented 分段器**：列表 / 卡片视图切换，填充色用 `--vx-fill-3`，选中项白底描边\n- **列表行**：头像 + 姓名·申请类型 + 部门 + 状态 Tag（待审批=警告黄/已通过=成功绿/已拒绝=错误红）+ 时间 + 查看/通过/拒绝操作链接\n- **hover 底色** `--vx-fill-2`（#F3F4F7 页面内容区块底色），**选中行底色** `--vx-fill-3`（#F5F5F5 标签/下拉选中背景），填充色三级语义正确对应\n- 卡片视图同步支持选中高亮（主色浅底 + 主色描边）\n- 全部颜色均使用 `var(--vx-*)` token，无硬编码色值",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-07-list-tags/index.html",
+    "alignRate": 0.964,
+    "checks": 28,
+    "passed": 27,
+    "p0": 1,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-09T04:05:38.041Z"
+}

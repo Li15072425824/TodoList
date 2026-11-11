@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用户管理</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+  <div class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- 标题栏 -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h3 mb-0">用户管理</h1>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+        + 新增用户
+      </button>
+    </div>
+
+    <!-- 搜索与筛选 -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="搜索用户名 / 邮箱" id="searchInput">
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" id="roleFilter">
+              <option value="">全部角色</option>
+              <option value="admin">管理员</option>
+              <option value="editor">编辑者</option>
+              <option value="viewer">查看者</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" id="statusFilter">
+              <option value="">全部状态</option>
+              <option value="active">启用</option>
+              <option value="disabled">禁用</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-outline-secondary w-100" onclick="resetFilters()">重置</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 用户表格 -->
+    <div class="card">
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" class="ps-4">
+                <input class="form-check-input" type="checkbox" id="selectAll" onchange="toggleSelectAll(this)">
+              </th>
+              <th scope="col">用户名</th>
+              <th scope="col">邮箱</th>
+              <th scope="col">角色</th>
+              <th scope="col">状态</th>
+              <th scope="col">注册时间</th>
+              <th scope="col" class="text-end pe-4">操作</th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody">
+            <!-- 由 JS 渲染 -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 分页 -->
+    <nav class="mt-4 d-flex justify-content-between align-items-center">
+      <div class="text-muted small" id="paginationInfo">共 0 条</div>
+      <ul class="pagination mb-0" id="pagination">
+        <!-- 由 JS 渲染 -->
+      </ul>
+    </nav>
+  </div>
+
+  <!-- 新增/编辑用户 Modal -->
+  <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserModalLabel">新增用户</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="userForm">
+            <input type="hidden" id="editUserId">
+            <div class="mb-3">
+              <label for="username" class="form-label">用户名 <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">邮箱 <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="role" class="form-label">角色</label>
+              <select class="form-select" id="role">
+                <option value="viewer">查看者</option>
+                <option value="editor">编辑者</option>
+                <option value="admin">管理员</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="status" class="form-label">状态</label>
+              <select class="form-select" id="status">
+                <option value="active">启用</option>
+                <option value="disabled">禁用</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" onclick="saveUser()">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除确认 Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">确认删除</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          确定要删除该用户吗？此操作不可撤销。
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">删除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // 模拟数据
+  let users = [
+    { id: 1, username: 'alice', email: 'alice@example.com', role: 'admin', status: 'active', createdAt: '2024-01-15 09:30' },
+    { id: 2, username: 'bob', email: 'bob@example.com', role: 'editor', status: 'active', createdAt: '2024-02-20 14:12' },
+    { id: 3, username: 'charlie', email: 'charlie@example.com', role: 'viewer', status: 'disabled', createdAt: '2024-03-05 11:45' },
+    { id: 4, username: 'diana', email: 'diana@example.com', role: 'editor', status: 'active', createdAt: '2024-03-18 16:20' },
+    { id: 5, username: 'edward', email: 'edward@example.com', role: 'viewer', status: 'active', createdAt: '2024-04-02 08:05' },
+    { id: 6, username: 'fiona', email: 'fiona@example.com', role: 'admin', status: 'active', createdAt: '2024-04-22 13:40' },
+    { id: 7, username: 'george', email: 'george@example.com', role: 'viewer', status: 'disabled', createdAt: '2024-05-10 10:25' },
+    { id: 8, username: 'hannah', email: 'hannah@example.com', role: 'editor', status: 'active', createdAt: '2024-05-28 17:50' },
+    { id: 9, username: 'ivan', email: 'ivan@example.com', role: 'viewer', status: 'active', createdAt: '2024-06-12 09:15' },
+    { id: 10, username: 'julia', email: 'julia@example.com', role: 'editor', status: 'active', createdAt: '2024-06-30 15:00' },
+    { id: 11, username: 'kevin', email: 'kevin@example.com', role: 'viewer', status: 'disabled', createdAt: '2024-07-14 11:30' },
+    { id: 12, username: 'laura', email: 'laura@example.com', role: 'admin', status: 'active', createdAt: '2024-08-01 14:45' },
+  ];
+
+  let nextId = 13;
+  let currentPage = 1;
+  const pageSize = 8;
+  let deleteTargetId = null;
+
+  const roleMap = { admin: '管理员', editor: '编辑者', viewer: '查看者' };
+  const roleBadge = {
+    admin: 'bg-danger-subtle text-danger',
+    editor: 'bg-primary-subtle text-primary',
+    viewer: 'bg-secondary-subtle text-secondary'
+  };
+
+  function getFilteredUsers() {
+    const keyword = document.getElementById('searchInput').value.toLowerCase();
+    const role = document.getElementById('roleFilter').value;
+    const status = document.getElementById('statusFilter').value;
+    return users.filter(u => {
+      if (keyword && !u.username.toLowerCase().includes(keyword) && !u.email.toLowerCase().includes(keyword)) return false;
+      if (role && u.role !== role) return false;
+      if (status && u.status !== status) return false;
+      return true;
+    });
+  }
+
+  function renderTable() {
+    const filtered = getFilteredUsers();
+    const total = filtered.length;
+    const totalPages = Math.max(1, Math.ceil(total / pageSize));
+    if (currentPage > totalPages) currentPage = totalPages;
+    const start = (currentPage - 1) * pageSize;
+    const pageData = filtered.slice(start, start + pageSize);
+
+    const tbody = document.getElementById('userTableBody');
+    if (pageData.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-5">暂无数据</td></tr>`;
+    } else {
+      tbody.innerHTML = pageData.map(u => `
+        <tr>
+          <td class="ps-4"><input class="form-check-input row-check" type="checkbox" data-id="${u.id}"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width:32px;height:32px;font-size:12px;font-weight:600;">
+                ${u.username.charAt(0).toUpperCase()}
+              </div>
+              <span>${u.username}</span>
+            </div>
+          </td>
+          <td>${u.email}</td>
+          <td><span class="badge rounded-pill ${roleBadge[u.role]}">${roleMap[u.role]}</span></td>
+          <td>
+            <span class="badge rounded-pill ${u.status === 'active' ? 'bg-success-subtle text-success' : 'bg-warning-subtle text-warning'}">
+              ${u.status === 'active' ? '启用' : '禁用'}
+            </span>
+          </td>
+          <td class="text-muted">${u.createdAt}</td>
+          <td class="text-end pe-4">
+            <button class="btn btn-sm btn-outline-primary me-1" onclick="editUser(${u.id})">编辑</button>
+            <button class="btn btn-sm btn-outline-danger" onclick="promptDelete(${u.id})">删除</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 分页信息
+    document.getElementById('paginationInfo').textContent = `共 ${total} 条`;
+
+    // 分页按钮
+    const pagination = document.getElementById('pagination');
+    let html = `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}"><a class="page-link" href="#" onclick="goPage(${currentPage - 1})">上一页</a></li>`;
+    for (let i = 1; i <= totalPages; i++) {
+      html += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#" onclick="goPage(${i})">${i}</a></li>`;
+    }
+    html += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}"><a class="page-link" href="#" onclick="goPage(${currentPage + 1})">下一页</a></li>`;
+    pagination.innerHTML = html;
+
+    // 重置全选框
+    document.getElementById('selectAll').checked = false;
+  }
+
+  function goPage(p) {
+    const total = getFilteredUsers().length;
+    const totalPages = Math.max(1, Math.ceil(total / pageSize));
+    if (p < 1 || p > totalPages) return;
+    currentPage = p;
+    renderTable();
+  }
+
+  function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('roleFilter').value = '';
+    document.getElementById('statusFilter').value = '';
+    currentPage = 1;
+    renderTable();
+  }
+
+  function toggleSelectAll(cb) {
+    document.querySelectorAll('.row-check').forEach(c => c.checked = cb.checked);
+  }
+
+  function openAddModal() {
+    document.getElementById('addUserModalLabel').textContent = '新增用户';
+    document.getElementById('editUserId').value = '';
+    document.getElementById('userForm').reset();
+    document.getElementById('role').value = 'viewer';
+    document.getElementById('status').value = 'active';
+  }
+
+  function editUser(id) {
+    const user = users.find(u => u.id === id);
+    if (!user) return;
+    document.getElementById('addUserModalLabel').textContent = '编辑用户';
+    document.getElementById('editUserId').value = user.id;
+    document.getElementById('username').value = user.username;
+    document.getElementById('email').value = user.email;
+    document.getElementById('role').value = user.role;
+    document.getElementById('status').value = user.status;
+    const modal = new bootstrap.Modal(document.getElementById('addUserModal'));
+    modal.show();
+  }
+
+  function saveUser() {
+    const form = document.getElementById('userForm');
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const id = document.getElementById('editUserId').value;
+    const data = {
+      username: document.getElementById('username').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      role: document.getElementById('role').value,
+      status: document.getElementById('status').value,
+    };
+    if (id) {
+      const idx = users.findIndex(u => u.id === parseInt(id));
+      if (idx >= 0) users[idx] = { ...users[idx], ...data };
+    } else {
+      const now = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      users.unshift({
+        id: nextId++,
+        ...data,
+        createdAt: `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`
+      });
+    }
+    bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+    renderTable();
+  }
+
+  function promptDelete(id) {
+    deleteTargetId = id;
+    const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    modal.show();
+  }
+
+  document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
+    if (deleteTargetId != null) {
+      users = users.filter(u => u.id !== deleteTargetId);
+      deleteTargetId = null;
+      bootstrap.Modal.getInstance(document.getElementById('deleteModal')).hide();
+      renderTable();
+    }
+  });
+
+  // 搜索即时过滤
+  document.getElementById('searchInput').addEventListener('input', () => { currentPage = 1; renderTable(); });
+  document.getElementById('roleFilter').addEventListener('change', () => { currentPage = 1; renderTable(); });
+  document.getElementById('statusFilter').addEventListener('change', () => { currentPage = 1; renderTable(); });
+
+  // 监听新增 modal 打开时重置
+  document.getElementById('addUserModal').addEventListener('show.bs.modal', (e) => {
+    if (e.relatedTarget && e.relatedTarget.matches('[data-bs-target="#addUserModal"]')) {
+      openAddModal();
+    }
+  });
+
+  // 初始化
+  renderTable();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-02",
+  "topic": "help-blue-theme",
+  "question": "蓝(基础色)主题下,帮助色的常规档 hex 是什么?",
+  "answer": "蓝（基础色）主题下，帮助色的常规档 hex 为 **`#3370FF`**。\n\n（基于 Arco Design 等主流设计体系的规范：帮助色即信息色/Info，常规档指默认亮度层级，在蓝色基础色主题下取值为 `#3370FF`。）",
+  "pass": false,
+  "missing": [
+    "54A7B2"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0565986,
+  "subtype": "success",
+  "at": "2026-11-09T09:40:38.275Z"
+}

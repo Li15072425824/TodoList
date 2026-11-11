@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>规范自检 · 混合密度页 Demo</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--vx-padding-page);
+    background: var(--vx-bg-base);
+  }
+
+  .spec-label {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    font-family: var(--vx-font-family-number);
+    font-weight: var(--vx-font-weight-regular);
+    white-space: nowrap;
+  }
+
+  .section {
+    margin-bottom: var(--vx-space-xxl);
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--vx-space-sm);
+    margin-bottom: var(--vx-space-md);
+    padding-bottom: var(--vx-space-xs);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .section-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+
+  /* Page title */
+  .page-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--vx-space-md);
+    margin-bottom: var(--vx-space-xl);
+  }
+  .page-title {
+    font-size: var(--vx-font-size-h1);
+    line-height: var(--vx-line-height-page-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+
+  /* Demo grid */
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--vx-space-md);
+  }
+  .demo-card {
+    background: var(--vx-fill-2);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-md);
+  }
+  .demo-card-title {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-primary);
+    margin-bottom: var(--vx-space-xs);
+  }
+  .demo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--vx-space-sm);
+    margin-bottom: var(--vx-space-xs);
+  }
+  .demo-row:last-child { margin-bottom: 0; }
+
+  /* Left nav */
+  .left-nav {
+    width: 240px;
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-xs);
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    height: 40px;
+    padding: 0 var(--vx-space-sm);
+    border-radius: var(--vx-radius-lg);
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-primary);
+    font-weight: var(--vx-font-weight-regular);
+    cursor: pointer;
+  }
+  .nav-item-active {
+    background: var(--vx-fill-3);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .nav-item:hover { background: var(--vx-fill-3); }
+  .nav-icon {
+    width: 16px; height: 16px;
+    background: currentColor;
+    border-radius: var(--vx-radius-xs);
+    opacity: 0.6;
+  }
+
+  /* Form */
+  .form-field { margin-bottom: var(--vx-space-sm); }
+  .form-field:last-child { margin-bottom: 0; }
+  .form-label {
+    display: block;
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-primary);
+    font-weight: var(--vx-font-weight-regular);
+    margin-bottom: var(--vx-space-1);
+  }
+  .form-hint {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    margin-top: var(--vx-space-1);
+  }
+
+  /* Table */
+  .demo-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-primary);
+  }
+  .demo-table th {
+    text-align: left;
+    font-weight: var(--vx-font-weight-medium);
+    padding: var(--vx-space-xs) var(--vx-space-sm);
+    background: var(--vx-fill-3);
+    border-bottom: 1px solid var(--vx-line-1);
+    color: var(--vx-text-title);
+  }
+  .demo-table td {
+    padding: var(--vx-space-xs) var(--vx-space-sm);
+    border-bottom: 1px solid var(--vx-line-1);
+    font-weight: var(--vx-font-weight-regular);
+  }
+  .demo-table tr:last-child td { border-bottom: none; }
+
+  /* Button demo row */
+  .btn-demo-row {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    flex-wrap: wrap;
+  }
+
+  /* Longform paragraph */
+  .longform {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-longform);
+    color: var(--vx-text-primary);
+    font-weight: var(--vx-font-weight-regular);
+  }
+  .longform p { margin: 0 0 var(--vx-space-sm); }
+  .longform p:last-child { margin-bottom: 0; }
+
+  /* Caption examples */
+  .caption-row {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-md);
+    flex-wrap: wrap;
+  }
+  .timestamp {
+    font-size: var(--vx-font-size-sm);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    font-weight: var(--vx-font-weight-regular);
+  }
+  .remark {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    font-weight: var(--vx-font-weight-regular);
+  }
+
+  /* Font weight demo */
+  .weight-demo {
+    font-size: var(--vx-font-size-xl);
+    color: var(--vx-text-title);
+  }
+  .weight-regular { font-weight: var(--vx-font-weight-regular); }
+  .weight-medium  { font-weight: var(--vx-font-weight-medium); }
+  .weight-bold    { font-weight: var(--vx-font-weight-bold); }
+
+  /* Side note column */
+  .spec-col {
+    flex-shrink: 0;
+    text-align: right;
+    min-width: 220px;
+  }
+
+  .full-width { grid-column: 1 / -1; }
+
+  .meta-bar {
+    display: flex;
+    gap: var(--vx-space-lg);
+    flex-wrap: wrap;
+    margin-bottom: var(--vx-space-xl);
+    padding: var(--vx-space-sm) var(--vx-space-md);
+    background: var(--vx-fill-1);
+    border-radius: var(--vx-radius-md);
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-secondary);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Page title -->
+  <div class="page-title-row">
+    <h1 class="page-title">规范自检 · 混合密度页 Demo</h1>
+    <span class="spec-label">font-size: 24px / line-height: 32px / color: var(--vx-text-title) / weight: 600</span>
+  </div>
+
+  <div class="meta-bar">
+    <span>主题：blue（蓝）</span>
+    <span>字体栈：PingFang SC / Microsoft YaHei / Helvetica Neue</span>
+    <span>字重三档：400 / 500 / 600</span>
+    <span>间距基准：4px × n</span>
+  </div>
+
+  <!-- Section 1: 正文四场景 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">正文 14px / 22 · 四场景实例</h2>
+      <span class="spec-label">font-size: 14px / line-height: 22px / color: var(--vx-text-primary)</span>
+    </div>
+
+    <div class="demo-grid">
+      <!-- 场景 1: 表单字段 -->
+      <div class="demo-card">
+        <div class="demo-row">
+          <span class="demo-card-title">表单字段</span>
+          <span class="spec-label spec-col">label: 14/22 · input: 14/20 · hint: 12/20</span>
+        </div>
+        <div class="form-field">
+          <label class="form-label">车辆识别码（VIN）
+            <span class="spec-label">— 14/22 · text-primary · 400</span>
+          </label>
+          <input class="vx-input" type="text" value="LBV3B1G03NM123456" />
+          <div class="form-hint">提示：17 位字母与数字组合，不包含 I/O/Q
+            <span class="spec-label">— 12/20 · text-caption · 400</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">车主姓名
+            <span class="spec-label">— 14/22 · text-primary · 400</span>
+          </label>
+          <input class="vx-input" type="text" placeholder="请输入车主姓名" />
+        </div>
+      </div>
+
+      <!-- 场景 2: 表格单元格 -->
+      <div class="demo-card">
+        <div class="demo-row">
+          <span class="demo-card-title">表格单元格</span>
+          <span class="spec-label spec-col">cell: 14/22 · text-primary · 400</span>
+        </div>
+        <table class="demo-table">
+          <thead>
+            <tr>
+              <th>车型
+                <span class="spec-label">— 14/22 · text-title · 500</span>
+              </th>
+              <th>颜色</th>
+              <th>数量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>岚图 FREE 318
+                <span class="spec-label">— 14/22 · text-primary · 400</span>
+              </td>
+              <td>杜若白</td>
+              <td>128</td>
+            </tr>
+            <tr>
+              <td>岚图梦想家</td>
+              <td>玄英黑</td>
+              <td>96</td>
+            </tr>
+            <tr>
+              <td>岚图追光</td>
+              <td>岚图蓝</td>
+              <td>74</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 场景 3: 按钮文字 -->
+      <div class="demo-card">
+        <div class="demo-row">
+          <span class="demo-card-title">按钮文字</span>
+          <span class="spec-label spec-col">Large 16/24 · Middle 12/20 · Small 12/20</span>
+        </div>
+        <div class="btn-demo-row" style="margin-bottom: var(--vx-space-xs);">
+          <button class="vx-btn vx-btn-primary vx-btn-lg">确认提交
+            <span class="spec-label" style="display:none">16/24 · 500</span>
+          </button>
+          <span class="spec-label">Large: 16/24 · weight 500</span>
+        </div>
+        <div class="btn-demo-row" style="margin-bottom: var(--vx-space-xs);">
+          <button class="vx-btn vx-btn-secondary">取消操作</button>
+          <span class="spec-label">Middle: 12/20 · weight 500</span>
+        </div>
+        <div class="btn-demo-row">
+          <button class="vx-btn vx-btn-outline vx-btn-sm">查看详情</button>
+          <span class="spec-label">Small: 12/20 · weight 500</span>
+        </div>
+      </div>
+
+      <!-- 场景 4: 左侧导航项 -->
+      <div class="demo-card">
+        <div class="demo-row">
+          <span class="demo-card-title">左侧导航项</span>
+          <span class="spec-label spec-col">14/22 · text-primary · 400 / active 500</span>
+        </div>
+        <div class="left-nav">
+          <div class="nav-item nav-item-active">
+            <span class="nav-icon"></span>
+            工作台
+            <span class="spec-label" style="margin-left:auto">— active 500</span>
+          </div>
+          <div class="nav-item">
+            <span class="nav-icon"></span>
+            车辆管理
+            <span class="spec-label" style="margin-left:auto">— regular 400</span>
+          </div>
+          <div class="nav-item">
+            <span class="nav-icon"></span>
+            订单中心
+          </div>
+          <div class="nav-item">
+            <span class="nav-icon"></span>
+            数据分析
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: 模块小标题 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">模块小标题 16px / 24</h2>
+      <span class="spec-label">font-size: 16px / line-height: 24px / color: var(--vx-text-title) / weight: 600</span>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="demo-card-title">卡片标题示例</div>
+        <div class="vx-card">
+          <div class="vx-card-head">
+            <span class="vx-card-title">车辆销售概览
+              <span class="spec-label">— 16/24 · text-title · 600</span>
+            </span>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">更多</button>
+          </div>
+          <div class="vx-card-body">
+            本月累计销售 298 台，同比增长 12.4%。其中 SUV 车型占比 58%，MPV 车型占比 26%，轿车占比 16%。
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-card-title">分组小标题示例</div>
+        <div style="padding: var(--vx-space-sm) 0;">
+          <h3 style="font-size: var(--vx-font-size-lg); line-height: var(--vx-line-height-module-title); font-weight: var(--vx-font-weight-medium); color: var(--vx-text-title); margin: 0 0 var(--vx-space-xs);">
+            基本信息
+            <span class="spec-label">— 16/24 · text-title · 500</span>
+          </h3>
+          <p style="margin: 0; font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-body); color: var(--vx-text-primary);">
+            展示名称、联系电话、所属门店等基础资料。
+          </p>
+        </div>
+        <div style="padding: var(--vx-space-sm) 0; border-top: 1px solid var(--vx-line-1);">
+          <h3 style="font-size: var(--vx-font-size-lg); line-height: var(--vx-line-height-module-title); font-weight: var(--vx-font-weight-medium); color: var(--vx-text-title); margin: 0 0 var(--vx-space-xs);">
+            权限配置
+          </h3>
+          <p style="margin: 0; font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-body); color: var(--vx-text-primary);">
+            角色、菜单权限、数据范围等安全设置。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: 大段描述 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">大段描述 14~16px / 28</h2>
+      <span class="spec-label">font-size: 16px / line-height: 28px / color: var(--vx-text-primary) / weight: 400</span>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card full-width">
+        <div class="demo-card-title">产品详情 · 帮助说明</div>
+        <div class="longform">
+          <p>岚图汽车作为东风旗下高端智慧电动品牌，致力于为用户提供「安全、舒适、智能」的出行体验。
+          全系车型搭载新一代智能座舱系统，支持多模态交互、OTA 持续进化、全场景智慧出行服务。</p>
+          <p>在安全方面，车身采用超高强度钢铝混合架构，关键部位使用热成型钢，配合主动安全系统，
+          为驾乘人员提供全方位保护。电池系统通过严苛的测试验证，确保在各种极端环境下的安全可靠性。</p>
+          <p>智能驾驶方面，配备高阶智驾辅助系统，支持高速领航、城市领航、自动泊车等多项功能，
+          让每一次出行都更加轻松从容。
+          <span class="spec-label">— 16/28 · text-primary · 400</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: 辅助说明 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">辅助说明 12~13px / 20</h2>
+      <span class="spec-label">font-size: 12~13px / line-height: 20px / color: var(--vx-text-caption) / weight: 400</span>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="demo-card-title">时间戳</div>
+        <div style="display: flex; flex-direction: column; gap: var(--vx-space-1);">
+          <div class="timestamp">2026-11-10 09:30:15
+            <span class="spec-label">— 13/20 · text-caption · 400</span>
+          </div>
+          <div class="remark">更新于 3 分钟前
+            <span class="spec-label">— 12/20 · text-caption · 400</span>
+          </div>
+          <div class="remark">发布时间：2026-10-28</div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-card-title">备注说明</div>
+        <div style="display: flex; flex-direction: column; gap: var(--vx-space-1);">
+          <div class="remark">* 带 * 号为必填项
+            <span class="spec-label">— 12/20 · text-caption · 400</span>
+          </div>
+          <div class="remark">注：数据每日凌晨 2:00 自动同步</div>
+          <div class="timestamp">最后编辑：admin · 2026-11-08</div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-card-title">输入框提示</div>
+        <div class="form-field">
+          <label class="form-label">邮箱地址</label>
+          <input class="vx-input" type="text" placeholder="example@voyah.com.cn" />
+          <div class="form-hint">placeholder 提示文字
+            <span class="spec-label">— 14/20 · text-caption · 400</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">验证码</label>
+          <input class="vx-input" type="text" placeholder="6 位数字验证码" />
+          <div class="form-hint">验证码将在 5 分钟后失效</div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-card-title">规格标注（spec-label 自身）</div>
+        <div style="display: flex; flex-direction: column; gap: var(--vx-space-1);">
+          <span class="spec-label">font-size: 12px / line-height: 20px / color: var(--vx-text-caption)</span>
+          <span class="spec-label">用途：每个实例旁标注 token，便于自动比对 computed style</span>
+          <span class="remark">小字号统一使用 D-DIN / HarmonyOS Sans 数字字体</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: 字重对照 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">字重对照 Regular / Medium / Bold</h2>
+      <span class="spec-label">font-weight: 400 / 500 / 600</span>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card full-width">
+        <div class="demo-row" style="margin-bottom: var(--vx-space-md);">
+          <span class="demo-card-title">同一字号 18px 下的三字重对比</span>
+          <span class="spec-label spec-col">color: var(--vx-text-title)</span>
+        </div>
+        <div style="display: flex; gap: var(--vx-space-xl); align-items: baseline; flex-wrap: wrap;">
+          <div>
+            <div class="weight-demo weight-regular">Regular 岚图 Voyah 123</div>
+            <span class="spec-label">weight: 400 · 18px</span>
+          </div>
+          <div>
+            <div class="weight-demo weight-medium">Medium 岚图 Voyah 123</div>
+            <span class="spec-label">weight: 500 · 18px</span>
+          </div>
+          <div>
+            <div class="weight-demo weight-bold">Bold 岚图 Voyah 123</div>
+            <span class="spec-label">weight: 600 · 18px</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-card-title">正文字重应用</div>
+        <div style="display: flex; flex-direction: column; gap: var(--vx-space-xs);">
+          <div style="font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-body); color: var(--vx-text-primary); font-weight: var(--vx-font-weight-regular);">
+            正文常规 · Regular 400
+            <span class="spec-label">— 14/22 · 400</span>
+          </div>
+          <div style="font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-body); color: var(--vx-text-primary); font-weight: var(--vx-font-weight-medium);">
+            正文强调 · Medium 500
+            <span class="spec-label">— 14/22 · 500</span>
+          </div>
+          <div style="font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-body); color: var(--vx-text-primary); font-weight: var(--vx-font-weight-bold);">
+            正文加粗 · Bold 600
+            <span class="spec-label">— 14/22 · 600</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-card-title">标题字重应用</div>
+        <div style="display: flex; flex-direction: column; gap: var(--vx-space-xs);">
+          <div style="font-size: var(--vx-font-size-lg); line-height: var(--vx-line-height-module-title); color: var(--vx-text-title); font-weight: var(--vx-font-weight-regular);">
+            模块标题 Regular 400
+            <span class="spec-label">— 16/24 · 400</span>
+          </div>
+          <div style="font-size: var(--vx-font-size-lg); line-height: var(--vx-line-height-module-title); color: var(--vx-text-title); font-weight: var(--vx-font-weight-medium);">
+            模块标题 Medium 500
+            <span class="spec-label">— 16/24 · 500</span>
+          </div>
+          <div style="font-size: var(--vx-font-size-lg); line-height: var(--vx-line-height-module-title); color: var(--vx-text-title); font-weight: var(--vx-font-weight-bold);">
+            模块标题 Bold 600
+            <span class="spec-label">— 16/24 · 600</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: 页面大标题多档位 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">页面大标题 18~24px / 32~40px</h2>
+      <span class="spec-label">font-size: 18~24px / line-height: 32~40px / color: var(--vx-text-title) / weight: 600</span>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card full-width">
+        <div style="display: flex; flex-direction: column; gap: var(--vx-space-sm);">
+          <div>
+            <div style="font-size: var(--vx-font-size-h1); line-height: 40px; font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title);">
+              24px / 40px · 一级页面标题
+            </div>
+            <span class="spec-label">24/40 · text-title · 600</span>
+          </div>
+          <div>
+            <div style="font-size: var(--vx-font-size-xxl); line-height: 36px; font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title);">
+              20px / 36px · 二级页面标题
+            </div>
+            <span class="spec-label">20/36 · text-title · 600</span>
+          </div>
+          <div>
+            <div style="font-size: var(--vx-font-size-xl); line-height: var(--vx-line-height-page-title); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title);">
+              18px / 32px · 三级页面标题
+            </div>
+            <span class="spec-label">18/32 · text-title · 600</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

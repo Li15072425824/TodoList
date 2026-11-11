@@ -1,0 +1,26 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-06-empty-icons",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-06-empty-icons",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.3326364,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "已生成 `index.html` demo 页面,包含以下模块:\n\n- **左侧导航菜单** — 18px 单色 SVG 图标(currentColor),含默认/选中/禁用三种状态\n- **资源列表** — 16px 行内前置图标 + 操作列(编辑/刷新/删除),删除按钮 hover 呈危险色,含禁用态示例\n- **空状态区** — 64px 线性插画图标 + 标题 + 辅助说明 + Large 主按钮「新建资源」\n- **图标四态对照** — 默认(Secondary)/Hover(Primary)/禁用(Disabled)/主色(Active)四种状态并列展示\n- **图标尺寸规格** — 行内 16px、导航 18/20px、空状态 48/64/80px 阶梯展示\n\n所有图标均为内联 24 网格线性 SVG,使用 `currentColor` 随文字色变化,严格遵循 Voyah Design token(颜色、字号、间距、圆角均走 `var(--vx-*)`)。样式文件 `tokens.css` 已在同级目录。",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-06-empty-icons/index.html",
+    "alignRate": 0.893,
+    "checks": 28,
+    "passed": 25,
+    "p0": 2,
+    "p1": 1,
+    "tokenRefRate": 0.982
+  },
+  "at": "2026-11-09T03:28:12.550Z"
+}

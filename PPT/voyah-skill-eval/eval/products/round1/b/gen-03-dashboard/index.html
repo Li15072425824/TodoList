@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>车队运营数据看板 - 岚图 Voyah</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --voyah-primary: #0066FF;
+    --voyah-primary-light: #E8F0FF;
+    --voyah-primary-hover: #0052CC;
+    --voyah-primary-active: #003D99;
+    --voyah-success: #00B42A;
+    --voyah-success-light: #E8FFEE;
+    --voyah-warning: #FF7D00;
+    --voyah-warning-light: #FFF3E8;
+    --voyah-error: #F53F3F;
+    --voyah-error-light: #FFECE8;
+    --voyah-text-primary: #1D2129;
+    --voyah-text-secondary: #4E5969;
+    --voyah-text-tertiary: #86909C;
+    --voyah-text-placeholder: #C9CDD4;
+    --voyah-border: #E5E6EB;
+    --voyah-border-light: #F2F3F5;
+    --voyah-bg-page: #F7F8FA;
+    --voyah-bg-card: #FFFFFF;
+    --voyah-bg-hover: #F7F8FA;
+    --voyah-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+    --voyah-shadow-md: 0 4px 10px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -3px rgba(0, 0, 0, 0.04);
+    --voyah-radius-sm: 4px;
+    --voyah-radius-md: 6px;
+    --voyah-radius-lg: 8px;
+    --voyah-radius-xl: 12px;
+    --voyah-font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --voyah-font-mono: 'Roboto Mono', 'SF Mono', Monaco, Consolas, monospace;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--voyah-font-sans);
+    background-color: var(--voyah-bg-page);
+    color: var(--voyah-text-primary);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dashboard-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .page-header {
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+    line-height: 32px;
+    letter-spacing: -0.02em;
+  }
+
+  .page-subtitle {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--voyah-text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .page-subtitle .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--voyah-success);
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .kpi-card {
+    position: relative;
+    background-color: var(--voyah-bg-card);
+    border-radius: var(--voyah-radius-lg);
+    padding: 20px 24px;
+    box-shadow: var(--voyah-shadow-sm);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .kpi-card:hover {
+    box-shadow: var(--voyah-shadow-md);
+    border-color: var(--voyah-border);
+  }
+
+  .kpi-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    background-color: var(--voyah-error);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
+    font-family: var(--voyah-font-sans);
+  }
+
+  .kpi-label {
+    font-size: 13px;
+    color: var(--voyah-text-secondary);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .kpi-value {
+    font-family: var(--voyah-font-mono);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--voyah-text-primary);
+    line-height: 40px;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .kpi-value .unit {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--voyah-text-tertiary);
+    margin-left: 4px;
+    font-family: var(--voyah-font-sans);
+    letter-spacing: 0;
+  }
+
+  .kpi-change {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .kpi-change.up {
+    color: var(--voyah-success);
+  }
+
+  .kpi-change.down {
+    color: var(--voyah-error);
+  }
+
+  .kpi-change .arrow {
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .kpi-change .label {
+    color: var(--voyah-text-tertiary);
+  }
+
+  .main-card {
+    background-color: var(--voyah-bg-card);
+    border-radius: var(--voyah-radius-lg);
+    box-shadow: var(--voyah-shadow-sm);
+    overflow: hidden;
+  }
+
+  .card-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--voyah-border-light);
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+    line-height: 24px;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 14px;
+    right: 24px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background-color: var(--voyah-error);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn {
+    height: 32px;
+    padding: 0 16px;
+    border-radius: var(--voyah-radius-md);
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--voyah-font-sans);
+  }
+
+  .btn-secondary {
+    background-color: #FFFFFF;
+    border-color: var(--voyah-border);
+    color: var(--voyah-text-primary);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--voyah-primary);
+    color: var(--voyah-primary);
+  }
+
+  .btn-primary {
+    background-color: var(--voyah-primary);
+    color: #FFFFFF;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--voyah-primary-hover);
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .data-table thead th {
+    padding: 12px 24px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--voyah-text-secondary);
+    text-align: left;
+    background-color: var(--voyah-bg-page);
+    border-bottom: 1px solid var(--voyah-border-light);
+    white-space: nowrap;
+  }
+
+  .data-table tbody td {
+    padding: 16px 24px;
+    font-size: 13px;
+    color: var(--voyah-text-primary);
+    border-bottom: 1px solid var(--voyah-border-light);
+    vertical-align: middle;
+  }
+
+  .data-table tbody tr {
+    transition: background-color 0.15s ease;
+  }
+
+  .data-table tbody tr:hover {
+    background-color: var(--voyah-bg-hover);
+  }
+
+  .data-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .vehicle-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .vehicle-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--voyah-radius-md);
+    background-color: var(--voyah-primary-light);
+    color: var(--voyah-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .vehicle-name {
+    font-weight: 500;
+    color: var(--voyah-text-primary);
+    font-size: 13px;
+  }
+
+  .vehicle-plate {
+    font-size: 12px;
+    color: var(--voyah-text-tertiary);
+    margin-top: 2px;
+  }
+
+  .num-mono {
+    font-family: var(--voyah-font-mono);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: var(--voyah-radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 22px;
+    gap: 4px;
+  }
+
+  .tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+
+  .tag-success {
+    background-color: var(--voyah-success-light);
+    color: var(--voyah-success);
+  }
+
+  .tag-warning {
+    background-color: var(--voyah-warning-light);
+    color: var(--voyah-warning);
+  }
+
+  .tag-error {
+    background-color: var(--voyah-error-light);
+    color: var(--voyah-error);
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-top: 1px solid var(--voyah-border-light);
+  }
+
+  .pagination-info {
+    font-size: 13px;
+    color: var(--voyah-text-secondary);
+  }
+
+  .pagination-info .num {
+    font-family: var(--voyah-font-mono);
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+  }
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .page-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: var(--voyah-radius-md);
+    border: 1px solid var(--voyah-border);
+    background-color: #FFFFFF;
+    color: var(--voyah-text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--voyah-font-sans);
+  }
+
+  .page-btn:hover:not(:disabled) {
+    border-color: var(--voyah-primary);
+    color: var(--voyah-primary);
+  }
+
+  .page-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .page-btn.active {
+    background-color: var(--voyah-primary);
+    border-color: var(--voyah-primary);
+    color: #FFFFFF;
+  }
+
+  .page-btn.active:hover {
+    background-color: var(--voyah-primary-hover);
+    border-color: var(--voyah-primary-hover);
+    color: #FFFFFF;
+  }
+
+  .page-jump {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 8px;
+    font-size: 13px;
+    color: var(--voyah-text-secondary);
+  }
+
+  .page-jump input {
+    width: 48px;
+    height: 32px;
+    border: 1px solid var(--voyah-border);
+    border-radius: var(--voyah-radius-md);
+    text-align: center;
+    font-size: 13px;
+    font-family: var(--voyah-font-mono);
+    color: var(--voyah-text-primary);
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .page-jump input:focus {
+    border-color: var(--voyah-primary);
+  }
+
+  @media (max-width: 1024px) {
+    .kpi-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .kpi-grid {
+      grid-template-columns: 1fr;
+    }
+    .dashboard-container {
+      padding: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <header class="page-header">
+      <h1 class="page-title">车队运营数据看板</h1>
+      <div class="page-subtitle">
+        <span class="dot"></span>
+        <span>数据更新时间：2026-11-09 16:30:00 · 每 5 分钟自动刷新</span>
+      </div>
+    </header>
+
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-badge">3</div>
+        <div class="kpi-label">在运营车辆</div>
+        <div class="kpi-value">1,286<span class="unit">辆</span></div>
+        <div class="kpi-change up">
+          <span class="arrow">▲</span>
+          <span class="num-mono">12.5%</span>
+          <span class="label">较上月</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">总行驶里程</div>
+        <div class="kpi-value">286.4<span class="unit">万 km</span></div>
+        <div class="kpi-change up">
+          <span class="arrow">▲</span>
+          <span class="num-mono">8.3%</span>
+          <span class="label">较上月</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-badge">7</div>
+        <div class="kpi-label">待处理告警</div>
+        <div class="kpi-value">23<span class="unit">条</span></div>
+        <div class="kpi-change down">
+          <span class="arrow">▼</span>
+          <span class="num-mono">5.2%</span>
+          <span class="label">较上周</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">运营收入</div>
+        <div class="kpi-value">¥ 486.2<span class="unit">万</span></div>
+        <div class="kpi-change up">
+          <span class="arrow">▲</span>
+          <span class="num-mono">15.8%</span>
+          <span class="label">较上月</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-card">
+      <div class="card-header">
+        <h2 class="card-title">车辆运营明细</h2>
+        <span class="card-badge">8</span>
+        <div class="card-actions">
+          <button class="btn btn-secondary">导出</button>
+          <button class="btn btn-primary">新建</button>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>车辆信息</th>
+            <th>车队</th>
+            <th>司机</th>
+            <th>今日里程</th>
+            <th>电量</th>
+            <th>运营状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="vehicle-info">
+                <div class="vehicle-avatar">岚</div>
+                <div>
+                  <div class="vehicle-name">岚图 FREE 2024</div>
+                  <div class="vehicle-plate">鄂A·D8526</div>
+                </div>
+              </div>
+            </td>
+            <td>武汉一队</td>
+            <td>张伟</td>
+            <td><span class="num-mono">186.5 km</span></td>
+            <td><span class="num-mono">78%</span></td>
+            <td><span class="tag tag-success">运营中</span></td>
+            <td><a href="#" style="color: var(--voyah-primary); text-decoration: none; font-size: 13px;">查看</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="vehicle-info">
+                <div class="vehicle-avatar">岚</div>
+                <div>
+                  <div class="vehicle-name">岚图梦想家 PHEV</div>
+                  <div class="vehicle-plate">鄂A·F3192</div>
+                </div>
+              </div>
+            </td>
+            <td>武汉二队</td>
+            <td>李明</td>
+            <td><span class="num-mono">243.2 km</span></td>
+            <td><span class="num-mono">42%</span></td>
+            <td><span class="tag tag-warning">低电量</span></td>
+            <td><a href="#" style="color: var(--voyah-primary); text-decoration: none; font-size: 13px;">查看</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="vehicle-info">
+                <div class="vehicle-avatar">岚</div>
+                <div>
+                  <div class="vehicle-name">岚图追光 长续航版</div>
+                  <div class="vehicle-plate">鄂A·E7654</div>
+                </div>
+              </div>
+            </td>
+            <td>商务车队</td>
+            <td>王强</td>
+            <td><span class="num-mono">312.8 km</span></td>
+            <td><span class="num-mono">15%</span></td>
+            <td><span class="tag tag-error">故障告警</span></td>
+            <td><a href="#" style="color: var(--voyah-primary); text-decoration: none; font-size: 13px;">查看</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="vehicle-info">
+                <div class="vehicle-avatar">岚</div>
+                <div>
+                  <div class="vehicle-name">岚图 FREE 四驱版</div>
+                  <div class="vehicle-plate">鄂A·D1089</div>
+                </div>
+              </div>
+            </td>
+            <td>武汉一队</td>
+            <td>陈杰</td>
+            <td><span class="num-mono">95.3 km</span></td>
+            <td><span class="num-mono">91%</span></td>
+            <td><span class="tag tag-success">运营中</span></td>
+            <td><a href="#" style="color: var(--voyah-primary); text-decoration: none; font-size: 13px;">查看</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="vehicle-info">
+                <div class="vehicle-avatar">岚</div>
+                <div>
+                  <div class="vehicle-name">岚图梦想家 EV</div>
+                  <div class="vehicle-plate">鄂A·E4521</div>
+                </div>
+              </div>
+            </td>
+            <td>通勤车队</td>
+            <td>刘洋</td>
+            <td><span class="num-mono">0 km</span></td>
+            <td><span class="num-mono">—</span></td>
+            <td><span class="tag tag-error">维修中</span></td>
+            <td><a href="#" style="color: var(--voyah-primary); text-decoration: none; font-size: 13px;">查看</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <div class="pagination-info">
+          共 <span class="num">1,286</span> 条，当前显示第 <span class="num">1-5</span> 条
+        </div>
+        <div class="pagination-controls">
+          <button class="page-btn" disabled>上一页</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">4</button>
+          <button class="page-btn">5</button>
+          <button class="page-btn">···</button>
+          <button class="page-btn">258</button>
+          <button class="page-btn">下一页</button>
+          <div class="page-jump">
+            跳至
+            <input type="text" value="1">
+            页
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>图标与空状态 · Voyah UI Demo</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .demo-app { display: flex; min-height: 100vh; background: var(--vx-bg-layout); }
+
+  /* ===== 左侧导航 ===== */
+  .demo-sidebar {
+    width: 220px;
+    background: var(--vx-bg-base);
+    border-right: 1px solid var(--vx-line-1);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  .demo-sidebar-logo {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    padding: 0 var(--vx-space-md);
+    border-bottom: 1px solid var(--vx-line-1);
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .demo-nav {
+    padding: var(--vx-space-sm) 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-1);
+  }
+  .demo-nav-group-title {
+    padding: var(--vx-space-xs) var(--vx-space-md);
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .demo-nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    height: 40px;
+    padding: 0 var(--vx-space-md);
+    margin: 0 var(--vx-space-xs);
+    border-radius: var(--vx-radius-md);
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-primary);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .demo-nav-item .vx-icon { color: var(--vx-text-secondary); transition: color 0.2s; }
+  .demo-nav-item:hover { background: var(--vx-fill-3); color: var(--vx-primary); }
+  .demo-nav-item:hover .vx-icon { color: var(--vx-primary); }
+  .demo-nav-item-active {
+    background: var(--vx-primary-bg);
+    color: var(--vx-primary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .demo-nav-item-active .vx-icon { color: var(--vx-primary); }
+
+  /* ===== 主区域 ===== */
+  .demo-main {
+    flex: 1;
+    padding: var(--vx-padding-page);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-md);
+  }
+  .demo-page-title {
+    font-size: var(--vx-font-size-xl);
+    line-height: 32px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .demo-section-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-sm);
+  }
+  .demo-section-sub {
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-caption);
+    margin-bottom: var(--vx-space-md);
+  }
+
+  .demo-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-md);
+  }
+
+  /* ===== 列表 ===== */
+  .demo-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .demo-list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 var(--vx-space-sm) 0;
+    border-bottom: 1px solid var(--vx-line-1);
+    margin-bottom: var(--vx-space-xs);
+  }
+  .demo-list-head-title {
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .demo-list-actions { display: flex; gap: var(--vx-space-xs); }
+  .demo-list-row {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    height: 48px;
+    padding: 0 var(--vx-space-xs);
+    border-radius: var(--vx-radius-md);
+    border-bottom: 1px solid var(--vx-line-1);
+    transition: background 0.2s;
+  }
+  .demo-list-row:hover { background: var(--vx-fill-3); }
+  .demo-list-row:last-child { border-bottom: none; }
+  .demo-row-icon {
+    width: 32px; height: 32px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--vx-primary-bg);
+    color: var(--vx-primary);
+    border-radius: var(--vx-radius-md);
+    flex-shrink: 0;
+  }
+  .demo-row-main { flex: 1; min-width: 0; }
+  .demo-row-title {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-primary);
+    font-weight: var(--vx-font-weight-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .demo-row-desc {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .demo-row-meta {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    flex-shrink: 0;
+    margin-right: var(--vx-space-sm);
+  }
+  .demo-row-ops {
+    display: flex; gap: var(--vx-space-1);
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .demo-list-row:hover .demo-row-ops { opacity: 1; }
+  .demo-icon-btn {
+    width: 24px; height: 24px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: none; background: transparent;
+    color: var(--vx-text-secondary);
+    cursor: pointer;
+    border-radius: var(--vx-radius-sm);
+    transition: background 0.2s, color 0.2s;
+  }
+  .demo-icon-btn:hover { background: var(--vx-primary-bg); color: var(--vx-primary); }
+  .demo-icon-btn-danger:hover { background: var(--vx-error-bg); color: var(--vx-error); }
+
+  /* ===== 空状态 ===== */
+  .demo-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--vx-space-12) var(--vx-space-md);
+    text-align: center;
+  }
+  .demo-empty-icon {
+    width: 64px; height: 64px;
+    color: var(--vx-text-disabled);
+    margin-bottom: var(--vx-space-md);
+  }
+  .demo-empty-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: 28px;
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-primary);
+    margin-bottom: var(--vx-space-1);
+  }
+  .demo-empty-desc {
+    font-size: var(--vx-font-size-sm);
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-bottom: var(--vx-space-md);
+    max-width: 360px;
+  }
+
+  /* ===== 图标四态对照 ===== */
+  .demo-icon-states {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--vx-space-sm);
+  }
+  .demo-icon-state-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    padding: var(--vx-space-md);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-md);
+    background: var(--vx-bg-base);
+  }
+  .demo-icon-state-cell .vx-icon-lg {
+    width: 48px; height: 48px;
+  }
+  .demo-icon-state-label {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-secondary);
+  }
+  .demo-icon-state-default { color: var(--vx-text-secondary); }
+  .demo-icon-state-hover { color: var(--vx-primary); }
+  .demo-icon-state-disabled { color: var(--vx-text-disabled); }
+  .demo-icon-state-active { color: var(--vx-primary-active); }
+
+  .demo-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--vx-space-md);
+  }
+  @media (max-width: 900px) {
+    .demo-grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="demo-app">
+
+  <!-- ========== 左侧导航菜单 ========== -->
+  <aside class="demo-sidebar">
+    <div class="demo-sidebar-logo">
+      <svg class="vx-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L3 7v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V7l-9-5z"/>
+      </svg>
+      Voyah 控制台
+    </div>
+    <nav class="demo-nav">
+      <div class="demo-nav-group-title">概览</div>
+      <div class="demo-nav-item">
+        <svg class="vx-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="9" rx="1.5"/>
+          <rect x="14" y="3" width="7" height="5" rx="1.5"/>
+          <rect x="14" y="12" width="7" height="9" rx="1.5"/>
+          <rect x="3" y="16" width="7" height="5" rx="1.5"/>
+        </svg>
+        仪表盘
+      </div>
+      <div class="demo-nav-item demo-nav-item-active">
+        <svg class="vx-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 7H4a2 2 0 00-2 2v9a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>
+          <path d="M16 3v4M8 3v4M2 11h20"/>
+        </svg>
+        项目管理
+      </div>
+      <div class="demo-nav-item">
+        <svg class="vx-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+          <path d="M16 3.13a4 4 0 010 7.75"/>
+        </svg>
+        团队成员
+      </div>
+
+      <div class="demo-nav-group-title">资源</div>
+      <div class="demo-nav-item">
+        <svg class="vx-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="8" y1="13" x2="16" y2="13"/>
+          <line x1="8" y1="17" x2="13" y2="17"/>
+        </svg>
+        文档中心
+      </div>
+      <div class="demo-nav-item">
+        <svg class="vx-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+        </svg>
+        文件存储
+      </div>
+      <div class="demo-nav-item">
+        <svg class="vx-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 12l2 2 4-4"/>
+          <path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2.5 0 4.8 1 6.5 2.5"/>
+          <polyline points="22 4 22 10 16 10"/>
+        </svg>
+        任务清单
+      </div>
+
+      <div class="demo-nav-group-title">系统</div>
+      <div class="demo-nav-item">
+        <svg class="vx-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+        系统设置
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ========== 主内容区 ========== -->
+  <main class="demo-main">
+    <h1 class="demo-page-title">图标与空状态</h1>
+
+    <!-- 列表 + 空状态 并列 -->
+    <div class="demo-grid-2">
+
+      <!-- 列表页 -->
+      <section class="demo-card">
+        <div class="demo-list-head">
+          <div class="demo-list-head-title">项目列表</div>
+          <div class="demo-list-actions">
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">
+              <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+              </svg>
+              刷新
+            </button>
+            <button class="vx-btn vx-btn-primary vx-btn-sm">
+              <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              新建
+            </button>
+          </div>
+        </div>
+
+        <div class="demo-list">
+          <!-- 行 1 -->
+          <div class="demo-list-row">
+            <span class="demo-row-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+              </svg>
+            </span>
+            <div class="demo-row-main">
+              <div class="demo-row-title">Voyah UI 设计系统</div>
+              <div class="demo-row-desc">组件库与设计规范文档</div>
+            </div>
+            <span class="demo-row-meta">2026-11-08</span>
+            <div class="demo-row-ops">
+              <button class="demo-icon-btn" title="刷新">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"/>
+                  <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                </svg>
+              </button>
+              <button class="demo-icon-btn" title="编辑">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+              <button class="demo-icon-btn demo-icon-btn-danger" title="删除">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                  <line x1="10" y1="11" x2="10" y2="17"/>
+                  <line x1="14" y1="11" x2="14" y2="17"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 行 2 -->
+          <div class="demo-list-row">
+            <span class="demo-row-icon" style="background:var(--vx-success-bg);color:var(--vx-success-dark);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </span>
+            <div class="demo-row-main">
+              <div class="demo-row-title">Q4 营销策划方案</div>
+              <div class="demo-row-desc">年末活动与投放节奏规划</div>
+            </div>
+            <span class="demo-row-meta">2026-11-05</span>
+            <div class="demo-row-ops">
+              <button class="demo-icon-btn" title="刷新">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"/>
+                  <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                </svg>
+              </button>
+              <button class="demo-icon-btn" title="编辑">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+              <button class="demo-icon-btn demo-icon-btn-danger" title="删除">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                  <line x1="10" y1="11" x2="10" y2="17"/>
+                  <line x1="14" y1="11" x2="14" y2="17"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 行 3 -->
+          <div class="demo-list-row">
+            <span class="demo-row-icon" style="background:var(--vx-warning-bg);color:var(--vx-warning-dark);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </span>
+            <div class="demo-row-main">
+              <div class="demo-row-title">用户研究报告</div>
+              <div class="demo-row-desc">2026 年 H1 车主满意度调研</div>
+            </div>
+            <span class="demo-row-meta">2026-10-30</span>
+            <div class="demo-row-ops">
+              <button class="demo-icon-btn" title="刷新">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"/>
+                  <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                </svg>
+              </button>
+              <button class="demo-icon-btn" title="编辑">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+              <button class="demo-icon-btn demo-icon-btn-danger" title="删除">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                  <line x1="10" y1="11" x2="10" y2="17"/>
+                  <line x1="14" y1="11" x2="14" y2="17"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 行 4 -->
+          <div class="demo-list-row">
+            <span class="demo-row-icon" style="background:var(--vx-purple-bg);color:var(--vx-purple-dark);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                <path d="M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            </span>
+            <div class="demo-row-main">
+              <div class="demo-row-title">合作伙伴对接</div>
+              <div class="demo-row-desc">供应商与渠道联系人管理</div>
+            </div>
+            <span class="demo-row-meta">2026-10-20</span>
+            <div class="demo-row-ops">
+              <button class="demo-icon-btn" title="刷新">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"/>
+                  <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                </svg>
+              </button>
+              <button class="demo-icon-btn" title="编辑">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+              <button class="demo-icon-btn demo-icon-btn-danger" title="删除">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                  <line x1="10" y1="11" x2="10" y2="17"/>
+                  <line x1="14" y1="11" x2="14" y2="17"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 空状态区 -->
+      <section class="demo-card">
+        <div class="demo-list-head">
+          <div class="demo-list-head-title">消息通知</div>
+          <div class="demo-list-actions">
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">全部已读</button>
+          </div>
+        </div>
+        <div class="demo-empty">
+          <svg class="demo-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 01-3.46 0"/>
+            <line x1="3" y1="3" x2="21" y2="21" opacity="0.5"/>
+          </svg>
+          <div class="demo-empty-title">暂无新消息</div>
+          <div class="demo-empty-desc">你目前没有待处理的通知，一切都在有序运行中。</div>
+          <button class="vx-btn vx-btn-primary">
+            <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            新建通知
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 图标四态对照 -->
+    <section class="demo-card">
+      <div class="demo-section-title">图标四态对照</div>
+      <div class="demo-section-sub">单色图标使用 currentColor，状态色随文字色变化：默认 secondary、hover 主色、按下 active、禁用 disabled</div>
+
+      <div class="demo-icon-states">
+        <div class="demo-icon-state-cell">
+          <div class="vx-icon-lg demo-icon-state-default">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <span class="demo-icon-state-label">默认 / Secondary</span>
+        </div>
+        <div class="demo-icon-state-cell">
+          <div class="vx-icon-lg demo-icon-state-hover">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <span class="demo-icon-state-label">Hover / 主色</span>
+        </div>
+        <div class="demo-icon-state-cell">
+          <div class="vx-icon-lg demo-icon-state-active">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <span class="demo-icon-state-label">按下 / Active</span>
+        </div>
+        <div class="demo-icon-state-cell">
+          <div class="vx-icon-lg demo-icon-state-disabled">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <span class="demo-icon-state-label">禁用 / Disabled</span>
+        </div>
+      </div>
+
+      <!-- 第二组图标示例 -->
+      <div style="margin-top: var(--vx-space-md);">
+        <div class="demo-icon-states">
+          <div class="demo-icon-state-cell">
+            <div class="vx-icon-lg demo-icon-state-default">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <span class="demo-icon-state-label">默认 / Secondary</span>
+          </div>
+          <div class="demo-icon-state-cell">
+            <div class="vx-icon-lg demo-icon-state-hover">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <span class="demo-icon-state-label">Hover / 主色</span>
+          </div>
+          <div class="demo-icon-state-cell">
+            <div class="vx-icon-lg demo-icon-state-active">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <span class="demo-icon-state-label">按下 / Active</span>
+          </div>
+          <div class="demo-icon-state-cell">
+            <div class="vx-icon-lg demo-icon-state-disabled">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <span class="demo-icon-state-label">禁用 / Disabled</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 图标尺寸展示 -->
+      <div style="margin-top: var(--vx-space-md);">
+        <div class="demo-section-title" style="font-size:14px;line-height:22px;font-weight:500;">图标尺寸示意</div>
+        <div class="demo-section-sub">导航 18px · 行内操作 16px · 空状态插画 48~80px · 按钮内 icon 8/12px（随按钮尺寸）</div>
+        <div style="display:flex;align-items:flex-end;gap:var(--vx-space-xl);padding:var(--vx-space-md);background:var(--vx-fill-2);border-radius:var(--vx-radius-md);">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:var(--vx-space-xs);color:var(--vx-text-secondary);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            </svg>
+            <span style="font-size:12px;color:var(--vx-text-caption);">16px 行内</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:var(--vx-space-xs);color:var(--vx-text-secondary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            </svg>
+            <span style="font-size:12px;color:var(--vx-text-caption);">20px 导航</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:var(--vx-space-xs);color:var(--vx-text-secondary);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            </svg>
+            <span style="font-size:12px;color:var(--vx-text-caption);">32px 头像级</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:var(--vx-space-xs);color:var(--vx-text-disabled);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+            </svg>
+            <span style="font-size:12px;color:var(--vx-text-caption);">64px 空状态</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>

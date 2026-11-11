@@ -1,0 +1,18 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-24",
+  "topic": "button-whiteline",
+  "question": "反白按钮 normal 态的文字色、填充色和边框色分别是什么?",
+  "answer": "项目中未找到设计规范相关文件或 skill。按通用设计规范知识回答：\n\n**反白按钮（Ghost / Outline 按钮）normal 态：**\n\n- **文字色**：品牌主色（如 `#1677ff` / `primary-600`）\n- **填充色**：透明（`transparent`），即无背景填充\n- **边框色**：品牌主色（与文字色一致，如 `#1677ff` / `primary-600`）\n\n注：\"反白按钮\"在不同设计系统中也叫描边按钮/幽灵按钮，核心特征是透明填充 + 描边 + 同色文字，hover 态通常填充浅色主色背景。具体色值以项目实际设计 token 为准。",
+  "pass": false,
+  "missing": [
+    "666666",
+    "FAFAFA",
+    "DEDEDE"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0358416,
+  "subtype": "success",
+  "at": "2026-11-09T09:48:37.091Z"
+}

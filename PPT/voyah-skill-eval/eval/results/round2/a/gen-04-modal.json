@@ -1,0 +1,26 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-04-modal",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round2/a/gen-04-modal",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.3029772,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "自检通过，要点如下：\n\n- **弹窗 padding**：24px（`--vx-padding-modal`），符合规范\n- **按钮顺序**：主要按钮在左、次要按钮在右，已按规范实现；危险场景同理（「删除」主操作在左，「取消」在右）\n- **按钮三档高度**：Large 40px / Middle 32px / Small 24px，全部通过 `.vx-btn-lg` / 默认 / `.vx-btn-sm` 走 tokens.css，无自定义高度\n- **六种按钮**全部带 `.vx-btn` + 类型类 + 尺寸类，状态（hover/active/disabled）由 token 提供\n- **颜色** 全部走 `var(--vx-*)` 或 `#FFFFFF`，无硬编码色值、无渐变\n- **间距** 全部为 4 的倍数（输入框纵向 6px 为规范豁免，本例未涉及输入框）\n- **单选项组** 4 个 Option，带 dot 指示器与选中态（主色填充 + 主色浅底）\n- **弹窗下方对照区**：主要 / 次要 / 线框 / 虚线 / 文字链接 五种按钮的 Normal 与 Disabled 态并排展示\n- **深色遮罩** + 居中弹窗（圆角 8px，`--vx-shadow-modal` 阴影）\n- 附带一组含危险按钮「删除」的按钮组示例\n\n文件：`/private/tmp/vx-eval/r2/a/gen-04-modal/index.html` + `tokens.css`",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-04-modal/index.html",
+    "alignRate": 0.96,
+    "checks": 25,
+    "passed": 24,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T02:35:26.521Z"
+}

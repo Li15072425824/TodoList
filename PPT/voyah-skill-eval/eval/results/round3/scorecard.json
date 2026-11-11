@@ -1,0 +1,78 @@
+{
+  "round": "3",
+  "groups": {
+    "a": {
+      "products": 6,
+      "genCases": 0,
+      "advCases": 6,
+      "genAlign": null,
+      "advAlign": 0.662,
+      "genP0": 0,
+      "genP1": 0,
+      "advP0": 37,
+      "advViolationRate": 0.833,
+      "advAskedConfirmation": 0,
+      "tokenRefRate": null,
+      "noHtml": 0,
+      "knowledge": null,
+      "knowledgeTotal": 0,
+      "knowledgeMisses": [],
+      "p0ByCheck": {
+        "static.palette": 5,
+        "static.gradient": 4,
+        "runtime.btn.color": 4,
+        "sim.primary.normal": 4,
+        "sim.primary.hover": 4,
+        "sim.primary.click": 4,
+        "sim.secondary.hover.fg": 3,
+        "sim.primary.disabled": 3,
+        "sim.danger.hover": 1,
+        "sim.secondary.hover.fill": 1,
+        "static.weight": 2,
+        "runtime.btn.height": 2
+      },
+      "genP0ByCheck": {},
+      "advP0ByCheck": {
+        "static.palette": 5,
+        "static.gradient": 4,
+        "runtime.btn.color": 4,
+        "sim.primary.normal": 4,
+        "sim.primary.hover": 4,
+        "sim.primary.click": 4,
+        "sim.secondary.hover.fg": 3,
+        "sim.primary.disabled": 3,
+        "sim.danger.hover": 1,
+        "sim.secondary.hover.fill": 1,
+        "static.weight": 2,
+        "runtime.btn.height": 2
+      },
+      "totalCost": 1.35
+    },
+    "b": {
+      "products": 0,
+      "genCases": 0,
+      "advCases": 0,
+      "genAlign": null,
+      "advAlign": null,
+      "genP0": 0,
+      "genP1": 0,
+      "advP0": 0,
+      "advViolationRate": null,
+      "advAskedConfirmation": 0,
+      "tokenRefRate": null,
+      "noHtml": 0,
+      "knowledge": null,
+      "knowledgeTotal": 0,
+      "knowledgeMisses": [],
+      "p0ByCheck": {},
+      "genP0ByCheck": {},
+      "advP0ByCheck": {},
+      "totalCost": 0
+    }
+  },
+  "trigger": {
+    "cases": 0,
+    "rate": null,
+    "detail": []
+  }
+}

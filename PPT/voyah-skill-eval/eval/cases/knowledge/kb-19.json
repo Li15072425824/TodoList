@@ -1,0 +1,24 @@
+{
+  "id": "kb-19",
+  "topic": "button-size",
+  "question": "按钮 Large / Middle / Small 三档的高度、左右 padding 和圆角分别是什么?",
+  "golden_answer": "Large 高40 padding 8px 16px 圆角6;Middle 高32 padding 6px 16px 圆角6;Small 高24 padding 2px 8px 圆角4。宽度一律随内容。",
+  "required": [
+    "40",
+    "32",
+    "24",
+    "8px 16px",
+    "6px 16px",
+    "2px 8px",
+    "6",
+    "4"
+  ],
+  "specIds": [
+    "button.size.large",
+    "button.size.middle",
+    "button.size.small",
+    "button.variant.icon-large",
+    "button.variant.icon-middle",
+    "button.variant.icon-small"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "kb-14",
+  "topic": "font-weight",
+  "question": "规范允许使用的字重有哪几档?",
+  "golden_answer": "仅 400 / 500 / 600 三档。",
+  "required": [
+    "400",
+    "500",
+    "600"
+  ],
+  "specIds": [
+    "font.weight.400",
+    "font.weight.500",
+    "font.weight.600"
+  ]
+}

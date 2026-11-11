@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>申请审批列表</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .page {
+    background: var(--vx-bg-layout);
+    min-height: 100vh;
+    padding: 16px 24px 24px;
+  }
+
+  .page-title {
+    font-size: var(--vx-font-size-xl);
+    line-height: 32px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-md);
+  }
+
+  .panel {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-md);
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--vx-space-md);
+    gap: var(--vx-space-md);
+  }
+
+  .panel-head-left {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-md);
+    flex: 1;
+  }
+
+  .panel-head-right {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+  }
+
+  .search-wrap {
+    position: relative;
+    width: 240px;
+  }
+  .search-wrap .vx-input {
+    padding-left: 32px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    color: var(--vx-text-caption);
+    pointer-events: none;
+  }
+
+  /* 列表视图 */
+  .approval-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .approval-row {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    padding: var(--vx-space-sm) var(--vx-space-xs);
+    border-bottom: 1px solid var(--vx-line-1);
+    cursor: pointer;
+    transition: background-color 0.15s;
+  }
+  .approval-row:last-child { border-bottom: none; }
+  .approval-row:hover { background: var(--vx-fill-2); }
+  .approval-row.is-selected { background: var(--vx-fill-3); }
+
+  .row-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-1);
+  }
+
+  .row-top {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+  }
+
+  .row-name {
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-title);
+    line-height: 22px;
+  }
+
+  .row-dept {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: 20px;
+  }
+
+  .row-bottom {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-secondary);
+    line-height: 20px;
+  }
+
+  .row-dot {
+    width: 2px;
+    height: 2px;
+    background: var(--vx-text-caption);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .row-time {
+    flex-shrink: 0;
+    text-align: right;
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: 20px;
+    margin-right: var(--vx-space-md);
+    min-width: 88px;
+  }
+
+  .row-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+  }
+
+  .row-action-link {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-primary);
+    cursor: pointer;
+    line-height: 20px;
+  }
+  .row-action-link:hover { color: var(--vx-primary-hover); }
+  .row-action-link.is-danger { color: var(--vx-error); }
+  .row-action-link.is-danger:hover { color: var(--vx-btn-danger-hover); }
+
+  /* 卡片视图 */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--vx-space-md);
+  }
+
+  .approval-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-md);
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .approval-card:hover { border-color: var(--vx-line-4); }
+  .approval-card.is-selected {
+    background: var(--vx-fill-3);
+    border-color: var(--vx-line-5);
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    margin-bottom: var(--vx-space-sm);
+  }
+
+  .card-name {
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-title);
+    line-height: 22px;
+  }
+
+  .card-dept {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: 20px;
+  }
+
+  .card-desc {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-secondary);
+    line-height: 20px;
+    margin-bottom: var(--vx-space-sm);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--vx-space-xs);
+    border-top: 1px solid var(--vx-line-1);
+  }
+
+  .card-time {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: 20px;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: var(--vx-space-sm);
+  }
+
+  /* tab badge */
+  .vx-tab .tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    margin-left: 6px;
+    border-radius: 9px;
+    background: var(--vx-error);
+    color: var(--vx-text-inverse);
+    font-size: 11px;
+    line-height: 1;
+    font-weight: var(--vx-font-weight-medium);
+    vertical-align: middle;
+  }
+
+  /* 空状态 */
+  .empty-state {
+    padding: 48px 0;
+    text-align: center;
+    color: var(--vx-text-caption);
+    font-size: var(--vx-font-size-md);
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-title">申请审批</div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="panel-head-left">
+        <div class="vx-tabs" id="approvalTabs">
+          <span class="vx-tab vx-tab-active" data-tab="all">全部</span>
+          <span class="vx-tab" data-tab="pending">
+            待审批<span class="tab-badge">8</span>
+          </span>
+          <span class="vx-tab" data-tab="approved">已通过</span>
+          <span class="vx-tab" data-tab="rejected">已拒绝</span>
+        </div>
+      </div>
+      <div class="panel-head-right">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input class="vx-input" placeholder="搜索申请人" />
+        </div>
+        <div class="vx-segmented" id="viewSegmented">
+          <span class="vx-segmented-item vx-segmented-item-selected" data-view="list">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            &nbsp;列表
+          </span>
+          <span class="vx-segmented-item" data-view="card">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            &nbsp;卡片
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 列表视图 -->
+    <div class="approval-list" id="listView">
+      <div class="approval-row is-selected">
+        <span class="vx-avatar vx-avatar-primary">张</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">张伟</span>
+            <span class="vx-tag vx-tag-warning">待审批</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">产品研发部 · 高级产品经理</span>
+            <span class="row-dot"></span>
+            <span>年度休假申请 · 共 5 天</span>
+          </div>
+        </div>
+        <div class="row-time">10 分钟前</div>
+        <div class="row-actions">
+          <span class="row-action-link">通过</span>
+          <span class="row-action-link is-danger">拒绝</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar">李</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">李娜</span>
+            <span class="vx-tag vx-tag-warning">待审批</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">市场部 · 品牌专员</span>
+            <span class="row-dot"></span>
+            <span>差旅费用报销 · ¥3,280.00</span>
+          </div>
+        </div>
+        <div class="row-time">30 分钟前</div>
+        <div class="row-actions">
+          <span class="row-action-link">通过</span>
+          <span class="row-action-link is-danger">拒绝</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar vx-avatar-primary">王</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">王浩</span>
+            <span class="vx-tag vx-tag-warning">待审批</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">采购部 · 采购主管</span>
+            <span class="row-dot"></span>
+            <span>采购申请 · 办公用品 200 套</span>
+          </div>
+        </div>
+        <div class="row-time">1 小时前</div>
+        <div class="row-actions">
+          <span class="row-action-link">通过</span>
+          <span class="row-action-link is-danger">拒绝</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar">陈</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">陈雅琴</span>
+            <span class="vx-tag vx-tag-success">已通过</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">人力资源部 · HRBP</span>
+            <span class="row-dot"></span>
+            <span>转正申请 · 试用期 3 个月</span>
+          </div>
+        </div>
+        <div class="row-time">今天 09:24</div>
+        <div class="row-actions">
+          <span class="row-action-link">查看详情</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar vx-avatar-primary">刘</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">刘建国</span>
+            <span class="vx-tag vx-tag-warning">待审批</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">销售部 · 大区销售总监</span>
+            <span class="row-dot"></span>
+            <span>合同审批 · 金额 ¥128,000</span>
+          </div>
+        </div>
+        <div class="row-time">今天 08:50</div>
+        <div class="row-actions">
+          <span class="row-action-link">通过</span>
+          <span class="row-action-link is-danger">拒绝</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar">赵</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">赵敏</span>
+            <span class="vx-tag vx-tag-error">已拒绝</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">财务部 · 会计</span>
+            <span class="row-dot"></span>
+            <span>加班申请 · 2 天调休</span>
+          </div>
+        </div>
+        <div class="row-time">昨天 17:30</div>
+        <div class="row-actions">
+          <span class="row-action-link">查看详情</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar vx-avatar-primary">孙</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">孙悦</span>
+            <span class="vx-tag vx-tag-warning">待审批</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">设计部 · 视觉设计师</span>
+            <span class="row-dot"></span>
+            <span>外出申请 · 客户现场对接</span>
+          </div>
+        </div>
+        <div class="row-time">昨天 16:12</div>
+        <div class="row-actions">
+          <span class="row-action-link">通过</span>
+          <span class="row-action-link is-danger">拒绝</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar">周</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">周星辰</span>
+            <span class="vx-tag vx-tag-success">已通过</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">技术中心 · 前端架构师</span>
+            <span class="row-dot"></span>
+            <span>设备申请 · MacBook Pro 16"</span>
+          </div>
+        </div>
+        <div class="row-time">昨天 14:05</div>
+        <div class="row-actions">
+          <span class="row-action-link">查看详情</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar vx-avatar-primary">吴</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">吴思远</span>
+            <span class="vx-tag vx-tag-warning">待审批</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">运营部 · 内容运营</span>
+            <span class="row-dot"></span>
+            <span>活动预算申请 · ¥15,000</span>
+          </div>
+        </div>
+        <div class="row-time">昨天 11:40</div>
+        <div class="row-actions">
+          <span class="row-action-link">通过</span>
+          <span class="row-action-link is-danger">拒绝</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar">郑</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">郑晓琳</span>
+            <span class="vx-tag vx-tag-warning">待审批</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">法务部 · 法务专员</span>
+            <span class="row-dot"></span>
+            <span>用印申请 · 合作协议 2 份</span>
+          </div>
+        </div>
+        <div class="row-time">昨天 10:20</div>
+        <div class="row-actions">
+          <span class="row-action-link">通过</span>
+          <span class="row-action-link is-danger">拒绝</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar vx-avatar-primary">黄</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">黄启明</span>
+            <span class="vx-tag vx-tag-success">已通过</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">质量部 · 质量工程师</span>
+            <span class="row-dot"></span>
+            <span>培训申请 · 6 Sigma 绿带</span>
+          </div>
+        </div>
+        <div class="row-time">11-08 15:30</div>
+        <div class="row-actions">
+          <span class="row-action-link">查看详情</span>
+        </div>
+      </div>
+
+      <div class="approval-row">
+        <span class="vx-avatar">马</span>
+        <div class="row-info">
+          <div class="row-top">
+            <span class="row-name">马晓东</span>
+            <span class="vx-tag vx-tag-error">已拒绝</span>
+          </div>
+          <div class="row-bottom">
+            <span class="row-dept">行政部 · 行政主管</span>
+            <span class="row-dot"></span>
+            <span>预算调整申请 · +¥5,000</span>
+          </div>
+        </div>
+        <div class="row-time">11-07 09:15</div>
+        <div class="row-actions">
+          <span class="row-action-link">查看详情</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 卡片视图 -->
+    <div class="card-grid hidden" id="cardView">
+      <div class="approval-card is-selected">
+        <div class="card-head">
+          <span class="vx-avatar vx-avatar-primary">张</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">张伟</div>
+            <div class="card-dept">产品研发部 · 高级产品经理</div>
+          </div>
+          <span class="vx-tag vx-tag-warning">待审批</span>
+        </div>
+        <div class="card-desc">年度休假申请，申请 2026-11-15 至 2026-11-19 共 5 天年假，用于家庭出游计划。</div>
+        <div class="card-foot">
+          <span class="card-time">10 分钟前</span>
+          <div class="card-actions">
+            <span class="row-action-link">通过</span>
+            <span class="row-action-link is-danger">拒绝</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar">李</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">李娜</div>
+            <div class="card-dept">市场部 · 品牌专员</div>
+          </div>
+          <span class="vx-tag vx-tag-warning">待审批</span>
+        </div>
+        <div class="card-desc">差旅费用报销，上海出差 3 天，含机票、住宿及客户招待费用合计 ¥3,280.00。</div>
+        <div class="card-foot">
+          <span class="card-time">30 分钟前</span>
+          <div class="card-actions">
+            <span class="row-action-link">通过</span>
+            <span class="row-action-link is-danger">拒绝</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar vx-avatar-primary">王</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">王浩</div>
+            <div class="card-dept">采购部 · 采购主管</div>
+          </div>
+          <span class="vx-tag vx-tag-warning">待审批</span>
+        </div>
+        <div class="card-desc">办公用品采购申请，包括笔记本、签字笔、文件夹等共计 200 套，预估费用 ¥4,800。</div>
+        <div class="card-foot">
+          <span class="card-time">1 小时前</span>
+          <div class="card-actions">
+            <span class="row-action-link">通过</span>
+            <span class="row-action-link is-danger">拒绝</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar">陈</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">陈雅琴</div>
+            <div class="card-dept">人力资源部 · HRBP</div>
+          </div>
+          <span class="vx-tag vx-tag-success">已通过</span>
+        </div>
+        <div class="card-desc">试用期转正申请，入职 3 个月期间表现优秀，团队评分 A，建议按期转正并调整薪资。</div>
+        <div class="card-foot">
+          <span class="card-time">今天 09:24</span>
+          <div class="card-actions">
+            <span class="row-action-link">查看详情</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar vx-avatar-primary">刘</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">刘建国</div>
+            <div class="card-dept">销售部 · 大区销售总监</div>
+          </div>
+          <span class="vx-tag vx-tag-warning">待审批</span>
+        </div>
+        <div class="card-desc">销售合同审批，与 XX 汽车集团签订年度框架合作协议，合同金额 ¥128,000，周期一年。</div>
+        <div class="card-foot">
+          <span class="card-time">今天 08:50</span>
+          <div class="card-actions">
+            <span class="row-action-link">通过</span>
+            <span class="row-action-link is-danger">拒绝</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar">赵</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">赵敏</div>
+            <div class="card-dept">财务部 · 会计</div>
+          </div>
+          <span class="vx-tag vx-tag-error">已拒绝</span>
+        </div>
+        <div class="card-desc">加班调休申请，10 月累计加班 16 小时，申请调休 2 天，因月末结账期工作安排较紧被拒绝。</div>
+        <div class="card-foot">
+          <span class="card-time">昨天 17:30</span>
+          <div class="card-actions">
+            <span class="row-action-link">查看详情</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar vx-avatar-primary">孙</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">孙悦</div>
+            <div class="card-dept">设计部 · 视觉设计师</div>
+          </div>
+          <span class="vx-tag vx-tag-warning">待审批</span>
+        </div>
+        <div class="card-desc">外出办公申请，明日前往客户公司现场对接品牌 VI 设计方案，预计下午 6 点返回。</div>
+        <div class="card-foot">
+          <span class="card-time">昨天 16:12</span>
+          <div class="card-actions">
+            <span class="row-action-link">通过</span>
+            <span class="row-action-link is-danger">拒绝</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar">周</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">周星辰</div>
+            <div class="card-dept">技术中心 · 前端架构师</div>
+          </div>
+          <span class="vx-tag vx-tag-success">已通过</span>
+        </div>
+        <div class="card-desc">设备申领，新入职配置 MacBook Pro 16" M3 Max / 64GB / 1TB，已通过 IT 部门审核。</div>
+        <div class="card-foot">
+          <span class="card-time">昨天 14:05</span>
+          <div class="card-actions">
+            <span class="row-action-link">查看详情</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar vx-avatar-primary">吴</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">吴思远</div>
+            <div class="card-dept">运营部 · 内容运营</div>
+          </div>
+          <span class="vx-tag vx-tag-warning">待审批</span>
+        </div>
+        <div class="card-desc">双 11 推广活动预算申请，涵盖内容投放、KOL 合作及礼品采购，总计 ¥15,000。</div>
+        <div class="card-foot">
+          <span class="card-time">昨天 11:40</span>
+          <div class="card-actions">
+            <span class="row-action-link">通过</span>
+            <span class="row-action-link is-danger">拒绝</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar">郑</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">郑晓琳</div>
+            <div class="card-dept">法务部 · 法务专员</div>
+          </div>
+          <span class="vx-tag vx-tag-warning">待审批</span>
+        </div>
+        <div class="card-desc">公章使用申请，用于供应商合作协议及 NDA 保密协议各 1 份，已完成法务初审。</div>
+        <div class="card-foot">
+          <span class="card-time">昨天 10:20</span>
+          <div class="card-actions">
+            <span class="row-action-link">通过</span>
+            <span class="row-action-link is-danger">拒绝</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar vx-avatar-primary">黄</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">黄启明</div>
+            <div class="card-dept">质量部 · 质量工程师</div>
+          </div>
+          <span class="vx-tag vx-tag-success">已通过</span>
+        </div>
+        <div class="card-desc">外部培训申请，报名 6 Sigma 绿带认证课程，为期 5 天，培训费用 ¥8,500，培训后需内部分享。</div>
+        <div class="card-foot">
+          <span class="card-time">11-08 15:30</span>
+          <div class="card-actions">
+            <span class="row-action-link">查看详情</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="approval-card">
+        <div class="card-head">
+          <span class="vx-avatar">马</span>
+          <div style="flex:1;min-width:0">
+            <div class="card-name">马晓东</div>
+            <div class="card-dept">行政部 · 行政主管</div>
+          </div>
+          <span class="vx-tag vx-tag-error">已拒绝</span>
+        </div>
+        <div class="card-desc">年度行政预算调整申请，增加办公区域改造预算 ¥5,000，因超年度预算比例被驳回。</div>
+        <div class="card-foot">
+          <span class="card-time">11-07 09:15</span>
+          <div class="card-actions">
+            <span class="row-action-link">查看详情</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Tabs 切换
+  const tabs = document.querySelectorAll('#approvalTabs .vx-tab');
+  const listRows = document.querySelectorAll('#listView .approval-row');
+  const cardItems = document.querySelectorAll('#cardView .approval-card');
+
+  const statusMap = {
+    all: null,
+    pending: '待审批',
+    approved: '已通过',
+    rejected: '已拒绝'
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('vx-tab-active'));
+      tab.classList.add('vx-tab-active');
+      const key = tab.dataset.tab;
+      const status = statusMap[key];
+
+      // 列表过滤
+      listRows.forEach(row => {
+        const tag = row.querySelector('.vx-tag');
+        if (!status || tag.textContent.trim() === status) {
+          row.classList.remove('hidden');
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+
+      // 卡片过滤
+      cardItems.forEach(card => {
+        const tag = card.querySelector('.vx-tag');
+        if (!status || tag.textContent.trim() === status) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Segmented 视图切换
+  const segItems = document.querySelectorAll('#viewSegmented .vx-segmented-item');
+  const listView = document.getElementById('listView');
+  const cardView = document.getElementById('cardView');
+
+  segItems.forEach(item => {
+    item.addEventListener('click', () => {
+      segItems.forEach(i => i.classList.remove('vx-segmented-item-selected'));
+      item.classList.add('vx-segmented-item-selected');
+      const view = item.dataset.view;
+      if (view === 'list') {
+        listView.classList.remove('hidden');
+        cardView.classList.add('hidden');
+      } else {
+        listView.classList.add('hidden');
+        cardView.classList.remove('hidden');
+      }
+    });
+  });
+
+  // 行选中
+  listRows.forEach(row => {
+    row.addEventListener('click', (e) => {
+      if (e.target.closest('.row-action-link')) return;
+      listRows.forEach(r => r.classList.remove('is-selected'));
+      row.classList.add('is-selected');
+    });
+  });
+
+  // 卡片选中
+  cardItems.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.row-action-link')) return;
+      cardItems.forEach(c => c.classList.remove('is-selected'));
+      card.classList.add('is-selected');
+    });
+  });
+</script>
+</body>
+</html>

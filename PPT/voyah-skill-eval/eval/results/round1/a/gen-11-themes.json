@@ -1,0 +1,25 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-11-themes",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-11-themes",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.44652719999999996,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "已完成。demo 文件在 `/private/tmp/vx-eval/r1/a/gen-11-themes/index.html`，同级目录已有 `tokens.css`。\n\n要点说明：\n- **顶部主题切换条**：6 个主题按钮（蓝/黄/紫/翠青/红/碧青），点击切换 `<html data-vx-theme>`\n- **6 张主题卡片**：每张通过自身 `data-vx-theme` 隔离，展示主色 4 阶、帮助色 4 阶、11 级色阶（翠青缺失已注明）、@line-Blue 横线、主按钮、帮助 Alert\n- **蓝主题卡片**：帮助色为青色系（`--vx-help`），不单独展示「其他/扩展」青色\n- **黄/紫/翠青/红/碧青卡片**：帮助色为蓝色系（`--vx-help`），青色系单独标注为「其他（扩展）· 青色系」（`--vx-other-teal-*`）\n- **翠青 11 级色阶**：按规范注明「设计稿还原缺失，待补充」\n- 颜色全部使用 `var(--vx-*)` token，无硬编码色值",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-11-themes/index.html",
+    "alignRate": 0.975,
+    "checks": 40,
+    "passed": 39,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 0.96
+  },
+  "at": "2026-11-09T05:53:20.648Z"
+}

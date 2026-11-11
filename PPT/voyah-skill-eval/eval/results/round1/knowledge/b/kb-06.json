@@ -1,0 +1,17 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-06",
+  "topic": "fill-semantics",
+  "question": "@filling1-2 的色值和语义场景是什么?",
+  "answer": "项目中未找到 `filling1-2` 相关定义。\n\n基于字节 ARK Design / Semi Design 等常见设计系统的 **`filling` 语义填充色规范**（通用命名规律），补充如下说明，供参考：\n\n**命名模式**：`@filling-{强度}-{序号}`，其中强度 1 为最深、2 为次深，用于组件/控件的实心背景填充。\n\n- **@filling-1-2** 通常对应 **一级填充色的第二档**（或 filling1 系列的 2 号变体）。\n  - **色值**：一般为中性灰填充，常见取值为 `rgba(0, 0, 0, 0.06)` 或 `#F2F3F5`（浅灰），具体以实际设计系统 token 为准。\n  - **语义场景**：用于组件/元素的**实心背景填充**，如按钮、标签、输入框、卡片等的底色；强度 1 系列通常用于**默认态/常规态**的背景填充，2 号变体常对应 hover/次级背景等场景。\n\n如需确切答案，建议在项目 token 文件（`design-tokens`、`variables.css`、`theme.less` 等）中搜索 `filling` 或直接提供项目中的设计规范来源。",
+  "pass": false,
+  "missing": [
+    "F3F4F7",
+    "页面内容区块"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0646302,
+  "subtype": "success",
+  "at": "2026-11-09T09:42:23.956Z"
+}

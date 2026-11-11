@@ -1,6 +1,6 @@
 # GEN-01 管理后台表单页
 
-covers: [color.text.*, color.line.1, color.line.2, color.line.4, color.fill.*, space.input, space.card, space.page, font.body, font.caption, button.primary, button.secondary, icon.inline]
+covers: [color.text.title, color.text.primary, color.text.caption, color.text.disable, color.line.1, color.line.2, color.line.4, color.fill.1, line.color.1, line.color.2, line.color.3, line.color.4, spacing.rule.input, spacing.padding.card, spacing.padding.page, font.level.page-title, font.level.body, font.level.caption, button.primary.normal, button.secondary.normal]
 
 请生成一个「车辆信息登记」管理后台表单页 demo(单个 HTML 文件),包含:
 - 顶部导航(含 logo、菜单项、搜索框、头像)

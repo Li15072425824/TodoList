@@ -1,0 +1,26 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-01-form",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-01-form",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.4286448,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Demo 已生成完成。文件位于 `/private/tmp/vx-eval/r1/a/gen-01-form/index.html`，样式文件 `tokens.css` 同目录。\n\n页面包含：\n- **顶部导航**：岚图 logo + 6 项主菜单（车辆管理高亮）+ 搜索框 + 消息/帮助图标 + 头像\n- **面包屑 + 页面标题 + 说明文字**：首页 / 车辆管理 / 车辆信息登记\n- **双列表单**：含 VIN 码（错误态）、车牌号、品牌/车型下拉、车辆类型单选、出厂日期、行驶里程、配置复选、联网开关\n- **错误态展示**：VIN 码输入框（红色边框 + 错误提示文字）\n- **底部按钮**：主要按钮「提交」+ 次要按钮「取消」（Large 尺寸）\n- **右侧辅助卡片**：填写说明 + 大段描述 + VIN 码提示 + 联系方式\n\n严格遵循 Voyah 设计规范：颜色全部使用 `var(--vx-*)` 变量、间距 4px 倍数、圆角按组件分级、字号按文字层级、按钮宽度随内容等。",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-01-form/index.html",
+    "alignRate": 1,
+    "checks": 29,
+    "passed": 29,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-09T03:13:19.167Z"
+}

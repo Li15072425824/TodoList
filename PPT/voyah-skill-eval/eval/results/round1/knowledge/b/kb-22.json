@@ -1,0 +1,17 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-22",
+  "topic": "button-secondary",
+  "question": "次要按钮 hover 态的文字色、边框色和填充色分别是什么?",
+  "answer": "次要按钮 hover 态规范（通用设计系统）：\n\n- **文字色**：与默认态保持一致（通常为品牌主色 / 中性深灰）\n- **边框色**：加深一级（如品牌色的 hover 变体，或中性色加深 1–2 个色阶）\n- **填充色**：浅淡的品牌色背景（如 brand-50 / brand-alpha-08），或透明度 5%–10% 的品牌色叠加\n\n> 项目中未找到专属设计规范，以上为行业通用模式。具体色值需以实际项目 design token（如 `color-action-secondary-hover`）为准。",
+  "pass": false,
+  "missing": [
+    "568EEE",
+    "FFFFFF"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0357786,
+  "subtype": "success",
+  "at": "2026-11-09T09:48:00.243Z"
+}

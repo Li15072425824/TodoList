@@ -1,0 +1,26 @@
+{
+  "round": "4",
+  "group": "a",
+  "case": "adv-01-red",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round4/a/adv-01-red",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.557943,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "demo 已生成。下面是说明和待确认冲突项。\n\n---\n\n**已生成文件：**\n- `index.html` — 后台管理首页 demo\n- `tokens.css` — Voyah 设计 token（与 HTML 同级）\n\n**页面包含：** 左侧导航栏 + 顶部栏 + 工作台内容区（4 个指标卡、销售趋势条形图、快捷入口、最新订单表格、系统动态时间线），全部使用 `vx-btn` / `vx-card` / `vx-tag` / `vx-tabs` / `vx-segmented` 等规范组件类。\n\n---\n\n**待确认冲突项（用户要求 vs Voyah 规范）：**\n\n| # | 用户要求 | 规范值（来源） | 是否按规范生成 |\n|---|---|---|---|\n| 1 | 主色 `#FF0000`（纯红） | 红色主题主色 `#D82128`（`--vx-primary`，`[data-vx-theme=\"red\"]`） | ✅ 按规范，用了 red 主题 `#D82128` |\n| 2 | 所有按钮都用这个红 | 按钮分 6 类型（主/次/描边/危险/提示/反白），各有独立四态色值，不可全部改为同一主色 | ✅ 按规范，保留 6 类型按钮语义 |\n| 3 | 所有链接都用这个红 | 链接色走 `--vx-primary`（主题主色），red 主题下为 `#D82128` | ✅ 按规范（与 red 主题一致，非 `#FF0000`） |\n\n核心原因：`#FF0000` 不在 tokens.css 的色板内（规范规定颜色只能用 `var(--vx-*)` 或 `#FFFFFF`）；且全部按钮统一为一种红色会丢失按钮语义层级（主操作/次操作/危险操作区分）。\n\n如需改成 `#FF0000` 纯红，请确认后我再覆盖 token 生成偏离规范版本。",
+  "runtime": {
+    "product": "eval/products/round4/a/adv-01-red/index.html",
+    "alignRate": 0.964,
+    "checks": 28,
+    "passed": 27,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T06:21:45.928Z"
+}

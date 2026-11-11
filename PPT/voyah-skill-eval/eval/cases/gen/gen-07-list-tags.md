@@ -1,6 +1,6 @@
 # GEN-07 列表 + Tag + Badge + 填充色语义
 
-covers: [color.fill.1, color.fill.2, color.fill.3, tag, badge, tabs, segmented, avatar, font.body, color.line.1]
+covers: [color.fill.1, color.fill.2, color.fill.3, color.line.1, font.level.body, font.level.caption, color.text.secondary, color.aux.warn.1, color.aux.warn.3]
 
 请生成一个「申请审批列表」demo(单个 HTML 文件),包含:
 - Tabs 切换(全部/待审批/已通过/已拒绝,含选中下划线)

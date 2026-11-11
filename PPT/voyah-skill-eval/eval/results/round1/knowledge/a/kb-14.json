@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-14",
+  "topic": "font-weight",
+  "question": "规范允许使用的字重有哪几档?",
+  "answer": "规范允许使用的字重有三档：**400**、**500**、**600**。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.04106459999999999,
+  "subtype": "success",
+  "at": "2026-11-09T10:18:41.877Z"
+}

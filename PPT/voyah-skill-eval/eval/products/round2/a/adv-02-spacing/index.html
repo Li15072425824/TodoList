@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>系统设置</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-primary);
+    background: var(--vx-fill-3);
+    padding: 24px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 12px;
+  }
+  .page-desc {
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-bottom: 16px;
+  }
+
+  .settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 960px;
+  }
+  .settings-grid .full { grid-column: 1 / -1; }
+
+  .vx-card { padding: 14px; }
+  .vx-card-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--vx-text-title);
+  }
+  .vx-card-subtitle {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+
+  .form-item { margin-bottom: 10px; }
+  .form-item:last-child { margin-bottom: 0; }
+  .form-label {
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--vx-text-secondary);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .form-label .required { color: var(--vx-error); margin-right: 2px; }
+  .form-tip {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-top: 4px;
+  }
+
+  .vx-input { width: 100%; }
+
+  .form-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .form-row .vx-input { flex: 1; }
+
+  .form-switch-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .form-switch-item:last-child { border-bottom: none; }
+  .form-switch-label {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-primary);
+  }
+  .form-switch-desc {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-top: 2px;
+  }
+
+  .tag-group { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .segmented-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-footer {
+    max-width: 960px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--vx-line-1);
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .avatar-upload {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .avatar-upload .vx-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+  }
+  .avatar-upload-info { flex: 1; }
+  .avatar-upload-info .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--vx-text-primary);
+    line-height: 22px;
+  }
+  .avatar-upload-info .hint {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+  }
+
+  .select-like {
+    width: 100%;
+    height: 32px;
+    padding: 6px 12px;
+    border: 1px solid var(--vx-line-2);
+    border-radius: 6px;
+    background: #FFFFFF;
+    font-size: 14px;
+    color: var(--vx-text-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  .select-like:hover { border-color: var(--vx-line-4); }
+  .select-like .caret { color: var(--vx-text-caption); font-size: 10px; }
+
+  .range-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .range-row .range-slider {
+    flex: 1;
+    height: 4px;
+    background: var(--vx-line-2);
+    border-radius: 2px;
+    position: relative;
+  }
+  .range-slider .range-fill {
+    width: 60%;
+    height: 100%;
+    background: var(--vx-primary);
+    border-radius: 2px;
+  }
+  .range-slider .range-thumb {
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 2px solid var(--vx-primary);
+  }
+  .range-value {
+    min-width: 40px;
+    text-align: right;
+    font-size: 13px;
+    color: var(--vx-text-secondary);
+  }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">系统设置</h1>
+<p class="page-desc">管理您的账户信息、通知偏好和界面显示。</p>
+
+<div class="settings-grid">
+
+  <!-- 基本信息 -->
+  <div class="vx-card">
+    <div class="vx-card-head" style="margin-bottom: 6px;">
+      <span class="vx-card-title">基本信息</span>
+    </div>
+    <div class="vx-card-subtitle">完善您的个人资料，方便团队协作</div>
+
+    <div class="avatar-upload" style="margin-bottom: 10px;">
+      <span class="vx-avatar vx-avatar-primary">张</span>
+      <div class="avatar-upload-info">
+        <div class="name">张小明</div>
+        <div class="hint">支持 JPG / PNG，建议 200×200 像素</div>
+      </div>
+      <button class="vx-btn vx-btn-outline vx-btn-sm">更换</button>
+    </div>
+
+    <div class="form-item">
+      <label class="form-label"><span class="required">*</span>昵称</label>
+      <input class="vx-input" value="张小明" placeholder="请输入昵称" />
+    </div>
+
+    <div class="form-item">
+      <label class="form-label"><span class="required">*</span>邮箱</label>
+      <input class="vx-input" value="zhangxm@voyah.com" placeholder="请输入邮箱" />
+      <div class="form-tip">用于登录和接收系统通知</div>
+    </div>
+
+    <div class="form-item">
+      <label class="form-label">手机号</label>
+      <div class="form-row">
+        <div class="select-like" style="width: 100px; flex: none;">
+          <span>+86</span><span class="caret">▾</span>
+        </div>
+        <input class="vx-input" value="138****5678" placeholder="请输入手机号" />
+      </div>
+    </div>
+
+    <div class="form-item">
+      <label class="form-label">所属部门</label>
+      <div class="select-like">
+        <span style="color: var(--vx-text-secondary);">产品设计部 / 体验设计组</span>
+        <span class="caret">▾</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 安全设置 -->
+  <div class="vx-card">
+    <div class="vx-card-head" style="margin-bottom: 6px;">
+      <span class="vx-card-title">安全设置</span>
+    </div>
+    <div class="vx-card-subtitle">保护您的账户安全</div>
+
+    <div class="form-item">
+      <label class="form-label">当前密码</label>
+      <input class="vx-input" type="password" value="********" placeholder="请输入当前密码" />
+    </div>
+
+    <div class="form-item">
+      <label class="form-label">新密码</label>
+      <input class="vx-input" type="password" placeholder="8-20 位，包含字母和数字" />
+      <div class="form-tip">密码强度：<span style="color: var(--vx-success);">强</span></div>
+    </div>
+
+    <div class="form-item">
+      <label class="form-label">确认新密码</label>
+      <input class="vx-input" type="password" placeholder="请再次输入新密码" />
+    </div>
+
+    <div class="form-item">
+      <div class="segmented-row">
+        <label class="form-label" style="margin-bottom: 0;">两步验证</label>
+        <input type="checkbox" class="vx-switch" checked />
+      </div>
+      <div class="form-tip">开启后登录需输入手机验证码</div>
+    </div>
+
+    <div class="form-item">
+      <div class="segmented-row">
+        <label class="form-label" style="margin-bottom: 0;">登录设备管理</label>
+        <button class="vx-btn vx-btn-outline vx-btn-sm">查看</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通知偏好 -->
+  <div class="vx-card">
+    <div class="vx-card-head" style="margin-bottom: 6px;">
+      <span class="vx-card-title">通知偏好</span>
+    </div>
+    <div class="vx-card-subtitle">选择您希望接收的通知类型</div>
+
+    <div class="form-switch-item">
+      <div>
+        <div class="form-switch-label">系统公告</div>
+        <div class="form-switch-desc">重要系统更新和维护通知</div>
+      </div>
+      <input type="checkbox" class="vx-switch" checked />
+    </div>
+
+    <div class="form-switch-item">
+      <div>
+        <div class="form-switch-label">任务提醒</div>
+        <div class="form-switch-desc">待办事项截止前提醒</div>
+      </div>
+      <input type="checkbox" class="vx-switch" checked />
+    </div>
+
+    <div class="form-switch-item">
+      <div>
+        <div class="form-switch-label">消息推送</div>
+        <div class="form-switch-desc">聊天消息和 @ 提及实时推送</div>
+      </div>
+      <input type="checkbox" class="vx-switch" />
+    </div>
+
+    <div class="form-switch-item">
+      <div>
+        <div class="form-switch-label">周报订阅</div>
+        <div class="form-switch-desc">每周一上午发送团队周报</div>
+      </div>
+      <input type="checkbox" class="vx-switch" checked />
+    </div>
+
+    <div class="form-switch-item">
+      <div>
+        <div class="form-switch-label">营销邮件</div>
+        <div class="form-switch-desc">产品活动和优惠信息</div>
+      </div>
+      <input type="checkbox" class="vx-switch" />
+    </div>
+  </div>
+
+  <!-- 界面显示 -->
+  <div class="vx-card">
+    <div class="vx-card-head" style="margin-bottom: 6px;">
+      <span class="vx-card-title">界面显示</span>
+    </div>
+    <div class="vx-card-subtitle">自定义界面外观和主题</div>
+
+    <div class="form-item">
+      <label class="form-label">主题色</label>
+      <div class="vx-segmented">
+        <span class="vx-segmented-item vx-segmented-item-selected">蓝</span>
+        <span class="vx-segmented-item">黄</span>
+        <span class="vx-segmented-item">紫</span>
+        <span class="vx-segmented-item">翠青</span>
+        <span class="vx-segmented-item">红</span>
+      </div>
+    </div>
+
+    <div class="form-item">
+      <label class="form-label">外观模式</label>
+      <div class="vx-segmented" style="width: 100%;">
+        <span class="vx-segmented-item vx-segmented-item-selected" style="flex: 1; text-align: center;">浅色</span>
+        <span class="vx-segmented-item" style="flex: 1; text-align: center;">深色</span>
+        <span class="vx-segmented-item" style="flex: 1; text-align: center;">跟随系统</span>
+      </div>
+    </div>
+
+    <div class="form-item">
+      <label class="form-label">语言</label>
+      <div class="select-like">
+        <span>简体中文</span>
+        <span class="caret">▾</span>
+      </div>
+    </div>
+
+    <div class="form-item">
+      <label class="form-label">字号</label>
+      <div class="range-row">
+        <div class="range-slider">
+          <div class="range-fill"></div>
+          <div class="range-thumb"></div>
+        </div>
+        <span class="range-value">14px</span>
+      </div>
+    </div>
+
+    <div class="form-item">
+      <label class="form-label">侧边栏密度</label>
+      <div class="tag-group">
+        <span class="vx-tag">紧凑</span>
+        <span class="vx-tag vx-tag-primary">标准</span>
+        <span class="vx-tag">宽松</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 快捷键（全宽） -->
+  <div class="vx-card full">
+    <div class="vx-card-head" style="margin-bottom: 6px;">
+      <span class="vx-card-title">快捷键</span>
+      <button class="vx-btn vx-btn-outline vx-btn-sm">恢复默认</button>
+    </div>
+    <div class="vx-card-subtitle">自定义常用操作的快捷键，提升操作效率</div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+      <div class="form-item">
+        <label class="form-label">快速搜索</label>
+        <div class="form-row">
+          <span class="vx-tag">Ctrl</span><span class="vx-tag">K</span>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" style="margin-left: auto;">修改</button>
+        </div>
+      </div>
+      <div class="form-item">
+        <label class="form-label">新建项目</label>
+        <div class="form-row">
+          <span class="vx-tag">Ctrl</span><span class="vx-tag">N</span>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" style="margin-left: auto;">修改</button>
+        </div>
+      </div>
+      <div class="form-item">
+        <label class="form-label">保存</label>
+        <div class="form-row">
+          <span class="vx-tag">Ctrl</span><span class="vx-tag">S</span>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" style="margin-left: auto;">修改</button>
+        </div>
+      </div>
+      <div class="form-item">
+        <label class="form-label">撤销</label>
+        <div class="form-row">
+          <span class="vx-tag">Ctrl</span><span class="vx-tag">Z</span>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" style="margin-left: auto;">修改</button>
+        </div>
+      </div>
+      <div class="form-item">
+        <label class="form-label">切换侧边栏</label>
+        <div class="form-row">
+          <span class="vx-tag">Ctrl</span><span class="vx-tag">B</span>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" style="margin-left: auto;">修改</button>
+        </div>
+      </div>
+      <div class="form-item">
+        <label class="form-label">全屏</label>
+        <div class="form-row">
+          <span class="vx-tag">F11</span>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" style="margin-left: auto;">修改</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="form-footer">
+  <button class="vx-btn vx-btn-secondary">取消</button>
+  <button class="vx-btn vx-btn-primary">保存设置</button>
+</div>
+
+</body>
+</html>

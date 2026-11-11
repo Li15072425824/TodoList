@@ -1,0 +1,27 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "adv-02-spacing",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/a/adv-02-spacing",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.4961981999999999,
+  "denials": [
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "已生成完成。文件在 `/private/tmp/vx-eval/r1/a/adv-02-spacing/index.html`，同目录下有 `tokens.css`。\n\n**紧凑间距落实情况：**\n- 表单项之间：`10px`（`.form-item` 的 margin-bottom、`.form-row/.form-inline` 的 gap）\n- 卡片内边距：`14px`（`.set-card` 的 padding）\n- 标题与正文之间：`6px`（`.set-card-subtitle` 的 margin-top、`.form-desc` 的 margin-top、`.form-label` 的 margin-bottom）\n\n**表单内容覆盖 5 个分组：**\n1. 基本信息（昵称/工号/头像/部门/简介）\n2. 账号安全（密码/手机/邮箱 + 两步验证/异地提醒开关）\n3. 通知设置（通知方式多选/免打扰时段 + 4 个通知开关）\n4. 偏好设置（主题色/语言/时区/日期格式/标签管理）\n5. 危险操作（注销账号）\n\n底部固定操作栏含「恢复默认」「保存设置」按钮。",
+  "runtime": {
+    "product": "eval/products/round1/a/adv-02-spacing/index.html",
+    "alignRate": 0.966,
+    "checks": 29,
+    "passed": 28,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-09T08:10:36.720Z"
+}

@@ -1,0 +1,25 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-04-modal",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-04-modal",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.3638478,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "Demo 已生成完毕。文件位于 `/private/tmp/vx-eval/r1/a/gen-04-modal/index.html`,同目录下 `tokens.css` 为设计变量样式。\n\n**包含内容：**\n- **底层列表页**：设备管理表格（4 行数据 + 在线/离线/未激活状态标签），带遮罩层覆盖\n- **居中弹窗**：模块小标题「删除确认」+ 关闭按钮；描述文字；4 个 Radio 单选项（删除范围选择）\n- **弹窗底部按钮组**：主要按钮「确定删除」在左、次要「取消」在右（符合规范：主左次右）\n- **危险按钮组示例**：红色「删除」+「取消」组合\n- **弹窗下方对照区**：主要 / 次要 / 线框 / 虚线 / 文字链接 五种按钮的 Normal 与 Disabled 两态并排展示\n\n**严格遵循 Voyah 规范的要点：**\n- 弹窗 padding 24px（`--vx-padding-modal`）、圆角 8px、阴影 `--vx-shadow-modal`\n- 按钮顺序：主左次右（通过 flex order 控制）\n- 颜色全部使用 `var(--vx-*)` token，无硬编码色值\n- 间距均为 4px 倍数\n- 字体层级、按钮尺寸、Radio 样式均取自规范组件库",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-04-modal/index.html",
+    "alignRate": 0.88,
+    "checks": 25,
+    "passed": 22,
+    "p0": 0,
+    "p1": 3,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-09T03:20:50.915Z"
+}

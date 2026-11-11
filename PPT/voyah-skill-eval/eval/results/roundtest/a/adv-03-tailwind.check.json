@@ -1,0 +1,330 @@
+{
+  "product": "eval/products/roundtest/a/adv-03-tailwind/index.html",
+  "alignRate": 0.448,
+  "checks": 29,
+  "passed": 13,
+  "p0": 10,
+  "p1": 6,
+  "tokenRefRate": 0,
+  "expectedTheme": null,
+  "allThemes": false,
+  "htmlTheme": null,
+  "themeAttrs": [],
+  "staticIssues": {
+    "hex": [
+      "#F5F7FA",
+      "#AADDDD"
+    ],
+    "forbidden": [],
+    "gradient": [],
+    "weight": [],
+    "black": [],
+    "spacing": [],
+    "border": [],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #F5F7FA #AADDDD"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "detail": "控制台错误: Failed to load resource: net::ERR_CONNECTION_RESET | Failed to load resource: net::ERR_CONNECTION_RESET"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "18 按钮 padding 非 2/6/8·8/16: 导出=[0,0,0,0], + 新增用户=[0,0,0,0], 查询=[0,0,0,0], 重置=[0,0,0,0]"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "18 按钮圆角非 4/6: 导出=0, + 新增用户=0, 查询=0, 重置=0"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "18 按钮色值出板: 导出=rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235), + 新增用户=rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235), 查询=rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235), 重置=rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 normal = rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)，期望 #fff/#3773DB/#3773DB"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 hover = rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)，期望 #fff/#568EEE/#568EEE"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 click = rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)，期望 #fff/#1C5AC4/#1C5AC4"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 disabled = rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "危险按钮 hover = rgba(0, 0, 0, 0)，期望 #FF5A5D"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "次要 hover 字/边 = rgb(0, 0, 0)/rgb(229, 231, 235)，期望 #568EEE"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "次要 hover 填充 = rgba(0, 0, 0, 0)，期望 #FFFFFF"
+    },
+    {
+      "id": "runtime.input.padding",
+      "cat": "输入框",
+      "sev": "P1",
+      "detail": "输入框 padding = [0,0,0,0]，期望 12/12/6/6"
+    },
+    {
+      "id": "runtime.input.border",
+      "cat": "输入框",
+      "sev": "P0",
+      "detail": "输入框边框 = rgb(229, 231, 235)，期望 #DEDEDE"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "detail": "body font-family = ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #F5F7FA #AADDDD"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无渐变"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": true,
+      "detail": "字重 ∈ {400,500,600}"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": true,
+      "detail": "间距均为 4n 或豁免"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": false,
+      "detail": "控制台错误: Failed to load resource: net::ERR_CONNECTION_RESET | Failed to load resource: net::ERR_CONNECTION_RESET"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "全部按钮高度合规 (18)"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "18 按钮 padding 非 2/6/8·8/16: 导出=[0,0,0,0], + 新增用户=[0,0,0,0], 查询=[0,0,0,0], 重置=[0,0,0,0]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮字号行高合规"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "18 按钮圆角非 4/6: 导出=0, + 新增用户=0, 查询=0, 重置=0"
+    },
+    {
+      "id": "runtime.btn.weight",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮字重合规"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "18 按钮色值出板: 导出=rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235), + 新增用户=rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235), 查询=rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235), 重置=rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "图标按钮 gap 合规"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 normal = rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)，期望 #fff/#3773DB/#3773DB"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 hover = rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)，期望 #fff/#568EEE/#568EEE"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 click = rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)，期望 #fff/#1C5AC4/#1C5AC4"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 disabled = rgb(0, 0, 0)/rgba(0, 0, 0, 0)/rgb(229, 231, 235)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "危险按钮 hover = rgba(0, 0, 0, 0)，期望 #FF5A5D"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "次要 hover 字/边 = rgb(0, 0, 0)/rgb(229, 231, 235)，期望 #568EEE"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "次要 hover 填充 = rgba(0, 0, 0, 0)，期望 #FFFFFF"
+    },
+    {
+      "id": "runtime.input.padding",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": false,
+      "detail": "输入框 padding = [0,0,0,0]，期望 12/12/6/6"
+    },
+    {
+      "id": "runtime.input.border",
+      "cat": "输入框",
+      "sev": "P0",
+      "pass": false,
+      "detail": "输入框边框 = rgb(229, 231, 235)，期望 #DEDEDE"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "pass": false,
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": false,
+      "detail": "body font-family = ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+    }
+  ],
+  "costNote": null
+}

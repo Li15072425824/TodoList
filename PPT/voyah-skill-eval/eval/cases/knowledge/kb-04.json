@@ -1,0 +1,12 @@
+{
+  "id": "kb-04",
+  "topic": "help-hover",
+  "question": "蓝主题下帮助色的 hover 档(第 2 阶)是什么色值?",
+  "golden_answer": "#6EACB4(设计稿标注值,实际色块 #A6D2D8 已废弃)。",
+  "required": [
+    "6EACB4"
+  ],
+  "specIds": [
+    "color.aux.help-teal.2"
+  ]
+}

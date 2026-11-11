@@ -1,0 +1,26 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-01-form@yellow",
+  "kind": "gen",
+  "theme": "yellow",
+  "product": "eval/products/round1/a/gen-01-form@yellow",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.7040172,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "已生成车辆信息登记管理后台表单 demo。文件位于 `/private/tmp/vx-eval/r1/a/gen-01-form@yellow/`：\n\n- **index.html** — 单文件页面，黄主题 (`data-vx-theme=\"yellow\"`)\n- **tokens.css** — Voyah Design 设计变量（已随 skill 规范提供）\n\n页面包含的要素：\n- **顶部导航**：岚图 logo、6 项菜单（车辆管理高亮）、搜索框、6 色主题切换器、头像徽标\n- **面包屑 + 页面大标题 + 说明文字**\n- **双列表单**（基础信息 + 车主信息 两个分区）：\n  - 输入框（必填标记 `*`、placeholder、帮助说明文字）\n  - 下拉选择（车型系列、车身颜色）\n  - 单选（动力类型）、复选（配置选装）\n  - 开关（联网服务、保养提醒）\n- **VIN 码输入框展示错误状态**：红色边框 + 错误图标 + 错误提示文字\n- **底部按钮组**：主按钮「提交」(Large) + 次按钮「取消」(Large)\n- **右侧辅助说明卡片**：标题 + 大段描述 + 要点列表 + 辅助提示文字\n- 顶部 6 色圆点可实时切换主题（蓝/黄/紫/翠青/红/碧青），保留主题切换能力\n\n所有颜色严格使用 `var(--vx-*)` token，间距遵循 Sn=4px 规则，圆角按组件类型取值。",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-01-form@yellow/index.html",
+    "alignRate": 0.966,
+    "checks": 29,
+    "passed": 28,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 0.951
+  },
+  "at": "2026-11-09T05:58:13.360Z"
+}

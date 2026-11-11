@@ -1,0 +1,16 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-18",
+  "topic": "shadow",
+  "question": "弹窗阴影的规范值(CSS box-shadow)是什么?",
+  "answer": "项目中无可用的设计规范 skill，按通用知识回答。\n\n弹窗（Modal/Drawer/Popover 类浮层）常用的 CSS `box-shadow` 规范值（参考主流设计系统）：\n\n**Ant Design 风格（推荐）：**\n```css\nbox-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),\n            0 3px 6px -4px rgba(0, 0, 0, 0.12),\n            0 9px 28px 8px rgba(0, 0, 0, 0.05);\n```\n\n**Material Design 3（elevation 3）：**\n```css\nbox-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.30),\n            0 2px 6px 2px rgba(0, 0, 0, 0.15);\n```\n\n**简化单值（轻量场景）：**\n```css\nbox-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);\n```\n\n一般建议通过 CSS 变量或 design token 统一管理（如 `--shadow-modal`、`--shadow-popover`、`--shadow-tooltip`），按浮层层级区分阴影强度，保持视觉一致性。",
+  "pass": false,
+  "missing": [
+    "0 1px 20px"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0568446,
+  "subtype": "success",
+  "at": "2026-11-09T09:46:34.388Z"
+}

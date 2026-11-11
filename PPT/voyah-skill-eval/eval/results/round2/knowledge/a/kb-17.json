@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-17",
+  "topic": "spacing",
+  "question": "页面内容容器的 padding 四边(L/R/T/B)是多少?",
+  "answer": "页面内容容器的 padding 四边（上/右/下/左，即 T/R/B/L）为：**上 16px，右 24px，下 24px，左 24px**。\n\n规范来源：`spacing.padding.page` ——「页面 padding 上下左右 16/24/24/24」。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.043425599999999995,
+  "subtype": "success",
+  "at": "2026-11-10T03:51:28.858Z"
+}

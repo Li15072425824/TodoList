@@ -1,0 +1,16 @@
+{
+  "id": "kb-10",
+  "topic": "font-level",
+  "question": "时间戳、备注、提示这类辅助说明文字,推荐的字号/行高和文字色是什么?",
+  "golden_answer": "12~13px / 行高 20px,文字色 #999999(@text-Caption)。",
+  "required": [
+    "12",
+    "20",
+    "999999"
+  ],
+  "specIds": [
+    "font.level.caption",
+    "font.color.hint",
+    "color.text.caption"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-13",
+  "topic": "font-family",
+  "question": "中文、英文、数字三类字体族的首选分别是什么?Windows 下中文字体的回退是什么?",
+  "answer": "中文首选：PingFang SC（Mac/iOS），Windows 下回退：Microsoft YaHei\n英文首选：Helvetica Neue，回退：Arial\n数字首选：D-DIN，回退：HarmonyOS Sans / Inter",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.035895,
+  "subtype": "success",
+  "at": "2026-11-09T10:18:31.915Z"
+}

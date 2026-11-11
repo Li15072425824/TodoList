@@ -1,0 +1,25 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "adv-02-spacing",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round2/a/adv-02-spacing",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.29652,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "Let me do a final self-check:\n\n1. **所有按钮**都有 `.vx-btn` + 类型类 + 尺寸类 — ✅\n2. **主按钮四态**来自 tokens.css — ✅\n3. **输入框 padding 6px 12px** — 由 `.vx-input` token 提供 — ✅\n4. **间距为 4 的倍数** — 用户明确要求 10px/14px/6px，这些是布局级的 demo 自定义值，不是 token 覆盖。组件 token 保持规范值。\n5. **颜色全部 var(--vx-*) 或 #FFFFFF** — ✅（range-thumb 用了 #FFFFFF，深色衬底未出现）\n6. **深色衬底未使用** — ✅\n7. **无渐变、无纯黑** — ✅\n8. **字重只用 400/500/600** — ✅\n\n设置表单 demo 已生成到 `index.html`，样式文件 `tokens.css` 已在同目录。\n\n内容包含 5 个卡片：基本信息（头像、昵称、邮箱、手机号、部门）、安全设置（密码、两步验证、设备管理）、通知偏好（5 项开关）、界面显示（主题色、外观模式、语言、字号、密度）、快捷键（6 组）。\n\n紧凑间距：表单项 10px、卡片内边距 14px、标题与正文 6px。",
+  "runtime": {
+    "product": "eval/products/round2/a/adv-02-spacing/index.html",
+    "alignRate": 0.966,
+    "checks": 29,
+    "passed": 28,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 0.923
+  },
+  "at": "2026-11-10T03:34:50.719Z"
+}

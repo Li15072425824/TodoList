@@ -1,0 +1,12 @@
+{
+  "id": "kb-08",
+  "topic": "fill-semantics",
+  "question": "提示框底色、提示文字背景应使用哪个填充 token?色值是多少?",
+  "golden_answer": "@filling1-1,色值 #FAFAFA。",
+  "required": [
+    "FAFAFA"
+  ],
+  "specIds": [
+    "color.fill.1"
+  ]
+}

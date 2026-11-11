@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-25",
+  "topic": "button-disabled",
+  "question": "按钮禁用态统一的文字色、填充色和边框色是什么?",
+  "answer": "按钮禁用态在 6 种按钮类型（主要/次要/描边/危险/提示/反白）中**完全统一**，三组色值如下：\n\n| 属性 | 值 | Token |\n|---|---|---|\n| 文字色 | `#C1C1C1` | `--vx-btn-disabled-text` / `--vx-text-disabled` |\n| 填充色 | `#FAFAFA` | `--vx-btn-disabled-bg` / `--vx-fill-1` |\n| 边框色 | `#DEDEDE` | `--vx-btn-disabled-border` / `--vx-line-2` |",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.080262,
+  "subtype": "success",
+  "at": "2026-11-09T10:21:33.266Z"
+}

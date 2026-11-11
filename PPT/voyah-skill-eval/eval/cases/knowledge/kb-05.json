@@ -1,0 +1,15 @@
+{
+  "id": "kb-05",
+  "topic": "teal-ownership",
+  "question": "黄主题页面上的青色系色板(#E8F6F9/#6EACB4/#54A7B2/#38929F)应归入哪个语义组?能否作为帮助色使用?",
+  "golden_answer": "归入「其他(扩展)」,不能作为帮助色;青色系仅在蓝主题下作为帮助生效。",
+  "required": [
+    "其他"
+  ],
+  "specIds": [
+    "color.aux.other-teal.yellow.1",
+    "color.aux.other-teal.yellow.2",
+    "color.aux.other-teal.yellow.3",
+    "color.aux.other-teal.yellow.4"
+  ]
+}

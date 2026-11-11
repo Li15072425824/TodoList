@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>品牌主题预览 · Voyah Design</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .page {
+    background: var(--vx-bg-layout);
+    min-height: 100vh;
+    padding: var(--vx-padding-page);
+  }
+
+  /* 顶部主题切换条 */
+  .theme-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-md);
+    padding: var(--vx-space-md) var(--vx-space-xl);
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    margin-bottom: var(--vx-space-xl);
+  }
+  .theme-bar-label {
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-primary);
+  }
+  .theme-bar-buttons {
+    display: flex;
+    gap: var(--vx-space-xs);
+    flex-wrap: wrap;
+  }
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vx-space-1);
+    height: var(--vx-control-height);
+    padding: 6px var(--vx-space-sm);
+    border-radius: var(--vx-radius-md);
+    border: 1px solid var(--vx-line-2);
+    background: var(--vx-bg-base);
+    font-family: inherit;
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .theme-btn:hover { border-color: var(--vx-line-4); }
+  .theme-btn-active {
+    border-color: var(--vx-primary);
+    background: var(--vx-primary-bg);
+    color: var(--vx-primary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .theme-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .theme-dot-blue { background: #3773DB; }
+  .theme-dot-yellow { background: #FFD400; }
+  .theme-dot-purple { background: #8F44FF; }
+  .theme-dot-cuiqing { background: #54A7B2; }
+  .theme-dot-red { background: #D82128; }
+  .theme-dot-biqing { background: #406670; }
+
+  /* 页面标题 */
+  .page-title {
+    font-size: var(--vx-font-size-h1);
+    line-height: var(--vx-line-height-page-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-xs);
+  }
+  .page-desc {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-secondary);
+    margin-bottom: var(--vx-space-xl);
+  }
+
+  /* 卡片网格 */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: var(--vx-space-md);
+  }
+
+  /* 主题卡片——每张卡片用 data-vx-theme 隔离 */
+  .theme-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    overflow: hidden;
+  }
+  .theme-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--vx-space-4);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .theme-card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .theme-card-body {
+    padding: var(--vx-space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-md);
+  }
+
+  /* 色板组 */
+  .swatch-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-1);
+  }
+  .swatch-group-title {
+    font-size: var(--vx-font-size-sm);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-secondary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .swatch-row {
+    display: flex;
+    gap: var(--vx-space-1);
+  }
+  .swatch-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .swatch-block {
+    width: 100%;
+    height: 36px;
+    border-radius: var(--vx-radius-sm);
+    border: 1px solid var(--vx-line-1);
+  }
+  .swatch-label {
+    font-size: 11px;
+    line-height: 16px;
+    color: var(--vx-text-caption);
+    font-family: var(--vx-font-family-number);
+    white-space: nowrap;
+  }
+  .swatch-name {
+    font-size: 11px;
+    line-height: 16px;
+    color: var(--vx-text-secondary);
+    white-space: nowrap;
+  }
+
+  /* 11 级横向色阶条 */
+  .scale-row {
+    display: flex;
+    width: 100%;
+    border-radius: var(--vx-radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--vx-line-1);
+  }
+  .scale-cell {
+    flex: 1;
+    height: 32px;
+    position: relative;
+  }
+  .scale-cell:first-child { border-top-left-radius: var(--vx-radius-sm); border-bottom-left-radius: var(--vx-radius-sm); }
+  .scale-cell:last-child { border-top-right-radius: var(--vx-radius-sm); border-bottom-right-radius: var(--vx-radius-sm); }
+  .scale-note {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    font-style: italic;
+  }
+
+  /* @line-Blue 示例 */
+  .line-demo {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-secondary);
+  }
+  .line-demo-bar {
+    flex: 1;
+    height: 2px;
+    background: var(--vx-line-5);
+    border-radius: 1px;
+  }
+  .line-demo-code {
+    font-family: var(--vx-font-family-number);
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+  }
+
+  /* 组件行 */
+  .comp-row {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    flex-wrap: wrap;
+  }
+  .comp-label {
+    font-size: var(--vx-font-size-sm);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-secondary);
+    font-weight: var(--vx-font-weight-medium);
+    min-width: 56px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 顶部主题切换条 -->
+  <div class="theme-bar">
+    <span class="theme-bar-label">主题切换</span>
+    <div class="theme-bar-buttons" id="themeButtons">
+      <button class="theme-btn theme-btn-active" data-theme="blue">
+        <span class="theme-dot theme-dot-blue"></span>蓝
+      </button>
+      <button class="theme-btn" data-theme="yellow">
+        <span class="theme-dot theme-dot-yellow"></span>黄
+      </button>
+      <button class="theme-btn" data-theme="purple">
+        <span class="theme-dot theme-dot-purple"></span>紫
+      </button>
+      <button class="theme-btn" data-theme="cuiqing">
+        <span class="theme-dot theme-dot-cuiqing"></span>翠青
+      </button>
+      <button class="theme-btn" data-theme="red">
+        <span class="theme-dot theme-dot-red"></span>红
+      </button>
+      <button class="theme-btn" data-theme="biqing">
+        <span class="theme-dot theme-dot-biqing"></span>碧青
+      </button>
+    </div>
+  </div>
+
+  <h1 class="page-title">品牌主题预览</h1>
+  <p class="page-desc">基于岚图 Voyah UI/UE 设计规范，六种品牌主题的主色与帮助色对比预览。每张卡片独立应用对应主题。</p>
+
+  <div class="card-grid">
+
+    <!-- ===== 蓝主题卡片 ===== -->
+    <div class="theme-card" data-vx-theme="blue">
+      <div class="theme-card-head">
+        <span class="theme-card-title">
+          <span class="theme-dot theme-dot-blue"></span>蓝主题
+        </span>
+        <span class="vx-tag vx-tag-primary">默认</span>
+      </div>
+      <div class="theme-card-body">
+
+        <!-- 主色 4 阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 4 阶</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-primary</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-primary-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-primary-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-primary-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 帮助色 4 阶（蓝主题 = 青色系） -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">帮助色 4 阶（青色系）</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-help</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-help-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-help-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-help-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 级色阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 11 级色阶</div>
+          <div class="scale-row">
+            <div class="scale-cell" style="background: var(--vx-primary-l1);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l2);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l3);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l4);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l5);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l6);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l7);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l8);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l9);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l10);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l11);"></div>
+          </div>
+          <div class="scale-note">第 6 阶 = 常规主色（--vx-primary）</div>
+        </div>
+
+        <!-- @line-Blue -->
+        <div class="line-demo">
+          <span class="comp-label">@line-Blue</span>
+          <div class="line-demo-bar"></div>
+          <span class="line-demo-code">--vx-line-5</span>
+        </div>
+
+        <!-- 主按钮 + 帮助 Alert -->
+        <div class="comp-row">
+          <button class="vx-btn vx-btn-primary">主按钮</button>
+        </div>
+        <div class="vx-alert vx-alert-help">
+          <span class="vx-alert-icon">?</span>
+          <span>帮助提示（蓝主题下帮助色使用青色系）</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 黄主题卡片 ===== -->
+    <div class="theme-card" data-vx-theme="yellow">
+      <div class="theme-card-head">
+        <span class="theme-card-title">
+          <span class="theme-dot theme-dot-yellow"></span>黄主题
+        </span>
+      </div>
+      <div class="theme-card-body">
+
+        <!-- 主色 4 阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 4 阶</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-primary</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-primary-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-primary-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-primary-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 帮助色 4 阶（蓝色系） -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">帮助色 4 阶（蓝色系）</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-help</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-help-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-help-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-help-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 级色阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 11 级色阶</div>
+          <div class="scale-row">
+            <div class="scale-cell" style="background: var(--vx-primary-l1);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l2);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l3);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l4);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l5);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l6);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l7);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l8);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l9);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l10);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l11);"></div>
+          </div>
+          <div class="scale-note">第 6 阶 = 常规主色（--vx-primary）</div>
+        </div>
+
+        <!-- @line-Blue -->
+        <div class="line-demo">
+          <span class="comp-label">@line-Blue</span>
+          <div class="line-demo-bar"></div>
+          <span class="line-demo-code">--vx-line-5</span>
+        </div>
+
+        <!-- 主按钮 + 帮助 Alert -->
+        <div class="comp-row">
+          <button class="vx-btn vx-btn-primary">主按钮</button>
+        </div>
+        <div class="vx-alert vx-alert-help">
+          <span class="vx-alert-icon">?</span>
+          <span>帮助提示（非蓝主题下帮助色使用蓝色系）</span>
+        </div>
+
+        <!-- 其他（扩展）：青色系 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">其他（扩展）· 青色系</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-other-teal</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-other-teal-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-dark);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-other-teal-dark</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-other-teal-bg</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 紫主题卡片 ===== -->
+    <div class="theme-card" data-vx-theme="purple">
+      <div class="theme-card-head">
+        <span class="theme-card-title">
+          <span class="theme-dot theme-dot-purple"></span>紫主题
+        </span>
+      </div>
+      <div class="theme-card-body">
+
+        <!-- 主色 4 阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 4 阶</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-primary</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-primary-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-primary-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-primary-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 帮助色 4 阶（蓝色系） -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">帮助色 4 阶（蓝色系）</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-help</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-help-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-help-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-help-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 级色阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 11 级色阶</div>
+          <div class="scale-row">
+            <div class="scale-cell" style="background: var(--vx-primary-l1);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l2);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l3);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l4);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l5);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l6);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l7);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l8);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l9);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l10);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l11);"></div>
+          </div>
+          <div class="scale-note">第 6 阶 = 常规主色（--vx-primary）</div>
+        </div>
+
+        <!-- @line-Blue -->
+        <div class="line-demo">
+          <span class="comp-label">@line-Blue</span>
+          <div class="line-demo-bar"></div>
+          <span class="line-demo-code">--vx-line-5</span>
+        </div>
+
+        <!-- 主按钮 + 帮助 Alert -->
+        <div class="comp-row">
+          <button class="vx-btn vx-btn-primary">主按钮</button>
+        </div>
+        <div class="vx-alert vx-alert-help">
+          <span class="vx-alert-icon">?</span>
+          <span>帮助提示（非蓝主题下帮助色使用蓝色系）</span>
+        </div>
+
+        <!-- 其他（扩展）：青色系 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">其他（扩展）· 青色系</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-other-teal</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-other-teal-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-dark);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-other-teal-dark</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-other-teal-bg</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 翠青主题卡片 ===== -->
+    <div class="theme-card" data-vx-theme="cuiqing">
+      <div class="theme-card-head">
+        <span class="theme-card-title">
+          <span class="theme-dot theme-dot-cuiqing"></span>翠青主题
+        </span>
+      </div>
+      <div class="theme-card-body">
+
+        <!-- 主色 4 阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 4 阶</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-primary</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-primary-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-primary-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-primary-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 帮助色 4 阶（蓝色系） -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">帮助色 4 阶（蓝色系）</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-help</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-help-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-help-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-help-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 级色阶（翠青缺失） -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 11 级色阶</div>
+          <div class="scale-note">翠青 11 级色阶设计稿还原缺失，待补充</div>
+        </div>
+
+        <!-- @line-Blue -->
+        <div class="line-demo">
+          <span class="comp-label">@line-Blue</span>
+          <div class="line-demo-bar"></div>
+          <span class="line-demo-code">--vx-line-5</span>
+        </div>
+
+        <!-- 主按钮 + 帮助 Alert -->
+        <div class="comp-row">
+          <button class="vx-btn vx-btn-primary">主按钮</button>
+        </div>
+        <div class="vx-alert vx-alert-help">
+          <span class="vx-alert-icon">?</span>
+          <span>帮助提示（非蓝主题下帮助色使用蓝色系）</span>
+        </div>
+
+        <!-- 其他（扩展）：青色系 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">其他（扩展）· 青色系</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-other-teal</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-other-teal-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-dark);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-other-teal-dark</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-other-teal-bg</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 红主题卡片 ===== -->
+    <div class="theme-card" data-vx-theme="red">
+      <div class="theme-card-head">
+        <span class="theme-card-title">
+          <span class="theme-dot theme-dot-red"></span>红主题
+        </span>
+      </div>
+      <div class="theme-card-body">
+
+        <!-- 主色 4 阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 4 阶</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-primary</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-primary-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-primary-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-primary-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 帮助色 4 阶（蓝色系） -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">帮助色 4 阶（蓝色系）</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-help</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-help-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-help-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-help-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 级色阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 11 级色阶</div>
+          <div class="scale-row">
+            <div class="scale-cell" style="background: var(--vx-primary-l1);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l2);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l3);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l4);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l5);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l6);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l7);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l8);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l9);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l10);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l11);"></div>
+          </div>
+          <div class="scale-note">第 6 阶 = 常规主色（--vx-primary）</div>
+        </div>
+
+        <!-- @line-Blue -->
+        <div class="line-demo">
+          <span class="comp-label">@line-Blue</span>
+          <div class="line-demo-bar"></div>
+          <span class="line-demo-code">--vx-line-5</span>
+        </div>
+
+        <!-- 主按钮 + 帮助 Alert -->
+        <div class="comp-row">
+          <button class="vx-btn vx-btn-primary">主按钮</button>
+        </div>
+        <div class="vx-alert vx-alert-help">
+          <span class="vx-alert-icon">?</span>
+          <span>帮助提示（非蓝主题下帮助色使用蓝色系）</span>
+        </div>
+
+        <!-- 其他（扩展）：青色系 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">其他（扩展）· 青色系</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-other-teal</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-other-teal-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-dark);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-other-teal-dark</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-other-teal-bg</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 碧青主题卡片 ===== -->
+    <div class="theme-card" data-vx-theme="biqing">
+      <div class="theme-card-head">
+        <span class="theme-card-title">
+          <span class="theme-dot theme-dot-biqing"></span>碧青主题
+        </span>
+      </div>
+      <div class="theme-card-body">
+
+        <!-- 主色 4 阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 4 阶</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-primary</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-primary-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-primary-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-primary-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-primary-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 帮助色 4 阶（蓝色系） -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">帮助色 4 阶（蓝色系）</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-help</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-help-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-active);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-help-active</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-help-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-help-bg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 级色阶 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">主色 11 级色阶</div>
+          <div class="scale-row">
+            <div class="scale-cell" style="background: var(--vx-primary-l1);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l2);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l3);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l4);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l5);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l6);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l7);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l8);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l9);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l10);"></div>
+            <div class="scale-cell" style="background: var(--vx-primary-l11);"></div>
+          </div>
+          <div class="scale-note">第 6 阶 = 常规主色（--vx-primary）</div>
+        </div>
+
+        <!-- @line-Blue -->
+        <div class="line-demo">
+          <span class="comp-label">@line-Blue</span>
+          <div class="line-demo-bar"></div>
+          <span class="line-demo-code">--vx-line-5</span>
+        </div>
+
+        <!-- 主按钮 + 帮助 Alert -->
+        <div class="comp-row">
+          <button class="vx-btn vx-btn-primary">主按钮</button>
+        </div>
+        <div class="vx-alert vx-alert-help">
+          <span class="vx-alert-icon">?</span>
+          <span>帮助提示（非蓝主题下帮助色使用蓝色系）</span>
+        </div>
+
+        <!-- 其他（扩展）：青色系 -->
+        <div class="swatch-group">
+          <div class="swatch-group-title">其他（扩展）· 青色系</div>
+          <div class="swatch-row">
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal);"></div>
+              <span class="swatch-name">常规</span>
+              <span class="swatch-label">--vx-other-teal</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-hover);"></div>
+              <span class="swatch-name">hover</span>
+              <span class="swatch-label">--vx-other-teal-hover</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-dark);"></div>
+              <span class="swatch-name">深色</span>
+              <span class="swatch-label">--vx-other-teal-dark</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-block" style="background: var(--vx-other-teal-bg);"></div>
+              <span class="swatch-name">浅色</span>
+              <span class="swatch-label">--vx-other-teal-bg</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // 主题切换：控制 <html data-vx-theme>
+  const buttons = document.querySelectorAll('#themeButtons .theme-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.theme;
+      document.documentElement.setAttribute('data-vx-theme', theme);
+      buttons.forEach(b => b.classList.remove('theme-btn-active'));
+      btn.classList.add('theme-btn-active');
+    });
+  });
+</script>
+</body>
+</html>

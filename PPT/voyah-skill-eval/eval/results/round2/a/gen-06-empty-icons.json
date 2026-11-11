@@ -1,0 +1,23 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-06-empty-icons",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round2/a/gen-06-empty-icons",
+  "hasHtml": true,
+  "subtype": "timeout",
+  "cost": null,
+  "denials": [],
+  "resultText": "",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-06-empty-icons/index.html",
+    "alignRate": 0.964,
+    "checks": 28,
+    "passed": 27,
+    "p0": 1,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T02:57:38.152Z"
+}

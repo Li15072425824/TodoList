@@ -1,0 +1,12 @@
+{
+  "id": "kb-02",
+  "topic": "help-blue-theme",
+  "question": "蓝(基础色)主题下,帮助色的常规档 hex 是什么?",
+  "golden_answer": "#54A7B2(青色系帮助)。",
+  "required": [
+    "54A7B2"
+  ],
+  "specIds": [
+    "color.aux.help-teal.3"
+  ]
+}

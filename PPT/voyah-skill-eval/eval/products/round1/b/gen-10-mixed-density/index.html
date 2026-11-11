@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>规范自检 · 混合密度页 Demo</title>
+<style>
+  /* ============================================================
+     岚图 Voyah UI/UE Design Tokens
+     字体层级（字号 / 行高 / 字重）
+     ============================================================ */
+  :root {
+    /* ---- 字体族 ---- */
+    --voyah-font-family: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei",
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* ---- 字号 Font Size ---- */
+    --voyah-fs-h1: 24px;       /* 页面大标题 */
+    --voyah-fs-h2: 20px;       /* 页面大标题(次档) */
+    --voyah-fs-h3: 18px;       /* 区块大标题 */
+    --voyah-fs-subtitle: 16px; /* 模块小标题 / 二级标题 */
+    --voyah-fs-body-l: 16px;   /* 大段描述 / 正文大号 */
+    --voyah-fs-body: 14px;     /* 正文 / 表单 / 表格 / 按钮 / 导航 */
+    --voyah-fs-caption: 13px;  /* 辅助说明 / 备注 / 提示 */
+    --voyah-fs-timestamp: 12px;/* 时间戳 / 最小辅助文字 */
+    --voyah-fs-token: 11px;    /* 自检 token 标注 */
+
+    /* ---- 行高 Line Height ---- */
+    --voyah-lh-h1: 32px;       /* 24/32 */
+    --voyah-lh-h2: 28px;       /* 20/28 */
+    --voyah-lh-h3: 26px;       /* 18/26 */
+    --voyah-lh-subtitle: 24px; /* 16/24 */
+    --voyah-lh-body-l: 24px;   /* 16/24 */
+    --voyah-lh-body: 22px;     /* 14/22 */
+    --voyah-lh-caption: 20px;  /* 13/20 */
+    --voyah-lh-timestamp: 18px;/* 12/18 */
+    --voyah-lh-token: 16px;    /* 11/16 */
+
+    /* ---- 字重 Font Weight ---- */
+    --voyah-fw-regular: 400;   /* Regular */
+    --voyah-fw-medium: 500;    /* Medium */
+    --voyah-fw-bold: 600;      /* Bold */
+
+    /* ---- 中性色 Neutral ---- */
+    --voyah-color-text-primary:   #1F2329;  /* 主文字 */
+    --voyah-color-text-regular:   #4E5969;  /* 常规文字 / 正文 */
+    --voyah-color-text-secondary: #86909C;  /* 次要文字 / 辅助说明 */
+    --voyah-color-text-tertiary:  #A9AEB8;  /* 三级文字 / 占位提示 */
+    --voyah-color-text-disabled:  #C9CDD4;  /* 禁用文字 */
+    --voyah-color-text-white:     #FFFFFF;  /* 反白文字 */
+
+    --voyah-color-bg-page:        #F7F8FA;  /* 页面背景 */
+    --voyah-color-bg-card:        #FFFFFF;  /* 卡片背景 */
+    --voyah-color-bg-hover:       #F2F3F5;  /* 悬浮背景 */
+    --voyah-color-bg-active:      #E5E6EB;  /* 按下背景 */
+
+    /* ---- 品牌色 Brand ---- */
+    --voyah-color-brand-6:        #0052D9;  /* 品牌主色（岚图蓝） */
+    --voyah-color-brand-7:        #0040A8;  /* 品牌深 */
+    --voyah-color-brand-1:        #E8F3FF;  /* 品牌浅背景 */
+
+    /* ---- 功能色 ---- */
+    --voyah-color-success:        #00B42A;
+    --voyah-color-warning:        #FF7D00;
+    --voyah-color-danger:         #F53F3F;
+
+    /* ---- 边框 / 分割线 ---- */
+    --voyah-color-border:         #E5E6EB;
+    --voyah-color-border-light:   #F2F3F5;
+
+    /* ---- 圆角 ---- */
+    --voyah-radius-sm: 4px;
+    --voyah-radius-md: 6px;
+    --voyah-radius-lg: 8px;
+
+    /* ---- 间距 ---- */
+    --voyah-space-xs: 4px;
+    --voyah-space-sm: 8px;
+    --voyah-space-md: 12px;
+    --voyah-space-lg: 16px;
+    --voyah-space-xl: 24px;
+    --voyah-space-xxl: 32px;
+  }
+
+  /* ============================================================
+     基础重置
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--voyah-font-family);
+    background: var(--voyah-color-bg-page);
+    color: var(--voyah-color-text-regular);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ============================================================
+     自检标注样式（token 小标签）
+     ============================================================ */
+  .token-tag {
+    display: inline-block;
+    margin-left: var(--voyah-space-sm);
+    padding: 2px 6px;
+    font-size: var(--voyah-fs-token);
+    line-height: var(--voyah-lh-token);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-secondary);
+    background: var(--voyah-color-bg-page);
+    border: 1px solid var(--voyah-color-border);
+    border-radius: var(--voyah-radius-sm);
+    vertical-align: middle;
+    letter-spacing: 0;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  .token-block {
+    margin-top: var(--voyah-space-xs);
+    font-size: var(--voyah-fs-token);
+    line-height: var(--voyah-lh-token);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-secondary);
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* ============================================================
+     页面整体布局
+     ============================================================ */
+  .page {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ---- 左侧导航 ---- */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background: var(--voyah-color-bg-card);
+    border-right: 1px solid var(--voyah-color-border);
+    padding: var(--voyah-space-lg) 0;
+  }
+  .sidebar-logo {
+    padding: 0 var(--voyah-space-lg) var(--voyah-space-lg);
+    font-size: var(--voyah-fs-h3);
+    line-height: var(--voyah-lh-h3);
+    font-weight: var(--voyah-fw-bold);
+    color: var(--voyah-color-brand-6);
+  }
+  .nav-group-title {
+    padding: var(--voyah-space-md) var(--voyah-space-lg) var(--voyah-space-sm);
+    font-size: var(--voyah-fs-caption);
+    line-height: var(--voyah-lh-caption);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-tertiary);
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--voyah-space-lg);
+    height: 40px;
+    font-size: var(--voyah-fs-body);
+    line-height: var(--voyah-lh-body);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-regular);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .nav-item:hover { background: var(--voyah-color-bg-hover); }
+  .nav-item.active {
+    background: var(--voyah-color-brand-1);
+    color: var(--voyah-color-brand-6);
+    font-weight: var(--voyah-fw-medium);
+    position: relative;
+  }
+  .nav-item.active::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--voyah-color-brand-6);
+  }
+  .nav-item .nav-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: var(--voyah-space-sm);
+    flex-shrink: 0;
+  }
+  .sidebar-token-note {
+    margin-top: var(--voyah-space-lg);
+    padding: 0 var(--voyah-space-lg);
+    font-size: var(--voyah-fs-token);
+    line-height: var(--voyah-lh-token);
+    color: var(--voyah-color-text-tertiary);
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* ---- 主内容区 ---- */
+  .main {
+    flex: 1;
+    padding: var(--voyah-space-xxl);
+    min-width: 0;
+  }
+
+  /* ============================================================
+     页面大标题 H1
+     ============================================================ */
+  .page-title {
+    margin: 0 0 var(--voyah-space-xxl);
+    font-size: var(--voyah-fs-h1);
+    line-height: var(--voyah-lh-h1);
+    font-weight: var(--voyah-fw-bold);
+    color: var(--voyah-color-text-primary);
+  }
+
+  /* ============================================================
+     模块 / Section 通用
+     ============================================================ */
+  .section {
+    background: var(--voyah-color-bg-card);
+    border-radius: var(--voyah-radius-lg);
+    padding: var(--voyah-space-xl);
+    margin-bottom: var(--voyah-space-xl);
+    border: 1px solid var(--voyah-color-border-light);
+  }
+  .section-title {
+    margin: 0 0 var(--voyah-space-lg);
+    font-size: var(--voyah-fs-subtitle);
+    line-height: var(--voyah-lh-subtitle);
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-color-text-primary);
+  }
+
+  /* ============================================================
+     大段描述
+     ============================================================ */
+  .description-block {
+    font-size: var(--voyah-fs-body-l);
+    line-height: var(--voyah-lh-body-l);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-regular);
+  }
+  .description-block p {
+    margin: 0 0 var(--voyah-space-md);
+  }
+  .description-block p:last-child { margin-bottom: 0; }
+
+  /* ============================================================
+     表单（14px 正文场景 1）
+     ============================================================ */
+  .form-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--voyah-space-lg);
+  }
+  .form-row:last-child { margin-bottom: 0; }
+  .form-label {
+    flex-shrink: 0;
+    width: 100px;
+    padding-top: 8px;
+    font-size: var(--voyah-fs-body);
+    line-height: var(--voyah-lh-body);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-regular);
+    text-align: right;
+    padding-right: var(--voyah-space-md);
+  }
+  .form-label.required::before {
+    content: "*";
+    color: var(--voyah-color-danger);
+    margin-right: 2px;
+  }
+  .form-control {
+    flex: 1;
+    min-width: 0;
+  }
+  .form-input {
+    width: 100%;
+    height: 36px;
+    padding: 0 var(--voyah-space-md);
+    font-size: var(--voyah-fs-body);
+    line-height: var(--voyah-lh-body);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-primary);
+    background: var(--voyah-color-bg-card);
+    border: 1px solid var(--voyah-color-border);
+    border-radius: var(--voyah-radius-md);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    font-family: inherit;
+  }
+  .form-input::placeholder {
+    color: var(--voyah-color-text-tertiary);
+  }
+  .form-input:hover { border-color: var(--voyah-color-text-tertiary); }
+  .form-input:focus {
+    border-color: var(--voyah-color-brand-6);
+    box-shadow: 0 0 0 2px rgba(0, 82, 217, 0.1);
+  }
+  .form-tip {
+    margin-top: var(--voyah-space-xs);
+    font-size: var(--voyah-fs-caption);
+    line-height: var(--voyah-lh-caption);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-secondary);
+  }
+  .form-tip.error { color: var(--voyah-color-danger); }
+
+  /* ============================================================
+     按钮（14px 正文场景 2）
+     ============================================================ */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--voyah-space-md);
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 var(--voyah-space-lg);
+    font-size: var(--voyah-fs-body);
+    line-height: var(--voyah-lh-body);
+    font-weight: var(--voyah-fw-regular);
+    border-radius: var(--voyah-radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--voyah-color-brand-6);
+    color: var(--voyah-color-text-white);
+    border-color: var(--voyah-color-brand-6);
+  }
+  .btn-primary:hover { background: var(--voyah-color-brand-7); border-color: var(--voyah-color-brand-7); }
+  .btn-default {
+    background: var(--voyah-color-bg-card);
+    color: var(--voyah-color-text-regular);
+    border-color: var(--voyah-color-border);
+  }
+  .btn-default:hover {
+    color: var(--voyah-color-brand-6);
+    border-color: var(--voyah-color-brand-6);
+  }
+  .btn-text {
+    background: transparent;
+    color: var(--voyah-color-brand-6);
+    padding: 0 var(--voyah-space-sm);
+    height: auto;
+    border: none;
+  }
+  .btn-text:hover { color: var(--voyah-color-brand-7); }
+
+  /* ============================================================
+     表格（14px 正文场景 3）
+     ============================================================ */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--voyah-fs-body);
+    line-height: var(--voyah-lh-body);
+    font-weight: var(--voyah-fw-regular);
+  }
+  .data-table th {
+    text-align: left;
+    padding: var(--voyah-space-sm) var(--voyah-space-md);
+    font-size: var(--voyah-fs-body);
+    line-height: var(--voyah-lh-body);
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-color-text-regular);
+    background: var(--voyah-color-bg-page);
+    border-bottom: 1px solid var(--voyah-color-border);
+  }
+  .data-table td {
+    padding: var(--voyah-space-md);
+    color: var(--voyah-color-text-regular);
+    border-bottom: 1px solid var(--voyah-color-border-light);
+  }
+  .data-table tr:hover td { background: var(--voyah-color-bg-hover); }
+  .data-table .status-tag {
+    display: inline-block;
+    padding: 0 var(--voyah-space-sm);
+    height: 22px;
+    line-height: 20px;
+    font-size: var(--voyah-fs-caption);
+    border-radius: var(--voyah-radius-sm);
+  }
+  .status-success {
+    color: var(--voyah-color-success);
+    background: rgba(0, 180, 42, 0.1);
+  }
+  .status-warning {
+    color: var(--voyah-color-warning);
+    background: rgba(255, 125, 0, 0.1);
+  }
+  .status-danger {
+    color: var(--voyah-color-danger);
+    background: rgba(245, 63, 63, 0.1);
+  }
+  .table-timestamp {
+    font-size: var(--voyah-fs-timestamp);
+    line-height: var(--voyah-lh-timestamp);
+    color: var(--voyah-color-text-secondary);
+  }
+
+  /* ============================================================
+     辅助说明区块
+     ============================================================ */
+  .helper-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .helper-list li {
+    padding: var(--voyah-space-sm) 0;
+    border-bottom: 1px dashed var(--voyah-color-border-light);
+    display: flex;
+    align-items: baseline;
+    gap: var(--voyah-space-md);
+  }
+  .helper-list li:last-child { border-bottom: none; }
+  .helper-label {
+    flex-shrink: 0;
+    width: 80px;
+    font-size: var(--voyah-fs-body);
+    color: var(--voyah-color-text-secondary);
+  }
+  .helper-timestamp {
+    font-size: var(--voyah-fs-timestamp);
+    line-height: var(--voyah-lh-timestamp);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-tertiary);
+  }
+  .helper-note {
+    font-size: var(--voyah-fs-caption);
+    line-height: var(--voyah-lh-caption);
+    font-weight: var(--voyah-fw-regular);
+    color: var(--voyah-color-text-secondary);
+  }
+  .helper-placeholder-demo {
+    font-size: var(--voyah-fs-body);
+    color: var(--voyah-color-text-tertiary);
+  }
+
+  /* ============================================================
+     字重对照
+     ============================================================ */
+  .weight-row {
+    display: flex;
+    align-items: baseline;
+    padding: var(--voyah-space-md) 0;
+    border-bottom: 1px solid var(--voyah-color-border-light);
+    gap: var(--voyah-space-lg);
+  }
+  .weight-row:last-child { border-bottom: none; }
+  .weight-label {
+    flex-shrink: 0;
+    width: 120px;
+    font-size: var(--voyah-fs-caption);
+    color: var(--voyah-color-text-secondary);
+  }
+  .weight-sample {
+    font-size: var(--voyah-fs-body-l);
+    color: var(--voyah-color-text-primary);
+  }
+  .weight-regular { font-weight: var(--voyah-fw-regular); }
+  .weight-medium  { font-weight: var(--voyah-fw-medium); }
+  .weight-bold    { font-weight: var(--voyah-fw-bold); }
+
+  /* ============================================================
+     自检 Token 汇总表
+     ============================================================ */
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--voyah-fs-caption);
+    line-height: var(--voyah-lh-caption);
+  }
+  .token-table th,
+  .token-table td {
+    text-align: left;
+    padding: var(--voyah-space-sm) var(--voyah-space-md);
+    border-bottom: 1px solid var(--voyah-color-border-light);
+  }
+  .token-table th {
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-color-text-regular);
+    background: var(--voyah-color-bg-page);
+    font-size: var(--voyah-fs-body);
+  }
+  .token-table td code {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: var(--voyah-fs-caption);
+    color: var(--voyah-color-brand-6);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ==================== 左侧导航 ==================== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      岚图 Voyah
+      <span class="token-tag">fs-h3 / lh-h3 / fw-bold</span>
+    </div>
+
+    <div class="nav-group-title">工作台</div>
+
+    <div class="nav-item active">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5L1.5 7v7.5h4V9.5h5v5h4V7L8 1.5z"/></svg>
+      规范自检总览
+      <span class="token-tag" style="margin-left:auto">body / 14-22 / 500</span>
+    </div>
+
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12v2H2V3zm0 4h12v2H2V7zm0 4h12v2H2v-2z"/></svg>
+      字体层级
+    </div>
+
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2a6 6 0 1 0 6 6H8V2z" opacity=".3"/><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm1 7.6V2.1a6 6 0 0 1 4.9 4.9H9z" opacity=".5"/><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1a6 6 0 1 1 0 12A6 6 0 0 1 8 2z"/></svg>
+      色彩系统
+    </div>
+
+    <div class="nav-group-title">组件规范</div>
+
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M3 4h10v2H3V4zm0 3h7v2H3V7zm0 3h10v2H3v-2z"/></svg>
+      表单组件
+    </div>
+
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12v10H2V3zm1 1v8h10V4H3zm2 2h6v1H5V6zm0 2h6v1H5V8zm0 2h4v1H5v-1z"/></svg>
+      数据表格
+    </div>
+
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M3 5h10v2H3V5zm0 3h10v2H3V8zm0 3h6v2H3v-2z"/></svg>
+      按钮规范
+    </div>
+
+    <div class="sidebar-token-note">
+      导航项: fs-body / lh-body / fw-regular<br>
+      激活态: fw-medium · brand-6
+    </div>
+  </aside>
+
+  <!-- ==================== 主内容 ==================== -->
+  <main class="main">
+
+    <!-- 页面大标题 -->
+    <h1 class="page-title">
+      规范自检 · 混合密度页 Demo
+      <span class="token-tag">fs-h1:24 / lh-h1:32 / fw-bold / primary</span>
+    </h1>
+
+    <!-- ===== 大段描述 ===== -->
+    <section class="section">
+      <h2 class="section-title">
+        模块小标题 · 设计说明
+        <span class="token-tag">fs-subtitle:16 / lh-subtitle:24 / fw-medium / primary</span>
+      </h2>
+
+      <div class="description-block">
+        <p>
+          本页面为岚图 Voyah UI/UE 设计规范的「混合密度自检页面」，在同一视图内集中展示核心字体层级在真实业务场景中的使用效果。
+          页面涵盖从页面大标题（24px）到辅助时间戳（12px）共 7 个字号档位，配套对应的行高、字重与颜色 token，便于研发与设计同学
+          在同一上下文中快速比对、核验实际渲染效果与规范定义是否一致。
+        </p>
+        <p>
+          每一个真实用例旁边都标注了它所声明的 token 名称和具体取值。自动化脚本可以通过读取这些 token 标注与元素 computed style
+          进行比对，从而判断该组件是否严格遵循了岚图 Voyah 设计规范。同类场景（如正文 14px 档位）在表单、表格、按钮、导航中取值
+          <strong>完全统一</strong>，确保视觉密度的一致性。
+        </p>
+        <div class="token-block">
+          token: --voyah-fs-body-l:16px · --voyah-lh-body-l:24px · --voyah-fw-regular:400 · --voyah-color-text-regular:#4E5969
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 表单 ===== -->
+    <section class="section">
+      <h2 class="section-title">
+        表单场景（正文 14px）
+        <span class="token-tag">label + input 均为 fs-body:14</span>
+      </h2>
+
+      <div class="form-row">
+        <label class="form-label required" for="username">
+          用户名称
+        </label>
+        <div class="form-control">
+          <input class="form-input" id="username" type="text" placeholder="请输入用户名称" value="voyah_admin" />
+          <div class="form-tip">
+            支持中英文、数字与下划线，长度 2-20 个字符
+            <span class="token-tag">fs-caption:13 / secondary</span>
+          </div>
+          <div class="token-block">
+            label: fs-body:14 / lh-body:22 / regular · input: fs-body:14 / primary · placeholder: tertiary
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="email">
+          邮箱地址
+        </label>
+        <div class="form-control">
+          <input class="form-input" id="email" type="email" placeholder="请输入绑定邮箱（选填）" />
+          <div class="form-tip">
+            提交后我们将向该邮箱发送验证链接
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 按钮 ===== -->
+    <section class="section">
+      <h2 class="section-title">
+        按钮场景（正文 14px）
+        <span class="token-tag">btn-text: fs-body:14 / lh-body:22 / regular</span>
+      </h2>
+
+      <div class="btn-group">
+        <button class="btn btn-primary">
+          确认提交
+          <span class="token-tag" style="color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)">white / regular</span>
+        </button>
+        <button class="btn btn-default">取消操作</button>
+        <button class="btn btn-text">文字按钮</button>
+      </div>
+      <div class="token-block" style="margin-top:var(--voyah-space-md)">
+        按钮文字统一使用 --voyah-fs-body:14px / --voyah-lh-body:22px / --voyah-fw-regular:400
+      </div>
+    </section>
+
+    <!-- ===== 表格 ===== -->
+    <section class="section">
+      <h2 class="section-title">
+        表格场景（正文 14px）
+        <span class="token-tag">cell: fs-body:14 / th: medium</span>
+      </h2>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:60px">序号</th>
+            <th>车型名称</th>
+            <th style="width:120px">状态</th>
+            <th style="width:180px">更新时间</th>
+            <th style="width:120px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>岚图 FREE 318 四驱版</td>
+            <td><span class="status-tag status-success">已上线</span></td>
+            <td><span class="table-timestamp">2026-11-09 14:32:18</span></td>
+            <td>
+              <button class="btn btn-text">查看</button>
+              <button class="btn btn-text">编辑</button>
+            </td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>岚图追光 PHEV 行政版</td>
+            <td><span class="status-tag status-warning">审核中</span></td>
+            <td><span class="table-timestamp">2026-11-08 09:15:42</span></td>
+            <td>
+              <button class="btn btn-text">查看</button>
+              <button class="btn btn-text">撤回</button>
+            </td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>岚图梦想家 EV 长续航旗舰版</td>
+            <td><span class="status-tag status-danger">已下架</span></td>
+            <td><span class="table-timestamp">2026-10-28 16:08:05</span></td>
+            <td>
+              <button class="btn btn-text">查看</button>
+              <button class="btn btn-text">重新上架</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="token-block" style="margin-top:var(--voyah-space-md)">
+        单元格: fs-body:14 / lh-body:22 / regular / regular-text &nbsp;·&nbsp;
+        表头: fs-body:14 / medium &nbsp;·&nbsp;
+        时间戳: fs-timestamp:12 / tertiary
+      </div>
+    </section>
+
+    <!-- ===== 辅助说明 ===== -->
+    <section class="section">
+      <h2 class="section-title">
+        辅助说明（12~13px 档）
+        <span class="token-tag">caption:13 / timestamp:12</span>
+      </h2>
+
+      <ul class="helper-list">
+        <li>
+          <span class="helper-label">时间戳</span>
+          <span class="helper-timestamp">
+            2026-11-09 17:02:35 · 更新于 3 分钟前
+            <span class="token-tag">fs-timestamp:12 / lh:18 / tertiary</span>
+          </span>
+        </li>
+        <li>
+          <span class="helper-label">备注说明</span>
+          <span class="helper-note">
+            备注：本字段为非必填项，留空则使用系统默认值。如遇疑问请联系设计规范组。
+            <span class="token-tag">fs-caption:13 / lh:20 / secondary</span>
+          </span>
+        </li>
+        <li>
+          <span class="helper-label">输入提示</span>
+          <span class="helper-placeholder-demo">
+            「请输入搜索关键字」—— placeholder 态
+            <span class="token-tag">fs-body:14 / tertiary-text</span>
+          </span>
+        </li>
+        <li>
+          <span class="helper-label">表单提示</span>
+          <span class="form-tip" style="display:inline">
+            校验错误提示信息示例文字
+            <span class="token-tag">fs-caption:13 / danger</span>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 字重对照 ===== -->
+    <section class="section">
+      <h2 class="section-title">
+        字重对照 · Regular / Medium / Bold
+        <span class="token-tag">基于 fs-body-l:16px</span>
+      </h2>
+
+      <div class="weight-row">
+        <span class="weight-label">Regular / 400</span>
+        <span class="weight-sample weight-regular">
+          岚图 Voyah 设计规范 · Regular 字重
+          <span class="token-tag">--voyah-fw-regular: 400</span>
+        </span>
+      </div>
+
+      <div class="weight-row">
+        <span class="weight-label">Medium / 500</span>
+        <span class="weight-sample weight-medium">
+          岚图 Voyah 设计规范 · Medium 字重
+          <span class="token-tag">--voyah-fw-medium: 500</span>
+        </span>
+      </div>
+
+      <div class="weight-row">
+        <span class="weight-label">Bold / 600</span>
+        <span class="weight-sample weight-bold">
+          岚图 Voyah 设计规范 · Bold 字重
+          <span class="token-tag">--voyah-fw-bold: 600</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- ===== Token 汇总 ===== -->
+    <section class="section">
+      <h2 class="section-title">
+        Token 汇总速查表
+        <span class="token-tag">便于自动化比对</span>
+      </h2>
+
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th style="width:140px">用途</th>
+            <th style="width:180px">字号 Token</th>
+            <th style="width:120px">行高 Token</th>
+            <th style="width:120px">字重 Token</th>
+            <th>颜色 Token</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>页面大标题</td>
+            <td><code>--voyah-fs-h1: 24px</code></td>
+            <td><code>--voyah-lh-h1: 32px</code></td>
+            <td><code>fw-bold: 600</code></td>
+            <td><code>text-primary: #1F2329</code></td>
+          </tr>
+          <tr>
+            <td>模块小标题</td>
+            <td><code>--voyah-fs-subtitle: 16px</code></td>
+            <td><code>--voyah-lh-subtitle: 24px</code></td>
+            <td><code>fw-medium: 500</code></td>
+            <td><code>text-primary: #1F2329</code></td>
+          </tr>
+          <tr>
+            <td>大段描述</td>
+            <td><code>--voyah-fs-body-l: 16px</code></td>
+            <td><code>--voyah-lh-body-l: 24px</code></td>
+            <td><code>fw-regular: 400</code></td>
+            <td><code>text-regular: #4E5969</code></td>
+          </tr>
+          <tr>
+            <td>正文（表单/表格/按钮/导航）</td>
+            <td><code>--voyah-fs-body: 14px</code></td>
+            <td><code>--voyah-lh-body: 22px</code></td>
+            <td><code>fw-regular: 400</code></td>
+            <td><code>text-regular: #4E5969</code></td>
+          </tr>
+          <tr>
+            <td>辅助说明 / 备注</td>
+            <td><code>--voyah-fs-caption: 13px</code></td>
+            <td><code>--voyah-lh-caption: 20px</code></td>
+            <td><code>fw-regular: 400</code></td>
+            <td><code>text-secondary: #86909C</code></td>
+          </tr>
+          <tr>
+            <td>时间戳 / 最小辅助</td>
+            <td><code>--voyah-fs-timestamp: 12px</code></td>
+            <td><code>--voyah-lh-timestamp: 18px</code></td>
+            <td><code>fw-regular: 400</code></td>
+            <td><code>text-tertiary: #A9AEB8</code></td>
+          </tr>
+          <tr>
+            <td>占位符 (placeholder)</td>
+            <td><code>--voyah-fs-body: 14px</code></td>
+            <td><code>--voyah-lh-body: 22px</code></td>
+            <td><code>fw-regular: 400</code></td>
+            <td><code>text-tertiary: #A9AEB8</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>

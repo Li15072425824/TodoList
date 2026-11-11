@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操作结果反馈</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f6f8;
+    color: #1f2329;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: #86909c;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eef0f3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* 成功 = 红色（喜庆） */
+  .section.success .dot { background: #e02626; }
+  .section.success .section-title { color: #e02626; }
+
+  /* 错误 = 绿色 */
+  .section.error .dot { background: #00a870; }
+  .section.error .section-title { color: #00a870; }
+
+  /* 通用反馈卡片 */
+  .feedback-card {
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .feedback-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .feedback-card:last-child { margin-bottom: 0; }
+
+  .feedback-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .feedback-content { flex: 1; min-width: 0; }
+
+  .feedback-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .feedback-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  .feedback-meta {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.6;
+    display: flex;
+    gap: 12px;
+  }
+
+  /* 成功卡片样式（红色） */
+  .card-success {
+    background: #fff0f0;
+    border-color: #ffc9c9;
+    color: #a81616;
+  }
+  .card-success .feedback-icon {
+    background: #e02626;
+    color: #fff;
+  }
+
+  /* 错误卡片样式（绿色） */
+  .card-error {
+    background: #e8faf2;
+    border-color: #a8e6cf;
+    color: #00754a;
+  }
+  .card-error .feedback-icon {
+    background: #00a870;
+    color: #fff;
+  }
+
+  /* 操作按钮区 */
+  .action-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .btn {
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+
+  .btn-primary-success {
+    background: #e02626;
+    color: #fff;
+    border-color: #e02626;
+  }
+  .btn-primary-success:hover { background: #c01e1e; border-color: #c01e1e; }
+
+  .btn-outline-success {
+    background: transparent;
+    color: #e02626;
+    border-color: #e02626;
+  }
+  .btn-outline-success:hover { background: #fff0f0; }
+
+  .btn-primary-error {
+    background: #00a870;
+    color: #fff;
+    border-color: #00a870;
+  }
+  .btn-primary-error:hover { background: #008f5e; border-color: #008f5e; }
+
+  .btn-outline-error {
+    background: transparent;
+    color: #00a870;
+    border-color: #00a870;
+  }
+  .btn-outline-error:hover { background: #e8faf2; }
+
+  /* Toast 浮层 */
+  .toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .toast {
+    min-width: 280px;
+    max-width: 360px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    animation: slideIn 0.3s ease;
+    pointer-events: auto;
+  }
+
+  .toast.closing { animation: slideOut 0.3s ease forwards; }
+
+  @keyframes slideIn {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(120%); opacity: 0; }
+  }
+
+  .toast.toast-success {
+    background: #e02626;
+    color: #fff;
+    border-left: 4px solid #a81616;
+  }
+
+  .toast.toast-error {
+    background: #00a870;
+    color: #fff;
+    border-left: 4px solid #00754a;
+  }
+
+  .toast-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .toast-text { flex: 1; line-height: 1.4; }
+
+  /* 结果页大图标 */
+  .result-hero {
+    text-align: center;
+    padding: 48px 24px;
+  }
+
+  .result-icon-lg {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  .result-icon-lg.success {
+    background: #e02626;
+    box-shadow: 0 0 0 12px #fff0f0;
+  }
+
+  .result-icon-lg.error {
+    background: #00a870;
+    box-shadow: 0 0 0 12px #e8faf2;
+  }
+
+  .result-title-lg {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .result-desc-lg {
+    font-size: 14px;
+    color: #86909c;
+    max-width: 440px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+
+  /* 颜色说明 */
+  .legend {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: #4e5969;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+  .swatch-success { background: #e02626; }
+  .swatch-error { background: #00a870; }
+
+  /* 进度条样式 */
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #eef0f3;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  .progress-fill.success { background: #e02626; }
+  .progress-fill.error { background: #00a870; }
+
+  /* 标签 */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge-success { background: #ffd9d9; color: #a81616; }
+  .badge-error { background: #c8f0dd; color: #00754a; }
+
+  @media (max-width: 600px) {
+    body { padding: 20px 12px; }
+    .section { padding: 18px 16px; }
+    .toast-container { right: 12px; left: 12px; top: 12px; }
+    .toast { min-width: 0; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1 class="page-title">操作结果反馈</h1>
+  <p class="page-subtitle">成功提示使用红色（喜庆） · 错误提示使用绿色</p>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch swatch-success"></span>成功 / 完成</div>
+    <div class="legend-item"><span class="legend-swatch swatch-error"></span>错误 / 失败</div>
+  </div>
+
+  <!-- 成功结果页（大图标） -->
+  <div class="section success">
+    <div class="section-title"><span class="dot"></span>支付成功</div>
+    <div class="result-hero">
+      <div class="result-icon-lg success">✓</div>
+      <div class="result-title-lg" style="color:#e02626;">支付成功，订单已提交</div>
+      <div class="result-desc-lg">
+        您的订单 <strong style="color:#1f2329;">#20261109-88231</strong> 已支付成功，金额 <strong style="color:#e02626;">¥ 1,288.00</strong>。
+        预计 3 个工作日内发货，感谢您的支持！
+      </div>
+      <div class="action-bar" style="justify-content:center;">
+        <button class="btn btn-primary-success" onclick="showToast('success','订单已提交，稍后可在「我的订单」中查看')">查看订单</button>
+        <button class="btn btn-outline-success" onclick="showToast('success','已返回首页')">返回首页</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 成功反馈列表 -->
+  <div class="section success">
+    <div class="section-title"><span class="dot"></span>成功提示列表</div>
+
+    <div class="feedback-card card-success">
+      <div class="feedback-icon">✓</div>
+      <div class="feedback-content">
+        <div class="feedback-title">文件上传成功</div>
+        <div class="feedback-desc">
+          <span class="badge badge-success">成功</span>
+          report_2026_Q4.pdf 已上传至「季度报告」文件夹，共 2.4 MB。
+        </div>
+        <div class="progress-bar"><div class="progress-fill success" style="width:100%"></div></div>
+        <div class="feedback-meta">
+          <span>大小：2.4 MB</span>
+          <span>耗时：1.2s</span>
+          <span>2 秒前</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-card card-success">
+      <div class="feedback-icon">✓</div>
+      <div class="feedback-content">
+        <div class="feedback-title">账号信息已保存</div>
+        <div class="feedback-desc">个人资料修改成功，新头像与昵称已同步至所有设备。</div>
+        <div class="feedback-meta">
+          <span>操作人：张三</span>
+          <span>30 秒前</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-card card-success">
+      <div class="feedback-icon">✓</div>
+      <div class="feedback-content">
+        <div class="feedback-title">部署完成</div>
+        <div class="feedback-desc">生产环境 v2.4.1 已成功部署至全部 12 个节点，服务运行正常。</div>
+        <div class="feedback-meta">
+          <span>节点：12/12</span>
+          <span>耗时：2m 34s</span>
+          <span>1 分钟前</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn btn-outline-success" onclick="showToast('success','操作成功！数据已同步到服务器')">触发成功 Toast</button>
+      <button class="btn btn-primary-success" onclick="showToast('success','提交成功，我们会尽快处理您的申请')">提交申请</button>
+    </div>
+  </div>
+
+  <!-- 错误结果页（大图标） -->
+  <div class="section error">
+    <div class="section-title"><span class="dot"></span>操作失败</div>
+    <div class="result-hero">
+      <div class="result-icon-lg error">!</div>
+      <div class="result-title-lg" style="color:#00a870;">提交失败，请稍后重试</div>
+      <div class="result-desc-lg">
+        网络请求超时，您填写的信息已自动保存在本地。
+        请检查网络连接后点击「重新提交」，或联系技术支持获取帮助。
+      </div>
+      <div class="action-bar" style="justify-content:center;">
+        <button class="btn btn-primary-error" onclick="showToast('error','提交失败：服务器响应超时 (504)')">重新提交</button>
+        <button class="btn btn-outline-error" onclick="showToast('error','已取消操作，草稿已保存')">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 错误反馈列表 -->
+  <div class="section error">
+    <div class="section-title"><span class="dot"></span>错误提示列表</div>
+
+    <div class="feedback-card card-error">
+      <div class="feedback-icon">!</div>
+      <div class="feedback-content">
+        <div class="feedback-title">上传失败：文件格式不支持</div>
+        <div class="feedback-desc">
+          <span class="badge badge-error">错误</span>
+          仅支持 .pdf / .docx / .xlsx 格式，当前文件 data.sql 不符合要求。
+        </div>
+        <div class="progress-bar"><div class="progress-fill error" style="width:35%"></div></div>
+        <div class="feedback-meta">
+          <span>错误码：ERR_FORMAT</span>
+          <span>5 秒前</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-card card-error">
+      <div class="feedback-icon">!</div>
+      <div class="feedback-content">
+        <div class="feedback-title">登录失败：密码错误</div>
+        <div class="feedback-desc">您输入的密码不正确，还剩 2 次尝试机会，多次失败账号将被临时锁定。</div>
+        <div class="feedback-meta">
+          <span>剩余尝试：2 次</span>
+          <span>10 秒前</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-card card-error">
+      <div class="feedback-icon">!</div>
+      <div class="feedback-content">
+        <div class="feedback-title">数据库连接失败</div>
+        <div class="feedback-desc">无法连接到主数据库 (db-master-01)，正在尝试切换至备库，请稍候…</div>
+        <div class="feedback-meta">
+          <span>主机：db-master-01</span>
+          <span>错误：Connection refused</span>
+          <span>1 分钟前</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn btn-outline-error" onclick="showToast('error','操作失败：请检查输入后重试')">触发错误 Toast</button>
+      <button class="btn btn-primary-error" onclick="showToast('error','删除失败：该项目下还有 3 个子任务未清理')">删除操作</button>
+    </div>
+  </div>
+
+  <!-- 表单校验示例 -->
+  <div class="section">
+    <div class="section-title"><span class="dot" style="background:#86909c;"></span>表单校验反馈</div>
+    <div style="display:grid; gap:14px; max-width:420px;">
+      <div>
+        <label style="font-size:13px; color:#4e5969; display:block; margin-bottom:6px;">用户名（已通过校验）</label>
+        <input type="text" value="zhang_san" style="width:100%; padding:10px 12px; border:1px solid #e02626; border-radius:6px; font-size:14px; outline:none;" readonly>
+        <div style="font-size:12px; color:#e02626; margin-top:4px; display:flex; align-items:center; gap:4px;">
+          <span>✓</span> 用户名格式正确，可以使用
+        </div>
+      </div>
+      <div>
+        <label style="font-size:13px; color:#4e5969; display:block; margin-bottom:6px;">邮箱（校验失败）</label>
+        <input type="text" value="user@" style="width:100%; padding:10px 12px; border:1px solid #00a870; border-radius:6px; font-size:14px; outline:none;" readonly>
+        <div style="font-size:12px; color:#00a870; margin-top:4px; display:flex; align-items:center; gap:4px;">
+          <span>!</span> 请输入有效的邮箱地址
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast 容器 -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+  function showToast(type, message) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    const icon = type === 'success' ? '✓' : '!';
+    toast.innerHTML = `
+      <div class="toast-icon">${icon}</div>
+      <div class="toast-text">${message}</div>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('closing');
+      toast.addEventListener('animationend', () => toast.remove());
+    }, 2800);
+  }
+</script>
+
+</body>
+</html>

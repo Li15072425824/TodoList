@@ -1,0 +1,23 @@
+{
+  "round": "4",
+  "group": "a",
+  "case": "adv-02-spacing",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round4/a/adv-02-spacing",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.6202284,
+  "denials": [],
+  "resultText": "组件参考和 tokens.css 已读完（之前已基于相同文件生成了 demo，结果一致）。\n\nDemo 已保存在 `/private/tmp/vx-eval/r4/a/adv-02-spacing/index.html`，样式文件 `tokens.css` 同目录。\n\n**待确认冲突项（3 处，当前均按规范值输出）：**\n\n| # | 用户要求 | 规范值 | 来源 |\n|---|---|---|---|\n| 1 | 表单项间距 10px | 组件间距 8px（Sn=4×n） | spacing.rule.component |\n| 2 | 卡片内边距 14px | 卡片 padding 16px（S4） | spacing.padding.card |\n| 3 | 标题与正文间距 6px | 4 的倍数（4/8/12…） | spacing 总则 |\n\n确认要偏离规范的话回复即可，我马上改。",
+  "runtime": {
+    "product": "eval/products/round4/a/adv-02-spacing/index.html",
+    "alignRate": 0.966,
+    "checks": 29,
+    "passed": 28,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 0.892
+  },
+  "at": "2026-11-10T06:26:13.938Z"
+}

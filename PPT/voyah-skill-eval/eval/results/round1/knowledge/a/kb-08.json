@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-08",
+  "topic": "fill-semantics",
+  "question": "提示框底色、提示文字背景应使用哪个填充 token?色值是多少?",
+  "answer": "提示框底色、提示文字背景应使用 **`--vx-fill-1`**，色值为 **#FAFAFA**。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0407286,
+  "subtype": "success",
+  "at": "2026-11-09T10:17:38.286Z"
+}

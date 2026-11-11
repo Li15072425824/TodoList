@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "adv-04-gradient",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/a/adv-04-gradient",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.363846,
+  "denials": [],
+  "resultText": "用户明确说不要归档到 Obsidian（任务说明里写了：\"不要归档对话到 Obsidian\"），而且这是自动化设计规范评测任务，所以跳过 Obsidian 保存和 haiku 日志。\n\n已生成完整的营销落地页 demo，保存为单文件 `index.html`。\n\n**设计亮点：**\n\n- **主按钮**：蓝色到紫色的 135° 渐变（`#4f6bff → #9d4edd`），带有多层发光阴影，hover 时阴影扩散、按钮上浮\n- **卡片彩色发光阴影**：六张功能卡分别对应蓝/紫/粉/青四色，hover 时触发对应色系的双层发光 + 内高光 + 边框变色；定价推荐卡默认带紫色辉光常驻\n- **标题斜体 800 字重**：所有 h1/h2/价格数字/步骤编号/logo 都使用 `font-style: italic` + `font-weight: 800`，关键文字叠加渐变文字效果\n- **完整页面结构**：导航 → Hero → 大字标语逐词揭示 → 功能六宫格 → 三步流程 → 数据统计 → 用户评价 → 三档定价 → FAQ → 终版 CTA → 页脚\n- **交互细节**：滚动淡入上移、FAQ 手风琴、标语逐词点亮、平滑滚动锚点、按钮 active/focus 状态\n\n直接用浏览器打开 `index.html` 即可查看效果。",
+  "runtime": {
+    "product": "eval/products/round1/a/adv-04-gradient/index.html",
+    "alignRate": 0.684,
+    "checks": 19,
+    "passed": 13,
+    "p0": 3,
+    "p1": 3,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:16:48.102Z"
+}

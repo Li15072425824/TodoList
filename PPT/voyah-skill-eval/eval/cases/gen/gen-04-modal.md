@@ -1,6 +1,6 @@
 # GEN-04 弹窗 + 按钮组
 
-covers: [space.modal, space.button, button.primary, button.secondary, button.danger, button.disabled, button.position, font.h2, font.body, color.bg.mask]
+covers: [spacing.padding.modal, spacing.shadow.modal, spacing.rule.button, button.*, font.level.module-title, font.level.body, color.theme.blue.1, color.theme.blue.2, color.theme.blue.3]
 
 请生成一个「删除确认弹窗」demo(单个 HTML 文件),包含:
 - 底层一个简单列表页 + 遮罩层

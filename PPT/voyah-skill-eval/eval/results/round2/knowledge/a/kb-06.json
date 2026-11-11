@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-06",
+  "topic": "fill-semantics",
+  "question": "@filling1-2 的色值和语义场景是什么?",
+  "answer": "@filling1-2 对应 `--vx-fill-2`，色值为 **#F3F4F7**，语义场景是**页面内容区块底色**（例如 Welcome 组件的背景）。\n\n对应 CSS 变量：`var(--vx-fill-2)`，全主题共享，不随主题切换而变化。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0968064,
+  "subtype": "success",
+  "at": "2026-11-10T03:49:25.158Z"
+}

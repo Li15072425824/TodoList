@@ -1,6 +1,6 @@
 # GEN-05 通知 / 告警中心
 
-covers: [color.success.*, color.warning.*, color.error.*, color.help.*, color.purple.*, alert, notification, tag, font.body, font.caption, icon.inline]
+covers: [color.aux.success.*, color.aux.warn.*, color.aux.error.*, color.aux.help-teal.*, color.aux.purple.*, font.level.body, font.level.caption, color.line.1]
 
 请生成一个「消息通知中心」demo(单个 HTML 文件),包含:
 - 四种 Alert 提示条:成功(提交确认)、警告(事件提醒)、错误(失败报错)、帮助(操作指引),各带图标与说明文字

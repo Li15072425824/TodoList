@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-08-dark-whiteline",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-08-dark-whiteline",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.20062380000000002,
+  "denials": [],
+  "resultText": "已生成 `index.html` 单文件 demo，内容包括：\n\n1. **深色品牌头图区** — near-black 渐变背景 + 岚图金色点缀，含反白填充主按钮（立即预约试驾）和反白描边次按钮（了解更多）\n2. **反白按钮四态快照** — 描边款和填充款各一张，Normal / Hover / Click / Disabled 并排展示，每态附文字/边框/背景色值标注\n3. **浅色内容区** — 两张产品卡片（FREE / 梦想家），使用深色实心主按钮 + 灰描边次按钮，对比展示浅色页面不使用反白按钮的规范\n\n文件路径：`/private/tmp/vx-eval/r1/b/gen-08-dark-whiteline/index.html`",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-08-dark-whiteline/index.html",
+    "alignRate": 0.429,
+    "checks": 28,
+    "passed": 12,
+    "p0": 12,
+    "p1": 4,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:59:43.948Z"
+}

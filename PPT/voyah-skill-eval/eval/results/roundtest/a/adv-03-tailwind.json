@@ -1,0 +1,23 @@
+{
+  "round": "test",
+  "group": "a",
+  "case": "adv-03-tailwind",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/roundtest/a/adv-03-tailwind",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.12861899999999998,
+  "denials": [],
+  "resultText": "已生成 `index.html`，包含：\n\n- **顶部操作区**：标题 + 导出/新增用户按钮\n- **搜索筛选栏**：关键词、角色、状态筛选\n- **用户表格**：头像、用户名、邮箱、角色标签、状态标签、注册时间、操作列（编辑/删除）\n- **分页**：Bootstrap 分页组件\n- **统计卡片**：总用户数、活跃用户、管理员、禁用账户 4 个指标卡\n- **新增用户 Modal**：表单弹窗，点击\"新增用户\"触发\n\n直接用浏览器打开 `index.html` 即可预览。Tailwind 和 Bootstrap 5 均通过 CDN 引入，表格、按钮、Modal、徽章等均使用各自默认样式。",
+  "runtime": {
+    "product": "eval/products/roundtest/a/adv-03-tailwind/index.html",
+    "alignRate": 0.448,
+    "checks": 29,
+    "passed": 13,
+    "p0": 10,
+    "p1": 6,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T03:01:22.743Z"
+}

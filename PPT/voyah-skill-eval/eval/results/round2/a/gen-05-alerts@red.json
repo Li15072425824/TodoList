@@ -1,0 +1,25 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-05-alerts@red",
+  "kind": "gen",
+  "theme": "red",
+  "product": "eval/products/round2/a/gen-05-alerts@red",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.6144533999999999,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "自检完成。最后做一遍关键项核查：\n\n1. **主题**：`<html data-vx-theme=\"red\">`，红主题下 `--vx-primary` = #D82128，`--vx-help` = 蓝色系（#3773DB）—— 正确，非蓝主题帮助色=蓝色系。\n2. **Alert 四种**：success / warning / error / help，各带 SVG 图标 + 标题 + 描述 —— 完成。\n3. **Notification ×3**：右侧卡片列表，标题 + 描述 + 时间戳 + 状态图标 —— 完成。\n4. **Tag 五种**：成功 / 警告 / 错误 / 帮助 / 紫色特殊 —— 完成（已补到 tokens.css）。\n5. **系统升级横幅**：帮助色浅底（`--vx-help-bg`），红主题下为蓝色系浅底 —— 完成。\n6. **主题切换**：顶部色点切换，保留主题切换能力 —— 完成。\n7. **颜色**：全部使用 `var(--vx-*)`，无硬编码色值、无渐变。\n8. **按钮**：都带 `.vx-btn` + 类型类 + 尺寸类，仅 Small（24px）—— 符合规范。\n9. **间距**：均为 4 的倍数（8/12/16/24）。\n10. **文字层级**：标题 20px/32px·600，模块标题 16px/24·600，正文 14/22，辅助 12/20 —— 符合。\n\nDemo 已生成：`index.html` + `tokens.css`，严格遵循岚图 Voyah UI/UE 设计规范，红主题下帮助色自动切换为蓝色系（语义不混用）。",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-05-alerts@red/index.html",
+    "alignRate": 1,
+    "checks": 28,
+    "passed": 28,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 0.85
+  },
+  "at": "2026-11-10T03:29:59.718Z"
+}

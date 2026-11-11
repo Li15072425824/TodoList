@@ -1,0 +1,13 @@
+{
+  "id": "kb-23",
+  "topic": "button-secondary",
+  "question": "次要按钮 click(按下)态的文字色、边框色和填充色分别是什么?",
+  "golden_answer": "文字=边框 #1C5AC4,填充 #FFFFFF。",
+  "required": [
+    "1C5AC4",
+    "FFFFFF"
+  ],
+  "specIds": [
+    "button.secondary.click"
+  ]
+}

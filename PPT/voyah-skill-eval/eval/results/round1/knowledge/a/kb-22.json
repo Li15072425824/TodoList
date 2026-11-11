@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-22",
+  "topic": "button-secondary",
+  "question": "次要按钮 hover 态的文字色、边框色和填充色分别是什么?",
+  "answer": "次要按钮 hover 态：\n\n- **文字色**：`#568EEE`\n- **边框色**：`#568EEE`\n- **填充色**：`#FFFFFF`",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.076026,
+  "subtype": "success",
+  "at": "2026-11-09T10:20:29.692Z"
+}

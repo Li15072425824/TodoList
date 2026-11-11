@@ -1,0 +1,26 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-02-aichat",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-02-aichat",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.38461920000000005,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Demo 已生成完成。两个文件位于 `/private/tmp/vx-eval/r1/a/gen-02-aichat/`：\n\n- **`index.html`** — 单文件岚图智能助手对话页 demo\n- **`tokens.css`** — Voyah Design 设计变量（已同目录就位）\n\n页面包含的模块：\n\n| 模块 | 说明 |\n|---|---|\n| 左侧会话列表 | 7 条会话，含选中态（`vx-conversation-item-active`）、hover 态（`--vx-fill-3`）、图标 + 文字截断 |\n| 顶部栏 | 当前会话标题 + 分享/更多操作 |\n| Welcome 欢迎区 | 主色图标 + 标题 + 描述，居中展示 |\n| Prompts 提示集 | 4 张推荐卡片（2×2 网格），hover 变主色边框 |\n| AI 气泡 | 灰底左对齐，含头像、名称、正文、时间戳、操作条 |\n| 用户气泡 | 主色填充右对齐，含时间戳 |\n| ThoughtChain 思维链 | 3 节点（完成/进行中/失败），可折叠，嵌在 AI 气泡内 |\n| Sender 输入区 | 附件按钮 + textarea + 发送按钮（空内容禁用态），Enter 发送提示 |\n| 底部声明 | 使用条款提示 |\n\n全部颜色、字号、圆角、间距均通过 `var(--vx-*)` 取自 tokens.css，符合 Voyah Design v2 规范（蓝主题，默认）。直接用浏览器打开 `index.html` 即可预览。",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-02-aichat/index.html",
+    "alignRate": 1,
+    "checks": 28,
+    "passed": 28,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-09T03:16:07.923Z"
+}

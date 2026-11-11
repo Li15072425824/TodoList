@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>车辆信息登记 - 岚图管理后台</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .page {
+    min-height: 100vh;
+    background: var(--vx-bg-layout);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== 顶部导航 ===== */
+  .navbar {
+    height: 56px;
+    background: var(--vx-bg-base);
+    border-bottom: 1px solid var(--vx-line-1);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--vx-space-xl);
+    gap: var(--vx-space-xxl);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    line-height: var(--vx-line-height-module-title);
+  }
+  .nav-logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--vx-radius-sm);
+    background: var(--vx-primary);
+    color: var(--vx-text-inverse);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--vx-font-size-sm);
+    font-weight: var(--vx-font-weight-bold);
+  }
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xl);
+    flex: 1;
+  }
+  .nav-menu-item {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-primary);
+    cursor: pointer;
+    line-height: var(--vx-line-height-body);
+    padding: var(--vx-space-1) 0;
+    position: relative;
+  }
+  .nav-menu-item:hover { color: var(--vx-primary); }
+  .nav-menu-item-active {
+    color: var(--vx-primary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .nav-menu-item-active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -18px;
+    height: 2px;
+    background: var(--vx-primary);
+    border-radius: 1px;
+  }
+  .nav-search {
+    position: relative;
+    width: 240px;
+  }
+  .nav-search .vx-input {
+    padding-left: 36px;
+    min-height: 32px;
+  }
+  .nav-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--vx-text-caption);
+    font-size: var(--vx-font-size-sm);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-md);
+  }
+  .nav-icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--vx-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vx-text-secondary);
+    cursor: pointer;
+    font-size: var(--vx-font-size-lg);
+  }
+  .nav-icon-btn:hover {
+    background: var(--vx-fill-3);
+    color: var(--vx-text-primary);
+  }
+
+  /* ===== 主体布局 ===== */
+  .main-wrap {
+    flex: 1;
+    padding: var(--vx-padding-page);
+    display: flex;
+    gap: var(--vx-space-xl);
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-xl);
+  }
+  .side-panel {
+    width: 320px;
+    flex-shrink: 0;
+  }
+
+  /* ===== 页头 ===== */
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-sm);
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-1);
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+  }
+  .breadcrumb a {
+    color: var(--vx-text-secondary);
+  }
+  .breadcrumb a:hover { color: var(--vx-primary); }
+  .breadcrumb-sep { color: var(--vx-text-caption); }
+  .breadcrumb-cur { color: var(--vx-text-primary); }
+  .page-title {
+    font-size: var(--vx-font-size-xxl);
+    font-weight: var(--vx-font-weight-bold);
+    line-height: 32px;
+    color: var(--vx-text-title);
+  }
+  .page-desc {
+    font-size: var(--vx-font-size-sm);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-secondary);
+  }
+
+  /* ===== 表单卡片 ===== */
+  .form-card .vx-card-body {
+    padding: var(--vx-space-xl);
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--vx-space-lg) var(--vx-space-xl);
+  }
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-1);
+  }
+  .form-label {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vx-space-1);
+  }
+  .form-required {
+    color: var(--vx-error);
+    font-size: var(--vx-font-size-md);
+    line-height: 1;
+  }
+  .form-help {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+  }
+  .form-error-text {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-error);
+  }
+
+  /* 错误态输入框 */
+  .vx-input-error {
+    border-color: var(--vx-error);
+  }
+  .vx-input-error:hover {
+    border-color: var(--vx-error-hover);
+  }
+  .vx-input-error:focus {
+    border-color: var(--vx-error);
+    box-shadow: 0 0 0 2px var(--vx-error-bg);
+  }
+
+  /* 下拉选择 */
+  .form-select {
+    position: relative;
+  }
+  .form-select .vx-input {
+    padding-right: 36px;
+    cursor: pointer;
+  }
+  .form-select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--vx-text-caption);
+    font-size: var(--vx-font-size-xs);
+    pointer-events: none;
+  }
+
+  /* 单选 / 复选组 */
+  .form-radio-group,
+  .form-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vx-space-lg);
+    padding-top: var(--vx-space-1);
+  }
+
+  /* 开关行 */
+  .form-switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--vx-space-md);
+  }
+  .form-switch-label {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-primary);
+  }
+
+  /* 占两列 */
+  .form-col-full {
+    grid-column: 1 / -1;
+  }
+
+  /* ===== 底部按钮组 ===== */
+  .form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--vx-space-md);
+    padding-top: var(--vx-space-lg);
+    border-top: 1px solid var(--vx-line-1);
+    margin-top: var(--vx-space-sm);
+  }
+
+  /* ===== 右侧辅助卡片 ===== */
+  .side-card .vx-card-body {
+    padding: var(--vx-space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-sm);
+  }
+  .side-card-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .side-card-desc {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-longform);
+    color: var(--vx-text-primary);
+  }
+  .side-card-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--vx-space-xs);
+    font-size: var(--vx-font-size-sm);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-secondary);
+    padding: var(--vx-space-sm) var(--vx-space-sm);
+    background: var(--vx-fill-1);
+    border-radius: var(--vx-radius-md);
+  }
+  .side-card-tip-icon {
+    color: var(--vx-help);
+    flex-shrink: 0;
+    font-size: var(--vx-font-size-sm);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="navbar">
+    <div class="nav-logo">
+      <span class="nav-logo-mark">岚</span>
+      <span>VOYAH 管理后台</span>
+    </div>
+
+    <nav class="nav-menu">
+      <span class="nav-menu-item">工作台</span>
+      <span class="nav-menu-item nav-menu-item-active">车辆管理</span>
+      <span class="nav-menu-item">用户管理</span>
+      <span class="nav-menu-item">订单中心</span>
+      <span class="nav-menu-item">数据分析</span>
+      <span class="nav-menu-item">系统设置</span>
+    </nav>
+
+    <div class="nav-search">
+      <span class="nav-search-icon">🔍</span>
+      <input class="vx-input" placeholder="搜索车辆 / 用户 / 订单" />
+    </div>
+
+    <div class="nav-right">
+      <span class="nav-icon-btn" title="消息">🔔</span>
+      <span class="nav-icon-btn" title="帮助">❓</span>
+      <span class="vx-avatar vx-avatar-primary">管</span>
+    </div>
+  </header>
+
+  <!-- ===== 主体 ===== -->
+  <div class="main-wrap">
+    <main class="main-content">
+
+      <!-- 页头 -->
+      <div class="page-header">
+        <div class="breadcrumb">
+          <a href="#">首页</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="#">车辆管理</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="breadcrumb-cur">车辆信息登记</span>
+        </div>
+        <h1 class="page-title">车辆信息登记</h1>
+        <p class="page-desc">请如实填写车辆基础信息与配置信息，标有 <span style="color:var(--vx-error)">*</span> 的为必填项。提交后信息将进入审核流程，审核通过后方可生效。</p>
+      </div>
+
+      <!-- 表单卡片 -->
+      <div class="vx-card form-card">
+        <div class="vx-card-head">
+          <span class="vx-card-title">基础信息</span>
+          <span class="vx-tag vx-tag-primary">必填</span>
+        </div>
+        <div class="vx-card-body">
+          <div class="form-grid">
+
+            <!-- 左列：车辆VIN码（错误态） -->
+            <div class="form-item">
+              <label class="form-label">
+                <span class="form-required">*</span>
+                车辆 VIN 码
+              </label>
+              <input class="vx-input vx-input-error" value="LBV1Z3105NM1234" placeholder="请输入 17 位 VIN 码" />
+              <span class="form-error-text">VIN 码长度不足 17 位，请检查后重新输入</span>
+            </div>
+
+            <!-- 右列：车牌号 -->
+            <div class="form-item">
+              <label class="form-label">
+                <span class="form-required">*</span>
+                车牌号
+              </label>
+              <input class="vx-input" placeholder="请输入车牌号，如：鄂A12345" />
+              <span class="form-help">新能源车辆请填写完整 8 位号牌</span>
+            </div>
+
+            <!-- 左列：车辆品牌（下拉） -->
+            <div class="form-item">
+              <label class="form-label">
+                <span class="form-required">*</span>
+                车辆品牌
+              </label>
+              <div class="form-select">
+                <input class="vx-input" value="岚图" readonly />
+                <span class="form-select-arrow">▾</span>
+              </div>
+              <span class="form-help">请选择车辆所属品牌</span>
+            </div>
+
+            <!-- 右列：车型系列（下拉） -->
+            <div class="form-item">
+              <label class="form-label">
+                <span class="form-required">*</span>
+                车型系列
+              </label>
+              <div class="form-select">
+                <input class="vx-input" placeholder="请选择车型系列" readonly />
+                <span class="form-select-arrow">▾</span>
+              </div>
+            </div>
+
+            <!-- 左列：车辆类型（单选） -->
+            <div class="form-item">
+              <label class="form-label">
+                <span class="form-required">*</span>
+                车辆类型
+              </label>
+              <div class="form-radio-group">
+                <label class="vx-radio">
+                  <input type="radio" name="carType" checked />
+                  <span class="vx-radio-box"></span>
+                  纯电动
+                </label>
+                <label class="vx-radio">
+                  <input type="radio" name="carType" />
+                  <span class="vx-radio-box"></span>
+                  增程式
+                </label>
+                <label class="vx-radio">
+                  <input type="radio" name="carType" />
+                  <span class="vx-radio-box"></span>
+                  插电混动
+                </label>
+              </div>
+            </div>
+
+            <!-- 右列：车身颜色 -->
+            <div class="form-item">
+              <label class="form-label">
+                <span class="form-required">*</span>
+                车身颜色
+              </label>
+              <div class="form-select">
+                <input class="vx-input" placeholder="请选择车身颜色" readonly />
+                <span class="form-select-arrow">▾</span>
+              </div>
+            </div>
+
+            <!-- 左列：出厂日期 -->
+            <div class="form-item">
+              <label class="form-label">
+                <span class="form-required">*</span>
+                出厂日期
+              </label>
+              <input class="vx-input" placeholder="请选择出厂日期" />
+              <span class="form-help">格式：YYYY-MM-DD</span>
+            </div>
+
+            <!-- 右列：行驶里程 -->
+            <div class="form-item">
+              <label class="form-label">行驶里程（km）</label>
+              <input class="vx-input" placeholder="请输入当前行驶里程" />
+              <span class="form-help">单位：公里，仅支持数字输入</span>
+            </div>
+
+            <!-- 占满行：配置项（复选） -->
+            <div class="form-item form-col-full">
+              <label class="form-label">车辆配置</label>
+              <div class="form-checkbox-group">
+                <label class="vx-checkbox">
+                  <input type="checkbox" checked />
+                  <span class="vx-checkbox-box">✓</span>
+                  全景天窗
+                </label>
+                <label class="vx-checkbox">
+                  <input type="checkbox" checked />
+                  <span class="vx-checkbox-box">✓</span>
+                  座椅加热
+                </label>
+                <label class="vx-checkbox">
+                  <input type="checkbox" />
+                  <span class="vx-checkbox-box">✓</span>
+                  自动泊车
+                </label>
+                <label class="vx-checkbox">
+                  <input type="checkbox" />
+                  <span class="vx-checkbox-box">✓</span>
+                  空气悬架
+                </label>
+                <label class="vx-checkbox">
+                  <input type="checkbox" />
+                  <span class="vx-checkbox-box">✓</span>
+                  抬头显示
+                </label>
+              </div>
+            </div>
+
+            <!-- 占满行：启用状态（开关） -->
+            <div class="form-item form-col-full">
+              <div class="form-switch-row">
+                <div>
+                  <div class="form-switch-label">启用车辆联网服务</div>
+                  <span class="form-help">开启后车辆将接入车联网平台，支持远程控制与 OTA 升级</span>
+                </div>
+                <input type="checkbox" class="vx-switch" checked />
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 底部按钮 -->
+          <div class="form-footer">
+            <button class="vx-btn vx-btn-primary vx-btn-lg">提交</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-lg">取消</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 右侧辅助卡片 -->
+    <aside class="side-panel">
+      <div class="vx-card side-card">
+        <div class="vx-card-head">
+          <span class="vx-card-title">填写说明</span>
+        </div>
+        <div class="vx-card-body">
+          <div class="side-card-desc">
+            车辆信息登记是车辆入库的第一步，请确保所填信息与车辆出厂合格证、行驶证等证件一致。
+            信息提交后将进入 1~2 个工作日的人工审核，审核通过后车辆状态将变为「已登记」。
+          </div>
+          <div class="side-card-desc">
+            如需批量导入车辆信息，请前往「车辆管理 → 批量导入」页面下载模板并上传。
+          </div>
+          <div class="side-card-tip">
+            <span class="side-card-tip-icon">💡</span>
+            <span>VIN 码即车辆识别代号，可在车辆前挡风玻璃左下角或行驶证上找到，共 17 位。</span>
+          </div>
+          <div style="height: 1px; background: var(--vx-line-1); margin: var(--vx-space-1) 0;" />
+          <div style="font-size: var(--vx-font-size-xs); line-height: var(--vx-line-height-caption); color: var(--vx-text-caption);">
+            如有疑问，请联系运营支持：<br />
+            电话：400-888-8888（工作日 9:00–18:00）
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-08",
+  "topic": "fill-semantics",
+  "question": "提示框底色、提示文字背景应使用哪个填充 token?色值是多少?",
+  "answer": "项目目录为空，无可用的设计规范 skill。按通用设计系统知识回答：\n\n**提示框（Tooltip）底色 / 提示文字背景**应使用 **中性色反色填充 token**（常见命名如 `color-bg-inverse`、`color-bg-tooltip`、`Neutral/Inverse BG` 等）。\n\n- **Token**：`color-bg-tooltip`（或 `color-bg-inverse` / `--color-neutral-inverse`，具体视设计系统命名规范而定）\n- **色值**：通常为深灰近黑色，如 `#1F2329`（字节 Arco Design）、`#1F1F1F`（Ant Design 的 Tooltip 背景）、`rgba(0, 0, 0, 0.85)` 等，即 `Neutral-900` 或 `Neutral-800` 级别带透明度/实色的深色背景，以保证在浅色页面上的白色文字有足够对比度。\n\n如果该项目是字节系/Arco Design 体系，标准答案为：\n- **Token**：`color-bg-tooltip`\n- **色值**：`#1F2329`（RGB: 31, 35, 41）",
+  "pass": false,
+  "missing": [
+    "FAFAFA"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0523866,
+  "subtype": "success",
+  "at": "2026-11-09T09:43:03.480Z"
+}

@@ -1,0 +1,23 @@
+{
+  "round": "3",
+  "group": "a",
+  "case": "adv-06-approx",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round3/a/adv-06-approx",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.4425714,
+  "denials": [],
+  "resultText": "Let me verify the file looks good by opening it briefly to check for any obvious issues.\n\nDemo 已生成到 `index.html`，基于同目录的 `tokens.css`（岚图设计变量）。页面结构：\n\n- **顶部**：页头（标题 + 导出/下载按钮）+ 筛选条（时间分段、渠道、产品、对比上期）\n- **KPI 行**：4 个指标卡（总访问量、新增用户、转化率、营收），每张卡带 delta 与 sparkline 趋势\n- **主图表区**：访问量趋势折线图（本期实线 + 上期虚线，带 crosshair 和 tooltip 交互） + 渠道分布环形图（中心显示总数，图例带百分比）\n- **底栏**：产品销量分组柱状图（本期/上期对比） + 用户地域 TOP5 横向条形\n- **表格**：销售明细表，带排名徽章、状态标签、分页\n\n图表全部用纯 SVG 绘制，颜色取自 `--vx-primary`、`--vx-help`、`--vx-purple`、`--vx-warning` 等规范变量，灰色系使用 tokens 中的 `--vx-text-*`、`--vx-line-*`、`--vx-fill-*`。",
+  "runtime": {
+    "product": "eval/products/round3/a/adv-06-approx/index.html",
+    "alignRate": 0.862,
+    "checks": 29,
+    "passed": 25,
+    "p0": 2,
+    "p1": 2,
+    "tokenRefRate": 0.668
+  },
+  "at": "2026-11-10T06:13:39.944Z"
+}

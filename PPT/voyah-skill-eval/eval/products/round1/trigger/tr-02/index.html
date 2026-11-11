@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="purple">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>新春充电狂欢季 - 新能源车主运营活动</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body {
+    background: var(--vx-fill-2);
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 375px;
+    margin: 0 auto;
+    background: var(--vx-bg-layout);
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 96px;
+  }
+
+  /* ---------- 顶部导航 ---------- */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    padding: 0 16px;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .nav-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--vx-text-title);
+  }
+  .nav-icon-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vx-text-secondary);
+    font-size: 18px;
+  }
+
+  /* ---------- Banner ---------- */
+  .banner {
+    padding: 20px 16px 24px;
+    background: var(--vx-primary);
+    position: relative;
+    overflow: hidden;
+  }
+  .banner::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .banner::after {
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    left: -30px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .banner-tag {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: var(--vx-radius-sm4);
+    margin-bottom: 12px;
+  }
+  .banner-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .banner-subtitle {
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .banner-countdown {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .banner-countdown-label {
+    font-size: 12px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .countdown-time {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .countdown-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 4px;
+    background: rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: var(--vx-radius-sm4);
+    font-family: var(--vx-font-number);
+    font-weight: 600;
+  }
+  .countdown-sep {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ---------- 数据概览 ---------- */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: -16px 16px 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .stat-card {
+    background: #FFFFFF;
+    border-radius: var(--vx-radius-lg8);
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  .stat-num {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--vx-primary);
+    font-family: var(--vx-font-number);
+  }
+  .stat-num .unit {
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 2px;
+  }
+  .stat-label {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-secondary);
+    margin-top: 2px;
+  }
+
+  /* ---------- 通用模块 ---------- */
+  .section {
+    padding: 16px;
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+  }
+  .section-title .section-tag {
+    margin-left: 8px;
+  }
+  .section-more {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+  }
+  .section-more:hover {
+    color: var(--vx-primary);
+  }
+
+  /* ---------- 任务列表 ---------- */
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #FFFFFF;
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg8);
+  }
+  .task-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: var(--vx-primary-bg);
+    border-radius: var(--vx-radius-md6);
+    flex-shrink: 0;
+  }
+  .task-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .task-name {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: var(--vx-text-primary);
+    margin-bottom: 2px;
+  }
+  .task-desc {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .task-reward {
+    color: var(--vx-warning-dark);
+    font-weight: 500;
+  }
+  .task-progress-bar {
+    width: 80px;
+    height: 4px;
+    background: var(--vx-fill-3);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .task-progress-fill {
+    height: 100%;
+    background: var(--vx-primary);
+    border-radius: 2px;
+  }
+  .task-action {
+    flex-shrink: 0;
+  }
+
+  /* ---------- 奖品卡片 ---------- */
+  .prize-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .prize-card {
+    background: #FFFFFF;
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg8);
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .prize-card.hot::before {
+    content: "爆款";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px 8px;
+    background: var(--vx-error);
+    color: #FFFFFF;
+    font-size: 10px;
+    line-height: 16px;
+    border-radius: 0 var(--vx-radius-lg8) 0 var(--vx-radius-md6);
+  }
+  .prize-img {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    background: var(--vx-fill-2);
+    border-radius: var(--vx-radius-md6);
+    margin-bottom: 8px;
+  }
+  .prize-name {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: var(--vx-text-primary);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .prize-cost {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .prize-cost-num {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--vx-warning-dark);
+    font-family: var(--vx-font-number);
+  }
+  .prize-cost-num .coin-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: var(--vx-warning);
+    color: #FFFFFF;
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 4px;
+    font-weight: 600;
+    vertical-align: -2px;
+  }
+  .prize-btn {
+    flex-shrink: 0;
+  }
+
+  /* ---------- 规则 ---------- */
+  .rules-card {
+    background: var(--vx-fill-1);
+    border-radius: var(--vx-radius-lg8);
+    padding: 16px;
+  }
+  .rules-title {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: var(--vx-text-primary);
+    margin-bottom: 8px;
+  }
+  .rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .rules-list li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-secondary);
+    margin-bottom: 4px;
+  }
+  .rules-list li::before {
+    content: "·";
+    position: absolute;
+    left: 4px;
+    top: 0;
+    color: var(--vx-text-caption);
+    font-weight: 600;
+  }
+  .rules-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ---------- 邀请好友 ---------- */
+  .invite-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg8);
+  }
+  .invite-illustration {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    background: var(--vx-help-bg);
+    border-radius: var(--vx-radius-lg8);
+    flex-shrink: 0;
+  }
+  .invite-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .invite-title {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 2px;
+  }
+  .invite-desc {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-secondary);
+  }
+
+  /* ---------- 排名榜 ---------- */
+  .rank-list {
+    background: #FFFFFF;
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg8);
+    overflow: hidden;
+  }
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .rank-item:last-child {
+    border-bottom: none;
+  }
+  .rank-position {
+    width: 20px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--vx-text-caption);
+    font-family: var(--vx-font-number);
+    flex-shrink: 0;
+  }
+  .rank-item.top1 .rank-position { color: #FFA800; }
+  .rank-item.top2 .rank-position { color: var(--vx-line-4); }
+  .rank-item.top3 .rank-position { color: var(--vx-warning-dark); }
+  .rank-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--vx-fill-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--vx-text-secondary);
+    flex-shrink: 0;
+  }
+  .rank-name {
+    flex: 1;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .rank-score {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--vx-primary);
+    font-family: var(--vx-font-number);
+    flex-shrink: 0;
+  }
+  .rank-score .unit {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--vx-text-secondary);
+    margin-left: 2px;
+  }
+
+  /* ---------- 我的能量（底部悬浮） ---------- */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 375px;
+    max-width: 100%;
+    padding: 12px 16px;
+    background: #FFFFFF;
+    border-top: 1px solid var(--vx-line-1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 20;
+  }
+  .my-points {
+    flex: 1;
+  }
+  .my-points-label {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-secondary);
+  }
+  .my-points-num {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--vx-warning-dark);
+    font-family: var(--vx-font-number);
+  }
+  .my-points-num .coin-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: var(--vx-warning);
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 4px;
+    font-weight: 600;
+    vertical-align: -2px;
+  }
+
+  /* ---------- Tabs 样式调整（活动页用） ---------- */
+  .activity-tabs {
+    padding: 0 16px;
+    background: var(--vx-bg-layout);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 顶部导航 -->
+  <div class="nav-bar">
+    <div class="nav-icon-btn">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <div class="nav-title">新春充电狂欢季</div>
+    <div class="nav-icon-btn">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+    <span class="banner-tag">限时活动</span>
+    <div class="banner-title">新春充电狂欢季</div>
+    <div class="banner-subtitle">做任务赚能量币，百万好礼等你来拿</div>
+    <div class="banner-countdown">
+      <span class="banner-countdown-label">距结束还有</span>
+      <div class="countdown-time">
+        <span class="countdown-num">02</span>
+        <span class="countdown-sep">:</span>
+        <span class="countdown-num">14</span>
+        <span class="countdown-sep">:</span>
+        <span class="countdown-num">36</span>
+        <span class="countdown-sep">:</span>
+        <span class="countdown-num">48</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 数据概览 -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">12.8<span class="unit">万+</span></div>
+      <div class="stat-label">参与人数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">586<span class="unit">万</span></div>
+      <div class="stat-label">已发能量币</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3.2<span class="unit">万</span></div>
+      <div class="stat-label">已兑奖品</div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="activity-tabs">
+    <div class="vx-tabs">
+      <span class="vx-tab vx-tab-active">任务中心</span>
+      <span class="vx-tab">奖品兑换</span>
+      <span class="vx-tab">排行榜</span>
+    </div>
+  </div>
+
+  <!-- 每日任务 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title">
+        每日任务
+        <span class="vx-tag vx-tag-primary section-tag">每日 0 点刷新</span>
+      </div>
+      <span class="section-more">全部任务 ›</span>
+    </div>
+    <div class="task-list">
+
+      <div class="task-item">
+        <div class="task-icon">🔋</div>
+        <div class="task-info">
+          <div class="task-name">完成一次充电</div>
+          <div class="task-desc">
+            <span class="task-reward">+50 能量币</span>
+            <span>1/1</span>
+          </div>
+          <div class="task-progress-bar">
+            <div class="task-progress-fill" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="task-action">
+          <button class="vx-btn vx-btn-primary vx-btn-sm">领取</button>
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-icon">📅</div>
+        <div class="task-info">
+          <div class="task-name">每日签到</div>
+          <div class="task-desc">
+            <span class="task-reward">+10 能量币</span>
+            <span>已连续签到 7 天</span>
+          </div>
+          <div class="task-progress-bar">
+            <div class="task-progress-fill" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="task-action">
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" disabled>已完成</button>
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-icon">🚗</div>
+        <div class="task-info">
+          <div class="task-name">启动车辆</div>
+          <div class="task-desc">
+            <span class="task-reward">+5 能量币</span>
+            <span>0/1</span>
+          </div>
+          <div class="task-progress-bar">
+            <div class="task-progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="task-action">
+          <button class="vx-btn vx-btn-outline vx-btn-sm">去完成</button>
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-icon">📖</div>
+        <div class="task-info">
+          <div class="task-name">浏览活动文章</div>
+          <div class="task-desc">
+            <span class="task-reward">+3 能量币</span>
+            <span>2/3</span>
+          </div>
+          <div class="task-progress-bar">
+            <div class="task-progress-fill" style="width: 66%"></div>
+          </div>
+        </div>
+        <div class="task-action">
+          <button class="vx-btn vx-btn-outline vx-btn-sm">去浏览</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 挑战任务 -->
+  <div class="section" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="section-title">
+        挑战任务
+        <span class="vx-tag vx-tag-warning section-tag">高奖励</span>
+      </div>
+    </div>
+    <div class="task-list">
+
+      <div class="task-item">
+        <div class="task-icon">⚡</div>
+        <div class="task-info">
+          <div class="task-name">累计充电 10 次</div>
+          <div class="task-desc">
+            <span class="task-reward">+500 能量币</span>
+            <span>6/10</span>
+          </div>
+          <div class="task-progress-bar">
+            <div class="task-progress-fill" style="width: 60%"></div>
+          </div>
+        </div>
+        <div class="task-action">
+          <button class="vx-btn vx-btn-outline vx-btn-sm">去充电</button>
+        </div>
+      </div>
+
+      <div class="task-item">
+        <div class="task-icon">👥</div>
+        <div class="task-info">
+          <div class="task-name">邀请 3 位好友注册</div>
+          <div class="task-desc">
+            <span class="task-reward">+300 能量币</span>
+            <span>1/3</span>
+          </div>
+          <div class="task-progress-bar">
+            <div class="task-progress-fill" style="width: 33%"></div>
+          </div>
+        </div>
+        <div class="task-action">
+          <button class="vx-btn vx-btn-outline vx-btn-sm">去邀请</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 邀请好友卡片 -->
+  <div class="section" style="padding-top: 0;">
+    <div class="invite-card">
+      <div class="invite-illustration">🎁</div>
+      <div class="invite-info">
+        <div class="invite-title">邀请好友，双方各得 100 能量币</div>
+        <div class="invite-desc">好友完成首次充电，额外再得 200 币</div>
+      </div>
+      <button class="vx-btn vx-btn-primary">立即邀请</button>
+    </div>
+  </div>
+
+  <!-- 热门奖品 -->
+  <div class="section" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="section-title">热门兑换</div>
+      <span class="section-more">更多奖品 ›</span>
+    </div>
+    <div class="prize-grid">
+
+      <div class="prize-card hot">
+        <div class="prize-img">🔌</div>
+        <div class="prize-name">家用充电桩</div>
+        <div class="prize-cost">
+          <div class="prize-cost-num"><span class="coin-icon">¥</span>8800</div>
+          <button class="vx-btn vx-btn-primary vx-btn-sm prize-btn">兑换</button>
+        </div>
+      </div>
+
+      <div class="prize-card">
+        <div class="prize-img">🎫</div>
+        <div class="prize-name">充电券 50 元</div>
+        <div class="prize-cost">
+          <div class="prize-cost-num"><span class="coin-icon">¥</span>500</div>
+          <button class="vx-btn vx-btn-primary vx-btn-sm prize-btn">兑换</button>
+        </div>
+      </div>
+
+      <div class="prize-card">
+        <div class="prize-img">🧴</div>
+        <div class="prize-name">洗车套装</div>
+        <div class="prize-cost">
+          <div class="prize-cost-num"><span class="coin-icon">¥</span>200</div>
+          <button class="vx-btn vx-btn-primary vx-btn-sm prize-btn">兑换</button>
+        </div>
+      </div>
+
+      <div class="prize-card">
+        <div class="prize-img">☕</div>
+        <div class="prize-name">咖啡兑换券</div>
+        <div class="prize-cost">
+          <div class="prize-cost-num"><span class="coin-icon">¥</span>80</div>
+          <button class="vx-btn vx-btn-primary vx-btn-sm prize-btn">兑换</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 活动排行榜 -->
+  <div class="section" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="section-title">
+        能量榜
+        <span class="vx-tag vx-tag-primary section-tag">每日更新</span>
+      </div>
+      <span class="section-more">完整榜单 ›</span>
+    </div>
+    <div class="rank-list">
+
+      <div class="rank-item top1">
+        <div class="rank-position">1</div>
+        <div class="rank-avatar">电</div>
+        <div class="rank-name">电动小王子</div>
+        <div class="rank-score">8,642<span class="unit">币</span></div>
+      </div>
+
+      <div class="rank-item top2">
+        <div class="rank-position">2</div>
+        <div class="rank-avatar">绿</div>
+        <div class="rank-name">绿色出行达人</div>
+        <div class="rank-score">7,210<span class="unit">币</span></div>
+      </div>
+
+      <div class="rank-item top3">
+        <div class="rank-position">3</div>
+        <div class="rank-avatar">新</div>
+        <div class="rank-name">新能源爱好者</div>
+        <div class="rank-score">6,588<span class="unit">币</span></div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-position">4</div>
+        <div class="rank-avatar">充</div>
+        <div class="rank-name">充电小能手</div>
+        <div class="rank-score">5,932<span class="unit">币</span></div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-position">5</div>
+        <div class="rank-avatar">节</div>
+        <div class="rank-name">节能先锋</div>
+        <div class="rank-score">4,876<span class="unit">币</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 活动规则 -->
+  <div class="section" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="section-title">活动规则</div>
+    </div>
+    <div class="rules-card">
+      <div class="rules-title">新春充电狂欢季活动说明</div>
+      <ul class="rules-list">
+        <li>活动时间：2026 年 1 月 20 日 — 2 月 20 日，共 32 天。</li>
+        <li>每日任务于当日 00:00 刷新，未领取奖励将自动作废。</li>
+        <li>能量币可在兑换中心兑换充电券、周边礼品、服务权益等。</li>
+        <li>邀请好友注册并完成首次充电，邀请人和被邀请人均可获得奖励。</li>
+        <li>排行榜每日 0 点更新，月末 Top10 可获得额外实物大奖。</li>
+        <li>如有作弊行为，主办方有权取消活动资格并追回奖励。</li>
+        <li>活动最终解释权归主办方所有。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 底部我的能量币 -->
+  <div class="bottom-bar">
+    <div class="my-points">
+      <div class="my-points-label">我的能量币</div>
+      <div class="my-points-num"><span class="coin-icon">¥</span>1,286</div>
+    </div>
+    <button class="vx-btn vx-btn-outline vx-btn-lg">能量明细</button>
+    <button class="vx-btn vx-btn-primary vx-btn-lg">去兑换</button>
+  </div>
+
+</div>
+</body>
+</html>

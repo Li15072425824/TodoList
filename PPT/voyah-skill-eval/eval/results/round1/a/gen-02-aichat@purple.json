@@ -1,0 +1,26 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-02-aichat@purple",
+  "kind": "gen",
+  "theme": "purple",
+  "product": "eval/products/round1/a/gen-02-aichat@purple",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.40312980000000004,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "已生成「岚图智能助手」AI 对话页 demo，保存在当前目录。\n\n**文件清单**\n- `index.html` — 单文件 demo，内联布局样式\n- `tokens.css` — Voyah 设计规范 token（从 skill 基线复制）\n\n**页面包含**\n- 左侧会话列表（7 条历史会话，含选中态 `vx-conversation-item-active`、hover 态）\n- 欢迎区（居中大图标 + 标题 + 描述，`vx-welcome`）\n- 提示集（4 个推荐问题卡片，2×2 网格，`vx-prompt-item`，hover 主色描边）\n- 对话区：AI 灰底气泡（左对齐）/ 用户主色气泡（右对齐），均带时间戳\n- 思维链（3 节点：完成 ✓ / 进行中 / 失败 ✕，`vx-thought-chain`）\n- 底部输入区（Sender 胶囊样式，附件+语音+输入框+发送按钮，发送按钮默认禁用，输入内容后启用）\n\n**主题**\n- `<html data-vx-theme=\"purple\">` 默认紫色主题\n- 左上角 6 色圆点可切换主题（蓝/黄/紫/翠青/红/碧青），切换后主色、按钮、用户气泡等实时变化\n\n直接在浏览器中打开 `index.html` 即可预览。",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-02-aichat@purple/index.html",
+    "alignRate": 1,
+    "checks": 25,
+    "passed": 25,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 0.912
+  },
+  "at": "2026-11-09T07:32:54.103Z"
+}

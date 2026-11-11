@@ -1,0 +1,287 @@
+{
+  "product": "eval/products/round1/a/adv-01-red/index.html",
+  "alignRate": 0.64,
+  "checks": 25,
+  "passed": 16,
+  "p0": 4,
+  "p1": 5,
+  "tokenRefRate": 0,
+  "expectedTheme": null,
+  "allThemes": false,
+  "htmlTheme": null,
+  "themeAttrs": [],
+  "staticIssues": {
+    "hex": [
+      "#FF0000",
+      "#1A1A1A",
+      "#CCCCCC",
+      "#2A2A2A",
+      "#E8E8E8",
+      "#FF8C00",
+      "#52C41A",
+      "#1890FF",
+      "#F0F0F0",
+      "#FF6666",
+      "#F6FFED",
+      "#B7EB8F",
+      "#FFFBE6",
+      "#FAAD14",
+      "#FFE58F",
+      "#FFF1F0",
+      "#FFA39E",
+      "#E60000",
+      "#FFECEC"
+    ],
+    "forbidden": [],
+    "gradient": [
+      "gradient"
+    ],
+    "weight": [
+      "bold"
+    ],
+    "black": [],
+    "spacing": [
+      "gap: 10px",
+      "gap: 10px",
+      "padding: 10px",
+      "padding: 30px",
+      "padding: 10px"
+    ],
+    "border": [],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #FF0000 #1A1A1A #CCCCCC #2A2A2A #E8E8E8 #FF8C00 #52C41A #1890FF #F0F0F0 #FF6666 #F6FFED #B7EB8F"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "detail": "非法字重: bold"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "detail": "非 4n 间距: gap: 10px; padding: 10px; padding: 30px"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "3/3 按钮高度非 24/32/40: ⌕=36, 🔔=36, ?=36"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "3 按钮 padding 非 2/6/8·8/16: ⌕=[0,0,0,0], 🔔=[0,0,0,0], ?=[0,0,0,0]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "3 按钮字号/行高非 12·20/16·24: ⌕=16/NaN, 🔔=16/NaN, ?=16/NaN"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "3 按钮圆角非 4/6: ⌕=50, 🔔=50, ?=50"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "detail": "主题声明: html=无, 其他=0 个"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #FF0000 #1A1A1A #CCCCCC #2A2A2A #E8E8E8 #FF8C00 #52C41A #1890FF #F0F0F0 #FF6666 #F6FFED #B7EB8F"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": false,
+      "detail": "非法字重: bold"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非 4n 间距: gap: 10px; padding: 10px; padding: 30px"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "3/3 按钮高度非 24/32/40: ⌕=36, 🔔=36, ?=36"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "3 按钮 padding 非 2/6/8·8/16: ⌕=[0,0,0,0], 🔔=[0,0,0,0], ?=[0,0,0,0]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "3 按钮字号/行高非 12·20/16·24: ⌕=16/NaN, 🔔=16/NaN, ?=16/NaN"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "3 按钮圆角非 4/6: ⌕=50, 🔔=50, ?=50"
+    },
+    {
+      "id": "runtime.btn.weight",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮字重合规"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮色值均在基线内"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "图标按钮 gap 合规"
+    },
+    {
+      "id": "sim.primary",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无主按钮（四态不适用）"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "pass": false,
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = -apple-system, \"system-ui\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif"
+    }
+  ],
+  "costNote": null
+}

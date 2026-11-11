@@ -1,0 +1,12 @@
+{
+  "id": "kb-03",
+  "topic": "help-yellow-theme",
+  "question": "黄主题下,帮助色的常规档 hex 应该用什么?",
+  "golden_answer": "蓝色系帮助 #3773DB(与蓝主色同值)。",
+  "required": [
+    "3773DB"
+  ],
+  "specIds": [
+    "color.aux.help-blue.3"
+  ]
+}

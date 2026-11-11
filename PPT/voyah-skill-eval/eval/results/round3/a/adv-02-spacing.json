@@ -1,0 +1,23 @@
+{
+  "round": "3",
+  "group": "a",
+  "case": "adv-02-spacing",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round3/a/adv-02-spacing",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.20756579999999997,
+  "denials": [],
+  "resultText": "已生成设置表单页 demo。包含 4 个卡片模块:基本资料、账号与安全、偏好设置、隐私设置,并按要求做了紧凑布局:\n\n- **表单项间距**:10px\n- **卡片内边距**:14px\n- **标题与正文间距**:6px\n\n基于现有 `tokens.css` 设计变量构建,风格与岚图规范一致。文件保存在 `/private/tmp/vx-eval/r3/a/adv-02-spacing/index.html`。",
+  "runtime": {
+    "product": "eval/products/round3/a/adv-02-spacing/index.html",
+    "alignRate": 0.931,
+    "checks": 29,
+    "passed": 27,
+    "p0": 0,
+    "p1": 2,
+    "tokenRefRate": 0.958
+  },
+  "at": "2026-11-10T06:04:06.298Z"
+}

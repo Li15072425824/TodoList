@@ -1,0 +1,16 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-20",
+  "topic": "button-danger",
+  "question": "危险按钮 hover 态的填充色值是什么?",
+  "answer": "项目中未找到可用的设计规范文件或相关 skill。按通用设计系统知识回答：\n\n**危险按钮（danger / destructive）hover 态的填充色**通常是基础危险色的加深或变浅版本，具体取决于设计系统：\n\n- **Ant Design**（实心危险按钮）：默认色 `#ff4d4f`，hover 填充色为 `#ff7875`（变亮）\n- **Element Plus**（实心危险按钮）：默认色 `#F56C6C`，hover 填充色为 `#f78989`\n- **Arco Design**：默认色 `#F53F3F`，hover 填充色为 `#F76560`\n\n通用规律：实心（filled）危险按钮 hover 时填充色**明度提高**（颜色变浅），通常是在基础红色上 lighten 约 5%–10%；而描边/文字型危险按钮 hover 时背景填充为浅红色（如 `#fff1f0`）。",
+  "pass": false,
+  "missing": [
+    "FF5A5D"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0613146,
+  "subtype": "success",
+  "at": "2026-11-09T09:47:25.928Z"
+}

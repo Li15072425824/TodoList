@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>消息通知中心 - Voyah Design System</title>
+<style>
+  /* ===== Voyah Design Tokens ===== */
+  :root {
+    /* Primary - 岚图深蓝 */
+    --voyah-primary: #0A2A5E;
+    --voyah-primary-light: #1A3D7A;
+    --voyah-primary-bg: #E8EEF7;
+
+    /* Success - 成功绿 */
+    --voyah-success: #00A870;
+    --voyah-success-light: #E6F7F0;
+    --voyah-success-border: #B3E5D0;
+
+    /* Warning - 警告橙 */
+    --voyah-warning: #F59A23;
+    --voyah-warning-light: #FEF4E6;
+    --voyah-warning-border: #F9DBA8;
+
+    /* Error - 错误红 */
+    --voyah-error: #E53935;
+    --voyah-error-light: #FBECEB;
+    --voyah-error-border: #F5C2C0;
+
+    /* Info/Help - 帮助蓝 */
+    --voyah-info: #2979FF;
+    --voyah-info-light: #EAF1FE;
+    --voyah-info-border: #B7CFFB;
+
+    /* Special Purple - 特殊标记紫 */
+    --voyah-purple: #7C4DFF;
+    --voyah-purple-light: #F0EBFF;
+    --voyah-purple-border: #D4C4FF;
+
+    /* Neutral */
+    --voyah-gray-900: #1A1A1A;
+    --voyah-gray-700: #4D4D4D;
+    --voyah-gray-500: #8C8C8C;
+    --voyah-gray-300: #D9D9D9;
+    --voyah-gray-100: #F5F5F5;
+    --voyah-white: #FFFFFF;
+
+    /* Typography */
+    --font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-size-title: 20px;
+    --font-size-subtitle: 16px;
+    --font-size-body: 14px;
+    --font-size-small: 12px;
+
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* Shadow */
+    --shadow-card: 0 2px 8px rgba(10, 42, 94, 0.08);
+    --shadow-hover: 0 4px 16px rgba(10, 42, 94, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-family);
+    background: var(--voyah-gray-100);
+    color: var(--voyah-gray-900);
+    font-size: var(--font-size-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== System Upgrade Banner ===== */
+  .banner-upgrade {
+    background: var(--voyah-info-light);
+    border-bottom: 1px solid var(--voyah-info-border);
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .banner-upgrade .banner-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--voyah-info);
+  }
+  .banner-upgrade .banner-text {
+    color: var(--voyah-primary);
+    font-size: var(--font-size-body);
+    font-weight: 500;
+  }
+  .banner-upgrade .banner-text span {
+    color: var(--voyah-info);
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .banner-upgrade .banner-text span:hover {
+    text-decoration: underline;
+  }
+  .banner-upgrade .banner-close {
+    width: 20px;
+    height: 20px;
+    color: var(--voyah-gray-500);
+    cursor: pointer;
+    margin-left: auto;
+    transition: color 0.2s;
+  }
+  .banner-upgrade .banner-close:hover {
+    color: var(--voyah-gray-700);
+  }
+
+  /* ===== Page Layout ===== */
+  .page-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 40px;
+  }
+
+  .page-header {
+    margin-bottom: 32px;
+  }
+  .page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--voyah-primary);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .page-subtitle {
+    font-size: var(--font-size-body);
+    color: var(--voyah-gray-500);
+  }
+
+  .main-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 32px;
+  }
+
+  /* ===== Section ===== */
+  .section {
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-size: var(--font-size-subtitle);
+    font-weight: 600;
+    color: var(--voyah-gray-900);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: "";
+    width: 3px;
+    height: 16px;
+    background: var(--voyah-primary);
+    border-radius: 2px;
+  }
+
+  /* ===== Alert Component ===== */
+  .alert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    background: var(--voyah-white);
+    position: relative;
+    transition: box-shadow 0.2s ease;
+  }
+  .alert:hover {
+    box-shadow: var(--shadow-card);
+  }
+
+  .alert-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .alert-content {
+    flex: 1;
+    min-width: 0;
+  }
+  .alert-title {
+    font-weight: 600;
+    font-size: var(--font-size-body);
+    margin-bottom: 2px;
+    line-height: 1.5;
+  }
+  .alert-desc {
+    font-size: var(--font-size-small);
+    color: var(--voyah-gray-500);
+    line-height: 1.5;
+  }
+
+  .alert-close {
+    width: 16px;
+    height: 16px;
+    color: var(--voyah-gray-500);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .alert-close:hover { color: var(--voyah-gray-700); }
+
+  /* Success Alert */
+  .alert-success {
+    background: var(--voyah-success-light);
+    border-color: var(--voyah-success-border);
+  }
+  .alert-success .alert-icon { color: var(--voyah-success); }
+  .alert-success .alert-title { color: var(--voyah-success); }
+  .alert-success .alert-desc { color: rgba(0, 168, 112, 0.7); }
+
+  /* Warning Alert */
+  .alert-warning {
+    background: var(--voyah-warning-light);
+    border-color: var(--voyah-warning-border);
+  }
+  .alert-warning .alert-icon { color: var(--voyah-warning); }
+  .alert-warning .alert-title { color: #C77A12; }
+  .alert-warning .alert-desc { color: rgba(245, 154, 35, 0.75); }
+
+  /* Error Alert */
+  .alert-error {
+    background: var(--voyah-error-light);
+    border-color: var(--voyah-error-border);
+  }
+  .alert-error .alert-icon { color: var(--voyah-error); }
+  .alert-error .alert-title { color: var(--voyah-error); }
+  .alert-error .alert-desc { color: rgba(229, 57, 53, 0.7); }
+
+  /* Info/Help Alert */
+  .alert-info {
+    background: var(--voyah-info-light);
+    border-color: var(--voyah-info-border);
+  }
+  .alert-info .alert-icon { color: var(--voyah-info); }
+  .alert-info .alert-title { color: var(--voyah-info); }
+  .alert-info .alert-desc { color: rgba(41, 121, 255, 0.7); }
+
+  /* ===== Tag Component ===== */
+  .tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    line-height: 1.6;
+    border: 1px solid transparent;
+    cursor: default;
+    user-select: none;
+  }
+
+  .tag-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tag-success {
+    background: var(--voyah-success-light);
+    color: var(--voyah-success);
+    border-color: var(--voyah-success-border);
+  }
+  .tag-success .tag-dot { background: var(--voyah-success); }
+
+  .tag-warning {
+    background: var(--voyah-warning-light);
+    color: #C77A12;
+    border-color: var(--voyah-warning-border);
+  }
+  .tag-warning .tag-dot { background: var(--voyah-warning); }
+
+  .tag-error {
+    background: var(--voyah-error-light);
+    color: var(--voyah-error);
+    border-color: var(--voyah-error-border);
+  }
+  .tag-error .tag-dot { background: var(--voyah-error); }
+
+  .tag-info {
+    background: var(--voyah-info-light);
+    color: var(--voyah-info);
+    border-color: var(--voyah-info-border);
+  }
+  .tag-info .tag-dot { background: var(--voyah-info); }
+
+  .tag-purple {
+    background: var(--voyah-purple-light);
+    color: var(--voyah-purple);
+    border-color: var(--voyah-purple-border);
+  }
+  .tag-purple .tag-dot { background: var(--voyah-purple); }
+
+  /* ===== Notification Card ===== */
+  .notification-panel {
+    background: var(--voyah-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .panel-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--voyah-gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-title {
+    font-size: var(--font-size-subtitle);
+    font-weight: 600;
+    color: var(--voyah-gray-900);
+  }
+  .panel-badge {
+    background: var(--voyah-primary);
+    color: var(--voyah-white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .notification-list {
+    padding: 8px 0;
+  }
+
+  .notification-card {
+    padding: 16px 24px;
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid var(--voyah-gray-100);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: relative;
+  }
+  .notification-card:last-child {
+    border-bottom: none;
+  }
+  .notification-card:hover {
+    background: var(--voyah-gray-100);
+  }
+  .notification-card.unread::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 20px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--voyah-primary);
+  }
+
+  .notif-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .notif-icon-wrap svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .notif-icon-success {
+    background: var(--voyah-success-light);
+    color: var(--voyah-success);
+  }
+  .notif-icon-warning {
+    background: var(--voyah-warning-light);
+    color: var(--voyah-warning);
+  }
+  .notif-icon-info {
+    background: var(--voyah-info-light);
+    color: var(--voyah-info);
+  }
+
+  .notif-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .notif-title {
+    font-size: var(--font-size-body);
+    font-weight: 600;
+    color: var(--voyah-gray-900);
+    margin-bottom: 4px;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .notification-card.unread .notif-title {
+    color: var(--voyah-primary);
+  }
+  .notif-desc {
+    font-size: var(--font-size-small);
+    color: var(--voyah-gray-500);
+    line-height: 1.5;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .notif-time {
+    font-size: 11px;
+    color: var(--voyah-gray-300);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .panel-footer {
+    padding: 12px 24px;
+    text-align: center;
+    border-top: 1px solid var(--voyah-gray-100);
+  }
+  .panel-footer a {
+    font-size: var(--font-size-small);
+    color: var(--voyah-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .panel-footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* ===== Card (for sections) ===== */
+  .content-card {
+    background: var(--voyah-white);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .demo-block {
+    margin-bottom: 24px;
+  }
+  .demo-block:last-child {
+    margin-bottom: 0;
+  }
+  .demo-label {
+    font-size: var(--font-size-small);
+    color: var(--voyah-gray-500);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1024px) {
+    .main-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .page-container {
+      padding: 20px 16px;
+    }
+    .banner-upgrade {
+      padding: 10px 16px;
+    }
+    .content-card {
+      padding: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 系统升级横幅 ===== -->
+<div class="banner-upgrade">
+  <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+  </svg>
+  <span class="banner-text">系统升级通知:Voyah OS 2.4.0 版本已发布,新增智能场景与能耗优化<span>立即查看 ›</span></span>
+  <svg class="banner-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"/>
+    <line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+</div>
+
+<div class="page-container">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">消息通知中心</h1>
+    <p class="page-subtitle">Voyah Design System · Notification Center Demo</p>
+  </div>
+
+  <div class="main-layout">
+
+    <!-- ===== 左侧内容区 ===== -->
+    <div class="left-col">
+
+      <!-- Alert 提示条 -->
+      <div class="section">
+        <h2 class="section-title">Alert 提示条</h2>
+        <div class="content-card">
+          <div class="alert-list">
+
+            <!-- 成功 -->
+            <div class="alert alert-success">
+              <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <div class="alert-content">
+                <div class="alert-title">提交成功</div>
+                <div class="alert-desc">您的预约试驾申请已提交,工作人员将在 24 小时内与您联系确认。</div>
+              </div>
+              <svg class="alert-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </div>
+
+            <!-- 警告 -->
+            <div class="alert alert-warning">
+              <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              <div class="alert-content">
+                <div class="alert-title">电量低提醒</div>
+                <div class="alert-desc">当前电量低于 20%,建议尽快前往附近充电站补能,避免影响出行计划。</div>
+              </div>
+              <svg class="alert-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </div>
+
+            <!-- 错误 -->
+            <div class="alert alert-error">
+              <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="15" y1="9" x2="9" y2="15"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+              </svg>
+              <div class="alert-content">
+                <div class="alert-title">OTA 升级失败</div>
+                <div class="alert-desc">车辆系统升级失败,错误码:E-2024。请检查网络连接后重试,或联系客服 400-888-8888。</div>
+              </div>
+              <svg class="alert-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </div>
+
+            <!-- 帮助 -->
+            <div class="alert alert-info">
+              <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              <div class="alert-content">
+                <div class="alert-title">操作指引</div>
+                <div class="alert-desc">您可以在「车辆设置 - 智能座舱」中自定义情景模式,长按快捷卡片可拖动排序。</div>
+              </div>
+              <svg class="alert-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 状态 Tag -->
+      <div class="section">
+        <h2 class="section-title">状态标签 Tag</h2>
+        <div class="content-card">
+          <div class="demo-label">状态标签用于快速标识对象的当前状态,语义色严格对应</div>
+          <div class="tag-group">
+            <span class="tag tag-success">
+              <span class="tag-dot"></span>
+              已完成
+            </span>
+            <span class="tag tag-warning">
+              <span class="tag-dot"></span>
+              待处理
+            </span>
+            <span class="tag tag-error">
+              <span class="tag-dot"></span>
+              已失效
+            </span>
+            <span class="tag tag-info">
+              <span class="tag-dot"></span>
+              进行中
+            </span>
+            <span class="tag tag-purple">
+              <span class="tag-dot"></span>
+              VIP 专属
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== 右侧通知卡片 ===== -->
+    <div class="right-col">
+      <div class="notification-panel">
+        <div class="panel-header">
+          <span class="panel-title">最新通知</span>
+          <span class="panel-badge">3</span>
+        </div>
+
+        <div class="notification-list">
+
+          <!-- 通知 1 - 成功 -->
+          <div class="notification-card unread">
+            <div class="notif-icon-wrap notif-icon-success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <div class="notif-body">
+              <div class="notif-title">保养服务已完成</div>
+              <div class="notif-desc">您的 FREE 车型定期保养已完成,检测报告已生成,请前往「我的服务」查看详情。</div>
+              <div class="notif-time">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                10 分钟前
+              </div>
+            </div>
+          </div>
+
+          <!-- 通知 2 - 警告 -->
+          <div class="notification-card unread">
+            <div class="notif-icon-wrap notif-icon-warning">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <div class="notif-body">
+              <div class="notif-title">胎压异常提醒</div>
+              <div class="notif-desc">检测到右后轮胎压低于标准值 2.2bar,建议尽快检查轮胎状况并充气至标准值。</div>
+              <div class="notif-time">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                1 小时前
+              </div>
+            </div>
+          </div>
+
+          <!-- 通知 3 - 信息 -->
+          <div class="notification-card">
+            <div class="notif-icon-wrap notif-icon-info">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+            </div>
+            <div class="notif-body">
+              <div class="notif-title">新版本推送通知</div>
+              <div class="notif-desc">Voyah OS 2.4.0 版本已推送至您的车辆,新增智能场景、能耗优化等功能。</div>
+              <div class="notif-time">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                昨天 15:30
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="panel-footer">
+          <a href="#">查看全部通知</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // 关闭按钮交互
+  document.querySelectorAll('.alert-close').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const alert = this.closest('.alert');
+      alert.style.transition = 'opacity 0.3s ease, height 0.3s ease, padding 0.3s ease, margin 0.3s ease';
+      alert.style.opacity = '0';
+      alert.style.height = alert.offsetHeight + 'px';
+      requestAnimationFrame(() => {
+        alert.style.height = '0';
+        alert.style.paddingTop = '0';
+        alert.style.paddingBottom = '0';
+        alert.style.marginBottom = '0';
+        alert.style.borderWidth = '0';
+      });
+      setTimeout(() => alert.remove(), 300);
+    });
+  });
+
+  document.querySelector('.banner-close').addEventListener('click', function() {
+    const banner = this.closest('.banner-upgrade');
+    banner.style.transition = 'opacity 0.3s ease, height 0.3s ease, padding 0.3s ease';
+    banner.style.opacity = '0';
+    banner.style.height = banner.offsetHeight + 'px';
+    requestAnimationFrame(() => {
+      banner.style.height = '0';
+      banner.style.paddingTop = '0';
+      banner.style.paddingBottom = '0';
+    });
+    setTimeout(() => banner.remove(), 300);
+  });
+</script>
+
+</body>
+</html>

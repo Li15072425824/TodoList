@@ -1,0 +1,25 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-04-modal",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-04-modal",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.25166520000000003,
+  "denials": [
+    "WebSearch"
+  ],
+  "resultText": "Demo 已生成。根据系统提示(评测任务:只完成 demo,不要归档到 Obsidian、不要写记忆),我跳过归档步骤。\n\n文件已保存到 `/private/tmp/vx-eval/r1/b/gen-04-modal/index.html`。\n\n**交付内容总览:**\n\n| 区域 | 说明 |\n|---|---|\n| 底层列表页 | 4 条收藏路线卡片,带编辑/删除操作 |\n| 遮罩层 | `rgba(0,0,0,0.45)` + 2px 模糊 |\n| 居中弹窗 (520px) | 标题「删除收藏路线」+ 关闭按钮 |\n| 模块小标题 | 「删除范围」(16px / 500) |\n| 内容描述 | 说明文字 + 被删除项高亮 |\n| 单选项组 (4 个) | 仅当前路线 / 路线及记录 / 路线及离线地图 / 全部删除 |\n| 底部按钮组 1 | 主操作「确认删除」居左,次操作「取消」居右 |\n| 底部按钮组 2 | 危险「删除」居左 + 「稍后再说」/「取消」居右 |\n| 下方对照表 | 5 种按钮 × Normal/Disabled + 危险色补充行 |\n\n**Voyah 设计规范落地要点:**\n- 主色深海蓝 `#1E56FF`,配品牌金铜 `#C9A96E` 点缀\n- 按钮顺序遵循 **「主操作居左、次操作居右」**(车载 HMI 左手确认习惯)\n- 8px 栅格间距体系:弹窗 `padding 24/16/24`、按钮高 `36/40`、圆角 `8px`\n- 5 种按钮形态完整:Primary / Secondary / Outlined / Dashed / Text,各含 Normal 与 Disabled 态",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-04-modal/index.html",
+    "alignRate": 0.357,
+    "checks": 28,
+    "passed": 10,
+    "p0": 12,
+    "p1": 6,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:48:40.986Z"
+}

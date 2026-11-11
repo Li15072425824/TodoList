@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>岚图智能助手</title>
+  <link rel="stylesheet" href="./tokens.css" />
+  <style>
+    html, body { height: 100%; }
+    .app {
+      display: flex;
+      height: 100vh;
+      background: var(--vx-bg-layout);
+    }
+
+    /* ---------- Sidebar ---------- */
+    .sidebar {
+      width: 260px;
+      background: var(--vx-bg-base);
+      border-right: 1px solid var(--vx-line-1);
+      padding: var(--vx-space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--vx-space-md);
+      flex-shrink: 0;
+    }
+    .sidebar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--vx-space-xs);
+      font-size: var(--vx-font-size-lg);
+      font-weight: var(--vx-font-weight-bold);
+      color: var(--vx-text-title);
+    }
+    .sidebar-logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--vx-radius-md);
+      background: var(--vx-primary);
+      color: var(--vx-text-inverse);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--vx-font-size-sm);
+      font-weight: var(--vx-font-weight-bold);
+    }
+    .sidebar-section-title {
+      font-size: var(--vx-font-size-xs);
+      color: var(--vx-text-caption);
+      padding: 0 var(--vx-space-sm);
+      margin-bottom: var(--vx-space-1);
+    }
+    .sidebar-new {
+      width: 100%;
+      justify-content: center;
+    }
+    .sidebar-conversations { flex: 1; overflow-y: auto; }
+
+    /* ---------- Main ---------- */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .topbar {
+      height: 56px;
+      padding: 0 var(--vx-space-xl);
+      background: var(--vx-bg-base);
+      border-bottom: 1px solid var(--vx-line-1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-title {
+      font-size: var(--vx-font-size-lg);
+      font-weight: var(--vx-font-weight-bold);
+      color: var(--vx-text-title);
+    }
+    .topbar-actions { display: flex; align-items: center; gap: var(--vx-space-xs); }
+
+    .chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--vx-space-xl) var(--vx-space-md);
+    }
+    .chat-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--vx-space-lg);
+    }
+
+    /* Welcome block */
+    .chat-welcome {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--vx-space-md);
+      padding: var(--vx-space-xxl) 0;
+      text-align: center;
+    }
+    .chat-welcome-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: var(--vx-primary-bg);
+      color: var(--vx-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+    .chat-welcome-title {
+      font-size: var(--vx-font-size-xxl);
+      font-weight: var(--vx-font-weight-bold);
+      color: var(--vx-text-title);
+      line-height: 32px;
+    }
+    .chat-welcome-desc {
+      font-size: var(--vx-font-size-md);
+      color: var(--vx-text-secondary);
+      line-height: var(--vx-line-height-body);
+      max-width: 520px;
+    }
+
+    .chat-prompts-title {
+      font-size: var(--vx-font-size-sm);
+      color: var(--vx-text-secondary);
+      padding: 0 var(--vx-space-xs);
+    }
+    .chat-prompts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--vx-space-sm);
+    }
+    .chat-prompts .vx-prompt-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--vx-space-1);
+      padding: var(--vx-space-sm) var(--vx-space-4);
+      text-align: left;
+    }
+    .chat-prompts .vx-prompt-item .vx-prompt-icon { font-size: 20px; }
+    .chat-prompts .vx-prompt-item .prompt-title {
+      font-weight: var(--vx-font-weight-medium);
+      color: var(--vx-text-primary);
+      font-size: var(--vx-font-size-md);
+    }
+    .chat-prompts .vx-prompt-item .prompt-desc {
+      font-size: var(--vx-font-size-xs);
+      color: var(--vx-text-secondary);
+      line-height: var(--vx-line-height-caption);
+    }
+
+    /* Bubble timestamp */
+    .vx-bubble-time {
+      font-size: var(--vx-font-size-xs);
+      color: var(--vx-text-caption);
+      line-height: var(--vx-line-height-caption);
+    }
+    .vx-bubble-footer-row {
+      display: flex;
+      align-items: center;
+      gap: var(--vx-space-sm);
+      margin-top: var(--vx-space-1);
+    }
+    .vx-bubble-actions {
+      display: inline-flex;
+      gap: var(--vx-space-xs);
+      color: var(--vx-text-secondary);
+      font-size: var(--vx-font-size-xs);
+    }
+    .vx-bubble-actions span { cursor: pointer; }
+    .vx-bubble-actions span:hover { color: var(--vx-primary); }
+
+    /* Thought chain inside bubble */
+    .vx-thought-chain {
+      margin-top: var(--vx-space-xs);
+      width: 100%;
+    }
+    .vx-thought-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: var(--vx-font-size-xs);
+      color: var(--vx-text-secondary);
+      cursor: pointer;
+      margin-bottom: var(--vx-space-1);
+      user-select: none;
+    }
+    .vx-thought-toggle:hover { color: var(--vx-primary); }
+    .vx-thought-toggle .arrow {
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+    .vx-thought-toggle.open .arrow { transform: rotate(90deg); }
+
+    /* Sender footer */
+    .footer {
+      padding: var(--vx-space-md) var(--vx-space-md) var(--vx-space-xl);
+      background: var(--vx-bg-layout);
+    }
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--vx-space-1);
+    }
+    .footer-tip {
+      text-align: center;
+      font-size: var(--vx-font-size-xs);
+      color: var(--vx-text-caption);
+    }
+    .footer-tip a { color: var(--vx-text-caption); text-decoration: underline; }
+
+    /* Scrollbar polish */
+    .chat::-webkit-scrollbar,
+    .sidebar-conversations::-webkit-scrollbar { width: 6px; }
+    .chat::-webkit-scrollbar-thumb,
+    .sidebar-conversations::-webkit-scrollbar-thumb {
+      background: var(--vx-line-2);
+      border-radius: 3px;
+    }
+
+    /* Small icon button for sidebar / topbar */
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--vx-radius-md);
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--vx-text-secondary);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .icon-btn:hover {
+      background: var(--vx-fill-3);
+      color: var(--vx-text-primary);
+    }
+    .icon-btn svg { width: 16px; height: 16px; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ============ Sidebar ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-logo">
+        <span class="sidebar-logo-icon">岚</span>
+        <span>岚图助手</span>
+      </div>
+      <button class="icon-btn" title="设置">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+
+    <button class="vx-btn vx-btn-primary sidebar-new">
+      <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="background:transparent"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      新建会话
+    </button>
+
+    <div>
+      <div class="sidebar-section-title">最近会话</div>
+      <div class="vx-conversations sidebar-conversations">
+        <div class="vx-conversation-item vx-conversation-item-active">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span style="overflow:hidden;text-overflow:ellipsis">岚图知音车型功能介绍</span>
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span style="overflow:hidden;text-overflow:ellipsis">本月销量数据分析</span>
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span style="overflow:hidden;text-overflow:ellipsis">用户反馈周报生成</span>
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span style="overflow:hidden;text-overflow:ellipsis">新车发布会策划方案</span>
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span style="overflow:hidden;text-overflow:ellipsis">充电桩布局建议</span>
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span style="overflow:hidden;text-overflow:ellipsis">竞品车型对比分析</span>
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span style="overflow:hidden;text-overflow:ellipsis">售后服务流程优化</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ Main ============ -->
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-title">岚图知音车型功能介绍</div>
+      <div class="topbar-actions">
+        <button class="icon-btn" title="分享">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+        <button class="icon-btn" title="更多">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat">
+      <div class="chat-inner">
+
+        <!-- Welcome -->
+        <div class="chat-welcome">
+          <div class="chat-welcome-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+            </svg>
+          </div>
+          <div class="chat-welcome-title">你好，我是岚图智能助手</div>
+          <div class="chat-welcome-desc">
+            我可以帮你解答岚图车型相关问题、生成分析报告、整理会议纪要等。<br/>
+            试试下面的推荐问题，或直接输入你想了解的内容。
+          </div>
+        </div>
+
+        <!-- Prompts -->
+        <div class="chat-prompts-title">推荐问题</div>
+        <div class="chat-prompts">
+          <div class="vx-prompt-item">
+            <span class="vx-prompt-icon">🚗</span>
+            <div>
+              <div class="prompt-title">岚图知音核心功能</div>
+              <div class="prompt-desc">介绍岚图知音的主要配置与亮点</div>
+            </div>
+          </div>
+          <div class="vx-prompt-item">
+            <span class="vx-prompt-icon">📊</span>
+            <div>
+              <div class="prompt-title">本月销量分析</div>
+              <div class="prompt-desc">生成岚图全系车型销量数据报告</div>
+            </div>
+          </div>
+          <div class="vx-prompt-item">
+            <span class="vx-prompt-icon">📝</span>
+            <div>
+              <div class="prompt-title">周报生成</div>
+              <div class="prompt-desc">基于本周工作内容自动整理周报</div>
+            </div>
+          </div>
+          <div class="vx-prompt-item">
+            <span class="vx-prompt-icon">💡</span>
+            <div>
+              <div class="prompt-title">活动策划</div>
+              <div class="prompt-desc">协助策划新品发布会营销方案</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Bubble 1 -->
+        <div class="vx-bubble">
+          <span class="vx-avatar vx-avatar-primary vx-bubble-avatar">岚</span>
+          <div class="vx-bubble-main">
+            <div class="vx-bubble-header">岚图智能助手</div>
+            <div class="vx-bubble-content vx-bubble-filled">
+              你好！我是岚图智能助手，很高兴为你服务。<br/>
+              请问有什么关于岚图车型或业务方面的问题想了解吗？
+            </div>
+            <div class="vx-bubble-footer-row">
+              <span class="vx-bubble-time">今天 10:24</span>
+              <span class="vx-bubble-actions">
+                <span>复制</span>
+                <span>重新生成</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Bubble -->
+        <div class="vx-bubble vx-bubble-user">
+          <span class="vx-avatar">我</span>
+          <div class="vx-bubble-main">
+            <div class="vx-bubble-content">请介绍一下岚图知音的核心功能和亮点</div>
+            <div class="vx-bubble-footer-row">
+              <span class="vx-bubble-time">今天 10:25</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Bubble 2 with ThoughtChain -->
+        <div class="vx-bubble">
+          <span class="vx-avatar vx-avatar-primary vx-bubble-avatar">岚</span>
+          <div class="vx-bubble-main">
+            <div class="vx-bubble-header">岚图智能助手</div>
+
+            <div class="vx-bubble-content vx-bubble-filled" style="min-width: 420px;">
+              <div class="vx-thought-toggle open" onclick="this.classList.toggle('open'); const c=this.parentElement.querySelector('.vx-thought-chain'); c.style.display=c.style.display==='none'?'flex':'none';">
+                <span class="arrow">▶</span>
+                <span>正在思考（共 3 步）</span>
+              </div>
+              <div class="vx-thought-chain">
+                <div class="vx-thought-item">
+                  <span class="vx-thought-status vx-thought-status-done"></span>
+                  <span>解析用户意图：车型功能介绍</span>
+                </div>
+                <div class="vx-thought-item">
+                  <span class="vx-thought-status vx-thought-status-running"></span>
+                  <span>检索岚图知音产品知识库…</span>
+                </div>
+                <div class="vx-thought-item">
+                  <span class="vx-thought-status vx-thought-status-error"></span>
+                  <span>调用实时销量接口失败，将使用离线数据</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vx-bubble-content vx-bubble-filled">
+              <strong style="color: var(--vx-text-title)">岚图知音</strong>是岚图品牌旗下的中型纯电 SUV，核心亮点包括：<br/><br/>
+              <strong>1. 800V 高压快充平台</strong><br/>
+              支持最高 240kW 直流快充，10 分钟补能可行驶 200+ 公里，大幅缓解里程焦虑。<br/><br/>
+              <strong>2. 华为 ADS 高阶智驾</strong><br/>
+              搭载华为乾崑智驾方案，支持高速 NCA、城区 NCA 及自动泊车，感知与决策能力领先同级。<br/><br/>
+              <strong>3. 豪华舒享座舱</strong><br/>
+              全系标配 Nappa 真皮座椅、后排独立空调、丹拿音响，带来移动会客厅般的乘坐体验。<br/><br/>
+              <strong>4. 安全可靠</strong><br/>
+              自研琥珀电池系统通过 200+ 项严苛测试，车身采用 70% 高强度钢，安全标准远超国标。
+            </div>
+            <div class="vx-bubble-footer-row">
+              <span class="vx-bubble-time">今天 10:26</span>
+              <span class="vx-bubble-actions">
+                <span>复制</span>
+                <span>重新生成</span>
+                <span>点赞</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sender -->
+    <div class="footer">
+      <div class="footer-inner">
+        <div class="vx-sender">
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" title="附件">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <textarea class="vx-sender-input" rows="1" placeholder="输入消息，Enter 发送，Shift+Enter 换行"></textarea>
+          <button class="vx-sender-send" disabled title="发送">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <div class="footer-tip">
+          内容由 AI 生成，仅供参考。<a href="#">查看使用条款</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Simple sender interaction: enable send when textarea has content
+  const textarea = document.querySelector('.vx-sender-input');
+  const sendBtn = document.querySelector('.vx-sender-send');
+  textarea.addEventListener('input', () => {
+    sendBtn.disabled = textarea.value.trim().length === 0;
+  });
+
+  // Auto-resize textarea
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 132) + 'px';
+  });
+</script>
+</body>
+</html>

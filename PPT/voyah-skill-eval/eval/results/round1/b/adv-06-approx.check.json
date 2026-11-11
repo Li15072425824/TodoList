@@ -1,0 +1,365 @@
+{
+  "product": "eval/products/round1/b/adv-06-approx/index.html",
+  "alignRate": 0.429,
+  "checks": 28,
+  "passed": 12,
+  "p0": 10,
+  "p1": 6,
+  "tokenRefRate": 0,
+  "expectedTheme": null,
+  "allThemes": false,
+  "htmlTheme": null,
+  "themeAttrs": [],
+  "staticIssues": {
+    "hex": [
+      "#3673DC",
+      "#E8F0FE",
+      "#2A5BB8",
+      "#22C55E",
+      "#F59E0B",
+      "#EF4444",
+      "#1F2937",
+      "#6B7280",
+      "#9CA3AF",
+      "#E5E7EB",
+      "#F3F4F6",
+      "#F5F7FA",
+      "#F9FAFB",
+      "#5B9BF5",
+      "#667EEA",
+      "#764BA2",
+      "#8B5CF6",
+      "#DCFCE7",
+      "#FEF3C7",
+      "#EDE9FE",
+      "#E0E7FF",
+      "#C7D2FE",
+      "#16A34A",
+      "#D97706",
+      "#CD7F32",
+      "#94A3B8",
+      "#7AB0F7"
+    ],
+    "forbidden": [
+      "#3673DC"
+    ],
+    "gradient": [
+      "gradient"
+    ],
+    "weight": [
+      "700",
+      "700"
+    ],
+    "black": [],
+    "spacing": [
+      "gap: 10px",
+      "padding: 14px",
+      "padding: 34px",
+      "padding: 14px",
+      "padding: 10px",
+      "padding: 14px",
+      "gap: 10px",
+      "padding: 10px",
+      "padding: 10px"
+    ],
+    "border": [],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #3673DC #E8F0FE #2A5BB8 #22C55E #F59E0B #EF4444 #1F2937 #6B7280 #9CA3AF #E5E7EB #F3F4F6 #F5F7FA"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "禁用/近似色: #3673DC"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "detail": "非法字重: 700"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "detail": "非 4n 间距: gap: 10px; padding: 14px; padding: 34px; padding: 10px"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "detail": "控制台错误: Failed to load resource: net::ERR_CONNECTION_RESET | ReferenceError: echarts is not defined"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "7/9 按钮高度非 24/32/40: ‹=28, 1=28, 2=28, 3=28, ...=28"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "9 按钮 padding 非 2/6/8·8/16: 导出=[6,14,6,14], 新建报表=[6,14,6,14], ‹=[0,8,0,8], 1=[0,8,0,8]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "9 按钮字号/行高非 12·20/16·24: 导出=13/NaN, 新建报表=13/NaN, ‹=12/NaN, 1=12/NaN"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "9 按钮色值出板: 导出=rgb(31, 41, 55)/rgb(255, 255, 255)/rgb(229, 231, 235), 新建报表=rgb(255, 255, 255)/rgb(54, 115, 220)/rgb(54, 115, 220), ‹=rgb(31, 41, 55)/rgb(255, 255, 255)/rgb(229, 231, 235), 1=rgb(255, 255, 255)/rgb(54, 115, 220)/rgb(54, 115, 220)"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "2 个图标按钮 gap≠4"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 normal = rgb(255, 255, 255)/rgb(54, 115, 220)/rgb(54, 115, 220)，期望 #fff/#3773DB/#3773DB"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 hover = rgb(255, 255, 255)/rgb(42, 91, 184)/rgb(42, 91, 184)，期望 #fff/#568EEE/#568EEE"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 click = rgb(255, 255, 255)/rgb(42, 91, 184)/rgb(42, 91, 184)，期望 #fff/#1C5AC4/#1C5AC4"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 disabled = rgb(255, 255, 255)/rgb(54, 115, 220)/rgb(54, 115, 220)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "detail": "主题声明: html=无, 其他=0 个"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #3673DC #E8F0FE #2A5BB8 #22C55E #F59E0B #EF4444 #1F2937 #6B7280 #9CA3AF #E5E7EB #F3F4F6 #F5F7FA"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "禁用/近似色: #3673DC"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": false,
+      "detail": "非法字重: 700"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非 4n 间距: gap: 10px; padding: 14px; padding: 34px; padding: 10px"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": false,
+      "detail": "控制台错误: Failed to load resource: net::ERR_CONNECTION_RESET | ReferenceError: echarts is not defined"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "7/9 按钮高度非 24/32/40: ‹=28, 1=28, 2=28, 3=28, ...=28"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "9 按钮 padding 非 2/6/8·8/16: 导出=[6,14,6,14], 新建报表=[6,14,6,14], ‹=[0,8,0,8], 1=[0,8,0,8]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "9 按钮字号/行高非 12·20/16·24: 导出=13/NaN, 新建报表=13/NaN, ‹=12/NaN, 1=12/NaN"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮圆角合规"
+    },
+    {
+      "id": "runtime.btn.weight",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮字重合规"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "9 按钮色值出板: 导出=rgb(31, 41, 55)/rgb(255, 255, 255)/rgb(229, 231, 235), 新建报表=rgb(255, 255, 255)/rgb(54, 115, 220)/rgb(54, 115, 220), ‹=rgb(31, 41, 55)/rgb(255, 255, 255)/rgb(229, 231, 235), 1=rgb(255, 255, 255)/rgb(54, 115, 220)/rgb(54, 115, 220)"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "2 个图标按钮 gap≠4"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 normal = rgb(255, 255, 255)/rgb(54, 115, 220)/rgb(54, 115, 220)，期望 #fff/#3773DB/#3773DB"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 hover = rgb(255, 255, 255)/rgb(42, 91, 184)/rgb(42, 91, 184)，期望 #fff/#568EEE/#568EEE"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 click = rgb(255, 255, 255)/rgb(42, 91, 184)/rgb(42, 91, 184)，期望 #fff/#1C5AC4/#1C5AC4"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 disabled = rgb(255, 255, 255)/rgb(54, 115, 220)/rgb(54, 115, 220)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "pass": false,
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = -apple-system, \"system-ui\", \"PingFang SC\", \"Microsoft YaHei\", \"Segoe UI\", Roboto, sans-serif"
+    }
+  ],
+  "costNote": null
+}

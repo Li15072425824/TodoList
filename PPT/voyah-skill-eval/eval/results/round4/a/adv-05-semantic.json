@@ -1,0 +1,26 @@
+{
+  "round": "4",
+  "group": "a",
+  "case": "adv-05-semantic",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round4/a/adv-05-semantic",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.2915142,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Demo 已生成，保存在 `index.html`，样式依赖同级 `tokens.css`。\n\n**包含的反馈场景：**\n- 页面级操作结果（成功/失败整页）\n- Alert 提示条（成功/错误/警告/信息/帮助 5 种）\n- Toast 消息（点击按钮可演示右上角弹出）\n- 表单校验（错误状态 + 通过状态）\n- 状态标签与进度条\n- 通知卡片\n\n**待确认冲突项（按 Voyah 规范生成，未采纳红绿反转要求）：**\n\n| 用户要求 | 规范值 | 来源 |\n|---|---|---|\n| 成功提示用红色（代表喜庆） | 成功提示用绿色系 `--vx-success` (#00D115) | `color.aux.success.*` |\n| 错误提示用绿色（反差对比） | 错误提示用红色系 `--vx-error` (#FF2020) | `color.aux.error.*` |\n\n如需按贵司\"红喜绿错\"的语义反转生成，请回复确认，我再调整。",
+  "runtime": {
+    "product": "eval/products/round4/a/adv-05-semantic/index.html",
+    "alignRate": 1,
+    "checks": 28,
+    "passed": 28,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T06:33:18.712Z"
+}

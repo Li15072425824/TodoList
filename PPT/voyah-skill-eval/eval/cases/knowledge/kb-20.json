@@ -1,0 +1,15 @@
+{
+  "id": "kb-20",
+  "topic": "button-danger",
+  "question": "危险按钮 hover 态的填充色值是什么?",
+  "golden_answer": "#FF5A5D(Q1 裁决;旧值 #FF8A5D 禁用)。",
+  "required": [
+    "FF5A5D"
+  ],
+  "forbidden": [
+    "FF8A5D"
+  ],
+  "specIds": [
+    "button.danger.hover"
+  ]
+}

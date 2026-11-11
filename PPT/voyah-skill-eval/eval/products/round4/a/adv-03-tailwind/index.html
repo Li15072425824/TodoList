@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>用户管理</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body { background: var(--vx-bg-layout); }
+  .page { padding: var(--vx-padding-page); }
+  .page-title { font-size: var(--vx-font-size-xl); line-height: 32px; font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); margin-bottom: var(--vx-space-4); }
+  .toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--vx-space-4); gap: var(--vx-space-4); flex-wrap: wrap; }
+  .toolbar-left { display: flex; align-items: center; gap: var(--vx-space-2); flex-wrap: wrap; }
+  .toolbar-right { display: flex; align-items: center; gap: var(--vx-space-2); }
+  .search-input { width: 240px; }
+  .select-wrapper { display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border: 1px solid var(--vx-line-2); border-radius: var(--vx-radius-md); background: var(--vx-bg-base); font-size: var(--vx-font-size-md); color: var(--vx-text-primary); cursor: pointer; gap: var(--vx-space-1); }
+  .select-wrapper:hover { border-color: var(--vx-line-4); }
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--vx-space-4); margin-bottom: var(--vx-space-4); }
+  .stat-card { background: var(--vx-bg-base); border: 1px solid var(--vx-line-1); border-radius: var(--vx-radius-lg); padding: var(--vx-space-4); }
+  .stat-label { font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary); line-height: 20px; margin-bottom: var(--vx-space-1); }
+  .stat-value { font-size: var(--vx-font-size-h1); line-height: 32px; font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); font-family: var(--vx-font-family-number); }
+  .stat-trend { font-size: var(--vx-font-size-xs); line-height: 20px; color: var(--vx-success); margin-top: var(--vx-space-1); }
+  .stat-trend.down { color: var(--vx-error); }
+
+  .table-wrap { background: var(--vx-bg-base); border: 1px solid var(--vx-line-1); border-radius: var(--vx-radius-lg); overflow: hidden; }
+  .vx-table { width: 100%; border-collapse: collapse; font-size: var(--vx-font-size-md); line-height: 22px; }
+  .vx-table th { padding: var(--vx-space-sm) var(--vx-space-4); text-align: left; font-weight: var(--vx-font-weight-medium); color: var(--vx-text-secondary); background: var(--vx-fill-3); border-bottom: 1px solid var(--vx-line-1); font-size: var(--vx-font-size-sm); line-height: 20px; }
+  .vx-table td { padding: var(--vx-space-sm) var(--vx-space-4); border-bottom: 1px solid var(--vx-line-1); color: var(--vx-text-primary); }
+  .vx-table tbody tr:hover { background: var(--vx-fill-1); }
+  .vx-table tbody tr:last-child td { border-bottom: none; }
+  .user-cell { display: flex; align-items: center; gap: var(--vx-space-sm); }
+  .user-name { font-weight: var(--vx-font-weight-medium); color: var(--vx-text-primary); }
+  .user-email { font-size: var(--vx-font-size-xs); line-height: 20px; color: var(--vx-text-caption); }
+
+  .pagination { display: flex; align-items: center; justify-content: space-between; padding: var(--vx-space-sm) var(--vx-space-4); background: var(--vx-fill-3); border-top: 1px solid var(--vx-line-1); }
+  .pagination-info { font-size: var(--vx-font-size-xs); line-height: 20px; color: var(--vx-text-secondary); }
+  .pagination-btns { display: flex; align-items: center; gap: var(--vx-space-1); }
+
+  .action-links { display: flex; align-items: center; gap: var(--vx-space-3); }
+  .action-link { font-size: var(--vx-font-size-sm); line-height: 20px; color: var(--vx-primary); cursor: pointer; }
+  .action-link:hover { color: var(--vx-primary-hover); }
+  .action-link.danger { color: var(--vx-error); }
+  .action-link.danger:hover { color: var(--vx-btn-danger-hover); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1 class="page-title">用户管理</h1>
+
+  <!-- 数据概览 -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-label">总用户数</div>
+      <div class="stat-value">12,580</div>
+      <div class="stat-trend">+12.5% 较上月</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">活跃用户</div>
+      <div class="stat-value">8,936</div>
+      <div class="stat-trend">+8.2% 较上月</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">新增用户</div>
+      <div class="stat-value">1,248</div>
+      <div class="stat-trend">+23.1% 较上月</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">禁用用户</div>
+      <div class="stat-value">326</div>
+      <div class="stat-trend down">-5.4% 较上月</div>
+    </div>
+  </div>
+
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <input class="vx-input search-input" placeholder="搜索用户名 / 邮箱" />
+      <div class="select-wrapper">
+        <span>全部角色</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </div>
+      <div class="select-wrapper">
+        <span>全部状态</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </div>
+      <button class="vx-btn vx-btn-secondary">重置</button>
+    </div>
+    <div class="toolbar-right">
+      <button class="vx-btn vx-btn-secondary">导出</button>
+      <button class="vx-btn vx-btn-primary">+ 新建用户</button>
+    </div>
+  </div>
+
+  <!-- 表格 -->
+  <div class="table-wrap">
+    <table class="vx-table">
+      <thead>
+        <tr>
+          <th style="width:40px;"><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></th>
+          <th>用户</th>
+          <th>角色</th>
+          <th>部门</th>
+          <th>状态</th>
+          <th>最近登录</th>
+          <th style="width:160px;">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+          <td>
+            <div class="user-cell">
+              <span class="vx-avatar vx-avatar-primary">张</span>
+              <div>
+                <div class="user-name">张明远</div>
+                <div class="user-email">zhangmy@voyah.com</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="vx-tag vx-tag-primary">管理员</span></td>
+          <td>技术部</td>
+          <td><span class="vx-tag vx-tag-success">正常</span></td>
+          <td>2026-11-10 09:32</td>
+          <td>
+            <div class="action-links">
+              <span class="action-link">编辑</span>
+              <span class="action-link danger">禁用</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+          <td>
+            <div class="user-cell">
+              <span class="vx-avatar">李</span>
+              <div>
+                <div class="user-name">李思琪</div>
+                <div class="user-email">lisq@voyah.com</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="vx-tag">普通用户</span></td>
+          <td>市场部</td>
+          <td><span class="vx-tag vx-tag-success">正常</span></td>
+          <td>2026-11-09 18:05</td>
+          <td>
+            <div class="action-links">
+              <span class="action-link">编辑</span>
+              <span class="action-link danger">禁用</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+          <td>
+            <div class="user-cell">
+              <span class="vx-avatar">王</span>
+              <div>
+                <div class="user-name">王浩然</div>
+                <div class="user-email">wanghr@voyah.com</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="vx-tag vx-tag-warning">审核员</span></td>
+          <td>运营部</td>
+          <td><span class="vx-tag vx-tag-error">已禁用</span></td>
+          <td>2026-10-28 14:21</td>
+          <td>
+            <div class="action-links">
+              <span class="action-link">编辑</span>
+              <span class="action-link">启用</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+          <td>
+            <div class="user-cell">
+              <span class="vx-avatar">陈</span>
+              <div>
+                <div class="user-name">陈雨薇</div>
+                <div class="user-email">chenyw@voyah.com</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="vx-tag">普通用户</span></td>
+          <td>设计部</td>
+          <td><span class="vx-tag vx-tag-success">正常</span></td>
+          <td>2026-11-10 08:47</td>
+          <td>
+            <div class="action-links">
+              <span class="action-link">编辑</span>
+              <span class="action-link danger">禁用</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+          <td>
+            <div class="user-cell">
+              <span class="vx-avatar">刘</span>
+              <div>
+                <div class="user-name">刘建国</div>
+                <div class="user-email">liujg@voyah.com</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="vx-tag vx-tag-primary">管理员</span></td>
+          <td>技术部</td>
+          <td><span class="vx-tag vx-tag-success">正常</span></td>
+          <td>2026-11-10 10:15</td>
+          <td>
+            <div class="action-links">
+              <span class="action-link">编辑</span>
+              <span class="action-link danger">禁用</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+          <td>
+            <div class="user-cell">
+              <span class="vx-avatar">赵</span>
+              <div>
+                <div class="user-name">赵晓琳</div>
+                <div class="user-email">zhaoxl@voyah.com</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="vx-tag">普通用户</span></td>
+          <td>人力资源部</td>
+          <td><span class="vx-tag vx-tag-warning">待审核</span></td>
+          <td>—</td>
+          <td>
+            <div class="action-links">
+              <span class="action-link">编辑</span>
+              <span class="action-link danger">删除</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+          <td>
+            <div class="user-cell">
+              <span class="vx-avatar">孙</span>
+              <div>
+                <div class="user-name">孙伟峰</div>
+                <div class="user-email">sunwf@voyah.com</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="vx-tag vx-tag-warning">审核员</span></td>
+          <td>质量部</td>
+          <td><span class="vx-tag vx-tag-success">正常</span></td>
+          <td>2026-11-08 16:40</td>
+          <td>
+            <div class="action-links">
+              <span class="action-link">编辑</span>
+              <span class="action-link danger">禁用</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+          <td>
+            <div class="user-cell">
+              <span class="vx-avatar">周</span>
+              <div>
+                <div class="user-name">周雅婷</div>
+                <div class="user-email">zhouyt@voyah.com</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="vx-tag">普通用户</span></td>
+          <td>财务部</td>
+          <td><span class="vx-tag vx-tag-success">正常</span></td>
+          <td>2026-11-09 11:22</td>
+          <td>
+            <div class="action-links">
+              <span class="action-link">编辑</span>
+              <span class="action-link danger">禁用</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 分页 -->
+    <div class="pagination">
+      <div class="pagination-info">共 256 条，每页 10 条</div>
+      <div class="pagination-btns">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm" disabled>‹</button>
+        <button class="vx-btn vx-btn-primary vx-btn-sm">1</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">2</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">3</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">4</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">5</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">›</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

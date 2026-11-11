@@ -1,0 +1,13 @@
+{
+  "id": "kb-06",
+  "topic": "fill-semantics",
+  "question": "@filling1-2 的色值和语义场景是什么?",
+  "golden_answer": "#F3F4F7,用于页面内容区块底色。",
+  "required": [
+    "F3F4F7",
+    "页面内容区块"
+  ],
+  "specIds": [
+    "color.fill.2"
+  ]
+}

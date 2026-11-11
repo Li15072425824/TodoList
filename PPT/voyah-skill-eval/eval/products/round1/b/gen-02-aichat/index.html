@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>岚图智能助手</title>
+<style>
+  :root {
+    /* Voyah brand colors */
+    --voyah-primary: #0A5CFF;
+    --voyah-primary-hover: #0052EA;
+    --voyah-primary-light: #E8F0FF;
+    --voyah-primary-lighter: #F0F5FF;
+    --voyah-accent: #00D4FF;
+    --voyah-gold: #C9A86B;
+
+    /* Neutral */
+    --bg-page: #F5F7FA;
+    --bg-sidebar: #FFFFFF;
+    --bg-bubble-ai: #F2F4F7;
+    --bg-bubble-user: var(--voyah-primary);
+    --bg-welcome: #FFFFFF;
+    --bg-prompt: #FFFFFF;
+    --bg-prompt-hover: #F7F9FC;
+    --bg-input: #FFFFFF;
+
+    /* Text */
+    --text-primary: #1D2129;
+    --text-secondary: #4E5969;
+    --text-tertiary: #86909C;
+    --text-placeholder: #C9CDD4;
+    --text-inverse: #FFFFFF;
+    --text-link: var(--voyah-primary);
+
+    /* Border / divider */
+    --border-light: #E5E6EB;
+    --border-lighter: #F2F3F5;
+    --divider: #EEF0F3;
+
+    /* Status */
+    --status-success: #00B42A;
+    --status-warning: #FF7D00;
+    --status-error: #F53F3F;
+    --status-info: var(--voyah-primary);
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-pill: 999px;
+
+    /* Shadow */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 8px 24px rgba(10, 92, 255, 0.08);
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 12px;
+    --space-lg: 16px;
+    --space-xl: 20px;
+    --space-2xl: 28px;
+    --space-3xl: 40px;
+
+    /* Font */
+    --font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+    --font-size-xs: 12px;
+    --font-size-sm: 13px;
+    --font-size-base: 14px;
+    --font-size-md: 15px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-size-2xl: 22px;
+    --font-size-3xl: 28px;
+    --line-height-base: 1.6;
+
+    /* Sidebar width */
+    --sidebar-width: 280px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    height: 100%;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    background: var(--bg-page);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  input, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    border: none;
+  }
+
+  .app {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ===================== Sidebar ===================== */
+  .sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border-lighter);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-header {
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    border-bottom: 1px solid var(--border-lighter);
+  }
+
+  .sidebar-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--voyah-primary) 0%, var(--voyah-accent) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    letter-spacing: -0.5px;
+  }
+
+  .sidebar-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .sidebar-subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    margin-top: 1px;
+  }
+
+  .sidebar-actions {
+    padding: var(--space-md) var(--space-md);
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .btn-new-chat {
+    flex: 1;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--voyah-primary);
+    color: #fff;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.2s ease;
+  }
+
+  .btn-new-chat:hover {
+    background: var(--voyah-primary-hover);
+  }
+
+  .btn-new-chat svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .sidebar-section-label {
+    padding: var(--space-md) var(--space-lg) var(--space-xs);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .conversation-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 var(--space-sm) var(--space-md);
+  }
+
+  .conversation-list::-webkit-scrollbar {
+    width: 4px;
+  }
+  .conversation-list::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 2px;
+  }
+
+  .conversation-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s ease;
+    position: relative;
+  }
+
+  .conversation-item:hover {
+    background: var(--bg-prompt-hover);
+  }
+
+  .conversation-item.active {
+    background: var(--voyah-primary-lighter);
+  }
+
+  .conversation-item.active::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    background: var(--voyah-primary);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .conv-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: var(--voyah-primary-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--voyah-primary);
+    flex-shrink: 0;
+  }
+
+  .conversation-item.active .conv-icon {
+    background: var(--voyah-primary);
+    color: #fff;
+  }
+
+  .conv-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .conv-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .conv-title {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .conv-preview {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .conv-time {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    margin-top: 2px;
+    align-self: flex-start;
+  }
+
+  .sidebar-footer {
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid var(--border-lighter);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--voyah-gold) 0%, #E6C789 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
+  .user-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .user-name {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .user-plan {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 1px;
+  }
+
+  /* ===================== Main ===================== */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-page);
+    position: relative;
+  }
+
+  .main-header {
+    height: 60px;
+    padding: 0 var(--space-2xl);
+    background: #fff;
+    border-bottom: 1px solid var(--border-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .main-title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .main-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .header-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: background 0.15s ease;
+  }
+
+  .header-btn:hover {
+    background: var(--bg-prompt-hover);
+    color: var(--text-primary);
+  }
+
+  .header-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===================== Chat area ===================== */
+  .chat-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-3xl) 0;
+  }
+
+  .chat-container::-webkit-scrollbar {
+    width: 6px;
+  }
+  .chat-container::-webkit-scrollbar-thumb {
+    background: #d0d5dc;
+    border-radius: 3px;
+  }
+
+  /* Welcome */
+  .welcome {
+    max-width: 720px;
+    margin: 0 auto var(--space-3xl);
+    padding: 0 var(--space-2xl);
+    text-align: center;
+  }
+
+  .welcome-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--voyah-primary) 0%, var(--voyah-accent) 100%);
+    margin: 0 auto var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .welcome-icon svg {
+    width: 32px;
+    height: 32px;
+    color: #fff;
+  }
+
+  .welcome-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.5px;
+  }
+
+  .welcome-title .brand {
+    background: linear-gradient(135deg, var(--voyah-primary) 0%, var(--voyah-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .welcome-desc {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Prompts */
+  .prompts-section {
+    max-width: 720px;
+    margin: 0 auto var(--space-3xl);
+    padding: 0 var(--space-2xl);
+  }
+
+  .prompts-label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  .prompts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .prompt-card {
+    background: #fff;
+    border: 1px solid var(--border-lighter);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-xl);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    text-align: left;
+  }
+
+  .prompt-card:hover {
+    border-color: var(--voyah-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .prompt-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--voyah-primary-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--voyah-primary);
+    flex-shrink: 0;
+  }
+
+  .prompt-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .prompt-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .prompt-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .prompt-desc {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+
+  /* Messages */
+  .messages {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .message-row {
+    display: flex;
+    gap: var(--space-md);
+    max-width: 85%;
+  }
+
+  .message-row.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
+  .message-avatar.ai {
+    background: linear-gradient(135deg, var(--voyah-primary) 0%, var(--voyah-accent) 100%);
+    color: #fff;
+  }
+
+  .message-avatar.user {
+    background: linear-gradient(135deg, var(--voyah-gold) 0%, #E6C789 100%);
+    color: #fff;
+  }
+
+  .message-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .message-row.user .message-main {
+    align-items: flex-end;
+  }
+
+  .message-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+  }
+
+  .message-name {
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .message-bubble {
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-md);
+    line-height: 1.7;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .message-row.ai .message-bubble {
+    background: var(--bg-bubble-ai);
+    color: var(--text-primary);
+    border-top-left-radius: 4px;
+  }
+
+  .message-row.user .message-bubble {
+    background: var(--voyah-primary);
+    color: #fff;
+    border-top-right-radius: 4px;
+  }
+
+  .message-actions {
+    display: flex;
+    gap: var(--space-xs);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .message-row.ai:hover .message-actions {
+    opacity: 1;
+  }
+
+  .msg-action {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    transition: all 0.15s ease;
+  }
+
+  .msg-action:hover {
+    background: #fff;
+    color: var(--voyah-primary);
+  }
+
+  .msg-action svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  /* ===================== Thought Chain ===================== */
+  .thought-chain {
+    background: #fff;
+    border: 1px solid var(--border-lighter);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-xl);
+    margin-top: var(--space-sm);
+  }
+
+  .thought-chain-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px dashed var(--border-lighter);
+  }
+
+  .thought-chain-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .thought-chain-title svg {
+    width: 14px;
+    height: 14px;
+    color: var(--voyah-primary);
+  }
+
+  .thought-toggle {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    transition: color 0.15s ease;
+  }
+
+  .thought-toggle:hover {
+    color: var(--voyah-primary);
+  }
+
+  .thought-nodes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .thought-node {
+    display: flex;
+    gap: var(--space-md);
+    position: relative;
+  }
+
+  .thought-node:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 26px;
+    bottom: -14px;
+    width: 2px;
+    background: var(--border-lighter);
+  }
+
+  .thought-node.completed:not(:last-child)::after {
+    background: var(--status-success);
+  }
+
+  .thought-node.processing:not(:last-child)::after {
+    background: linear-gradient(to bottom, var(--status-info), var(--border-lighter));
+  }
+
+  .thought-node-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 1;
+    background: #fff;
+  }
+
+  .thought-node.completed .thought-node-icon {
+    background: var(--status-success);
+    color: #fff;
+  }
+
+  .thought-node.processing .thought-node-icon {
+    background: var(--voyah-primary-lighter);
+    color: var(--voyah-primary);
+  }
+
+  .thought-node.failed .thought-node-icon {
+    background: #FFECE8;
+    color: var(--status-error);
+  }
+
+  .thought-node-icon svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .thought-node.processing .thought-node-icon svg {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .thought-node-content {
+    flex: 1;
+    padding-top: 2px;
+  }
+
+  .thought-node-title {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .thought-node.failed .thought-node-title {
+    color: var(--status-error);
+  }
+
+  .thought-node-desc {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+
+  .thought-node-time {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+  }
+
+  .thought-node-desc .code {
+    font-family: "SF Mono", Consolas, Monaco, monospace;
+    background: var(--voyah-primary-lighter);
+    color: var(--voyah-primary);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+
+  /* ===================== Sender ===================== */
+  .sender-wrapper {
+    padding: var(--space-lg) var(--space-2xl) var(--space-xl);
+    background: linear-gradient(to top, var(--bg-page) 70%, transparent);
+    margin-top: auto;
+  }
+
+  .sender {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .sender:focus-within {
+    border-color: var(--voyah-primary);
+    box-shadow: 0 0 0 4px rgba(10, 92, 255, 0.08), var(--shadow-md);
+  }
+
+  .sender-input-wrap {
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-sm);
+  }
+
+  .sender-input {
+    flex: 1;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: var(--font-size-md);
+    color: var(--text-primary);
+    line-height: 1.6;
+    max-height: 160px;
+    min-height: 24px;
+    background: transparent;
+    padding: 4px 0;
+  }
+
+  .sender-input::placeholder {
+    color: var(--text-placeholder);
+  }
+
+  .sender-tools {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 var(--space-md) var(--space-sm);
+    border-top: 1px solid var(--border-lighter);
+    padding-top: var(--space-sm);
+    margin: 0 var(--space-sm);
+  }
+
+  .sender-tool {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    transition: all 0.15s ease;
+  }
+
+  .sender-tool:hover {
+    background: var(--voyah-primary-lighter);
+    color: var(--voyah-primary);
+  }
+
+  .sender-tool svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .sender-footer-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .char-count {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  .btn-send {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: var(--voyah-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .btn-send:hover:not(:disabled) {
+    background: var(--voyah-primary-hover);
+  }
+
+  .btn-send:disabled {
+    background: #C9CDD4;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .btn-send svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .sender-tip {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: var(--space-sm);
+  }
+
+  .sender-tip a {
+    color: var(--text-tertiary);
+    text-decoration: underline;
+    text-decoration-color: var(--border-light);
+    transition: color 0.15s ease;
+  }
+
+  .sender-tip a:hover {
+    color: var(--voyah-primary);
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ========== Sidebar ========== -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">V</div>
+      <div>
+        <div class="sidebar-title">岚图智能助手</div>
+        <div class="sidebar-subtitle">Voyah AI Assistant</div>
+      </div>
+    </div>
+
+    <div class="sidebar-actions">
+      <button class="btn-new-chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        新建对话
+      </button>
+    </div>
+
+    <div class="sidebar-section-label">最近会话</div>
+
+    <div class="conversation-list">
+      <div class="conversation-item active">
+        <div class="conv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="conv-content">
+          <div class="conv-title">车辆保养计划咨询</div>
+          <div class="conv-preview">帮我制定一份岚图FREE的保养...</div>
+        </div>
+        <div class="conv-time">10:24</div>
+      </div>
+
+      <div class="conversation-item">
+        <div class="conv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="conv-content">
+          <div class="conv-title">购车方案对比</div>
+          <div class="conv-preview">梦想家 vs 新岚图FREE 哪个...</div>
+        </div>
+        <div class="conv-time">昨天</div>
+      </div>
+
+      <div class="conversation-item">
+        <div class="conv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="conv-content">
+          <div class="conv-title">续航里程计算</div>
+          <div class="conv-preview">北京到上海需要充几次电？</div>
+        </div>
+        <div class="conv-time">昨天</div>
+      </div>
+
+      <div class="conversation-item">
+        <div class="conv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16l7-3 7 3z"/></svg>
+        </div>
+        <div class="conv-content">
+          <div class="conv-title">智能座舱使用指南</div>
+          <div class="conv-preview">如何设置语音助手唤醒词？</div>
+        </div>
+        <div class="conv-time">11/07</div>
+      </div>
+
+      <div class="conversation-item">
+        <div class="conv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="conv-content">
+          <div class="conv-title">充电桩位置查询</div>
+          <div class="conv-preview">武汉光谷附近的岚图超充站</div>
+        </div>
+        <div class="conv-time">11/06</div>
+      </div>
+
+      <div class="conversation-item">
+        <div class="conv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="conv-content">
+          <div class="conv-title">车主权益说明</div>
+          <div class="conv-preview">终身免费质保包含哪些项？</div>
+        </div>
+        <div class="conv-time">11/05</div>
+      </div>
+
+      <div class="conversation-item">
+        <div class="conv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="conv-content">
+          <div class="conv-title">上门取送车服务</div>
+          <div class="conv-preview">预约保养上门取车流程</div>
+        </div>
+        <div class="conv-time">11/03</div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-avatar">李</div>
+      <div class="user-info">
+        <div class="user-name">李星辰</div>
+        <div class="user-plan">岚图车主 · Pro 会员</div>
+      </div>
+      <button class="header-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========== Main ========== -->
+  <main class="main">
+    <header class="main-header">
+      <div class="main-title">车辆保养计划咨询</div>
+      <div class="main-header-actions">
+        <button class="header-btn" title="分享">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+        <button class="header-btn" title="更多">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat-container">
+      <!-- Welcome -->
+      <div class="welcome">
+        <div class="welcome-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M21 11V3h-8"/></svg>
+        </div>
+        <h1 class="welcome-title">你好，我是<span class="brand">岚图智能助手</span></h1>
+        <p class="welcome-desc">
+          我可以帮你解答车辆使用、保养维修、充电服务、车主权益等问题。<br/>
+          有什么我可以帮你的吗？
+        </p>
+      </div>
+
+      <!-- Prompts -->
+      <div class="prompts-section">
+        <div class="prompts-label">试试这些问题</div>
+        <div class="prompts-grid">
+          <button class="prompt-card">
+            <div class="prompt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div class="prompt-content">
+              <div class="prompt-title">保养计划推荐</div>
+              <div class="prompt-desc">根据车型和里程推荐保养项目</div>
+            </div>
+          </button>
+
+          <button class="prompt-card">
+            <div class="prompt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="prompt-content">
+              <div class="prompt-title">充电桩查询</div>
+              <div class="prompt-desc">查找附近的岚图超充站和合作桩</div>
+            </div>
+          </button>
+
+          <button class="prompt-card">
+            <div class="prompt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="prompt-content">
+              <div class="prompt-title">预约上门服务</div>
+              <div class="prompt-desc">一键预约保养维修上门取送车</div>
+            </div>
+          </button>
+
+          <button class="prompt-card">
+            <div class="prompt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="prompt-content">
+              <div class="prompt-title">车主权益查询</div>
+              <div class="prompt-desc">查看你的终身质保、免费充电等权益</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="messages">
+
+        <!-- User message -->
+        <div class="message-row user">
+          <div class="message-avatar user">李</div>
+          <div class="message-main">
+            <div class="message-meta">
+              <span class="message-name">李星辰</span>
+              <span>10:24</span>
+            </div>
+            <div class="message-bubble">
+              你好，我新买的岚图FREE 已经开了 3000 公里了，第一次保养需要做哪些项目？大概要多少钱？
+            </div>
+          </div>
+        </div>
+
+        <!-- AI message with thought chain -->
+        <div class="message-row ai">
+          <div class="message-avatar ai">V</div>
+          <div class="message-main">
+            <div class="message-meta">
+              <span class="message-name">岚图智能助手</span>
+              <span>10:24</span>
+            </div>
+            <div class="message-bubble" style="padding: 0; background: transparent;">
+              <!-- Thought Chain -->
+              <div class="thought-chain">
+                <div class="thought-chain-header">
+                  <div class="thought-chain-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+                    思考过程
+                  </div>
+                  <button class="thought-toggle">
+                    收起
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                  </button>
+                </div>
+                <div class="thought-nodes">
+                  <!-- Node 1: completed -->
+                  <div class="thought-node completed">
+                    <div class="thought-node-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div class="thought-node-content">
+                      <div class="thought-node-title">识别用户车辆信息</div>
+                      <div class="thought-node-desc">
+                        已匹配到您绑定的 <span class="code">岚图FREE 四驱超长续航旗舰版</span>，当前行驶里程 3,247 公里
+                      </div>
+                      <div class="thought-node-time">用时 0.8 秒</div>
+                    </div>
+                  </div>
+
+                  <!-- Node 2: processing -->
+                  <div class="thought-node processing">
+                    <div class="thought-node-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                    </div>
+                    <div class="thought-node-content">
+                      <div class="thought-node-title">查询首保项目及价格</div>
+                      <div class="thought-node-desc">
+                        正在从保养手册和武汉服务中心获取最新报价...
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Node 3: failed -->
+                  <div class="thought-node failed">
+                    <div class="thought-node-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    </div>
+                    <div class="thought-node-content">
+                      <div class="thought-node-title">实时门店库存查询</div>
+                      <div class="thought-node-desc">
+                        门店系统暂未响应，已改用标准保养价格进行估算，最终价格以到店为准
+                      </div>
+                      <div class="thought-node-time">已重试 2 次，改用本地知识库</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI final answer -->
+        <div class="message-row ai">
+          <div class="message-avatar ai">V</div>
+          <div class="message-main">
+            <div class="message-meta">
+              <span class="message-name">岚图智能助手</span>
+              <span>10:25</span>
+            </div>
+            <div class="message-bubble">
+              你好！根据你岚图FREE的行驶里程（3,247 公里），目前还未到首保时间。首保建议在 <strong>5,000 公里或 6 个月</strong>（以先到者为准）进行。<br/><br/>
+              <strong>首保项目（免费）：</strong><br/>
+              1. 机油及机油滤清器更换<br/>
+              2. 全车健康检查（刹车、轮胎、电池等）<br/>
+              3. 车机系统升级<br/>
+              4. 底盘及悬挂检查<br/><br/>
+              💡 首保完全免费，你可以提前 3 天在岚图APP预约，或直接联系我帮你预约武汉光谷服务中心。需要我现在帮你预约吗？
+            </div>
+            <div class="message-actions">
+              <button class="msg-action" title="复制">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+              <button class="msg-action" title="点赞">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+              </button>
+              <button class="msg-action" title="踩">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+              </button>
+              <button class="msg-action" title="重新生成">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sender -->
+    <div class="sender-wrapper">
+      <div class="sender">
+        <div class="sender-input-wrap">
+          <textarea
+            class="sender-input"
+            rows="1"
+            placeholder="输入你的问题，Enter 发送，Shift+Enter 换行"
+          ></textarea>
+        </div>
+        <div class="sender-tools">
+          <button class="sender-tool" title="上传图片">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </button>
+          <button class="sender-tool" title="上传文件">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <button class="sender-tool" title="语音输入">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+          <div class="sender-footer-right">
+            <span class="char-count">0 / 2000</span>
+            <button class="btn-send" disabled title="发送">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="sender-tip">
+        内容由 AI 生成，仅供参考。请注意甄别信息。
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script>
+  // Auto-resize textarea
+  const textarea = document.querySelector('.sender-input');
+  const sendBtn = document.querySelector('.btn-send');
+  const charCount = document.querySelector('.char-count');
+  const MAX = 2000;
+
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 160) + 'px';
+
+    const len = textarea.value.length;
+    charCount.textContent = `${len} / ${MAX}`;
+    sendBtn.disabled = len === 0;
+  });
+
+  // Enter to send (Shift+Enter for newline)
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!sendBtn.disabled) {
+        console.log('Send:', textarea.value);
+      }
+    }
+  });
+
+  // Conversation item click
+  document.querySelectorAll('.conversation-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // Prompt card click
+  document.querySelectorAll('.prompt-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const title = card.querySelector('.prompt-title').textContent;
+      textarea.value = title;
+      textarea.dispatchEvent(new Event('input'));
+      textarea.focus();
+    });
+  });
+</script>
+
+</body>
+</html>

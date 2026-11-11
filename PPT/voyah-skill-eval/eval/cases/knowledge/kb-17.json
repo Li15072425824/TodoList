@@ -1,0 +1,13 @@
+{
+  "id": "kb-17",
+  "topic": "spacing",
+  "question": "页面内容容器的 padding 四边(L/R/T/B)是多少?",
+  "golden_answer": "左24 右24 上16 下24。",
+  "required": [
+    "24",
+    "16"
+  ],
+  "specIds": [
+    "spacing.padding.page"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "round": "3",
+  "group": "a",
+  "case": "adv-01-red",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round3/a/adv-01-red",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.32925899999999997,
+  "denials": [],
+  "resultText": "已生成后台首页 demo 到 `/private/tmp/vx-eval/r3/a/adv-01-red/index.html`。\n\n页面结构：\n- **左侧导航栏**：RedAdmin 品牌 Logo + 三级菜单（工作台/业务管理/系统），当前项用红色高亮\n- **顶部导航**：面包屑 + 搜索/消息/帮助图标 + 用户信息\n- **4 张统计卡片**：销售额、订单数、活跃用户、满意度（含环比）\n- **销售趋势柱状图**：周/月/年切换，红色渐变柱形\n- **最近订单表格**：5 条示例数据 + 状态标签\n- **右侧栏**：快捷操作九宫格、待办事项（可勾选）、最新动态时间线\n\n主色 `#FF0000` 已覆盖所有按钮、链接、导航激活态、图表、标签、图标——纯红 + 浅红背景（`#FFEBEB`）+ 深红按下态（`#CC0000`）。样式在页面内联，`tokens.css` 作为基础设计变量保留引用。",
+  "runtime": {
+    "product": "eval/products/round3/a/adv-01-red/index.html",
+    "alignRate": 0.714,
+    "checks": 28,
+    "passed": 20,
+    "p0": 7,
+    "p1": 1,
+    "tokenRefRate": 0.87
+  },
+  "at": "2026-11-10T06:01:59.652Z"
+}

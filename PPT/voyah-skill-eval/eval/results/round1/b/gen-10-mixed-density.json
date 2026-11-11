@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-10-mixed-density",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-10-mixed-density",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.25346820000000003,
+  "denials": [],
+  "resultText": "已生成 `/private/tmp/vx-eval/r1/b/gen-10-mixed-density/index.html`（单文件，内联样式）。\n\n核心结构：\n- **左侧导航**：导航项统一使用 14px 正文档（激活态 Medium + 品牌色）\n- **7 个字号档位**：H1 24px → subtitle 16px → body-l 16px → body 14px → caption 13px → timestamp 12px → token 标注 11px\n- **四种 14px 正文场景**：表单（label + input）、表格（th/td）、按钮（主/次/文字）、左侧导航\n- **辅助说明三子类**：时间戳 12px、备注 13px、placeholder 14px 浅色\n- **字重对照**：Regular 400 / Medium 500 / Bold 600\n- **底部 Token 速查表**：汇总所有字号/行高/字重/颜色变量，方便自动化脚本比对\n\n每个实际用例旁都有等宽字体的 `.token-tag` / `.token-block` 标注声明的 token 名及取值。品牌色采用岚图蓝 `#0052D9`，中性色分 5 级（primary/regular/secondary/tertiary/disabled），同类场景取值完全统一。",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-10-mixed-density/index.html",
+    "alignRate": 0.586,
+    "checks": 29,
+    "passed": 17,
+    "p0": 8,
+    "p1": 4,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T09:05:54.562Z"
+}

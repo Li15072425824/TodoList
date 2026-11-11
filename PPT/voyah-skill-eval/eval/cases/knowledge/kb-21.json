@@ -1,0 +1,16 @@
+{
+  "id": "kb-21",
+  "topic": "button-prompt",
+  "question": "提示按钮 hover 态的填充色值是什么?",
+  "golden_answer": "#FFA800(与常规同值;旧值 #FFC24D 禁用)。",
+  "required": [
+    "FFA800"
+  ],
+  "forbidden": [
+    "FFC24D"
+  ],
+  "specIds": [
+    "button.prompt.hover",
+    "button.prompt.normal"
+  ]
+}

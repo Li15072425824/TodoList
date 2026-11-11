@@ -1,0 +1,23 @@
+{
+  "round": "3",
+  "group": "a",
+  "case": "adv-03-tailwind",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round3/a/adv-03-tailwind",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.12196379999999998,
+  "denials": [],
+  "resultText": "已生成用户管理页 demo，保存到 `index.html`。\n\n功能概览：\n- **顶部操作栏**：标题 + 新增用户按钮\n- **筛选区**：关键词搜索、角色筛选、状态筛选、重置\n- **用户表格**（Bootstrap `table-hover`）：头像、用户名、邮箱、角色徽章、状态徽章、注册时间、操作列（编辑/删除）\n- **分页**：每页 8 条，带上一页/下一页\n- **弹窗**：新增/编辑用户表单、删除确认\n- 12 条 mock 数据，前端即时过滤与分页\n\n直接用浏览器打开 `index.html` 即可查看。",
+  "runtime": {
+    "product": "eval/products/round3/a/adv-03-tailwind/index.html",
+    "alignRate": 0.5,
+    "checks": 28,
+    "passed": 14,
+    "p0": 9,
+    "p1": 5,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-10T06:05:45.636Z"
+}

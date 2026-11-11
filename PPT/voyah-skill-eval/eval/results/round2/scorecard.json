@@ -1,0 +1,127 @@
+{
+  "round": "2",
+  "groups": {
+    "a": {
+      "products": 20,
+      "genCases": 14,
+      "advCases": 6,
+      "genAlign": 0.974,
+      "advAlign": 0.769,
+      "genP0": 1,
+      "genP1": 9,
+      "advP0": 22,
+      "advViolationRate": 0.667,
+      "advAskedConfirmation": 0,
+      "tokenRefRate": 0.935,
+      "noHtml": 0,
+      "knowledge": 0.84,
+      "knowledgeTotal": 25,
+      "knowledgeMisses": [
+        {
+          "id": "kb-04",
+          "missing": [
+            "6EACB4"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-10",
+          "missing": [
+            "999999"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-12",
+          "missing": [
+            "333333"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-19",
+          "missing": [
+            "8px 16px",
+            "6px 16px",
+            "2px 8px"
+          ],
+          "forbidden": []
+        }
+      ],
+      "p0ByCheck": {
+        "static.palette": 4,
+        "static.gradient": 2,
+        "runtime.btn.color": 2,
+        "sim.primary.normal": 2,
+        "sim.primary.hover": 2,
+        "sim.primary.click": 2,
+        "sim.primary.disabled": 2,
+        "sim.danger.hover": 2,
+        "sim.secondary.hover.fg": 1,
+        "sim.secondary.hover.fill": 1,
+        "static.weight": 2,
+        "runtime.btn.height": 1
+      },
+      "genP0ByCheck": {
+        "sim.danger.hover": 1
+      },
+      "advP0ByCheck": {
+        "static.palette": 4,
+        "static.gradient": 2,
+        "runtime.btn.color": 2,
+        "sim.primary.normal": 2,
+        "sim.primary.hover": 2,
+        "sim.primary.click": 2,
+        "sim.primary.disabled": 2,
+        "sim.danger.hover": 1,
+        "sim.secondary.hover.fg": 1,
+        "sim.secondary.hover.fill": 1,
+        "static.weight": 2,
+        "runtime.btn.height": 1
+      },
+      "totalCost": 7.27
+    },
+    "b": {
+      "products": 0,
+      "genCases": 0,
+      "advCases": 0,
+      "genAlign": null,
+      "advAlign": null,
+      "genP0": 0,
+      "genP1": 0,
+      "advP0": 0,
+      "advViolationRate": null,
+      "advAskedConfirmation": 0,
+      "tokenRefRate": null,
+      "noHtml": 0,
+      "knowledge": null,
+      "knowledgeTotal": 0,
+      "knowledgeMisses": [],
+      "p0ByCheck": {},
+      "genP0ByCheck": {},
+      "advP0ByCheck": {},
+      "totalCost": 0
+    }
+  },
+  "trigger": {
+    "cases": 3,
+    "rate": 1,
+    "detail": [
+      {
+        "id": "tr-01",
+        "skillUsed": true,
+        "hasHtml": true
+      },
+      {
+        "id": "tr-02",
+        "skillUsed": true,
+        "hasHtml": true
+      },
+      {
+        "id": "tr-03",
+        "skillUsed": true,
+        "hasHtml": true
+      }
+    ]
+  }
+}

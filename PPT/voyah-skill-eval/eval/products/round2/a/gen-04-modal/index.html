@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>删除确认弹窗 - Voyah Demo</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body { background: var(--vx-bg-layout); }
+
+  /* ===== 底层列表页 ===== */
+  .page { padding: var(--vx-padding-page); }
+  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--vx-space-md); }
+  .page-title { font-size: var(--vx-font-size-xl); line-height: var(--vx-line-height-page-title); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); }
+  .list-card { background: var(--vx-bg-base); border: 1px solid var(--vx-line-1); border-radius: var(--vx-radius-lg); overflow: hidden; }
+  .list-item { display: flex; align-items: center; justify-content: space-between; padding: var(--vx-space-sm) var(--vx-space-md); border-bottom: 1px solid var(--vx-line-1); }
+  .list-item:last-child { border-bottom: none; }
+  .list-item-title { font-size: var(--vx-font-size-md); color: var(--vx-text-primary); }
+  .list-item-desc { font-size: var(--vx-font-size-xs); color: var(--vx-text-caption); margin-top: var(--vx-space-1); }
+
+  /* ===== 遮罩层 ===== */
+  .mask {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+  }
+
+  /* ===== 弹窗 ===== */
+  .vx-modal {
+    width: 480px;
+    background: var(--vx-bg-base);
+    border-radius: var(--vx-radius-lg);
+    box-shadow: var(--vx-shadow-modal);
+    padding: var(--vx-padding-modal);
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-md);
+  }
+  .vx-modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .vx-modal-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .vx-modal-body { display: flex; flex-direction: column; gap: var(--vx-space-sm); }
+  .vx-modal-desc {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-primary);
+  }
+
+  /* 单选项组 */
+  .vx-radio-group { display: flex; flex-direction: column; gap: var(--vx-space-sm); }
+  .vx-radio-item {
+    display: flex; align-items: center; gap: var(--vx-space-xs);
+    height: 32px;
+    padding: 0 var(--vx-space-sm);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-md);
+    background: var(--vx-bg-base);
+    cursor: pointer;
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-primary);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .vx-radio-item:hover { border-color: var(--vx-line-4); }
+  .vx-radio-item-checked {
+    border-color: var(--vx-primary);
+    background: var(--vx-primary-bg);
+    color: var(--vx-primary);
+  }
+  .vx-radio-item .vx-radio-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 1px solid var(--vx-line-2);
+    background: var(--vx-bg-base);
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .vx-radio-item-checked .vx-radio-dot {
+    border-color: var(--vx-primary);
+  }
+  .vx-radio-item-checked .vx-radio-dot::after {
+    content: "";
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--vx-primary);
+  }
+
+  /* 弹窗底部按钮组 —— 主按钮在左、次按钮在右 */
+  .vx-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--vx-space-md);
+    border-top: 1px solid var(--vx-line-1);
+  }
+  .vx-modal-footer-left,
+  .vx-modal-footer-right {
+    display: flex; gap: var(--vx-space-xs);
+  }
+
+  /* ===== 按钮示例区（弹窗下方并排展示） ===== */
+  .demo-section {
+    margin-top: var(--vx-space-xl);
+    display: flex; flex-direction: column; gap: var(--vx-space-md);
+  }
+  .demo-section-title {
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .btn-showcase {
+    display: grid;
+    grid-template-columns: 120px repeat(2, 1fr);
+    gap: var(--vx-space-xs) var(--vx-space-md);
+    align-items: center;
+  }
+  .btn-showcase-head {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    text-align: center;
+  }
+  .btn-showcase-label {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+  }
+  .btn-showcase-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+  }
+
+  /* 虚线按钮样式（基于 vx-btn 扩展，沿用 token） */
+  .vx-btn-dashed {
+    background: var(--vx-bg-base);
+    color: var(--vx-btn-secondary-text);
+    border: 1px dashed var(--vx-line-2);
+  }
+  .vx-btn-dashed:hover:not(:disabled) {
+    color: var(--vx-btn-secondary-hover);
+    border-color: var(--vx-btn-secondary-hover);
+    background: var(--vx-bg-base);
+  }
+  .vx-btn-dashed:active:not(:disabled) {
+    color: var(--vx-btn-secondary-active);
+    border-color: var(--vx-btn-secondary-active);
+    background: var(--vx-bg-base);
+  }
+  .vx-btn-dashed:disabled {
+    background: var(--vx-btn-disabled-bg);
+    color: var(--vx-btn-disabled-text);
+    border: 1px dashed var(--vx-btn-disabled-border);
+  }
+
+  /* 文字链接按钮 */
+  .vx-btn-link {
+    background: transparent;
+    color: var(--vx-primary);
+    border-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .vx-btn-link:hover:not(:disabled) {
+    background: transparent;
+    color: var(--vx-primary-hover);
+    border-color: transparent;
+  }
+  .vx-btn-link:active:not(:disabled) {
+    background: transparent;
+    color: var(--vx-primary-active);
+    border-color: transparent;
+  }
+  .vx-btn-link:disabled {
+    background: transparent;
+    color: var(--vx-text-disabled);
+    border-color: transparent;
+    cursor: not-allowed;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 底层列表页 ===== -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-title">车辆配置管理</div>
+    <button class="vx-btn vx-btn-primary vx-btn-lg">新增配置</button>
+  </div>
+  <div class="list-card">
+    <div class="list-item">
+      <div>
+        <div class="list-item-title">旗舰版 - 岚图追光</div>
+        <div class="list-item-desc">2024 款 · 纯电 · 尊享套装</div>
+      </div>
+      <div style="display:flex; gap: var(--vx-space-xs);">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">编辑</button>
+        <button class="vx-btn vx-btn-danger vx-btn-sm">删除</button>
+      </div>
+    </div>
+    <div class="list-item">
+      <div>
+        <div class="list-item-title">行政版 - 岚图梦想家</div>
+        <div class="list-item-desc">2024 款 · 增程 · 七座</div>
+      </div>
+      <div style="display:flex; gap: var(--vx-space-xs);">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">编辑</button>
+        <button class="vx-btn vx-btn-danger vx-btn-sm">删除</button>
+      </div>
+    </div>
+    <div class="list-item">
+      <div>
+        <div class="list-item-title">自由版 - 岚图 FREE</div>
+        <div class="list-item-desc">2024 款 · 纯电 · 基础套装</div>
+      </div>
+      <div style="display:flex; gap: var(--vx-space-xs);">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">编辑</button>
+        <button class="vx-btn vx-btn-danger vx-btn-sm">删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 遮罩 + 居中弹窗 ===== -->
+<div class="mask">
+  <div class="vx-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <!-- 标题栏 -->
+    <div class="vx-modal-header">
+      <div class="vx-modal-title" id="modalTitle">删除确认</div>
+      <button class="vx-btn vx-btn-secondary vx-btn-sm vx-btn-icon-only" aria-label="关闭">✕</button>
+    </div>
+
+    <!-- 内容：描述 + 单选项组 -->
+    <div class="vx-modal-body">
+      <div class="vx-modal-desc">
+        你正在删除配置「旗舰版 - 岚图追光」，请选择删除范围：
+      </div>
+      <div class="vx-radio-group">
+        <label class="vx-radio-item vx-radio-item-checked">
+          <span class="vx-radio-dot"></span>
+          <span>仅删除当前配置，保留关联的子配置项</span>
+        </label>
+        <label class="vx-radio-item">
+          <span class="vx-radio-dot"></span>
+          <span>删除当前配置及全部子配置项</span>
+        </label>
+        <label class="vx-radio-item">
+          <span class="vx-radio-dot"></span>
+          <span>删除配置并归档到回收站（30 天内可恢复）</span>
+        </label>
+        <label class="vx-radio-item">
+          <span class="vx-radio-dot"></span>
+          <span>永久删除，不可恢复</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 底部按钮组：主在左，次在右 -->
+    <div class="vx-modal-footer">
+      <div class="vx-modal-footer-left">
+        <button class="vx-btn vx-btn-danger">删除</button>
+      </div>
+      <div class="vx-modal-footer-right">
+        <button class="vx-btn vx-btn-secondary">取消</button>
+      </div>
+    </div>
+
+    <!-- 附：含危险按钮「删除」的按钮组示例（展示用） -->
+    <div style="padding-top: var(--vx-space-md); border-top: 1px solid var(--vx-line-1);">
+      <div style="font-size: var(--vx-font-size-xs); color: var(--vx-text-caption); margin-bottom: var(--vx-space-xs);">
+        按钮组示例（危险操作场景：主按钮为危险按钮，次按钮取消在右）
+      </div>
+      <div class="vx-modal-footer" style="padding-top: 0; border-top: none;">
+        <div class="vx-modal-footer-left">
+          <button class="vx-btn vx-btn-danger">确认删除</button>
+        </div>
+        <div class="vx-modal-footer-right">
+          <button class="vx-btn vx-btn-outline">稍后再说</button>
+          <button class="vx-btn vx-btn-secondary">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 弹窗下方：五种按钮 Normal / Disabled 对照 ===== -->
+<div class="demo-section" style="padding: 0 24px 24px;">
+  <div class="demo-section-title">按钮类型对照（Normal / Disabled）</div>
+  <div class="list-card" style="padding: var(--vx-space-md);">
+    <div class="btn-showcase">
+      <div></div>
+      <div class="btn-showcase-head">Normal</div>
+      <div class="btn-showcase-head">Disabled</div>
+
+      <div class="btn-showcase-label">主要按钮</div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-primary vx-btn-lg">主要按钮</button></div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-primary vx-btn-lg" disabled>主要按钮</button></div>
+
+      <div class="btn-showcase-label">次要按钮</div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-secondary vx-btn-lg">次要按钮</button></div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-secondary vx-btn-lg" disabled>次要按钮</button></div>
+
+      <div class="btn-showcase-label">线框按钮</div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-outline vx-btn-lg">线框按钮</button></div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-outline vx-btn-lg" disabled>线框按钮</button></div>
+
+      <div class="btn-showcase-label">虚线按钮</div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-dashed vx-btn-lg">虚线按钮</button></div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-dashed vx-btn-lg" disabled>虚线按钮</button></div>
+
+      <div class="btn-showcase-label">文字链接</div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-link vx-btn-lg">文字链接</button></div>
+      <div class="btn-showcase-cell"><button class="vx-btn vx-btn-link vx-btn-lg" disabled>文字链接</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 单选交互
+  document.querySelectorAll('.vx-radio-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const group = item.closest('.vx-radio-group');
+      group.querySelectorAll('.vx-radio-item').forEach(i => i.classList.remove('vx-radio-item-checked'));
+      item.classList.add('vx-radio-item-checked');
+    });
+  });
+</script>
+</body>
+</html>

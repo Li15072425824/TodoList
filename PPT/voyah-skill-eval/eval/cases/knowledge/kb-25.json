@@ -1,0 +1,19 @@
+{
+  "id": "kb-25",
+  "topic": "button-disabled",
+  "question": "按钮禁用态统一的文字色、填充色和边框色是什么?",
+  "golden_answer": "文字 #C1C1C1,填充 #FAFAFA,边框 #DEDEDE。",
+  "required": [
+    "C1C1C1",
+    "FAFAFA",
+    "DEDEDE"
+  ],
+  "specIds": [
+    "button.primary.disabled",
+    "button.secondary.disabled",
+    "button.outline.disabled",
+    "button.danger.disabled",
+    "button.prompt.disabled",
+    "button.whiteline.disabled"
+  ]
+}

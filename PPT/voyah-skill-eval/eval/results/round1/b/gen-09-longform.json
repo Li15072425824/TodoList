@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-09-longform",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-09-longform",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.2465982,
+  "denials": [],
+  "resultText": "已生成帮助文档长文页 demo,保存在 `index.html`。\n\n**页面结构概览:**\n- **文档头部**:32px 大标题 + 12px 辅助说明行(更新时间 / 版本 / 作者标签),底部分割线\n- **5 个章节**:系统概述、中控主屏操作、语音交互使用、导航与地图、账号与隐私\n  - 章节标题 22px,左侧 3px 蓝色装饰条\n  - 正文 15px / 行高 1.8,两端对齐,多段落检验行高落位\n  - 子标题 17px,表格 13px\n- **辅助说明体系**(12–13px):\n  - `.helper-text` 13px / 行高 1.7 — 文内补充说明\n  - `.tip-box` 提示框,12px 内容 + 13px 标题\n  - `.note-block` 备注区,12px / 行高 1.6,顶部虚线分隔\n- **章节间**:1px 实线分割线\n- **相关文档区**:水平文字分割线(文字两侧等宽 flex 线段)+ 2×2 卡片网格\n- **页脚**:垂直文字分割线分隔的 6 个链接 + 版权信息\n\n严格按岚图 Voyah 设计规范用色(深蓝 `#1a5cff` 主色、三级灰阶文字、冷灰背景),单文件无外部依赖。",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-09-longform/index.html",
+    "alignRate": 0.842,
+    "checks": 19,
+    "passed": 16,
+    "p0": 1,
+    "p1": 2,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T09:02:43.596Z"
+}

@@ -1,0 +1,278 @@
+{
+  "product": "eval/products/round3/a/adv-06-approx/index.html",
+  "alignRate": 0.862,
+  "checks": 29,
+  "passed": 25,
+  "p0": 2,
+  "p1": 2,
+  "tokenRefRate": 0.668,
+  "expectedTheme": null,
+  "allThemes": false,
+  "htmlTheme": null,
+  "themeAttrs": [],
+  "staticIssues": {
+    "hex": [
+      "#C3C2B7",
+      "#FFE8A6",
+      "#B88300",
+      "#E6E8EB",
+      "#6B7280",
+      "#F5D6BF",
+      "#A05A2C",
+      "#D0D0D0",
+      "#FFB82B",
+      "#00C215",
+      "#36D148"
+    ],
+    "forbidden": [],
+    "gradient": [
+      "gradient"
+    ],
+    "weight": [],
+    "black": [],
+    "spacing": [
+      "padding: 14px",
+      "padding: 18px",
+      "margin-bottom: 10px",
+      "gap: 18px",
+      "padding: 10px",
+      "padding: 10px",
+      "gap: 18px",
+      "gap: 10px"
+    ],
+    "border": [],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #C3C2B7 #FFE8A6 #B88300 #E6E8EB #6B7280 #F5D6BF #A05A2C #D0D0D0 #FFB82B #00C215 #36D148"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "detail": "非 4n 间距: padding: 14px; padding: 18px; margin-bottom: 10px; gap: 18px; padding: 10px; gap: 10px"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "detail": "主题声明: html=无, 其他=0 个"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #C3C2B7 #FFE8A6 #B88300 #E6E8EB #6B7280 #F5D6BF #A05A2C #D0D0D0 #FFB82B #00C215 #36D148"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": true,
+      "detail": "字重 ∈ {400,500,600}"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非 4n 间距: padding: 14px; padding: 18px; margin-bottom: 10px; gap: 18px; padding: 10px; gap: 10px"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "全部按钮高度合规 (10)"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮 padding 合规"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮字号行高合规"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮圆角合规"
+    },
+    {
+      "id": "runtime.btn.weight",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮字重合规"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮色值均在基线内"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "图标按钮 gap 合规"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主按钮 normal = rgb(255, 255, 255)/rgb(55, 115, 219)/rgb(55, 115, 219)，期望 #fff/#3773DB/#3773DB"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主按钮 hover = rgb(255, 255, 255)/rgb(86, 142, 238)/rgb(86, 142, 238)，期望 #fff/#568EEE/#568EEE"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主按钮 click = rgb(255, 255, 255)/rgb(28, 90, 196)/rgb(28, 90, 196)，期望 #fff/#1C5AC4/#1C5AC4"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主按钮 disabled = rgb(193, 193, 193)/rgb(250, 250, 250)/rgb(222, 222, 222)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "次要 hover 字/边 = rgb(86, 142, 238)/rgb(86, 142, 238)，期望 #568EEE"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "次要 hover 填充 = rgb(255, 255, 255)，期望 #FFFFFF"
+    },
+    {
+      "id": "runtime.input.padding",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "输入框 padding = [6,12,6,12]，期望 12/12/6/6"
+    },
+    {
+      "id": "runtime.input.border",
+      "cat": "输入框",
+      "sev": "P0",
+      "pass": true,
+      "detail": "输入框边框 = rgb(222, 222, 222)，期望 #DEDEDE"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "pass": false,
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = -apple-system, \"system-ui\", \"PingFang SC\", \"Microsoft YaHei\", \"Helvetica Neue\", Arial, sans-serif"
+    }
+  ],
+  "costNote": null
+}

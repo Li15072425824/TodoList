@@ -1,0 +1,11 @@
+{
+  "round": "1",
+  "id": "tr-02",
+  "prompt": "生成一个新能源汽车 App 的运营活动页 demo（单文件 HTML）。",
+  "skillUsed": null,
+  "hasHtml": true,
+  "tokenRefsInProduct": 66,
+  "cost": null,
+  "subtype": "watchdog-timeout",
+  "at": "2026-11-09T10:10:07.431Z"
+}

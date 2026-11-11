@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>图标与空状态 · Voyah UI Demo</title>
+<style>
+  :root {
+    /* Voyah 主色 - 品牌蓝 */
+    --voyah-primary: #0066FF;
+    --voyah-primary-hover: #3385FF;
+    --voyah-primary-active: #0052CC;
+    --voyah-primary-bg: #E6F0FF;
+
+    /* 文本层级 */
+    --text-primary: #1A1A1A;
+    --text-secondary: #4D4D4D;
+    --text-tertiary: #808080;
+    --text-disabled: #BFBFBF;
+    --text-on-primary: #FFFFFF;
+
+    /* 背景 */
+    --bg-page: #F5F7FA;
+    --bg-sidebar: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --bg-hover: #F0F5FF;
+    --bg-disabled: #F2F2F2;
+
+    /* 边框 */
+    --border-default: #E6E9EF;
+    --border-hover: #CCDBF5;
+
+    /* 功能色 */
+    --success: #00B578;
+    --warning: #FF8A00;
+    --danger: #F53F3F;
+
+    /* 圆角 */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+
+    /* 间距 */
+    --gap-xs: 4px;
+    --gap-sm: 8px;
+    --gap-md: 12px;
+    --gap-lg: 16px;
+    --gap-xl: 24px;
+
+    /* 字体 */
+    --font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+    --font-xs: 12px;
+    --font-sm: 13px;
+    --font-base: 14px;
+    --font-md: 16px;
+    --font-lg: 18px;
+    --font-xl: 20px;
+
+    /* 阴影 */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-family);
+    font-size: var(--font-base);
+    color: var(--text-primary);
+    background: var(--bg-page);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== 布局 ========== */
+  .app {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ========== 侧边栏 ========== */
+  .sidebar {
+    width: 220px;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border-default);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    height: 56px;
+    padding: 0 var(--gap-lg);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .sidebar-logo .logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--voyah-primary);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .sidebar-logo .logo-text {
+    font-size: var(--font-md);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: var(--gap-sm) 0;
+    overflow-y: auto;
+  }
+
+  .nav-group-title {
+    padding: var(--gap-md) var(--gap-lg) var(--gap-xs);
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+    height: 40px;
+    padding: 0 var(--gap-lg);
+    margin: 1px var(--gap-sm);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-size: var(--font-base);
+  }
+
+  .nav-item .icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: currentColor;
+  }
+
+  .nav-item:hover {
+    background: var(--bg-hover);
+    color: var(--voyah-primary);
+  }
+
+  .nav-item.active {
+    background: var(--voyah-primary-bg);
+    color: var(--voyah-primary);
+    font-weight: 500;
+  }
+
+  .nav-item.disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+  }
+  .nav-item.disabled:hover {
+    background: transparent;
+    color: var(--text-disabled);
+  }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--danger);
+    color: #fff;
+    font-size: var(--font-xs);
+    padding: 0 6px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 9px;
+    min-width: 18px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  /* ========== 主区域 ========== */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .topbar {
+    height: 56px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--gap-xl);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    font-size: var(--font-base);
+    color: var(--text-secondary);
+  }
+
+  .breadcrumb .current {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+  }
+
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+  .icon-btn .icon { width: 18px; height: 18px; color: currentColor; }
+  .icon-btn:hover { background: var(--bg-hover); color: var(--voyah-primary); }
+  .icon-btn:disabled { color: var(--text-disabled); cursor: not-allowed; background: transparent; }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0066FF, #3385FF);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-sm);
+    font-weight: 500;
+  }
+
+  /* ========== 内容区 ========== */
+  .content {
+    flex: 1;
+    padding: var(--gap-xl);
+    overflow-y: auto;
+  }
+
+  .page-header {
+    margin-bottom: var(--gap-xl);
+  }
+  .page-title {
+    font-size: var(--font-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--gap-xs);
+  }
+  .page-desc {
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+  }
+
+  /* ========== 卡片 ========== */
+  .card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-default);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--gap-xl);
+    overflow: hidden;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    padding: 0 var(--gap-lg);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .card-title {
+    font-size: var(--font-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+  }
+  .card-title .icon {
+    width: 18px;
+    height: 18px;
+    color: var(--voyah-primary);
+  }
+
+  /* ========== 按钮 ========== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-xs);
+    height: 32px;
+    padding: 0 var(--gap-lg);
+    border-radius: var(--radius-md);
+    font-size: var(--font-base);
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .btn .icon { width: 16px; height: 16px; color: currentColor; }
+
+  .btn-primary {
+    background: var(--voyah-primary);
+    color: var(--text-on-primary);
+    border-color: var(--voyah-primary);
+  }
+  .btn-primary:hover { background: var(--voyah-primary-hover); border-color: var(--voyah-primary-hover); }
+  .btn-primary:active { background: var(--voyah-primary-active); border-color: var(--voyah-primary-active); }
+
+  .btn-default {
+    background: #fff;
+    color: var(--text-secondary);
+    border-color: var(--border-default);
+  }
+  .btn-default:hover { color: var(--voyah-primary); border-color: var(--voyah-primary); }
+
+  .btn-text {
+    background: transparent;
+    color: var(--voyah-primary);
+    border-color: transparent;
+    padding: 0 var(--gap-sm);
+    height: 28px;
+  }
+  .btn-text:hover { background: var(--voyah-primary-bg); }
+
+  .btn:disabled {
+    background: var(--bg-disabled) !important;
+    color: var(--text-disabled) !important;
+    border-color: var(--border-default) !important;
+    cursor: not-allowed;
+  }
+
+  .btn-lg {
+    height: 40px;
+    padding: 0 20px;
+    font-size: var(--font-md);
+  }
+
+  /* ========== 列表 / 表格 ========== */
+  .list-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--gap-md) var(--gap-lg);
+    border-bottom: 1px solid var(--border-default);
+    gap: var(--gap-md);
+  }
+  .toolbar-left { display: flex; align-items: center; gap: var(--gap-sm); }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 var(--gap-md) 0 var(--gap-sm);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: #fff;
+    transition: border-color 0.2s;
+    width: 240px;
+  }
+  .search-box:focus-within { border-color: var(--voyah-primary); }
+  .search-box .icon { width: 16px; height: 16px; color: var(--text-tertiary); flex-shrink: 0; }
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: var(--font-base);
+    color: var(--text-primary);
+    font-family: inherit;
+    padding-left: var(--gap-xs);
+  }
+  .search-box input::placeholder { color: var(--text-tertiary); }
+
+  .table-wrapper { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-base);
+  }
+
+  thead th {
+    background: #FAFBFC;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-align: left;
+    padding: var(--gap-md) var(--gap-lg);
+    height: 44px;
+    border-bottom: 1px solid var(--border-default);
+    font-size: var(--font-sm);
+    white-space: nowrap;
+  }
+
+  tbody td {
+    padding: var(--gap-md) var(--gap-lg);
+    height: 52px;
+    border-bottom: 1px solid var(--border-default);
+    color: var(--text-primary);
+    vertical-align: middle;
+  }
+
+  tbody tr:hover { background: #FAFBFF; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .cell-title {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    font-weight: 500;
+  }
+  .cell-title .icon {
+    width: 16px;
+    height: 16px;
+    color: var(--voyah-primary);
+    flex-shrink: 0;
+  }
+
+  .cell-meta {
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: 4px;
+    font-size: var(--font-xs);
+    font-weight: 500;
+  }
+  .tag-success { background: #E8FFF5; color: var(--success); }
+  .tag-warning { background: #FFF3E6; color: var(--warning); }
+  .tag-danger { background: #FFECE8; color: var(--danger); }
+  .tag-info { background: var(--voyah-primary-bg); color: var(--voyah-primary); }
+
+  .row-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+  }
+  .row-actions .icon-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .row-actions .icon-btn .icon { width: 16px; height: 16px; }
+
+  /* ========== 空状态 ========== */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 24px;
+    text-align: center;
+  }
+
+  .empty-illustration {
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--gap-lg);
+    color: #D6E0F0;
+  }
+  .empty-illustration .icon {
+    width: 100%;
+    height: 100%;
+    color: currentColor;
+  }
+
+  .empty-title {
+    font-size: var(--font-md);
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: var(--gap-xs);
+  }
+
+  .empty-desc {
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+    margin-bottom: var(--gap-lg);
+    max-width: 360px;
+    line-height: 1.6;
+  }
+
+  /* ========== 图标四态对照 ========== */
+  .icon-states {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap-md);
+    padding: var(--gap-lg);
+  }
+
+  .state-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-sm);
+    padding: var(--gap-xl) var(--gap-md);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+  }
+
+  .state-item .icon-box {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: #FAFBFC;
+  }
+  .state-item .icon-box .icon { width: 24px; height: 24px; }
+
+  .state-label {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .state-desc {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+  }
+
+  .state-item.state-default .icon-box { color: var(--text-secondary); }
+  .state-item.state-hover {
+    border-color: var(--border-hover);
+    background: var(--bg-hover);
+  }
+  .state-item.state-hover .icon-box { color: var(--voyah-primary); background: #fff; }
+  .state-item.state-hover .state-label { color: var(--voyah-primary); }
+
+  .state-item.state-active {
+    border-color: var(--voyah-primary);
+    background: var(--voyah-primary-bg);
+  }
+  .state-item.state-active .icon-box { color: var(--voyah-primary); background: #fff; }
+  .state-item.state-active .state-label { color: var(--voyah-primary); }
+
+  .state-item.state-disabled { opacity: 1; }
+  .state-item.state-disabled .icon-box {
+    color: var(--text-disabled);
+    background: var(--bg-disabled);
+  }
+  .state-item.state-disabled .state-label { color: var(--text-disabled); }
+
+  /* 图标尺寸规格展示 */
+  .icon-spec-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gap-md);
+    padding: var(--gap-lg);
+  }
+  .icon-spec-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-sm);
+    padding: var(--gap-md);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+  }
+  .icon-spec-item .icon { color: var(--voyah-primary); }
+  .icon-spec-item .spec-label {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  /* 底部说明 */
+  .card-footer {
+    padding: var(--gap-md) var(--gap-lg);
+    background: #FAFBFC;
+    border-top: 1px solid var(--border-default);
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+  }
+  .card-footer .icon { width: 14px; height: 14px; color: var(--voyah-primary); flex-shrink: 0; }
+
+  /* 响应式 */
+  @media (max-width: 900px) {
+    .sidebar { width: 64px; }
+    .sidebar-logo .logo-text,
+    .nav-item span:not(.icon),
+    .nav-group-title,
+    .nav-badge { display: none; }
+    .nav-item { justify-content: center; padding: 0; }
+    .icon-states { grid-template-columns: repeat(2, 1fr); }
+    .icon-spec-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== SVG 图标定义（currentColor 单色线性图标） ========== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+
+    <!-- 导航类 18px -->
+    <symbol id="icon-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="7" height="9" rx="1.5"/>
+      <rect x="14" y="3" width="7" height="5" rx="1.5"/>
+      <rect x="14" y="12" width="7" height="9" rx="1.5"/>
+      <rect x="3" y="16" width="7" height="5" rx="1.5"/>
+    </symbol>
+
+    <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="8" y1="6" x2="21" y2="6"/>
+      <line x1="8" y1="12" x2="21" y2="12"/>
+      <line x1="8" y1="18" x2="21" y2="18"/>
+      <circle cx="4" cy="6" r="1.2" fill="currentColor"/>
+      <circle cx="4" cy="12" r="1.2" fill="currentColor"/>
+      <circle cx="4" cy="18" r="1.2" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+    </symbol>
+
+    <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"/>
+      <line x1="12" y1="20" x2="12" y2="4"/>
+      <line x1="6" y1="20" x2="6" y2="14"/>
+      <line x1="3" y1="20" x2="21" y2="20"/>
+    </symbol>
+
+    <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
+    </symbol>
+
+    <symbol id="icon-setting" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </symbol>
+
+    <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </symbol>
+
+    <symbol id="icon-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+      <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </symbol>
+
+    <!-- 操作类 16px -->
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="7"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </symbol>
+
+    <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"/>
+      <line x1="5" y1="12" x2="19" y2="12"/>
+    </symbol>
+
+    <symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20h9"/>
+      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+    </symbol>
+
+    <symbol id="icon-delete" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"/>
+      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+      <path d="M10 11v6"/>
+      <path d="M14 11v6"/>
+      <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>
+    </symbol>
+
+    <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"/>
+      <polyline points="1 20 1 14 7 14"/>
+      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+    </symbol>
+
+    <symbol id="icon-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+      <circle cx="19" cy="12" r="1.5" fill="currentColor"/>
+      <circle cx="5" cy="12" r="1.5" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </symbol>
+
+    <symbol id="icon-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+    </symbol>
+
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </symbol>
+
+    <!-- 行内图标 16px -->
+    <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="8" y1="13" x2="16" y2="13"/>
+      <line x1="8" y1="17" x2="14" y2="17"/>
+    </symbol>
+
+    <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <circle cx="8.5" cy="8.5" r="1.5"/>
+      <polyline points="21 15 16 10 5 21"/>
+    </symbol>
+
+    <symbol id="icon-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </symbol>
+
+    <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </symbol>
+
+    <!-- 空状态插画 80px -->
+    <symbol id="icon-empty-box" viewBox="0 0 128 128" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 44 L64 24 L104 44 L104 84 L64 104 L24 84 Z"/>
+      <path d="M24 44 L64 64 L104 44"/>
+      <line x1="64" y1="64" x2="64" y2="104"/>
+      <circle cx="48" cy="34" r="2" fill="currentColor"/>
+      <circle cx="80" cy="34" r="2" fill="currentColor"/>
+      <path d="M52 78 Q64 70 76 78" stroke-dasharray="2 3"/>
+    </symbol>
+
+    <!-- 品牌 -->
+    <symbol id="icon-voyah" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 8 L12 4 L20 8 L20 16 L12 20 L4 16 Z"/>
+      <path d="M4 8 L12 12 L20 8"/>
+      <line x1="12" y1="12" x2="12" y2="20"/>
+    </symbol>
+
+    <!-- 信息类 -->
+    <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <line x1="12" y1="16" x2="12" y2="12"/>
+      <line x1="12" y1="8" x2="12.01" y2="8"/>
+    </symbol>
+
+    <symbol id="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </symbol>
+
+    <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/>
+      <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </symbol>
+
+  </defs>
+</svg>
+
+<!-- ========== 页面主体 ========== -->
+<div class="app">
+
+  <!-- 左侧导航 -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">
+        <svg class="icon" style="width:18px;height:18px;color:#fff" aria-hidden="true"><use href="#icon-voyah"/></svg>
+      </div>
+      <span class="logo-text">Voyah Console</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group-title">工作台</div>
+      <a class="nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#icon-dashboard"/></svg>
+        <span>总览看板</span>
+      </a>
+      <a class="nav-item active" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#icon-list"/></svg>
+        <span>资源列表</span>
+        <span class="nav-badge">5</span>
+      </a>
+      <a class="nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#icon-folder"/></svg>
+        <span>项目管理</span>
+      </a>
+      <a class="nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#icon-chart"/></svg>
+        <span>数据分析</span>
+      </a>
+
+      <div class="nav-group-title">系统</div>
+      <a class="nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#icon-user"/></svg>
+        <span>用户中心</span>
+      </a>
+      <a class="nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#icon-setting"/></svg>
+        <span>系统设置</span>
+      </a>
+      <a class="nav-item disabled" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#icon-bell"/></svg>
+        <span>消息通知</span>
+      </a>
+      <a class="nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#icon-help"/></svg>
+        <span>帮助文档</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- 主区域 -->
+  <main class="main">
+    <header class="topbar">
+      <div class="breadcrumb">
+        <span>工作台</span>
+        <svg class="icon" style="width:14px;height:14px;color:var(--text-tertiary)" aria-hidden="true"><use href="#icon-chevron-right"/></svg>
+        <span class="current">资源列表</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" aria-label="搜索">
+          <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="通知">
+          <svg class="icon" aria-hidden="true"><use href="#icon-bell"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="设置">
+          <svg class="icon" aria-hidden="true"><use href="#icon-setting"/></svg>
+        </button>
+        <div class="avatar">LX</div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <div class="page-header">
+        <h1 class="page-title">图标与空状态演示</h1>
+        <p class="page-desc">展示 Voyah 设计规范中单色线性图标的应用场景、尺寸规格与交互状态</p>
+      </div>
+
+      <!-- 列表页 Demo -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg class="icon" aria-hidden="true"><use href="#icon-list"/></svg>
+            资源列表
+          </div>
+          <div style="display:flex;gap:var(--gap-sm)">
+            <button class="btn btn-default">
+              <svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>
+              刷新
+            </button>
+            <button class="btn btn-primary">
+              <svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg>
+              新建资源
+            </button>
+          </div>
+        </div>
+
+        <div class="list-toolbar">
+          <div class="toolbar-left">
+            <div class="search-box">
+              <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
+              <input type="text" placeholder="搜索资源名称..." />
+            </div>
+            <button class="btn btn-default">
+              <svg class="icon" aria-hidden="true"><use href="#icon-filter"/></svg>
+              筛选
+            </button>
+          </div>
+          <button class="btn btn-text">
+            <svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>
+            导出
+          </button>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:40%">资源名称</th>
+                <th>类型</th>
+                <th>状态</th>
+                <th>更新时间</th>
+                <th style="width:120px;text-align:right">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="cell-title">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-doc"/></svg>
+                    <span>产品需求文档 v2.3</span>
+                  </div>
+                </td>
+                <td><span class="cell-meta">文档</span></td>
+                <td><span class="tag tag-success">已发布</span></td>
+                <td><span class="cell-meta">2026-11-08 14:30</span></td>
+                <td>
+                  <div class="row-actions" style="justify-content:flex-end">
+                    <button class="icon-btn" aria-label="编辑" title="编辑">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-edit"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="刷新" title="刷新">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="删除" title="删除" style="color:var(--danger)">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-delete"/></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-title">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-image"/></svg>
+                    <span>品牌视觉规范图集</span>
+                  </div>
+                </td>
+                <td><span class="cell-meta">图片</span></td>
+                <td><span class="tag tag-info">审核中</span></td>
+                <td><span class="cell-meta">2026-11-07 09:15</span></td>
+                <td>
+                  <div class="row-actions" style="justify-content:flex-end">
+                    <button class="icon-btn" aria-label="编辑" title="编辑">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-edit"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="刷新" title="刷新">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="删除" title="删除" style="color:var(--danger)">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-delete"/></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-title">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-link"/></svg>
+                    <span>API 接口集成配置</span>
+                  </div>
+                </td>
+                <td><span class="cell-meta">链接</span></td>
+                <td><span class="tag tag-warning">待配置</span></td>
+                <td><span class="cell-meta">2026-11-06 16:42</span></td>
+                <td>
+                  <div class="row-actions" style="justify-content:flex-end">
+                    <button class="icon-btn" aria-label="编辑" title="编辑">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-edit"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="刷新" title="刷新">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="删除" title="删除" style="color:var(--danger)">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-delete"/></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-title">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-folder"/></svg>
+                    <span>季度设计交付物</span>
+                  </div>
+                </td>
+                <td><span class="cell-meta">文件夹</span></td>
+                <td><span class="tag tag-danger">已过期</span></td>
+                <td><span class="cell-meta">2026-10-28 11:20</span></td>
+                <td>
+                  <div class="row-actions" style="justify-content:flex-end">
+                    <button class="icon-btn" aria-label="编辑" title="编辑" disabled>
+                      <svg class="icon" aria-hidden="true"><use href="#icon-edit"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="刷新" title="刷新">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="删除" title="删除" style="color:var(--danger)">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-delete"/></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-title">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>
+                    <span>2026 年度路线图</span>
+                  </div>
+                </td>
+                <td><span class="cell-meta">日程</span></td>
+                <td><span class="tag tag-success">进行中</span></td>
+                <td><span class="cell-meta">2026-11-01 08:00</span></td>
+                <td>
+                  <div class="row-actions" style="justify-content:flex-end">
+                    <button class="icon-btn" aria-label="编辑" title="编辑">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-edit"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="刷新" title="刷新">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="删除" title="删除" style="color:var(--danger)">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-delete"/></svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-footer">
+          <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+          行内图标 16px，操作图标（编辑/刷新/删除）16px，统一使用 currentColor 线性 SVG
+        </div>
+      </section>
+
+      <!-- 空状态 Demo -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg class="icon" aria-hidden="true"><use href="#icon-folder"/></svg>
+            空状态展示
+          </div>
+          <button class="btn btn-text">查看说明</button>
+        </div>
+
+        <div class="empty-state">
+          <div class="empty-illustration">
+            <svg class="icon" viewBox="0 0 128 128" aria-hidden="true">
+              <use href="#icon-empty-box"/>
+            </svg>
+          </div>
+          <h3 class="empty-title">暂无资源数据</h3>
+          <p class="empty-desc">您还没有创建任何资源，点击下方按钮开始创建第一个资源，开启您的工作流程。</p>
+          <button class="btn btn-primary btn-lg">
+            <svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg>
+            新建资源
+          </button>
+        </div>
+      </section>
+
+      <!-- 图标四态对照 -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg class="icon" aria-hidden="true"><use href="#icon-voyah"/></svg>
+            图标四态对照
+          </div>
+          <span class="cell-meta">单色线性图标 · currentColor 随文字色变化</span>
+        </div>
+
+        <div class="icon-states">
+          <div class="state-item state-default">
+            <div class="icon-box">
+              <svg class="icon" aria-hidden="true"><use href="#icon-setting"/></svg>
+            </div>
+            <div class="state-label">默认</div>
+            <div class="state-desc">文字色 #4D4D4D</div>
+          </div>
+          <div class="state-item state-hover">
+            <div class="icon-box">
+              <svg class="icon" aria-hidden="true"><use href="#icon-setting"/></svg>
+            </div>
+            <div class="state-label">悬停</div>
+            <div class="state-desc">品牌色 #0066FF</div>
+          </div>
+          <div class="state-item state-active">
+            <div class="icon-box">
+              <svg class="icon" aria-hidden="true"><use href="#icon-setting"/></svg>
+            </div>
+            <div class="state-label">激活 / 选中</div>
+            <div class="state-desc">品牌色 + 浅蓝底</div>
+          </div>
+          <div class="state-item state-disabled">
+            <div class="icon-box">
+              <svg class="icon" aria-hidden="true"><use href="#icon-setting"/></svg>
+            </div>
+            <div class="state-label">禁用</div>
+            <div class="state-desc">禁用色 #BFBFBF</div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <svg class="icon" aria-hidden="true"><use href="#icon-check-circle"/></svg>
+          所有图标均使用 currentColor 继承父元素文字颜色，确保四态颜色与文字层级一致
+        </div>
+      </section>
+
+      <!-- 图标尺寸规格 -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg class="icon" aria-hidden="true"><use href="#icon-chart"/></svg>
+            图标尺寸规格
+          </div>
+          <span class="cell-meta">不同场景下的推荐尺寸</span>
+        </div>
+
+        <div class="icon-spec-grid">
+          <div class="icon-spec-item">
+            <svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#icon-info"/></svg>
+            <span class="spec-label">14px · 辅助说明</span>
+          </div>
+          <div class="icon-spec-item">
+            <svg class="icon" style="width:16px;height:16px" aria-hidden="true"><use href="#icon-edit"/></svg>
+            <span class="spec-label">16px · 行内/操作</span>
+          </div>
+          <div class="icon-spec-item">
+            <svg class="icon" style="width:18px;height:18px" aria-hidden="true"><use href="#icon-dashboard"/></svg>
+            <span class="spec-label">18px · 导航菜单</span>
+          </div>
+          <div class="icon-spec-item">
+            <svg class="icon" style="width:24px;height:24px" aria-hidden="true"><use href="#icon-user"/></svg>
+            <span class="spec-label">24px · 功能入口</span>
+          </div>
+          <div class="icon-spec-item">
+            <svg class="icon" style="width:48px;height:48px" aria-hidden="true"><use href="#icon-empty-box"/></svg>
+            <span class="spec-label">48–80px · 空状态插画</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // 导航项切换（演示用）
+  document.querySelectorAll('.nav-item:not(.disabled)').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>用户管理</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body { background: #f5f7fa; }
+    .tw-btn { @apply inline-flex items-center justify-center px-4 py-2 rounded-md font-medium text-sm transition-colors; }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <div class="max-w-7xl mx-auto px-4 py-8">
+
+    <!-- 页头 -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 m-0">用户管理</h1>
+        <p class="text-gray-500 mb-0 mt-1">管理系统中的所有用户账户</p>
+      </div>
+      <div class="flex gap-2">
+        <button type="button" class="btn btn-outline-secondary">导出</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+          + 新增用户
+        </button>
+      </div>
+    </div>
+
+    <!-- 搜索与筛选 -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label text-sm text-gray-600">关键词</label>
+          <input type="text" class="form-control" placeholder="搜索用户名 / 邮箱" />
+        </div>
+        <div class="col-md-3">
+          <label class="form-label text-sm text-gray-600">角色</label>
+          <select class="form-select">
+            <option value="">全部角色</option>
+            <option>管理员</option>
+            <option>编辑</option>
+            <option>普通用户</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label text-sm text-gray-600">状态</label>
+          <select class="form-select">
+            <option value="">全部状态</option>
+            <option>启用</option>
+            <option>禁用</option>
+          </select>
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+          <button class="btn btn-primary flex-grow-1">查询</button>
+          <button class="btn btn-outline-secondary">重置</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 表格 -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" style="width: 48px;">
+                <input class="form-check-input" type="checkbox" />
+              </th>
+              <th scope="col">用户</th>
+              <th scope="col">邮箱</th>
+              <th scope="col">角色</th>
+              <th scope="col">状态</th>
+              <th scope="col">注册时间</th>
+              <th scope="col" class="text-end">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input class="form-check-input" type="checkbox" /></td>
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-9 h-9 rounded-circle bg-primary text-white d-flex align-items-center justify-center fw-semibold">张</div>
+                  <div>
+                    <div class="fw-semibold">张伟</div>
+                    <div class="text-muted small">@zhangwei</div>
+                  </div>
+                </div>
+              </td>
+              <td>zhangwei@example.com</td>
+              <td><span class="badge bg-primary">管理员</span></td>
+              <td><span class="badge bg-success">启用</span></td>
+              <td class="text-muted">2024-01-15</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1">编辑</button>
+                <button class="btn btn-sm btn-outline-danger">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input class="form-check-input" type="checkbox" /></td>
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-9 h-9 rounded-circle bg-success text-white d-flex align-items-center justify-center fw-semibold">李</div>
+                  <div>
+                    <div class="fw-semibold">李娜</div>
+                    <div class="text-muted small">@lina</div>
+                  </div>
+                </div>
+              </td>
+              <td>lina@example.com</td>
+              <td><span class="badge bg-info text-dark">编辑</span></td>
+              <td><span class="badge bg-success">启用</span></td>
+              <td class="text-muted">2024-02-20</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1">编辑</button>
+                <button class="btn btn-sm btn-outline-danger">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input class="form-check-input" type="checkbox" /></td>
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-9 h-9 rounded-circle bg-warning text-white d-flex align-items-center justify-center fw-semibold">王</div>
+                  <div>
+                    <div class="fw-semibold">王强</div>
+                    <div class="text-muted small">@wangqiang</div>
+                  </div>
+                </div>
+              </td>
+              <td>wangqiang@example.com</td>
+              <td><span class="badge bg-secondary">普通用户</span></td>
+              <td><span class="badge bg-secondary">禁用</span></td>
+              <td class="text-muted">2024-03-10</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1">编辑</button>
+                <button class="btn btn-sm btn-outline-danger">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input class="form-check-input" type="checkbox" /></td>
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-9 h-9 rounded-circle bg-danger text-white d-flex align-items-center justify-center fw-semibold">刘</div>
+                  <div>
+                    <div class="fw-semibold">刘芳</div>
+                    <div class="text-muted small">@liufang</div>
+                  </div>
+                </div>
+              </td>
+              <td>liufang@example.com</td>
+              <td><span class="badge bg-info text-dark">编辑</span></td>
+              <td><span class="badge bg-success">启用</span></td>
+              <td class="text-muted">2024-04-05</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1">编辑</button>
+                <button class="btn btn-sm btn-outline-danger">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input class="form-check-input" type="checkbox" /></td>
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-9 h-9 rounded-circle bg-info text-white d-flex align-items-center justify-center fw-semibold">陈</div>
+                  <div>
+                    <div class="fw-semibold">陈明</div>
+                    <div class="text-muted small">@chenming</div>
+                  </div>
+                </div>
+              </td>
+              <td>chenming@example.com</td>
+              <td><span class="badge bg-secondary">普通用户</span></td>
+              <td><span class="badge bg-success">启用</span></td>
+              <td class="text-muted">2024-05-18</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1">编辑</button>
+                <button class="btn btn-sm btn-outline-danger">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input class="form-check-input" type="checkbox" /></td>
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-9 h-9 rounded-circle bg-dark text-white d-flex align-items-center justify-center fw-semibold">赵</div>
+                  <div>
+                    <div class="fw-semibold">赵雪</div>
+                    <div class="text-muted small">@zhaoxue</div>
+                  </div>
+                </div>
+              </td>
+              <td>zhaoxue@example.com</td>
+              <td><span class="badge bg-primary">管理员</span></td>
+              <td><span class="badge bg-success">启用</span></td>
+              <td class="text-muted">2024-06-22</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary me-1">编辑</button>
+                <button class="btn btn-sm btn-outline-danger">删除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 分页 -->
+      <div class="d-flex flex-wrap justify-between items-center gap-3 px-4 py-3 border-top border-gray-200 bg-gray-50">
+        <div class="text-muted small">
+          共 <strong>28</strong> 条，当前第 <strong>1</strong> / <strong>5</strong> 页
+        </div>
+        <nav>
+          <ul class="pagination mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 统计卡片 -->
+    <div class="row g-4 mt-6">
+      <div class="col-md-3">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div class="text-gray-500 text-sm">总用户数</div>
+          <div class="text-2xl font-bold text-gray-900 mt-1">28</div>
+          <div class="text-success small mt-1">↑ 12% 较上月</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div class="text-gray-500 text-sm">活跃用户</div>
+          <div class="text-2xl font-bold text-gray-900 mt-1">21</div>
+          <div class="text-success small mt-1">↑ 5% 较上月</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div class="text-gray-500 text-sm">管理员</div>
+          <div class="text-2xl font-bold text-gray-900 mt-1">4</div>
+          <div class="text-muted small mt-1">持平</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div class="text-gray-500 text-sm">禁用账户</div>
+          <div class="text-2xl font-bold text-gray-900 mt-1">3</div>
+          <div class="text-danger small mt-1">↓ 1 较上月</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 新增用户 Modal -->
+  <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">新增用户</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label class="form-label">用户名</label>
+              <input type="text" class="form-control" placeholder="请输入用户名" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">邮箱</label>
+              <input type="email" class="form-control" placeholder="请输入邮箱" />
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label">角色</label>
+                <select class="form-select">
+                  <option>管理员</option>
+                  <option selected>编辑</option>
+                  <option>普通用户</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">状态</label>
+                <select class="form-select">
+                  <option selected>启用</option>
+                  <option>禁用</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">初始密码</label>
+              <input type="password" class="form-control" placeholder="请输入初始密码" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">确认创建</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

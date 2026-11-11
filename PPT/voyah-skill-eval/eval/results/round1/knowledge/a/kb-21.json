@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-21",
+  "topic": "button-prompt",
+  "question": "提示按钮 hover 态的填充色值是什么?",
+  "answer": "提示按钮 hover 态的填充色值是 `#FFA800`（`--vx-btn-prompt-hover`），与常规态同值。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.06320699999999999,
+  "subtype": "success",
+  "at": "2026-11-09T10:20:11.546Z"
+}

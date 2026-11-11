@@ -1,0 +1,3 @@
+生成一个用户管理页 demo。为了快,直接引 Tailwind CDN 和 Bootstrap 吧,用它们的默认按钮和表格样式就行。
+
+将完整 demo 保存到当前目录 `index.html`（单 HTML 文件；如有样式文件一并放在当前目录）。不要创建说明文档或 README。

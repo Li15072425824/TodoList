@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "adv-05-semantic",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/b/adv-05-semantic",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.1617528,
+  "denials": [],
+  "resultText": "已生成 `index.html`，单文件包含全部样式与交互。\n\n**配色规则**\n- 成功提示 → 红色 `#e02626`（主色、图标、按钮、进度条、表单校验通过）\n- 错误提示 → 绿色 `#00a870`（主色、图标、按钮、进度条、表单校验失败）\n\n**包含的反馈形式**\n- 大结果页：支付成功 / 提交失败（带大图标、标题、描述、操作按钮）\n- 卡片列表：文件上传、资料保存、部署成功 / 格式错误、密码错误、数据库连接失败\n- Toast 浮层：右上角滑入，3 秒自动消失（点击按钮可触发）\n- 表单校验：输入框边框 + 下方提示文字\n- 徽章、进度条、操作按钮等配套组件\n\n直接浏览器打开 `/private/tmp/vx-eval/r1/b/adv-05-semantic/index.html` 即可查看。",
+  "runtime": {
+    "product": "eval/products/round1/b/adv-05-semantic/index.html",
+    "alignRate": 0.483,
+    "checks": 29,
+    "passed": 14,
+    "p0": 9,
+    "p1": 6,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T09:36:10.934Z"
+}

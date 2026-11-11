@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-18",
+  "topic": "shadow",
+  "question": "弹窗阴影的规范值(CSS box-shadow)是什么?",
+  "answer": "弹窗阴影的 CSS `box-shadow` 规范值为：\n\n```\n0 1px 20px rgba(0, 0, 0, 0.08)\n```\n\n对应 CSS 变量：`--vx-shadow-modal`。\n\n仅弹窗使用该阴影，其他组件不得自行添加阴影。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0434406,
+  "subtype": "success",
+  "at": "2026-11-10T03:51:41.783Z"
+}

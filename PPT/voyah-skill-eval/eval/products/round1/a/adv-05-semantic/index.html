@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="red">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>操作结果反馈 · Demo</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  /* ===== 业务语义反转：成功=红色（喜庆），报错=绿色 =====
+     通过在 .feedback-page 作用域内重映射 success / error 语义 token，
+     让所有 vx-alert-success / vx-tag-success / vx-btn-danger（语义成功用红色按钮）
+     等组件呈现反转后的颜色。不修改 tokens.css 原值。 */
+  .feedback-page {
+    --vx-success-bg: #FCEBEA;
+    --vx-success-hover: #FDA2A4;
+    --vx-success: #FF2020;
+    --vx-success-dark: #CF2E2E;
+    --vx-error-bg: #E3F8E8;
+    --vx-error-hover: #A8E1A6;
+    --vx-error: #00D115;
+    --vx-error-dark: #00A611;
+    --vx-btn-danger-hover: #FF5A5D;
+  }
+
+  /* 页面布局 */
+  .page {
+    min-height: 100vh;
+    background: var(--vx-bg-layout);
+    padding: var(--vx-padding-page);
+  }
+  .page-header {
+    max-width: 960px;
+    margin: 0 auto var(--vx-space-xl);
+  }
+  .page-title {
+    font-size: var(--vx-font-size-xxl);
+    line-height: var(--vx-line-height-page-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-1);
+  }
+  .page-desc {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    line-height: var(--vx-line-height-body);
+  }
+  .section {
+    max-width: 960px;
+    margin: 0 auto var(--vx-space-xl);
+  }
+  .section-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-sm);
+  }
+  .section-sub {
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+    margin-bottom: var(--vx-space-md);
+  }
+  .card-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--vx-space-md);
+  }
+  @media (max-width: 640px) {
+    .card-row { grid-template-columns: 1fr; }
+  }
+  .result-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--vx-space-sm);
+  }
+  .result-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: var(--vx-space-xs);
+  }
+  .result-icon.success {
+    background: var(--vx-success-bg);
+    color: var(--vx-success-dark);
+  }
+  .result-icon.error {
+    background: var(--vx-error-bg);
+    color: var(--vx-error-dark);
+  }
+  .result-icon.warning {
+    background: var(--vx-warning-bg);
+    color: var(--vx-warning-dark);
+  }
+  .result-title {
+    font-size: var(--vx-font-size-xl);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .result-desc {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    line-height: var(--vx-line-height-body);
+    max-width: 360px;
+  }
+  .result-actions {
+    margin-top: var(--vx-space-xs);
+    display: flex;
+    gap: var(--vx-space-xs);
+  }
+  .alert-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-xs);
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vx-space-xs);
+    align-items: center;
+  }
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vx-space-xs);
+    align-items: center;
+  }
+  .panel {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-lg);
+  }
+  .panel + .panel {
+    margin-top: var(--vx-space-md);
+  }
+  .panel-label {
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-caption);
+    margin-bottom: var(--vx-space-xs);
+  }
+  .meta-note {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+    margin-top: var(--vx-space-md);
+    padding: var(--vx-space-xs) var(--vx-space-sm);
+    background: var(--vx-fill-1);
+    border-radius: var(--vx-radius-md);
+  }
+  .list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--vx-space-xs) 0;
+    border-bottom: 1px solid var(--vx-line-1);
+    font-size: var(--vx-font-size-md);
+  }
+  .list-row:last-child { border-bottom: none; }
+  .list-label {
+    color: var(--vx-text-secondary);
+  }
+  .segmented-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--vx-space-md);
+  }
+</style>
+</head>
+<body class="feedback-page">
+<div class="page">
+
+  <!-- 页面标题 -->
+  <div class="page-header">
+    <h1 class="page-title">操作结果反馈</h1>
+    <p class="page-desc">本页汇总操作成功、失败、警告等各类反馈样式。成功提示用红色（公司喜庆语义），报错提示用绿色，对比更强烈。</p>
+  </div>
+
+  <!-- 顶部切换：场景切换 -->
+  <div class="section">
+    <div class="segmented-wrap">
+      <div class="vx-segmented">
+        <span class="vx-segmented-item vx-segmented-item-selected">结果页</span>
+        <span class="vx-segmented-item">通知提示</span>
+        <span class="vx-segmented-item">表单校验</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 场景一：结果卡片 -->
+  <div class="section">
+    <h2 class="section-title">结果页卡片</h2>
+    <p class="section-sub">操作提交后的整页反馈，用于支付成功、提交失败、申请待审核等场景。</p>
+    <div class="card-row">
+      <!-- 成功（红色 · 喜庆） -->
+      <div class="result-card">
+        <div class="result-icon success">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="result-title">操作成功</div>
+        <div class="result-desc">您的订单已提交成功，预计 24 小时内完成审核，请留意站内通知。</div>
+        <div class="result-actions">
+          <button class="vx-btn vx-btn-danger">查看订单</button>
+          <button class="vx-btn vx-btn-secondary">返回首页</button>
+        </div>
+      </div>
+      <!-- 失败（绿色 · 反向对比） -->
+      <div class="result-card">
+        <div class="result-icon error">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+        <div class="result-title">操作失败</div>
+        <div class="result-desc">网络异常导致提交未成功，请检查网络连接后重新尝试提交。</div>
+        <div class="result-actions">
+          <button class="vx-btn vx-btn-secondary">重新提交</button>
+          <button class="vx-btn vx-btn-secondary">联系客服</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 场景二：Alert 提示条 -->
+  <div class="section">
+    <h2 class="section-title">提示条（Alert）</h2>
+    <p class="section-sub">页面内即时反馈，成功为红色底、报错为绿色底。</p>
+    <div class="alert-stack">
+      <div class="vx-alert vx-alert-success">
+        <span class="vx-alert-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </span>
+        <span>保存成功！您的配置已同步至所有设备。</span>
+      </div>
+      <div class="vx-alert vx-alert-error">
+        <span class="vx-alert-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </span>
+        <span>上传失败：文件大小超过 10MB 限制，请压缩后重新上传。</span>
+      </div>
+      <div class="vx-alert vx-alert-warning">
+        <span class="vx-alert-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </span>
+        <span>密码强度较弱，建议包含大小写字母、数字和特殊字符。</span>
+      </div>
+      <div class="vx-alert vx-alert-info">
+        <span class="vx-alert-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </span>
+        <span>系统将于本周六凌晨 2:00-4:00 进行维护升级，届时部分功能暂不可用。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 场景三：通知卡片（Notification） -->
+  <div class="section">
+    <h2 class="section-title">通知卡片</h2>
+    <p class="section-sub">右上角弹出式通知，用于后台异步操作结果反馈。</p>
+    <div class="card-row">
+      <div class="vx-notification">
+        <span style="color: var(--vx-success-dark); font-size: 20px; line-height: 1;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </span>
+        <div>
+          <div class="vx-notification-title">发布成功</div>
+          <div class="vx-notification-description">您的文章《季度销售总结》已成功发布到全员频道。</div>
+        </div>
+      </div>
+      <div class="vx-notification">
+        <span style="color: var(--vx-error-dark); font-size: 20px; line-height: 1;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </span>
+        <div>
+          <div class="vx-notification-title">同步失败</div>
+          <div class="vx-notification-description">云盘同步遇到错误，已自动暂停，请检查存储空间。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 场景四：表单校验反馈 -->
+  <div class="section">
+    <h2 class="section-title">表单校验</h2>
+    <p class="section-sub">输入框内联提示与提交结果汇总。</p>
+    <div class="panel">
+      <div class="panel-label">提交结果汇总</div>
+      <div class="vx-alert vx-alert-success" style="margin-bottom: var(--vx-space-xs);">
+        <span class="vx-alert-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </span>
+        <span>表单提交成功，共处理 12 条数据，全部校验通过。</span>
+      </div>
+      <div class="vx-alert vx-alert-error">
+        <span class="vx-alert-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </span>
+        <span>提交失败，存在 3 项错误，请检查标红字段后重试。</span>
+      </div>
+    </div>
+    <div class="panel" style="margin-top: var(--vx-space-md);">
+      <div class="panel-label">字段状态示例</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--vx-space-md);">
+        <div>
+          <div style="font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary); margin-bottom: var(--vx-space-1);">手机号 <span class="vx-tag vx-tag-success">已验证</span></div>
+          <input class="vx-input" value="138****8888" readonly />
+        </div>
+        <div>
+          <div style="font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary); margin-bottom: var(--vx-space-1);">邮箱地址 <span class="vx-tag vx-tag-error">格式错误</span></div>
+          <input class="vx-input" value="user@" style="border-color: var(--vx-error); box-shadow: 0 0 0 2px var(--vx-error-bg);" />
+          <div style="font-size: var(--vx-font-size-xs); color: var(--vx-error-dark); margin-top: var(--vx-space-1);">请输入有效的邮箱地址</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 场景五：Tag 标签状态 -->
+  <div class="section">
+    <h2 class="section-title">状态标签</h2>
+    <p class="section-sub">列表或详情页中用于标识操作结果、数据状态。</p>
+    <div class="panel">
+      <div class="tag-row">
+        <span class="vx-tag vx-tag-success">已完成</span>
+        <span class="vx-tag vx-tag-success">支付成功</span>
+        <span class="vx-tag vx-tag-success">审核通过</span>
+        <span class="vx-tag vx-tag-success">同步成功</span>
+        <span class="vx-tag vx-tag-error">已失败</span>
+        <span class="vx-tag vx-tag-error">校验不通过</span>
+        <span class="vx-tag vx-tag-error">连接断开</span>
+        <span class="vx-tag vx-tag-warning">处理中</span>
+        <span class="vx-tag vx-tag-warning">待审核</span>
+      </div>
+      <div class="meta-note">注：成功类标签使用红色系（喜庆），失败/报错类标签使用绿色系，与常规语义相反，符合本公司视觉约定。</div>
+    </div>
+  </div>
+
+  <!-- 场景六：操作按钮 -->
+  <div class="section">
+    <h2 class="section-title">操作按钮</h2>
+    <p class="section-sub">主要操作按钮使用红色（成功/提交语义），与成功反馈保持视觉一致。</p>
+    <div class="panel">
+      <div class="panel-label">主要操作</div>
+      <div class="button-row">
+        <button class="vx-btn vx-btn-danger vx-btn-lg">确认提交</button>
+        <button class="vx-btn vx-btn-danger">立即支付</button>
+        <button class="vx-btn vx-btn-danger vx-btn-sm">保存</button>
+      </div>
+      <div class="panel-label" style="margin-top: var(--vx-space-md);">次要 / 取消操作</div>
+      <div class="button-row">
+        <button class="vx-btn vx-btn-secondary">取消</button>
+        <button class="vx-btn vx-btn-outline">返回上一步</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">跳过</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 场景七：列表操作结果 -->
+  <div class="section">
+    <h2 class="section-title">列表操作结果</h2>
+    <p class="section-sub">批量操作后的汇总展示。</p>
+    <div class="panel">
+      <div class="list-row">
+        <span class="list-label">本次操作总数</span>
+        <span style="font-family: var(--vx-font-family-number); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title);">50</span>
+      </div>
+      <div class="list-row">
+        <span class="list-label">成功</span>
+        <span style="display: flex; align-items: center; gap: var(--vx-space-xs);">
+          <span class="vx-tag vx-tag-success">47 条</span>
+          <span style="font-family: var(--vx-font-family-number); color: var(--vx-success-dark);">94%</span>
+        </span>
+      </div>
+      <div class="list-row">
+        <span class="list-label">失败</span>
+        <span style="display: flex; align-items: center; gap: var(--vx-space-xs);">
+          <span class="vx-tag vx-tag-error">3 条</span>
+          <span style="font-family: var(--vx-font-family-number); color: var(--vx-error-dark);">6%</span>
+        </span>
+      </div>
+      <div class="list-row">
+        <span class="list-label">操作耗时</span>
+        <span style="font-family: var(--vx-font-family-number); color: var(--vx-text-primary);">2.3 秒</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

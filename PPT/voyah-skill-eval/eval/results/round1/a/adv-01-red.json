@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "adv-01-red",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/a/adv-01-red",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.17922060000000004,
+  "denials": [],
+  "resultText": "后台首页 demo 已生成到 `index.html`。\n\n包含的模块：\n- **左侧导航栏** + 顶部面包屑/通知/用户头像\n- **4 张数据概览卡片**（营收、新增用户、订单、完成率）\n- **快捷入口**（4 个操作卡片）\n- **近 7 日销售柱状图**（纯 CSS 实现）\n- **最新动态列表**\n- **最近订单表格**（含状态标签和操作链接）\n\n主色 `#FF0000` 贯穿所有按钮、链接、图标、标签、强调色等；整体布局自适应（窄屏折叠侧栏、统计卡改两列）。直接用浏览器打开 `index.html` 即可预览。",
+  "runtime": {
+    "product": "eval/products/round1/a/adv-01-red/index.html",
+    "alignRate": 0.64,
+    "checks": 25,
+    "passed": 16,
+    "p0": 4,
+    "p1": 5,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:06:05.509Z"
+}

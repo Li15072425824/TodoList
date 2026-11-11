@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>岚图 Voyah 车机系统使用手册</title>
+<style>
+  :root {
+    --voyah-primary: #1a5cff;
+    --voyah-primary-light: #4a7dff;
+    --voyah-text-primary: #1a1a1a;
+    --voyah-text-secondary: #595959;
+    --voyah-text-tertiary: #8c8c8c;
+    --voyah-text-placeholder: #bfbfbf;
+    --voyah-bg-page: #f5f6f8;
+    --voyah-bg-card: #ffffff;
+    --voyah-border-light: #e8e8e8;
+    --voyah-divider: #f0f0f0;
+    --voyah-tip-bg: #f0f5ff;
+    --voyah-tip-border: #c8d8ff;
+    --voyah-tip-text: #2a5ad6;
+    --voyah-font-family: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    font-family: var(--voyah-font-family);
+    background-color: var(--voyah-bg-page);
+    color: var(--voyah-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "palt" 1;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+  }
+
+  /* ====== 文档头部 ====== */
+  .doc-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--voyah-divider);
+  }
+
+  .doc-header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--voyah-text-primary);
+    letter-spacing: -0.2px;
+    margin-bottom: 16px;
+  }
+
+  .doc-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--voyah-text-tertiary);
+  }
+
+  .doc-meta .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .doc-meta .meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: var(--voyah-text-placeholder);
+  }
+
+  .doc-meta .author-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background-color: var(--voyah-bg-page);
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--voyah-text-secondary);
+  }
+
+  /* ====== 文档主体 ====== */
+  .doc-body {
+    background-color: var(--voyah-bg-card);
+    border-radius: 8px;
+    padding: 48px 56px;
+  }
+
+  /* ====== 章节 ====== */
+  .section {
+    margin-bottom: 44px;
+  }
+
+  .section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--voyah-text-primary);
+    margin-bottom: 20px;
+    padding-left: 12px;
+    border-left: 3px solid var(--voyah-primary);
+  }
+
+  .section h3 {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--voyah-text-primary);
+    margin: 28px 0 14px;
+  }
+
+  /* ====== 正文段落 ====== */
+  .section p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--voyah-text-primary);
+    margin-bottom: 16px;
+    text-align: justify;
+    letter-spacing: 0.1px;
+  }
+
+  .section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .section p strong {
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+  }
+
+  /* ====== 章节分割线 ====== */
+  .section-divider {
+    height: 1px;
+    background-color: var(--voyah-divider);
+    margin: 44px 0;
+    border: none;
+  }
+
+  /* ====== 辅助说明文字 ====== */
+  .helper-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--voyah-text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .sub-text {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--voyah-text-tertiary);
+  }
+
+  /* ====== 提示框 ====== */
+  .tip-box {
+    background-color: var(--voyah-tip-bg);
+    border-left: 3px solid var(--voyah-primary);
+    border-radius: 0 4px 4px 0;
+    padding: 14px 16px;
+    margin: 20px 0;
+  }
+
+  .tip-box .tip-title {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--voyah-tip-text);
+    margin-bottom: 6px;
+  }
+
+  .tip-box .tip-content {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--voyah-tip-text);
+  }
+
+  /* ====== 备注 / 脚注 ====== */
+  .note-block {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--voyah-text-tertiary);
+    padding: 12px 0;
+    border-top: 1px dashed var(--voyah-divider);
+    margin-top: 20px;
+  }
+
+  .note-block::before {
+    content: "备注";
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 1px 6px;
+    background-color: var(--voyah-bg-page);
+    color: var(--voyah-text-tertiary);
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* ====== 有序 / 无序列表 ====== */
+  .section ol,
+  .section ul {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--voyah-text-primary);
+    margin: 12px 0 16px 24px;
+  }
+
+  .section ol li,
+  .section ul li {
+    margin-bottom: 8px;
+  }
+
+  .section ol li:last-child,
+  .section ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ====== 水平文字分割线 ====== */
+  .text-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 52px 0 40px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--voyah-text-secondary);
+    letter-spacing: 2px;
+  }
+
+  .text-divider::before,
+  .text-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--voyah-divider);
+  }
+
+  .text-divider span {
+    padding: 0 24px;
+    flex-shrink: 0;
+  }
+
+  /* ====== 相关文档区 ====== */
+  .related-docs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .related-card {
+    background-color: var(--voyah-bg-page);
+    border-radius: 6px;
+    padding: 20px 24px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+
+  .related-card:hover {
+    border-color: var(--voyah-primary-light);
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(26, 92, 255, 0.08);
+  }
+
+  .related-card .card-tag {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--voyah-primary);
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .related-card .card-title {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--voyah-text-primary);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .related-card .card-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--voyah-text-tertiary);
+  }
+
+  /* ====== 页脚 ====== */
+  .doc-footer {
+    margin-top: 60px;
+    padding-top: 28px;
+    border-top: 1px solid var(--voyah-divider);
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-bottom: 16px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--voyah-text-secondary);
+    text-decoration: none;
+    padding: 0 16px;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--voyah-primary);
+  }
+
+  .footer-links .v-divider {
+    width: 1px;
+    height: 12px;
+    background-color: var(--voyah-border-light);
+    flex-shrink: 0;
+  }
+
+  .footer-copy {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--voyah-text-placeholder);
+  }
+
+  /* ====== 表格 ====== */
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .spec-table th,
+  .spec-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--voyah-divider);
+  }
+
+  .spec-table th {
+    background-color: var(--voyah-bg-page);
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+    font-size: 13px;
+  }
+
+  .spec-table td {
+    color: var(--voyah-text-secondary);
+  }
+
+  .spec-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* ====== 代码 / 内联高亮 ====== */
+  code.inline {
+    font-family: "SF Mono", "Monaco", "Consolas", "Liberation Mono", monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    padding: 2px 6px;
+    background-color: var(--voyah-bg-page);
+    color: var(--voyah-primary);
+    border-radius: 3px;
+  }
+
+  /* ====== 目录锚点 ====== */
+  .toc-bar {
+    position: sticky;
+    top: 0;
+    background-color: var(--voyah-bg-card);
+    z-index: 10;
+    padding: 12px 0 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--voyah-divider);
+  }
+
+  .toc-bar .toc-label {
+    font-size: 12px;
+    color: var(--voyah-text-tertiary);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .toc-bar .toc-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .toc-bar .toc-item {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--voyah-text-secondary);
+    padding: 4px 12px;
+    background-color: var(--voyah-bg-page);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .toc-bar .toc-item:hover {
+    color: var(--voyah-primary);
+    background-color: var(--voyah-tip-bg);
+  }
+
+  /* ====== 响应式 ====== */
+  @media (max-width: 720px) {
+    .page {
+      padding: 32px 20px 60px;
+    }
+    .doc-body {
+      padding: 32px 24px;
+    }
+    .related-docs {
+      grid-template-columns: 1fr;
+    }
+    .doc-header h1 {
+      font-size: 26px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ====== 文档头部 ====== -->
+    <header class="doc-header">
+      <h1>岚图 VOYAH 智能车机系统使用手册</h1>
+      <div class="doc-meta">
+        <span class="meta-item">
+          <span>更新时间</span>
+          <span>2026-11-05</span>
+        </span>
+        <span class="meta-dot"></span>
+        <span class="meta-item">
+          <span>版本</span>
+          <span>v3.2.1</span>
+        </span>
+        <span class="meta-dot"></span>
+        <span class="meta-item">
+          <span class="author-tag">岚图用户体验中心 编写</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- ====== 文档主体 ====== -->
+    <main class="doc-body">
+
+      <!-- ====== 目录条 ====== -->
+      <nav class="toc-bar">
+        <div class="toc-label">本文目录</div>
+        <div class="toc-list">
+          <a href="#section1" class="toc-item">系统概述</a>
+          <a href="#section2" class="toc-item">中控主屏操作</a>
+          <a href="#section3" class="toc-item">语音交互使用</a>
+          <a href="#section4" class="toc-item">导航与地图</a>
+          <a href="#section5" class="toc-item">账号与隐私</a>
+          <a href="#related" class="toc-item">相关文档</a>
+        </div>
+      </nav>
+
+      <!-- ====== 第 1 节 ====== -->
+      <section class="section" id="section1">
+        <h2>一、系统概述</h2>
+        <p>
+          岚图 VOYAH 智能车机系统是面向岚图全系车型打造的下一代智能座舱交互平台,基于高通骁龙 8155P 车载芯片与
+          自研 VOYAH OS 3.0 操作系统构建,致力于为用户提供流畅、智能、安全的车内数字体验。系统覆盖中控主屏、副驾娱乐屏、
+          后排显示屏以及 AR-HUD 增强现实抬头显示等多块屏幕,通过统一的设计语言与交互逻辑,实现跨屏无缝联动。
+        </p>
+        <p>
+          本手册将从系统基础操作、语音交互、导航娱乐、账号安全等多个维度,详细介绍车机系统的功能特性与使用方法。
+          建议新用户在首次使用车辆前,通读本手册的第一至第三章,以快速掌握核心操作方式;进阶用户可直接跳至对应章节,
+          查阅感兴趣的功能说明。
+        </p>
+
+        <div class="tip-box">
+          <div class="tip-title">提示</div>
+          <div class="tip-content">
+            系统将定期通过 OTA 空中升级推送新功能与优化,本文档内容以当前最新版本 v3.2.1 为准。
+            若您的车辆系统版本较低,部分功能可能暂不可用,请在「设置 → 系统更新」中检查并升级。
+          </div>
+        </div>
+
+        <h3>1.1 系统主要特性</h3>
+        <p>
+          VOYAH OS 3.0 在视觉设计、交互效率与智能能力三方面均进行了全面升级。视觉层面,采用全新「星航」设计语言,
+          以深蓝与冷灰为主色调,配合克制的动效与清晰的信息层级,降低长时间驾驶中的视觉负担。交互层面,引入全域快启手势、
+          多任务分屏与自定义卡片布局,让高频操作触手可及。智能层面,搭载 VOYAH GPT 车载大模型,支持自然语言连续对话、
+          场景化主动建议与多模态感知理解。
+        </p>
+
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th style="width:28%;">项目</th>
+              <th style="width:42%;">规格说明</th>
+              <th>适用车型</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>中控屏</td>
+              <td>15.6 英寸 2.5K 超清触控屏</td>
+              <td>全系标配</td>
+            </tr>
+            <tr>
+              <td>副驾屏</td>
+              <td>12.3 英寸独立娱乐屏</td>
+              <td>追光 / 梦想家</td>
+            </tr>
+            <tr>
+              <td>芯片平台</td>
+              <td>高通骁龙 8155P,8 核 CPU</td>
+              <td>全系标配</td>
+            </tr>
+            <tr>
+              <td>语音助手</td>
+              <td>VOYAH GPT 四音区语音</td>
+              <td>全系标配</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="helper-text">
+          表格内标注的「全系标配」指 2024 年及以后上市的岚图在售车型,老款车型配置请以购车时参数表为准。
+        </p>
+      </section>
+
+      <!-- ====== 章节分割线 ====== -->
+      <hr class="section-divider">
+
+      <!-- ====== 第 2 节 ====== -->
+      <section class="section" id="section2">
+        <h2>二、中控主屏操作</h2>
+        <p>
+          中控主屏是车辆信息与功能控制的核心载体,采用卡片式桌面布局,用户可根据个人使用习惯自由调整卡片顺序与显示内容。
+          主屏从上至下依次为状态栏、快捷控制区、应用卡片区与底部 Dock 栏,各区域信息密度经过严格校准,确保驾驶时可快速扫视读取。
+        </p>
+
+        <h3>2.1 桌面与卡片</h3>
+        <p>
+          桌面支持左右滑动切换至多页布局,每页最多放置 6 张应用卡片。长按任意卡片进入编辑模式,此时卡片呈悬浮抖动状态,
+          可拖拽调整位置或移除。部分卡片支持多种尺寸,例如「音乐」卡片可在小、中、大三种规格间切换,分别对应 1×1、2×1、2×2 网格单元。
+          编辑完成后点击桌面空白处即可退出并保存布局。
+        </p>
+
+        <div class="note-block">
+          部分系统级卡片(如「车辆状态」「驾驶模式」)不可从桌面移除,以保证驾驶安全相关信息始终可见。
+        </div>
+
+        <h3>2.2 快捷控制中心</h3>
+        <p>
+          从屏幕顶部状态栏向下滑动可调出快捷控制中心,第一页展示 12 个最常用的快速开关,包括空调、座椅加热、
+          内外循环、陡坡缓降、自动驻车等功能。继续向左滑动进入第二页,可查看更多系统级快捷开关。点击右上角「编辑」按钮,
+          可自定义快捷入口的排序与显示数量。
+        </p>
+        <p>
+          控制中心底部集成亮度与音量双滑杆,支持精细调节。亮度滑杆左侧联动「自动感光」开关,开启后系统将根据
+          环境光线强度自动适配屏幕亮度与夜间模式切换。夜间模式启用时,系统整体界面转为深色主题,可显著降低夜间行车时
+          屏幕对驾驶员视线的干扰。
+        </p>
+
+        <div class="tip-box">
+          <div class="tip-title">操作技巧</div>
+          <div class="tip-content">
+            单指从屏幕底部上滑并停顿约 0.3 秒,可调出最近任务列表;双指捏合桌面可快速进入编辑模式;
+            三指下滑可执行屏幕截图并自动保存至车载相册。
+          </div>
+        </div>
+
+        <h3>2.3 分屏与多任务</h3>
+        <p>
+          VOYAH OS 3.0 支持应用分屏显示,在导航与娱乐同时使用的场景下尤为实用。开启分屏有两种方式:其一为在最近任务界面
+          点击应用图标右上角菜单并选择「分屏显示」;其二为在应用运行时,从屏幕侧边向内长滑并停顿,触发侧边快捷栏后拖拽目标应用
+          至屏幕上半或下半区域。分屏比例支持 1:1、3:2 与 2:3 三档调节,中间分割线可自由拖动。
+        </p>
+
+        <p class="helper-text">
+          出于驾驶安全考虑,车辆行驶速度超过 20 km/h 时,部分视频类与游戏类应用将无法在驾驶员可视区域开启,
+          副驾屏不受此限制。
+        </p>
+      </section>
+
+      <!-- ====== 章节分割线 ====== -->
+      <hr class="section-divider">
+
+      <!-- ====== 第 3 节 ====== -->
+      <section class="section" id="section3">
+        <h2>三、语音交互使用</h2>
+        <p>
+          VOYAH GPT 语音助手是岚图智能座舱的核心能力之一,基于车载端侧大模型与云端算力协同架构,实现了毫秒级响应速度
+          与接近自然对话的理解能力。全车配备 12 个高灵敏度麦克风阵列,支持四音区独立定位与声源追踪,可精准识别主驾、副驾、
+          后排左右乘客的独立指令,并针对性地做出响应。
+        </p>
+
+        <h3>3.1 唤醒与指令</h3>
+        <p>
+          默认唤醒词为「你好,岚图」,也可在「设置 → 语音助手」中自定义为其他短语,如「小岚」「图图」等。
+          唤醒后可直接说出指令,例如「打开主驾车窗一半」「导航到最近的充电站」「播放周杰伦的歌」。
+          系统支持一句话内包含多个复合指令,例如「空调调到 24 度,打开座椅加热,风量调小一点」,
+          系统将依次解析并执行。
+        </p>
+        <p>
+          对于常用功能,还可使用免唤醒快捷指令。在任意界面直接说出「下一首」「声音大一点」「返回桌面」等
+          高频短语,系统可在未唤醒状态下直接响应,减少操作步骤。免唤醒指令列表可在语音设置中查看与管理。
+        </p>
+
+        <h3>3.2 连续对话与上下文理解</h3>
+        <p>
+          唤醒语音助手后,默认开启 30 秒连续对话模式。在此期间,您可以与助手进行多轮自然交流,
+          无需每次重复唤醒词。系统会自动维护对话上下文,支持指代消解、省略追问等高级语义理解能力。
+          例如先问「今天天气怎么样」,接着再问「那明天呢」,系统能够正确理解「明天」指代的是明天的天气情况。
+        </p>
+
+        <div class="tip-box">
+          <div class="tip-title">隐私提示</div>
+          <div class="tip-content">
+            语音唤醒与基础指令识别在车辆端侧本地完成,不会上传云端。仅当触发大模型对话、导航搜索等
+            需要云端算力的场景时,相关语音数据才会经过加密传输至服务器处理,且不与个人账号身份信息关联存储。
+          </div>
+        </div>
+
+        <h3>3.3 可见即可说</h3>
+        <p>
+          系统支持「可见即可说」能力,即在任意系统界面,您都可以直接读出屏幕上显示的文字按钮或菜单名称,
+          语音助手将自动执行对应点击操作。这一能力覆盖车辆设置、空调控制、音乐播放、导航搜索等全部原生应用,
+          以及经过适配的第三方应用。例如在音乐应用的歌单页面,直接说出歌曲名称即可播放,无需手动滑动查找。
+        </p>
+
+        <div class="note-block">
+          「可见即可说」功能默认开启,如需关闭可前往「设置 → 语音助手 → 高级设置」中进行操作。
+          关闭后将仅响应标准语音指令。
+        </div>
+      </section>
+
+      <!-- ====== 章节分割线 ====== -->
+      <hr class="section-divider">
+
+      <!-- ====== 第 4 节 ====== -->
+      <section class="section" id="section4">
+        <h2>四、导航与地图</h2>
+        <p>
+          岚图车载导航系统由高德地图提供数据支持,并深度集成了车辆能源状态与充电网络信息。导航界面采用车道级引导渲染,
+          支持实时路况、动态避堵、沿途充电站规划等多项实用功能。结合 AR-HUD 增强现实抬头显示,关键导航指引可直接投射至
+          驾驶员前方视野,大幅降低视线转移频率,提升行车安全。
+        </p>
+
+        <h3>4.1 目的地设置</h3>
+        <p>
+          设置目的地有多种方式:通过语音说出目的地名称、在搜索框手动输入、从收藏夹中选择、从历史记录中点击,
+          或在第三方应用中分享位置至车机。系统支持模糊搜索与联想补全,输入过程中会实时给出匹配结果,
+          并优先展示附近的常用地点与充电站。
+        </p>
+        <p>
+          对于纯电车型,在确认导航路线时,系统会自动计算当前续航是否足以抵达目的地。若续航不足,
+          将智能推荐沿途合适的充电站点并自动插入路线规划,同时预估各段路程的电量消耗与充电时间。
+          推荐的充电站会综合考虑距离、功率、空闲桩数量与用户评价等多维度因素进行排序。
+        </p>
+
+        <p class="helper-text">
+          若您的车辆搭载后排娱乐屏,后排乘客也可通过各自的屏幕提交目的地建议,驾驶员可在中控屏上一键采纳。
+        </p>
+
+        <h3>4.2 导航显示模式</h3>
+        <p>
+          导航应用提供三种显示模式:标准 2D 模式、3D 路口放大模式与全屏沉浸模式。2D 模式信息密度最高,
+          适合熟悉路线的短途通勤;3D 模式在复杂立交与多岔路口时自动放大路口实景,辅以动态引导线,减少走错路的概率;
+          全屏沉浸模式则隐藏其余界面元素,以最大尺寸展示地图与路线,适合长途高速驾驶场景。三种模式可通过
+          右上角视图切换按钮快速切换,也可通过语音指令「切换到 3D 模式」直接调整。
+        </p>
+      </section>
+
+      <!-- ====== 章节分割线 ====== -->
+      <hr class="section-divider">
+
+      <!-- ====== 第 5 节 ====== -->
+      <section class="section" id="section5">
+        <h2>五、账号与隐私</h2>
+        <p>
+          岚图账号是您使用全部智能服务的身份凭证,绑定后可同步个人偏好设置、收藏夹、导航历史、音乐歌单等数据。
+          每辆车支持最多 6 个用户档案,不同驾驶员上车后可一键切换至自己的专属配置,包括座椅位置、后视镜角度、
+          氛围灯颜色、系统主题与常用应用布局等。系统支持人脸识别快速切换,上车即自动识别并加载对应档案。
+        </p>
+
+        <h3>5.1 数据安全与隐私保护</h3>
+        <p>
+          岚图高度重视用户数据隐私。所有个人敏感信息均采用 AES-256 加密存储,传输过程使用 TLS 1.3 协议全程加密。
+          用户数据默认仅存储于车辆本地与加密云端服务器中,不会被用于未经授权的第三方分析。您可随时在
+          「设置 → 隐私中心」查看各类数据的收集与使用情况,并逐项开启或关闭对应权限。
+        </p>
+
+        <div class="tip-box">
+          <div class="tip-title">重要提示</div>
+          <div class="tip-content">
+            如需出售或转让车辆,请务必先退出岚图账号并执行「恢复出厂设置」操作,以清除车内所有个人数据。
+            恢复出厂设置路径:<code class="inline">设置 → 系统 → 恢复出厂设置</code>,操作需输入账号密码二次确认。
+          </div>
+        </div>
+
+        <h3>5.2 儿童与访客模式</h3>
+        <p>
+          系统提供儿童模式与访客模式两种受限档案。儿童模式下,仅开放教育类应用与适合儿童观看的内容,
+          并限制连续使用时长,超时自动提醒休息。访客模式下,所有个人数据与浏览记录均不会保存在车辆本地,
+          访客退出后自动清除使用痕迹,适合代客泊车、车辆外借等临时使用场景。
+        </p>
+
+        <p class="helper-text">
+          访客模式无需登录账号,直接在用户切换界面选择「访客」即可进入。儿童模式需在家长账号下设置启用
+          并配置可用应用与使用时长限制。
+        </p>
+
+        <div class="note-block">
+          本手册中提及的功能描述基于当前最新软件版本,实际功能可能因车型配置、地区法规与软件版本差异而有所不同。
+          如您在使用过程中遇到任何问题,请拨打岚图官方客服热线 400-888-8888 或通过车机内「在线客服」联系我们。
+        </div>
+      </section>
+
+      <!-- ====== 水平文字分割线 · 相关文档 ====== -->
+      <div class="text-divider" id="related">
+        <span>相关文档</span>
+      </div>
+
+      <div class="related-docs">
+        <div class="related-card">
+          <div class="card-tag">快速入门</div>
+          <div class="card-title">新车主 5 分钟上手指南</div>
+          <div class="card-desc">核心操作一览,助您快速熟悉车机基础功能。</div>
+        </div>
+        <div class="related-card">
+          <div class="card-tag">进阶教程</div>
+          <div class="card-title">VOYAH GPT 语音高级用法</div>
+          <div class="card-desc">探索语音助手的隐藏指令与场景化使用技巧。</div>
+        </div>
+        <div class="related-card">
+          <div class="card-tag">安全驾驶</div>
+          <div class="card-title">智能驾驶辅助系统说明书</div>
+          <div class="card-desc">详细介绍 L2+ 级辅助驾驶的功能边界与使用须知。</div>
+        </div>
+        <div class="related-card">
+          <div class="card-tag">车辆维护</div>
+          <div class="card-title">三电系统保养与注意事项</div>
+          <div class="card-desc">电池、电机、电控系统的日常使用与长期养护建议。</div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ====== 页脚 ====== -->
+    <footer class="doc-footer">
+      <div class="footer-links">
+        <a href="#">帮助中心</a>
+        <span class="v-divider"></span>
+        <a href="#">意见反馈</a>
+        <span class="v-divider"></span>
+        <a href="#">隐私政策</a>
+        <span class="v-divider"></span>
+        <a href="#">用户协议</a>
+        <span class="v-divider"></span>
+        <a href="#">联系客服</a>
+        <span class="v-divider"></span>
+        <a href="#">关于岚图</a>
+      </div>
+      <div class="footer-copy">
+        © 2026 岚图汽车科技有限公司 版权所有 · VOYAH OS v3.2.1
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

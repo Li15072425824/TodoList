@@ -1,0 +1,23 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-01-form@yellow",
+  "kind": "gen",
+  "theme": "yellow",
+  "product": "eval/products/round2/a/gen-01-form@yellow",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.5005109999999999,
+  "denials": [],
+  "resultText": "页面已生成。以下是完整内容概览：\n\n## 交付文件\n\n- **`index.html`** — 单文件 demo（黄主题 + 内联布局 CSS + 主题切换 JS）\n- **`tokens.css`** — 岚图 Voyah 设计 token（已在同级目录）\n\n## 页面结构\n\n1. **顶部导航** — Logo（岚字标 + VOYAH 管理后台）、6 个菜单项（车辆管理高亮）、搜索框（flex 内层图标）、6 色主题切换器、消息铃铛（带 Badge 3）、头像\n2. **面包屑 + 页头** — 首页 / 车辆管理 / 车辆信息登记；大标题 + 说明文字\n3. **双列表单**（左主栏 + 右辅助卡片）：\n   - **基础信息**：车架号（错误态 — 红边框 + 错误提示）、车牌号、车辆品牌/年款下拉、车身颜色、动力类型（单选）、上牌日期、行驶里程\n   - **配置信息**：配置版本下拉、座椅布局（单选）、选装配置（复选 5 项）、车联网服务（Switch 开）、维保提醒（Switch 关）、备注（textarea）\n   - **底部按钮**：提交（主按钮 Large）+ 取消（次要按钮 Large）\n4. **右侧辅助卡片**：填写须知（大段描述）+ 帮助提示条（黄主题下为蓝色系 `--vx-help`）\n\n## 规范要点\n\n- 默认 `data-vx-theme=\"yellow\"`，可通过顶部 6 色圆点切换主题\n- 颜色全部走 `var(--vx-*)`，无硬编码色值\n- 按钮全部 `.vx-btn` + 类型类 + 尺寸类，高度 40/32/24 三档\n- 输入框 padding `6px 12px`，搜索框图标用 flex 内层容器承载\n- 间距 4 的倍数、线宽 ∈ {0.5,1,2,3}px、字重仅 400/500/600\n- 圆角：按钮/输入 6px、卡片 8px、Switch 胶囊",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-01-form@yellow/index.html",
+    "alignRate": 1,
+    "checks": 29,
+    "passed": 29,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T03:21:01.530Z"
+}

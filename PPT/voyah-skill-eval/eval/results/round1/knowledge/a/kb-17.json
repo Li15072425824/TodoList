@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-17",
+  "topic": "spacing",
+  "question": "页面内容容器的 padding 四边(L/R/T/B)是多少?",
+  "answer": "页面内容容器的 padding 四边值：\n\n- **上 (Top)**：16px\n- **右 (Right)**：24px\n- **下 (Bottom)**：24px\n- **左 (Left)**：24px\n\n即 `padding: 16px 24px 24px 24px`（上/右/下/左）。\n\n来源：规范「间距」章节及场景→Token 决策表 `spacing.padding.page`：页面 padding 上下左右 16/24/24/24。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0422106,
+  "subtype": "success",
+  "at": "2026-11-09T10:19:17.949Z"
+}

@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-05-alerts",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-05-alerts",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.22845180000000004,
+  "denials": [],
+  "resultText": "已生成 `index.html` 单文件 demo,包含:\n\n- **系统升级横幅**(顶部,帮助色浅底 + 深蓝主色文字)\n- **4 种 Alert 提示条**:成功(绿·提交确认)、警告(橙·事件提醒)、错误(红·失败报错)、帮助(蓝·操作指引),各带 SVG 图标、标题、说明文字与关闭按钮\n- **5 种状态 Tag**:成功/警告/错误/帮助/紫色特殊标记,统一圆点+胶囊形态\n- **右侧通知卡片 ×3**:保养完成(成功)、胎压异常(警告)、版本推送(信息),含图标、标题、描述、时间戳,未读项带左侧蓝点标记\n- **岚图 Voyah 品牌色**:主色 `#0A2A5E` 深蓝,辅助色语义严格隔离(成功绿/警告橙/错误红/帮助蓝/紫特殊),浅色底+同色系边框的轻量卡片视觉\n\n文件路径:`/private/tmp/vx-eval/r1/b/gen-05-alerts/index.html`",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-05-alerts/index.html",
+    "alignRate": 0.789,
+    "checks": 19,
+    "passed": 15,
+    "p0": 2,
+    "p1": 2,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:51:06.629Z"
+}

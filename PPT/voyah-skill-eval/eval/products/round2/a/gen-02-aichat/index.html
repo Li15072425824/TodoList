@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>岚图智能助手</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .app { display: flex; height: 100vh; background: var(--vx-bg-layout); }
+  .sidebar {
+    width: 260px; flex-shrink: 0;
+    background: var(--vx-bg-base);
+    border-right: 1px solid var(--vx-line-1);
+    padding: var(--vx-space-md);
+    display: flex; flex-direction: column; gap: var(--vx-space-md);
+  }
+  .sidebar-brand {
+    display: flex; align-items: center; gap: var(--vx-space-xs);
+    padding: var(--vx-space-xs) var(--vx-space-xs);
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .sidebar-brand-icon {
+    width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;
+    color: var(--vx-primary); flex-shrink: 0;
+  }
+  .convo-label {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    padding: 0 var(--vx-space-xs);
+    margin-top: var(--vx-space-xs);
+  }
+  .main {
+    flex: 1;
+    display: flex; flex-direction: column;
+    min-width: 0;
+  }
+  .topbar {
+    height: 56px;
+    padding: 0 var(--vx-space-xl);
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--vx-bg-base);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .topbar-title {
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .topbar-right { display: flex; align-items: center; gap: var(--vx-space-xs); }
+
+  .chat {
+    flex: 1; overflow-y: auto;
+    max-width: 800px; width: 100%;
+    margin: 0 auto;
+    padding: var(--vx-space-xl) var(--vx-space-md);
+    display: flex; flex-direction: column; gap: var(--vx-space-lg);
+  }
+  .chat-welcome-area {
+    display: flex; flex-direction: column;
+    align-items: center; gap: var(--vx-space-xl);
+    padding: var(--vx-space-xxl) 0;
+  }
+  .chat-welcome-area .vx-welcome {
+    width: 100%;
+  }
+  .chat-welcome-area .vx-prompts {
+    width: 100%; justify-content: center;
+  }
+
+  .bubble-time {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+  }
+  .vx-bubble-header {
+    display: flex; align-items: baseline; gap: var(--vx-space-xs);
+  }
+  .vx-bubble-header .bubble-time { font-weight: var(--vx-font-weight-regular); }
+
+  .thought-wrap {
+    margin-top: var(--vx-space-xs);
+    background: var(--vx-fill-1);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-sm) var(--vx-space-md);
+  }
+  .thought-title {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-secondary);
+    margin-bottom: var(--vx-space-xs);
+    display: flex; align-items: center; gap: var(--vx-space-xs);
+    cursor: pointer;
+  }
+
+  .footer {
+    padding: var(--vx-space-md) var(--vx-space-xl);
+    background: var(--vx-bg-base);
+    border-top: 1px solid var(--vx-line-1);
+  }
+  .footer .vx-sender { max-width: 800px; margin: 0 auto; }
+  .footer-tip {
+    text-align: center;
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    margin-top: var(--vx-space-xs);
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- 左侧会话列表 -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="sidebar-brand-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </span>
+      岚图智能助手
+    </div>
+
+    <button class="vx-btn vx-btn-primary" style="width:100%">
+      <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      新建会话
+    </button>
+
+    <div class="convo-label">最近会话</div>
+
+    <div class="vx-conversations">
+      <div class="vx-conversation-item vx-conversation-item-active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--vx-primary)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        岚图车型配置咨询
+      </div>
+      <div class="vx-conversation-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--vx-text-caption)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        试驾预约流程说明
+      </div>
+      <div class="vx-conversation-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--vx-text-caption)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        充电桩位置查询
+      </div>
+      <div class="vx-conversation-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--vx-text-caption)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        保养项目与费用
+      </div>
+      <div class="vx-conversation-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--vx-text-caption)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        购车金融方案对比
+      </div>
+      <div class="vx-conversation-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--vx-text-caption)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        车辆OTA升级指南
+      </div>
+    </div>
+  </aside>
+
+  <!-- 主区域 -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-title">岚图车型配置咨询</div>
+      <div class="topbar-right">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm" aria-label="分享">
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          分享
+        </button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm vx-btn-icon-only" aria-label="更多">⋯</button>
+      </div>
+    </div>
+
+    <div class="chat">
+      <!-- 欢迎区 + 提示集（首屏空态） -->
+      <div class="chat-welcome-area">
+        <div class="vx-welcome">
+          <span class="vx-welcome-icon">🚗</span>
+          <div>
+            <div class="vx-welcome-title">你好，我是岚图智能助手</div>
+            <div class="vx-welcome-description">有任何关于岚图车型、试驾、售后的问题，都可以问我</div>
+          </div>
+        </div>
+
+        <div class="vx-prompts">
+          <div class="vx-prompt-item">
+            <span class="vx-prompt-icon">🔍</span>
+            <span>帮我对比岚图 FREE 和梦想家</span>
+          </div>
+          <div class="vx-prompt-item">
+            <span class="vx-prompt-icon">📅</span>
+            <span>预约下周六的试驾</span>
+          </div>
+          <div class="vx-prompt-item">
+            <span class="vx-prompt-icon">⚡</span>
+            <span>查询附近的充电桩</span>
+          </div>
+          <div class="vx-prompt-item">
+            <span class="vx-prompt-icon">💰</span>
+            <span>了解购车金融方案</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI 气泡 -->
+      <div class="vx-bubble">
+        <span class="vx-avatar vx-avatar-primary vx-bubble-avatar">岚</span>
+        <div class="vx-bubble-main">
+          <div class="vx-bubble-header">
+            <span>Voyah 助手</span>
+            <span class="bubble-time">10:24</span>
+          </div>
+          <div class="vx-bubble-content vx-bubble-filled">
+            您好，欢迎使用岚图智能助手。请问有什么可以帮您的？
+          </div>
+        </div>
+      </div>
+
+      <!-- 用户气泡 -->
+      <div class="vx-bubble vx-bubble-user">
+        <span class="vx-avatar vx-bubble-avatar">我</span>
+        <div class="vx-bubble-main">
+          <div class="vx-bubble-content">
+            我想了解一下岚图追光的配置和价格
+          </div>
+          <div class="bubble-time">10:25</div>
+        </div>
+      </div>
+
+      <!-- AI 气泡 + 思维链 -->
+      <div class="vx-bubble">
+        <span class="vx-avatar vx-avatar-primary vx-bubble-avatar">岚</span>
+        <div class="vx-bubble-main">
+          <div class="vx-bubble-header">
+            <span>Voyah 助手</span>
+            <span class="bubble-time">10:25</span>
+          </div>
+
+          <!-- 思维链 -->
+          <div class="thought-wrap">
+            <div class="thought-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              思考过程
+            </div>
+            <div class="vx-thought-chain">
+              <div class="vx-thought-item">
+                <span class="vx-thought-status vx-thought-status-done"></span>
+                <span>解析用户意图：查询岚图追光车型配置</span>
+              </div>
+              <div class="vx-thought-item">
+                <span class="vx-thought-status vx-thought-status-running"></span>
+                <span>查询车型数据库，检索追光配置参数</span>
+              </div>
+              <div class="vx-thought-item">
+                <span class="vx-thought-status vx-thought-status-error"></span>
+                <span>实时报价接口请求超时，使用缓存价格</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vx-bubble-content vx-bubble-filled">
+            岚图追光 2024 款在售车型共有 3 个版本：<br/>
+            <br/>
+            <b>标准版</b> — 32.29 万元起<br/>
+            · 双电机四驱，综合功率 375kW<br/>
+            · 109kWh 电池，CLTC 续航 580km<br/>
+            · 标配空气悬架 + CDC 电磁减振<br/>
+            <br/>
+            <b>旗舰版</b> — 35.29 万元起<br/>
+            · 增加后排航空座椅、夜视系统<br/>
+            · 丹拿 20 扬声器音响系统<br/>
+            <br/>
+            <b>超长续航旗舰版</b> — 38.59 万元起<br/>
+            · 150kWh 半固态电池，CLTC 续航 832km<br/>
+            <br/>
+            需要我帮您预约试驾或详细对比某个版本吗？
+          </div>
+          <div class="vx-bubble-footer">复制 · 重新生成 · 点赞</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部输入区 -->
+    <div class="footer">
+      <div class="vx-sender">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm vx-btn-icon-only" aria-label="附件">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <textarea class="vx-sender-input" rows="1" placeholder="输入消息，Enter 发送 / Shift+Enter 换行"></textarea>
+        <button class="vx-sender-send" disabled>发送</button>
+      </div>
+      <div class="footer-tip">内容由 AI 生成，仅供参考</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // 发送按钮禁用态切换（简单 demo：输入有内容时启用）
+  const input = document.querySelector('.vx-sender-input');
+  const sendBtn = document.querySelector('.vx-sender-send');
+  input.addEventListener('input', () => {
+    sendBtn.disabled = input.value.trim().length === 0;
+  });
+
+  // 自动增高
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 132) + 'px';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+{
+  "round": "1",
+  "groups": {
+    "a": {
+      "products": 20,
+      "genCases": 14,
+      "advCases": 6,
+      "genAlign": 0.952,
+      "advAlign": 0.775,
+      "genP0": 8,
+      "genP1": 11,
+      "advP0": 18,
+      "advViolationRate": 0.667,
+      "advAskedConfirmation": 0,
+      "tokenRefRate": 0.95,
+      "noHtml": 0,
+      "knowledge": 0.88,
+      "knowledgeTotal": 25,
+      "knowledgeMisses": [
+        {
+          "id": "kb-10",
+          "missing": [
+            "999999"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-12",
+          "missing": [
+            "333333"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-19",
+          "missing": [
+            "8px 16px",
+            "6px 16px",
+            "2px 8px"
+          ],
+          "forbidden": []
+        }
+      ],
+      "p0ByCheck": {
+        "static.palette": 4,
+        "static.gradient": 3,
+        "static.weight": 2,
+        "runtime.btn.height": 4,
+        "runtime.btn.color": 1,
+        "sim.primary.normal": 1,
+        "sim.primary.hover": 2,
+        "sim.primary.click": 2,
+        "sim.primary.disabled": 2,
+        "sim.danger.hover": 3,
+        "sim.secondary.hover.fg": 1,
+        "sim.secondary.hover.fill": 1
+      },
+      "genP0ByCheck": {
+        "runtime.btn.height": 2,
+        "sim.primary.hover": 1,
+        "sim.primary.click": 1,
+        "sim.primary.disabled": 1,
+        "sim.danger.hover": 2,
+        "static.palette": 1
+      },
+      "advP0ByCheck": {
+        "static.palette": 3,
+        "static.gradient": 3,
+        "static.weight": 2,
+        "runtime.btn.height": 2,
+        "runtime.btn.color": 1,
+        "sim.primary.normal": 1,
+        "sim.primary.hover": 1,
+        "sim.primary.click": 1,
+        "sim.primary.disabled": 1,
+        "sim.danger.hover": 1,
+        "sim.secondary.hover.fg": 1,
+        "sim.secondary.hover.fill": 1
+      },
+      "totalCost": 8.09
+    },
+    "b": {
+      "products": 20,
+      "genCases": 14,
+      "advCases": 6,
+      "genAlign": 0.553,
+      "advAlign": 0.494,
+      "genP0": 116,
+      "genP1": 61,
+      "advP0": 56,
+      "advViolationRate": 1,
+      "advAskedConfirmation": 0,
+      "tokenRefRate": 0.19,
+      "noHtml": 0,
+      "knowledge": 0.12,
+      "knowledgeTotal": 25,
+      "knowledgeMisses": [
+        {
+          "id": "kb-01",
+          "missing": [
+            "3773DB"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-02",
+          "missing": [
+            "54A7B2"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-03",
+          "missing": [
+            "3773DB"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-04",
+          "missing": [
+            "6EACB4"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-05",
+          "missing": [
+            "其他"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-06",
+          "missing": [
+            "F3F4F7",
+            "页面内容区块"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-08",
+          "missing": [
+            "FAFAFA"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-09",
+          "missing": [
+            "DEDEDE",
+            "737373"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-10",
+          "missing": [
+            "20",
+            "999999"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-11",
+          "missing": [
+            "18",
+            "24",
+            "32",
+            "40"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-12",
+          "missing": [
+            "22"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-13",
+          "missing": [
+            "D-DIN"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-14",
+          "missing": [
+            "400",
+            "500",
+            "600"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-16",
+          "missing": [
+            "12"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-18",
+          "missing": [
+            "0 1px 20px"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-19",
+          "missing": [
+            "8px 16px",
+            "6px 16px",
+            "2px 8px"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-20",
+          "missing": [
+            "FF5A5D"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-21",
+          "missing": [
+            "FFA800"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-22",
+          "missing": [
+            "568EEE",
+            "FFFFFF"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-23",
+          "missing": [
+            "1C5AC4",
+            "FFFFFF"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-24",
+          "missing": [
+            "666666",
+            "FAFAFA",
+            "DEDEDE"
+          ],
+          "forbidden": []
+        },
+        {
+          "id": "kb-25",
+          "missing": [
+            "C1C1C1",
+            "FAFAFA",
+            "DEDEDE"
+          ],
+          "forbidden": []
+        }
+      ],
+      "p0ByCheck": {
+        "static.palette": 20,
+        "static.gradient": 12,
+        "static.weight": 11,
+        "runtime.btn.height": 14,
+        "runtime.btn.color": 17,
+        "sim.primary.normal": 15,
+        "sim.primary.hover": 15,
+        "sim.primary.click": 15,
+        "sim.primary.disabled": 15,
+        "runtime.input.border": 6,
+        "sim.danger.hover": 3,
+        "sim.secondary.hover.fg": 5,
+        "sim.secondary.hover.fill": 3,
+        "static.forbidden": 2,
+        "sim.prompt.hover": 2,
+        "static.black": 2,
+        "sim.whiteline.normal.fg": 1,
+        "sim.whiteline.normal.fill": 1,
+        "theme.all": 1,
+        "theme.blue.primary": 1,
+        "theme.blue.help": 1,
+        "theme.yellow.primary": 1,
+        "theme.yellow.help": 1,
+        "theme.purple.primary": 1,
+        "theme.purple.help": 1,
+        "theme.cuiqing.primary": 1,
+        "theme.cuiqing.help": 1,
+        "theme.red.primary": 1,
+        "theme.red.help": 1,
+        "theme.biqing.primary": 1,
+        "theme.biqing.help": 1
+      },
+      "genP0ByCheck": {
+        "static.palette": 14,
+        "static.gradient": 8,
+        "static.weight": 7,
+        "runtime.btn.color": 11,
+        "sim.primary.normal": 9,
+        "sim.primary.hover": 9,
+        "sim.primary.click": 9,
+        "sim.primary.disabled": 9,
+        "sim.secondary.hover.fg": 3,
+        "sim.secondary.hover.fill": 2,
+        "runtime.input.border": 4,
+        "runtime.btn.height": 9,
+        "sim.prompt.hover": 2,
+        "sim.danger.hover": 2,
+        "static.forbidden": 1,
+        "static.black": 2,
+        "sim.whiteline.normal.fg": 1,
+        "sim.whiteline.normal.fill": 1,
+        "theme.all": 1,
+        "theme.blue.primary": 1,
+        "theme.blue.help": 1,
+        "theme.yellow.primary": 1,
+        "theme.yellow.help": 1,
+        "theme.purple.primary": 1,
+        "theme.purple.help": 1,
+        "theme.cuiqing.primary": 1,
+        "theme.cuiqing.help": 1,
+        "theme.red.primary": 1,
+        "theme.red.help": 1,
+        "theme.biqing.primary": 1,
+        "theme.biqing.help": 1
+      },
+      "advP0ByCheck": {
+        "static.palette": 6,
+        "static.gradient": 4,
+        "static.weight": 4,
+        "runtime.btn.height": 5,
+        "runtime.btn.color": 6,
+        "sim.primary.normal": 6,
+        "sim.primary.hover": 6,
+        "sim.primary.click": 6,
+        "sim.primary.disabled": 6,
+        "runtime.input.border": 2,
+        "sim.danger.hover": 1,
+        "sim.secondary.hover.fg": 2,
+        "sim.secondary.hover.fill": 1,
+        "static.forbidden": 1
+      },
+      "totalCost": 4.62
+    }
+  },
+  "trigger": {
+    "cases": 3,
+    "rate": 1,
+    "detail": [
+      {
+        "id": "tr-01",
+        "skillUsed": true,
+        "hasHtml": false
+      },
+      {
+        "id": "tr-02",
+        "skillUsed": true,
+        "hasHtml": true
+      },
+      {
+        "id": "tr-03",
+        "skillUsed": true,
+        "hasHtml": true
+      }
+    ]
+  }
+}

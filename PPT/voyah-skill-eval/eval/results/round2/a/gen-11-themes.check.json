@@ -1,0 +1,321 @@
+{
+  "product": "eval/products/round2/a/gen-11-themes/index.html",
+  "alignRate": 0.975,
+  "checks": 40,
+  "passed": 39,
+  "p0": 0,
+  "p1": 1,
+  "tokenRefRate": 0.928,
+  "expectedTheme": null,
+  "allThemes": true,
+  "htmlTheme": "blue",
+  "themeAttrs": [
+    "blue",
+    "yellow",
+    "purple",
+    "cuiqing",
+    "red",
+    "biqing"
+  ],
+  "staticIssues": {
+    "hex": [],
+    "forbidden": [],
+    "gradient": [],
+    "weight": [],
+    "black": [],
+    "spacing": [],
+    "border": [],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "6 按钮字号/行高非 12·20/16·24: 蓝=14/NaN, 黄=14/NaN, 紫=14/NaN, 翠青=14/NaN"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "全部色值均来自冻结基线"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无渐变"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": true,
+      "detail": "字重 ∈ {400,500,600}"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": true,
+      "detail": "间距均为 4n 或豁免"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "全部按钮高度合规 (18)"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮 padding 合规"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "6 按钮字号/行高非 12·20/16·24: 蓝=14/NaN, 黄=14/NaN, 紫=14/NaN, 翠青=14/NaN"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮圆角合规"
+    },
+    {
+      "id": "runtime.btn.weight",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮字重合规"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮色值均在基线内"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "图标按钮 gap 合规"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主按钮 normal = rgb(255, 255, 255)/rgb(55, 115, 219)/rgb(55, 115, 219)，期望 #fff/#3773DB/#3773DB"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主按钮 hover = rgb(255, 255, 255)/rgb(86, 142, 238)/rgb(86, 142, 238)，期望 #fff/#568EEE/#568EEE"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主按钮 click = rgb(255, 255, 255)/rgb(28, 90, 196)/rgb(28, 90, 196)，期望 #fff/#1C5AC4/#1C5AC4"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主按钮 disabled = rgb(193, 193, 193)/rgb(250, 250, 250)/rgb(222, 222, 222)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.all",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题属性: blue,yellow,purple,cuiqing,red,biqing；期望 6 套全部出现"
+    },
+    {
+      "id": "theme.blue.primary",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 blue 主色 = rgb(55, 115, 219)，期望 #3773DB"
+    },
+    {
+      "id": "theme.blue.help",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 blue 帮助色 = rgb(84, 167, 178)，期望 #54A7B2"
+    },
+    {
+      "id": "theme.yellow.primary",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 yellow 主色 = rgb(255, 212, 0)，期望 #FFD400"
+    },
+    {
+      "id": "theme.yellow.help",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 yellow 帮助色 = rgb(55, 115, 219)，期望 #3773DB"
+    },
+    {
+      "id": "theme.purple.primary",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 purple 主色 = rgb(143, 68, 255)，期望 #8F44FF"
+    },
+    {
+      "id": "theme.purple.help",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 purple 帮助色 = rgb(55, 115, 219)，期望 #3773DB"
+    },
+    {
+      "id": "theme.cuiqing.primary",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 cuiqing 主色 = rgb(84, 167, 178)，期望 #54A7B2"
+    },
+    {
+      "id": "theme.cuiqing.help",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 cuiqing 帮助色 = rgb(55, 115, 219)，期望 #3773DB"
+    },
+    {
+      "id": "theme.red.primary",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 red 主色 = rgb(216, 33, 40)，期望 #D82128"
+    },
+    {
+      "id": "theme.red.help",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 red 帮助色 = rgb(55, 115, 219)，期望 #3773DB"
+    },
+    {
+      "id": "theme.biqing.primary",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 biqing 主色 = rgb(64, 102, 112)，期望 #406670"
+    },
+    {
+      "id": "theme.biqing.help",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "主题 biqing 帮助色 = rgb(55, 115, 219)，期望 #3773DB"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = -apple-system, \"system-ui\", \"PingFang SC\", \"Microsoft YaHei\", \"Helvetica Neue\", Arial, sans-serif"
+    }
+  ],
+  "costNote": null
+}

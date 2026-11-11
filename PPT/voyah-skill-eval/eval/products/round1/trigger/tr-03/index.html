@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>内部数据看板</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .app { display: flex; min-height: 100vh; background: var(--vx-bg-layout); }
+
+  /* ---------- 侧边导航 ---------- */
+  .sidebar {
+    width: 220px; flex-shrink: 0;
+    background: var(--vx-bg-base);
+    border-right: 1px solid var(--vx-line-1);
+    display: flex; flex-direction: column;
+  }
+  .sidebar-logo {
+    height: 56px; display: flex; align-items: center; gap: var(--vx-space-xs);
+    padding: 0 var(--vx-space-md);
+    border-bottom: 1px solid var(--vx-line-1);
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .sidebar-logo-mark {
+    width: 28px; height: 28px; border-radius: var(--vx-radius-md);
+    background: var(--vx-primary);
+    color: var(--vx-text-inverse);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--vx-font-size-sm);
+    font-weight: var(--vx-font-weight-bold);
+  }
+  .sidebar-nav { flex: 1; padding: var(--vx-space-sm) 0; }
+  .nav-group-title {
+    padding: var(--vx-space-sm) var(--vx-space-md) var(--vx-space-xs);
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: var(--vx-space-sm);
+    height: 36px; padding: 0 var(--vx-space-md);
+    margin: 0 var(--vx-space-xs);
+    border-radius: var(--vx-radius-md);
+    color: var(--vx-text-primary);
+    font-size: var(--vx-font-size-md);
+    cursor: pointer;
+  }
+  .nav-item:hover { background: var(--vx-fill-3); color: var(--vx-primary); }
+  .nav-item-active { background: var(--vx-primary-bg); color: var(--vx-primary); font-weight: var(--vx-font-weight-medium); }
+  .nav-item-icon { width: 16px; height: 16px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
+
+  .sidebar-footer {
+    padding: var(--vx-space-sm) var(--vx-space-md);
+    border-top: 1px solid var(--vx-line-1);
+    display: flex; align-items: center; gap: var(--vx-space-xs);
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-secondary);
+  }
+  .sidebar-footer .vx-avatar { width: 28px; height: 28px; font-size: var(--vx-font-size-md); }
+
+  /* ---------- 主区域 ---------- */
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+  .topbar {
+    height: 56px; flex-shrink: 0;
+    background: var(--vx-bg-base);
+    border-bottom: 1px solid var(--vx-line-1);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 var(--vx-space-xl);
+  }
+  .topbar-left { display: flex; align-items: center; gap: var(--vx-space-md); }
+  .topbar-title { font-size: var(--vx-font-size-xl); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); line-height: var(--vx-line-height-module-title); }
+  .topbar-right { display: flex; align-items: center; gap: var(--vx-space-sm); }
+  .topbar-search { position: relative; width: 240px; }
+  .topbar-search .vx-input { padding-left: 32px; }
+  .topbar-search-icon {
+    position: absolute; left: var(--vx-space-xs); top: 50%; transform: translateY(-50%);
+    color: var(--vx-text-caption); font-size: var(--vx-font-size-sm);
+    width: 16px; text-align: center;
+  }
+
+  /* ---------- 内容区 ---------- */
+  .content {
+    flex: 1; padding: var(--vx-padding-page);
+    overflow-y: auto;
+  }
+  .page-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: var(--vx-space-xl);
+    gap: var(--vx-space-md);
+    flex-wrap: wrap;
+  }
+  .page-title { font-size: var(--vx-font-size-h1); line-height: var(--vx-line-height-page-title); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); }
+  .page-subtitle { font-size: var(--vx-font-size-md); color: var(--vx-text-secondary); margin-top: var(--vx-space-1); }
+  .page-actions { display: flex; align-items: center; gap: var(--vx-space-xs); flex-shrink: 0; }
+
+  /* ---------- KPI 卡片 ---------- */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--vx-space-md);
+    margin-bottom: var(--vx-space-xl);
+  }
+  .kpi-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-padding-card);
+    display: flex; flex-direction: column; gap: var(--vx-space-1);
+  }
+  .kpi-label {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .kpi-value {
+    font-family: var(--vx-font-family-number);
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    letter-spacing: -0.5px;
+  }
+  .kpi-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    margin-top: var(--vx-space-1);
+  }
+  .kpi-delta { display: inline-flex; align-items: center; gap: 2px; }
+  .kpi-delta-up { color: var(--vx-success-dark); }
+  .kpi-delta-down { color: var(--vx-error-dark); }
+  .kpi-spark {
+    height: 32px; width: 100%;
+    margin-top: var(--vx-space-1);
+  }
+
+  /* ---------- 行布局 ---------- */
+  .row {
+    display: grid;
+    gap: var(--vx-space-md);
+    margin-bottom: var(--vx-space-xl);
+  }
+  .row-2-1 { grid-template-columns: 2fr 1fr; }
+  .row-1-1 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: repeat(3, 1fr); }
+
+  .chart-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    display: flex; flex-direction: column;
+  }
+  .chart-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--vx-space-md) var(--vx-padding-card);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .chart-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .chart-body {
+    padding: var(--vx-padding-card);
+    flex: 1;
+  }
+
+  /* ---------- 图例 ---------- */
+  .legend { display: flex; align-items: center; gap: var(--vx-space-md); font-size: var(--vx-font-size-xs); color: var(--vx-text-secondary); }
+  .legend-item { display: inline-flex; align-items: center; gap: var(--vx-space-1); }
+  .legend-dot { width: 8px; height: 8px; border-radius: var(--vx-radius-xs); background: var(--vx-primary); }
+  .legend-dot.help { background: var(--vx-help); }
+  .legend-dot.warning { background: var(--vx-warning); }
+  .legend-dot.purple { background: var(--vx-purple); }
+  .legend-dot.success { background: var(--vx-success); }
+
+  /* ---------- 折线图 ---------- */
+  .line-chart { width: 100%; height: 260px; }
+
+  /* ---------- 柱状图 ---------- */
+  .bar-chart { width: 100%; height: 260px; }
+
+  /* ---------- 饼图 ---------- */
+  .donut-chart-wrap {
+    display: flex; align-items: center; gap: var(--vx-space-xl);
+    height: 260px;
+  }
+  .donut-svg { flex-shrink: 0; }
+  .donut-legend {
+    flex: 1;
+    display: flex; flex-direction: column; gap: var(--vx-space-xs);
+    font-size: var(--vx-font-size-sm);
+  }
+  .donut-legend-item {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--vx-space-md);
+    padding: var(--vx-space-1) var(--vx-space-xs);
+    border-radius: var(--vx-radius-sm);
+  }
+  .donut-legend-item:hover { background: var(--vx-fill-3); }
+  .donut-legend-left { display: flex; align-items: center; gap: var(--vx-space-xs); }
+  .donut-legend-color {
+    width: 10px; height: 10px; border-radius: var(--vx-radius-xs); flex-shrink: 0;
+  }
+  .donut-legend-label { color: var(--vx-text-primary); }
+  .donut-legend-value {
+    font-family: var(--vx-font-family-number);
+    color: var(--vx-text-secondary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+
+  /* ---------- 表格 ---------- */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--vx-font-size-md);
+  }
+  .data-table th {
+    text-align: left;
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-secondary);
+    background: var(--vx-fill-2);
+    padding: var(--vx-space-xs) var(--vx-space-sm);
+    font-size: var(--vx-font-size-sm);
+    border-bottom: 1px solid var(--vx-line-1);
+    height: 36px;
+  }
+  .data-table td {
+    padding: var(--vx-space-xs) var(--vx-space-sm);
+    border-bottom: 1px solid var(--vx-line-1);
+    color: var(--vx-text-primary);
+    height: 44px;
+    vertical-align: middle;
+  }
+  .data-table tbody tr:hover { background: var(--vx-fill-1); }
+  .data-table .num {
+    font-family: var(--vx-font-family-number);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .data-table .name-cell {
+    display: flex; align-items: center; gap: var(--vx-space-xs);
+  }
+  .data-table .rank {
+    width: 20px; height: 20px; border-radius: var(--vx-radius-xs);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--vx-font-size-xs);
+    background: var(--vx-fill-3);
+    color: var(--vx-text-secondary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .data-table .rank-1 { background: var(--vx-warning); color: #FFFFFF; }
+  .data-table .rank-2 { background: var(--vx-text-caption); color: #FFFFFF; }
+  .data-table .rank-3 { background: var(--vx-help); color: #FFFFFF; }
+
+  .bar-cell {
+    display: flex; align-items: center; gap: var(--vx-space-xs);
+    min-width: 120px;
+  }
+  .bar-cell-track {
+    flex: 1; height: 6px; background: var(--vx-fill-2); border-radius: var(--vx-radius-pill);
+    overflow: hidden;
+  }
+  .bar-cell-fill {
+    height: 100%; background: var(--vx-primary); border-radius: var(--vx-radius-pill);
+  }
+
+  /* ---------- 底部 ---------- */
+  .page-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: var(--vx-space-md);
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+  }
+  .pagination { display: flex; gap: var(--vx-space-1); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ============ 侧边导航 ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="sidebar-logo-mark">岚</span>
+      <span>数据中心</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group-title">数据看板</div>
+      <div class="nav-item nav-item-active">
+        <span class="nav-item-icon">▣</span>
+        <span>经营总览</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">⬛</span>
+        <span>销售分析</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">◉</span>
+        <span>用户画像</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">◎</span>
+        <span>渠道效果</span>
+      </div>
+
+      <div class="nav-group-title">业务管理</div>
+      <div class="nav-item">
+        <span class="nav-item-icon">▤</span>
+        <span>订单管理</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">☰</span>
+        <span>产品目录</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">⌘</span>
+        <span>营销活动</span>
+      </div>
+
+      <div class="nav-group-title">系统</div>
+      <div class="nav-item">
+        <span class="nav-item-icon">⚙</span>
+        <span>设置</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <span class="vx-avatar vx-avatar-primary">李</span>
+      <span style="flex:1">李明</span>
+      <span style="color:var(--vx-text-caption)">⌄</span>
+    </div>
+  </aside>
+
+  <!-- ============ 主区域 ============ -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">经营总览</div>
+        <span class="vx-tag vx-tag-primary">实时</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <span class="topbar-search-icon">⌕</span>
+          <input class="vx-input" placeholder="搜索数据、报表..." />
+        </div>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm" aria-label="通知">🔔</button>
+        <button class="vx-btn vx-btn-primary">导出报表</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- 页面头部 -->
+      <div class="page-header">
+        <div>
+          <div class="page-title">今日经营数据</div>
+          <div class="page-subtitle">数据更新时间：2026-11-09 14:30 · 每 5 分钟自动刷新</div>
+        </div>
+        <div class="page-actions">
+          <div class="vx-segmented">
+            <span class="vx-segmented-item">今日</span>
+            <span class="vx-segmented-item vx-segmented-item-selected">本周</span>
+            <span class="vx-segmented-item">本月</span>
+            <span class="vx-segmented-item">本季度</span>
+          </div>
+          <button class="vx-btn vx-btn-secondary">
+            <span class="vx-btn-icon"></span>
+            筛选
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI 卡片 -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>总销售额</span>
+            <span class="vx-tag vx-tag-success">达标</span>
+          </div>
+          <div class="kpi-value">¥ 2,486,530</div>
+          <div class="kpi-foot">
+            <span class="kpi-delta kpi-delta-up">▲ 12.6% 较上周</span>
+            <span>目标完成 87%</span>
+          </div>
+          <svg class="kpi-spark" viewBox="0 0 120 32" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="spark1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--vx-primary)" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="var(--vx-primary)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,24 L10,20 L20,22 L30,16 L40,18 L50,12 L60,14 L70,10 L80,12 L90,6 L100,8 L110,4 L120,6 L120,32 L0,32 Z" fill="url(#spark1)"/>
+            <path d="M0,24 L10,20 L20,22 L30,16 L40,18 L50,12 L60,14 L70,10 L80,12 L90,6 L100,8 L110,4 L120,6" fill="none" stroke="var(--vx-primary)" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>订单数量</span>
+            <span class="vx-tag vx-tag-primary">+328</span>
+          </div>
+          <div class="kpi-value">18,246</div>
+          <div class="kpi-foot">
+            <span class="kpi-delta kpi-delta-up">▲ 8.3% 较上周</span>
+            <span>客单价 ¥136</span>
+          </div>
+          <svg class="kpi-spark" viewBox="0 0 120 32" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="spark2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--vx-help)" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="var(--vx-help)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,20 L10,22 L20,18 L30,20 L40,14 L50,16 L60,12 L70,14 L80,8 L90,10 L100,6 L110,8 L120,4 L120,32 L0,32 Z" fill="url(#spark2)"/>
+            <path d="M0,20 L10,22 L20,18 L30,20 L40,14 L50,16 L60,12 L70,14 L80,8 L90,10 L100,6 L110,8 L120,4" fill="none" stroke="var(--vx-help)" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>活跃用户</span>
+            <span class="vx-tag vx-tag-warning">关注</span>
+          </div>
+          <div class="kpi-value">42,891</div>
+          <div class="kpi-foot">
+            <span class="kpi-delta kpi-delta-down">▼ 2.1% 较上周</span>
+            <span>新用户占比 18%</span>
+          </div>
+          <svg class="kpi-spark" viewBox="0 0 120 32" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="spark3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--vx-warning)" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="var(--vx-warning)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,8 L10,6 L20,10 L30,8 L40,12 L50,10 L60,14 L70,12 L80,16 L90,14 L100,18 L110,16 L120,20 L120,32 L0,32 Z" fill="url(#spark3)"/>
+            <path d="M0,8 L10,6 L20,10 L30,8 L40,12 L50,10 L60,14 L70,12 L80,16 L90,14 L100,18 L110,16 L120,20" fill="none" stroke="var(--vx-warning)" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>转化率</span>
+            <span class="vx-tag vx-tag-primary">优秀</span>
+          </div>
+          <div class="kpi-value">4.82%</div>
+          <div class="kpi-foot">
+            <span class="kpi-delta kpi-delta-up">▲ 0.34pp 较上周</span>
+            <span>行业均值 3.2%</span>
+          </div>
+          <svg class="kpi-spark" viewBox="0 0 120 32" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="spark4" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--vx-purple)" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="var(--vx-purple)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,26 L10,24 L20,22 L30,24 L40,20 L50,18 L60,16 L70,14 L80,16 L90,12 L100,10 L110,8 L120,6 L120,32 L0,32 Z" fill="url(#spark4)"/>
+            <path d="M0,26 L10,24 L20,22 L30,24 L40,20 L50,18 L60,16 L70,14 L80,16 L90,12 L100,10 L110,8 L120,6" fill="none" stroke="var(--vx-purple)" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 第一行：销售趋势 + 渠道占比 -->
+      <div class="row row-2-1">
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-title">销售趋势（近 30 天）</div>
+            <div class="legend">
+              <span class="legend-item"><span class="legend-dot"></span>销售额</span>
+              <span class="legend-item"><span class="legend-dot help"></span>订单量</span>
+              <div class="vx-segmented" style="margin-left:var(--vx-space-md)">
+                <span class="vx-segmented-item">日</span>
+                <span class="vx-segmented-item vx-segmented-item-selected">周</span>
+                <span class="vx-segmented-item">月</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <svg class="line-chart" viewBox="0 0 600 260" preserveAspectRatio="none">
+              <!-- Y 轴刻度线 -->
+              <g stroke="var(--vx-line-1)" stroke-width="1">
+                <line x1="40" y1="20"  x2="580" y2="20"/>
+                <line x1="40" y1="70"  x2="580" y2="70"/>
+                <line x1="40" y1="120" x2="580" y2="120"/>
+                <line x1="40" y1="170" x2="580" y2="170"/>
+                <line x1="40" y1="220" x2="580" y2="220"/>
+              </g>
+              <!-- Y 轴标签 -->
+              <g fill="var(--vx-text-caption)" font-size="11" font-family="var(--vx-font-family-number)" text-anchor="end">
+                <text x="32" y="24">300万</text>
+                <text x="32" y="74">250万</text>
+                <text x="32" y="124">200万</text>
+                <text x="32" y="174">150万</text>
+                <text x="32" y="224">100万</text>
+              </g>
+              <!-- X 轴标签 -->
+              <g fill="var(--vx-text-caption)" font-size="11" text-anchor="middle">
+                <text x="70"  y="248">11/01</text>
+                <text x="142" y="248">11/05</text>
+                <text x="214" y="248">11/09</text>
+                <text x="286" y="248">11/13</text>
+                <text x="358" y="248">11/17</text>
+                <text x="430" y="248">11/21</text>
+                <text x="502" y="248">11/25</text>
+                <text x="560" y="248">11/29</text>
+              </g>
+
+              <!-- 面积（销售额） -->
+              <defs>
+                <linearGradient id="areaSales" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--vx-primary)" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="var(--vx-primary)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M50,160 L90,150 L130,165 L170,140 L210,120 L250,130 L290,100 L330,110 L370,90 L410,80 L450,95 L490,70 L530,60 L570,50 L570,220 L50,220 Z"
+                    fill="url(#areaSales)"/>
+              <!-- 销售额折线 -->
+              <path d="M50,160 L90,150 L130,165 L170,140 L210,120 L250,130 L290,100 L330,110 L370,90 L410,80 L450,95 L490,70 L530,60 L570,50"
+                    fill="none" stroke="var(--vx-primary)" stroke-width="2"/>
+              <!-- 销售额节点 -->
+              <g fill="var(--vx-bg-base)" stroke="var(--vx-primary)" stroke-width="2">
+                <circle cx="50"  cy="160" r="3"/>
+                <circle cx="130" cy="165" r="3"/>
+                <circle cx="210" cy="120" r="3"/>
+                <circle cx="290" cy="100" r="3"/>
+                <circle cx="370" cy="90"  r="3"/>
+                <circle cx="450" cy="95"  r="3"/>
+                <circle cx="530" cy="60"  r="3"/>
+                <circle cx="570" cy="50"  r="4" fill="var(--vx-primary)"/>
+              </g>
+
+              <!-- 订单量折线 -->
+              <path d="M50,180 L90,175 L130,185 L170,170 L210,160 L250,165 L290,150 L330,155 L370,140 L410,135 L450,145 L490,130 L530,125 L570,115"
+                    fill="none" stroke="var(--vx-help)" stroke-width="2" stroke-dasharray="4,3"/>
+
+              <!-- 当前值标注 -->
+              <g>
+                <line x1="570" y1="30" x2="570" y2="220" stroke="var(--vx-primary)" stroke-width="1" stroke-dasharray="2,3"/>
+                <rect x="510" y="18" width="70" height="22" rx="4" fill="var(--vx-primary)"/>
+                <text x="545" y="33" fill="#FFFFFF" font-size="11" text-anchor="middle" font-family="var(--vx-font-family-number)" font-weight="500">¥ 258万</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-title">渠道销售占比</div>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">详情</button>
+          </div>
+          <div class="chart-body">
+            <div class="donut-chart-wrap">
+              <svg class="donut-svg" width="140" height="140" viewBox="0 0 42 42">
+                <!-- 总环底 -->
+                <circle cx="21" cy="21" r="15.915" fill="none" stroke="var(--vx-fill-2)" stroke-width="6"/>
+                <!-- 扇区：直营门店 42% -->
+                <circle cx="21" cy="21" r="15.915" fill="none"
+                        stroke="var(--vx-primary)" stroke-width="6"
+                        stroke-dasharray="42 58" stroke-dashoffset="25"
+                        transform="rotate(-90 21 21)"/>
+                <!-- 线上商城 28% -->
+                <circle cx="21" cy="21" r="15.915" fill="none"
+                        stroke="var(--vx-help)" stroke-width="6"
+                        stroke-dasharray="28 72" stroke-dashoffset="-17"
+                        transform="rotate(-90 21 21)"/>
+                <!-- 经销商 18% -->
+                <circle cx="21" cy="21" r="15.915" fill="none"
+                        stroke="var(--vx-warning)" stroke-width="6"
+                        stroke-dasharray="18 82" stroke-dashoffset="-45"
+                        transform="rotate(-90 21 21)"/>
+                <!-- 其他 12% -->
+                <circle cx="21" cy="21" r="15.915" fill="none"
+                        stroke="var(--vx-purple)" stroke-width="6"
+                        stroke-dasharray="12 88" stroke-dashoffset="-63"
+                        transform="rotate(-90 21 21)"/>
+                <!-- 中心文字 -->
+                <text x="21" y="19" text-anchor="middle" font-size="4.5" fill="var(--vx-text-caption)" font-family="var(--vx-font-family)">总销售</text>
+                <text x="21" y="25.5" text-anchor="middle" font-size="6" font-weight="600" fill="var(--vx-text-title)" font-family="var(--vx-font-family-number)">248.6万</text>
+              </svg>
+              <div class="donut-legend">
+                <div class="donut-legend-item">
+                  <div class="donut-legend-left">
+                    <span class="donut-legend-color" style="background:var(--vx-primary)"></span>
+                    <span class="donut-legend-label">直营门店</span>
+                  </div>
+                  <span class="donut-legend-value">42%</span>
+                </div>
+                <div class="donut-legend-item">
+                  <div class="donut-legend-left">
+                    <span class="donut-legend-color" style="background:var(--vx-help)"></span>
+                    <span class="donut-legend-label">线上商城</span>
+                  </div>
+                  <span class="donut-legend-value">28%</span>
+                </div>
+                <div class="donut-legend-item">
+                  <div class="donut-legend-left">
+                    <span class="donut-legend-color" style="background:var(--vx-warning)"></span>
+                    <span class="donut-legend-label">经销商</span>
+                  </div>
+                  <span class="donut-legend-value">18%</span>
+                </div>
+                <div class="donut-legend-item">
+                  <div class="donut-legend-left">
+                    <span class="donut-legend-color" style="background:var(--vx-purple)"></span>
+                    <span class="donut-legend-label">其他渠道</span>
+                  </div>
+                  <span class="donut-legend-value">12%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二行：品类对比 + 实时动态 -->
+      <div class="row row-2-1">
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-title">品类销售对比</div>
+            <div class="legend">
+              <span class="legend-item"><span class="legend-dot"></span>本周</span>
+              <span class="legend-item"><span class="legend-dot help"></span>上周</span>
+            </div>
+          </div>
+          <div class="chart-body">
+            <svg class="bar-chart" viewBox="0 0 600 260" preserveAspectRatio="none">
+              <!-- 网格线 -->
+              <g stroke="var(--vx-line-1)" stroke-width="1">
+                <line x1="40" y1="20"  x2="580" y2="20"/>
+                <line x1="40" y1="70"  x2="580" y2="70"/>
+                <line x1="40" y1="120" x2="580" y2="120"/>
+                <line x1="40" y1="170" x2="580" y2="170"/>
+                <line x1="40" y1="220" x2="580" y2="220"/>
+              </g>
+              <!-- Y 轴标签 -->
+              <g fill="var(--vx-text-caption)" font-size="11" font-family="var(--vx-font-family-number)" text-anchor="end">
+                <text x="32" y="24">80万</text>
+                <text x="32" y="74">60万</text>
+                <text x="32" y="124">40万</text>
+                <text x="32" y="174">20万</text>
+                <text x="32" y="224">0</text>
+              </g>
+
+              <!-- 柱状图：6 个品类，每组 2 根柱 -->
+              <!-- 柱宽 20，组间距 50，起始 x=60 -->
+              <!-- 品类1：SUV -->
+              <rect x="60"  y="60"  width="20" height="160" fill="var(--vx-primary)" rx="2"/>
+              <rect x="84"  y="80"  width="20" height="140" fill="var(--vx-help)" rx="2"/>
+              <!-- 品类2：轿车 -->
+              <rect x="145" y="100" width="20" height="120" fill="var(--vx-primary)" rx="2"/>
+              <rect x="169" y="115" width="20" height="105" fill="var(--vx-help)" rx="2"/>
+              <!-- 品类3：MPV -->
+              <rect x="230" y="40"  width="20" height="180" fill="var(--vx-primary)" rx="2"/>
+              <rect x="254" y="55"  width="20" height="165" fill="var(--vx-help)" rx="2"/>
+              <!-- 品类4：新能源 -->
+              <rect x="315" y="30"  width="20" height="190" fill="var(--vx-primary)" rx="2"/>
+              <rect x="339" y="70"  width="20" height="150" fill="var(--vx-help)" rx="2"/>
+              <!-- 品类5：配件 -->
+              <rect x="400" y="140" width="20" height="80"  fill="var(--vx-primary)" rx="2"/>
+              <rect x="424" y="150" width="20" height="70"  fill="var(--vx-help)" rx="2"/>
+              <!-- 品类6：服务 -->
+              <rect x="485" y="120" width="20" height="100" fill="var(--vx-primary)" rx="2"/>
+              <rect x="509" y="135" width="20" height="85"  fill="var(--vx-help)" rx="2"/>
+
+              <!-- X 轴标签 -->
+              <g fill="var(--vx-text-primary)" font-size="12" text-anchor="middle">
+                <text x="82"  y="244">SUV</text>
+                <text x="167" y="244">轿车</text>
+                <text x="252" y="244">MPV</text>
+                <text x="337" y="244">新能源</text>
+                <text x="422" y="244">配件</text>
+                <text x="507" y="244">服务</text>
+              </g>
+
+              <!-- 顶部标注：新能源 +45% -->
+              <g>
+                <text x="335" y="22" text-anchor="middle" font-size="11" fill="var(--vx-success-dark)" font-weight="500">▲ 45%</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-title">实时动态</div>
+            <span class="vx-tag vx-tag-success">● 在线</span>
+          </div>
+          <div class="chart-body" style="display:flex;flex-direction:column;gap:var(--vx-space-sm);padding:var(--vx-space-sm) var(--vx-padding-card);">
+            <div class="vx-notification" style="box-shadow:none;border:none;background:var(--vx-fill-1);">
+              <span style="color:var(--vx-success)">●</span>
+              <div>
+                <div class="vx-notification-title" style="font-size:var(--vx-font-size-md);font-weight:var(--vx-font-weight-medium);">新订单 #88246</div>
+                <div class="vx-notification-description" style="font-size:var(--vx-font-size-sm);">上海 · 新能源 · ¥286,500</div>
+              </div>
+            </div>
+            <div class="vx-notification" style="box-shadow:none;border:none;background:var(--vx-fill-1);">
+              <span style="color:var(--vx-warning)">●</span>
+              <div>
+                <div class="vx-notification-title" style="font-size:var(--vx-font-size-md);font-weight:var(--vx-font-weight-medium);">库存预警</div>
+                <div class="vx-notification-description" style="font-size:var(--vx-font-size-sm);">北京仓 · 型号 X7 剩余 12 台</div>
+              </div>
+            </div>
+            <div class="vx-notification" style="box-shadow:none;border:none;background:var(--vx-fill-1);">
+              <span style="color:var(--vx-primary)">●</span>
+              <div>
+                <div class="vx-notification-title" style="font-size:var(--vx-font-size-md);font-weight:var(--vx-font-weight-medium);">营销活动上线</div>
+                <div class="vx-notification-description" style="font-size:var(--vx-font-size-sm);">双11大促 · 覆盖 12 城市</div>
+              </div>
+            </div>
+            <div class="vx-notification" style="box-shadow:none;border:none;background:var(--vx-fill-1);">
+              <span style="color:var(--vx-help)">●</span>
+              <div>
+                <div class="vx-notification-title" style="font-size:var(--vx-font-size-md);font-weight:var(--vx-font-weight-medium);">客服满意度</div>
+                <div class="vx-notification-description" style="font-size:var(--vx-font-size-sm);">今日好评率 96.8% · 环比 +1.2%</div>
+              </div>
+            </div>
+            <div class="vx-notification" style="box-shadow:none;border:none;background:var(--vx-fill-1);">
+              <span style="color:var(--vx-purple)">●</span>
+              <div>
+                <div class="vx-notification-title" style="font-size:var(--vx-font-size-md);font-weight:var(--vx-font-weight-medium);">数据同步完成</div>
+                <div class="vx-notification-description" style="font-size:var(--vx-font-size-sm);">门店 POS 数据已同步 · 14:28</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第三行：门店销售排行 -->
+      <div class="chart-card" style="margin-bottom: var(--vx-space-xl);">
+        <div class="chart-head">
+          <div class="chart-title">门店销售排行（本周 Top 10）</div>
+          <div style="display:flex;align-items:center;gap:var(--vx-space-xs);">
+            <div class="vx-segmented">
+              <span class="vx-segmented-item vx-segmented-item-selected">销售额</span>
+              <span class="vx-segmented-item">订单量</span>
+              <span class="vx-segmented-item">增长率</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-body" style="padding:0;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:60px">排名</th>
+                <th>门店名称</th>
+                <th>所在城市</th>
+                <th style="width:280px">销售进度</th>
+                <th class="num" style="width:120px">销售额</th>
+                <th class="num" style="width:100px">同比</th>
+                <th style="width:80px">状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="rank rank-1">1</span></td>
+                <td><div class="name-cell">上海南京西路旗舰店</div></td>
+                <td>上海</td>
+                <td>
+                  <div class="bar-cell">
+                    <div class="bar-cell-track"><div class="bar-cell-fill" style="width:98%"></div></div>
+                    <span style="font-size:var(--vx-font-size-xs);color:var(--vx-text-secondary);width:36px;text-align:right;font-family:var(--vx-font-family-number);">98%</span>
+                  </div>
+                </td>
+                <td class="num">¥ 1,286,400</td>
+                <td class="num" style="color:var(--vx-success-dark)">+24.5%</td>
+                <td><span class="vx-tag vx-tag-success">达标</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank rank-2">2</span></td>
+                <td><div class="name-cell">北京国贸体验中心</div></td>
+                <td>北京</td>
+                <td>
+                  <div class="bar-cell">
+                    <div class="bar-cell-track"><div class="bar-cell-fill" style="width:92%"></div></div>
+                    <span style="font-size:var(--vx-font-size-xs);color:var(--vx-text-secondary);width:36px;text-align:right;font-family:var(--vx-font-family-number);">92%</span>
+                  </div>
+                </td>
+                <td class="num">¥ 1,102,800</td>
+                <td class="num" style="color:var(--vx-success-dark)">+18.3%</td>
+                <td><span class="vx-tag vx-tag-success">达标</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank rank-3">3</span></td>
+                <td><div class="name-cell">深圳福田中心店</div></td>
+                <td>深圳</td>
+                <td>
+                  <div class="bar-cell">
+                    <div class="bar-cell-track"><div class="bar-cell-fill" style="width:85%"></div></div>
+                    <span style="font-size:var(--vx-font-size-xs);color:var(--vx-text-secondary);width:36px;text-align:right;font-family:var(--vx-font-family-number);">85%</span>
+                  </div>
+                </td>
+                <td class="num">¥ 986,200</td>
+                <td class="num" style="color:var(--vx-success-dark)">+12.1%</td>
+                <td><span class="vx-tag vx-tag-success">达标</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank">4</span></td>
+                <td><div class="name-cell">杭州西湖体验店</div></td>
+                <td>杭州</td>
+                <td>
+                  <div class="bar-cell">
+                    <div class="bar-cell-track"><div class="bar-cell-fill" style="width:78%"></div></div>
+                    <span style="font-size:var(--vx-font-size-xs);color:var(--vx-text-secondary);width:36px;text-align:right;font-family:var(--vx-font-family-number);">78%</span>
+                  </div>
+                </td>
+                <td class="num">¥ 842,600</td>
+                <td class="num" style="color:var(--vx-success-dark)">+8.7%</td>
+                <td><span class="vx-tag vx-tag-primary">进行中</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank">5</span></td>
+                <td><div class="name-cell">成都太古里店</div></td>
+                <td>成都</td>
+                <td>
+                  <div class="bar-cell">
+                    <div class="bar-cell-track"><div class="bar-cell-fill" style="width:72%"></div></div>
+                    <span style="font-size:var(--vx-font-size-xs);color:var(--vx-text-secondary);width:36px;text-align:right;font-family:var(--vx-font-family-number);">72%</span>
+                  </div>
+                </td>
+                <td class="num">¥ 756,300</td>
+                <td class="num" style="color:var(--vx-error-dark)">-3.2%</td>
+                <td><span class="vx-tag vx-tag-warning">关注</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank">6</span></td>
+                <td><div class="name-cell">广州天河旗舰店</div></td>
+                <td>广州</td>
+                <td>
+                  <div class="bar-cell">
+                    <div class="bar-cell-track"><div class="bar-cell-fill" style="width:68%"></div></div>
+                    <span style="font-size:var(--vx-font-size-xs);color:var(--vx-text-secondary);width:36px;text-align:right;font-family:var(--vx-font-family-number);">68%</span>
+                  </div>
+                </td>
+                <td class="num">¥ 698,500</td>
+                <td class="num" style="color:var(--vx-success-dark)">+5.4%</td>
+                <td><span class="vx-tag vx-tag-primary">进行中</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank">7</span></td>
+                <td><div class="name-cell">武汉光谷体验中心</div></td>
+                <td>武汉</td>
+                <td>
+                  <div class="bar-cell">
+                    <div class="bar-cell-track"><div class="bar-cell-fill" style="width:62%"></div></div>
+                    <span style="font-size:var(--vx-font-size-xs);color:var(--vx-text-secondary);width:36px;text-align:right;font-family:var(--vx-font-family-number);">62%</span>
+                  </div>
+                </td>
+                <td class="num">¥ 612,800</td>
+                <td class="num" style="color:var(--vx-success-dark)">+2.1%</td>
+                <td><span class="vx-tag vx-tag-primary">进行中</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank">8</span></td>
+                <td><div class="name-cell">南京新街口店</div></td>
+                <td>南京</td>
+                <td>
+                  <div class="bar-cell">
+                    <div class="bar-cell-track"><div class="bar-cell-fill" style="width:55%"></div></div>
+                    <span style="font-size:var(--vx-font-size-xs);color:var(--vx-text-secondary);width:36px;text-align:right;font-family:var(--vx-font-family-number);">55%</span>
+                  </div>
+                </td>
+                <td class="num">¥ 542,100</td>
+                <td class="num" style="color:var(--vx-error-dark)">-5.8%</td>
+                <td><span class="vx-tag vx-tag-warning">关注</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="page-footer" style="padding:var(--vx-space-sm) var(--vx-padding-card);">
+          <span>共 56 家门店，当前显示第 1-8 家</span>
+          <div class="pagination">
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">‹</button>
+            <button class="vx-btn vx-btn-primary vx-btn-sm">1</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">2</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">3</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">›</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // 主题切换（演示用：点击 Logo 切换主题）
+  const themes = ['blue', 'yellow', 'purple', 'cuiqing', 'red', 'biqing'];
+  let themeIdx = 0;
+  document.querySelector('.sidebar-logo-mark').addEventListener('click', () => {
+    themeIdx = (themeIdx + 1) % themes.length;
+    document.documentElement.setAttribute('data-vx-theme', themes[themeIdx]);
+  });
+
+  // 导航切换
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-item-active'));
+      item.classList.add('nav-item-active');
+    });
+  });
+
+  // Tab 切换
+  document.querySelectorAll('.vx-segmented').forEach(seg => {
+    seg.addEventListener('click', e => {
+      if (e.target.classList.contains('vx-segmented-item')) {
+        seg.querySelectorAll('.vx-segmented-item').forEach(i => i.classList.remove('vx-segmented-item-selected'));
+        e.target.classList.add('vx-segmented-item-selected');
+      }
+    });
+  });
+
+  // Tabs 切换
+  document.querySelectorAll('.vx-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const parent = tab.parentElement;
+      parent.querySelectorAll('.vx-tab').forEach(t => t.classList.remove('vx-tab-active'));
+      tab.classList.add('vx-tab-active');
+    });
+  });
+</script>
+</body>
+</html>

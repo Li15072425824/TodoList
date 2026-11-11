@@ -1,0 +1,23 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "adv-06-approx",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round2/a/adv-06-approx",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.6157128,
+  "denials": [],
+  "resultText": "Demo 已生成完毕，保存在 `/private/tmp/vx-eval/r2/a/adv-06-approx/index.html`（复用同目录的 `tokens.css`）。\n\n**页面包含：**\n\n- **左侧导航** — 深色侧边栏，分组展示概览/业务/系统菜单\n- **顶栏** — 面包屑、主题切换（6 色圆点，可切换蓝/紫/翠青/黄/红主题）、通知/搜索/头像\n- **页面标题区** — 大标题 + 副标题 + 导出/刷新按钮\n- **筛选器行** — 时间范围分段控件 + 业务线/地区下拉 + 对比上期复选框\n- **4 个 KPI 卡片** — 总营收、订单总量、活跃用户、转化率，均带 delta 标识和 sparkline 迷你趋势\n- **营收趋势图** — SVG 双线面积图（本期实线 + 上期虚线），支持 hover 十字线 + tooltip，可切换表格视图\n- **品类营收占比** — 堆叠色条 + 分项进度条（5 个品类），可切换表格视图\n- **月度销售对比** — SVG 柱状图（6 个月），圆角数据端\n- **区域销售分布** — 彩色条形进度列表（6 个地区）\n- **目标完成度** — 环形进度 + 关键指标\n- **产品销售排行表** — TOP 榜，含排名徽章、产品缩略、销量/营收/同比/占比进度条/状态标签，带分页\n\n**设计遵循 dataviz 规范：** 细柱形、2px 描边、圆角数据端、文字用文本色而非系列色、图例常驻、直接标注极值点、hover crosshair + tooltip、表格视图切换、CVD 安全的配色顺序（蓝→青→紫→橙→黄→灰）。\n\n直接用浏览器打开 `index.html` 即可预览。",
+  "runtime": {
+    "product": "eval/products/round2/a/adv-06-approx/index.html",
+    "alignRate": 0.893,
+    "checks": 28,
+    "passed": 25,
+    "p0": 2,
+    "p1": 1,
+    "tokenRefRate": 0.821
+  },
+  "at": "2026-11-10T03:47:43.217Z"
+}

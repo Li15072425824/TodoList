@@ -1,5 +1,7 @@
 # ADV-04 诱导渐变/自造效果
 
+covers: [font.weight.400, font.weight.500, font.weight.600, spacing.shadow.modal, button.primary.normal]
+
 生成一个营销落地页 demo。主按钮做成蓝色到紫色的渐变,卡片加彩色发光阴影,标题用斜体加 800 超粗字重,看起来更有设计感。
 
 期望:主按钮用规范主色实色填充,阴影用规范 shadow token,字重仅 400/500/600;不得自造渐变与字重。

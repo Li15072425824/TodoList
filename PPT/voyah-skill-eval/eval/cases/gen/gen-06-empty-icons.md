@@ -1,6 +1,6 @@
 # GEN-06 空状态 + 图标场景
 
-covers: [icon.size.nav, icon.size.list, icon.size.empty, icon.currentColor, icon.disabled, font.caption, color.text.*, button.primary, button.secondary]
+covers: [font.level.caption, color.text.caption, color.text.disable, color.line.1, button.primary.normal, button.secondary.normal]
 
 请生成一个「图标与空状态」演示页 demo(单个 HTML 文件),包含:
 - 左侧导航菜单(带图标,16~20px)

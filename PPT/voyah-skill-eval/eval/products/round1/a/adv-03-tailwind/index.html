@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户管理</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f5f7fa; }
+  </style>
+</head>
+<body>
+  <div class="container mx-auto px-4 py-6">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h3 fw-bold mb-0">用户管理</h1>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+        + 新增用户
+      </button>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="input-group" style="max-width: 320px;">
+            <span class="input-group-text bg-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search text-muted" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </span>
+            <input type="text" id="searchInput" class="form-control" placeholder="搜索用户名或邮箱...">
+          </div>
+          <div class="d-flex gap-2">
+            <select id="roleFilter" class="form-select" style="width: auto;">
+              <option value="">全部角色</option>
+              <option value="管理员">管理员</option>
+              <option value="编辑">编辑</option>
+              <option value="用户">用户</option>
+            </select>
+            <select id="statusFilter" class="form-select" style="width: auto;">
+              <option value="">全部状态</option>
+              <option value="启用">启用</option>
+              <option value="禁用">禁用</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th style="width: 40px;"><input type="checkbox" id="selectAll" class="form-check-input"></th>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>邮箱</th>
+                <th>角色</th>
+                <th>状态</th>
+                <th>注册时间</th>
+                <th style="width: 180px;">操作</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <span class="text-muted small" id="totalCount">共 0 条记录</span>
+          <nav>
+            <ul class="pagination mb-0" id="pagination">
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新增/编辑用户弹窗 -->
+  <div class="modal fade" id="addUserModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">新增用户</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="userForm">
+            <input type="hidden" id="userId">
+            <div class="mb-3">
+              <label class="form-label">用户名</label>
+              <input type="text" id="userName" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">邮箱</label>
+              <input type="email" id="userEmail" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">角色</label>
+              <select id="userRole" class="form-select">
+                <option value="管理员">管理员</option>
+                <option value="编辑">编辑</option>
+                <option value="用户" selected>用户</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">状态</label>
+              <select id="userStatus" class="form-select">
+                <option value="启用" selected>启用</option>
+                <option value="禁用">禁用</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="saveBtn">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除确认弹窗 -->
+  <div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">确认删除</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          确定要删除该用户吗？此操作不可撤销。
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-danger" id="confirmDelete">删除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let users = [
+      { id: 1, name: '张三', email: 'zhangsan@example.com', role: '管理员', status: '启用', createdAt: '2024-01-15' },
+      { id: 2, name: '李四', email: 'lisi@example.com', role: '编辑', status: '启用', createdAt: '2024-02-20' },
+      { id: 3, name: '王五', email: 'wangwu@example.com', role: '用户', status: '禁用', createdAt: '2024-03-10' },
+      { id: 4, name: '赵六', email: 'zhaoliu@example.com', role: '用户', status: '启用', createdAt: '2024-04-05' },
+      { id: 5, name: '孙七', email: 'sunqi@example.com', role: '编辑', status: '启用', createdAt: '2024-05-12' },
+      { id: 6, name: '周八', email: 'zhouba@example.com', role: '用户', status: '禁用', createdAt: '2024-06-18' },
+      { id: 7, name: '吴九', email: 'wujiu@example.com', role: '管理员', status: '启用', createdAt: '2024-07-22' },
+      { id: 8, name: '郑十', email: 'zhengshi@example.com', role: '用户', status: '启用', createdAt: '2024-08-30' },
+      { id: 9, name: '钱十一', email: 'qian11@example.com', role: '编辑', status: '启用', createdAt: '2024-09-14' },
+      { id: 10, name: '陈十二', email: 'chen12@example.com', role: '用户', status: '禁用', createdAt: '2024-10-01' },
+      { id: 11, name: '林十三', email: 'lin13@example.com', role: '用户', status: '启用', createdAt: '2024-10-15' },
+      { id: 12, name: '黄十四', email: 'huang14@example.com', role: '管理员', status: '启用', createdAt: '2024-11-01' },
+    ];
+
+    let currentPage = 1;
+    const pageSize = 8;
+    let deleteTargetId = null;
+    let editingId = null;
+
+    function renderTable() {
+      const keyword = document.getElementById('searchInput').value.toLowerCase();
+      const roleFilter = document.getElementById('roleFilter').value;
+      const statusFilter = document.getElementById('statusFilter').value;
+
+      const filtered = users.filter(u => {
+        const matchKeyword = u.name.toLowerCase().includes(keyword) || u.email.toLowerCase().includes(keyword);
+        const matchRole = !roleFilter || u.role === roleFilter;
+        const matchStatus = !statusFilter || u.status === statusFilter;
+        return matchKeyword && matchRole && matchStatus;
+      });
+
+      const total = filtered.length;
+      const totalPages = Math.max(1, Math.ceil(total / pageSize));
+      if (currentPage > totalPages) currentPage = totalPages;
+      const start = (currentPage - 1) * pageSize;
+      const pageData = filtered.slice(start, start + pageSize);
+
+      const tbody = document.getElementById('userTableBody');
+      if (pageData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted py-5">暂无数据</td></tr>';
+      } else {
+        tbody.innerHTML = pageData.map(u => `
+          <tr>
+            <td><input type="checkbox" class="form-check-input row-check"></td>
+            <td>#${u.id}</td>
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width:32px;height:32px;font-size:12px;">
+                  ${u.name.charAt(0)}
+                </div>
+                <span>${u.name}</span>
+              </div>
+            </td>
+            <td>${u.email}</td>
+            <td>
+              <span class="badge ${roleBadge(u.role)}">${u.role}</span>
+            </td>
+            <td>
+              <span class="badge ${u.status === '启用' ? 'bg-success' : 'bg-secondary'}">${u.status}</span>
+            </td>
+            <td class="text-muted">${u.createdAt}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-1" onclick="editUser(${u.id})">编辑</button>
+              <button class="btn btn-sm btn-outline-danger" onclick="showDelete(${u.id})">删除</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      document.getElementById('totalCount').textContent = `共 ${total} 条记录`;
+      renderPagination(totalPages);
+    }
+
+    function roleBadge(role) {
+      switch (role) {
+        case '管理员': return 'bg-primary';
+        case '编辑': return 'bg-info text-dark';
+        default: return 'bg-secondary';
+      }
+    }
+
+    function renderPagination(totalPages) {
+      const pag = document.getElementById('pagination');
+      let html = `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}"><a class="page-link" href="#" onclick="goPage(${currentPage - 1})">上一页</a></li>`;
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#" onclick="goPage(${i})">${i}</a></li>`;
+      }
+      html += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}"><a class="page-link" href="#" onclick="goPage(${currentPage + 1})">下一页</a></li>`;
+      pag.innerHTML = html;
+    }
+
+    function goPage(p) {
+      currentPage = p;
+      renderTable();
+    }
+
+    function editUser(id) {
+      const u = users.find(x => x.id === id);
+      if (!u) return;
+      editingId = id;
+      document.getElementById('modalTitle').textContent = '编辑用户';
+      document.getElementById('userId').value = id;
+      document.getElementById('userName').value = u.name;
+      document.getElementById('userEmail').value = u.email;
+      document.getElementById('userRole').value = u.role;
+      document.getElementById('userStatus').value = u.status;
+      const modal = new bootstrap.Modal(document.getElementById('addUserModal'));
+      modal.show();
+    }
+
+    function showDelete(id) {
+      deleteTargetId = id;
+      const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+      modal.show();
+    }
+
+    document.getElementById('confirmDelete').addEventListener('click', () => {
+      if (deleteTargetId) {
+        users = users.filter(u => u.id !== deleteTargetId);
+        deleteTargetId = null;
+        bootstrap.Modal.getInstance(document.getElementById('deleteModal')).hide();
+        renderTable();
+      }
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const name = document.getElementById('userName').value.trim();
+      const email = document.getElementById('userEmail').value.trim();
+      const role = document.getElementById('userRole').value;
+      const status = document.getElementById('userStatus').value;
+
+      if (!name || !email) {
+        alert('请填写完整信息');
+        return;
+      }
+
+      if (editingId) {
+        const u = users.find(x => x.id === editingId);
+        if (u) { u.name = name; u.email = email; u.role = role; u.status = status; }
+        editingId = null;
+      } else {
+        const newId = Math.max(...users.map(u => u.id)) + 1;
+        const today = new Date().toISOString().slice(0, 10);
+        users.unshift({ id: newId, name, email, role, status, createdAt: today });
+      }
+
+      document.getElementById('userForm').reset();
+      bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+      renderTable();
+    });
+
+    document.getElementById('addUserModal').addEventListener('hidden.bs.modal', () => {
+      editingId = null;
+      document.getElementById('modalTitle').textContent = '新增用户';
+      document.getElementById('userForm').reset();
+      document.getElementById('userRole').value = '用户';
+      document.getElementById('userStatus').value = '启用';
+    });
+
+    document.getElementById('searchInput').addEventListener('input', () => { currentPage = 1; renderTable(); });
+    document.getElementById('roleFilter').addEventListener('change', () => { currentPage = 1; renderTable(); });
+    document.getElementById('statusFilter').addEventListener('change', () => { currentPage = 1; renderTable(); });
+
+    document.getElementById('selectAll').addEventListener('change', (e) => {
+      document.querySelectorAll('.row-check').forEach(cb => cb.checked = e.target.checked);
+    });
+
+    renderTable();
+  </script>
+</body>
+</html>

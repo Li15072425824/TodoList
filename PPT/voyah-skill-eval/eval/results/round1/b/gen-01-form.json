@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-01-form",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-01-form",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.31468860000000004,
+  "denials": [],
+  "resultText": "Demo 已生成到 `index.html`，单文件包含所有样式。涵盖内容：\n\n- **顶部导航**：VOYAH Logo、6 项菜单（车辆管理高亮）、搜索框、消息/帮助图标、头像\n- **面包屑 + 标题 + 说明**：三级面包屑 + 大标题 + 必填项说明\n- **双列表单**：\n  - 输入框（VIN 码带帮助说明、行驶里程、电池容量等）\n  - 下拉选择（品牌型号、车辆类型、座椅布局）\n  - 单选组（车身颜色、内饰风格、驱动方式）\n  - 复选组（8 项选装配置）\n  - 开关（智能网联、自动泊车）\n  - 文本域（备注说明）\n  - **车牌号展示错误状态**：红色边框 + 错误图标 + 错误提示文字\n- **底部按钮**：主按钮「提交登记」+ 次按钮「取消」\n- **右侧辅助卡片**：填写说明 + 提示条 + 常见问题列表\n\n设计风格遵循岚图 Voyah 规范：主色 `#0052D9`、4px/6px/8px 圆角层级、40px 控件高度、灰色阶文本体系、hover/focus/active 完整交互态。",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-01-form/index.html",
+    "alignRate": 0.379,
+    "checks": 29,
+    "passed": 11,
+    "p0": 11,
+    "p1": 7,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:39:19.349Z"
+}

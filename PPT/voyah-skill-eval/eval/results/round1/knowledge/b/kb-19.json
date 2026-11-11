@@ -1,0 +1,18 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-19",
+  "topic": "button-size",
+  "question": "按钮 Large / Middle / Small 三档的高度、左右 padding 和圆角分别是什么?",
+  "answer": "项目为空，没有可用的设计规范 skill。以下为通用知识回答（以 Ant Design / 主流设计系统为参照）：\n\n**按钮三档规格**\n\n| 尺寸 | 高度 | 左右 padding | 圆角 |\n|------|------|-------------|------|\n| Large | 40px | 16px | 8px |\n| Middle | 32px | 12px | 6px |\n| Small | 24px | 8px | 4px |\n\n说明：\n- 这是 Ant Design 5 及多数企业级设计系统的典型取值，不同项目可能在此基础上微调 1–2px。\n- 圆角趋势上现代设计偏好更大（Large 可到 8–12px），但以上是最常见的基线配置。",
+  "pass": false,
+  "missing": [
+    "8px 16px",
+    "6px 16px",
+    "2px 8px"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0544896,
+  "subtype": "success",
+  "at": "2026-11-09T09:46:54.237Z"
+}

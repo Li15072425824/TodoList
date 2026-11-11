@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>深色品牌头图区 · 反白按钮演示</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body { background: var(--vx-bg-layout); }
+  .page { max-width: 960px; margin: 0 auto; }
+
+  /* ---- 深色头部横幅 ---- */
+  .hero {
+    background: #333333;
+    padding: var(--vx-space-12) var(--vx-space-6);
+    text-align: center;
+  }
+  .hero-title {
+    font-size: var(--vx-font-size-h1);
+    line-height: 40px;
+    font-weight: var(--vx-font-weight-bold);
+    color: #FFFFFF;
+    margin-bottom: var(--vx-space-2);
+  }
+  .hero-subtitle {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: var(--vx-space-6);
+  }
+  .hero-actions {
+    display: flex;
+    gap: var(--vx-space-2);
+    justify-content: center;
+  }
+
+  /* ---- 反白按钮四态快照区 ---- */
+  .states-section {
+    background: #333333;
+    padding: var(--vx-space-6) var(--vx-space-6) var(--vx-space-8);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .states-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: #FFFFFF;
+    margin-bottom: var(--vx-space-4);
+  }
+  .states-row {
+    display: flex;
+    gap: var(--vx-space-4);
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .state-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-2);
+    align-items: flex-start;
+  }
+  .state-label {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: var(--vx-font-weight-regular);
+  }
+  .state-swatch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    height: var(--vx-control-height-lg);
+    border-radius: var(--vx-radius-md);
+    border: 1px solid transparent;
+    font-size: var(--vx-font-size-lg);
+    line-height: 24px;
+    font-weight: var(--vx-font-weight-medium);
+    padding: 8px var(--vx-space-4);
+  }
+  .state-swatch--normal {
+    background: #FAFAFA;
+    color: #666666;
+    border-color: #DEDEDE;
+  }
+  .state-swatch--hover {
+    background: #FAFAFA;
+    color: #568EEE;
+    border-color: #568EEE;
+  }
+  .state-swatch--click {
+    background: #FFFFFF;
+    color: #1C5AC4;
+    border-color: #1C5AC4;
+  }
+  .state-swatch--disabled {
+    background: #FAFAFA;
+    color: #C1C1C1;
+    border-color: #DEDEDE;
+    cursor: not-allowed;
+  }
+  .state-colors {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: var(--vx-font-family-number);
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .state-colors span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vx-space-1);
+  }
+  .state-colors .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* ---- 浅色内容区 ---- */
+  .content {
+    padding: var(--vx-space-6);
+  }
+  .content-title {
+    font-size: var(--vx-font-size-xl);
+    line-height: 28px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-4);
+  }
+  .content-desc {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-secondary);
+    margin-bottom: var(--vx-space-4);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--vx-space-4);
+  }
+  .card-actions {
+    display: flex;
+    gap: var(--vx-space-2);
+    margin-top: var(--vx-space-3);
+  }
+  .card-text {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-secondary);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 深色头部横幅 -->
+  <section class="hero">
+    <h1 class="hero-title">岚图 Voyah 智能驾驶助手</h1>
+    <p class="hero-subtitle">全场景智能交互 · 为每一次出行保驾护航</p>
+    <div class="hero-actions">
+      <button class="vx-btn vx-btn-whiteline vx-btn-lg">立即体验</button>
+      <button class="vx-btn vx-btn-whiteline vx-btn-lg">了解更多</button>
+    </div>
+  </section>
+
+  <!-- 反白按钮四态快照 -->
+  <section class="states-section">
+    <div class="states-title">反白按钮（Whiteline）四态 · 深色衬底 #333333</div>
+    <div class="states-row">
+
+      <div class="state-item">
+        <div class="state-swatch state-swatch--normal">Normal</div>
+        <div class="state-label">常规</div>
+        <div class="state-colors">
+          <span><i class="dot" style="background:#FAFAFA"></i>背景 #FAFAFA</span>
+          <span><i class="dot" style="background:#666666"></i>文字 #666666</span>
+          <span><i class="dot" style="background:#DEDEDE"></i>边框 #DEDEDE</span>
+        </div>
+      </div>
+
+      <div class="state-item">
+        <div class="state-swatch state-swatch--hover">Hover</div>
+        <div class="state-label">悬停</div>
+        <div class="state-colors">
+          <span><i class="dot" style="background:#FAFAFA"></i>背景 #FAFAFA</span>
+          <span><i class="dot" style="background:#568EEE"></i>文字 #568EEE</span>
+          <span><i class="dot" style="background:#568EEE"></i>边框 #568EEE</span>
+        </div>
+      </div>
+
+      <div class="state-item">
+        <div class="state-swatch state-swatch--click">Click</div>
+        <div class="state-label">按下</div>
+        <div class="state-colors">
+          <span><i class="dot" style="background:#FFFFFF;border-color:#DEDEDE"></i>背景 #FFFFFF</span>
+          <span><i class="dot" style="background:#1C5AC4"></i>文字 #1C5AC4</span>
+          <span><i class="dot" style="background:#1C5AC4"></i>边框 #1C5AC4</span>
+        </div>
+      </div>
+
+      <div class="state-item">
+        <div class="state-swatch state-swatch--disabled">Disabled</div>
+        <div class="state-label">禁用</div>
+        <div class="state-colors">
+          <span><i class="dot" style="background:#FAFAFA"></i>背景 #FAFAFA</span>
+          <span><i class="dot" style="background:#C1C1C1"></i>文字 #C1C1C1</span>
+          <span><i class="dot" style="background:#DEDEDE"></i>边框 #DEDEDE</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 浅色内容区：对比展示 -->
+  <section class="content">
+    <h2 class="content-title">浅色页面卡片</h2>
+    <p class="content-desc">浅色背景不使用反白按钮，应使用主按钮 / 次要按钮等常规类型。</p>
+    <div class="cards">
+
+      <div class="vx-card">
+        <div class="vx-card-head">
+          <span class="vx-card-title">智能行程规划</span>
+          <span class="vx-tag vx-tag-primary">推荐</span>
+        </div>
+        <div class="vx-card-body">
+          <div class="card-text">基于实时路况与用户习惯，智能推荐最优路线，节省每一分钟出行时间。</div>
+          <div class="card-actions">
+            <button class="vx-btn vx-btn-primary">立即开启</button>
+            <button class="vx-btn vx-btn-secondary">查看详情</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vx-card">
+        <div class="vx-card-head">
+          <span class="vx-card-title">语音控制助手</span>
+          <span class="vx-tag vx-tag-success">已上线</span>
+        </div>
+        <div class="vx-card-body">
+          <div class="card-text">全场景免唤醒语音交互，支持导航、音乐、空调等 200+ 车载功能控制。</div>
+          <div class="card-actions">
+            <button class="vx-btn vx-btn-outline">使用教程</button>
+            <button class="vx-btn vx-btn-secondary">反馈建议</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "round": "1",
+  "id": "tr-03",
+  "prompt": "做一个内部数据看板 demo HTML，风格要贴合我们公司的品牌规范。",
+  "skillUsed": true,
+  "hasHtml": true,
+  "tokenRefsInProduct": 272,
+  "cost": 0.44646359999999996,
+  "subtype": "success",
+  "at": "2026-11-09T10:14:21.307Z"
+}

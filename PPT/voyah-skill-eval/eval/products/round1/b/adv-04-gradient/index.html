@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova — 让你的创意光速起飞</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --pink: #ec4899;
+    --cyan: #06b6d4;
+    --bg: #0b0b14;
+    --bg-2: #131328;
+    --text: #f5f5ff;
+    --text-dim: #a0a0c0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* 背景光晕 */
+  body::before {
+    content: "";
+    position: fixed;
+    top: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139,92,246,0.25), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    bottom: -300px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(59,130,246,0.2), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Nav */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0;
+  }
+  .logo {
+    font-size: 22px;
+    font-weight: 800;
+    font-style: italic;
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 80px 0 60px;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(139,92,246,0.12);
+    border: 1px solid rgba(139,92,246,0.3);
+    font-size: 13px;
+    color: #c4b5fd;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .gradient-text {
+    font-style: italic;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 50%, var(--pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 36px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+    color: white;
+    box-shadow:
+      0 4px 24px rgba(59,130,246,0.4),
+      0 0 40px rgba(139,92,246,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 32px rgba(59,130,246,0.5),
+      0 0 60px rgba(139,92,246,0.4);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Features */
+  .features {
+    padding: 80px 0;
+  }
+  .section-title {
+    text-align: center;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: -0.8px;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto 56px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+
+  .card {
+    position: relative;
+    padding: 36px 32px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    transition: transform 0.3s;
+  }
+  .card:hover { transform: translateY(-6px); }
+
+  .card-blue {
+    box-shadow:
+      0 0 0 1px rgba(59,130,246,0.1),
+      0 20px 60px -10px rgba(59,130,246,0.4),
+      0 0 80px -20px rgba(59,130,246,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .card-purple {
+    box-shadow:
+      0 0 0 1px rgba(139,92,246,0.1),
+      0 20px 60px -10px rgba(139,92,246,0.4),
+      0 0 80px -20px rgba(139,92,246,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .card-pink {
+    box-shadow:
+      0 0 0 1px rgba(236,72,153,0.1),
+      0 20px 60px -10px rgba(236,72,153,0.35),
+      0 0 80px -20px rgba(236,72,153,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .card-cyan {
+    box-shadow:
+      0 0 0 1px rgba(6,182,212,0.1),
+      0 20px 60px -10px rgba(6,182,212,0.35),
+      0 0 80px -20px rgba(6,182,212,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2));
+    border: 1px solid rgba(139,92,246,0.2);
+  }
+  .card-blue .card-icon {
+    background: linear-gradient(135deg, rgba(59,130,246,0.25), rgba(59,130,246,0.08));
+    border-color: rgba(59,130,246,0.3);
+  }
+  .card-purple .card-icon {
+    background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(139,92,246,0.08));
+    border-color: rgba(139,92,246,0.3);
+  }
+  .card-pink .card-icon {
+    background: linear-gradient(135deg, rgba(236,72,153,0.25), rgba(236,72,153,0.08));
+    border-color: rgba(236,72,153,0.3);
+  }
+  .card-cyan .card-icon {
+    background: linear-gradient(135deg, rgba(6,182,212,0.25), rgba(6,182,212,0.08));
+    border-color: rgba(6,182,212,0.3);
+  }
+
+  .card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .card p {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* Stats */
+  .stats {
+    padding: 60px 0 100px;
+  }
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+    padding: 48px 40px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, rgba(139,92,246,0.08), rgba(59,130,246,0.06));
+    border: 1px solid rgba(139,92,246,0.15);
+    box-shadow:
+      0 0 60px -20px rgba(139,92,246,0.3),
+      0 0 60px -20px rgba(59,130,246,0.2);
+  }
+  .stat-num {
+    font-size: 42px;
+    font-weight: 800;
+    font-style: italic;
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+  }
+  .stat-label {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  /* Final CTA */
+  .final-cta {
+    text-align: center;
+    padding: 40px 0 100px;
+  }
+  .final-cta h2 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .final-cta p {
+    color: var(--text-dim);
+    font-size: 17px;
+    margin-bottom: 36px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--text-dim);
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="logo">NOVA</div>
+      <ul class="nav-links">
+        <li><a href="#features">功能</a></li>
+        <li><a href="#stats">数据</a></li>
+        <li><a href="#pricing">定价</a></li>
+        <li><a href="#about">关于</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-badge">✨ 全新 2.0 版本已发布</div>
+      <h1>
+        让你的创意<br>
+        <span class="gradient-text">光速起飞</span>
+      </h1>
+      <p>Nova 是新一代 AI 驱动的创意平台，帮助设计师、开发者和创作者在几分钟内把想法变成惊艳的作品。</p>
+      <div class="cta-group">
+        <a href="#" class="btn btn-primary">
+          免费开始使用
+          <span>→</span>
+        </a>
+        <a href="#" class="btn btn-secondary">观看演示</a>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <h2 class="section-title">为什么选择 Nova</h2>
+      <p class="section-sub">我们重新定义了创作工具，让每一个灵感都能被快速实现。</p>
+      <div class="cards">
+        <div class="card card-blue">
+          <div class="card-icon">⚡</div>
+          <h3>极速生成</h3>
+          <p>基于最新一代 AI 模型，从输入到出图只需 3 秒，比行业平均快 10 倍，灵感从不掉线。</p>
+        </div>
+        <div class="card card-purple">
+          <div class="card-icon">🎨</div>
+          <h3>美学引擎</h3>
+          <p>内置专业设计系统，色彩、排版、间距一键到位，就算是小白也能做出大师级作品。</p>
+        </div>
+        <div class="card card-pink">
+          <div class="card-icon">🚀</div>
+          <h3>无限扩展</h3>
+          <p>支持 200+ 插件和 API 集成，与 Figma、Notion、Slack 无缝衔接，打通你的工作流。</p>
+        </div>
+        <div class="card card-cyan">
+          <div class="card-icon">🔒</div>
+          <h3>企业级安全</h3>
+          <p>SOC 2 Type II 认证，端到端加密，私有化部署可选，让你的数据只属于你自己。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" id="stats">
+      <div class="stats-row">
+        <div>
+          <div class="stat-num">120K+</div>
+          <div class="stat-label">活跃创作者</div>
+        </div>
+        <div>
+          <div class="stat-num">8M+</div>
+          <div class="stat-label">作品被生成</div>
+        </div>
+        <div>
+          <div class="stat-num">99.9%</div>
+          <div class="stat-label">服务可用性</div>
+        </div>
+        <div>
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">用户评分</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>准备好释放创造力了吗？</h2>
+      <p>加入 12 万+ 创作者，今天就开始你的 Nova 之旅。</p>
+      <div class="cta-group">
+        <a href="#" class="btn btn-primary">
+          立即免费试用
+          <span>→</span>
+        </a>
+        <a href="#" class="btn btn-secondary">联系销售</a>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Nova Inc. · 用 ❤ 打造于地球
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+===== ROUND2 A 2026-11-10 10:26:17 =====
+
+=== round2 组 A：20 条产物用例 ===
+[spawn] a/gen-01-form#1
+[hb] a/gen-01-form#1 120s
+[done] a/gen-01-form#1 code=0 subtype=success
+[1/20] a/gen-01-form ✓
+[spawn] a/gen-02-aichat#1
+[hb] a/gen-02-aichat#1 78s
+[done] a/gen-02-aichat#1 code=0 subtype=success
+[2/20] a/gen-02-aichat ✓
+[spawn] a/gen-03-dashboard#1
+[hb] a/gen-03-dashboard#1 70s
+[done] a/gen-03-dashboard#1 code=0 subtype=success
+[3/20] a/gen-03-dashboard ✓
+[spawn] a/gen-04-modal#1
+[hb] a/gen-04-modal#1 77s
+[done] a/gen-04-modal#1 code=0 subtype=success
+[4/20] a/gen-04-modal ✓
+[spawn] a/gen-05-alerts#1
+[hb] a/gen-05-alerts#1 51s
+[hb] a/gen-05-alerts#1 171s
+[hb] a/gen-05-alerts#1 291s
+[done] a/gen-05-alerts#1 code=143 subtype=error_during_execution
+  ⚠ a/gen-05-alerts 第 1 次失败（error_during_execution: ），90s 后重试
+[spawn] a/gen-05-alerts#2
+[hb] a/gen-05-alerts#2 21s
+[hb] a/gen-05-alerts#2 141s
+[done] a/gen-05-alerts#2 code=0 subtype=success
+[5/20] a/gen-05-alerts ✓
+[spawn] a/gen-06-empty-icons#1
+[hb] a/gen-06-empty-icons#1 19s
+[hb] a/gen-06-empty-icons#1 139s
+[hb] a/gen-06-empty-icons#1 259s
+[done] a/gen-06-empty-icons#1 code=143 subtype=error_during_execution
+  ⚠ a/gen-06-empty-icons 第 1 次失败（error_during_execution: ），90s 后重试
+[spawn] a/gen-06-empty-icons#2
+[hb] a/gen-06-empty-icons#2 109s
+[hb] a/gen-06-empty-icons#2 229s
+[done] a/gen-06-empty-icons#2 code=143 subtype=timeout
+[6/20] a/gen-06-empty-icons ✓
+[spawn] a/gen-07-list-tags#1
+===== ROUND2 RESUME 10:57:58 =====
+
+=== round2 组 A：20 条产物用例 ===
+  ↷ 跳过已完成 a/gen-01-form
+[1/20] a/gen-01-form ✓
+  ↷ 跳过已完成 a/gen-02-aichat
+[2/20] a/gen-02-aichat ✓
+  ↷ 跳过已完成 a/gen-03-dashboard
+[3/20] a/gen-03-dashboard ✓
+  ↷ 跳过已完成 a/gen-04-modal
+[4/20] a/gen-04-modal ✓
+  ↷ 跳过已完成 a/gen-05-alerts
+[5/20] a/gen-05-alerts ✓
+  ↷ 跳过已完成 a/gen-06-empty-icons
+[6/20] a/gen-06-empty-icons ✓
+[spawn] a/gen-07-list-tags#1
+[hb] a/gen-07-list-tags#1 120s
+[hb] a/gen-07-list-tags#1 242s
+[done] a/gen-07-list-tags#1 code=0 subtype=success
+[7/20] a/gen-07-list-tags ✓
+[spawn] a/gen-08-dark-whiteline#1
+[hb] a/gen-08-dark-whiteline#1 10s
+[hb] a/gen-08-dark-whiteline#1 130s
+[hb] a/gen-08-dark-whiteline#1 250s
+[done] a/gen-08-dark-whiteline#1 code=0 subtype=success
+[8/20] a/gen-08-dark-whiteline ✓
+[spawn] a/gen-09-longform#1
+[hb] a/gen-09-longform#1 107s
+[done] a/gen-09-longform#1 code=0 subtype=success
+[9/20] a/gen-09-longform ✓
+[spawn] a/gen-10-mixed-density#1
+[hb] a/gen-10-mixed-density#1 107s
+[done] a/gen-10-mixed-density#1 code=0 subtype=success
+[10/20] a/gen-10-mixed-density ✓
+[spawn] a/gen-11-themes#1
+[hb] a/gen-11-themes#1 39s
+[hb] a/gen-11-themes#1 159s
+[done] a/gen-11-themes#1 code=0 subtype=success
+[11/20] a/gen-11-themes ✓
+[spawn] a/gen-01-form@yellow#1
+[hb] a/gen-01-form@yellow#1 53s
+[hb] a/gen-01-form@yellow#1 173s
+[done] a/gen-01-form@yellow#1 code=0 subtype=success
+[12/20] a/gen-01-form@yellow ✓
+[spawn] a/gen-02-aichat@purple#1
+[hb] a/gen-02-aichat@purple#1 59s
+[hb] a/gen-02-aichat@purple#1 179s
+[done] a/gen-02-aichat@purple#1 code=0 subtype=success
+[13/20] a/gen-02-aichat@purple ✓
+[spawn] a/gen-05-alerts@red#1
+[hb] a/gen-05-alerts@red#1 41s
+[hb] a/gen-05-alerts@red#1 161s
+[done] a/gen-05-alerts@red#1 code=0 subtype=success
+[14/20] a/gen-05-alerts@red ✓
+[spawn] a/adv-01-red#1
+[hb] a/adv-01-red#1 0s
+[done] a/adv-01-red#1 code=0 subtype=success
+[15/20] a/adv-01-red ✓
+[spawn] a/adv-02-spacing#1
+[hb] a/adv-02-spacing#1 114s
+[done] a/adv-02-spacing#1 code=0 subtype=success
+[16/20] a/adv-02-spacing ✓
+[spawn] a/adv-03-tailwind#1
+[hb] a/adv-03-tailwind#1 69s
+[done] a/adv-03-tailwind#1 code=0 subtype=success
+[17/20] a/adv-03-tailwind ✓
+[spawn] a/adv-04-gradient#1
+[hb] a/adv-04-gradient#1 65s
+[done] a/adv-04-gradient#1 code=0 subtype=success
+[18/20] a/adv-04-gradient ✓
+[spawn] a/adv-05-semantic#1
+[hb] a/adv-05-semantic#1 72s
+[done] a/adv-05-semantic#1 code=0 subtype=success
+[19/20] a/adv-05-semantic ✓
+[spawn] a/adv-06-approx#1
+[hb] a/adv-06-approx#1 57s
+[hb] a/adv-06-approx#1 177s
+[hb] a/adv-06-approx#1 297s
+[done] a/adv-06-approx#1 code=0 subtype=success
+[20/20] a/adv-06-approx ✓
+
+=== 组 A：knowledge 25 题 ===
+[spawn] a/kb-01#1
+[done] a/kb-01#1 code=0 subtype=success
+[1/25] a/kb-01 ✓
+[spawn] a/kb-02#1
+[hb] a/kb-02#1 2s
+[done] a/kb-02#1 code=0 subtype=success
+[2/25] a/kb-02 ✓
+[spawn] a/kb-03#1
+[done] a/kb-03#1 code=0 subtype=success
+[3/25] a/kb-03 ✓
+[spawn] a/kb-04#1
+[done] a/kb-04#1 code=0 subtype=success
+[4/25] a/kb-04 ✓
+[spawn] a/kb-05#1
+[done] a/kb-05#1 code=0 subtype=success
+[5/25] a/kb-05 ✓
+[spawn] a/kb-06#1
+[done] a/kb-06#1 code=0 subtype=success
+[6/25] a/kb-06 ✓
+[spawn] a/kb-07#1
+[done] a/kb-07#1 code=0 subtype=success
+[7/25] a/kb-07 ✓
+[spawn] a/kb-08#1
+[done] a/kb-08#1 code=0 subtype=success
+[8/25] a/kb-08 ✓
+[spawn] a/kb-09#1
+[done] a/kb-09#1 code=0 subtype=success
+[9/25] a/kb-09 ✓
+[spawn] a/kb-10#1
+[hb] a/kb-10#1 3s
+[done] a/kb-10#1 code=0 subtype=success
+[10/25] a/kb-10 ✓
+[spawn] a/kb-11#1
+[done] a/kb-11#1 code=0 subtype=success
+[11/25] a/kb-11 ✓
+[spawn] a/kb-12#1
+[done] a/kb-12#1 code=0 subtype=success
+[12/25] a/kb-12 ✓
+[spawn] a/kb-13#1
+[done] a/kb-13#1 code=0 subtype=success
+[13/25] a/kb-13 ✓
+[spawn] a/kb-14#1
+[done] a/kb-14#1 code=0 subtype=success
+[14/25] a/kb-14 ✓
+[spawn] a/kb-15#1
+[done] a/kb-15#1 code=0 subtype=success
+[15/25] a/kb-15 ✓
+[spawn] a/kb-16#1
+[done] a/kb-16#1 code=0 subtype=success
+[16/25] a/kb-16 ✓
+[spawn] a/kb-17#1
+[done] a/kb-17#1 code=0 subtype=success
+[17/25] a/kb-17 ✓
+[spawn] a/kb-18#1
+[done] a/kb-18#1 code=0 subtype=success
+[18/25] a/kb-18 ✓
+[spawn] a/kb-19#1
+[done] a/kb-19#1 code=0 subtype=success
+[19/25] a/kb-19 ✓
+[spawn] a/kb-20#1
+[hb] a/kb-20#1 6s
+[done] a/kb-20#1 code=0 subtype=success
+[20/25] a/kb-20 ✓
+[spawn] a/kb-21#1
+[done] a/kb-21#1 code=0 subtype=success
+[21/25] a/kb-21 ✓
+[spawn] a/kb-22#1
+[done] a/kb-22#1 code=0 subtype=success
+[22/25] a/kb-22 ✓
+[spawn] a/kb-23#1
+[done] a/kb-23#1 code=0 subtype=success
+[23/25] a/kb-23 ✓
+[spawn] a/kb-24#1
+[done] a/kb-24#1 code=0 subtype=success
+[24/25] a/kb-24 ✓
+[spawn] a/kb-25#1
+[done] a/kb-25#1 code=0 subtype=success
+[25/25] a/kb-25 ✓
+
+=== 触发率（仅 A 组，3 条间接表述）===
+[spawn] tr-01#1
+[hb] tr-01#1 23s
+[hb] tr-01#1 143s
+[hb] tr-01#1 263s
+[done] tr-01#1 code=0 subtype=success
+[1/3] tr-01 ✓
+[spawn] tr-02#1
+[hb] tr-02#1 75s
+[done] tr-02#1 code=0 subtype=success
+[2/3] tr-02 ✓
+[spawn] tr-03#1
+[hb] tr-03#1 22s
+[hb] tr-03#1 142s
+[hb] tr-03#1 262s
+[hb] tr-03#1 382s
+[done] tr-03#1 code=143 subtype=error_during_execution
+  ⚠ tr-03 第 1 次失败（error_during_execution: ），90s 后重试
+[spawn] tr-03#2
+[done] tr-03#2 code=0 subtype=success
+[3/3] tr-03 ✓
+
+完成，用时 72.8 分钟

@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-16",
+  "topic": "spacing-exemption",
+  "question": "输入框内容 padding 四边是多少?其中哪一项是设计稿明示的非 4 倍数豁免?",
+  "answer": "输入框内容 padding 为 **12/12/6/6**（上 12px、右 12px、下 6px、左 6px）。\n\n其中**纵向 6px**（`--vx-padding-input`）是设计稿明示的非 4 倍数豁免——间距体系默认 Sn = 4px × n，输入框上下内边距 6px 是唯一的组件 padding 豁免项。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0446574,
+  "subtype": "success",
+  "at": "2026-11-09T10:19:06.291Z"
+}

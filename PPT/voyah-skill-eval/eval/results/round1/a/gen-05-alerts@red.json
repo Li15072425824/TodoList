@@ -1,0 +1,25 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-05-alerts@red",
+  "kind": "gen",
+  "theme": "red",
+  "product": "eval/products/round1/a/gen-05-alerts@red",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.5241941999999999,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "Demo 已生成。文件位于 `/private/tmp/vx-eval/r1/a/gen-05-alerts@red/index.html`，同目录下 `tokens.css` 提供设计变量。\n\n**包含内容：**\n- **系统升级横幅**（顶部，帮助色浅底 `--vx-help-bg`）\n- **4 种 Alert**：成功（提交确认）、警告（事件提醒）、错误（失败报错）、帮助（操作指引），各带 SVG 图标 + 标题 + 说明\n- **3 张 Notification 卡片**（右侧栏）：成功/警告/错误三种语义，含标题、描述、时间戳、未读计数\n- **5 个状态 Tag**：成功、警告、错误、帮助、紫色特殊标记\n- **主题切换**：右上角下拉切换红/蓝/黄/紫/翠青/碧青，辅助色语义在各主题下保持一致；红主题下帮助色自动切换为蓝色系\n\n**设计规范遵循：**\n- 主题：`<html data-vx-theme=\"red\">`\n- 颜色全部使用 `var(--vx-*)` token，无硬编码色值\n- 间距按 4px 倍数体系、圆角按组件类型、文字层级按规范\n- 成功/警告/错误/紫色辅助色四阶语义严格对应，不混用",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-05-alerts@red/index.html",
+    "alignRate": 1,
+    "checks": 25,
+    "passed": 25,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-09T08:04:07.532Z"
+}

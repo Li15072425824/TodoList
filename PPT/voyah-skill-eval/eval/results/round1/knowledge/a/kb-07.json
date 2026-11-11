@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-07",
+  "topic": "fill-semantics",
+  "question": "标签背景、下拉选中背景应使用哪个填充 token?色值是多少?",
+  "answer": "标签背景、下拉选中背景应使用填充 token：**`--vx-fill-3`**，色值为 **`#F5F5F5`**。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0411606,
+  "subtype": "success",
+  "at": "2026-11-09T10:17:28.263Z"
+}

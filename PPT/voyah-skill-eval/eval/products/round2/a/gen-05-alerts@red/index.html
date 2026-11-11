@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="red">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>消息通知中心 - 岚图 Voyah</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body { background: var(--vx-bg-layout); }
+
+  /* 页面骨架 */
+  .page { max-width: 1200px; margin: 0 auto; padding: 16px 24px 24px; }
+  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .page-title { font-size: 20px; line-height: 32px; font-weight: 600; color: var(--vx-text-title); }
+  .page-subtitle { font-size: 13px; line-height: 20px; color: var(--vx-text-secondary); margin-top: 2px; }
+
+  /* 主题切换条 */
+  .theme-switcher { display: flex; align-items: center; gap: 8px; }
+  .theme-switcher-label { font-size: 12px; line-height: 20px; color: var(--vx-text-secondary); }
+  .theme-dot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid var(--vx-bg-base); box-shadow: 0 0 0 1px var(--vx-line-2); transition: box-shadow 0.2s; }
+  .theme-dot:hover { box-shadow: 0 0 0 2px var(--vx-primary); }
+  .theme-dot-active { box-shadow: 0 0 0 2px var(--vx-primary); }
+  .theme-dot-blue { background: #3773DB; }
+  .theme-dot-yellow { background: #FFD400; }
+  .theme-dot-purple { background: #8F44FF; }
+  .theme-dot-cuiqing { background: #54A7B2; }
+  .theme-dot-red { background: #D82128; }
+  .theme-dot-biqing { background: #406670; }
+
+  /* 布局：左侧内容区 + 右侧通知卡片 */
+  .layout { display: grid; grid-template-columns: 1fr 360px; gap: 16px; }
+  @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }
+
+  /* 系统升级横幅 */
+  .sys-banner { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--vx-help-bg); border: 1px solid var(--vx-help-hover); border-radius: 8px; margin-bottom: 16px; }
+  .sys-banner-icon { flex-shrink: 0; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; color: var(--vx-help); }
+  .sys-banner-main { flex: 1; min-width: 0; }
+  .sys-banner-title { font-size: 14px; line-height: 22px; font-weight: 500; color: var(--vx-text-title); }
+  .sys-banner-desc { font-size: 12px; line-height: 20px; color: var(--vx-text-secondary); margin-top: 2px; }
+
+  /* 模块标题 */
+  .section-title { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--vx-text-title); margin-bottom: 12px; }
+  .section-sub { font-size: 12px; line-height: 20px; color: var(--vx-text-caption); margin-top: -8px; margin-bottom: 12px; }
+
+  /* 左侧内容卡片 */
+  .main-card { background: var(--vx-bg-base); border: 1px solid var(--vx-line-1); border-radius: 8px; padding: 16px; }
+  .main-card + .main-card { margin-top: 16px; }
+
+  /* Alert 列表 */
+  .alert-list { display: flex; flex-direction: column; gap: 8px; }
+
+  /* Tag 组 */
+  .tag-group { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* 右侧通知面板 */
+  .notif-panel { background: var(--vx-bg-base); border: 1px solid var(--vx-line-1); border-radius: 8px; overflow: hidden; }
+  .notif-panel-head { display: flex; align-items: center; justify-content: space-between; padding: 16px; border-bottom: 1px solid var(--vx-line-1); }
+  .notif-panel-title { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--vx-text-title); }
+  .notif-list { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .notif-card { display: flex; gap: 12px; padding: 12px; background: var(--vx-fill-1); border: 1px solid var(--vx-line-1); border-radius: 8px; }
+  .notif-card-icon { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
+  .notif-card-icon.success { background: var(--vx-success-bg); color: var(--vx-success-dark); }
+  .notif-card-icon.warning { background: var(--vx-warning-bg); color: var(--vx-warning-dark); }
+  .notif-card-icon.error { background: var(--vx-error-bg); color: var(--vx-error-dark); }
+  .notif-card-main { flex: 1; min-width: 0; }
+  .notif-card-title { font-size: 14px; line-height: 22px; font-weight: 500; color: var(--vx-text-title); }
+  .notif-card-desc { font-size: 12px; line-height: 20px; color: var(--vx-text-secondary); margin-top: 2px; }
+  .notif-card-time { font-size: 12px; line-height: 20px; color: var(--vx-text-caption); margin-top: 6px; }
+
+  /* Alert 内部结构扩展（标题 + 描述两行） */
+  .vx-alert-main { flex: 1; min-width: 0; }
+  .vx-alert-title { font-size: 14px; line-height: 22px; font-weight: 500; color: var(--vx-text-title); }
+  .vx-alert-desc { font-size: 12px; line-height: 20px; color: var(--vx-text-secondary); margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 页面头部 -->
+  <header class="page-header">
+    <div>
+      <div class="page-title">消息通知中心</div>
+      <div class="page-subtitle">查看系统提示、告警信息与状态标签</div>
+    </div>
+    <div class="theme-switcher">
+      <span class="theme-switcher-label">主题</span>
+      <span class="theme-dot theme-dot-blue" data-theme="blue" title="蓝"></span>
+      <span class="theme-dot theme-dot-yellow" data-theme="yellow" title="黄"></span>
+      <span class="theme-dot theme-dot-purple" data-theme="purple" title="紫"></span>
+      <span class="theme-dot theme-dot-cuiqing" data-theme="cuiqing" title="翠青"></span>
+      <span class="theme-dot theme-dot-red theme-dot-active" data-theme="red" title="红"></span>
+      <span class="theme-dot theme-dot-biqing" data-theme="biqing" title="碧青"></span>
+    </div>
+  </header>
+
+  <!-- 系统升级横幅（帮助色浅底） -->
+  <div class="sys-banner">
+    <span class="sys-banner-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </span>
+    <div class="sys-banner-main">
+      <div class="sys-banner-title">系统升级通知</div>
+      <div class="sys-banner-desc">岚图车机系统 v2.6.0 将于今晚 23:00-02:00 进行升级，期间部分功能可能短暂不可用，请合理安排用车。</div>
+    </div>
+    <button class="vx-btn vx-btn-primary vx-btn-sm">查看详情</button>
+  </div>
+
+  <!-- 主体两栏 -->
+  <div class="layout">
+
+    <!-- 左侧：Alert + Tag -->
+    <main>
+      <!-- Alert 提示条 -->
+      <section class="main-card">
+        <div class="section-title">Alert 提示条</div>
+        <div class="section-sub">成功 · 警告 · 错误 · 帮助 四种语义，各带图标与说明文字</div>
+        <div class="alert-list">
+
+          <div class="vx-alert vx-alert-success">
+            <span class="vx-alert-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <div class="vx-alert-main">
+              <div class="vx-alert-title">提交成功</div>
+              <div class="vx-alert-desc">您的车机系统预约已提交确认，预计 24 小时内完成审核，请留意后续通知。</div>
+            </div>
+          </div>
+
+          <div class="vx-alert vx-alert-warning">
+            <span class="vx-alert-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </span>
+            <div class="vx-alert-main">
+              <div class="vx-alert-title">事件提醒</div>
+              <div class="vx-alert-desc">检测到左后轮胎压略低于推荐值 2.3bar，请在方便时前往服务站检查胎压状况。</div>
+            </div>
+          </div>
+
+          <div class="vx-alert vx-alert-error">
+            <span class="vx-alert-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+              </svg>
+            </span>
+            <div class="vx-alert-main">
+              <div class="vx-alert-title">操作失败</div>
+              <div class="vx-alert-desc">远程启动指令发送失败，车辆当前网络信号较弱，请稍后重试或检查车辆网络连接。</div>
+            </div>
+          </div>
+
+          <div class="vx-alert vx-alert-help">
+            <span class="vx-alert-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </span>
+            <div class="vx-alert-main">
+              <div class="vx-alert-title">操作指引</div>
+              <div class="vx-alert-desc">如需开启主动巡航功能，请先在中控屏「设置-驾驶辅助」中启用 ACC 开关，并确保车道线清晰可见。</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 状态 Tag -->
+      <section class="main-card">
+        <div class="section-title">状态标签</div>
+        <div class="section-sub">成功 / 警告 / 错误 / 帮助 / 紫色特殊标记</div>
+        <div class="tag-group">
+          <span class="vx-tag vx-tag-success">成功</span>
+          <span class="vx-tag vx-tag-warning">警告</span>
+          <span class="vx-tag vx-tag-error">错误</span>
+          <span class="vx-tag vx-tag-help">帮助</span>
+          <span class="vx-tag vx-tag-purple">紫色特殊</span>
+        </div>
+      </section>
+    </main>
+
+    <!-- 右侧：Notification 通知卡片 -->
+    <aside>
+      <div class="notif-panel">
+        <div class="notif-panel-head">
+          <span class="notif-panel-title">最新通知</span>
+          <span class="vx-tag vx-tag-error">3 条未读</span>
+        </div>
+        <div class="notif-list">
+
+          <div class="notif-card">
+            <span class="notif-card-icon success">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <div class="notif-card-main">
+              <div class="notif-card-title">OTA 升级已完成</div>
+              <div class="notif-card-desc">您的车辆已成功升级至 v2.5.3 版本，新增智能泊车优化与语音识别增强。</div>
+              <div class="notif-card-time">10 分钟前</div>
+            </div>
+          </div>
+
+          <div class="notif-card">
+            <span class="notif-card-icon warning">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </span>
+            <div class="notif-card-main">
+              <div class="notif-card-title">保养提醒</div>
+              <div class="notif-card-desc">距离下次保养还剩 500 公里，建议提前预约服务站，避免影响用车体验。</div>
+              <div class="notif-card-time">2 小时前</div>
+            </div>
+          </div>
+
+          <div class="notif-card">
+            <span class="notif-card-icon error">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </span>
+            <div class="notif-card-main">
+              <div class="notif-card-title">电池预警</div>
+              <div class="notif-card-desc">动力电池电量低于 20%，请尽快前往最近的充电站补能，系统已为您规划路径。</div>
+              <div class="notif-card-time">昨天 18:42</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<script>
+  // 主题切换
+  const dots = document.querySelectorAll('.theme-dot');
+  const html = document.documentElement;
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const theme = dot.getAttribute('data-theme');
+      html.setAttribute('data-vx-theme', theme);
+      dots.forEach(d => d.classList.remove('theme-dot-active'));
+      dot.classList.add('theme-dot-active');
+    });
+  });
+</script>
+</body>
+</html>

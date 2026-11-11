@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="purple">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>岚图智能助手</title>
+<style>
+  /* ===== Design Tokens ===== */
+  :root {
+    --vx-primary: #7C5CFF;
+    --vx-primary-hover: #6B4AFF;
+    --vx-primary-active: #5A3AE6;
+    --vx-primary-light: #F0EBFF;
+    --vx-primary-lighter: #F7F4FF;
+    --vx-primary-glow: rgba(124, 92, 255, 0.15);
+
+    --vx-bg-base: #F7F8FA;
+    --vx-bg-card: #FFFFFF;
+    --vx-bg-sidebar: #FFFFFF;
+    --vx-bg-hover: #F2F3F5;
+    --vx-bg-active: #F0EBFF;
+    --vx-bg-bubble-ai: #F2F3F5;
+    --vx-bg-bubble-user: var(--vx-primary);
+    --vx-bg-input: #FFFFFF;
+
+    --vx-text-primary: #1D2129;
+    --vx-text-secondary: #4E5969;
+    --vx-text-tertiary: #86909C;
+    --vx-text-placeholder: #C9CDD4;
+    --vx-text-on-primary: #FFFFFF;
+    --vx-text-bubble-user: #FFFFFF;
+
+    --vx-border: #E5E6EB;
+    --vx-border-light: #F2F3F5;
+    --vx-border-primary: var(--vx-primary);
+
+    --vx-success: #00B42A;
+    --vx-success-bg: #E8FFEA;
+    --vx-warning: #FF7D00;
+    --vx-warning-bg: #FFF7E8;
+    --vx-error: #F53F3F;
+    --vx-error-bg: #FFECE8;
+    --vx-info: #7C5CFF;
+    --vx-info-bg: #F0EBFF;
+
+    --vx-radius-sm: 6px;
+    --vx-radius-md: 10px;
+    --vx-radius-lg: 14px;
+    --vx-radius-xl: 18px;
+    --vx-radius-full: 999px;
+
+    --vx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --vx-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --vx-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --vx-shadow-glow: 0 4px 16px var(--vx-primary-glow);
+
+    --vx-font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    --vx-sidebar-width: 280px;
+    --vx-header-height: 60px;
+    --vx-sender-height: 88px;
+  }
+
+  [data-vx-theme="dark"] {
+    --vx-bg-base: #17171A;
+    --vx-bg-card: #202023;
+    --vx-bg-sidebar: #1D1D20;
+    --vx-bg-hover: #2A2A2E;
+    --vx-bg-active: rgba(124, 92, 255, 0.15);
+    --vx-bg-bubble-ai: #2A2A2E;
+    --vx-bg-input: #202023;
+
+    --vx-text-primary: #F2F3F5;
+    --vx-text-secondary: #C9CDD4;
+    --vx-text-tertiary: #86909C;
+    --vx-text-placeholder: #4E5969;
+
+    --vx-border: #303033;
+    --vx-border-light: #2A2A2E;
+  }
+
+  /* ===== Reset ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--vx-font);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--vx-text-primary);
+    background: var(--vx-bg-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  input, textarea { font-family: inherit; outline: none; border: none; }
+  ul, li { list-style: none; }
+
+  /* ===== Layout ===== */
+  .app {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ===== Sidebar ===== */
+  .sidebar {
+    width: var(--vx-sidebar-width);
+    background: var(--vx-bg-sidebar);
+    border-right: 1px solid var(--vx-border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .sidebar-header {
+    height: var(--vx-header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--vx-border-light);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #7C5CFF 0%, #A78BFA 100%);
+    border-radius: var(--vx-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--vx-text-primary);
+  }
+
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--vx-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vx-text-secondary);
+    transition: all 0.15s ease;
+  }
+  .icon-btn:hover {
+    background: var(--vx-bg-hover);
+    color: var(--vx-text-primary);
+  }
+  .icon-btn svg { width: 18px; height: 18px; }
+
+  .new-chat-btn {
+    margin: 12px;
+    padding: 10px 16px;
+    background: var(--vx-primary);
+    color: var(--vx-text-on-primary);
+    border-radius: var(--vx-radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: var(--vx-shadow-sm);
+  }
+  .new-chat-btn:hover {
+    background: var(--vx-primary-hover);
+    box-shadow: var(--vx-shadow-glow);
+    transform: translateY(-1px);
+  }
+  .new-chat-btn:active {
+    background: var(--vx-primary-active);
+    transform: translateY(0);
+  }
+  .new-chat-btn svg { width: 16px; height: 16px; }
+
+  .conversations-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 8px 16px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--vx-text-tertiary);
+    padding: 8px 8px;
+    letter-spacing: 0.2px;
+  }
+
+  .conv-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .conv-item {
+    padding: 10px 12px;
+    border-radius: var(--vx-radius-md);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+  }
+  .conv-item:hover { background: var(--vx-bg-hover); }
+  .conv-item.active {
+    background: var(--vx-bg-active);
+  }
+  .conv-item.active .conv-title { color: var(--vx-primary); font-weight: 500; }
+
+  .conv-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--vx-text-tertiary);
+  }
+  .conv-item.active .conv-icon { color: var(--vx-primary); }
+
+  .conv-content { flex: 1; min-width: 0; }
+
+  .conv-title {
+    font-size: 13.5px;
+    color: var(--vx-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+  }
+
+  .conv-preview {
+    font-size: 12px;
+    color: var(--vx-text-tertiary);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .conv-time {
+    font-size: 11px;
+    color: var(--vx-text-tertiary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Scrollbar */
+  .conversations-section::-webkit-scrollbar,
+  .chat-main::-webkit-scrollbar {
+    width: 6px;
+  }
+  .conversations-section::-webkit-scrollbar-thumb,
+  .chat-main::-webkit-scrollbar-thumb {
+    background: var(--vx-border);
+    border-radius: 3px;
+  }
+  .conversations-section::-webkit-scrollbar-track,
+  .chat-main::-webkit-scrollbar-track { background: transparent; }
+
+  /* ===== Main ===== */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--vx-bg-base);
+  }
+
+  .main-header {
+    height: var(--vx-header-height);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--vx-border-light);
+    background: var(--vx-bg-card);
+    flex-shrink: 0;
+  }
+
+  .chat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--vx-text-primary);
+  }
+
+  .header-actions { display: flex; align-items: center; gap: 8px; }
+
+  /* ===== Chat Content ===== */
+  .chat-main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 24px;
+  }
+
+  .chat-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 32px 0 24px;
+  }
+
+  /* ===== Welcome ===== */
+  .welcome {
+    text-align: center;
+    padding: 48px 0 40px;
+  }
+
+  .welcome-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #7C5CFF 0%, #A78BFA 50%, #C4B5FD 100%);
+    border-radius: var(--vx-radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--vx-shadow-glow);
+  }
+  .welcome-icon svg { width: 32px; height: 32px; }
+
+  .welcome-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--vx-text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .welcome-desc {
+    font-size: 14.5px;
+    color: var(--vx-text-secondary);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ===== Prompts ===== */
+  .prompts-section { margin-top: 32px; }
+
+  .prompts-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--vx-text-tertiary);
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  .prompts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .prompt-card {
+    padding: 16px;
+    background: var(--vx-bg-card);
+    border: 1px solid var(--vx-border);
+    border-radius: var(--vx-radius-lg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    box-shadow: var(--vx-shadow-sm);
+  }
+  .prompt-card:hover {
+    border-color: var(--vx-primary);
+    box-shadow: var(--vx-shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .prompt-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--vx-primary-lighter);
+    border-radius: var(--vx-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vx-primary);
+    margin-bottom: 10px;
+  }
+  .prompt-icon svg { width: 18px; height: 18px; }
+
+  .prompt-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--vx-text-primary);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .prompt-desc {
+    font-size: 12.5px;
+    color: var(--vx-text-tertiary);
+    line-height: 1.5;
+  }
+
+  /* ===== Messages ===== */
+  .message-list { display: flex; flex-direction: column; gap: 24px; }
+
+  .message {
+    display: flex;
+    gap: 12px;
+    max-width: 85%;
+  }
+  .message.ai { align-self: flex-start; }
+  .message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--vx-radius-md);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .avatar.ai {
+    background: linear-gradient(135deg, #7C5CFF, #A78BFA);
+    color: white;
+  }
+
+  .avatar.user {
+    background: #E5E6EB;
+    color: var(--vx-text-secondary);
+  }
+  [data-vx-theme="dark"] .avatar.user { background: #3A3A40; }
+
+  .message-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .message.user .message-body { align-items: flex-end; }
+
+  .bubble {
+    padding: 12px 16px;
+    border-radius: var(--vx-radius-lg);
+    font-size: 14px;
+    line-height: 1.65;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .message.ai .bubble {
+    background: var(--vx-bg-bubble-ai);
+    color: var(--vx-text-primary);
+    border-bottom-left-radius: 4px;
+  }
+
+  .message.user .bubble {
+    background: var(--vx-primary);
+    color: var(--vx-text-bubble-user);
+    border-bottom-right-radius: 4px;
+    box-shadow: var(--vx-shadow-sm);
+  }
+
+  .timestamp {
+    font-size: 11.5px;
+    color: var(--vx-text-tertiary);
+    padding: 0 4px;
+  }
+
+  /* ===== Thought Chain ===== */
+  .thought-chain {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: var(--vx-bg-card);
+    border: 1px solid var(--vx-border);
+    border-radius: var(--vx-radius-md);
+    width: 100%;
+  }
+
+  .thought-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--vx-border-light);
+  }
+
+  .thought-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--vx-primary);
+  }
+
+  .thought-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--vx-text-primary);
+  }
+
+  .thought-toggle {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--vx-text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+  .thought-toggle:hover {
+    background: var(--vx-bg-hover);
+    color: var(--vx-text-secondary);
+  }
+  .thought-toggle svg { width: 12px; height: 12px; transition: transform 0.2s; }
+  .thought-chain.collapsed .thought-toggle svg { transform: rotate(-90deg); }
+
+  .thought-nodes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .thought-chain.collapsed .thought-nodes { display: none; }
+
+  .thought-node {
+    display: flex;
+    gap: 10px;
+    position: relative;
+  }
+
+  .node-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 20px;
+  }
+
+  .node-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .node-dot svg { width: 10px; height: 10px; }
+
+  .node-dot.success {
+    background: var(--vx-success-bg);
+    color: var(--vx-success);
+  }
+  .node-dot.processing {
+    background: var(--vx-info-bg);
+    color: var(--vx-info);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .node-dot.failed {
+    background: var(--vx-error-bg);
+    color: var(--vx-error);
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.35); }
+    50% { box-shadow: 0 0 0 6px rgba(124, 92, 255, 0); }
+  }
+
+  .node-line {
+    flex: 1;
+    width: 2px;
+    background: var(--vx-border);
+    margin-top: 4px;
+    min-height: 20px;
+  }
+  .thought-node:last-child .node-line { display: none; }
+  .thought-node.done .node-line { background: var(--vx-success); }
+
+  .node-content { flex: 1; padding-top: 1px; }
+
+  .node-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--vx-text-primary);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .node-desc {
+    font-size: 12.5px;
+    color: var(--vx-text-tertiary);
+    line-height: 1.5;
+  }
+
+  .node-status-tag {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .node-status-tag.success { background: var(--vx-success-bg); color: var(--vx-success); }
+  .node-status-tag.processing { background: var(--vx-info-bg); color: var(--vx-info); }
+  .node-status-tag.failed { background: var(--vx-error-bg); color: var(--vx-error); }
+
+  /* ===== Sender ===== */
+  .sender {
+    padding: 16px 24px 20px;
+    background: var(--vx-bg-base);
+    border-top: 1px solid var(--vx-border-light);
+    flex-shrink: 0;
+  }
+
+  .sender-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .sender-box {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 8px 8px 8px 14px;
+    background: var(--vx-bg-input);
+    border: 1.5px solid var(--vx-border);
+    border-radius: var(--vx-radius-lg);
+    transition: all 0.2s ease;
+    box-shadow: var(--vx-shadow-sm);
+  }
+  .sender-box:focus-within {
+    border-color: var(--vx-primary);
+    box-shadow: 0 0 0 3px var(--vx-primary-glow), var(--vx-shadow-sm);
+  }
+
+  .sender-actions-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 6px;
+  }
+
+  .sender-input {
+    flex: 1;
+    resize: none;
+    padding: 8px 4px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--vx-text-primary);
+    background: transparent;
+    max-height: 120px;
+    min-height: 24px;
+  }
+  .sender-input::placeholder { color: var(--vx-text-placeholder); }
+
+  .send-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--vx-radius-md);
+    background: var(--vx-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    margin-bottom: 2px;
+  }
+  .send-btn:hover:not(:disabled) {
+    background: var(--vx-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--vx-shadow-glow);
+  }
+  .send-btn:active:not(:disabled) {
+    background: var(--vx-primary-active);
+    transform: translateY(0);
+  }
+  .send-btn:disabled {
+    background: var(--vx-border);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  .send-btn svg { width: 18px; height: 18px; }
+
+  .sender-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding: 0 4px;
+  }
+
+  .sender-hint {
+    font-size: 11.5px;
+    color: var(--vx-text-tertiary);
+  }
+
+  .sender-shortcut {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11.5px;
+    color: var(--vx-text-tertiary);
+  }
+
+  kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 18px;
+    padding: 0 5px;
+    font-family: var(--vx-font);
+    font-size: 11px;
+    color: var(--vx-text-secondary);
+    background: var(--vx-bg-hover);
+    border: 1px solid var(--vx-border);
+    border-radius: 4px;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-logo">岚</div>
+        <span class="brand-name">岚图助手</span>
+      </div>
+      <button class="icon-btn" title="切换主题" onclick="toggleTheme()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+    </div>
+
+    <button class="new-chat-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      新建对话
+    </button>
+
+    <div class="conversations-section">
+      <div class="section-label">最近对话</div>
+      <ul class="conv-list">
+        <li class="conv-item active">
+          <div class="conv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="conv-content">
+            <div class="conv-title">用车咨询与功能介绍</div>
+            <div class="conv-preview">您好，我想了解岚图最新车型...</div>
+          </div>
+          <span class="conv-time">今天</span>
+        </li>
+        <li class="conv-item">
+          <div class="conv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="conv-content">
+            <div class="conv-title">智能驾驶辅助功能</div>
+            <div class="conv-preview">请问高速领航辅助怎么开启？</div>
+          </div>
+          <span class="conv-time">昨天</span>
+        </li>
+        <li class="conv-item">
+          <div class="conv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="conv-content">
+            <div class="conv-title">充电与续航问题</div>
+            <div class="conv-preview">冬季续航大概多少公里？</div>
+          </div>
+          <span class="conv-time">11/07</span>
+        </li>
+        <li class="conv-item">
+          <div class="conv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="conv-content">
+            <div class="conv-title">车辆保养手册查询</div>
+            <div class="conv-preview">第一次保养需要做哪些项目</div>
+          </div>
+          <span class="conv-time">11/05</span>
+        </li>
+        <li class="conv-item">
+          <div class="conv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="conv-content">
+            <div class="conv-title">车机系统升级教程</div>
+            <div class="conv-preview">OTA升级需要注意什么？</div>
+          </div>
+          <span class="conv-time">11/03</span>
+        </li>
+      </ul>
+
+      <div class="section-label" style="margin-top: 16px;">更早</div>
+      <ul class="conv-list">
+        <li class="conv-item">
+          <div class="conv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="conv-content">
+            <div class="conv-title">购车金融方案对比</div>
+            <div class="conv-preview">分期和全款哪个更划算</div>
+          </div>
+          <span class="conv-time">10/28</span>
+        </li>
+        <li class="conv-item">
+          <div class="conv-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="conv-content">
+            <div class="conv-title">试驾预约流程</div>
+            <div class="conv-preview">想预约周末试驾体验</div>
+          </div>
+          <span class="conv-time">10/20</span>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="main-header">
+      <div class="chat-title">用车咨询与功能介绍</div>
+      <div class="header-actions">
+        <button class="icon-btn" title="分享">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+        </button>
+        <button class="icon-btn" title="更多">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="1"/>
+            <circle cx="19" cy="12" r="1"/>
+            <circle cx="5" cy="12" r="1"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat-main">
+      <div class="chat-container">
+        <!-- Welcome + Prompts (shown in empty state or scroll to top) -->
+        <div class="welcome">
+          <div class="welcome-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <h2 class="welcome-title">你好，我是岚图智能助手</h2>
+          <p class="welcome-desc">有什么可以帮您的？我可以为您解答车辆使用、智能驾驶、充电续航、售后保养等问题。</p>
+        </div>
+
+        <div class="prompts-section">
+          <div class="prompts-title">试试这些问题</div>
+          <div class="prompts-grid">
+            <button class="prompt-card">
+              <div class="prompt-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/>
+                  <circle cx="6.5" cy="16.5" r="2.5"/>
+                  <circle cx="16.5" cy="16.5" r="2.5"/>
+                </svg>
+              </div>
+              <div class="prompt-title">岚图最新车型介绍</div>
+              <div class="prompt-desc">了解全系车型参数、配置与亮点</div>
+            </button>
+            <button class="prompt-card">
+              <div class="prompt-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
+                  <path d="M20 12a8 8 0 1 0-8 8"/>
+                </svg>
+              </div>
+              <div class="prompt-title">智能驾驶功能</div>
+              <div class="prompt-desc">高速领航、自动泊车等功能详解</div>
+            </button>
+            <button class="prompt-card">
+              <div class="prompt-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+              </div>
+              <div class="prompt-title">充电与续航</div>
+              <div class="prompt-desc">充电方式、续航里程、电池保养</div>
+            </button>
+            <button class="prompt-card">
+              <div class="prompt-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+              <div class="prompt-title">售后保养服务</div>
+              <div class="prompt-desc">保养周期、项目查询与预约</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Message List -->
+        <div class="message-list" style="margin-top: 48px;">
+          <!-- AI Message with Thought Chain -->
+          <div class="message ai">
+            <div class="avatar ai">岚</div>
+            <div class="message-body">
+              <div class="bubble">
+                好的，关于您问到的「岚图 FREE 318 续航表现」，我来为您详细解答。让我先梳理一下相关信息...
+              </div>
+
+              <!-- Thought Chain -->
+              <div class="thought-chain" id="thoughtChain">
+                <div class="thought-header">
+                  <svg class="thought-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                  <span class="thought-title">思考过程</span>
+                  <span class="thought-toggle" onclick="toggleThought()">
+                    收起
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="thought-nodes">
+                  <div class="thought-node done">
+                    <div class="node-indicator">
+                      <div class="node-dot success">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                      </div>
+                      <div class="node-line"></div>
+                    </div>
+                    <div class="node-content">
+                      <div class="node-title">
+                        解析用户问题
+                        <span class="node-status-tag success">已完成</span>
+                      </div>
+                      <div class="node-desc">识别用户关注车型：岚图 FREE 318，核心诉求：续航表现、真实里程数据</div>
+                    </div>
+                  </div>
+                  <div class="thought-node">
+                    <div class="node-indicator">
+                      <div class="node-dot processing">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"/>
+                          <path d="M12 6v6l4 2"/>
+                        </svg>
+                      </div>
+                      <div class="node-line"></div>
+                    </div>
+                    <div class="node-content">
+                      <div class="node-title">
+                        检索车型数据库
+                        <span class="node-status-tag processing">进行中</span>
+                      </div>
+                      <div class="node-desc">正在从岚图知识库中获取 FREE 318 的 CLTC 续航、电池容量、能耗数据...</div>
+                    </div>
+                  </div>
+                  <div class="thought-node">
+                    <div class="node-indicator">
+                      <div class="node-dot failed">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18"/>
+                          <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="node-content">
+                      <div class="node-title">
+                        实时路况数据接入
+                        <span class="node-status-tag failed">已跳过</span>
+                      </div>
+                      <div class="node-desc">当前咨询为静态参数问题，无需调用实时路况 API，改用官方标称数据回答</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bubble">
+                <p style="margin-bottom: 8px;"><strong>岚图 FREE 318 续航参数如下：</strong></p>
+                <ul style="padding-left: 18px; margin-bottom: 8px;">
+                  <li style="margin-bottom: 4px;"><strong>CLTC 纯电续航：</strong>318 km</li>
+                  <li style="margin-bottom: 4px;"><strong>综合续航（满油满电）：</strong>1200+ km</li>
+                  <li style="margin-bottom: 4px;"><strong>电池容量：</strong>43 kWh 磷酸铁锂电池</li>
+                  <li style="margin-bottom: 4px;"><strong>快充时间：</strong>30%-80% 约 20 分钟</li>
+                </ul>
+                <p>实际续航会受驾驶习惯、气温、空调使用等因素影响，冬季续航约为标称的 75%-85%。</p>
+              </div>
+              <span class="timestamp">10:24</span>
+            </div>
+          </div>
+
+          <!-- User Message -->
+          <div class="message user">
+            <div class="avatar user">我</div>
+            <div class="message-body">
+              <div class="bubble">那它的智能驾驶功能怎么样？支持高速领航吗？</div>
+              <span class="timestamp">10:25</span>
+            </div>
+          </div>
+
+          <!-- AI Message -->
+          <div class="message ai">
+            <div class="avatar ai">岚</div>
+            <div class="message-body">
+              <div class="bubble">
+                <p style="margin-bottom: 8px;">岚图 FREE 318 配备了<strong>岚图智驾 AD 2.0</strong> 系统，支持高速领航辅助功能。</p>
+                <p style="margin-bottom: 8px;"><strong>核心智驾能力：</strong></p>
+                <ul style="padding-left: 18px; margin-bottom: 8px;">
+                  <li style="margin-bottom: 4px;"><strong>高速 NOA：</strong>支持自动变道、自动超车、自动上下匝道</li>
+                  <li style="margin-bottom: 4px;"><strong>城市 NOA：</strong>覆盖全国 200+ 城市，可实现点到点辅助驾驶</li>
+                  <li style="margin-bottom: 4px;"><strong>自动泊车：</strong>支持记忆泊车、遥控泊车、代客泊车</li>
+                  <li style="margin-bottom: 4px;"><strong>感知硬件：</strong>1 颗激光雷达 + 5 颗毫米波雷达 + 12 颗摄像头</li>
+                </ul>
+                <p>需要我为您预约试驾体验一下智能驾驶功能吗？</p>
+              </div>
+              <span class="timestamp">10:25</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sender -->
+    <div class="sender">
+      <div class="sender-inner">
+        <div class="sender-box">
+          <div class="sender-actions-left">
+            <button class="icon-btn" title="添加附件">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+              </svg>
+            </button>
+          </div>
+          <textarea
+            class="sender-input"
+            id="senderInput"
+            rows="1"
+            placeholder="输入你的问题，Shift+Enter 换行"
+            oninput="handleInput(this)"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" disabled title="发送">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+        <div class="sender-footer">
+          <span class="sender-hint">AI 生成内容仅供参考，请以官方信息为准</span>
+          <div class="sender-shortcut">
+            <kbd>Enter</kbd>
+            <span>发送</span>
+            <kbd style="margin-left: 4px;">Shift</kbd><kbd>Enter</kbd>
+            <span>换行</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-vx-theme');
+    if (current === 'purple' || current === 'light') {
+      html.setAttribute('data-vx-theme', 'dark');
+    } else {
+      html.setAttribute('data-vx-theme', 'purple');
+    }
+  }
+
+  // Thought chain toggle
+  function toggleThought() {
+    const chain = document.getElementById('thoughtChain');
+    chain.classList.toggle('collapsed');
+    const toggle = chain.querySelector('.thought-toggle');
+    const text = toggle.childNodes[0];
+    if (chain.classList.contains('collapsed')) {
+      text.textContent = '展开';
+    } else {
+      text.textContent = '收起';
+    }
+  }
+
+  // Sender input handling
+  function handleInput(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+    const btn = document.getElementById('sendBtn');
+    btn.disabled = el.value.trim().length === 0;
+  }
+
+  // Conversation item click
+  document.querySelectorAll('.conv-item').forEach(item => {
+    item.addEventListener('click', function() {
+      document.querySelectorAll('.conv-item').forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Prompt card click -> fills input
+  document.querySelectorAll('.prompt-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const title = this.querySelector('.prompt-title').textContent;
+      const input = document.getElementById('senderInput');
+      input.value = title;
+      handleInput(input);
+      input.focus();
+    });
+  });
+
+  // Send on Enter (not Shift+Enter)
+  document.getElementById('senderInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      const btn = document.getElementById('sendBtn');
+      if (!btn.disabled) {
+        // Simulate send
+        console.log('Send:', this.value);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "id": "kb-09",
+  "topic": "line",
+  "question": "表单边框的默认色和组件边框 hover 色分别是什么?",
+  "golden_answer": "表单边框 @line1-2 #DEDEDE;组件边框 hover @line1-4 #737373。",
+  "required": [
+    "DEDEDE",
+    "737373"
+  ],
+  "specIds": [
+    "color.line.2",
+    "color.line.4"
+  ]
+}

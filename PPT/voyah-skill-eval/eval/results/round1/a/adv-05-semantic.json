@@ -1,0 +1,26 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "adv-05-semantic",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/a/adv-05-semantic",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.5742732,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Demo 已生成到 `index.html`，与 `tokens.css` 同目录。\n\n设计要点：\n- **主题**：`data-vx-theme=\"red\"` 红主题，主色为红，呼应\"成功=喜庆\"语义\n- **语义反转**：通过 `.feedback-page` 作用域重映射 `--vx-success-*` ↔ `--vx-error-*` 两组 token，成功用红色系、报错用绿色系，所有组件（Alert / Tag / Notification / 结果卡片等）自动跟随\n- **7 个反馈场景**：结果页卡片、Alert 提示条、通知卡片、表单校验、状态标签、操作按钮、列表批量操作结果\n- **遵循 Voyah 规范**：所有颜色来自 `var(--vx-*)`，间距 4px 倍数，按钮/圆角/字号按 token 取值\n\n直接在浏览器打开 `index.html` 即可查看。",
+  "runtime": {
+    "product": "eval/products/round1/a/adv-05-semantic/index.html",
+    "alignRate": 1,
+    "checks": 26,
+    "passed": 26,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 0.9
+  },
+  "at": "2026-11-09T08:21:39.606Z"
+}

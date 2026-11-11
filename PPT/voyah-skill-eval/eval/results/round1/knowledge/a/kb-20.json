@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-20",
+  "topic": "button-danger",
+  "question": "危险按钮 hover 态的填充色值是什么?",
+  "answer": "危险按钮 hover 态的填充色值是 `#FF5A5D`，对应 token 为 `--vx-btn-danger-hover`。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0410766,
+  "subtype": "success",
+  "at": "2026-11-09T10:19:52.541Z"
+}

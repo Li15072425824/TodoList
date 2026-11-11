@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="red">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操作结果反馈页 Demo</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body { background: var(--vx-bg-layout); }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: var(--vx-space-6);
+  }
+
+  .page-header {
+    margin-bottom: var(--vx-space-6);
+  }
+  .page-title {
+    font-size: var(--vx-font-size-h1);
+    line-height: var(--vx-line-height-page-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-1);
+  }
+  .page-subtitle {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+  }
+
+  .section + .section {
+    margin-top: var(--vx-space-6);
+  }
+
+  .section-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-3);
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--vx-space-4);
+  }
+
+  /* ============ 反色语义：成功=红，报错=绿 ============ */
+
+  /* 反转后的成功色（取自红色系变量） */
+  :root {
+    --vx-result-success: var(--vx-error);
+    --vx-result-success-dark: var(--vx-error-dark);
+    --vx-result-success-hover: var(--vx-btn-danger-hover);
+    --vx-result-success-bg: var(--vx-error-bg);
+  }
+
+  /* 反转后的错误色（取自绿色系变量） */
+  :root {
+    --vx-result-error: var(--vx-success);
+    --vx-result-error-dark: var(--vx-success-dark);
+    --vx-result-error-hover: var(--vx-success-hover);
+    --vx-result-error-bg: var(--vx-success-bg);
+  }
+
+  /* 成功结果页（红） */
+  .result-panel {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-8) var(--vx-space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--vx-space-3);
+  }
+
+  .result-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: #fff;
+  }
+  .result-icon-success {
+    background: var(--vx-result-success);
+    box-shadow: 0 0 0 8px var(--vx-result-success-bg);
+  }
+  .result-icon-error {
+    background: var(--vx-result-error);
+    box-shadow: 0 0 0 8px var(--vx-result-error-bg);
+  }
+
+  .result-title {
+    font-size: var(--vx-font-size-xxl);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    line-height: var(--vx-line-height-module-title);
+  }
+  .result-title-success { color: var(--vx-result-success); }
+  .result-title-error { color: var(--vx-result-error); }
+
+  .result-desc {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    line-height: var(--vx-line-height-body);
+    max-width: 480px;
+  }
+
+  .result-meta {
+    display: flex;
+    gap: var(--vx-space-6);
+    margin: var(--vx-space-2) 0;
+  }
+  .result-meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--vx-space-1);
+  }
+  .result-meta-label {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+  }
+  .result-meta-value {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-primary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+
+  .result-actions {
+    display: flex;
+    gap: var(--vx-space-3);
+    margin-top: var(--vx-space-2);
+  }
+
+  /* 反转语义按钮 */
+  .vx-btn-result-success {
+    background: var(--vx-result-success);
+    color: #fff;
+    border-color: var(--vx-result-success);
+  }
+  .vx-btn-result-success:hover:not(:disabled) {
+    background: var(--vx-result-success-hover);
+    border-color: var(--vx-result-success-hover);
+  }
+  .vx-btn-result-success:active:not(:disabled) {
+    background: var(--vx-result-success-dark);
+    border-color: var(--vx-result-success-dark);
+  }
+
+  .vx-btn-result-error {
+    background: var(--vx-result-error);
+    color: #fff;
+    border-color: var(--vx-result-error);
+  }
+  .vx-btn-result-error:hover:not(:disabled) {
+    background: var(--vx-result-error-hover);
+    border-color: var(--vx-result-error-hover);
+  }
+  .vx-btn-result-error:active:not(:disabled) {
+    background: var(--vx-result-error-dark);
+    border-color: var(--vx-result-error-dark);
+  }
+
+  /* ============ 反色 Alert ============ */
+  .vx-alert-success-rev {
+    background: var(--vx-result-success-bg);
+    border: 1px solid var(--vx-result-success-hover);
+  }
+  .vx-alert-success-rev .vx-alert-icon {
+    color: var(--vx-result-success);
+  }
+  .vx-alert-error-rev {
+    background: var(--vx-result-error-bg);
+    border: 1px solid var(--vx-result-error-hover);
+  }
+  .vx-alert-error-rev .vx-alert-icon {
+    color: var(--vx-result-error);
+  }
+
+  .alert-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-2);
+  }
+
+  /* ============ 反色 Tag ============ */
+  .vx-tag-success-rev {
+    background: var(--vx-result-success-bg);
+    color: var(--vx-result-success-dark);
+  }
+  .vx-tag-error-rev {
+    background: var(--vx-result-error-bg);
+    color: var(--vx-result-error-dark);
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vx-space-2);
+    align-items: center;
+  }
+
+  /* ============ Toast 浮动通知 ============ */
+  .toast-demo-area {
+    position: relative;
+    min-height: 200px;
+    background: var(--vx-fill-2);
+    border: 1px dashed var(--vx-line-2);
+    border-radius: var(--vx-radius-lg);
+    overflow: hidden;
+  }
+  .toast {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vx-space-2);
+    padding: var(--vx-space-2) var(--vx-space-4);
+    border-radius: var(--vx-radius-md);
+    font-size: var(--vx-font-size-md);
+    color: #fff;
+    box-shadow: var(--vx-shadow-modal);
+    animation: toastIn 0.3s ease-out;
+  }
+  @keyframes toastIn {
+    from { opacity: 0; transform: translate(-50%, -8px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+  .toast-success { background: var(--vx-result-success); }
+  .toast-error { background: var(--vx-result-error); top: 90px; }
+
+  .toast-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ============ 进度/结果步骤条 ============ */
+  .steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--vx-space-2);
+    position: relative;
+    padding-top: var(--vx-space-1);
+  }
+  .step-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--vx-fill-3);
+    border: 2px solid var(--vx-line-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-secondary);
+    font-weight: var(--vx-font-weight-medium);
+    z-index: 1;
+  }
+  .step-done .step-dot {
+    background: var(--vx-result-success);
+    border-color: var(--vx-result-success);
+    color: #fff;
+  }
+  .step-error .step-dot {
+    background: var(--vx-result-error);
+    border-color: var(--vx-result-error);
+    color: #fff;
+  }
+  .step-label {
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-secondary);
+    text-align: center;
+  }
+  .step-done .step-label,
+  .step-error .step-label {
+    color: var(--vx-text-primary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    right: -50%;
+    height: 2px;
+    background: var(--vx-line-2);
+  }
+  .step.step-done:not(:last-child)::after {
+    background: var(--vx-result-success);
+  }
+
+  /* ============ 操作列表（成功/失败混合） ============ */
+  .op-list {
+    display: flex;
+    flex-direction: column;
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    overflow: hidden;
+  }
+  .op-item {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-3);
+    padding: var(--vx-space-3) var(--vx-space-4);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .op-item:last-child { border-bottom: none; }
+  .op-item:hover { background: var(--vx-fill-1); }
+  .op-status-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .op-status-success { background: var(--vx-result-success); }
+  .op-status-error { background: var(--vx-result-error); }
+  .op-name {
+    flex: 1;
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-primary);
+  }
+  .op-time {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+  }
+
+  /* 颜色说明 */
+  .legend {
+    display: flex;
+    gap: var(--vx-space-5);
+    padding: var(--vx-space-3) var(--vx-space-4);
+    background: var(--vx-fill-2);
+    border-radius: var(--vx-radius-md);
+    margin-bottom: var(--vx-space-4);
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-secondary);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-2);
+  }
+  .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: var(--vx-radius-xs);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- 页头 -->
+  <div class="page-header">
+    <h1 class="page-title">操作结果反馈页</h1>
+    <p class="page-subtitle">红色 = 成功（喜庆） · 绿色 = 错误（警示绿）</p>
+  </div>
+
+  <!-- 配色说明 -->
+  <div class="legend">
+    <div class="legend-item">
+      <span class="legend-swatch" style="background: var(--vx-result-success);"></span>
+      成功 / 完成 / 已通过 → 红色
+    </div>
+    <div class="legend-item">
+      <span class="legend-swatch" style="background: var(--vx-result-error);"></span>
+      失败 / 错误 / 未通过 → 绿色
+    </div>
+  </div>
+
+  <!-- 结果面板：成功 & 失败 -->
+  <div class="section">
+    <h2 class="section-title">结果页面板</h2>
+    <div class="demo-grid">
+
+      <!-- 成功结果 -->
+      <div class="result-panel">
+        <div class="result-icon result-icon-success">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="result-title result-title-success">操作成功</div>
+        <div class="result-desc">
+          您的订单已提交成功，我们将尽快为您安排发货。感谢您的信任与支持！
+        </div>
+        <div class="result-meta">
+          <div class="result-meta-item">
+            <span class="result-meta-label">订单编号</span>
+            <span class="result-meta-value">NO.2026111088</span>
+          </div>
+          <div class="result-meta-item">
+            <span class="result-meta-label">支付金额</span>
+            <span class="result-meta-value">¥ 1,288.00</span>
+          </div>
+        </div>
+        <div class="result-actions">
+          <button class="vx-btn vx-btn-lg vx-btn-result-success">查看订单</button>
+          <button class="vx-btn vx-btn-lg vx-btn-secondary">返回首页</button>
+        </div>
+      </div>
+
+      <!-- 失败结果 -->
+      <div class="result-panel">
+        <div class="result-icon result-icon-error">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </div>
+        <div class="result-title result-title-error">操作失败</div>
+        <div class="result-desc">
+          网络连接异常，请检查您的网络设置后重试。如问题持续存在，请联系客服。
+        </div>
+        <div class="result-meta">
+          <div class="result-meta-item">
+            <span class="result-meta-label">错误码</span>
+            <span class="result-meta-value">ERR_NETWORK_001</span>
+          </div>
+          <div class="result-meta-item">
+            <span class="result-meta-label">失败时间</span>
+            <span class="result-meta-value">14:28:36</span>
+          </div>
+        </div>
+        <div class="result-actions">
+          <button class="vx-btn vx-btn-lg vx-btn-result-error">重新尝试</button>
+          <button class="vx-btn vx-btn-lg vx-btn-secondary">联系客服</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 提示框 Alert -->
+  <div class="section">
+    <h2 class="section-title">提示框 Alert</h2>
+    <div class="alert-stack">
+      <div class="vx-alert vx-alert-success-rev">
+        <span class="vx-alert-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </span>
+        <div>
+          <strong>提交成功</strong> — 您的资料已成功上传，审核将在 24 小时内完成。
+        </div>
+      </div>
+
+      <div class="vx-alert vx-alert-error-rev">
+        <span class="vx-alert-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </span>
+        <div>
+          <strong>上传失败</strong> — 文件大小超过限制（最大 50MB），请压缩后重新上传。
+        </div>
+      </div>
+
+      <div class="vx-alert vx-alert-warning">
+        <span class="vx-alert-icon">!</span>
+        <div>
+          <strong>温馨提示</strong> — 您的会员即将到期，续费可享 8 折优惠。
+        </div>
+      </div>
+
+      <div class="vx-alert vx-alert-help">
+        <span class="vx-alert-icon">i</span>
+        <div>
+          <strong>操作指南</strong> — 点击左侧导航可快速切换不同功能模块。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 标签 Tag -->
+  <div class="section">
+    <h2 class="section-title">状态标签 Tag</h2>
+    <div class="vx-card">
+      <div class="vx-card-body">
+        <div class="tag-row">
+          <span class="vx-tag vx-tag-success-rev">已通过</span>
+          <span class="vx-tag vx-tag-success-rev">发布成功</span>
+          <span class="vx-tag vx-tag-success-rev">已完成</span>
+          <span class="vx-tag vx-tag-success-rev">审核通过</span>
+          <span class="vx-tag vx-tag-error-rev">验证失败</span>
+          <span class="vx-tag vx-tag-error-rev">连接超时</span>
+          <span class="vx-tag vx-tag-error-rev">参数错误</span>
+          <span class="vx-tag vx-tag-warning">处理中</span>
+          <span class="vx-tag vx-tag-primary">进行中</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 浮动通知 -->
+  <div class="section">
+    <h2 class="section-title">浮动通知 Toast</h2>
+    <div class="toast-demo-area">
+      <div class="toast toast-success">
+        <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        保存成功
+      </div>
+      <div class="toast toast-error">
+        <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+        操作失败，请稍后重试
+      </div>
+    </div>
+  </div>
+
+  <!-- 步骤条 -->
+  <div class="section">
+    <h2 class="section-title">步骤进度</h2>
+    <div class="vx-card">
+      <div class="vx-card-body" style="padding: var(--vx-space-6) var(--vx-space-6) var(--vx-space-5);">
+        <div class="steps">
+          <div class="step step-done">
+            <div class="step-dot">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="step-label">提交申请</div>
+          </div>
+          <div class="step step-done">
+            <div class="step-dot">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="step-label">资料审核</div>
+          </div>
+          <div class="step step-error">
+            <div class="step-dot">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </div>
+            <div class="step-label">身份核验</div>
+          </div>
+          <div class="step">
+            <div class="step-dot">4</div>
+            <div class="step-label">完成开户</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 操作列表 -->
+  <div class="section">
+    <h2 class="section-title">批量操作结果</h2>
+    <div class="op-list">
+      <div class="op-item">
+        <div class="op-status-icon op-status-success">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="op-name">用户数据导出 — 2026年10月报表.xlsx</div>
+        <span class="vx-tag vx-tag-success-rev">已完成</span>
+        <div class="op-time">刚刚</div>
+      </div>
+      <div class="op-item">
+        <div class="op-status-icon op-status-success">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="op-name">订单批量导入 — orders_q4.csv</div>
+        <span class="vx-tag vx-tag-success-rev">已完成</span>
+        <div class="op-time">2 分钟前</div>
+      </div>
+      <div class="op-item">
+        <div class="op-status-icon op-status-error">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </div>
+        <div class="op-name">图片资源上传 — banner_v3.psd</div>
+        <span class="vx-tag vx-tag-error-rev">上传失败</span>
+        <div class="op-time">5 分钟前</div>
+      </div>
+      <div class="op-item">
+        <div class="op-status-icon op-status-error">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </div>
+        <div class="op-name">数据库备份 — db_backup_20261110.sql</div>
+        <span class="vx-tag vx-tag-error-rev">空间不足</span>
+        <div class="op-time">10 分钟前</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div style="height: var(--vx-space-8);"></div>
+
+</div>
+
+</body>
+</html>

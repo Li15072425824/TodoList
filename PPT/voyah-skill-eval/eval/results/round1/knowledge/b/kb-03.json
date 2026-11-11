@@ -1,0 +1,16 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-03",
+  "topic": "help-yellow-theme",
+  "question": "黄主题下,帮助色的常规档 hex 应该用什么?",
+  "answer": "项目目录为空，无可用的设计规范 skill，按通用设计系统知识回答。\n\n在主流中文设计系统（如 Arco Design、Ant Design 等）中：\n\n- **帮助色**（info/help 语义色）的**常规档**（默认/基础色阶）通常为蓝色系\n- 常用 hex 值：\n  - Arco Design：`#165DFF`\n  - Ant Design v5：`#1677ff`\n  - Ant Design v4：`#1890ff`\n\n\"黄主题\"若指整体以暖黄/琥珀色为主的主题，帮助色在常规档仍多保留蓝色（作为信息提示的语义色，与成功绿/警告黄/错误红共同构成语义五色体系），仅主色（primary）替换为黄色系。若该项目采用的是单色系主题（所有语义色均从黄色衍生），则需根据具体色板推导，但这类情况较少见。",
+  "pass": false,
+  "missing": [
+    "3773DB"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0652446,
+  "subtype": "success",
+  "at": "2026-11-09T09:41:19.145Z"
+}

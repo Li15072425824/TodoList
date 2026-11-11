@@ -1,6 +1,6 @@
 # GEN-03 数据看板
 
-covers: [font.number, font.h1, font.body, font.caption, color.text.*, color.fill.*, space.card, space.page, card, badge, icon.size]
+covers: [font.family.num, font.level.page-title, font.level.body, font.level.caption, font.color.page-title, color.text.title, color.text.primary, color.text.caption, color.fill.3, spacing.padding.page, spacing.padding.card, color.aux.error.3]
 
 请生成一个「车队运营数据看板」demo(单个 HTML 文件),包含:
 - 页面大标题 + 更新时间(辅助说明样式)

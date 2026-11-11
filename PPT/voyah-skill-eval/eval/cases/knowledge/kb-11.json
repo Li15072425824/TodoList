@@ -1,0 +1,17 @@
+{
+  "id": "kb-11",
+  "topic": "font-level",
+  "question": "页面大标题的推荐字号范围、行高范围和字重是什么?",
+  "golden_answer": "18~24px / 行高 32~40px,字重 600。",
+  "required": [
+    "18",
+    "24",
+    "32",
+    "40",
+    "600"
+  ],
+  "specIds": [
+    "font.level.page-title",
+    "font.color.page-title"
+  ]
+}

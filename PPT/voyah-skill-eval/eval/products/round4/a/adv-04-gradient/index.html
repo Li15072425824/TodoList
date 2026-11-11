@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="purple">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>岚图智行 · 营销落地页</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--vx-bg-layout);
+    color: var(--vx-text-primary);
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* ===== 顶部导航 ===== */
+  .nav {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--vx-line-1);
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+  }
+  .nav-logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--vx-primary);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .nav-link {
+    font-size: 14px;
+    color: var(--vx-text-secondary);
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .nav-link:hover { color: var(--vx-primary); }
+  .nav-actions { display: flex; gap: 8px; align-items: center; }
+
+  /* ===== Hero 区 ===== */
+  .hero {
+    background: #FFFFFF;
+    padding: 80px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .hero-tag {
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .hero-title em {
+    color: var(--vx-primary);
+    font-style: normal;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+    line-height: 28px;
+    color: var(--vx-text-secondary);
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat-num {
+    font-family: var(--vx-font-family-number, "Helvetica Neue"), Arial, sans-serif;
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 600;
+    color: var(--vx-primary);
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-top: 4px;
+  }
+
+  /* ===== 通用 section ===== */
+  .section {
+    padding: 64px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-secondary);
+  }
+
+  /* ===== 特性卡片 ===== */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px) {
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+  .feature-card .vx-card-body {
+    padding: 24px 16px;
+  }
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--vx-primary-bg);
+    color: var(--vx-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .feature-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 8px;
+  }
+  .feature-desc {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-secondary);
+  }
+
+  /* ===== 定价区 ===== */
+  .pricing-section {
+    background: var(--vx-fill-2);
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: stretch;
+  }
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+  .pricing-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .pricing-card .vx-card-body {
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .pricing-card.vx-card-featured {
+    border-color: var(--vx-primary);
+    border-width: 2px;
+  }
+  .pricing-name {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 8px;
+  }
+  .pricing-price {
+    margin-bottom: 16px;
+  }
+  .pricing-price-num {
+    font-family: var(--vx-font-family-number, "Helvetica Neue"), Arial, sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+  }
+  .pricing-price-unit {
+    font-size: 14px;
+    color: var(--vx-text-caption);
+    margin-left: 4px;
+  }
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .pricing-features li {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-primary);
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pricing-features li::before {
+    content: "✓";
+    color: var(--vx-success);
+    font-weight: 600;
+    width: 16px;
+    text-align: center;
+  }
+  .pricing-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .faq-item .vx-card-body {
+    padding: 16px;
+  }
+  .faq-q {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 4px;
+  }
+  .faq-a {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-secondary);
+  }
+
+  /* ===== CTA Banner ===== */
+  .cta-banner {
+    background: #333333;
+    padding: 48px 24px;
+    text-align: center;
+  }
+  .cta-banner-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+  .cta-banner-desc {
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 24px;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    background: #FFFFFF;
+    border-top: 1px solid var(--vx-line-1);
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="nav">
+  <div class="nav-logo">
+    <span class="nav-logo-mark">岚</span>
+    <span>岚图智行</span>
+  </div>
+  <div class="nav-links">
+    <span class="nav-link">产品特性</span>
+    <span class="nav-link">解决方案</span>
+    <span class="nav-link">定价方案</span>
+    <span class="nav-link">帮助中心</span>
+  </div>
+  <div class="nav-actions">
+    <button class="vx-btn vx-btn-outline vx-btn-sm">登录</button>
+    <button class="vx-btn vx-btn-primary vx-btn-sm">免费试用</button>
+  </div>
+</nav>
+
+<!-- Hero 区 -->
+<section class="hero">
+  <span class="hero-tag"><span class="vx-tag vx-tag-primary">全新升级</span></span>
+  <h1 class="hero-title">
+    让智能驾驶 <em>触手可及</em>
+  </h1>
+  <p class="hero-subtitle">
+    岚图智行汇聚前沿 AI 能力，为企业提供一站式智能出行解决方案。
+    从车端到云端，从数据到决策，全方位赋能你的业务增长。
+  </p>
+  <div class="hero-cta">
+    <button class="vx-btn vx-btn-primary vx-btn-lg">立即免费体验</button>
+    <button class="vx-btn vx-btn-secondary vx-btn-lg">预约产品演示</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">10,000+</div>
+      <div class="hero-stat-label">企业客户</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">99.9%</div>
+      <div class="hero-stat-label">服务可用性</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">200+</div>
+      <div class="hero-stat-label">城市覆盖</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">24/7</div>
+      <div class="hero-stat-label">技术支持</div>
+    </div>
+  </div>
+</section>
+
+<!-- 特性区 -->
+<section class="section">
+  <div class="section-head">
+    <h2 class="section-title">核心产品特性</h2>
+    <p class="section-desc">六大核心能力，助力企业数字化转型升级</p>
+  </div>
+  <div class="feature-grid">
+    <div class="vx-card feature-card">
+      <div class="vx-card-body">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">高性能计算</div>
+        <div class="feature-desc">毫秒级响应延迟，支持千万级并发请求，稳定承载核心业务流量。</div>
+      </div>
+    </div>
+    <div class="vx-card feature-card">
+      <div class="vx-card-body">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">安全可靠</div>
+        <div class="feature-desc">通过 ISO 27001 等多项安全认证，数据全链路加密，保护企业资产。</div>
+      </div>
+    </div>
+    <div class="vx-card feature-card">
+      <div class="vx-card-body">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">AI 智能分析</div>
+        <div class="feature-desc">内置多模态大模型，自动洞察数据价值，生成可执行的业务建议。</div>
+      </div>
+    </div>
+    <div class="vx-card feature-card">
+      <div class="vx-card-body">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-title">开放集成</div>
+        <div class="feature-desc">提供完善的 API 与 SDK，快速对接现有系统，降低集成成本。</div>
+      </div>
+    </div>
+    <div class="vx-card feature-card">
+      <div class="vx-card-body">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">数据可视化</div>
+        <div class="feature-desc">丰富的图表组件与仪表盘模板，拖拽即可构建专业数据看板。</div>
+      </div>
+    </div>
+    <div class="vx-card feature-card">
+      <div class="vx-card-body">
+        <div class="feature-icon">🌐</div>
+        <div class="feature-title">全球部署</div>
+        <div class="feature-desc">多区域节点覆盖，就近接入低延迟，满足全球化业务布局需求。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 定价区 -->
+<section class="section pricing-section" style="max-width:none;">
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="section-head">
+      <h2 class="section-title">灵活的定价方案</h2>
+      <p class="section-desc">根据业务规模选择最合适的方案，随时升级无需迁移</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- 基础版 -->
+      <div class="vx-card pricing-card">
+        <div class="vx-card-body">
+          <div class="pricing-name">基础版</div>
+          <div class="pricing-price">
+            <span class="pricing-price-num">¥299</span>
+            <span class="pricing-price-unit">/月</span>
+          </div>
+          <ul class="pricing-features">
+            <li>5 个用户账号</li>
+            <li>10GB 存储空间</li>
+            <li>基础数据分析</li>
+            <li>邮件技术支持</li>
+            <li>标准 API 调用额度</li>
+          </ul>
+          <button class="vx-btn vx-btn-outline pricing-cta">选择基础版</button>
+        </div>
+      </div>
+      <!-- 专业版（推荐） -->
+      <div class="vx-card pricing-card vx-card-featured">
+        <div class="vx-card-body">
+          <div style="margin-bottom:12px;">
+            <span class="vx-tag vx-tag-primary">最受欢迎</span>
+          </div>
+          <div class="pricing-name">专业版</div>
+          <div class="pricing-price">
+            <span class="pricing-price-num">¥899</span>
+            <span class="pricing-price-unit">/月</span>
+          </div>
+          <ul class="pricing-features">
+            <li>50 个用户账号</li>
+            <li>100GB 存储空间</li>
+            <li>高级 AI 分析能力</li>
+            <li>7×24 小时在线支持</li>
+            <li>全量 API 调用额度</li>
+            <li>自定义仪表盘</li>
+          </ul>
+          <button class="vx-btn vx-btn-primary pricing-cta">立即升级专业版</button>
+        </div>
+      </div>
+      <!-- 企业版 -->
+      <div class="vx-card pricing-card">
+        <div class="vx-card-body">
+          <div class="pricing-name">企业版</div>
+          <div class="pricing-price">
+            <span class="pricing-price-num">定制</span>
+            <span class="pricing-price-unit">联系销售</span>
+          </div>
+          <ul class="pricing-features">
+            <li>无限用户账号</li>
+            <li>无限存储空间</li>
+            <li>私有化部署支持</li>
+            <li>专属客户成功经理</li>
+            <li>定制化功能开发</li>
+            <li>SLA 服务保障</li>
+          </ul>
+          <button class="vx-btn vx-btn-secondary pricing-cta">联系销售团队</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-head">
+    <h2 class="section-title">常见问题</h2>
+    <p class="section-desc">你可能想了解的问题，我们都整理好了</p>
+  </div>
+  <div class="faq-list">
+    <div class="vx-card faq-item">
+      <div class="vx-card-body">
+        <div class="faq-q">免费试用期有多长？</div>
+        <div class="faq-a">新用户注册即可享受 14 天全功能免费试用，无需绑定信用卡。试用期结束后可根据需要选择合适的付费方案。</div>
+      </div>
+    </div>
+    <div class="vx-card faq-item">
+      <div class="vx-card-body">
+        <div class="faq-q">是否支持私有化部署？</div>
+        <div class="faq-a">企业版支持私有化部署，我们提供完整的部署方案与技术支持，确保数据完全在你的可控范围内。</div>
+      </div>
+    </div>
+    <div class="vx-card faq-item">
+      <div class="vx-card-body">
+        <div class="faq-q">可以随时升级或降级套餐吗？</div>
+        <div class="faq-a">可以。你可以在任意时间切换套餐，升级即时生效，降级将在当前计费周期结束后生效，费用按比例结算。</div>
+      </div>
+    </div>
+    <div class="vx-card faq-item">
+      <div class="vx-card-body">
+        <div class="faq-q">数据安全性如何保障？</div>
+        <div class="faq-a">我们通过 ISO 27001、等保三级等多项安全认证，数据传输与存储全链路加密，并定期进行安全审计与渗透测试。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+  <h2 class="cta-banner-title">准备好开启智能出行新时代了吗？</h2>
+  <p class="cta-banner-desc">加入 10,000+ 企业的行列，体验岚图智行带来的效率革命</p>
+  <button class="vx-btn vx-btn-whiteline vx-btn-lg">立即免费试用</button>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  © 2026 岚图智行 Voyah Tech · 保留所有权利 · 鄂 ICP 备 00000000 号
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-16",
+  "topic": "spacing-exemption",
+  "question": "输入框内容 padding 四边是多少?其中哪一项是设计稿明示的非 4 倍数豁免?",
+  "answer": "输入框内容 padding：左右 12px，上下 6px（CSS `padding: 6px 12px`）。\n\n非 4 倍数豁免项：纵向 padding 6px（设计稿明示的唯一豁免，其余间距均为 4 的倍数）。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0431646,
+  "subtype": "success",
+  "at": "2026-11-10T03:51:17.080Z"
+}

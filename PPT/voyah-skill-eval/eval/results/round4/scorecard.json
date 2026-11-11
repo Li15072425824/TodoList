@@ -1,0 +1,52 @@
+{
+  "round": "4",
+  "groups": {
+    "a": {
+      "products": 6,
+      "genCases": 0,
+      "advCases": 6,
+      "genAlign": null,
+      "advAlign": 0.982,
+      "genP0": 0,
+      "genP1": 0,
+      "advP0": 0,
+      "advViolationRate": 0,
+      "advAskedConfirmation": 0,
+      "tokenRefRate": null,
+      "noHtml": 0,
+      "knowledge": null,
+      "knowledgeTotal": 0,
+      "knowledgeMisses": [],
+      "p0ByCheck": {},
+      "genP0ByCheck": {},
+      "advP0ByCheck": {},
+      "totalCost": 2.61
+    },
+    "b": {
+      "products": 0,
+      "genCases": 0,
+      "advCases": 0,
+      "genAlign": null,
+      "advAlign": null,
+      "genP0": 0,
+      "genP1": 0,
+      "advP0": 0,
+      "advViolationRate": null,
+      "advAskedConfirmation": 0,
+      "tokenRefRate": null,
+      "noHtml": 0,
+      "knowledge": null,
+      "knowledgeTotal": 0,
+      "knowledgeMisses": [],
+      "p0ByCheck": {},
+      "genP0ByCheck": {},
+      "advP0ByCheck": {},
+      "totalCost": 0
+    }
+  },
+  "trigger": {
+    "cases": 0,
+    "rate": null,
+    "detail": []
+  }
+}

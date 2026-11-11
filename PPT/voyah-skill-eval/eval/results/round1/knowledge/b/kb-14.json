@@ -1,0 +1,18 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-14",
+  "topic": "font-weight",
+  "question": "规范允许使用的字重有哪几档?",
+  "answer": "规范没有像字号/间距那样枚举所有允许的字重值，但明确给出了约束：\n\n- **上限**：最粗到 **semibold** 或 **bold** 为止\n- **禁止**：**ultra bold / black（900）** 绝对不允许使用\n\n按钮等组件使用 **semibold**（主按钮 `text-base` semibold、头部小按钮 `text-sm` semibold）。正文字重未单独限定，默认使用常规字重。",
+  "pass": false,
+  "missing": [
+    "400",
+    "500",
+    "600"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0715866,
+  "subtype": "success",
+  "at": "2026-11-09T09:45:07.365Z"
+}

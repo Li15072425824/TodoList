@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-11-themes",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-11-themes",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.030515999999999998,
+  "denials": [],
+  "resultText": "API Error: System protection triggered by request burst. Please slow down traffic growth and increase requests gradually before retrying. Request id: 02179421578055438dad7317fdfd631ca8d09889ef8659d1fdd80",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-11-themes/index.html",
+    "alignRate": 0.375,
+    "checks": 40,
+    "passed": 15,
+    "p0": 21,
+    "p1": 4,
+    "tokenRefRate": 0.509
+  },
+  "at": "2026-11-09T09:17:54.331Z"
+}

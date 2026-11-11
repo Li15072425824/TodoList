@@ -1,0 +1,19 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-11",
+  "topic": "font-level",
+  "question": "页面大标题的推荐字号范围、行高范围和字重是什么?",
+  "answer": "根据 landing-page-design 设计规范（B1 字阶 + B5 Hero 部分）：\n\n**页面大标题（Hero 标题）的推荐字号范围：** `text-5xl`（48px）~ `text-7xl`（72px），桌面端常用 `text-6xl`（60px）。\n\n**行高范围：** `text-5xl` 及以上行高均为 `1`（即 1 × 字号）。\n\n**字重：** 上限为 semibold 或 bold（600–700），**禁止使用 900 / black** 超粗字重。\n\n补充约束：标题最大宽度 680px，需在语义断点处手动换行；使用 `text-wrap: balance` 避免孤词；深色主题用 `#FFFFFF → #9B9B9B` 从左到右文字渐变，浅色主题用 `#000000 → #666666`（渐变仅用于标题文字，背景不可用渐变）。",
+  "pass": false,
+  "missing": [
+    "18",
+    "24",
+    "32",
+    "40"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.05124659999999999,
+  "subtype": "success",
+  "at": "2026-11-09T09:43:58.423Z"
+}

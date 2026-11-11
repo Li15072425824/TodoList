@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Voyah 岚图 · 删除确认弹窗 Demo</title>
+<style>
+  /* ============================================================
+     Voyah 岚图 UI 设计规范 - 设计令牌 (Design Tokens)
+     ============================================================ */
+  :root {
+    /* 主色 - 深海蓝体系(科技、高端) */
+    --voyah-primary:        #1E56FF;
+    --voyah-primary-hover:  #3D70FF;
+    --voyah-primary-active: #1746D6;
+    --voyah-primary-bg:     #E8EEFF;
+
+    /* 辅助色 - 金铜点缀(高端感) */
+    --voyah-gold:           #C9A96E;
+    --voyah-gold-light:     #E8D9B8;
+
+    /* 危险色 */
+    --voyah-danger:         #E54D42;
+    --voyah-danger-hover:   #F0685E;
+    --voyah-danger-active:  #C73A30;
+    --voyah-danger-bg:      #FDEAE8;
+
+    /* 中性色 */
+    --voyah-text-1:         #1A1A1A;   /* 主标题 */
+    --voyah-text-2:         #4D4D4D;   /* 正文 */
+    --voyah-text-3:         #8C8C8C;   /* 辅助文字 */
+    --voyah-text-disabled:  #BFBFBF;   /* 禁用文字 */
+    --voyah-border:         #E5E5E5;   /* 边框 */
+    --voyah-border-light:   #F0F0F0;   /* 浅边框 / 分割线 */
+    --voyah-bg-page:        #F5F6F8;   /* 页面背景 */
+    --voyah-bg-card:        #FFFFFF;   /* 卡片背景 */
+    --voyah-bg-hover:       #F7F8FA;   /* 悬浮态 */
+
+    /* 遮罩 */
+    --voyah-mask:           rgba(0, 0, 0, 0.45);
+
+    /* 字号 */
+    --voyah-fs-title:       18px;      /* 弹窗标题 */
+    --voyah-fs-subtitle:    16px;      /* 模块小标题 */
+    --voyah-fs-body:        14px;      /* 正文 */
+    --voyah-fs-caption:     12px;      /* 辅助文字 */
+    --voyah-fs-btn:         14px;      /* 按钮文字 */
+
+    /* 字重 */
+    --voyah-fw-medium:      500;
+    --voyah-fw-regular:     400;
+
+    /* 圆角 */
+    --voyah-radius-lg:      12px;      /* 弹窗、大卡片 */
+    --voyah-radius-md:      8px;       /* 按钮、输入框 */
+    --voyah-radius-sm:      4px;       /* 小组件 */
+
+    /* 间距 - 8px 栅格 */
+    --voyah-space-xs:       4px;
+    --voyah-space-sm:       8px;
+    --voyah-space-md:       12px;
+    --voyah-space-base:     16px;
+    --voyah-space-lg:       20px;
+    --voyah-space-xl:       24px;
+    --voyah-space-xxl:      32px;
+
+    /* 阴影 */
+    --voyah-shadow-modal:   0 12px 32px rgba(0, 0, 0, 0.12),
+                            0 2px 8px rgba(0, 0, 0, 0.06);
+
+    /* 按钮尺寸 */
+    --voyah-btn-height:     36px;
+    --voyah-btn-height-lg:  40px;
+    --voyah-btn-padding-x:  20px;
+
+    /* 动画 */
+    --voyah-ease:           cubic-bezier(0.4, 0, 0.2, 1);
+    --voyah-duration:       0.2s;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+                 "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: var(--voyah-text-1);
+    background: var(--voyah-bg-page);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================================================
+     底层页面 - 简单列表页
+     ============================================================ */
+  .page {
+    min-height: 100vh;
+    padding: var(--voyah-space-xxl);
+  }
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--voyah-space-xl);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--voyah-space-md);
+  }
+
+  .brand-logo {
+    width: 36px; height: 36px;
+    border-radius: var(--voyah-radius-md);
+    background: linear-gradient(135deg, var(--voyah-primary) 0%, #0B2A8A 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; letter-spacing: 0.5px;
+    font-size: 14px;
+  }
+
+  .brand-title {
+    font-size: 18px;
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-text-1);
+    letter-spacing: 0.3px;
+  }
+
+  .brand-subtitle {
+    font-size: var(--voyah-fs-caption);
+    color: var(--voyah-text-3);
+    margin-top: 2px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-text-1);
+    margin-bottom: var(--voyah-space-xl);
+  }
+
+  .list-card {
+    background: var(--voyah-bg-card);
+    border-radius: var(--voyah-radius-lg);
+    overflow: hidden;
+  }
+
+  .list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--voyah-space-base) var(--voyah-space-xl);
+    border-bottom: 1px solid var(--voyah-border-light);
+    transition: background var(--voyah-duration) var(--voyah-ease);
+  }
+  .list-item:last-child { border-bottom: none; }
+  .list-item:hover { background: var(--voyah-bg-hover); }
+
+  .list-item__main {
+    display: flex; align-items: center; gap: var(--voyah-space-base);
+  }
+
+  .item-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--voyah-radius-md);
+    background: var(--voyah-primary-bg);
+    color: var(--voyah-primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .item-name {
+    font-size: var(--voyah-fs-body);
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-text-1);
+  }
+
+  .item-desc {
+    font-size: var(--voyah-fs-caption);
+    color: var(--voyah-text-3);
+    margin-top: 2px;
+  }
+
+  .item-actions {
+    display: flex; gap: var(--voyah-space-sm);
+  }
+
+  /* ============================================================
+     遮罩层
+     ============================================================ */
+  .modal-mask {
+    position: fixed;
+    inset: 0;
+    background: var(--voyah-mask);
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+    animation: maskIn var(--voyah-duration) var(--voyah-ease);
+  }
+
+  @keyframes maskIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ============================================================
+     弹窗容器
+     ============================================================ */
+  .modal {
+    width: 520px;
+    background: var(--voyah-bg-card);
+    border-radius: var(--voyah-radius-lg);
+    box-shadow: var(--voyah-shadow-modal);
+    animation: modalIn 0.25s var(--voyah-ease);
+    overflow: hidden;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(-16px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* 弹窗头部 padding: 24px 24px 16px */
+  .modal-header {
+    padding: var(--voyah-space-xl) var(--voyah-space-xl) var(--voyah-space-base);
+    position: relative;
+  }
+
+  .modal-title {
+    font-size: var(--voyah-fs-title);
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-text-1);
+    line-height: 1.4;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 28px; height: 28px;
+    border: none;
+    background: transparent;
+    color: var(--voyah-text-3);
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: var(--voyah-radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--voyah-duration) var(--voyah-ease);
+  }
+  .modal-close:hover {
+    background: var(--voyah-bg-hover);
+    color: var(--voyah-text-2);
+  }
+
+  /* 弹窗内容 padding: 0 24px 24px (底部按钮区单独padding) */
+  .modal-body {
+    padding: 0 var(--voyah-space-xl) var(--voyah-space-xl);
+  }
+
+  /* 模块小标题 */
+  .section-title {
+    font-size: var(--voyah-fs-subtitle);
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-text-1);
+    margin-bottom: var(--voyah-space-sm);
+  }
+
+  /* 内容描述 */
+  .modal-desc {
+    font-size: var(--voyah-fs-body);
+    color: var(--voyah-text-2);
+    line-height: 1.6;
+    margin-bottom: var(--voyah-space-lg);
+  }
+
+  /* ============================================================
+     单选项组 (Radio Group)
+     ============================================================ */
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--voyah-space-sm);
+  }
+
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: var(--voyah-space-md);
+    padding: var(--voyah-space-base) var(--voyah-space-lg);
+    border: 1px solid var(--voyah-border);
+    border-radius: var(--voyah-radius-md);
+    cursor: pointer;
+    transition: all var(--voyah-duration) var(--voyah-ease);
+    background: var(--voyah-bg-card);
+  }
+
+  .radio-item:hover {
+    border-color: var(--voyah-primary);
+    background: var(--voyah-primary-bg);
+  }
+
+  .radio-item.checked {
+    border-color: var(--voyah-primary);
+    background: var(--voyah-primary-bg);
+  }
+
+  .radio-circle {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--voyah-border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    transition: all var(--voyah-duration) var(--voyah-ease);
+    background: #fff;
+  }
+
+  .radio-item.checked .radio-circle {
+    border-color: var(--voyah-primary);
+  }
+  .radio-item.checked .radio-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--voyah-primary);
+  }
+
+  .radio-label {
+    font-size: var(--voyah-fs-body);
+    color: var(--voyah-text-1);
+    font-weight: var(--voyah-fw-regular);
+  }
+
+  .radio-item.checked .radio-label {
+    color: var(--voyah-primary);
+    font-weight: var(--voyah-fw-medium);
+  }
+
+  .radio-desc {
+    font-size: var(--voyah-fs-caption);
+    color: var(--voyah-text-3);
+    margin-top: 2px;
+  }
+
+  .radio-text { flex: 1; }
+
+  /* ============================================================
+     弹窗底部按钮组
+     ============================================================ */
+  .modal-footer {
+    padding: var(--voyah-space-base) var(--voyah-space-xl) var(--voyah-space-xl);
+    border-top: 1px solid var(--voyah-border-light);
+  }
+
+  .footer-section + .footer-section {
+    margin-top: var(--voyah-space-lg);
+  }
+
+  .footer-label {
+    font-size: var(--voyah-fs-caption);
+    color: var(--voyah-text-3);
+    margin-bottom: var(--voyah-space-sm);
+    letter-spacing: 0.2px;
+  }
+
+  /* Voyah 规范: 主要操作在左,次要操作在右 */
+  .btn-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--voyah-space-base);
+  }
+
+  .btn-group-left,
+  .btn-group-right {
+    display: flex;
+    gap: var(--voyah-space-sm);
+  }
+
+  /* ============================================================
+     按钮 - 五种类型
+     ============================================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--voyah-space-xs);
+    height: var(--voyah-btn-height);
+    padding: 0 var(--voyah-btn-padding-x);
+    border-radius: var(--voyah-radius-md);
+    font-size: var(--voyah-fs-btn);
+    font-weight: var(--voyah-fw-medium);
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all var(--voyah-duration) var(--voyah-ease);
+    user-select: none;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--voyah-primary-bg);
+  }
+
+  /* 1. 主要按钮 (Primary) - 实心填充 */
+  .btn-primary {
+    background: var(--voyah-primary);
+    color: #fff;
+    border-color: var(--voyah-primary);
+  }
+  .btn-primary:hover {
+    background: var(--voyah-primary-hover);
+    border-color: var(--voyah-primary-hover);
+  }
+  .btn-primary:active {
+    background: var(--voyah-primary-active);
+    border-color: var(--voyah-primary-active);
+  }
+
+  /* 2. 次要按钮 (Secondary) - 浅灰背景 */
+  .btn-secondary {
+    background: #F2F3F5;
+    color: var(--voyah-text-1);
+    border-color: #F2F3F5;
+  }
+  .btn-secondary:hover {
+    background: #E6E8EB;
+    border-color: #E6E8EB;
+  }
+  .btn-secondary:active {
+    background: #D9DCE0;
+    border-color: #D9DCE0;
+  }
+
+  /* 3. 线框按钮 (Outlined) - 透明底 + 边框 */
+  .btn-outlined {
+    background: transparent;
+    color: var(--voyah-text-1);
+    border-color: var(--voyah-border);
+  }
+  .btn-outlined:hover {
+    color: var(--voyah-primary);
+    border-color: var(--voyah-primary);
+    background: var(--voyah-primary-bg);
+  }
+  .btn-outlined:active {
+    color: var(--voyah-primary-active);
+    border-color: var(--voyah-primary-active);
+    background: var(--voyah-primary-bg);
+  }
+
+  /* 4. 虚线按钮 (Dashed) - 虚线边框 */
+  .btn-dashed {
+    background: transparent;
+    color: var(--voyah-text-2);
+    border-color: var(--voyah-border);
+    border-style: dashed;
+  }
+  .btn-dashed:hover {
+    color: var(--voyah-primary);
+    border-color: var(--voyah-primary);
+    background: var(--voyah-primary-bg);
+  }
+  .btn-dashed:active {
+    color: var(--voyah-primary-active);
+    border-color: var(--voyah-primary-active);
+  }
+
+  /* 5. 文字链接 (Text / Link) - 无边框无背景 */
+  .btn-text {
+    background: transparent;
+    color: var(--voyah-primary);
+    border-color: transparent;
+    padding-left: var(--voyah-space-sm);
+    padding-right: var(--voyah-space-sm);
+  }
+  .btn-text:hover {
+    color: var(--voyah-primary-hover);
+    background: var(--voyah-primary-bg);
+  }
+  .btn-text:active {
+    color: var(--voyah-primary-active);
+  }
+
+  /* 危险按钮 (Danger) */
+  .btn-danger {
+    background: var(--voyah-danger);
+    color: #fff;
+    border-color: var(--voyah-danger);
+  }
+  .btn-danger:hover {
+    background: var(--voyah-danger-hover);
+    border-color: var(--voyah-danger-hover);
+  }
+  .btn-danger:active {
+    background: var(--voyah-danger-active);
+    border-color: var(--voyah-danger-active);
+  }
+
+  /* 危险线框按钮 */
+  .btn-danger-outlined {
+    background: transparent;
+    color: var(--voyah-danger);
+    border-color: var(--voyah-danger);
+  }
+  .btn-danger-outlined:hover {
+    background: var(--voyah-danger-bg);
+    border-color: var(--voyah-danger);
+    color: var(--voyah-danger);
+  }
+
+  /* 禁用态 */
+  .btn:disabled,
+  .btn.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .btn-primary:disabled,
+  .btn-primary.is-disabled {
+    background: var(--voyah-text-disabled);
+    border-color: var(--voyah-text-disabled);
+    color: #fff;
+  }
+
+  .btn-secondary:disabled,
+  .btn-secondary.is-disabled {
+    background: #F2F3F5;
+    border-color: #F2F3F5;
+    color: var(--voyah-text-disabled);
+  }
+
+  .btn-outlined:disabled,
+  .btn-outlined.is-disabled,
+  .btn-dashed:disabled,
+  .btn-dashed.is-disabled {
+    color: var(--voyah-text-disabled);
+    border-color: var(--voyah-border);
+    background: transparent;
+  }
+
+  .btn-text:disabled,
+  .btn-text.is-disabled {
+    color: var(--voyah-text-disabled);
+    background: transparent;
+  }
+
+  /* 按钮尺寸 */
+  .btn-lg {
+    height: var(--voyah-btn-height-lg);
+    padding: 0 calc(var(--voyah-btn-padding-x) + 4px);
+  }
+
+  /* ============================================================
+     弹窗下方 - 按钮类型对照展示区
+     ============================================================ */
+  .button-showcase {
+    width: 720px;
+    margin: var(--voyah-space-lg) auto 0;
+    background: var(--voyah-bg-card);
+    border-radius: var(--voyah-radius-lg);
+    box-shadow: var(--voyah-shadow-modal);
+    padding: var(--voyah-space-xl);
+  }
+
+  .showcase-title {
+    font-size: var(--voyah-fs-subtitle);
+    font-weight: var(--voyah-fw-medium);
+    color: var(--voyah-text-1);
+    margin-bottom: var(--voyah-space-lg);
+    padding-bottom: var(--voyah-space-base);
+    border-bottom: 1px solid var(--voyah-border-light);
+  }
+
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: 120px repeat(5, 1fr);
+    gap: var(--voyah-space-md) var(--voyah-space-base);
+    align-items: center;
+  }
+
+  .showcase-header {
+    font-size: var(--voyah-fs-caption);
+    color: var(--voyah-text-3);
+    text-align: center;
+    font-weight: var(--voyah-fw-medium);
+    letter-spacing: 0.3px;
+  }
+
+  .showcase-row-label {
+    font-size: var(--voyah-fs-body);
+    color: var(--voyah-text-2);
+    font-weight: var(--voyah-fw-medium);
+  }
+
+  .showcase-cell {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 危险色标注 */
+  .danger-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: var(--voyah-danger-bg);
+    color: var(--voyah-danger);
+    margin-left: 4px;
+    vertical-align: middle;
+    font-weight: var(--voyah-fw-medium);
+  }
+
+  /* ============================================================
+     规范说明小注脚
+     ============================================================ */
+  .spec-note {
+    margin-top: var(--voyah-space-lg);
+    padding-top: var(--voyah-space-base);
+    border-top: 1px dashed var(--voyah-border);
+    font-size: var(--voyah-fs-caption);
+    color: var(--voyah-text-3);
+    line-height: 1.7;
+  }
+  .spec-note strong {
+    color: var(--voyah-text-2);
+    font-weight: var(--voyah-fw-medium);
+  }
+  .spec-note code {
+    background: var(--voyah-bg-hover);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: var(--voyah-text-2);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- 底层页面: 简单列表页 -->
+<div class="page">
+  <div class="page-header">
+    <div class="brand">
+      <div class="brand-logo">V</div>
+      <div>
+        <div class="brand-title">VOYAH 岚图</div>
+        <div class="brand-subtitle">智能座舱管理后台 · 车辆配置中心</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-title">我的收藏路线</div>
+
+  <div class="list-card">
+    <div class="list-item">
+      <div class="list-item__main">
+        <div class="item-icon">🛣</div>
+        <div>
+          <div class="item-name">城市通勤 · 光谷到汉阳</div>
+          <div class="item-desc">全程 28 公里 · 预计 45 分钟 · 收藏于 3 天前</div>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="btn btn-text">编辑</button>
+        <button class="btn btn-text" style="color: var(--voyah-danger);">删除</button>
+      </div>
+    </div>
+    <div class="list-item">
+      <div class="list-item__main">
+        <div class="item-icon">🏞</div>
+        <div>
+          <div class="item-name">周末自驾 · 木兰草原环线</div>
+          <div class="item-desc">全程 120 公里 · 预计 2 小时 · 收藏于 1 周前</div>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="btn btn-text">编辑</button>
+        <button class="btn btn-text" style="color: var(--voyah-danger);">删除</button>
+      </div>
+    </div>
+    <div class="list-item">
+      <div class="list-item__main">
+        <div class="item-icon">🌉</div>
+        <div>
+          <div class="item-name">出差路线 · 天河机场 T3</div>
+          <div class="item-desc">全程 35 公里 · 预计 50 分钟 · 收藏于 2 周前</div>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="btn btn-text">编辑</button>
+        <button class="btn btn-text" style="color: var(--voyah-danger);">删除</button>
+      </div>
+    </div>
+    <div class="list-item">
+      <div class="list-item__main">
+        <div class="item-icon">🏔</div>
+        <div>
+          <div class="item-name">春节返乡 · 武汉到郑州</div>
+          <div class="item-desc">全程 530 公里 · 预计 5.5 小时 · 收藏于 1 个月前</div>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="btn btn-text">编辑</button>
+        <button class="btn btn-text" style="color: var(--voyah-danger);">删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 遮罩层 + 弹窗 -->
+<div class="modal-mask">
+
+  <!-- 删除确认弹窗 -->
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <!-- 头部 -->
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">删除收藏路线</h2>
+      <button class="modal-close" aria-label="关闭">✕</button>
+    </div>
+
+    <!-- 内容区 -->
+    <div class="modal-body">
+      <p class="modal-desc">
+        您即将删除 <strong style="color: var(--voyah-text-1);">「周末自驾 · 木兰草原环线」</strong> 及其相关配置。
+        此操作不可撤销,请选择删除范围:
+      </p>
+
+      <!-- 模块小标题 -->
+      <div class="section-title">删除范围</div>
+
+      <!-- 单选项组 - 4 个 Option -->
+      <div class="radio-group" id="radioGroup">
+        <div class="radio-item checked" data-value="current">
+          <div class="radio-circle"></div>
+          <div class="radio-text">
+            <div class="radio-label">仅删除当前路线</div>
+            <div class="radio-desc">只移除该条收藏,历史导航记录保留</div>
+          </div>
+        </div>
+        <div class="radio-item" data-value="record">
+          <div class="radio-circle"></div>
+          <div class="radio-text">
+            <div class="radio-label">删除路线及导航记录</div>
+            <div class="radio-desc">同时清除相关的历史导航与偏好数据</div>
+          </div>
+        </div>
+        <div class="radio-item" data-value="download">
+          <div class="radio-circle"></div>
+          <div class="radio-text">
+            <div class="radio-label">删除路线及离线地图</div>
+            <div class="radio-desc">移除路线,并释放对应离线地图缓存 (约 230 MB)</div>
+          </div>
+        </div>
+        <div class="radio-item" data-value="all">
+          <div class="radio-circle"></div>
+          <div class="radio-text">
+            <div class="radio-label">全部删除</div>
+            <div class="radio-desc">删除路线、导航记录、离线地图及所有关联数据</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部按钮区 -->
+    <div class="modal-footer">
+      <!-- 第一组:确认/取消 (主要在左,次要在右) -->
+      <div class="footer-section">
+        <div class="footer-label">按钮组 1 · 标准确认(Voyah 规范:主操作居左,次操作居右)</div>
+        <div class="btn-row">
+          <div class="btn-group-left">
+            <button class="btn btn-primary btn-lg">确认删除</button>
+          </div>
+          <div class="btn-group-right">
+            <button class="btn btn-secondary btn-lg">取消</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二组:含危险按钮「删除」 -->
+      <div class="footer-section">
+        <div class="footer-label">按钮组 2 · 危险操作示例(含危险按钮「删除」)</div>
+        <div class="btn-row">
+          <div class="btn-group-left">
+            <button class="btn btn-danger btn-lg">删除</button>
+          </div>
+          <div class="btn-group-right">
+            <button class="btn btn-outlined btn-lg">稍后再说</button>
+            <button class="btn btn-secondary btn-lg">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 按钮类型对照展示 -->
+  <div class="button-showcase">
+    <div class="showcase-title">
+      按钮类型对照
+      <span style="font-size: 12px; color: var(--voyah-text-3); font-weight: normal; margin-left: 8px;">
+        Voyah Design System · Button
+      </span>
+    </div>
+
+    <div class="showcase-grid">
+      <!-- 表头 -->
+      <div></div>
+      <div class="showcase-header">主要 Primary</div>
+      <div class="showcase-header">次要 Secondary</div>
+      <div class="showcase-header">线框 Outlined</div>
+      <div class="showcase-header">虚线 Dashed</div>
+      <div class="showcase-header">文字链接 Text</div>
+
+      <!-- Normal 行 -->
+      <div class="showcase-row-label">Normal</div>
+      <div class="showcase-cell"><button class="btn btn-primary">主要按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-secondary">次要按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-outlined">线框按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-dashed">虚线按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-text">文字链接</button></div>
+
+      <!-- Disabled 行 -->
+      <div class="showcase-row-label">Disabled</div>
+      <div class="showcase-cell"><button class="btn btn-primary" disabled>主要按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-secondary" disabled>次要按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-outlined" disabled>线框按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-dashed" disabled>虚线按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-text" disabled>文字链接</button></div>
+
+      <!-- 危险按钮补充行 -->
+      <div class="showcase-row-label" style="margin-top: 8px;">
+        危险 <span class="danger-badge">Danger</span>
+      </div>
+      <div class="showcase-cell"><button class="btn btn-danger">危险按钮</button></div>
+      <div class="showcase-cell"><button class="btn btn-secondary" disabled>—</button></div>
+      <div class="showcase-cell"><button class="btn btn-danger-outlined">危险线框</button></div>
+      <div class="showcase-cell"><button class="btn btn-secondary" disabled>—</button></div>
+      <div class="showcase-cell"><button class="btn btn-text" style="color: var(--voyah-danger);">危险文字</button></div>
+    </div>
+
+    <div class="spec-note">
+      <strong>设计规范要点:</strong>
+      弹窗宽度 <code>520px</code> · 头部 <code>padding: 24px 24px 16px</code> · 内容 <code>padding: 0 24px 24px</code> · 底部 <code>padding: 16px 24px 24px</code> ·
+      按钮顺序遵循 <strong>「主操作居左、次操作居右」</strong>(符合车载场景下左手确认的操作习惯)·
+      按钮高度 <code>36px</code> / 大号 <code>40px</code> · 圆角 <code>8px</code> · 字号 <code>14px</code> / 字重 500
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // 单选交互
+  const radioGroup = document.getElementById('radioGroup');
+  radioGroup.addEventListener('click', (e) => {
+    const item = e.target.closest('.radio-item');
+    if (!item) return;
+    radioGroup.querySelectorAll('.radio-item').forEach(el => el.classList.remove('checked'));
+    item.classList.add('checked');
+  });
+</script>
+
+</body>
+</html>

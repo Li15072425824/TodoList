@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>深色品牌头图区 · 岚图 Voyah</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--vx-bg-layout);
+    color: var(--vx-text-primary);
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* ===== 深色头部横幅 ===== */
+  .hero {
+    background: #1A1A1A;
+    color: #FFFFFF;
+    padding: 64px 24px 72px;
+    text-align: center;
+  }
+  .hero-title {
+    margin: 0 0 12px;
+    font-size: 24px;
+    line-height: 40px;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+  .hero-subtitle {
+    margin: 0 0 32px;
+    font-size: 16px;
+    line-height: 28px;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 400;
+  }
+  .hero-actions {
+    display: inline-flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  /* ===== 反白按钮四态快照区 ===== */
+  .whiteline-section {
+    background: var(--vx-bg-base);
+    padding: 32px 24px;
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .section-title {
+    margin: 0 0 4px;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+  }
+  .section-subtitle {
+    margin: 0 0 24px;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-secondary);
+  }
+  .state-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .state-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 180px;
+  }
+  .state-preview {
+    background: #1A1A1A;
+    padding: 24px 20px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .state-label {
+    padding: 12px 16px;
+    border: 1px solid var(--vx-line-1);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    background: var(--vx-bg-base);
+  }
+  .state-name {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 8px;
+  }
+  .color-spec {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  .color-spec div { display: flex; gap: 8px; }
+  .color-spec .swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid var(--vx-line-1);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  /* 强制展示各态（不依赖交互） */
+  .vx-btn.is-hover {
+    background: var(--vx-btn-whiteline-hover-bg);
+    color: var(--vx-btn-secondary-hover);
+    border-color: var(--vx-btn-secondary-hover);
+  }
+  .vx-btn.is-active {
+    background: var(--vx-btn-whiteline-active-bg);
+    color: var(--vx-btn-secondary-active);
+    border-color: var(--vx-btn-secondary-active);
+  }
+
+  /* ===== 浅色内容区：普通卡片 ===== */
+  .content-section {
+    padding: 32px 24px;
+    background: var(--vx-bg-layout);
+  }
+  .content-section .section-title { margin-bottom: 4px; }
+  .content-section .section-subtitle { margin-bottom: 24px; }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .vx-card { background: var(--vx-bg-base); }
+  .card-desc {
+    margin: 0 0 16px;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-secondary);
+  }
+  .card-actions {
+    display: flex;
+    gap: 8px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- 深色头部横幅 -->
+  <section class="hero">
+    <h1 class="hero-title">开启岚图智能出行新篇章</h1>
+    <p class="hero-subtitle">以科技赋能驾驶体验，为每一次出发保驾护航</p>
+    <div class="hero-actions">
+      <button class="vx-btn vx-btn-whiteline vx-btn-lg">立即体验</button>
+      <button class="vx-btn vx-btn-whiteline vx-btn-lg">了解更多</button>
+    </div>
+  </section>
+
+  <!-- 反白按钮四态快照 -->
+  <section class="whiteline-section">
+    <h2 class="section-title">反白按钮 · 四态快照</h2>
+    <p class="section-subtitle">Whiteline Button —— 仅用于深色衬底区域（深色头部横幅、深色卡片等）</p>
+    <div class="state-row">
+
+      <div class="state-card">
+        <div class="state-preview">
+          <button class="vx-btn vx-btn-whiteline vx-btn-lg">反白按钮</button>
+        </div>
+        <div class="state-label">
+          <div class="state-name">Normal</div>
+          <div class="color-spec">
+            <div><span class="swatch" style="background:#666666"></span>text #666666</div>
+            <div><span class="swatch" style="background:#FAFAFA"></span>fill #FAFAFA</div>
+            <div><span class="swatch" style="background:#DEDEDE"></span>border #DEDEDE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-preview">
+          <button class="vx-btn vx-btn-whiteline vx-btn-lg is-hover">反白按钮</button>
+        </div>
+        <div class="state-label">
+          <div class="state-name">Hover</div>
+          <div class="color-spec">
+            <div><span class="swatch" style="background:#568EEE"></span>text #568EEE</div>
+            <div><span class="swatch" style="background:#FAFAFA"></span>fill #FAFAFA</div>
+            <div><span class="swatch" style="background:#568EEE"></span>border #568EEE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-preview">
+          <button class="vx-btn vx-btn-whiteline vx-btn-lg is-active">反白按钮</button>
+        </div>
+        <div class="state-label">
+          <div class="state-name">Click</div>
+          <div class="color-spec">
+            <div><span class="swatch" style="background:#1C5AC4"></span>text #1C5AC4</div>
+            <div><span class="swatch" style="background:#FFFFFF;border-color:#DEDEDE"></span>fill #FFFFFF</div>
+            <div><span class="swatch" style="background:#1C5AC4"></span>border #1C5AC4</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="state-card">
+        <div class="state-preview">
+          <button class="vx-btn vx-btn-whiteline vx-btn-lg" disabled>反白按钮</button>
+        </div>
+        <div class="state-label">
+          <div class="state-name">Disabled</div>
+          <div class="color-spec">
+            <div><span class="swatch" style="background:#C1C1C1"></span>text #C1C1C1</div>
+            <div><span class="swatch" style="background:#FAFAFA"></span>fill #FAFAFA</div>
+            <div><span class="swatch" style="background:#DEDEDE"></span>border #DEDEDE</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 浅色内容区：普通卡片 -->
+  <section class="content-section">
+    <h2 class="section-title">浅色内容区</h2>
+    <p class="section-subtitle">浅色页面使用主按钮 / 次要按钮 / 描边按钮，不使用反白按钮</p>
+    <div class="cards-grid">
+
+      <div class="vx-card">
+        <div class="vx-card-head">
+          <span class="vx-card-title">智能驾驶辅助</span>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm">详情</button>
+        </div>
+        <div class="vx-card-body">
+          <p class="card-desc">L2+ 级智能驾驶辅助系统，集成自适应巡航、车道保持、自动泊车等功能，为您的每一次出行提供全方位安全保障。</p>
+          <div class="card-actions">
+            <button class="vx-btn vx-btn-primary">立即开通</button>
+            <button class="vx-btn vx-btn-secondary">了解功能</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vx-card">
+        <div class="vx-card-head">
+          <span class="vx-card-title">车联网服务</span>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm">详情</button>
+        </div>
+        <div class="vx-card-body">
+          <p class="card-desc">全场景车联网服务，支持远程控车、在线导航、影音娱乐、OTA 升级等，让爱车始终保持最佳状态。</p>
+          <div class="card-actions">
+            <button class="vx-btn vx-btn-primary">免费试用</button>
+            <button class="vx-btn vx-btn-outline">服务说明</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

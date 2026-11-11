@@ -1,0 +1,25 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-01-form",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round2/a/gen-01-form",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.38951340000000007,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "已完成。生成文件位于 `/private/tmp/vx-eval/r2/a/gen-01-form/`：\n\n- **index.html** — 车辆信息登记管理后台表单页（单 HTML 文件，内联布局样式）\n- **tokens.css** — 岚图 Voyah 设计 token（已在目录中，HTML 通过 `<link>` 引入）\n\n**页面包含：**\n\n1. **顶部导航** — Logo「VO 岚图 Voyah」、6 个菜单项（车辆管理高亮）、搜索框、带徽章的头像\n2. **面包屑 + 页面大标题 + 说明文字** — 首页 / 车辆管理 / 车辆信息登记\n3. **双列表单**（三个分组：基础信息 / 配置信息 / 状态与其他）：\n   - 输入框：含必填 `*` 标记、placeholder、帮助说明文字\n   - 下拉选择：车辆品牌、车系型号、车身/内饰颜色、日期选择\n   - 单选：动力类型、驱动方式\n   - 复选：可选配置（5 项）\n   - 开关：车辆状态监测、试驾预约\n4. **校验错误状态** —「车型名称」输入框展示错误边框 + 错误提示文字（含错误图标）\n5. **底部按钮组** — 主要按钮「提交」+ 次要按钮「取消」\n6. **右侧卡片** —「填写说明」辅助卡片（标题 + 大段描述 + 提示文字）+ 帮助 Alert\n\n**严格遵循 Voyah 规范：** 颜色全部 `var(--vx-*)`、按钮 32px middle 尺寸、输入框 padding 6/12、间距为 4 的倍数、圆角 6/8px、蓝主题下帮助色为青色系、字重仅 400/500/600。",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-01-form/index.html",
+    "alignRate": 0.931,
+    "checks": 29,
+    "passed": 27,
+    "p0": 0,
+    "p1": 2,
+    "tokenRefRate": 0.907
+  },
+  "at": "2026-11-10T02:28:59.081Z"
+}

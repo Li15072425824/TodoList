@@ -1,0 +1,17 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-09",
+  "topic": "line",
+  "question": "表单边框的默认色和组件边框 hover 色分别是什么?",
+  "answer": "项目目录为空，没有可用的设计规范文件或 skill。基于通用设计系统知识回答：\n\n**表单边框默认色**：通常为中性色的浅灰阶，如 `#E5E7EB`（gray-200）或 `#D1D5DB`（gray-300），即低对比度的中性边框色。\n\n**组件边框 hover 色**：通常加深一个色阶，如 `#9CA3AF`（gray-400）或 `#6B7280`（gray-500）；部分设计系统也会使用主题色的浅版本（如主色的 100/200 阶）作为 hover 边框色以增强可交互性暗示。\n\n具体色值取决于设计系统（如 Ant Design 默认边框色 `#d9d9d9`、hover 色 `#4096ff`；Element Plus 默认 `#dcdfe6`、hover `#c0c4cc`）。",
+  "pass": false,
+  "missing": [
+    "DEDEDE",
+    "737373"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.050925599999999994,
+  "subtype": "success",
+  "at": "2026-11-09T09:43:23.801Z"
+}

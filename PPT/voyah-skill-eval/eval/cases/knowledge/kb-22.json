@@ -1,0 +1,13 @@
+{
+  "id": "kb-22",
+  "topic": "button-secondary",
+  "question": "次要按钮 hover 态的文字色、边框色和填充色分别是什么?",
+  "golden_answer": "文字=边框 #568EEE,填充 #FFFFFF。",
+  "required": [
+    "568EEE",
+    "FFFFFF"
+  ],
+  "specIds": [
+    "button.secondary.hover"
+  ]
+}

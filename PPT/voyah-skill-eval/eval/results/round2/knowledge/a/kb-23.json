@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-23",
+  "topic": "button-secondary",
+  "question": "次要按钮 click(按下)态的文字色、边框色和填充色分别是什么?",
+  "answer": "次要按钮 click（按下）态：\n\n- **文字色**：`#1C5AC4`\n- **边框色**：`#1C5AC4`\n- **填充色**：`#FFFFFF`",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0751014,
+  "subtype": "success",
+  "at": "2026-11-10T03:52:50.651Z"
+}

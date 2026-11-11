@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-07",
+  "topic": "fill-semantics",
+  "question": "标签背景、下拉选中背景应使用哪个填充 token?色值是多少?",
+  "answer": "项目目录为空，没有可用的设计规范 skill，按通用设计系统知识回答。\n\n**填充 token**：`color-fill-tertiary`（或同义的 `color-bg-tertiary` / `color-neutral-fill-3`，不同设计系统命名略有差异）\n\n**色值**（浅色模式）：`rgba(0, 0, 0, 0.08)` 或等价的 `#F2F2F2` / `#F5F5F5`\n\n说明：在主流设计系统（如 Arco Design、Ant Design、TDesign 等）中，标签（Tag）背景和下拉菜单选中项背景均属于**三级填充**层级——弱强调、用于区分/高亮但不抢主视觉焦点。具体 token 名取决于你项目的设计系统规范，常见变体：\n- `--color-fill-3` / `colorFillTertiary`\n- `--td-bg-color-component`（TDesign）\n- `color-bg-container-disabled` 或 `color-neutral-200`\n\n如需精确到本项目的 token，请提供设计规范文档或组件库名称。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.037716599999999996,
+  "subtype": "success",
+  "at": "2026-11-09T09:42:42.549Z"
+}

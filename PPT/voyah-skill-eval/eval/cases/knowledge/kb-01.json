@@ -1,0 +1,19 @@
+{
+  "id": "kb-01",
+  "topic": "line-blue",
+  "question": "岚图规范中 @line-Blue(较重要程度/高层级线条)在不同主题下取值是否不同?碧青主题下应使用什么色值?",
+  "golden_answer": "@line-Blue 全主题统一为 #3773DB;各主题页旧值 #406670 已废弃。",
+  "required": [
+    "3773DB"
+  ],
+  "specIds": [
+    "color.line.blue",
+    "color.theme.blue.line-blue",
+    "color.theme.yellow.line-blue",
+    "color.theme.purple.line-blue",
+    "color.theme.cuiqing.line-blue",
+    "color.theme.red.line-blue",
+    "color.theme.biqing.line-blue",
+    "line.color.5"
+  ]
+}

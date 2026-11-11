@@ -1,0 +1,26 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-08-dark-whiteline",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round2/a/gen-08-dark-whiteline",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.45810359999999994,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Demo 已生成，文件位于 `index.html`，样式文件 `tokens.css` 已就位。\n\n结构概览：\n- **深色头部横幅** (`#333333` 衬底)：24px 反白大标题 + 14px 副标题 + 两个 Large 反白按钮（`vx-btn-whiteline vx-btn-lg`）\n- **反白按钮四态快照区**（同深色衬底）：Normal / Hover / Click / Disabled 并排，每态附背景 / 文字 / 边框三色值标注\n- **浅色内容区**：两张 `vx-card` 卡片，使用主按钮 / 次要按钮 / 描边按钮（常规类型，不使用反白），形成对比\n\n严格遵循 Voyah 规范：按钮高度 40px（Large）/ 32px（Middle），圆角 6px，色值全部来自 token 或规范内硬编码值，深色衬底用 `#333333`。",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-08-dark-whiteline/index.html",
+    "alignRate": 1,
+    "checks": 28,
+    "passed": 28,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 0.613
+  },
+  "at": "2026-11-10T03:08:13.336Z"
+}

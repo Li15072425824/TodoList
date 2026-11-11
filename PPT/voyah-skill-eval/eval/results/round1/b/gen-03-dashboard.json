@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-03-dashboard",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-03-dashboard",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.1911528,
+  "denials": [],
+  "resultText": "车队运营数据看板已生成并保存到 `/private/tmp/vx-eval/r1/b/gen-03-dashboard/index.html`。\n\n包含内容：\n- **页面标题区**：大标题 + 更新时间（辅助说明样式，带绿色状态点）\n- **4 个 KPI 卡片**：在运营车辆 / 总行驶里程 / 待处理告警 / 运营收入，大数字用 Roboto Mono 等宽字体，涨跌用成功绿 / 错误红\n- **主内容卡片**：车辆运营明细表（5 行数据），状态 Tag 三种（成功/警告/错误）\n- **Badge 通知数**：KPI 卡片和主卡片右上角都有红色 Badge\n- **分页器**：上下页 + 页码 + 跳转输入框\n\n设计遵循岚图 Voyah 规范：主色 `#0066FF`、语义色 `#00B42A / #FF7D00 / #F53F3F`、圆角 8px、轻阴影、Noto Sans SC + Roboto Mono 字体组合。",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-03-dashboard/index.html",
+    "alignRate": 0.483,
+    "checks": 29,
+    "passed": 14,
+    "p0": 9,
+    "p1": 6,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:45:43.976Z"
+}

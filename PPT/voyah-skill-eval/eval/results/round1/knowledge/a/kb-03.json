@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-03",
+  "topic": "help-yellow-theme",
+  "question": "黄主题下,帮助色的常规档 hex 应该用什么?",
+  "answer": "黄主题下，帮助色的常规档 hex 为 **`#3773DB`**（`--vx-help`）。\n\n依据：非蓝主题（含黄主题）帮助色 = 蓝色系，与蓝主色同值。见 `tokens.css` 第 145 行 `[data-vx-theme=\"yellow\"]` 中 `--vx-help: #3773DB`。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.090072,
+  "subtype": "success",
+  "at": "2026-11-09T10:16:31.639Z"
+}

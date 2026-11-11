@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>申请审批列表 - 岚图</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body { background: var(--vx-bg-layout); }
+
+  .page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--vx-padding-page);
+  }
+
+  .page-title {
+    font-size: var(--vx-font-size-xl);
+    line-height: var(--vx-line-height-page-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-md);
+  }
+
+  .card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    overflow: hidden;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--vx-space-4) var(--vx-space-4) 0;
+  }
+
+  .card-body {
+    padding: var(--vx-space-4);
+  }
+
+  /* Tabs with badge on 待审批 */
+  .vx-tab-with-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vx-space-2);
+  }
+  .vx-tab-badge {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 9px;
+    background: var(--vx-error);
+    color: var(--vx-text-inverse);
+    font-size: 11px;
+    line-height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--vx-font-weight-regular);
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--vx-space-4);
+    padding: 0 var(--vx-space-4);
+  }
+
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-2);
+  }
+
+  .search-input {
+    width: 220px;
+  }
+
+  /* 列表视图 */
+  .approval-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .approval-row {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    padding: var(--vx-space-3) var(--vx-space-4);
+    border-bottom: 1px solid var(--vx-line-1);
+    cursor: pointer;
+    transition: background-color 0.15s;
+  }
+  .approval-row:last-child { border-bottom: none; }
+  .approval-row:hover { background: var(--vx-fill-2); }
+  .approval-row.is-selected { background: var(--vx-fill-3); }
+
+  .row-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    min-width: 0;
+  }
+
+  .row-avatar {
+    flex-shrink: 0;
+  }
+
+  .row-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .row-name {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    color: var(--vx-text-primary);
+    font-weight: var(--vx-font-weight-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row-dept {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row-right {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-4);
+    flex-shrink: 0;
+  }
+
+  .row-time {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-text-caption);
+    white-space: nowrap;
+  }
+
+  .row-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-3);
+  }
+
+  .row-action {
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+    color: var(--vx-primary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+  }
+  .row-action:hover { color: var(--vx-primary-hover); }
+  .row-action:active { color: var(--vx-primary-active); }
+  .row-action.row-action-danger { color: var(--vx-error); }
+  .row-action.row-action-danger:hover { color: var(--vx-btn-danger-hover); }
+
+  /* 卡片视图 */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--vx-space-3);
+  }
+
+  .approval-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-4);
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .approval-card:hover {
+    border-color: var(--vx-line-4);
+    background: var(--vx-fill-1);
+  }
+  .approval-card.is-selected {
+    border-color: var(--vx-primary);
+    background: var(--vx-primary-bg);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    margin-bottom: var(--vx-space-3);
+  }
+
+  .card-top-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-top-info .row-name {
+    font-weight: var(--vx-font-weight-bold);
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--vx-space-3);
+  }
+
+  .card-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-2);
+    padding-top: var(--vx-space-3);
+    border-top: 1px solid var(--vx-line-1);
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <h1 class="page-title">申请审批列表</h1>
+
+  <div class="card">
+    <div class="card-header">
+      <!-- Tabs -->
+      <div class="vx-tabs">
+        <span class="vx-tab vx-tab-active" data-tab="all">全部</span>
+        <span class="vx-tab" data-tab="pending">
+          <span class="vx-tab-with-badge">
+            待审批
+            <span class="vx-tab-badge">5</span>
+          </span>
+        </span>
+        <span class="vx-tab" data-tab="approved">已通过</span>
+        <span class="vx-tab" data-tab="rejected">已拒绝</span>
+      </div>
+
+      <!-- Segmented: 列表/卡片视图 -->
+      <div class="vx-segmented">
+        <span class="vx-segmented-item vx-segmented-item-selected" data-view="list">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          &nbsp;列表
+        </span>
+        <span class="vx-segmented-item" data-view="card">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          &nbsp;卡片
+        </span>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <div class="search-input">
+          <input class="vx-input" placeholder="搜索申请人 / 部门" />
+        </div>
+      </div>
+      <div>
+        <button class="vx-btn vx-btn-secondary">导出</button>
+        <button class="vx-btn vx-btn-primary">新建申请</button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- 列表视图 -->
+      <ul class="approval-list" id="listView">
+        <!-- rows inserted by JS -->
+      </ul>
+
+      <!-- 卡片视图 -->
+      <div class="card-grid hidden" id="cardView">
+        <!-- cards inserted by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 模拟数据
+  const data = [
+    { id: 1, name: '张文博', dept: '产品设计部 · 智能座舱组', status: 'pending', time: '2026-11-09 10:24', type: '出差申请', avatar: '张' },
+    { id: 2, name: '李思雨', dept: '人力资源部 · 招聘组', status: 'pending', time: '2026-11-09 09:47', type: '请假申请', avatar: '李' },
+    { id: 3, name: '王浩然', dept: '研发中心 · 三电系统部', status: 'pending', time: '2026-11-08 16:30', type: '采购申请', avatar: '王' },
+    { id: 4, name: '陈晓雅', dept: '市场部 · 品牌传播组', status: 'pending', time: '2026-11-08 14:12', type: '活动申请', avatar: '陈' },
+    { id: 5, name: '刘子轩', dept: '质量部 · 整车质量组', status: 'pending', time: '2026-11-08 11:05', type: '费用报销', avatar: '刘' },
+    { id: 6, name: '赵梦琪', dept: '财务部 · 会计核算组', status: 'approved', time: '2026-11-07 17:20', type: '预算调整', avatar: '赵' },
+    { id: 7, name: '孙浩然', dept: '研发中心 · 智能驾驶部', status: 'approved', time: '2026-11-07 15:43', type: '设备申请', avatar: '孙' },
+    { id: 8, name: '周雅琴', dept: '行政部 · 后勤管理组', status: 'approved', time: '2026-11-07 10:18', type: '用车申请', avatar: '周' },
+    { id: 9, name: '吴俊杰', dept: '销售公司 · 华北大区', status: 'rejected', time: '2026-11-06 16:55', type: '折扣申请', avatar: '吴' },
+    { id: 10, name: '郑晓峰', dept: '供应链管理部 · 采购组', status: 'rejected', time: '2026-11-06 14:02', type: '供应商准入', avatar: '郑' },
+  ];
+
+  const statusMap = {
+    pending:  { label: '待审批', cls: 'vx-tag-warning' },
+    approved: { label: '已通过', cls: 'vx-tag-success' },
+    rejected: { label: '已拒绝', cls: 'vx-tag-error' },
+  };
+
+  let currentTab = 'all';
+  let currentView = 'list';
+  let selectedId = 1;
+
+  const listView = document.getElementById('listView');
+  const cardView = document.getElementById('cardView');
+
+  function filteredData() {
+    if (currentTab === 'all') return data;
+    return data.filter(d => d.status === currentTab);
+  }
+
+  function renderList() {
+    const items = filteredData();
+    listView.innerHTML = items.map(d => `
+      <li class="approval-row ${d.id === selectedId ? 'is-selected' : ''}" data-id="${d.id}">
+        <div class="row-main">
+          <span class="vx-avatar row-avatar">${d.avatar}</span>
+          <div class="row-info">
+            <div class="row-name">${d.name} · ${d.type}</div>
+            <div class="row-dept">${d.dept}</div>
+          </div>
+        </div>
+        <div class="row-right">
+          <span class="vx-tag ${statusMap[d.status].cls}">${statusMap[d.status].label}</span>
+          <span class="row-time">${d.time}</span>
+          <div class="row-actions">
+            <button class="row-action" data-action="view">查看</button>
+            ${d.status === 'pending' ? `<button class="row-action" data-action="approve">通过</button><button class="row-action row-action-danger" data-action="reject">拒绝</button>` : ''}
+          </div>
+        </div>
+      </li>
+    `).join('');
+  }
+
+  function renderCards() {
+    const items = filteredData();
+    cardView.innerHTML = items.map(d => `
+      <div class="approval-card ${d.id === selectedId ? 'is-selected' : ''}" data-id="${d.id}">
+        <div class="card-top">
+          <span class="vx-avatar vx-avatar-lg">${d.avatar}</span>
+          <div class="card-top-info">
+            <div class="row-name">${d.name}</div>
+            <div class="row-dept">${d.dept}</div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="vx-tag ${statusMap[d.status].cls}">${statusMap[d.status].label}</span>
+          <span class="row-time">${d.time}</span>
+        </div>
+        <div class="row-dept" style="margin-bottom: var(--vx-space-3);">申请类型：${d.type}</div>
+        <div class="card-actions">
+          <button class="vx-btn vx-btn-secondary vx-btn-sm" data-action="view">查看</button>
+          ${d.status === 'pending' ? `
+            <button class="vx-btn vx-btn-primary vx-btn-sm" data-action="approve">通过</button>
+            <button class="vx-btn vx-btn-danger vx-btn-sm" data-action="reject">拒绝</button>
+          ` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function render() {
+    renderList();
+    renderCards();
+    listView.classList.toggle('hidden', currentView !== 'list');
+    cardView.classList.toggle('hidden', currentView !== 'card');
+  }
+
+  // Tabs 切换
+  document.querySelectorAll('.vx-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.vx-tab').forEach(t => t.classList.remove('vx-tab-active'));
+      tab.classList.add('vx-tab-active');
+      currentTab = tab.dataset.tab;
+      render();
+    });
+  });
+
+  // Segmented 视图切换
+  document.querySelectorAll('.vx-segmented-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.vx-segmented-item').forEach(i => i.classList.remove('vx-segmented-item-selected'));
+      item.classList.add('vx-segmented-item-selected');
+      currentView = item.dataset.view;
+      render();
+    });
+  });
+
+  // 行/卡片选中（事件委托）
+  listView.addEventListener('click', e => {
+    const row = e.target.closest('.approval-row');
+    if (!row) return;
+    if (e.target.closest('.row-action')) return;
+    selectedId = Number(row.dataset.id);
+    render();
+  });
+
+  cardView.addEventListener('click', e => {
+    const card = e.target.closest('.approval-card');
+    if (!card) return;
+    if (e.target.closest('.vx-btn')) return;
+    selectedId = Number(card.dataset.id);
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

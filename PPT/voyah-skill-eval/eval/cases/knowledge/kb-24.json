@@ -1,0 +1,14 @@
+{
+  "id": "kb-24",
+  "topic": "button-whiteline",
+  "question": "反白按钮 normal 态的文字色、填充色和边框色分别是什么?",
+  "golden_answer": "文字 #666666,填充 #FAFAFA,边框 #DEDEDE。",
+  "required": [
+    "666666",
+    "FAFAFA",
+    "DEDEDE"
+  ],
+  "specIds": [
+    "button.whiteline.normal"
+  ]
+}

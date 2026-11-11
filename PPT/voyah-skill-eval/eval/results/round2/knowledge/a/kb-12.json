@@ -1,0 +1,16 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-12",
+  "topic": "font-level",
+  "question": "正文(主字号)的字号/行高和默认文字色是什么?",
+  "answer": "正文（主字号）：**字号 14px / 行高 22px**，默认文字色 `--vx-text-primary`。",
+  "pass": false,
+  "missing": [
+    "333333"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0424746,
+  "subtype": "success",
+  "at": "2026-11-10T03:50:29.995Z"
+}

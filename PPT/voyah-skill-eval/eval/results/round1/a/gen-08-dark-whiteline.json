@@ -1,0 +1,25 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-08-dark-whiteline",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-08-dark-whiteline",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.45437219999999995,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "Demo 已生成到 `index.html`，`tokens.css` 同级引入。\n\n结构：\n- **深色头图区**（`#1A1A1A` near-black）：24px/40px 反白大标题、16px/28px 副标题、两个 Large 反白按钮并排\n- **反白按钮四态快照**：Normal / Hover / Click / Disabled 四张卡片并排，每张深色预览 + 色值标注（text / fill / border）\n- **浅色内容区**：两张普通卡片，使用主按钮 + 次要按钮 + 描边按钮，对比展示浅色页不使用反白按钮\n\n反白按钮严格遵循规范四态色值（Normal `#666/#FAFAFA/#DEDEDE` · Hover `#568EEE/#FAFAFA/#568EEE` · Click `#1C5AC4/#FFF/#1C5AC4` · Disabled `#C1C1C1/#FAFAFA/#DEDEDE`），仅出现在深色衬底区域。",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-08-dark-whiteline/index.html",
+    "alignRate": 0.929,
+    "checks": 28,
+    "passed": 26,
+    "p0": 1,
+    "p1": 1,
+    "tokenRefRate": 0.548
+  },
+  "at": "2026-11-09T04:59:11.886Z"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "kb-18",
+  "topic": "shadow",
+  "question": "弹窗阴影的规范值(CSS box-shadow)是什么?",
+  "golden_answer": "0px 1px 20px 0px rgba(0,0,0,0.08)。",
+  "required": [
+    "0 1px 20px",
+    "0.08"
+  ],
+  "specIds": [
+    "spacing.shadow.modal"
+  ]
+}

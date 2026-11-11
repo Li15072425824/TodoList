@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-05",
+  "topic": "teal-ownership",
+  "question": "黄主题页面上的青色系色板(#E8F6F9/#6EACB4/#54A7B2/#38929F)应归入哪个语义组?能否作为帮助色使用?",
+  "answer": "黄主题页面上的青色系色板（#E8F6F9 / #6EACB4 / #54A7B2 / #38929F）应归入**「其他/扩展」**语义组，对应 token 为 `--vx-other-teal-*`（`color.aux.other-teal.*`）。\n\n**不能**作为帮助色使用。\n\n依据规范「帮助色决策规则」：\n- 主题 == 蓝 → 帮助色 = 青色系（`--vx-help` 青 4 阶，`color.aux.help-teal.*`）\n- 主题 != 蓝 → 帮助色 = 蓝色系（`--vx-help` 蓝 4 阶，`color.aux.help-blue.*`，与蓝主色同值）\n- 青色系（`--vx-other-teal-*`）**仅在蓝主题下作为帮助生效**，其他主题下属于「其他/扩展」，不得再标为帮助。\n\n黄主题属于\"主题 != 蓝\"的范畴，因此：帮助色应使用蓝色系（#3773DB 系），青色系降级为 `--vx-other-teal-*` 扩展色组。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.046959600000000004,
+  "subtype": "success",
+  "at": "2026-11-10T03:49:02.062Z"
+}

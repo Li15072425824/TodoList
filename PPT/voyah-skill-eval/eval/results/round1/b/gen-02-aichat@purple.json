@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-02-aichat@purple",
+  "kind": "gen",
+  "theme": "purple",
+  "product": "eval/products/round1/b/gen-02-aichat@purple",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.3059358,
+  "denials": [],
+  "resultText": "已生成 `index.html`，单文件完整 demo，包含：\n\n- **左侧会话列表**：品牌 Logo、新建对话按钮、\"最近对话/更早\"分组，含选中态（紫色底+紫字+紫图标）、hover 态（灰底）\n- **欢迎区**：渐变星形图标 + \"你好，我是岚图智能助手\" 标题 + 描述文案\n- **提示集**：4 个推荐问题卡片（车型介绍 / 智能驾驶 / 充电续航 / 售后保养），hover 有紫边 + 发光 + 上浮\n- **对话区**：AI 气泡灰底左对齐、用户气泡紫色右对齐，均带时间戳\n- **思维链 ThoughtChain**：3 个节点（解析用户问题-完成 / 检索车型数据库-进行中带脉冲动画 / 实时路况接入-失败跳过），可折叠\n- **底部输入区**：附件按钮 + 自适应高度 textarea + 发送按钮（空内容禁用态，灰色），含 Enter 发送 / Shift+Enter 换行提示\n- **主题切换**：右上角太阳按钮切换浅/深主题，`<html>` 上初始 `data-vx-theme=\"purple\"`\n\n主色 `#7C5CFF`（紫），圆角 / 阴影 / 间距遵循 Voyah 风格的精致感设计。",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-02-aichat@purple/index.html",
+    "alignRate": 0.429,
+    "checks": 28,
+    "passed": 12,
+    "p0": 10,
+    "p1": 6,
+    "tokenRefRate": 0.698
+  },
+  "at": "2026-11-09T09:25:37.441Z"
+}

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="red">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>后台管理首页</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .app { display: flex; min-height: 100vh; background: var(--vx-bg-layout); }
+
+  /* 侧边栏 */
+  .sidebar {
+    width: 220px;
+    background: var(--vx-bg-base);
+    border-right: 1px solid var(--vx-line-1);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  .sidebar-logo {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    padding: 0 var(--vx-space-md);
+    border-bottom: 1px solid var(--vx-line-1);
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .sidebar-logo-mark {
+    width: 28px; height: 28px;
+    border-radius: var(--vx-radius-sm);
+    background: var(--vx-primary);
+    color: var(--vx-text-inverse);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--vx-font-size-sm);
+    font-weight: var(--vx-font-weight-bold);
+  }
+  .sidebar-nav { padding: var(--vx-space-sm) 0; flex: 1; }
+  .nav-group-title {
+    padding: var(--vx-space-xs) var(--vx-space-md);
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    height: 36px;
+    padding: 0 var(--vx-space-md);
+    margin: 0 var(--vx-space-xs);
+    border-radius: var(--vx-radius-md);
+    color: var(--vx-text-primary);
+    font-size: var(--vx-font-size-md);
+    cursor: pointer;
+  }
+  .nav-item:hover { background: var(--vx-fill-3); }
+  .nav-item-active {
+    background: var(--vx-primary-bg);
+    color: var(--vx-primary);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .nav-item-icon {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    background: currentColor;
+    opacity: 0.8;
+  }
+  .sidebar-footer {
+    padding: var(--vx-space-xs) var(--vx-space-md);
+    border-top: 1px solid var(--vx-line-1);
+  }
+
+  /* 主区域 */
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+  /* 顶部栏 */
+  .topbar {
+    height: 56px;
+    background: var(--vx-bg-base);
+    border-bottom: 1px solid var(--vx-line-1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--vx-space-xl);
+  }
+  .topbar-left { display: flex; align-items: center; gap: var(--vx-space-md); }
+  .breadcrumb {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+  }
+  .breadcrumb .current { color: var(--vx-text-primary); font-weight: var(--vx-font-weight-medium); }
+  .topbar-right { display: flex; align-items: center; gap: var(--vx-space-md); }
+  .topbar-search { width: 240px; }
+  .topbar-user { display: flex; align-items: center; gap: var(--vx-space-xs); }
+
+  /* 内容区 */
+  .content {
+    flex: 1;
+    padding: var(--vx-padding-page);
+    overflow-y: auto;
+  }
+
+  /* 页面标题 */
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--vx-space-lg);
+  }
+  .page-title {
+    font-size: var(--vx-font-size-xxl);
+    line-height: 32px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .page-subtitle {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    margin-top: var(--vx-space-1);
+  }
+  .page-actions { display: flex; gap: var(--vx-space-xs); }
+
+  /* 指标卡片 */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--vx-space-md);
+    margin-bottom: var(--vx-space-lg);
+  }
+  .stat-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-padding-card);
+  }
+  .stat-label {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    line-height: var(--vx-line-height-body);
+    margin-bottom: var(--vx-space-1);
+  }
+  .stat-value {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    font-family: var(--vx-font-family-number);
+  }
+  .stat-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vx-space-1);
+    margin-top: var(--vx-space-2);
+    font-size: var(--vx-font-size-xs);
+    line-height: var(--vx-line-height-caption);
+  }
+  .stat-delta-up { color: var(--vx-success-dark); }
+  .stat-delta-down { color: var(--vx-error-dark); }
+
+  /* 两列布局 */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--vx-space-md);
+    margin-bottom: var(--vx-space-lg);
+  }
+
+  /* 简易条形图 */
+  .bar-chart { display: flex; flex-direction: column; gap: var(--vx-space-xs); }
+  .bar-row { display: flex; align-items: center; gap: var(--vx-space-xs); }
+  .bar-label { width: 80px; font-size: var(--vx-font-size-xs); color: var(--vx-text-secondary); flex-shrink: 0; }
+  .bar-track { flex: 1; height: 20px; background: var(--vx-fill-3); border-radius: var(--vx-radius-sm); overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--vx-primary); border-radius: var(--vx-radius-sm); }
+  .bar-value { width: 48px; text-align: right; font-size: var(--vx-font-size-xs); color: var(--vx-text-primary); font-family: var(--vx-font-family-number); flex-shrink: 0; }
+
+  /* 表格 */
+  .data-table { width: 100%; border-collapse: collapse; font-size: var(--vx-font-size-md); }
+  .data-table th {
+    text-align: left;
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-secondary);
+    padding: var(--vx-space-xs) var(--vx-space-sm);
+    background: var(--vx-fill-3);
+    font-size: var(--vx-font-size-xs);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .data-table td {
+    padding: var(--vx-space-sm) var(--vx-space-sm);
+    border-bottom: 1px solid var(--vx-line-1);
+    color: var(--vx-text-primary);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--vx-fill-1); }
+
+  /* 快捷入口 */
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--vx-space-xs);
+  }
+  .quick-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--vx-space-1);
+    padding: var(--vx-space-sm) var(--vx-space-xs);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-md);
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .quick-item:hover { border-color: var(--vx-primary); }
+  .quick-icon {
+    width: 32px; height: 32px;
+    border-radius: var(--vx-radius-md);
+    background: var(--vx-primary-bg);
+    color: var(--vx-primary);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+  }
+  .quick-text {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-primary);
+  }
+
+  /* 活动列表 */
+  .activity-list { display: flex; flex-direction: column; gap: var(--vx-space-sm); }
+  .activity-item {
+    display: flex;
+    gap: var(--vx-space-xs);
+    padding-bottom: var(--vx-space-sm);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .activity-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--vx-primary);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .activity-dot-warning { background: var(--vx-warning); }
+  .activity-dot-success { background: var(--vx-success); }
+  .activity-main { flex: 1; min-width: 0; }
+  .activity-text { font-size: var(--vx-font-size-md); color: var(--vx-text-primary); line-height: var(--vx-line-height-body); }
+  .activity-time { font-size: var(--vx-font-size-xs); color: var(--vx-text-caption); margin-top: var(--vx-space-1); }
+
+  /* 分页 */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--vx-space-sm);
+  }
+  .pagination-info { font-size: var(--vx-font-size-xs); color: var(--vx-text-secondary); }
+  .pagination-btns { display: flex; gap: var(--vx-space-1); }
+
+  .link-row { display: flex; gap: var(--vx-space-xs); align-items: center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- 侧边栏 -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="sidebar-logo-mark">管</span>
+      <span>管理后台</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group-title">主导航</div>
+      <div class="nav-item nav-item-active">
+        <span class="nav-item-icon"></span>
+        <span>工作台</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon"></span>
+        <span>订单管理</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon"></span>
+        <span>用户管理</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon"></span>
+        <span>商品管理</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon"></span>
+        <span>数据统计</span>
+      </div>
+      <div class="nav-group-title" style="margin-top: var(--vx-space-xs);">系统</div>
+      <div class="nav-item">
+        <span class="nav-item-icon"></span>
+        <span>权限设置</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon"></span>
+        <span>系统日志</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="nav-item">
+        <span class="nav-item-icon"></span>
+        <span>帮助中心</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 主区域 -->
+  <main class="main">
+    <!-- 顶部栏 -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="breadcrumb">
+          首页 / <span class="current">工作台</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <input class="vx-input" placeholder="搜索订单、用户..." />
+        </div>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm vx-btn-icon-only" aria-label="通知">🔔</button>
+        <div class="topbar-user">
+          <span class="vx-avatar vx-avatar-primary">管</span>
+          <a href="#">管理员</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 内容 -->
+    <div class="content">
+      <!-- 页面标题 -->
+      <div class="page-header">
+        <div>
+          <div class="page-title">工作台</div>
+          <div class="page-subtitle">欢迎回来，今天是 2026 年 11 月 10 日，以下是今日运营概览</div>
+        </div>
+        <div class="page-actions">
+          <button class="vx-btn vx-btn-secondary">导出数据</button>
+          <button class="vx-btn vx-btn-primary">新建任务</button>
+        </div>
+      </div>
+
+      <!-- 指标卡 -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">今日订单</div>
+          <div class="stat-value">1,286</div>
+          <div class="stat-delta stat-delta-up">▲ 12.5% 较昨日</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">销售额</div>
+          <div class="stat-value">¥89,640</div>
+          <div class="stat-delta stat-delta-up">▲ 8.2% 较昨日</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">新增用户</div>
+          <div class="stat-value">324</div>
+          <div class="stat-delta stat-delta-down">▼ 3.1% 较昨日</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">活跃用户</div>
+          <div class="stat-value">5,872</div>
+          <div class="stat-delta stat-delta-up">▲ 15.7% 较昨日</div>
+        </div>
+      </div>
+
+      <!-- 两列 -->
+      <div class="grid-2">
+        <!-- 销售趋势 -->
+        <div class="vx-card">
+          <div class="vx-card-head">
+            <span class="vx-card-title">本周销售趋势</span>
+            <div class="vx-segmented">
+              <span class="vx-segmented-item">日</span>
+              <span class="vx-segmented-item vx-segmented-item-selected">周</span>
+              <span class="vx-segmented-item">月</span>
+            </div>
+          </div>
+          <div class="vx-card-body">
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">周一</span>
+                <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+                <span class="bar-value">¥6.2万</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">周二</span>
+                <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+                <span class="bar-value">¥7.8万</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">周三</span>
+                <div class="bar-track"><div class="bar-fill" style="width:55%"></div></div>
+                <span class="bar-value">¥5.7万</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">周四</span>
+                <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+                <span class="bar-value">¥8.5万</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">周五</span>
+                <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+                <span class="bar-value">¥9.3万</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">周六</span>
+                <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+                <span class="bar-value">¥9.8万</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">周日</span>
+                <div class="bar-track"><div class="bar-fill" style="width:87%"></div></div>
+                <span class="bar-value">¥9.0万</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 快捷入口 -->
+        <div class="vx-card">
+          <div class="vx-card-head">
+            <span class="vx-card-title">快捷入口</span>
+            <a href="#">更多</a>
+          </div>
+          <div class="vx-card-body">
+            <div class="quick-grid">
+              <div class="quick-item">
+                <span class="quick-icon">订</span>
+                <span class="quick-text">新建订单</span>
+              </div>
+              <div class="quick-item">
+                <span class="quick-icon">用</span>
+                <span class="quick-text">用户查询</span>
+              </div>
+              <div class="quick-item">
+                <span class="quick-icon">商</span>
+                <span class="quick-text">商品上架</span>
+              </div>
+              <div class="quick-item">
+                <span class="quick-icon">报</span>
+                <span class="quick-text">报表导出</span>
+              </div>
+              <div class="quick-item">
+                <span class="quick-icon">优</span>
+                <span class="quick-text">优惠券</span>
+              </div>
+              <div class="quick-item">
+                <span class="quick-icon">设</span>
+                <span class="quick-text">系统设置</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 两列：订单列表 + 动态 -->
+      <div class="grid-2">
+        <!-- 最新订单 -->
+        <div class="vx-card">
+          <div class="vx-card-head">
+            <span class="vx-card-title">最新订单</span>
+            <div class="link-row">
+              <a href="#">查看全部</a>
+            </div>
+          </div>
+          <div class="vx-card-body" style="padding:0;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>订单号</th>
+                  <th>用户</th>
+                  <th>金额</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#20261110001</td>
+                  <td>张某某</td>
+                  <td>¥1,299.00</td>
+                  <td><span class="vx-tag vx-tag-success">已完成</span></td>
+                  <td><a href="#">详情</a></td>
+                </tr>
+                <tr>
+                  <td>#20261110002</td>
+                  <td>李某某</td>
+                  <td>¥599.00</td>
+                  <td><span class="vx-tag vx-tag-warning">待发货</span></td>
+                  <td><a href="#">详情</a></td>
+                </tr>
+                <tr>
+                  <td>#20261110003</td>
+                  <td>王某某</td>
+                  <td>¥2,488.00</td>
+                  <td><span class="vx-tag vx-tag-primary">处理中</span></td>
+                  <td><a href="#">详情</a></td>
+                </tr>
+                <tr>
+                  <td>#20261110004</td>
+                  <td>赵某某</td>
+                  <td>¥199.00</td>
+                  <td><span class="vx-tag vx-tag-error">已取消</span></td>
+                  <td><a href="#">详情</a></td>
+                </tr>
+                <tr>
+                  <td>#20261110005</td>
+                  <td>钱某某</td>
+                  <td>¥3,680.00</td>
+                  <td><span class="vx-tag vx-tag-success">已完成</span></td>
+                  <td><a href="#">详情</a></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination" style="padding: var(--vx-space-sm) var(--vx-space-sm);">
+              <div class="pagination-info">共 128 条</div>
+              <div class="pagination-btns">
+                <button class="vx-btn vx-btn-secondary vx-btn-sm">‹</button>
+                <button class="vx-btn vx-btn-primary vx-btn-sm">1</button>
+                <button class="vx-btn vx-btn-secondary vx-btn-sm">2</button>
+                <button class="vx-btn vx-btn-secondary vx-btn-sm">3</button>
+                <button class="vx-btn vx-btn-secondary vx-btn-sm">›</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 系统动态 -->
+        <div class="vx-card">
+          <div class="vx-card-head">
+            <span class="vx-card-title">系统动态</span>
+            <a href="#">更多</a>
+          </div>
+          <div class="vx-card-body">
+            <div class="activity-list">
+              <div class="activity-item">
+                <span class="activity-dot activity-dot-success"></span>
+                <div class="activity-main">
+                  <div class="activity-text">新用户 <a href="#">用户A</a> 完成注册</div>
+                  <div class="activity-time">5 分钟前</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot"></span>
+                <div class="activity-main">
+                  <div class="activity-text">订单 #20261110001 已完成支付</div>
+                  <div class="activity-time">12 分钟前</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot activity-dot-warning"></span>
+                <div class="activity-main">
+                  <div class="activity-text">商品「岚图配件」库存低于预警线</div>
+                  <div class="activity-time">30 分钟前</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot activity-dot-success"></span>
+                <div class="activity-main">
+                  <div class="activity-text">本月销售目标已完成 85%</div>
+                  <div class="activity-time">1 小时前</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot"></span>
+                <div class="activity-main">
+                  <div class="activity-text">管理员 <a href="#">admin</a> 更新了系统配置</div>
+                  <div class="activity-time">2 小时前</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "id": "kb-12",
+  "topic": "font-level",
+  "question": "正文(主字号)的字号/行高和默认文字色是什么?",
+  "golden_answer": "14px / 行高 22px,文字色 #333333。",
+  "required": [
+    "14",
+    "22",
+    "333333"
+  ],
+  "specIds": [
+    "font.level.body",
+    "font.color.body"
+  ]
+}

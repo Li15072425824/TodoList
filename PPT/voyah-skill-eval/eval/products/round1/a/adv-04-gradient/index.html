@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nebula — 让你的产品增长快人一步</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-2: #12121a;
+    --surface: #181824;
+    --text: #f5f5ff;
+    --text-dim: #9a9ab0;
+    --text-muted: #6a6a80;
+    --blue: #4f6bff;
+    --purple: #9d4edd;
+    --pink: #ff4f9a;
+    --cyan: #4fe8ff;
+    --gradient: linear-gradient(135deg, #4f6bff 0%, #9d4edd 100%);
+    --gradient-hover: linear-gradient(135deg, #6b82ff 0%, #b368eb 100%);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Ambient background glow */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79,107,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -20%;
+    right: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(157,78,221,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: rgba(18, 18, 26, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
+    padding: 10px 12px 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-logo {
+    font-weight: 800;
+    font-style: italic;
+    font-size: 20px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 100px;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-cta {
+    padding: 10px 20px !important;
+    background: var(--gradient);
+    color: #fff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 20px rgba(79, 107, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(157, 78, 221, 0.4) !important;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+    position: relative;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 8px;
+    background: rgba(79, 107, 255, 0.1);
+    border: 1px solid rgba(79, 107, 255, 0.2);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #a8b8ff;
+    margin-bottom: 32px;
+  }
+
+  .hero-badge span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--gradient);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 11px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    text-wrap: balance;
+  }
+
+  h1 .gradient-text {
+    background: linear-gradient(135deg, #4f6bff 0%, #9d4edd 50%, #ff4f9a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: italic;
+    font-weight: 800;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    text-wrap: balance;
+  }
+
+  /* Primary CTA */
+  .cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--gradient);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow:
+      0 0 20px rgba(79, 107, 255, 0.4),
+      0 0 40px rgba(157, 78, 221, 0.25),
+      0 8px 32px rgba(79, 107, 255, 0.3);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: var(--gradient-hover);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: blur(8px);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 30px rgba(79, 107, 255, 0.5),
+      0 0 60px rgba(157, 78, 221, 0.35),
+      0 12px 40px rgba(79, 107, 255, 0.4);
+  }
+
+  .btn-primary:hover::before {
+    opacity: 0.8;
+  }
+
+  .btn-primary:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 3px rgba(79, 107, 255, 0.3),
+      0 0 30px rgba(79, 107, 255, 0.5),
+      0 0 60px rgba(157, 78, 221, 0.35);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Proof strip */
+  .proof-strip {
+    text-align: center;
+  }
+
+  .proof-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .proof-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    opacity: 0.5;
+  }
+
+  .proof-logos .logo {
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  /* Tagline reveal */
+  .tagline-section {
+    padding: 120px 0;
+    text-align: center;
+  }
+
+  .tagline {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    max-width: 800px;
+    margin: 0 auto;
+    text-wrap: balance;
+  }
+
+  .tagline .word {
+    display: inline-block;
+    color: var(--text-muted);
+    opacity: 0.3;
+    transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    margin-right: 0.25em;
+  }
+
+  .tagline .word.active {
+    color: var(--text);
+    opacity: 1;
+  }
+
+  .tagline .word.grad {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tagline .word.grad.active {
+    opacity: 1;
+  }
+
+  /* Section base */
+  section {
+    padding: 100px 0;
+    position: relative;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    text-wrap: balance;
+  }
+
+  .section-desc {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 64px;
+  }
+
+  /* Feature cards */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .feature-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 36px 32px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  .feature-card:nth-child(1) { box-shadow: 0 0 0 0 rgba(79, 107, 255, 0); }
+  .feature-card:nth-child(2) { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
+  .feature-card:nth-child(3) { box-shadow: 0 0 0 0 rgba(255, 79, 154, 0); }
+  .feature-card:nth-child(4) { box-shadow: 0 0 0 0 rgba(79, 232, 255, 0); }
+  .feature-card:nth-child(5) { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
+  .feature-card:nth-child(6) { box-shadow: 0 0 0 0 rgba(79, 107, 255, 0); }
+
+  .feature-card:nth-child(1):hover {
+    box-shadow:
+      0 0 40px rgba(79, 107, 255, 0.25),
+      0 0 80px rgba(79, 107, 255, 0.12),
+      inset 0 1px 0 rgba(79, 107, 255, 0.2);
+    border-color: rgba(79, 107, 255, 0.3);
+    transform: translateY(-4px);
+  }
+  .feature-card:nth-child(2):hover {
+    box-shadow:
+      0 0 40px rgba(157, 78, 221, 0.25),
+      0 0 80px rgba(157, 78, 221, 0.12),
+      inset 0 1px 0 rgba(157, 78, 221, 0.2);
+    border-color: rgba(157, 78, 221, 0.3);
+    transform: translateY(-4px);
+  }
+  .feature-card:nth-child(3):hover {
+    box-shadow:
+      0 0 40px rgba(255, 79, 154, 0.25),
+      0 0 80px rgba(255, 79, 154, 0.12),
+      inset 0 1px 0 rgba(255, 79, 154, 0.2);
+    border-color: rgba(255, 79, 154, 0.3);
+    transform: translateY(-4px);
+  }
+  .feature-card:nth-child(4):hover {
+    box-shadow:
+      0 0 40px rgba(79, 232, 255, 0.25),
+      0 0 80px rgba(79, 232, 255, 0.12),
+      inset 0 1px 0 rgba(79, 232, 255, 0.2);
+    border-color: rgba(79, 232, 255, 0.3);
+    transform: translateY(-4px);
+  }
+  .feature-card:nth-child(5):hover {
+    box-shadow:
+      0 0 40px rgba(157, 78, 221, 0.25),
+      0 0 80px rgba(157, 78, 221, 0.12),
+      inset 0 1px 0 rgba(157, 78, 221, 0.2);
+    border-color: rgba(157, 78, 221, 0.3);
+    transform: translateY(-4px);
+  }
+  .feature-card:nth-child(6):hover {
+    box-shadow:
+      0 0 40px rgba(79, 107, 255, 0.25),
+      0 0 80px rgba(79, 107, 255, 0.12),
+      inset 0 1px 0 rgba(79, 107, 255, 0.2);
+    border-color: rgba(79, 107, 255, 0.3);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 26px;
+  }
+
+  .feature-card:nth-child(1) .feature-icon { background: rgba(79, 107, 255, 0.15); }
+  .feature-card:nth-child(2) .feature-icon { background: rgba(157, 78, 221, 0.15); }
+  .feature-card:nth-child(3) .feature-icon { background: rgba(255, 79, 154, 0.15); }
+  .feature-card:nth-child(4) .feature-icon { background: rgba(79, 232, 255, 0.15); }
+  .feature-card:nth-child(5) .feature-icon { background: rgba(157, 78, 221, 0.15); }
+  .feature-card:nth-child(6) .feature-icon { background: rgba(79, 107, 255, 0.15); }
+
+  .feature-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .feature-card p {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* How it works */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    position: relative;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 40px 32px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 0 50px rgba(79, 107, 255, 0.2),
+      0 0 100px rgba(157, 78, 221, 0.1);
+    border-color: rgba(157, 78, 221, 0.25);
+  }
+
+  .step-number {
+    font-size: 48px;
+    font-weight: 800;
+    font-style: italic;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .step-card p {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* Stats */
+  .stats-section {
+    padding: 80px 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .stat-card:nth-child(1):hover {
+    box-shadow: 0 0 30px rgba(79, 107, 255, 0.2);
+    border-color: rgba(79, 107, 255, 0.3);
+  }
+  .stat-card:nth-child(2):hover {
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.2);
+    border-color: rgba(157, 78, 221, 0.3);
+  }
+  .stat-card:nth-child(3):hover {
+    box-shadow: 0 0 30px rgba(255, 79, 154, 0.2);
+    border-color: rgba(255, 79, 154, 0.3);
+  }
+  .stat-card:nth-child(4):hover {
+    box-shadow: 0 0 30px rgba(79, 232, 255, 0.2);
+    border-color: rgba(79, 232, 255, 0.3);
+  }
+
+  .stat-number {
+    font-size: 36px;
+    font-weight: 800;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .stat-card:nth-child(1) .stat-number { color: #6b82ff; }
+  .stat-card:nth-child(2) .stat-number { color: #b368eb; }
+  .stat-card:nth-child(3) .stat-number { color: #ff6fa8; }
+  .stat-card:nth-child(4) .stat-number { color: #6eefff; }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  /* Testimonials */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 32px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .testimonial-card:nth-child(1):hover {
+    box-shadow: 0 0 40px rgba(79, 107, 255, 0.2);
+    border-color: rgba(79, 107, 255, 0.25);
+  }
+  .testimonial-card:nth-child(2):hover {
+    box-shadow: 0 0 40px rgba(157, 78, 221, 0.2);
+    border-color: rgba(157, 78, 221, 0.25);
+  }
+  .testimonial-card:nth-child(3):hover {
+    box-shadow: 0 0 40px rgba(255, 79, 154, 0.2);
+    border-color: rgba(255, 79, 154, 0.25);
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .testimonial-card:nth-child(1) .author-avatar { background: linear-gradient(135deg, #4f6bff, #9d4edd); }
+  .testimonial-card:nth-child(2) .author-avatar { background: linear-gradient(135deg, #9d4edd, #ff4f9a); }
+  .testimonial-card:nth-child(3) .author-avatar { background: linear-gradient(135deg, #ff4f9a, #4fe8ff); }
+
+  .author-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .author-info p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Pricing */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .pricing-card {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 40px 32px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .pricing-card:nth-child(1):hover {
+    box-shadow: 0 0 40px rgba(79, 107, 255, 0.2);
+    border-color: rgba(79, 107, 255, 0.3);
+  }
+
+  .pricing-card.featured {
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    transform: translateY(-8px);
+    box-shadow:
+      0 0 50px rgba(157, 78, 221, 0.25),
+      0 0 100px rgba(79, 107, 255, 0.15);
+  }
+
+  .pricing-card.featured:hover {
+    transform: translateY(-12px);
+    box-shadow:
+      0 0 60px rgba(157, 78, 221, 0.35),
+      0 0 120px rgba(79, 107, 255, 0.2);
+  }
+
+  .pricing-card:nth-child(3):hover {
+    box-shadow: 0 0 40px rgba(255, 79, 154, 0.2);
+    border-color: rgba(255, 79, 154, 0.3);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    background: var(--gradient);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .pricing-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .pricing-price {
+    font-size: 48px;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .pricing-card.featured .pricing-price {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pricing-period {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 32px;
+    flex: 1;
+  }
+
+  .pricing-features li {
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pricing-features li::before {
+    content: '✓';
+    color: #4fe8a8;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .pricing-card .btn-primary,
+  .pricing-card .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* FAQ */
+  .faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .faq-item:hover {
+    border-color: rgba(157, 78, 221, 0.2);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.1);
+  }
+
+  .faq-question {
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-weight: 600;
+    font-size: 15px;
+    user-select: none;
+  }
+
+  .faq-question .icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(157, 78, 221, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #b368eb;
+    flex-shrink: 0;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .faq-item.open .faq-question .icon {
+    transform: rotate(45deg);
+    background: var(--gradient);
+    color: #fff;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+  }
+
+  .faq-answer-inner {
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* Final CTA */
+  .final-cta {
+    text-align: center;
+    padding: 120px 0;
+  }
+
+  .final-cta-card {
+    background: linear-gradient(135deg, rgba(79, 107, 255, 0.1) 0%, rgba(157, 78, 221, 0.1) 100%);
+    border: 1px solid rgba(157, 78, 221, 0.2);
+    border-radius: 28px;
+    padding: 80px 40px;
+    position: relative;
+    box-shadow:
+      0 0 60px rgba(79, 107, 255, 0.15),
+      0 0 120px rgba(157, 78, 221, 0.1);
+  }
+
+  .final-cta h2 {
+    font-size: clamp(36px, 6vw, 56px);
+    max-width: 640px;
+    margin: 0 auto 16px;
+  }
+
+  .final-cta p {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 520px;
+    margin: 0 auto 36px;
+  }
+
+  .final-cta .no-credit {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 20px;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 48px 0 32px;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 48px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    max-width: 280px;
+  }
+
+  .footer-logo {
+    font-size: 24px;
+    font-weight: 800;
+    font-style: italic;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+
+  .footer-col h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li {
+    margin-bottom: 10px;
+  }
+
+  .footer-col a {
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-col a:hover {
+    color: var(--text);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-bottom p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-legal a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-legal a:hover {
+    color: var(--text-dim);
+  }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .features-grid,
+    .steps,
+    .testimonials-grid,
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pricing-card.featured {
+      transform: none;
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-4px);
+    }
+
+    nav {
+      gap: 16px;
+      padding: 10px 12px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 0 20px; }
+    .cta-group { flex-direction: column; }
+    .cta-group .btn-primary,
+    .cta-group .btn-secondary { width: 100%; justify-content: center; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .stat-number { font-size: 28px; }
+    .final-cta-card { padding: 60px 24px; }
+    .proof-logos { gap: 24px; }
+    section { padding: 72px 0; }
+    .tagline-section { padding: 80px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Nebula</div>
+  <ul class="nav-links">
+    <li><a href="#features">功能</a></li>
+    <li><a href="#how">流程</a></li>
+    <li><a href="#pricing">价格</a></li>
+    <li><a href="#faq">常见问题</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">免费开始</a>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>✦</span>
+          全新 2.0 版本现已上线
+        </div>
+        <h1>
+          用数据驱动的<br>
+          <span class="gradient-text">增长引擎</span>，<br>
+          让每一个用户都有价值
+        </h1>
+        <p class="hero-sub">
+          Nebula 是面向成长型团队的用户增长平台，整合分析、触达和自动化于一体。
+          不用再在五个工具之间来回切换，一个仪表盘搞定全部增长动作。
+        </p>
+        <div class="cta-group">
+          <a href="#pricing" class="btn-primary">
+            开始免费试用
+            <span>→</span>
+          </a>
+          <a href="#how" class="btn-secondary">
+            观看演示
+            <span>▶</span>
+          </a>
+        </div>
+        <div class="proof-strip">
+          <div class="proof-label">已有超过 2,400 家团队选择 Nebula</div>
+          <div class="proof-logos">
+            <span class="logo">Lumina</span>
+            <span class="logo">Quartz</span>
+            <span class="logo">Velox</span>
+            <span class="logo">Aurora</span>
+            <span class="logo">Meridian</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tagline reveal -->
+  <section class="tagline-section">
+    <div class="container">
+      <p class="tagline" id="tagline">
+        <span class="word">停止</span>
+        <span class="word">猜测</span>
+        <span class="word">用户</span>
+        <span class="word">想要什么，</span>
+        <span class="word grad">用数据</span>
+        <span class="word grad">精准</span>
+        <span class="word">推动</span>
+        <span class="word">每一步</span>
+        <span class="word">增长。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">核心功能</div>
+        <h2>专为增长团队打造的全能工具集</h2>
+        <p class="section-desc">从用户行为分析到自动化触达，Nebula 覆盖增长全链路，让你把更多时间花在决策上，而不是工具对接上。</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">📊</div>
+          <h3>实时用户分析</h3>
+          <p>追踪每一个关键事件和漏斗转化，用可视化看板秒级定位增长瓶颈。支持自定义事件、群组分析和留存对比。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🎯</div>
+          <h3>智能用户分群</h3>
+          <p>基于行为和属性自动划分用户群体，支持 50 种以上细分维度，让你的每一次触达都精准命中目标人群。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📧</div>
+          <h3>多渠道触达</h3>
+          <p>邮件、短信、推送、站内消息一站式发送，智能选择最优渠道，将用户唤醒率平均提升 47%。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">⚡</div>
+          <h3>自动化工作流</h3>
+          <p>可视化搭建用户旅程，拖曳式编辑器让非技术同学也能轻松配置复杂的自动化策略，节省工程资源。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🧪</div>
+          <h3>A/B 实验引擎</h3>
+          <p>内置统计显著性校验，支持多变量实验和分流策略。每个假设都能快速验证，迭代速度提升三倍以上。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🔗</div>
+          <h3>无缝集成</h3>
+          <p>对接 80 款以上主流工具，CRM、客服、支付、数据仓库统统打通，数据不再散落各处。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">工作流程</div>
+        <h2>三步启动你的增长飞轮</h2>
+        <p class="section-desc">从接入到看到效果，最快只需要一个下午。我们的客户成功团队全程陪跑，确保你用对方法。</p>
+      </div>
+      <div class="steps">
+        <div class="step-card reveal">
+          <div class="step-number">01</div>
+          <h3>接入数据</h3>
+          <p>一行代码接入 SDK，或通过 API / 数据导入快速完成对接。预置 200 种常见事件，大部分场景无需额外开发。</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">02</div>
+          <h3>设定目标</h3>
+          <p>定义你的北极星指标和关键转化路径，系统自动建立漏斗和看板，从第一天就能看到数据在流动。</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">03</div>
+          <h3>自动化增长</h3>
+          <p>搭建用户旅程和实验，让系统自动优化每一个触点。从新用户激活到付费转化，全部交给智能引擎。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number">2,400+</div>
+          <div class="stat-label">活跃团队</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">47%</div>
+          <div class="stat-label">平均唤醒提升</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">3.2x</div>
+          <div class="stat-label">转化效率提升</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">99.97%</div>
+          <div class="stat-label">服务可用性</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">用户评价</div>
+        <h2>听听增长负责人怎么说</h2>
+        <p class="section-desc">从初创公司到上市企业，Nebula 正在帮助各类团队加速增长节奏。</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">"接入 Nebula 之后，我们的新用户激活率在两个月内从 23% 提到了 41%。最直观的感受是终于不用在五个后台之间来回切换了。"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">陈</div>
+            <div class="author-info">
+              <h4>陈思远</h4>
+              <p>增长负责人 · Lumina</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">"自动化工作流是我们用得最多的功能。原来需要工程师花一周写的策略，现在我自己下午就能搭完上线，迭代速度完全不一样。"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">林</div>
+            <div class="author-info">
+              <h4>林婉清</h4>
+              <p>产品运营总监 · Quartz</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">"A/B 实验功能的统计结果很扎实，比我们自研的方案靠谱。而且和分析、触达打通之后，做一个完整实验的成本下降了一大半。"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">张</div>
+            <div class="author-info">
+              <h4>张皓然</h4>
+              <p>数据团队 Lead · Velox</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">价格方案</div>
+        <h2>透明定价，随业务一起成长</h2>
+        <p class="section-desc">所有方案均含 14 天免费试用，无需绑卡。随时可以升级或取消，没有隐藏费用。</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pricing-name">Starter</div>
+          <div class="pricing-price">¥0</div>
+          <div class="pricing-period">永久免费</div>
+          <ul class="pricing-features">
+            <li>每月最多 10,000 月活</li>
+            <li>3 个团队成员</li>
+            <li>基础事件分析</li>
+            <li>邮件触达通道</li>
+            <li>社区支持</li>
+          </ul>
+          <a href="#" class="btn-secondary">免费开始</a>
+        </div>
+        <div class="pricing-card featured reveal">
+          <div class="pricing-badge">最受欢迎</div>
+          <div class="pricing-name">Growth</div>
+          <div class="pricing-price">¥1,299</div>
+          <div class="pricing-period">每月 · 按年付享 8 折</div>
+          <ul class="pricing-features">
+            <li>每月最多 100,000 月活</li>
+            <li>10 个团队成员</li>
+            <li>完整分析与漏斗</li>
+            <li>全渠道触达 + 自动化</li>
+            <li>A/B 实验引擎</li>
+            <li>优先邮件与在线支持</li>
+          </ul>
+          <a href="#" class="btn-primary">开始 14 天试用</a>
+        </div>
+        <div class="pricing-card reveal">
+          <div class="pricing-name">Enterprise</div>
+          <div class="pricing-price">定制</div>
+          <div class="pricing-period">按需报价</div>
+          <ul class="pricing-features">
+            <li>无限月活用户</li>
+            <li>无限团队成员</li>
+            <li>私有部署 / 专属集群</li>
+            <li>SSO & 审计日志</li>
+            <li>专属客户成功经理</li>
+            <li>SLA 99.99% 保障</li>
+          </ul>
+          <a href="#" class="btn-secondary">联系销售</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">常见问题</div>
+        <h2>还有疑问？这里可能有答案</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>接入 Nebula 需要多长时间？</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              基础接入通常只需要 30 分钟到 2 小时，取决于你的技术栈和接入深度。我们提供 Web、iOS、Android、小程序等多端 SDK，以及 REST API 和数据导入方案。预置了 200 种常见事件，大部分场景开箱即用。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>免费版有什么限制？</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Starter 免费版支持每月最多 10,000 月活用户、3 个团队成员席位，包含基础事件分析和邮件触达通道。数据保留 90 天。完全足够小团队验证产品和跑通增长流程。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>可以随时升级或取消吗？</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              当然可以。你可以在任何时候升级方案，升级后立即生效，我们会按比例计算差价。取消也没有违约金，数据会保留 30 天以便你随时回来。年付方案取消后剩余周期按比例退款。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>数据安全和隐私如何保障？</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              我们通过了 ISO 27001 和 SOC 2 Type II 认证，数据全程加密传输和存储。支持私有部署和专属集群，企业版可提供 SSO、审计日志和数据驻留选项。所有操作均符合 GDPR 和个人信息保护法要求。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>能不能和我们现有的系统对接？</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Nebula 支持 80 款以上主流工具的双向集成，包括 CRM、客服、支付、数据仓库等。如果你的工具不在列表中，可以通过 Webhook 和 REST API 自行对接，企业版还提供定制集成服务。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>有客服支持吗？响应速度怎么样？</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              免费版有社区支持和文档中心；Growth 方案提供工作日 8 小时内响应的邮件和在线客服；企业版配备专属客户成功经理，工作日 2 小时内响应，并提供定期增长咨询服务。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta-card reveal">
+        <h2>准备好加速你的增长了吗？</h2>
+        <p>加入 2,400 多家已经在使用 Nebula 的团队，14 天免费试用，无需绑卡，随时可取消。</p>
+        <a href="#pricing" class="btn-primary">
+          立即开始免费试用
+          <span>→</span>
+        </a>
+        <div class="no-credit">无需信用卡 · 5 分钟完成接入 · 全功能体验</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">Nebula</div>
+        <p>面向成长型团队的一体化用户增长平台，让每一个用户都有价值。</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>产品</h5>
+          <ul>
+            <li><a href="#features">功能介绍</a></li>
+            <li><a href="#pricing">价格方案</a></li>
+            <li><a href="#">更新日志</a></li>
+            <li><a href="#">产品路线图</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>资源</h5>
+          <ul>
+            <li><a href="#">开发文档</a></li>
+            <li><a href="#">帮助中心</a></li>
+            <li><a href="#">增长博客</a></li>
+            <li><a href="#">API 参考</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>公司</h5>
+          <ul>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">加入团队</a></li>
+            <li><a href="#">联系我们</a></li>
+            <li><a href="#">合作伙伴</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nebula Inc. 保留所有权利。</p>
+      <div class="footer-legal">
+        <a href="#">隐私政策</a>
+        <a href="#">服务条款</a>
+        <a href="#">Cookie 设置</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      item.classList.toggle('open');
+    });
+  });
+
+  // Scroll reveal with IntersectionObserver
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+    revealObserver.observe(el);
+  });
+
+  // Tagline word-by-word reveal
+  const taglineEl = document.getElementById('tagline');
+  const words = taglineEl.querySelectorAll('.word');
+
+  const wordObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        words.forEach((word, i) => {
+          setTimeout(() => {
+            word.classList.add('active');
+          }, i * 80);
+        });
+        wordObserver.disconnect();
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  wordObserver.observe(taglineEl);
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href === '#') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

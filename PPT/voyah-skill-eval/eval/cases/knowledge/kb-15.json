@@ -1,0 +1,18 @@
+{
+  "id": "kb-15",
+  "topic": "spacing",
+  "question": "间距梯度的公式是什么?S6 等于多少 px?组件之间的推荐间距是多少?",
+  "golden_answer": "Sn = 4px × n;S6 = 24px;组件间距推荐 8px(S2)。",
+  "required": [
+    "4px",
+    "24px",
+    "8px"
+  ],
+  "specIds": [
+    "spacing.s6",
+    "spacing.common.s6",
+    "spacing.rule.component",
+    "spacing.s2",
+    "spacing.common.s2"
+  ]
+}

@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>数据报表 · 业务概览</title>
+<link rel="stylesheet" href="tokens.css" />
+<style>
+/* ============ 页面布局 ============ */
+.app {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+  background: var(--vx-bg-layout);
+}
+
+/* ============ 侧边栏 ============ */
+.sidebar {
+  background: #1F2937;
+  color: #D1D5DB;
+  padding: var(--vx-space-5) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--vx-space-1);
+}
+.sidebar-logo {
+  padding: 0 var(--vx-space-5) var(--vx-space-5);
+  font-size: var(--vx-font-size-lg);
+  font-weight: var(--vx-font-weight-bold);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: var(--vx-space-2);
+  border-bottom: 1px solid #374151;
+  margin-bottom: var(--vx-space-3);
+}
+.sidebar-logo-mark {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--vx-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 14px;
+}
+.sidebar-group {
+  padding: 0 var(--vx-space-3);
+  font-size: var(--vx-font-size-xs);
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: var(--vx-space-4);
+  margin-bottom: var(--vx-space-1);
+}
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--vx-space-3);
+  padding: var(--vx-space-2) var(--vx-space-5);
+  font-size: var(--vx-font-size-md);
+  color: #D1D5DB;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar-item:hover { background: rgba(255,255,255,0.05); color: #fff; }
+.sidebar-item-active {
+  background: rgba(55, 115, 219, 0.15);
+  color: #fff;
+  border-left-color: var(--vx-primary);
+}
+.sidebar-item-icon {
+  width: 18px; height: 18px; flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* ============ 主内容 ============ */
+.main { display: flex; flex-direction: column; min-width: 0; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 var(--vx-space-6);
+  background: var(--vx-bg-base);
+  border-bottom: 1px solid var(--vx-line-1);
+}
+.topbar-left { display: flex; align-items: center; gap: var(--vx-space-3); }
+.breadcrumb { font-size: var(--vx-font-size-md); color: var(--vx-text-secondary); }
+.breadcrumb strong { color: var(--vx-text-title); font-weight: var(--vx-font-weight-medium); }
+.topbar-right { display: flex; align-items: center; gap: var(--vx-space-4); }
+.topbar-icon-btn {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--vx-text-secondary); cursor: pointer;
+  position: relative;
+}
+.topbar-icon-btn:hover { background: var(--vx-fill-3); color: var(--vx-text-primary); }
+.topbar-icon-btn .dot {
+  position: absolute; top: 8px; right: 8px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--vx-error);
+  border: 2px solid var(--vx-bg-base);
+}
+
+/* 内容区 */
+.content {
+  padding: var(--vx-space-5) var(--vx-space-6) var(--vx-space-6);
+  display: flex; flex-direction: column; gap: var(--vx-space-5);
+}
+
+/* 页面标题区 */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--vx-space-4);
+}
+.page-title {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: var(--vx-font-weight-bold);
+  color: var(--vx-text-title);
+}
+.page-subtitle {
+  font-size: var(--vx-font-size-md);
+  color: var(--vx-text-secondary);
+  margin-top: 2px;
+}
+.page-actions { display: flex; gap: var(--vx-space-2); flex-shrink: 0; }
+
+/* 筛选器行 */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: var(--vx-space-3);
+  flex-wrap: wrap;
+  background: var(--vx-bg-base);
+  padding: var(--vx-space-3) var(--vx-space-4);
+  border-radius: var(--vx-radius-lg);
+  border: 1px solid var(--vx-line-1);
+}
+.filter-label {
+  font-size: var(--vx-font-size-sm);
+  color: var(--vx-text-secondary);
+  margin-right: 4px;
+}
+
+/* KPI 卡片行 */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--vx-space-4);
+}
+
+.stat-card {
+  background: var(--vx-bg-base);
+  border: 1px solid var(--vx-line-1);
+  border-radius: var(--vx-radius-lg);
+  padding: var(--vx-space-4) var(--vx-space-5) var(--vx-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--vx-space-2);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card:hover {
+  border-color: var(--vx-primary-l3);
+  box-shadow: 0 2px 8px rgba(55,115,219,0.06);
+}
+.stat-label {
+  font-size: var(--vx-font-size-sm);
+  color: var(--vx-text-secondary);
+  display: flex; align-items: center; gap: var(--vx-space-1);
+}
+.stat-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--vx-primary-bg);
+  color: var(--vx-primary);
+}
+.stat-header { display: flex; align-items: flex-start; justify-content: space-between; }
+.stat-value {
+  font-family: var(--vx-font-family-number);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+  color: var(--vx-text-title);
+  letter-spacing: -0.01em;
+}
+.stat-unit {
+  font-size: var(--vx-font-size-sm);
+  color: var(--vx-text-secondary);
+  font-weight: var(--vx-font-weight-regular);
+  margin-left: 2px;
+}
+.stat-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--vx-font-size-xs);
+  font-weight: var(--vx-font-weight-medium);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.stat-delta-up { background: var(--vx-success-bg); color: var(--vx-success-dark); }
+.stat-delta-down { background: var(--vx-error-bg); color: var(--vx-error-dark); }
+.stat-trend { height: 36px; width: 100%; margin-top: 4px; }
+.stat-footnote {
+  font-size: var(--vx-font-size-xs);
+  color: var(--vx-text-caption);
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* 图表卡片 */
+.chart-card {
+  background: var(--vx-bg-base);
+  border: 1px solid var(--vx-line-1);
+  border-radius: var(--vx-radius-lg);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.chart-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--vx-space-4) var(--vx-space-5);
+  border-bottom: 1px solid var(--vx-line-1);
+}
+.chart-title-wrap { display: flex; flex-direction: column; gap: 2px; }
+.chart-title {
+  font-size: var(--vx-font-size-lg);
+  font-weight: var(--vx-font-weight-bold);
+  color: var(--vx-text-title);
+  line-height: var(--vx-line-height-module-title);
+}
+.chart-subtitle {
+  font-size: var(--vx-font-size-xs);
+  color: var(--vx-text-caption);
+}
+.chart-tools { display: flex; align-items: center; gap: var(--vx-space-2); }
+.chart-body {
+  padding: var(--vx-space-4) var(--vx-space-5) var(--vx-space-5);
+  position: relative;
+}
+
+/* 图表网格 */
+.charts-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--vx-space-4);
+}
+.charts-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--vx-space-4);
+}
+
+/* 图例 */
+.legend { display: flex; align-items: center; gap: var(--vx-space-4); flex-wrap: wrap; }
+.legend-item {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--vx-font-size-xs);
+  color: var(--vx-text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+.legend-item:hover { color: var(--vx-text-primary); }
+.legend-swatch {
+  width: 10px; height: 10px; border-radius: 2px;
+  flex-shrink: 0;
+}
+.legend-swatch-line {
+  width: 16px; height: 2px; border-radius: 1px;
+}
+
+/* SVG 图表基础 */
+svg.chart { width: 100%; display: block; }
+.axis-text {
+  font-family: var(--vx-font-family);
+  font-size: 11px;
+  fill: var(--vx-text-caption);
+  font-variant-numeric: tabular-nums;
+}
+.grid-line { stroke: var(--vx-line-1); stroke-width: 1; }
+.baseline { stroke: #D4D4D4; stroke-width: 1; }
+.hover-dot {
+  fill: var(--vx-bg-base);
+  stroke-width: 2;
+}
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--vx-text-title);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.12s;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.tooltip-title { font-weight: 600; margin-bottom: 4px; font-size: 12px; }
+.tooltip-row { display: flex; align-items: center; gap: 6px; }
+.tooltip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.tooltip-value { margin-left: auto; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* 表格视图 */
+.table-view {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--vx-font-size-sm);
+  display: none;
+}
+.table-view.show { display: table; }
+.table-view th, .table-view td {
+  padding: 10px 12px;
+  text-align: right;
+  border-bottom: 1px solid var(--vx-line-1);
+  font-variant-numeric: tabular-nums;
+}
+.table-view th:first-child, .table-view td:first-child {
+  text-align: left;
+  color: var(--vx-text-primary);
+  font-weight: var(--vx-font-weight-regular);
+}
+.table-view th {
+  background: var(--vx-fill-2);
+  color: var(--vx-text-secondary);
+  font-weight: var(--vx-font-weight-medium);
+  font-size: var(--vx-font-size-xs);
+}
+.table-view tbody tr:hover { background: var(--vx-fill-1); }
+
+/* 数据表格 */
+.data-table-card { overflow: hidden; }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--vx-font-size-sm);
+}
+.data-table th {
+  text-align: left;
+  padding: 10px 16px;
+  background: var(--vx-fill-2);
+  color: var(--vx-text-secondary);
+  font-weight: var(--vx-font-weight-medium);
+  font-size: var(--vx-font-size-xs);
+  border-bottom: 1px solid var(--vx-line-1);
+}
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--vx-line-1);
+  color: var(--vx-text-primary);
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: var(--vx-fill-1); }
+.data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.rank-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--vx-fill-3);
+  color: var(--vx-text-secondary);
+}
+.rank-tag.top1 { background: #FFF1DB; color: #EA8C00; }
+.rank-tag.top2 { background: #F3F4F7; color: #666; }
+.rank-tag.top3 { background: #FCEBEA; color: #CF2E2E; }
+.product-cell { display: flex; align-items: center; gap: 10px; }
+.product-thumb {
+  width: 36px; height: 36px; border-radius: 6px;
+  background: var(--vx-primary-bg);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--vx-primary);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.product-name { font-weight: var(--vx-font-weight-medium); color: var(--vx-text-title); }
+.product-cat { font-size: var(--vx-font-size-xs); color: var(--vx-text-caption); margin-top: 1px; }
+
+/* mini 进度条 in 表格 */
+.bar-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+}
+.bar-inline-track {
+  flex: 1;
+  height: 6px;
+  background: var(--vx-fill-3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-inline-fill {
+  height: 100%;
+  background: var(--vx-primary);
+  border-radius: 3px;
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .charts-row { grid-template-columns: 1fr; }
+  .charts-row-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .charts-row-3 { grid-template-columns: 1fr; }
+}
+
+/* 主题选择器（右上角小圆点） */
+.theme-switcher {
+  display: flex; gap: 6px; padding: 6px 8px;
+  background: var(--vx-fill-3); border-radius: 100px;
+}
+.theme-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.15s;
+}
+.theme-dot:hover { transform: scale(1.15); }
+.theme-dot.active { border-color: var(--vx-bg-base); box-shadow: 0 0 0 1px #999; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ============ 侧边栏 ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="sidebar-logo-mark">V</span>
+      <span>数据中心</span>
+    </div>
+
+    <div class="sidebar-group">概览</div>
+    <div class="sidebar-item sidebar-item-active">
+      <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+      <span>数据报表</span>
+    </div>
+    <div class="sidebar-item">
+      <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+      <span>经营分析</span>
+    </div>
+    <div class="sidebar-item">
+      <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M3 12h18"/></svg>
+      <span>用户画像</span>
+    </div>
+
+    <div class="sidebar-group">业务</div>
+    <div class="sidebar-item">
+      <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span>销售数据</span>
+    </div>
+    <div class="sidebar-item">
+      <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      <span>客户管理</span>
+    </div>
+    <div class="sidebar-item">
+      <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7l-8-4-8 4 8 4 8-4z"/><path d="M4 7v10l8 4 8-4V7"/><path d="M12 11v10"/></svg>
+      <span>产品分析</span>
+    </div>
+    <div class="sidebar-item">
+      <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>营销活动</span>
+    </div>
+
+    <div class="sidebar-group">系统</div>
+    <div class="sidebar-item">
+      <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <span>系统设置</span>
+    </div>
+  </aside>
+
+  <!-- ============ 主内容 ============ -->
+  <main class="main">
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="breadcrumb">数据中心 / <strong>数据报表</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="theme-switcher" title="切换主题">
+          <span class="theme-dot active" data-theme="blue" style="background:#3773DB" onclick="setTheme('blue')"></span>
+          <span class="theme-dot" data-theme="purple" style="background:#8F44FF" onclick="setTheme('purple')"></span>
+          <span class="theme-dot" data-theme="cuiqing" style="background:#54A7B2" onclick="setTheme('cuiqing')"></span>
+          <span class="theme-dot" data-theme="yellow" style="background:#FFD400" onclick="setTheme('yellow')"></span>
+          <span class="theme-dot" data-theme="red" style="background:#D82128" onclick="setTheme('red')"></span>
+        </div>
+        <div class="topbar-icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <span class="dot"></span>
+        </div>
+        <div class="topbar-icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+          <div class="vx-avatar vx-avatar-primary">李</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- 页面标题 -->
+      <div class="page-header">
+        <div>
+          <div class="page-title">业务数据概览</div>
+          <div class="page-subtitle">实时洞察业务表现，数据更新于 2026-11-10 09:42</div>
+        </div>
+        <div class="page-actions">
+          <button class="vx-btn vx-btn-secondary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            导出报表
+          </button>
+          <button class="vx-btn vx-btn-primary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+            刷新数据
+          </button>
+        </div>
+      </div>
+
+      <!-- 筛选器 -->
+      <div class="filters">
+        <span class="filter-label">时间范围：</span>
+        <div class="vx-segmented">
+          <div class="vx-segmented-item">今日</div>
+          <div class="vx-segmented-item">本周</div>
+          <div class="vx-segmented-item vx-segmented-item-selected">本月</div>
+          <div class="vx-segmented-item">本季度</div>
+          <div class="vx-segmented-item">本年</div>
+        </div>
+        <span class="filter-label" style="margin-left:12px">业务线：</span>
+        <select class="vx-input" style="width:140px;height:32px;font-size:13px;">
+          <option>全部业务</option>
+          <option>乘用车</option>
+          <option>商用车</option>
+          <option>新能源</option>
+        </select>
+        <span class="filter-label">地区：</span>
+        <select class="vx-input" style="width:120px;height:32px;font-size:13px;">
+          <option>全国</option>
+          <option>华东</option>
+          <option>华南</option>
+          <option>华北</option>
+          <option>西南</option>
+        </select>
+        <div style="flex:1"></div>
+        <label class="vx-checkbox">
+          <input type="checkbox" checked />
+          <span class="vx-checkbox-box">✓</span>
+          <span>对比上期</span>
+        </label>
+      </div>
+
+      <!-- KPI 卡片 -->
+      <div class="kpi-grid">
+        <!-- KPI 1 -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div>
+              <div class="stat-label">总营收</div>
+              <div style="margin-top:8px">
+                <span class="stat-value">¥2,847<span class="stat-unit">万</span></span>
+              </div>
+              <div style="margin-top:8px">
+                <span class="stat-delta stat-delta-up">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                  12.6%
+                </span>
+                <span style="font-size:12px;color:var(--vx-text-caption);margin-left:6px;">较上月</span>
+              </div>
+            </div>
+            <div class="stat-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+          </div>
+          <svg class="stat-trend" viewBox="0 0 200 36" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="spark1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--vx-primary)" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="var(--vx-primary)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,28 L20,25 L40,26 L60,20 L80,22 L100,16 L120,14 L140,10 L160,12 L180,6 L200,4 L200,36 L0,36 Z" fill="url(#spark1)"/>
+            <path d="M0,28 L20,25 L40,26 L60,20 L80,22 L100,16 L120,14 L140,10 L160,12 L180,6 L200,4" fill="none" stroke="var(--vx-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- KPI 2 -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div>
+              <div class="stat-label">订单总量</div>
+              <div style="margin-top:8px">
+                <span class="stat-value">12,486</span>
+              </div>
+              <div style="margin-top:8px">
+                <span class="stat-delta stat-delta-up">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                  8.3%
+                </span>
+                <span style="font-size:12px;color:var(--vx-text-caption);margin-left:6px;">较上月</span>
+              </div>
+            </div>
+            <div class="stat-icon" style="background:var(--vx-help-bg);color:var(--vx-help);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            </div>
+          </div>
+          <svg class="stat-trend" viewBox="0 0 200 36" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="spark2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#54A7B2" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#54A7B2" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,30 L20,28 L40,24 L60,26 L80,18 L100,20 L120,14 L140,16 L160,8 L180,10 L200,5 L200,36 L0,36 Z" fill="url(#spark2)"/>
+            <path d="M0,30 L20,28 L40,24 L60,26 L80,18 L100,20 L120,14 L140,16 L160,8 L180,10 L200,5" fill="none" stroke="#54A7B2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- KPI 3 -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div>
+              <div class="stat-label">活跃用户</div>
+              <div style="margin-top:8px">
+                <span class="stat-value">48.2<span class="stat-unit">K</span></span>
+              </div>
+              <div style="margin-top:8px">
+                <span class="stat-delta stat-delta-up">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                  5.1%
+                </span>
+                <span style="font-size:12px;color:var(--vx-text-caption);margin-left:6px;">较上月</span>
+              </div>
+            </div>
+            <div class="stat-icon" style="background:var(--vx-purple-bg);color:var(--vx-purple);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+          </div>
+          <svg class="stat-trend" viewBox="0 0 200 36" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="spark3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8F44FF" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#8F44FF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,26 L20,24 L40,25 L60,22 L80,20 L100,22 L120,18 L140,15 L160,16 L180,12 L200,10 L200,36 L0,36 Z" fill="url(#spark3)"/>
+            <path d="M0,26 L20,24 L40,25 L60,22 L80,20 L100,22 L120,18 L140,15 L160,16 L180,12 L200,10" fill="none" stroke="#8F44FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- KPI 4 -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div>
+              <div class="stat-label">转化率</div>
+              <div style="margin-top:8px">
+                <span class="stat-value">24.8<span class="stat-unit">%</span></span>
+              </div>
+              <div style="margin-top:8px">
+                <span class="stat-delta stat-delta-down">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  1.2%
+                </span>
+                <span style="font-size:12px;color:var(--vx-text-caption);margin-left:6px;">较上月</span>
+              </div>
+            </div>
+            <div class="stat-icon" style="background:var(--vx-warning-bg);color:var(--vx-warning-dark);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+          </div>
+          <svg class="stat-trend" viewBox="0 0 200 36" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="spark4" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FFA800" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#FFA800" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,10 L20,12 L40,9 L60,14 L80,13 L100,16 L120,20 L140,18 L160,22 L180,24 L200,28 L200,36 L0,36 Z" fill="url(#spark4)"/>
+            <path d="M0,10 L20,12 L40,9 L60,14 L80,13 L100,16 L120,20 L140,18 L160,22 L180,24 L200,28" fill="none" stroke="#FFA800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 主图表行：营收趋势 + 品类占比 -->
+      <div class="charts-row">
+        <!-- 营收趋势 -->
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <div class="chart-title-wrap">
+              <div class="chart-title">营收趋势</div>
+              <div class="chart-subtitle">近 30 天日营收 · 单位：万元</div>
+            </div>
+            <div class="chart-tools">
+              <div class="legend">
+                <span class="legend-item"><span class="legend-swatch-line" style="background:var(--vx-primary)"></span>本期</span>
+                <span class="legend-item"><span class="legend-swatch-line" style="background:#CBDBF7"></span>上期</span>
+              </div>
+              <div style="width:1px;height:16px;background:var(--vx-line-1)"></div>
+              <div class="vx-segmented" style="height:28px;">
+                <div class="vx-segmented-item vx-segmented-item-selected" style="height:24px">日</div>
+                <div class="vx-segmented-item" style="height:24px">周</div>
+                <div class="vx-segmented-item" style="height:24px">月</div>
+              </div>
+              <button class="vx-btn vx-btn-secondary vx-btn-sm" onclick="toggleTable('trend')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                表格
+              </button>
+            </div>
+          </div>
+          <div class="chart-body" id="trendChartWrap">
+            <svg class="chart" id="trendChart" viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--vx-primary)" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="var(--vx-primary)" stop-opacity="0.02"/>
+                </linearGradient>
+              </defs>
+
+              <!-- grid lines -->
+              <g class="grid">
+                <line class="grid-line" x1="50" y1="40" x2="700" y2="40"/>
+                <line class="grid-line" x1="50" y1="100" x2="700" y2="100"/>
+                <line class="grid-line" x1="50" y1="160" x2="700" y2="160"/>
+                <line class="grid-line" x1="50" y1="220" x2="700" y2="220"/>
+                <line class="baseline" x1="50" y1="260" x2="700" y2="260"/>
+              </g>
+
+              <!-- y-axis labels -->
+              <g class="axis-text">
+                <text x="45" y="44" text-anchor="end">300</text>
+                <text x="45" y="104" text-anchor="end">250</text>
+                <text x="45" y="164" text-anchor="end">200</text>
+                <text x="45" y="224" text-anchor="end">150</text>
+                <text x="45" y="264" text-anchor="end">100</text>
+              </g>
+
+              <!-- x-axis labels (sparse) -->
+              <g class="axis-text">
+                <text x="50" y="285" text-anchor="middle">11/01</text>
+                <text x="158" y="285" text-anchor="middle">11/06</text>
+                <text x="266" y="285" text-anchor="middle">11/11</text>
+                <text x="374" y="285" text-anchor="middle">11/16</text>
+                <text x="482" y="285" text-anchor="middle">11/21</text>
+                <text x="590" y="285" text-anchor="middle">11/26</text>
+                <text x="700" y="285" text-anchor="middle">11/30</text>
+              </g>
+
+              <!-- 上期虚线 (background line) -->
+              <path id="prevLine"
+                d="M50,180 L83,175 L116,185 L149,170 L182,178 L215,165 L248,172 L281,160 L314,168 L347,155 L380,162 L413,150 L446,158 L479,145 L512,152 L545,140 L578,148 L611,135 L644,142 L677,130 L700,138"
+                fill="none" stroke="#CBDBF7" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+
+              <!-- 本期 area fill -->
+              <path id="currArea"
+                d="M50,190 L83,185 L116,172 L149,178 L182,160 L215,168 L248,150 L281,158 L314,140 L347,148 L380,130 L413,138 L446,120 L479,128 L512,110 L545,118 L578,100 L611,108 L644,90 L677,98 L700,80 L700,260 L50,260 Z"
+                fill="url(#areaGrad)"/>
+
+              <!-- 本期 line -->
+              <path id="currLine"
+                d="M50,190 L83,185 L116,172 L149,178 L182,160 L215,168 L248,150 L281,158 L314,140 L347,148 L380,130 L413,138 L446,120 L479,128 L512,110 L545,118 L578,100 L611,108 L644,90 L677,98 L700,80"
+                fill="none" stroke="var(--vx-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <!-- end marker dot -->
+              <circle cx="700" cy="80" r="5" fill="var(--vx-primary)" stroke="var(--vx-bg-base)" stroke-width="2"/>
+
+              <!-- endpoint label -->
+              <text x="700" y="72" text-anchor="end" class="axis-text" style="fill:var(--vx-text-primary);font-weight:600;font-size:12px;">287万</text>
+
+              <!-- hover crosshair -->
+              <line id="crosshair" class="grid-line" x1="380" y1="40" x2="380" y2="260" stroke="var(--vx-text-caption)" stroke-dasharray="3 3" style="display:none"/>
+              <circle id="hoverCurr" class="hover-dot" cx="380" cy="130" r="5" stroke="var(--vx-primary)" style="display:none"/>
+              <circle id="hoverPrev" class="hover-dot" cx="380" cy="150" r="5" stroke="#CBDBF7" style="display:none"/>
+            </svg>
+
+            <!-- 表格视图 -->
+            <table class="table-view" id="trendTable">
+              <thead>
+                <tr>
+                  <th>日期</th>
+                  <th>本期营收（万元）</th>
+                  <th>上期营收（万元）</th>
+                  <th>环比</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>11-01</td><td>185.2</td><td>198.6</td><td style="color:var(--vx-error-dark)">-6.7%</td></tr>
+                <tr><td>11-05</td><td>210.5</td><td>205.3</td><td style="color:var(--vx-success-dark)">+2.5%</td></tr>
+                <tr><td>11-10</td><td>228.7</td><td>212.4</td><td style="color:var(--vx-success-dark)">+7.7%</td></tr>
+                <tr><td>11-15</td><td>245.3</td><td>230.1</td><td style="color:var(--vx-success-dark)">+6.6%</td></tr>
+                <tr><td>11-20</td><td>262.1</td><td>245.8</td><td style="color:var(--vx-success-dark)">+6.6%</td></tr>
+                <tr><td>11-25</td><td>278.4</td><td>260.5</td><td style="color:var(--vx-success-dark)">+6.9%</td></tr>
+                <tr><td>11-30</td><td>287.0</td><td>268.2</td><td style="color:var(--vx-success-dark)">+7.0%</td></tr>
+              </tbody>
+            </table>
+
+            <div class="tooltip" id="trendTip">
+              <div class="tooltip-title" id="trendTipTitle">11月15日</div>
+              <div class="tooltip-row"><span class="tooltip-dot" style="background:var(--vx-primary)"></span>本期<span class="tooltip-value" id="trendTipCurr">245.3万</span></div>
+              <div class="tooltip-row"><span class="tooltip-dot" style="background:#CBDBF7"></span>上期<span class="tooltip-value" id="trendTipPrev">230.1万</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 品类占比（水平堆叠条） -->
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <div class="chart-title-wrap">
+              <div class="chart-title">品类营收占比</div>
+              <div class="chart-subtitle">按产品分类统计</div>
+            </div>
+            <div class="chart-tools">
+              <button class="vx-btn vx-btn-secondary vx-btn-sm" onclick="toggleTable('cat')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                表格
+              </button>
+            </div>
+          </div>
+          <div class="chart-body">
+            <div id="catChart" style="display:flex;flex-direction:column;gap:18px;">
+              <!-- horizontal stacked bar total -->
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-size:13px;color:var(--vx-text-primary);font-weight:500;">总营收构成</span>
+                  <span style="font-size:12px;color:var(--vx-text-caption);">¥2,847 万</span>
+                </div>
+                <div style="display:flex;height:20px;border-radius:10px;overflow:hidden;gap:2px;background:transparent;">
+                  <div style="width:42%;background:var(--vx-primary);border-radius:10px 0 0 10px;" title="SUV系列 42%"></div>
+                  <div style="width:28%;background:#54A7B2;" title="轿车系列 28%"></div>
+                  <div style="width:15%;background:#8F44FF;" title="新能源 15%"></div>
+                  <div style="width:10%;background:#FFA800;border-radius:0 10px 10px 0;" title="商用车 10%"></div>
+                </div>
+              </div>
+
+              <!-- 分项堆叠条 -->
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="font-size:13px;color:var(--vx-text-primary);display:inline-flex;align-items:center;gap:6px;">
+                      <span style="width:10px;height:10px;border-radius:2px;background:var(--vx-primary);display:inline-block;"></span>
+                      SUV 系列
+                    </span>
+                    <span style="font-size:13px;color:var(--vx-text-title);font-weight:600;font-variant-numeric:tabular-nums;">¥1,196万 <span style="color:var(--vx-text-caption);font-weight:400;">· 42%</span></span>
+                  </div>
+                  <div style="height:8px;background:var(--vx-fill-3);border-radius:4px;overflow:hidden;">
+                    <div style="width:42%;height:100%;background:var(--vx-primary);border-radius:4px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="font-size:13px;color:var(--vx-text-primary);display:inline-flex;align-items:center;gap:6px;">
+                      <span style="width:10px;height:10px;border-radius:2px;background:#54A7B2;display:inline-block;"></span>
+                      轿车系列
+                    </span>
+                    <span style="font-size:13px;color:var(--vx-text-title);font-weight:600;font-variant-numeric:tabular-nums;">¥797万 <span style="color:var(--vx-text-caption);font-weight:400;">· 28%</span></span>
+                  </div>
+                  <div style="height:8px;background:var(--vx-fill-3);border-radius:4px;overflow:hidden;">
+                    <div style="width:28%;height:100%;background:#54A7B2;border-radius:4px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="font-size:13px;color:var(--vx-text-primary);display:inline-flex;align-items:center;gap:6px;">
+                      <span style="width:10px;height:10px;border-radius:2px;background:#8F44FF;display:inline-block;"></span>
+                      新能源车型
+                    </span>
+                    <span style="font-size:13px;color:var(--vx-text-title);font-weight:600;font-variant-numeric:tabular-nums;">¥427万 <span style="color:var(--vx-text-caption);font-weight:400;">· 15%</span></span>
+                  </div>
+                  <div style="height:8px;background:var(--vx-fill-3);border-radius:4px;overflow:hidden;">
+                    <div style="width:15%;height:100%;background:#8F44FF;border-radius:4px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="font-size:13px;color:var(--vx-text-primary);display:inline-flex;align-items:center;gap:6px;">
+                      <span style="width:10px;height:10px;border-radius:2px;background:#FFA800;display:inline-block;"></span>
+                      商用车
+                    </span>
+                    <span style="font-size:13px;color:var(--vx-text-title);font-weight:600;font-variant-numeric:tabular-nums;">¥285万 <span style="color:var(--vx-text-caption);font-weight:400;">· 10%</span></span>
+                  </div>
+                  <div style="height:8px;background:var(--vx-fill-3);border-radius:4px;overflow:hidden;">
+                    <div style="width:10%;height:100%;background:#FFA800;border-radius:4px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="font-size:13px;color:var(--vx-text-primary);display:inline-flex;align-items:center;gap:6px;">
+                      <span style="width:10px;height:10px;border-radius:2px;background:#999;display:inline-block;"></span>
+                      其他
+                    </span>
+                    <span style="font-size:13px;color:var(--vx-text-title);font-weight:600;font-variant-numeric:tabular-nums;">¥142万 <span style="color:var(--vx-text-caption);font-weight:400;">· 5%</span></span>
+                  </div>
+                  <div style="height:8px;background:var(--vx-fill-3);border-radius:4px;overflow:hidden;">
+                    <div style="width:5%;height:100%;background:#999;border-radius:4px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 表格视图 -->
+            <table class="table-view" id="catTable">
+              <thead>
+                <tr>
+                  <th>品类</th>
+                  <th>营收（万元）</th>
+                  <th>占比</th>
+                  <th>同比</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>SUV 系列</td><td>1,196</td><td>42.0%</td><td style="color:var(--vx-success-dark)">+14.2%</td></tr>
+                <tr><td>轿车系列</td><td>797</td><td>28.0%</td><td style="color:var(--vx-success-dark)">+8.5%</td></tr>
+                <tr><td>新能源车型</td><td>427</td><td>15.0%</td><td style="color:var(--vx-success-dark)">+32.1%</td></tr>
+                <tr><td>商用车</td><td>285</td><td>10.0%</td><td style="color:var(--vx-error-dark)">-3.2%</td></tr>
+                <tr><td>其他</td><td>142</td><td>5.0%</td><td style="color:var(--vx-success-dark)">+5.8%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二行：柱状图 + 热力区域 + 完成度 -->
+      <div class="charts-row-3">
+        <!-- 月度销售柱状图 -->
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <div class="chart-title-wrap">
+              <div class="chart-title">月度销售对比</div>
+              <div class="chart-subtitle">各月销量 · 单位：辆</div>
+            </div>
+            <div class="chart-tools">
+              <div class="legend">
+                <span class="legend-item"><span class="legend-swatch" style="background:var(--vx-primary)"></span>销量</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <svg class="chart" viewBox="0 0 360 220" preserveAspectRatio="xMidYMid meet">
+              <!-- grid -->
+              <line class="grid-line" x1="40" y1="30" x2="345" y2="30"/>
+              <line class="grid-line" x1="40" y1="70" x2="345" y2="70"/>
+              <line class="grid-line" x1="40" y1="110" x2="345" y2="110"/>
+              <line class="grid-line" x1="40" y1="150" x2="345" y2="150"/>
+              <line class="baseline" x1="40" y1="180" x2="345" y2="180"/>
+
+              <!-- y labels -->
+              <g class="axis-text">
+                <text x="35" y="34" text-anchor="end">2000</text>
+                <text x="35" y="74" text-anchor="end">1500</text>
+                <text x="35" y="114" text-anchor="end">1000</text>
+                <text x="35" y="154" text-anchor="end">500</text>
+                <text x="35" y="184" text-anchor="end">0</text>
+              </g>
+
+              <!-- bars -->
+              <g id="barGroup">
+                <!-- 6 月 -->
+                <rect x="52" y="110" width="18" height="70" rx="4" fill="var(--vx-primary)" class="bar-item"/>
+                <text x="61" y="200" text-anchor="middle" class="axis-text">6月</text>
+                <!-- 7 月 -->
+                <rect x="97" y="95" width="18" height="85" rx="4" fill="var(--vx-primary)" class="bar-item"/>
+                <text x="106" y="200" text-anchor="middle" class="axis-text">7月</text>
+                <!-- 8 月 -->
+                <rect x="142" y="102" width="18" height="78" rx="4" fill="var(--vx-primary)" class="bar-item"/>
+                <text x="151" y="200" text-anchor="middle" class="axis-text">8月</text>
+                <!-- 9 月 -->
+                <rect x="187" y="75" width="18" height="105" rx="4" fill="var(--vx-primary)" class="bar-item"/>
+                <text x="196" y="200" text-anchor="middle" class="axis-text">9月</text>
+                <!-- 10 月 -->
+                <rect x="232" y="60" width="18" height="120" rx="4" fill="var(--vx-primary)" class="bar-item"/>
+                <text x="241" y="200" text-anchor="middle" class="axis-text">10月</text>
+                <!-- 11 月 -->
+                <rect x="277" y="40" width="18" height="140" rx="4" fill="var(--vx-primary-l7)" class="bar-item"/>
+                <text x="286" y="200" text-anchor="middle" class="axis-text">11月</text>
+                <!-- value on cap -->
+                <text x="286" y="32" text-anchor="middle" class="axis-text" style="fill:var(--vx-text-primary);font-weight:600;font-size:11px;">1.9K</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 区域销售分布 -->
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <div class="chart-title-wrap">
+              <div class="chart-title">区域销售分布</div>
+              <div class="chart-subtitle">按地区维度</div>
+            </div>
+            <div class="chart-tools">
+              <button class="vx-btn vx-btn-secondary vx-btn-sm">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                地图
+              </button>
+            </div>
+          </div>
+          <div class="chart-body" style="padding-bottom:20px;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;color:var(--vx-text-primary)">华东地区</span>
+                  <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;">¥986万 · 34.6%</span>
+                </div>
+                <div class="bar-inline-track"><div class="bar-inline-fill" style="width:86%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;color:var(--vx-text-primary)">华南地区</span>
+                  <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;">¥687万 · 24.1%</span>
+                </div>
+                <div class="bar-inline-track"><div class="bar-inline-fill" style="width:60%;background:#54A7B2"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;color:var(--vx-text-primary)">华北地区</span>
+                  <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;">¥524万 · 18.4%</span>
+                </div>
+                <div class="bar-inline-track"><div class="bar-inline-fill" style="width:46%;background:#8F44FF"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;color:var(--vx-text-primary)">西南地区</span>
+                  <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;">¥338万 · 11.9%</span>
+                </div>
+                <div class="bar-inline-track"><div class="bar-inline-fill" style="width:30%;background:#FFA800"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;color:var(--vx-text-primary)">华中地区</span>
+                  <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;">¥212万 · 7.4%</span>
+                </div>
+                <div class="bar-inline-track"><div class="bar-inline-fill" style="width:19%;background:#EB6834"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;color:var(--vx-text-primary)">东北/西北</span>
+                  <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;">¥100万 · 3.6%</span>
+                </div>
+                <div class="bar-inline-track"><div class="bar-inline-fill" style="width:9%;background:#999"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 目标完成度 -->
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <div class="chart-title-wrap">
+              <div class="chart-title">目标完成度</div>
+              <div class="chart-subtitle">本月业绩目标进度</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <div style="display:flex;flex-direction:column;align-items:center;padding:10px 0;">
+              <!-- 环形进度 -->
+              <svg viewBox="0 0 200 200" width="180" height="180">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="var(--vx-fill-3)" stroke-width="12"/>
+                <circle cx="100" cy="100" r="80" fill="none" stroke="var(--vx-primary)" stroke-width="12"
+                  stroke-linecap="round" stroke-dasharray="402" stroke-dashoffset="80"
+                  transform="rotate(-90 100 100)"/>
+                <text x="100" y="92" text-anchor="middle" style="font-size:32px;font-weight:700;fill:var(--vx-text-title);">78%</text>
+                <text x="100" y="118" text-anchor="middle" style="font-size:13px;fill:var(--vx-text-secondary);">目标完成率</text>
+              </svg>
+
+              <div style="width:100%;margin-top:12px;display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;justify-content:space-between;font-size:13px;">
+                  <span style="color:var(--vx-text-secondary)">目标营收</span>
+                  <span style="color:var(--vx-text-title);font-weight:600;">¥3,650 万</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;">
+                  <span style="color:var(--vx-text-secondary)">已完成</span>
+                  <span style="color:var(--vx-text-title);font-weight:600;">¥2,847 万</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;">
+                  <span style="color:var(--vx-text-secondary)">剩余天数</span>
+                  <span style="color:var(--vx-primary);font-weight:600;">10 天</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 产品销售排行 -->
+      <div class="chart-card data-table-card">
+        <div class="chart-card-head">
+          <div class="chart-title-wrap">
+            <div class="chart-title">产品销售排行</div>
+            <div class="chart-subtitle">TOP 10 热销产品 · 本月数据</div>
+          </div>
+          <div class="chart-tools">
+            <div class="vx-segmented" style="height:28px;">
+              <div class="vx-segmented-item vx-segmented-item-selected" style="height:24px">按销量</div>
+              <div class="vx-segmented-item" style="height:24px">按营收</div>
+              <div class="vx-segmented-item" style="height:24px">按利润</div>
+            </div>
+            <input type="text" class="vx-input" style="width:180px;height:32px;font-size:13px;" placeholder="搜索产品..." />
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:60px">排名</th>
+                <th>产品名称</th>
+                <th class="num">销量（辆）</th>
+                <th class="num">营收（万元）</th>
+                <th class="num">同比</th>
+                <th style="min-width:200px">销售占比</th>
+                <th class="num">状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="rank-tag top1">1</span></td>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-thumb">SUV</div>
+                    <div>
+                      <div class="product-name">岚图 FREE 2026 款</div>
+                      <div class="product-cat">SUV 系列 · 纯电</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="num" style="font-weight:500">2,348</td>
+                <td class="num">842.5</td>
+                <td class="num" style="color:var(--vx-success-dark)">+18.2%</td>
+                <td>
+                  <div class="bar-inline">
+                    <div class="bar-inline-track"><div class="bar-inline-fill" style="width:88%"></div></div>
+                    <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;width:40px;text-align:right;">29.6%</span>
+                  </div>
+                </td>
+                <td class="num"><span class="vx-tag vx-tag-success">热销</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-tag top2">2</span></td>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-thumb" style="background:#E8F6F9;color:#38929F;">轿车</div>
+                    <div>
+                      <div class="product-name">岚图追光 PHEV</div>
+                      <div class="product-cat">轿车系列 · 混动</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="num" style="font-weight:500">1,876</td>
+                <td class="num">628.3</td>
+                <td class="num" style="color:var(--vx-success-dark)">+12.4%</td>
+                <td>
+                  <div class="bar-inline">
+                    <div class="bar-inline-track"><div class="bar-inline-fill" style="width:70%;background:#54A7B2"></div></div>
+                    <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;width:40px;text-align:right;">22.1%</span>
+                  </div>
+                </td>
+                <td class="num"><span class="vx-tag vx-tag-success">热销</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-tag top3">3</span></td>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-thumb" style="background:#F5EFFF;color:#5000C8;">梦想</div>
+                    <div>
+                      <div class="product-name">岚图梦想家 EV</div>
+                      <div class="product-cat">MPV · 纯电</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="num" style="font-weight:500">1,245</td>
+                <td class="num">512.8</td>
+                <td class="num" style="color:var(--vx-success-dark)">+25.6%</td>
+                <td>
+                  <div class="bar-inline">
+                    <div class="bar-inline-track"><div class="bar-inline-fill" style="width:52%;background:#8F44FF"></div></div>
+                    <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;width:40px;text-align:right;">18.0%</span>
+                  </div>
+                </td>
+                <td class="num"><span class="vx-tag vx-tag-primary">新品</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-tag">4</span></td>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-thumb" style="background:#FFF1DB;color:#EA8C00;">SUV</div>
+                    <div>
+                      <div class="product-name">岚图 FREE 增程版</div>
+                      <div class="product-cat">SUV 系列 · 增程</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="num">986</td>
+                <td class="num">324.6</td>
+                <td class="num" style="color:var(--vx-success-dark)">+6.8%</td>
+                <td>
+                  <div class="bar-inline">
+                    <div class="bar-inline-track"><div class="bar-inline-fill" style="width:41%;background:#FFA800"></div></div>
+                    <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;width:40px;text-align:right;">11.4%</span>
+                  </div>
+                </td>
+                <td class="num"><span class="vx-tag">在售</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-tag">5</span></td>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-thumb" style="background:var(--vx-primary-bg);color:var(--vx-primary);">轿车</div>
+                    <div>
+                      <div class="product-name">岚图追光 纯电版</div>
+                      <div class="product-cat">轿车系列 · 纯电</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="num">752</td>
+                <td class="num">278.4</td>
+                <td class="num" style="color:var(--vx-error-dark)">-2.1%</td>
+                <td>
+                  <div class="bar-inline">
+                    <div class="bar-inline-track"><div class="bar-inline-fill" style="width:32%"></div></div>
+                    <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;width:40px;text-align:right;">9.8%</span>
+                  </div>
+                </td>
+                <td class="num"><span class="vx-tag">在售</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-tag">6</span></td>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-thumb" style="background:#E8F6F9;color:#38929F;">MPV</div>
+                    <div>
+                      <div class="product-name">岚图梦想家 PHEV</div>
+                      <div class="product-cat">MPV · 混动</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="num">634</td>
+                <td class="num">248.9</td>
+                <td class="num" style="color:var(--vx-success-dark)">+15.3%</td>
+                <td>
+                  <div class="bar-inline">
+                    <div class="bar-inline-track"><div class="bar-inline-fill" style="width:27%;background:#54A7B2"></div></div>
+                    <span style="font-size:12px;color:var(--vx-text-secondary);font-variant-numeric:tabular-nums;width:40px;text-align:right;">8.8%</span>
+                  </div>
+                </td>
+                <td class="num"><span class="vx-tag vx-tag-success">热销</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid var(--vx-line-1);">
+          <span style="font-size:12px;color:var(--vx-text-secondary);">共 24 条记录，显示第 1-6 条</span>
+          <div style="display:flex;gap:4px;">
+            <button class="vx-btn vx-btn-secondary vx-btn-sm" disabled>上一页</button>
+            <button class="vx-btn vx-btn-primary vx-btn-sm">1</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">2</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">3</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">4</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">下一页</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+// 主题切换
+function setTheme(name) {
+  document.documentElement.setAttribute('data-vx-theme', name);
+  document.querySelectorAll('.theme-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.theme === name);
+  });
+}
+
+// 表格/图表切换
+function toggleTable(id) {
+  const chartId = id === 'trend' ? 'trendChart' : 'catChart';
+  const tableId = id === 'trend' ? 'trendTable' : 'catTable';
+  const chart = document.getElementById(chartId);
+  const table = document.getElementById(tableId);
+  if (table.classList.contains('show')) {
+    table.classList.remove('show');
+    chart.style.display = '';
+  } else {
+    table.classList.add('show');
+    chart.style.display = 'none';
+  }
+}
+
+// 营收趋势图 hover 交互
+(function() {
+  const wrap = document.getElementById('trendChartWrap');
+  const chart = document.getElementById('trendChart');
+  const tip = document.getElementById('trendTip');
+  const crosshair = document.getElementById('crosshair');
+  const hoverCurr = document.getElementById('hoverCurr');
+  const hoverPrev = document.getElementById('hoverPrev');
+  const titleEl = document.getElementById('trendTipTitle');
+  const currEl = document.getElementById('trendTipCurr');
+  const prevEl = document.getElementById('trendTipPrev');
+
+  const points = [
+    {x:50, curr:190, prev:180, date:'11月1日', cv:185.2, pv:198.6},
+    {x:83, curr:185, prev:175, date:'11月2日', cv:190.4, pv:203.2},
+    {x:116, curr:172, prev:185, date:'11月3日', cv:201.8, pv:192.7},
+    {x:149, curr:178, prev:170, date:'11月4日', cv:196.2, pv:207.8},
+    {x:182, curr:160, prev:178, date:'11月5日', cv:210.5, pv:200.3},
+    {x:215, curr:168, prev:165, date:'11月6日', cv:204.8, pv:212.5},
+    {x:248, curr:150, prev:172, date:'11月7日', cv:220.3, pv:205.8},
+    {x:281, curr:158, prev:160, date:'11月8日', cv:213.6, pv:216.4},
+    {x:314, curr:140, prev:168, date:'11月9日', cv:230.2, pv:208.6},
+    {x:347, curr:148, prev:155, date:'11月10日', cv:222.8, pv:220.1},
+    {x:380, curr:130, prev:162, date:'11月11日', cv:240.5, pv:213.4},
+    {x:413, curr:138, prev:150, date:'11月12日', cv:232.6, pv:225.8},
+    {x:446, curr:120, prev:158, date:'11月13日', cv:250.3, pv:218.2},
+    {x:479, curr:128, prev:145, date:'11月14日', cv:242.1, pv:232.5},
+    {x:512, curr:110, prev:152, date:'11月15日', cv:258.9, pv:224.6},
+    {x:545, curr:118, prev:140, date:'11月16日', cv:251.2, pv:236.8},
+    {x:578, curr:100, prev:148, date:'11月17日', cv:268.5, pv:228.4},
+    {x:611, curr:108, prev:135, date:'11月18日', cv:260.6, pv:242.1},
+    {x:644, curr:90, prev:142, date:'11月19日', cv:276.8, pv:234.8},
+    {x:677, curr:98, prev:130, date:'11月20日', cv:269.4, pv:246.2},
+    {x:700, curr:80, prev:138, date:'11月21日', cv:287.0, pv:268.2},
+  ];
+
+  if (!wrap || !chart) return;
+
+  function getSvgX(e) {
+    const rect = chart.getBoundingClientRect();
+    const scale = 720 / rect.width;
+    return (e.clientX - rect.left) * scale;
+  }
+
+  wrap.addEventListener('mousemove', function(e) {
+    const mx = getSvgX(e);
+    // find nearest point
+    let nearest = points[0], minDist = Infinity;
+    points.forEach(p => {
+      const d = Math.abs(p.x - mx);
+      if (d < minDist) { minDist = d; nearest = p; }
+    });
+
+    crosshair.style.display = 'block';
+    hoverCurr.style.display = 'block';
+    hoverPrev.style.display = 'block';
+    crosshair.setAttribute('x1', nearest.x);
+    crosshair.setAttribute('x2', nearest.x);
+    hoverCurr.setAttribute('cx', nearest.x);
+    hoverCurr.setAttribute('cy', nearest.curr);
+    hoverPrev.setAttribute('cx', nearest.x);
+    hoverPrev.setAttribute('cy', nearest.prev);
+
+    titleEl.textContent = nearest.date;
+    currEl.textContent = nearest.cv.toFixed(1) + '万';
+    prevEl.textContent = nearest.pv.toFixed(1) + '万';
+
+    // position tooltip
+    const wrapRect = wrap.getBoundingClientRect();
+    const chartRect = chart.getBoundingClientRect();
+    const xRatio = nearest.x / 720;
+    const px = xRatio * chartRect.width;
+    const tipWidth = 160;
+    let left = px + 12;
+    if (left + tipWidth > chartRect.width) left = px - tipWidth - 12;
+    tip.style.left = left + 'px';
+    tip.style.top = '30px';
+    tip.style.opacity = '1';
+  });
+
+  wrap.addEventListener('mouseleave', function() {
+    crosshair.style.display = 'none';
+    hoverCurr.style.display = 'none';
+    hoverPrev.style.display = 'none';
+    tip.style.opacity = '0';
+  });
+})();
+
+// 柱状图 hover
+(function() {
+  const bars = document.querySelectorAll('.bar-item');
+  bars.forEach(bar => {
+    bar.style.cursor = 'pointer';
+    bar.style.transition = 'opacity 0.15s';
+    bar.addEventListener('mouseenter', () => { bar.style.opacity = '0.85'; });
+    bar.addEventListener('mouseleave', () => { bar.style.opacity = '1'; });
+  });
+})();
+</script>
+</body>
+</html>

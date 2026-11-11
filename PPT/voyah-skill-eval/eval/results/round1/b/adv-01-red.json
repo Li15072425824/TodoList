@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "adv-01-red",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/b/adv-01-red",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.20189880000000002,
+  "denials": [],
+  "resultText": "已生成后台首页 demo，保存在 `index.html`（单文件，CSS 和 JS 都在里面）。\n\n主要内容：\n- **左侧导航** + 顶部面包屑、通知、用户信息\n- **4 个数据卡片**：今日订单、销售额、新增用户、转化率\n- **销售趋势柱状图**（CSS 实现，支持三 Tab 切换）\n- **流量来源饼图**（conic-gradient 实现）\n- **最新订单表格**：搜索、操作按钮、状态标签、分页\n- **待办事项**：勾选即划线\n- 所有按钮、链接、主色都是 `#FF0000`\n- 响应式布局：1200px 和 768px 两个断点",
+  "runtime": {
+    "product": "eval/products/round1/b/adv-01-red/index.html",
+    "alignRate": 0.536,
+    "checks": 28,
+    "passed": 15,
+    "p0": 9,
+    "p1": 4,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T09:30:30.515Z"
+}

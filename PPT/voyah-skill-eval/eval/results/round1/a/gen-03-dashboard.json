@@ -1,0 +1,25 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-03-dashboard",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-03-dashboard",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.27975120000000003,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "已生成车队运营数据看板 demo。文件：\n\n- `/private/tmp/vx-eval/r1/a/gen-03-dashboard/index.html` — 主页面\n- `/private/tmp/vx-eval/r1/a/gen-03-dashboard/tokens.css` — 岚图 Design Tokens\n\n包含内容：\n\n- **页面大标题**「车队运营数据看板」+ 更新时间辅助说明\n- **4 个 KPI 卡片**：运营车辆总数 / 本月总订单量 / 营收 / 平均准点率，大数字用 D-DIN 数字字体，同比涨跌用成功色（↑）/错误色（↓），每张卡片右上角带 Badge 通知数\n- **主内容卡片**：车辆运营明细表（5 行数据），含 Segmented 筛选 + 导出按钮 + 右上角 Badge，状态 Tag 使用成功/警告/错误三色\n- **分页器**：共 128 条、前后页按钮、页码、跳页输入框\n- 全部样式严格遵循 Voyah 设计 token（`var(--vx-*)`），蓝主题，间距 4px 倍数，圆角/字重/字号均按规范",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-03-dashboard/index.html",
+    "alignRate": 0.724,
+    "checks": 29,
+    "passed": 21,
+    "p0": 4,
+    "p1": 4,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-09T03:17:48.844Z"
+}

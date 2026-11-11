@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-21",
+  "topic": "button-prompt",
+  "question": "提示按钮 hover 态的填充色值是什么?",
+  "answer": "提示按钮 hover 态的填充色值是 **#FFA800**（与常规态同值），click 态为 **#EA8C00**。对应 token 来源：`button.prompt.hover` / `button.prompt.click`。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0431466,
+  "subtype": "success",
+  "at": "2026-11-10T03:52:16.588Z"
+}

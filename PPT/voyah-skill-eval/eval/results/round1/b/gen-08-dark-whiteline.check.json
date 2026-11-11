@@ -1,0 +1,345 @@
+{
+  "product": "eval/products/round1/b/gen-08-dark-whiteline/index.html",
+  "alignRate": 0.429,
+  "checks": 28,
+  "passed": 12,
+  "p0": 12,
+  "p1": 4,
+  "tokenRefRate": 0,
+  "expectedTheme": null,
+  "allThemes": false,
+  "htmlTheme": null,
+  "themeAttrs": [],
+  "staticIssues": {
+    "hex": [
+      "#0B0B0C",
+      "#141416",
+      "#1E1E22",
+      "#C9A96E",
+      "#D4B87F",
+      "#B89859",
+      "#F5F5F7",
+      "#1A1A1A",
+      "#E5E5E7",
+      "#2A2A2E",
+      "#000000",
+      "#CCCCCC",
+      "#FFF9EC",
+      "#7A6030",
+      "#5A4410"
+    ],
+    "forbidden": [
+      "#000000"
+    ],
+    "gradient": [
+      "gradient"
+    ],
+    "weight": [],
+    "black": [
+      "#000"
+    ],
+    "spacing": [],
+    "border": [
+      "1.5px",
+      "1.5px"
+    ],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #0B0B0C #141416 #1E1E22 #C9A96E #D4B87F #B89859 #F5F5F7 #1A1A1A #E5E5E7 #2A2A2E #000000 #CCCCCC"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "禁用/近似色: #000000"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "出现纯黑 #000000"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "detail": "非法线宽: 1.5px"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "10/14 按钮高度非 24/32/40: 立即预约试驾=44, 了解更多=44, 了解更多=44, 了解更多=44, 了解更多=44"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "14 按钮 padding 非 2/6/8·8/16: 立即预约试驾=[0,28,0,28], 了解更多=[0,28,0,28], 了解更多=[0,28,0,28], 了解更多=[0,28,0,28]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "14 按钮字号/行高非 12·20/16·24: 立即预约试驾=15/NaN, 了解更多=15/NaN, 了解更多=15/NaN, 了解更多=15/NaN"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "8 按钮色值出板: 立即预约试驾=rgb(11, 11, 12)/rgb(255, 255, 255)/rgb(255, 255, 255), 立即预约=rgb(11, 11, 12)/rgb(255, 255, 255)/rgb(255, 255, 255), 立即预约=rgb(11, 11, 12)/rgba(255, 255, 255, 0.9)/rgba(255, 255, 255, 0.9), 立即预约=rgb(11, 11, 12)/rgba(255, 255, 255, 0.8)/rgba(255, 255, 255, 0.8)"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 normal = rgb(255, 255, 255)/rgb(11, 11, 12)/rgb(255, 255, 255)，期望 #fff/#3773DB/#3773DB"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 hover = rgb(255, 255, 255)/rgb(42, 42, 46)/rgb(255, 255, 255)，期望 #fff/#568EEE/#568EEE"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 click = rgb(255, 255, 255)/rgb(0, 0, 0)/rgb(255, 255, 255)，期望 #fff/#1C5AC4/#1C5AC4"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 disabled = rgb(255, 255, 255)/rgb(11, 11, 12)/rgb(255, 255, 255)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "反白 normal 文字 = rgb(255, 255, 255)，期望 #666666"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "反白 normal fill/border = rgba(0, 0, 0, 0)/rgb(255, 255, 255)，期望 #FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "detail": "主题声明: html=无, 其他=0 个"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #0B0B0C #141416 #1E1E22 #C9A96E #D4B87F #B89859 #F5F5F7 #1A1A1A #E5E5E7 #2A2A2E #000000 #CCCCCC"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "禁用/近似色: #000000"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "出现纯黑 #000000"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": true,
+      "detail": "字重 ∈ {400,500,600}"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": true,
+      "detail": "间距均为 4n 或豁免"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非法线宽: 1.5px"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "10/14 按钮高度非 24/32/40: 立即预约试驾=44, 了解更多=44, 了解更多=44, 了解更多=44, 了解更多=44"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "14 按钮 padding 非 2/6/8·8/16: 立即预约试驾=[0,28,0,28], 了解更多=[0,28,0,28], 了解更多=[0,28,0,28], 了解更多=[0,28,0,28]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "14 按钮字号/行高非 12·20/16·24: 立即预约试驾=15/NaN, 了解更多=15/NaN, 了解更多=15/NaN, 了解更多=15/NaN"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮圆角合规"
+    },
+    {
+      "id": "runtime.btn.weight",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮字重合规"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "8 按钮色值出板: 立即预约试驾=rgb(11, 11, 12)/rgb(255, 255, 255)/rgb(255, 255, 255), 立即预约=rgb(11, 11, 12)/rgb(255, 255, 255)/rgb(255, 255, 255), 立即预约=rgb(11, 11, 12)/rgba(255, 255, 255, 0.9)/rgba(255, 255, 255, 0.9), 立即预约=rgb(11, 11, 12)/rgba(255, 255, 255, 0.8)/rgba(255, 255, 255, 0.8)"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "图标按钮 gap 合规"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 normal = rgb(255, 255, 255)/rgb(11, 11, 12)/rgb(255, 255, 255)，期望 #fff/#3773DB/#3773DB"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 hover = rgb(255, 255, 255)/rgb(42, 42, 46)/rgb(255, 255, 255)，期望 #fff/#568EEE/#568EEE"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 click = rgb(255, 255, 255)/rgb(0, 0, 0)/rgb(255, 255, 255)，期望 #fff/#1C5AC4/#1C5AC4"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 disabled = rgb(255, 255, 255)/rgb(11, 11, 12)/rgb(255, 255, 255)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "反白 normal 文字 = rgb(255, 255, 255)，期望 #666666"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "反白 normal fill/border = rgba(0, 0, 0, 0)/rgb(255, 255, 255)，期望 #FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "pass": false,
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = \"PingFang SC\", \"Helvetica Neue\", Helvetica, \"Microsoft YaHei\", Arial, sans-serif"
+    }
+  ],
+  "costNote": null
+}

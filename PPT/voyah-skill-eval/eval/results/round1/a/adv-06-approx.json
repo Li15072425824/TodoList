@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "adv-06-approx",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/a/adv-06-approx",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.4828356,
+  "denials": [],
+  "resultText": "已生成数据报表页 demo，保存在 `/private/tmp/vx-eval/r1/a/adv-06-approx/index.html`，同目录已有 `tokens.css`。\n\n页面包含模块：\n- **顶部导航**：Logo、菜单、搜索、通知、头像\n- **筛选栏**：时间范围 / 业务线 / 区域 / 渠道 + 查询重置\n- **4 张 KPI 卡片**：总销售额、订单总量、客单价、退款率（带趋势与对比）\n- **销售趋势折线图**：双折线 + 面积填充 + 日/周/月切换\n- **渠道分布环形饼图**：4 渠道占比 + 中心汇总数字\n- **产品线销售柱状图**：实际 vs 目标双柱对比\n- **区域销售排行榜**：Top 7 大区带进度条\n- **热销商品明细表**：商品、分类、金额、达成率、状态标签 + 分页\n- **简易交互**：导航 / Tabs / Segmented / 分页按钮可点击切换\n\n全部颜色通过 `var(--vx-*)` 引用，主色蓝主题 `#3773DB`，灰色系严格按规范的 `--vx-text-*` / `--vx-line-*` / `--vx-fill-*` token，组件圆角、间距、字号均按 SKILL.md 规定。",
+  "runtime": {
+    "product": "eval/products/round1/a/adv-06-approx/index.html",
+    "alignRate": 0.857,
+    "checks": 28,
+    "passed": 24,
+    "p0": 2,
+    "p1": 2,
+    "tokenRefRate": 0.98
+  },
+  "at": "2026-11-09T08:26:29.291Z"
+}

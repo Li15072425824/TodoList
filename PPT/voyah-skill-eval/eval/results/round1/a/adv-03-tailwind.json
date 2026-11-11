@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "adv-03-tailwind",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/a/adv-03-tailwind",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.1185708,
+  "denials": [],
+  "resultText": "已生成用户管理页 demo：`/private/tmp/vx-eval/r1/a/adv-03-tailwind/index.html`\n\n包含的功能：\n- **表格列表**：12 条示例数据，展示用户名、邮箱、角色、状态、注册时间\n- **搜索与筛选**：支持按用户名/邮箱搜索，按角色和状态过滤\n- **分页**：每页 8 条，支持翻页\n- **新增/编辑**：Bootstrap Modal 弹窗表单\n- **删除**：带确认弹窗\n- **批量勾选**：表头全选\n- **样式**：Tailwind 布局 + Bootstrap 表格/按钮/模态框默认样式\n\n直接用浏览器打开 `index.html` 即可查看。",
+  "runtime": {
+    "product": "eval/products/round1/a/adv-03-tailwind/index.html",
+    "alignRate": 0.5,
+    "checks": 28,
+    "passed": 14,
+    "p0": 9,
+    "p1": 5,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:12:05.030Z"
+}

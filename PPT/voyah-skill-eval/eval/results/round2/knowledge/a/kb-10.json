@@ -1,0 +1,16 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-10",
+  "topic": "font-level",
+  "question": "时间戳、备注、提示这类辅助说明文字,推荐的字号/行高和文字色是什么?",
+  "answer": "辅助说明文字（时间戳、备注、提示）的推荐规范：\n\n- **字号 / 行高**：12~13px / 20px\n- **文字色**：`--vx-text-caption`\n\n来源：`font.level.caption`（场景→Token 决策表中「提示、备注、时间戳」一行）。",
+  "pass": false,
+  "missing": [
+    "999999"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.043635600000000004,
+  "subtype": "success",
+  "at": "2026-11-10T03:50:09.320Z"
+}

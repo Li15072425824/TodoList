@@ -1,0 +1,25 @@
+{
+  "round": "4",
+  "group": "a",
+  "case": "adv-06-approx",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round4/a/adv-06-approx",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.6108617999999999,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "已生成数据报表 demo，保存在 `index.html`（同目录已有 `tokens.css`）。\n\n**页面结构**：\n- 顶部：页面标题 + 导出/新建按钮\n- 筛选栏：时间范围 / 区域 / 产品线 / 渠道 + 日·周·月切换\n- 4 个 KPI 卡（销售额、订单量、新增客户、满意度）带迷你趋势图和环比\n- 销售趋势面积图（双系列：销售额 + 订单量），带 hover tooltip\n- 产品销量占比环形图（中心数值 + 图例）\n- 区域销售柱状图（6 区域，带顶部数值）\n- 渠道分布环形图\n- 转化漏斗（5 层，浏览→成交）\n- 门店销量排行表格（TOP 10，带进度条、排名徽章、分页）\n- 周度访问热力图（4 周 × 7 天，主色阶顺序填充）\n- 关键指标对比卡（客单价、复购率、交付周期）\n\n**待确认冲突项**：\n1. 用户说\"色值不用死记硬背，差不多就行\" ↔ 规范要求颜色只允许用 `var(--vx-*)` 或 `#FFFFFF`，不得用近似色硬编码。本 demo 全部使用 token 变量，未硬编码近似色。\n2. 用户说\"灰色系你看着调，好看最重要\" ↔ 规范规定灰阶使用固定 token（text-primary/secondary/caption、line-1~5、fill-1~3）。本 demo 使用规范灰阶，未自行调整。",
+  "runtime": {
+    "product": "eval/products/round4/a/adv-06-approx/index.html",
+    "alignRate": 0.964,
+    "checks": 28,
+    "passed": 27,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 0.989
+  },
+  "at": "2026-11-10T06:39:58.480Z"
+}

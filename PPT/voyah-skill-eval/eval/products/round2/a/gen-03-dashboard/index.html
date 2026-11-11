@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>车队运营数据看板</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--vx-bg-layout);
+    color: var(--vx-text-primary);
+    font-size: 14px;
+    line-height: 22px;
+    min-height: 100vh;
+  }
+
+  .page {
+    padding: 16px 24px 24px;
+  }
+
+  .page-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+  }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .kpi-card {
+    background: #FFFFFF;
+    border: 1px solid var(--vx-line-1);
+    border-radius: 8px;
+    padding: 16px;
+    position: relative;
+  }
+
+  .kpi-label {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .kpi-value {
+    font-family: "D-DIN", "HarmonyOS Sans", Inter, "Helvetica Neue", Arial, sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    letter-spacing: -0.5px;
+  }
+
+  .kpi-value .kpi-unit {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--vx-text-secondary);
+    margin-left: 4px;
+  }
+
+  .kpi-trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 8px;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .kpi-trend-up {
+    color: var(--vx-success-dark);
+    background: var(--vx-success-bg);
+  }
+
+  .kpi-trend-down {
+    color: var(--vx-error-dark);
+    background: var(--vx-error-bg);
+  }
+
+  .kpi-trend .kpi-trend-label {
+    color: var(--vx-text-caption);
+  }
+
+  .main-card {
+    background: #FFFFFF;
+    border: 1px solid var(--vx-line-1);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+  }
+
+  .badge-wrap {
+    position: relative;
+  }
+
+  .badge-dot {
+    display: inline-block;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    background: var(--vx-error);
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table.vx-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  table.vx-table thead th {
+    background: var(--vx-fill-2);
+    color: var(--vx-text-secondary);
+    font-weight: 500;
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--vx-line-1);
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  table.vx-table thead th:first-child {
+    border-top-left-radius: 6px;
+  }
+
+  table.vx-table thead th:last-child {
+    border-top-right-radius: 6px;
+  }
+
+  table.vx-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--vx-line-1);
+    color: var(--vx-text-primary);
+  }
+
+  table.vx-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  table.vx-table tbody tr:hover td {
+    background: var(--vx-fill-1);
+  }
+
+  .table-ellipsis {
+    max-width: 240px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .num-cell {
+    font-family: "D-DIN", "HarmonyOS Sans", Inter, "Helvetica Neue", Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pagination-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--vx-line-1);
+  }
+
+  .pagination-info {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+  }
+
+  .vx-pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vx-pagination .pagination-ellipsis {
+    color: var(--vx-text-caption);
+    padding: 0 4px;
+    font-size: 12px;
+    line-height: 24px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- 页面标题 + 更新时间 -->
+  <div class="page-header">
+    <h1 class="page-title">车队运营数据看板</h1>
+    <span class="page-subtitle">数据更新时间：2026-11-10 09:30 · 每日 00:05 自动刷新</span>
+  </div>
+
+  <!-- KPI 卡片 -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">在运营车辆</div>
+      <div class="kpi-value">1,286<span class="kpi-unit">辆</span></div>
+      <div class="kpi-trend kpi-trend-up">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        <span>8.6%</span>
+        <span class="kpi-trend-label">同比</span>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-label">今日订单量</div>
+      <div class="kpi-value">5,742<span class="kpi-unit">单</span></div>
+      <div class="kpi-trend kpi-trend-up">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        <span>12.3%</span>
+        <span class="kpi-trend-label">同比</span>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-label">运营里程</div>
+      <div class="kpi-value">48.2<span class="kpi-unit">万公里</span></div>
+      <div class="kpi-trend kpi-trend-down">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        <span>3.1%</span>
+        <span class="kpi-trend-label">同比</span>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-label">客户满意度</div>
+      <div class="kpi-value">96.4<span class="kpi-unit">%</span></div>
+      <div class="kpi-trend kpi-trend-up">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        <span>1.2%</span>
+        <span class="kpi-trend-label">同比</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主内容卡片 -->
+  <div class="main-card">
+    <div class="card-header">
+      <div class="card-title-row">
+        <span class="card-title">车队运营明细</span>
+        <span class="badge-dot">12</span>
+      </div>
+      <div class="card-actions">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M7 12h10M10 18h4"/></svg>
+          筛选
+        </button>
+        <button class="vx-btn vx-btn-primary vx-btn-sm">
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          导出
+        </button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="vx-table">
+        <thead>
+          <tr>
+            <th style="width:80px">序号</th>
+            <th>车牌号</th>
+            <th>车型</th>
+            <th>所属车队</th>
+            <th style="width:100px">今日订单</th>
+            <th style="width:120px">今日里程(km)</th>
+            <th style="width:120px">营收(元)</th>
+            <th style="width:100px">状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num-cell">001</td>
+            <td class="table-ellipsis">鄂A·D86235</td>
+            <td class="table-ellipsis">岚图追光</td>
+            <td>武汉一分队</td>
+            <td class="num-cell">32</td>
+            <td class="num-cell">428.5</td>
+            <td class="num-cell">3,820.00</td>
+            <td><span class="vx-tag vx-tag-success">运营中</span></td>
+          </tr>
+          <tr>
+            <td class="num-cell">002</td>
+            <td class="table-ellipsis">鄂A·D12876</td>
+            <td class="table-ellipsis">岚图 FREE</td>
+            <td>武汉一分队</td>
+            <td class="num-cell">28</td>
+            <td class="num-cell">376.2</td>
+            <td class="num-cell">3,245.50</td>
+            <td><span class="vx-tag vx-tag-success">运营中</span></td>
+          </tr>
+          <tr>
+            <td class="num-cell">003</td>
+            <td class="table-ellipsis">鄂A·D50421</td>
+            <td class="table-ellipsis">岚图梦想家</td>
+            <td>武汉二分队</td>
+            <td class="num-cell">15</td>
+            <td class="num-cell">210.8</td>
+            <td class="num-cell">2,680.00</td>
+            <td><span class="vx-tag vx-tag-warning">充电中</span></td>
+          </tr>
+          <tr>
+            <td class="num-cell">004</td>
+            <td class="table-ellipsis">鄂A·D99307</td>
+            <td class="table-ellipsis">岚图追光</td>
+            <td>武汉二分队</td>
+            <td class="num-cell">6</td>
+            <td class="num-cell">82.3</td>
+            <td class="num-cell">720.00</td>
+            <td><span class="vx-tag vx-tag-error">故障</span></td>
+          </tr>
+          <tr>
+            <td class="num-cell">005</td>
+            <td class="table-ellipsis">鄂A·D71854</td>
+            <td class="table-ellipsis">岚图 FREE</td>
+            <td>武汉三分队</td>
+            <td class="num-cell">24</td>
+            <td class="num-cell">312.6</td>
+            <td class="num-cell">2,985.00</td>
+            <td><span class="vx-tag vx-tag-success">运营中</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-wrap">
+      <div class="pagination-info">共 1,286 条 · 第 1 / 129 页</div>
+      <div class="vx-pagination">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm" disabled>
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="vx-btn vx-btn-primary vx-btn-sm">1</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">2</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">3</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">4</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">5</button>
+        <span class="pagination-ellipsis">···</span>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">129</button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

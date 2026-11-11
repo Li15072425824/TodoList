@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-13",
+  "topic": "font-family",
+  "question": "中文、英文、数字三类字体族的首选分别是什么?Windows 下中文字体的回退是什么?",
+  "answer": "**中文字体族首选**：PingFang SC（Mac/iOS）+ Microsoft YaHei（Windows）双写\n**英文字体族首选**：Helvetica Neue / Arial\n**数字字体族首选**：D-DIN / HarmonyOS Sans / Inter\n\n**Windows 下中文字体的回退**：Microsoft YaHei（微软雅黑）",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0437196,
+  "subtype": "success",
+  "at": "2026-11-10T03:50:41.458Z"
+}

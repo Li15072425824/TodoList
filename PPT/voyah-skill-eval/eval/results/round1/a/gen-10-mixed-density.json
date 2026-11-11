@@ -1,0 +1,25 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-10-mixed-density",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-10-mixed-density",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.3093816,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "已生成规范自检混合密度页 demo。文件位置：\n\n- `/private/tmp/vx-eval/r1/a/gen-10-mixed-density/index.html` — 主页面\n- `/private/tmp/vx-eval/r1/a/gen-10-mixed-density/tokens.css` — 设计 token 样式表（同级目录）\n\n页面涵盖内容：\n\n- **页面大标题**：20px / 32px / 600 / `--vx-text-title`\n- **模块小标题**：16px / 24px / 500 / `--vx-text-title`（每张卡片标题）\n- **正文 14px 档**（4 种场景，统一取值）：\n  - 表单字段（label + input）\n  - 表格单元格（th/td）\n  - 按钮文字（三尺寸六类型）\n  - 左侧导航项\n- **大段描述**：15px / 28px / 400 / `--vx-text-primary`\n- **辅助说明 12~13px 档**：时间戳、备注、输入框 hint、placeholder\n- **字重对照**：Regular 400 / Medium 500 / Bold 600，分标题/正文/辅助三级展示\n\n每个实例旁用 `.spec-tag` 小字标注字号/行高/颜色 token（等宽字体 + 浅灰底），可直接用 DevTools 比对 computed style。所有颜色严格使用 `var(--vx-*)` token，遵循岚图 Voyah 规范 v2 基线。",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-10-mixed-density/index.html",
+    "alignRate": 1,
+    "checks": 29,
+    "passed": 29,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 0.977
+  },
+  "at": "2026-11-09T05:49:35.080Z"
+}

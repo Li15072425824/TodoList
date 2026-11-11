@@ -1,0 +1,17 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-23",
+  "topic": "button-secondary",
+  "question": "次要按钮 click(按下)态的文字色、边框色和填充色分别是什么?",
+  "answer": "项目目录为空，没有可用的设计规范 skill 或设计规范文件。按通用设计系统知识回答：\n\n**次要按钮（Secondary Button）click / 按下（:active）态的三要素：**\n\n- **文字色**：通常与默认态一致或略深，一般为品牌主色的更深阶（如 `primary-700` / `primary-800`），或保持默认文字色不变。\n- **边框色**：加深，通常为品牌主色的更深阶（如 `primary-600` / `primary-700`），与文字色同阶或更深一阶。\n- **填充色（背景色）**：比默认态更深的浅灰或品牌淡色，常见做法是在默认填充色基础上压暗 1–2 个色阶（例如默认 `gray-50` → 按下 `gray-100`，或默认 `primary-50` → 按下 `primary-100`）。\n\n由于没有项目专属设计规范，以上是业界通用模式（如 Ant Design、Arco、Material Design 等主流设计系统均遵循\"按下态 = 色阶加深 1–2 档\"的规律）。若需精确色值，请提供具体设计规范文件或设计系统名称。",
+  "pass": false,
+  "missing": [
+    "1C5AC4",
+    "FFFFFF"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.054081599999999994,
+  "subtype": "success",
+  "at": "2026-11-09T09:48:22.590Z"
+}

@@ -1,0 +1,16 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-13",
+  "topic": "font-family",
+  "question": "中文、英文、数字三类字体族的首选分别是什么?Windows 下中文字体的回退是什么?",
+  "answer": "项目中没有找到可用的设计规范文件或 skill，按通用知识回答：\n\n**三类字体族首选：**\n\n| 类别 | 首选字体族 |\n|------|-----------|\n| 中文 | `PingFang SC`（苹方，macOS）/ `\"Microsoft YaHei\"`（微软雅黑，Windows） |\n| 英文 | `-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `Helvetica Neue` |\n| 数字 | `SF Pro Display`, `Roboto`, `Arial`（通常沿用英文无衬线体系） |\n\n常见的 CSS font-family 写法：\n```css\nfont-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"PingFang SC\",\n             \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\",\n             Helvetica, Arial, sans-serif;\n```\n\n**Windows 下中文字体回退链：**\n\n`\"Microsoft YaHei\"`（微软雅黑）→ `\"SimSun\"`（宋体）→ `\"SimHei\"`（黑体）→ `sans-serif`\n\n其中微软雅黑是 Windows Vista 及以后的默认中文字体，也是首选；宋体作为最基础的系统中文字体兜底，确保在极老系统上仍能正常显示中文。",
+  "pass": false,
+  "missing": [
+    "D-DIN"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0542046,
+  "subtype": "success",
+  "at": "2026-11-09T09:44:40.323Z"
+}

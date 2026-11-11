@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-01-form@yellow",
+  "kind": "gen",
+  "theme": "yellow",
+  "product": "eval/products/round1/b/gen-01-form@yellow",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.38270879999999996,
+  "denials": [],
+  "resultText": "已生成完整的「车辆信息登记」管理后台表单页 demo，保存到 `index.html`。\n\n**页面包含：**\n- **顶部导航**：Voyah logo、6 个菜单项（车辆登记为激活态）、搜索框、消息通知（带红点徽标）、主题切换器、用户头像\n- **左侧边栏**：车辆管理 & 系统设置两级菜单\n- **面包屑 + 页面标题 + 说明文字**\n- **双列表单**（两个分组）：\n  - 车辆基础信息：VIN 输入框、**车牌号（校验错误态 - 红边框 + 错误提示）**、品牌下拉、型号下拉、车身颜色单选、动力类型单选、出厂日期、价格（前后缀）\n  - 配置与功能：选装配置复选、车辆状态复选、GPS 开关、保养提醒开关、备注文本域\n- **底部按钮**：主要按钮「提交登记」+ 次要按钮「取消」\n- **右侧辅助卡片**：登记须知标题 + 大段描述 + 温馨提示条 + 注意事项列表\n\n**主题能力：** `<html data-vx-theme=\"yellow\">` 初始为黄主题，右上角主题切换器可切换黄/蓝/绿/紫四种主题，所有色板通过 CSS 变量实时更新。\n\n**设计规范遵循：** 岚图 Voyah 品牌黄（`#FFB800`）为主色，统一的 6px/8px 圆角、4/8/12/16/24 间距阶梯、14px 基础字号、三档文字色阶、focus ring 3px 光效、hover 填充反馈等，与 Arco/主流企业级设计规范的间距/圆角/阴影体系保持一致。",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-01-form@yellow/index.html",
+    "alignRate": 0.448,
+    "checks": 29,
+    "passed": 13,
+    "p0": 10,
+    "p1": 6,
+    "tokenRefRate": 0.833
+  },
+  "at": "2026-11-09T09:22:07.973Z"
+}

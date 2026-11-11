@@ -1,0 +1,26 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-09-longform",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round2/a/gen-09-longform",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.2823174,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "生成完毕。demo 文件位于 `/private/tmp/vx-eval/r2/a/gen-09-longform/index.html`，同目录附带 `tokens.css`。\n\n页面包含：\n- **文档大标题区**：24px/40px 600 标题 + 12px/20px caption 辅助信息（更新时间、作者、版本，竖线分隔）\n- **章节**：三个模块小标题（16px/28px 600）+ 大段描述文字（14px/28px，检验行高）\n- **辅助说明 / 备注**：12~13px/20px 的 caption 级提示，浅底提示框\n- **章节分割线**：1px line-1 水平线\n- **相关文档区**：水平文字分割线（文字两侧等宽线段）+ 4 条相关文档条目\n- **页脚**：垂直 1px 分割线分隔的 5 组链接\n\n所有颜色走 `var(--vx-*)` token，间距均为 4 的倍数，字重限定 400/500/600，符合 Voyah Design 规范。",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-09-longform/index.html",
+    "alignRate": 1,
+    "checks": 19,
+    "passed": 19,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T03:10:13.317Z"
+}

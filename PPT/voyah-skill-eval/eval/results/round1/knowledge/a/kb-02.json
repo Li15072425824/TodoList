@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-02",
+  "topic": "help-blue-theme",
+  "question": "蓝(基础色)主题下,帮助色的常规档 hex 是什么?",
+  "answer": "蓝（基础色）主题下，帮助色为青色系，常规档 hex 是 **`#54A7B2`**（token: `--vx-help`）。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.09320699999999998,
+  "subtype": "success",
+  "at": "2026-11-09T10:16:13.796Z"
+}

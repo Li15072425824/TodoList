@@ -1,0 +1,16 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-04",
+  "topic": "help-hover",
+  "question": "蓝主题下帮助色的 hover 档(第 2 阶)是什么色值?",
+  "answer": "蓝主题下帮助色（help color）的 hover 档（第 2 阶）通常在通用设计系统中的色值为 **#69B1FF**（或等价表示 `rgb(105, 177, 255)`）。\n\n注：项目目录为空，无可用的设计规范 skill 或 token 文件，以上为通用设计系统中帮助色 hover 态的典型取值。不同设计系统可能有差异，如 Arco Design 的 `blue-2`、Ant Design 的 `geekblue-2` 等均为该色系的浅阶 hover 值。",
+  "pass": false,
+  "missing": [
+    "6EACB4"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.05028959999999999,
+  "subtype": "success",
+  "at": "2026-11-09T09:41:36.799Z"
+}

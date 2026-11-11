@@ -1,6 +1,6 @@
 # GEN-10 混合密度页(六级文字层级同页)
 
-covers: [font.h1, font.h2, font.body, font.longtext, font.caption, font.weight.*, color.text.*, space.*]
+covers: [font.level.page-title, font.level.module-title, font.level.body, font.level.caption, font.level.longform, font.weight.*, font.color.*, color.text.*, spacing.s*, spacing.common.*]
 
 请生成一个「规范自检」混合密度页 demo(单个 HTML 文件),在同一页面内同时展示:
 - 页面大标题(18~24px 档)

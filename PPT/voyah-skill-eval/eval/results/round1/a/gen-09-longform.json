@@ -1,0 +1,25 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-09-longform",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-09-longform",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.19579019999999997,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "已生成 `index.html`（同级目录含 `tokens.css`），要点如下：\n\n- **文档头**：24px/32px 大标题，下方 12px/20px 辅助信息（更新时间 / 作者 / 版本），用 1px 垂直分割线分隔\n- **章节结构**：4 个章节，每章 16px/28px 模块小标题 + 主色 3×16 装饰条 + 15px/28px 大段描述（符合帮助文档 14~16/24~28 范围）\n- **辅助说明**：文内备注框 12px/20px `--vx-text-caption`，左侧 2px 青色帮助色（蓝主题）边条 + `--vx-fill-1` 底色\n- **分割线**：章节间 1px `--vx-line-1` 横线；「相关文档」区为水平文字分割线（两侧 flex:1 等宽线段 `--vx-line-2`，中间 13px 文字）\n- **页脚**：6 组链接用 1×12px 垂直分割线 (`--vx-line-2`) 分隔，12px/20px 版权信息\n- 所有颜色均来自 `var(--vx-*)` token，无硬编码色值；间距均为 4 的倍数",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-09-longform/index.html",
+    "alignRate": 1,
+    "checks": 19,
+    "passed": 19,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 0.966
+  },
+  "at": "2026-11-09T05:46:30.704Z"
+}

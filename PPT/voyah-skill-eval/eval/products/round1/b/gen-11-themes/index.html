@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>品牌主题预览 · Voyah Design</title>
+<style>
+  /* ============================================================
+     基础变量 (light mode 兜底)
+     ============================================================ */
+  :root {
+    --vx-bg-page: #f5f7fa;
+    --vx-bg-card: #ffffff;
+    --vx-text-primary: #1d2129;
+    --vx-text-secondary: #4e5969;
+    --vx-text-tertiary: #86909c;
+    --vx-border: #e5e6eb;
+    --vx-radius-sm: 4px;
+    --vx-radius-md: 8px;
+    --vx-radius-lg: 12px;
+    --vx-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --vx-font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue",
+      "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+  }
+
+  /* ============================================================
+     主题色板定义
+     每个主题提供:
+       --vx-primary-100 ~ --vx-primary-900 (9 阶 + 50/950 共 11 阶)
+       --vx-help-100 ~ --vx-help-900    (帮助色 4 阶展示用 100/400/600/800)
+       --vx-line  (1px 边线色，对应 @line-Blue 等)
+       --vx-primary   (常规)
+       --vx-primary-hover
+       --vx-primary-dark
+       --vx-primary-light
+     ============================================================ */
+
+  /* ---------- 蓝 Blue ---------- */
+  [data-vx-theme="blue"] {
+    --vx-primary-50:  #e8f3ff;
+    --vx-primary-100: #c9e2ff;
+    --vx-primary-200: #94c9ff;
+    --vx-primary-300: #5caff;
+    --vx-primary-400: #2b7fff;
+    --vx-primary-500: #0052d9;
+    --vx-primary-600: #003cb3;
+    --vx-primary-700: #002a8c;
+    --vx-primary-800: #001d66;
+    --vx-primary-900: #001142;
+    --vx-primary-950: #000a2b;
+
+    --vx-primary:       var(--vx-primary-500);
+    --vx-primary-hover: var(--vx-primary-400);
+    --vx-primary-dark:  var(--vx-primary-700);
+    --vx-primary-light: var(--vx-primary-100);
+
+    /* 蓝主题：帮助色用青色系 */
+    --vx-help-100: #cdf5f1;
+    --vx-help-400: #29c0b4;
+    --vx-help-600: #0e958c;
+    --vx-help-800: #075d58;
+
+    --vx-line: #b8d2ff; /* @line-Blue */
+    --vx-theme-name: "蓝";
+  }
+
+  /* ---------- 黄 Yellow ---------- */
+  [data-vx-theme="yellow"] {
+    --vx-primary-50:  #fff7e8;
+    --vx-primary-100: #ffe8c0;
+    --vx-primary-200: #ffd588;
+    --vx-primary-300: #ffbf4f;
+    --vx-primary-400: #f7a728;
+    --vx-primary-500: #d98b0c;
+    --vx-primary-600: #b36d00;
+    --vx-primary-700: #8c5200;
+    --vx-primary-800: #663a00;
+    --vx-primary-900: #422600;
+    --vx-primary-950: #2b1800;
+
+    --vx-primary:       var(--vx-primary-500);
+    --vx-primary-hover: var(--vx-primary-400);
+    --vx-primary-dark:  var(--vx-primary-700);
+    --vx-primary-light: var(--vx-primary-100);
+
+    /* 黄主题：帮助色用蓝色系 */
+    --vx-help-100: #c9e2ff;
+    --vx-help-400: #2b7fff;
+    --vx-help-600: #003cb3;
+    --vx-help-800: #001d66;
+
+    /* 青色系 —— 仅作其他(扩展)展示，不作为帮助色 */
+    --vx-extra-100: #cdf5f1;
+    --vx-extra-400: #29c0b4;
+    --vx-extra-600: #0e958c;
+    --vx-extra-800: #075d58;
+
+    --vx-line: #b8d2ff;
+    --vx-theme-name: "黄";
+  }
+
+  /* ---------- 紫 Purple ---------- */
+  [data-vx-theme="purple"] {
+    --vx-primary-50:  #f1edff;
+    --vx-primary-100: #e0d6ff;
+    --vx-primary-200: #c4b0ff;
+    --vx-primary-300: #a585f5;
+    --vx-primary-400: #875ce6;
+    --vx-primary-500: #6b3cc9;
+    --vx-primary-600: #5129a8;
+    --vx-primary-700: #3b1c85;
+    --vx-primary-800: #281262;
+    --vx-primary-900: #180b40;
+    --vx-primary-950: #0f0729;
+
+    --vx-primary:       var(--vx-primary-500);
+    --vx-primary-hover: var(--vx-primary-400);
+    --vx-primary-dark:  var(--vx-primary-700);
+    --vx-primary-light: var(--vx-primary-100);
+
+    /* 紫主题：帮助色用蓝色系 */
+    --vx-help-100: #c9e2ff;
+    --vx-help-400: #2b7fff;
+    --vx-help-600: #003cb3;
+    --vx-help-800: #001d66;
+
+    --vx-extra-100: #cdf5f1;
+    --vx-extra-400: #29c0b4;
+    --vx-extra-600: #0e958c;
+    --vx-extra-800: #075d58;
+
+    --vx-line: #b8d2ff;
+    --vx-theme-name: "紫";
+  }
+
+  /* ---------- 翠青 Teal ----------
+     注：翠青仅提供主色 4 阶 + 帮助色 4 阶；
+     11 级色阶缺失，demo 中注明。 */
+  [data-vx-theme="teal"] {
+    --vx-primary-50:  #e6f7f3;
+    --vx-primary-100: #b6ebe0;
+    --vx-primary-200: #7ed9c9;
+    --vx-primary-300: #3fc2b0;
+    --vx-primary-400: #11aa97;
+    --vx-primary-500: #04897c;
+    --vx-primary-600: #006d64;
+    --vx-primary-700: #005550;
+    --vx-primary-800: #003e3c;
+    --vx-primary-900: #002928;
+    --vx-primary-950: #001a1a;
+
+    --vx-primary:       var(--vx-primary-500);
+    --vx-primary-hover: var(--vx-primary-400);
+    --vx-primary-dark:  var(--vx-primary-700);
+    --vx-primary-light: var(--vx-primary-100);
+
+    /* 翠青主题：帮助色用蓝色系 */
+    --vx-help-100: #c9e2ff;
+    --vx-help-400: #2b7fff;
+    --vx-help-600: #003cb3;
+    --vx-help-800: #001d66;
+
+    --vx-extra-100: #cdf5f1;
+    --vx-extra-400: #29c0b4;
+    --vx-extra-600: #0e958c;
+    --vx-extra-800: #075d58;
+
+    --vx-line: #b8d2ff;
+    --vx-theme-name: "翠青";
+  }
+
+  /* ---------- 红 Red ---------- */
+  [data-vx-theme="red"] {
+    --vx-primary-50:  #ffece8;
+    --vx-primary-100: #ffd2c9;
+    --vx-primary-200: #ffaba0;
+    --vx-primary-300: #ff7d70;
+    --vx-primary-400: #f2523f;
+    --vx-primary-500: #d9362e;
+    --vx-primary-600: #b32420;
+    --vx-primary-700: #8c1818;
+    --vx-primary-800: #660f14;
+    --vx-primary-900: #42080e;
+    --vx-primary-950: #2b0408;
+
+    --vx-primary:       var(--vx-primary-500);
+    --vx-primary-hover: var(--vx-primary-400);
+    --vx-primary-dark:  var(--vx-primary-700);
+    --vx-primary-light: var(--vx-primary-100);
+
+    /* 红主题：帮助色用蓝色系 */
+    --vx-help-100: #c9e2ff;
+    --vx-help-400: #2b7fff;
+    --vx-help-600: #003cb3;
+    --vx-help-800: #001d66;
+
+    --vx-extra-100: #cdf5f1;
+    --vx-extra-400: #29c0b4;
+    --vx-extra-600: #0e958c;
+    --vx-extra-800: #075d58;
+
+    --vx-line: #b8d2ff;
+    --vx-theme-name: "红";
+  }
+
+  /* ---------- 碧青 Cyan ---------- */
+  [data-vx-theme="cyan"] {
+    --vx-primary-50:  #e5f9ff;
+    --vx-primary-100: #c2efff;
+    --vx-primary-200: #8adeff;
+    --vx-primary-300: #4cc7f2;
+    --vx-primary-400: #1aadd9;
+    --vx-primary-500: #008fb8;
+    --vx-primary-600: #006f94;
+    --vx-primary-700: #005473;
+    --vx-primary-800: #003b52;
+    --vx-primary-900: #002433;
+    --vx-primary-950: #001722;
+
+    --vx-primary:       var(--vx-primary-500);
+    --vx-primary-hover: var(--vx-primary-400);
+    --vx-primary-dark:  var(--vx-primary-700);
+    --vx-primary-light: var(--vx-primary-100);
+
+    /* 碧青主题：帮助色用蓝色系 */
+    --vx-help-100: #c9e2ff;
+    --vx-help-400: #2b7fff;
+    --vx-help-600: #003cb3;
+    --vx-help-800: #001d66;
+
+    --vx-extra-100: #cdf5f1;
+    --vx-extra-400: #29c0b4;
+    --vx-extra-600: #0e958c;
+    --vx-extra-800: #075d58;
+
+    --vx-line: #b8d2ff;
+    --vx-theme-name: "碧青";
+  }
+
+  /* ============================================================
+     全局样式
+     ============================================================ */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--vx-font);
+    background: var(--vx-bg-page);
+    color: var(--vx-text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ============================================================
+     顶部主题切换条
+     ============================================================ */
+  .theme-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--vx-bg-card);
+    border-bottom: 1px solid var(--vx-border);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  .theme-bar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .theme-bar-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--vx-text-primary);
+    white-space: nowrap;
+  }
+
+  .theme-bar-title small {
+    font-weight: 400;
+    color: var(--vx-text-tertiary);
+    margin-left: 6px;
+    font-size: 12px;
+  }
+
+  .theme-switcher {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid var(--vx-border);
+    background: #fff;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--vx-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .theme-btn:hover {
+    border-color: var(--vx-primary);
+    color: var(--vx-primary);
+  }
+
+  .theme-btn.active {
+    border-color: var(--vx-primary);
+    background: var(--vx-primary);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .theme-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .theme-btn[data-theme="blue"]   .theme-dot { background: #0052d9; }
+  .theme-btn[data-theme="yellow"] .theme-dot { background: #d98b0c; }
+  .theme-btn[data-theme="purple"] .theme-dot { background: #6b3cc9; }
+  .theme-btn[data-theme="teal"]   .theme-dot { background: #04897c; }
+  .theme-btn[data-theme="red"]    .theme-dot { background: #d9362e; }
+  .theme-btn[data-theme="cyan"]   .theme-dot { background: #008fb8; }
+
+  /* ============================================================
+     页面主体
+     ============================================================ */
+  .page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+
+  .page-header {
+    margin-bottom: 28px;
+  }
+
+  .page-header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .page-header p {
+    font-size: 13px;
+    color: var(--vx-text-tertiary);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 20px;
+  }
+
+  /* ============================================================
+     主题卡片
+     ============================================================ */
+  .theme-card {
+    background: var(--vx-bg-card);
+    border: 1px solid var(--vx-border);
+    border-radius: var(--vx-radius-lg);
+    padding: 24px;
+    box-shadow: var(--vx-shadow-card);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .theme-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--vx-border);
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .card-title .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--vx-primary);
+  }
+
+  .card-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--vx-primary-light);
+    color: var(--vx-primary-dark);
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .section {
+    margin-bottom: 20px;
+  }
+
+  .section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-label {
+    font-size: 12px;
+    color: var(--vx-text-tertiary);
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* ----- 4 阶色板 ----- */
+  .swatch-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .swatch {
+    border-radius: var(--vx-radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--vx-border);
+  }
+
+  .swatch-color {
+    height: 48px;
+    width: 100%;
+  }
+
+  .swatch-label {
+    padding: 4px 6px;
+    font-size: 10px;
+    background: #fafbfc;
+    color: var(--vx-text-secondary);
+    text-align: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  /* ----- 11 级色阶条 ----- */
+  .scale-row {
+    display: flex;
+    border-radius: var(--vx-radius-md);
+    overflow: hidden;
+    height: 36px;
+    border: 1px solid var(--vx-border);
+  }
+
+  .scale-step {
+    flex: 1;
+    position: relative;
+  }
+
+  .scale-step::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    pointer-events: none;
+  }
+
+  .scale-step.light::after {
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .scale-missing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    border: 1px dashed var(--vx-border);
+    border-radius: var(--vx-radius-md);
+    font-size: 12px;
+    color: var(--vx-text-tertiary);
+    background: #fafbfc;
+  }
+
+  /* ----- @line 示例 ----- */
+  .line-demo {
+    height: 1px;
+    background: var(--vx-line);
+    margin: 4px 0 6px;
+  }
+
+  .line-desc {
+    font-size: 11px;
+    color: var(--vx-text-tertiary);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  /* ----- 主按钮 ----- */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 7px 18px;
+    border-radius: var(--vx-radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+
+  .btn-primary {
+    background: var(--vx-primary);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--vx-primary-hover); }
+  .btn-primary:active { background: var(--vx-primary-dark); }
+
+  .btn-primary-dark {
+    background: var(--vx-primary-dark);
+    color: #fff;
+  }
+
+  .btn-primary-light {
+    background: var(--vx-primary-light);
+    color: var(--vx-primary-dark);
+  }
+
+  /* ----- Alert ----- */
+  .alert {
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: var(--vx-radius-md);
+    font-size: 13px;
+    line-height: 1.5;
+    border-left: 3px solid var(--vx-help-600);
+    background: var(--vx-help-100);
+    color: var(--vx-help-800);
+  }
+
+  .alert-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+    color: var(--vx-help-600);
+  }
+
+  .alert strong {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .alert small {
+    font-size: 12px;
+    opacity: 0.85;
+  }
+
+  /* ----- 双列并排：按钮 + Alert ----- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 520px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  /* 页脚 */
+  .page-footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--vx-border);
+    font-size: 12px;
+    color: var(--vx-text-tertiary);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部主题切换条 -->
+<header class="theme-bar">
+  <div class="theme-bar-inner">
+    <div class="theme-bar-title">
+      品牌主题预览
+      <small>data-vx-theme · Voyah Design</small>
+    </div>
+    <div class="theme-switcher" role="tablist">
+      <button class="theme-btn active" data-theme="blue"  role="tab"><span class="theme-dot"></span>蓝</button>
+      <button class="theme-btn" data-theme="yellow" role="tab"><span class="theme-dot"></span>黄</button>
+      <button class="theme-btn" data-theme="purple" role="tab"><span class="theme-dot"></span>紫</button>
+      <button class="theme-btn" data-theme="teal"   role="tab"><span class="theme-dot"></span>翠青</button>
+      <button class="theme-btn" data-theme="red"    role="tab"><span class="theme-dot"></span>红</button>
+      <button class="theme-btn" data-theme="cyan"   role="tab"><span class="theme-dot"></span>碧青</button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="page-header">
+    <h1>六套品牌主题一览</h1>
+    <p>点击顶部按钮切换全局 <code>data-vx-theme</code>，所有卡片均响应主题变量。</p>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- ===== 卡片 1：蓝 ===== -->
+    <article class="theme-card" data-card-theme="blue">
+      <div class="card-header">
+        <div class="card-title"><span class="dot"></span>蓝 · Blue</div>
+        <span class="card-tag">主色</span>
+      </div>
+
+      <!-- 主色 4 阶 -->
+      <div class="section">
+        <div class="section-label">主色 4 阶（常规 / Hover / 深色 / 浅色）</div>
+        <div class="swatch-row">
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--vx-primary);"></div>
+            <div class="swatch-label">常规 / 500</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--vx-primary-hover);"></div>
+            <div class="swatch-label">Hover / 400</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--vx-primary-dark);"></div>
+            <div class="swatch-label">深色 / 700</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--vx-primary-light);"></div>
+            <div class="swatch-label">浅色 / 100</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 级色阶 -->
+      <div class="section">
+        <div class="section-label">11 级色阶（50 → 950）</div>
+        <div class="scale-row">
+          <div class="scale-step light" data-label="50"  style="background: var(--vx-primary-50);"></div>
+          <div class="scale-step light" data-label="100" style="background: var(--vx-primary-100);"></div>
+          <div class="scale-step light" data-label="200" style="background: var(--vx-primary-200);"></div>
+          <div class="scale-step light" data-label="300" style="background: var(--vx-primary-300);"></div>
+          <div class="scale-step"       data-label="400" style="background: var(--vx-primary-400);"></div>
+          <div class="scale-step"       data-label="500" style="background: var(--vx-primary-500);"></div>
+          <div class="scale-step"       data-label="600" style="background: var(--vx-primary-600);"></div>
+          <div class="scale-step"       data-label="700" style="background: var(--vx-primary-700);"></div>
+          <div class="scale-step"       data-label="800" style="background: var(--vx-primary-800);"></div>
+          <div class="scale-step"       data-label="900" style="background: var(--vx-primary-900);"></div>
+          <div class="scale-step"       data-label="950" style="background: var(--vx-primary-950);"></div>
+        </div>
+      </div>
+
+      <!-- 帮助色 4 阶 -->
+      <div class="section">
+        <div class="section-label">帮助色 4 阶（青色系）</div>
+        <div class="swatch-row">
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--vx-help-100);"></div>
+            <div class="swatch-label">浅 / 100</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--vx-help-400);"></div>
+            <div class="swatch-label">常规 / 400</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--vx-help-600);"></div>
+            <div class="swatch-label">深 / 600</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--vx-help-800);"></div>
+            <div class="swatch-label">最深 / 800</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- @line -->
+      <div class="section">
+        <div class="section-label">边线 @line-Blue</div>
+        <div class="line-demo"></div>
+        <div class="line-desc">--vx-line · 1px solid</div>
+      </div>
+
+      <!-- 按钮 + Alert -->
+      <div class="section">
+        <div class="section-label">主按钮 &amp; 帮助 Alert</div>
+        <div class="two-col">
+          <div class="btn-row">
+            <button class="btn btn-primary">主按钮</button>
+            <button class="btn btn-primary-dark">深色</button>
+            <button class="btn btn-primary-light">浅色</button>
+          </div>
+          <div class="alert">
+            <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 10.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7 4.75a1 1 0 1 1 2 0v3.5a1 1 0 1 1-2 0v-3.5Z"/>
+            </svg>
+            <div>
+              <strong>帮助提示</strong>
+              <small>帮助色采用青色系，与蓝色主色形成冷暖对比。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== 卡片 2：黄 ===== -->
+    <article class="theme-card" data-card-theme="yellow">
+      <div class="card-header">
+        <div class="card-title"><span class="dot"></span>黄 · Yellow</div>
+        <span class="card-tag">主色</span>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主色 4 阶（常规 / Hover / 深色 / 浅色）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary);"></div><div class="swatch-label">常规 / 500</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-hover);"></div><div class="swatch-label">Hover / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-dark);"></div><div class="swatch-label">深色 / 700</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-light);"></div><div class="swatch-label">浅色 / 100</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">11 级色阶（50 → 950）</div>
+        <div class="scale-row">
+          <div class="scale-step light" data-label="50"  style="background: var(--vx-primary-50);"></div>
+          <div class="scale-step light" data-label="100" style="background: var(--vx-primary-100);"></div>
+          <div class="scale-step light" data-label="200" style="background: var(--vx-primary-200);"></div>
+          <div class="scale-step light" data-label="300" style="background: var(--vx-primary-300);"></div>
+          <div class="scale-step light" data-label="400" style="background: var(--vx-primary-400);"></div>
+          <div class="scale-step"       data-label="500" style="background: var(--vx-primary-500);"></div>
+          <div class="scale-step"       data-label="600" style="background: var(--vx-primary-600);"></div>
+          <div class="scale-step"       data-label="700" style="background: var(--vx-primary-700);"></div>
+          <div class="scale-step"       data-label="800" style="background: var(--vx-primary-800);"></div>
+          <div class="scale-step"       data-label="900" style="background: var(--vx-primary-900);"></div>
+          <div class="scale-step"       data-label="950" style="background: var(--vx-primary-950);"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">帮助色 4 阶（蓝色系）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-100);"></div><div class="swatch-label">浅 / 100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-400);"></div><div class="swatch-label">常规 / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-600);"></div><div class="swatch-label">深 / 600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-800);"></div><div class="swatch-label">最深 / 800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">其他（扩展）· 青色系</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-100);"></div><div class="swatch-label">100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-400);"></div><div class="swatch-label">400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-600);"></div><div class="swatch-label">600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-800);"></div><div class="swatch-label">800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">边线 @line-Blue</div>
+        <div class="line-demo"></div>
+        <div class="line-desc">--vx-line · 1px solid</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主按钮 &amp; 帮助 Alert</div>
+        <div class="two-col">
+          <div class="btn-row">
+            <button class="btn btn-primary">主按钮</button>
+            <button class="btn btn-primary-dark">深色</button>
+            <button class="btn btn-primary-light">浅色</button>
+          </div>
+          <div class="alert">
+            <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 10.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7 4.75a1 1 0 1 1 2 0v3.5a1 1 0 1 1-2 0v-3.5Z"/>
+            </svg>
+            <div>
+              <strong>帮助提示</strong>
+              <small>帮助色统一使用蓝色系，确保信息层级稳定。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== 卡片 3：紫 ===== -->
+    <article class="theme-card" data-card-theme="purple">
+      <div class="card-header">
+        <div class="card-title"><span class="dot"></span>紫 · Purple</div>
+        <span class="card-tag">主色</span>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主色 4 阶（常规 / Hover / 深色 / 浅色）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary);"></div><div class="swatch-label">常规 / 500</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-hover);"></div><div class="swatch-label">Hover / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-dark);"></div><div class="swatch-label">深色 / 700</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-light);"></div><div class="swatch-label">浅色 / 100</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">11 级色阶（50 → 950）</div>
+        <div class="scale-row">
+          <div class="scale-step light" data-label="50"  style="background: var(--vx-primary-50);"></div>
+          <div class="scale-step light" data-label="100" style="background: var(--vx-primary-100);"></div>
+          <div class="scale-step light" data-label="200" style="background: var(--vx-primary-200);"></div>
+          <div class="scale-step light" data-label="300" style="background: var(--vx-primary-300);"></div>
+          <div class="scale-step"       data-label="400" style="background: var(--vx-primary-400);"></div>
+          <div class="scale-step"       data-label="500" style="background: var(--vx-primary-500);"></div>
+          <div class="scale-step"       data-label="600" style="background: var(--vx-primary-600);"></div>
+          <div class="scale-step"       data-label="700" style="background: var(--vx-primary-700);"></div>
+          <div class="scale-step"       data-label="800" style="background: var(--vx-primary-800);"></div>
+          <div class="scale-step"       data-label="900" style="background: var(--vx-primary-900);"></div>
+          <div class="scale-step"       data-label="950" style="background: var(--vx-primary-950);"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">帮助色 4 阶（蓝色系）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-100);"></div><div class="swatch-label">浅 / 100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-400);"></div><div class="swatch-label">常规 / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-600);"></div><div class="swatch-label">深 / 600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-800);"></div><div class="swatch-label">最深 / 800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">其他（扩展）· 青色系</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-100);"></div><div class="swatch-label">100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-400);"></div><div class="swatch-label">400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-600);"></div><div class="swatch-label">600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-800);"></div><div class="swatch-label">800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">边线 @line-Blue</div>
+        <div class="line-demo"></div>
+        <div class="line-desc">--vx-line · 1px solid</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主按钮 &amp; 帮助 Alert</div>
+        <div class="two-col">
+          <div class="btn-row">
+            <button class="btn btn-primary">主按钮</button>
+            <button class="btn btn-primary-dark">深色</button>
+            <button class="btn btn-primary-light">浅色</button>
+          </div>
+          <div class="alert">
+            <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 10.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7 4.75a1 1 0 1 1 2 0v3.5a1 1 0 1 1-2 0v-3.5Z"/>
+            </svg>
+            <div>
+              <strong>帮助提示</strong>
+              <small>帮助色统一使用蓝色系，确保信息层级稳定。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== 卡片 4：翠青 ===== -->
+    <article class="theme-card" data-card-theme="teal">
+      <div class="card-header">
+        <div class="card-title"><span class="dot"></span>翠青 · Teal</div>
+        <span class="card-tag">主色</span>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主色 4 阶（常规 / Hover / 深色 / 浅色）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary);"></div><div class="swatch-label">常规 / 500</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-hover);"></div><div class="swatch-label">Hover / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-dark);"></div><div class="swatch-label">深色 / 700</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-light);"></div><div class="swatch-label">浅色 / 100</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">11 级色阶（50 → 950）</div>
+        <div class="scale-row">
+          <div class="scale-step light" data-label="50"  style="background: var(--vx-primary-50);"></div>
+          <div class="scale-step light" data-label="100" style="background: var(--vx-primary-100);"></div>
+          <div class="scale-step light" data-label="200" style="background: var(--vx-primary-200);"></div>
+          <div class="scale-step light" data-label="300" style="background: var(--vx-primary-300);"></div>
+          <div class="scale-step light" data-label="400" style="background: var(--vx-primary-400);"></div>
+          <div class="scale-step"       data-label="500" style="background: var(--vx-primary-500);"></div>
+          <div class="scale-step"       data-label="600" style="background: var(--vx-primary-600);"></div>
+          <div class="scale-step"       data-label="700" style="background: var(--vx-primary-700);"></div>
+          <div class="scale-step"       data-label="800" style="background: var(--vx-primary-800);"></div>
+          <div class="scale-step"       data-label="900" style="background: var(--vx-primary-900);"></div>
+          <div class="scale-step"       data-label="950" style="background: var(--vx-primary-950);"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">帮助色 4 阶（蓝色系）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-100);"></div><div class="swatch-label">浅 / 100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-400);"></div><div class="swatch-label">常规 / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-600);"></div><div class="swatch-label">深 / 600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-800);"></div><div class="swatch-label">最深 / 800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">其他（扩展）· 青色系</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-100);"></div><div class="swatch-label">100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-400);"></div><div class="swatch-label">400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-600);"></div><div class="swatch-label">600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-800);"></div><div class="swatch-label">800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">边线 @line-Blue</div>
+        <div class="line-demo"></div>
+        <div class="line-desc">--vx-line · 1px solid</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主按钮 &amp; 帮助 Alert</div>
+        <div class="two-col">
+          <div class="btn-row">
+            <button class="btn btn-primary">主按钮</button>
+            <button class="btn btn-primary-dark">深色</button>
+            <button class="btn btn-primary-light">浅色</button>
+          </div>
+          <div class="alert">
+            <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 10.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7 4.75a1 1 0 1 1 2 0v3.5a1 1 0 1 1-2 0v-3.5Z"/>
+            </svg>
+            <div>
+              <strong>帮助提示</strong>
+              <small>帮助色统一使用蓝色系，确保信息层级稳定。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== 卡片 5：红 ===== -->
+    <article class="theme-card" data-card-theme="red">
+      <div class="card-header">
+        <div class="card-title"><span class="dot"></span>红 · Red</div>
+        <span class="card-tag">主色</span>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主色 4 阶（常规 / Hover / 深色 / 浅色）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary);"></div><div class="swatch-label">常规 / 500</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-hover);"></div><div class="swatch-label">Hover / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-dark);"></div><div class="swatch-label">深色 / 700</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-light);"></div><div class="swatch-label">浅色 / 100</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">11 级色阶（50 → 950）</div>
+        <div class="scale-row">
+          <div class="scale-step light" data-label="50"  style="background: var(--vx-primary-50);"></div>
+          <div class="scale-step light" data-label="100" style="background: var(--vx-primary-100);"></div>
+          <div class="scale-step light" data-label="200" style="background: var(--vx-primary-200);"></div>
+          <div class="scale-step light" data-label="300" style="background: var(--vx-primary-300);"></div>
+          <div class="scale-step light" data-label="400" style="background: var(--vx-primary-400);"></div>
+          <div class="scale-step"       data-label="500" style="background: var(--vx-primary-500);"></div>
+          <div class="scale-step"       data-label="600" style="background: var(--vx-primary-600);"></div>
+          <div class="scale-step"       data-label="700" style="background: var(--vx-primary-700);"></div>
+          <div class="scale-step"       data-label="800" style="background: var(--vx-primary-800);"></div>
+          <div class="scale-step"       data-label="900" style="background: var(--vx-primary-900);"></div>
+          <div class="scale-step"       data-label="950" style="background: var(--vx-primary-950);"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">帮助色 4 阶（蓝色系）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-100);"></div><div class="swatch-label">浅 / 100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-400);"></div><div class="swatch-label">常规 / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-600);"></div><div class="swatch-label">深 / 600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-800);"></div><div class="swatch-label">最深 / 800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">其他（扩展）· 青色系</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-100);"></div><div class="swatch-label">100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-400);"></div><div class="swatch-label">400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-600);"></div><div class="swatch-label">600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-800);"></div><div class="swatch-label">800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">边线 @line-Blue</div>
+        <div class="line-demo"></div>
+        <div class="line-desc">--vx-line · 1px solid</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主按钮 &amp; 帮助 Alert</div>
+        <div class="two-col">
+          <div class="btn-row">
+            <button class="btn btn-primary">主按钮</button>
+            <button class="btn btn-primary-dark">深色</button>
+            <button class="btn btn-primary-light">浅色</button>
+          </div>
+          <div class="alert">
+            <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 10.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7 4.75a1 1 0 1 1 2 0v3.5a1 1 0 1 1-2 0v-3.5Z"/>
+            </svg>
+            <div>
+              <strong>帮助提示</strong>
+              <small>帮助色统一使用蓝色系，确保信息层级稳定。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== 卡片 6：碧青 ===== -->
+    <article class="theme-card" data-card-theme="cyan">
+      <div class="card-header">
+        <div class="card-title"><span class="dot"></span>碧青 · Cyan</div>
+        <span class="card-tag">主色</span>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主色 4 阶（常规 / Hover / 深色 / 浅色）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary);"></div><div class="swatch-label">常规 / 500</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-hover);"></div><div class="swatch-label">Hover / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-dark);"></div><div class="swatch-label">深色 / 700</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-primary-light);"></div><div class="swatch-label">浅色 / 100</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">11 级色阶（50 → 950）</div>
+        <div class="scale-row">
+          <div class="scale-step light" data-label="50"  style="background: var(--vx-primary-50);"></div>
+          <div class="scale-step light" data-label="100" style="background: var(--vx-primary-100);"></div>
+          <div class="scale-step light" data-label="200" style="background: var(--vx-primary-200);"></div>
+          <div class="scale-step light" data-label="300" style="background: var(--vx-primary-300);"></div>
+          <div class="scale-step light" data-label="400" style="background: var(--vx-primary-400);"></div>
+          <div class="scale-step"       data-label="500" style="background: var(--vx-primary-500);"></div>
+          <div class="scale-step"       data-label="600" style="background: var(--vx-primary-600);"></div>
+          <div class="scale-step"       data-label="700" style="background: var(--vx-primary-700);"></div>
+          <div class="scale-step"       data-label="800" style="background: var(--vx-primary-800);"></div>
+          <div class="scale-step"       data-label="900" style="background: var(--vx-primary-900);"></div>
+          <div class="scale-step"       data-label="950" style="background: var(--vx-primary-950);"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">帮助色 4 阶（蓝色系）</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-100);"></div><div class="swatch-label">浅 / 100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-400);"></div><div class="swatch-label">常规 / 400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-600);"></div><div class="swatch-label">深 / 600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-help-800);"></div><div class="swatch-label">最深 / 800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">其他（扩展）· 青色系</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-100);"></div><div class="swatch-label">100</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-400);"></div><div class="swatch-label">400</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-600);"></div><div class="swatch-label">600</div></div>
+          <div class="swatch"><div class="swatch-color" style="background: var(--vx-extra-800);"></div><div class="swatch-label">800</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">边线 @line-Blue</div>
+        <div class="line-demo"></div>
+        <div class="line-desc">--vx-line · 1px solid</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">主按钮 &amp; 帮助 Alert</div>
+        <div class="two-col">
+          <div class="btn-row">
+            <button class="btn btn-primary">主按钮</button>
+            <button class="btn btn-primary-dark">深色</button>
+            <button class="btn btn-primary-light">浅色</button>
+          </div>
+          <div class="alert">
+            <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 10.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7 4.75a1 1 0 1 1 2 0v3.5a1 1 0 1 1-2 0v-3.5Z"/>
+            </svg>
+            <div>
+              <strong>帮助提示</strong>
+              <small>帮助色统一使用蓝色系，确保信息层级稳定。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="page-footer">
+    主题切换：修改 &lt;html data-vx-theme="..."&gt; 即可全局生效 · 遵循 Voyah UI/UE 设计规范
+  </div>
+
+</main>
+
+<script>
+  // 切换全局主题
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('.theme-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.theme;
+      root.setAttribute('data-vx-theme', theme);
+      buttons.forEach(b => b.classList.toggle('active', b === btn));
+    });
+  });
+</script>
+
+</body>
+</html>

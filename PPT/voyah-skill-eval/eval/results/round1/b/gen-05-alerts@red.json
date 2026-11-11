@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-05-alerts@red",
+  "kind": "gen",
+  "theme": "red",
+  "product": "eval/products/round1/b/gen-05-alerts@red",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.2567448,
+  "denials": [],
+  "resultText": "Demo 已生成到 `/private/tmp/vx-eval/r1/b/gen-05-alerts@red/index.html`。\n\n**包含内容:**\n- **顶部系统升级横幅** — 帮助色(蓝)浅底,符合「帮助语义用蓝色」规范\n- **四种 Alert 提示条** — 成功(绿)/警告(橙)/错误(红)/帮助(蓝),各带图标、标题、说明、关闭按钮,左侧色条 + 浅底 + 边框三层语义\n- **状态 Tag 组** — 成功/警告/错误/帮助/紫色(特殊标记)5 类,圆形色点 + 胶囊形\n- **右侧 Notification 卡片 ×3** — 成功(保养确认)/警告(电量提醒)/主色(系统升级),含图标头像、标题、描述、时间戳、未读红点\n- **主题切换** — 右上角红/蓝/暗色三档切换,基于 `data-vx-theme` 属性,默认红主题,`localStorage` 持久化\n\n**设计规范遵循点:**\n- 辅助色语义严格分离:成功=绿、警告=橙、错误=红、帮助=蓝、紫色=特殊标记,互不混用\n- 主色(品牌色)与辅助色职责区分:红主题下主色红只用于品牌标识/未读点/按钮等,错误语义仍用红但独立 token 管理\n- 字体、圆角、阴影、间距均按 Design Token 统一管理\n- 暗色模式完整适配",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-05-alerts@red/index.html",
+    "alignRate": 0.76,
+    "checks": 25,
+    "passed": 19,
+    "p0": 3,
+    "p1": 3,
+    "tokenRefRate": 0.626
+  },
+  "at": "2026-11-09T09:28:22.536Z"
+}

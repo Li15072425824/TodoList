@@ -1,0 +1,14 @@
+{
+  "id": "kb-16",
+  "topic": "spacing-exemption",
+  "question": "输入框内容 padding 四边是多少?其中哪一项是设计稿明示的非 4 倍数豁免?",
+  "golden_answer": "左12 右12 上6 下6;纵向 6px 是明示豁免。",
+  "required": [
+    "12",
+    "6"
+  ],
+  "specIds": [
+    "spacing.padding.input",
+    "spacing.rule.input"
+  ]
+}

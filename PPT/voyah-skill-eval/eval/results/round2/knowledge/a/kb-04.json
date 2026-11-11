@@ -1,0 +1,16 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-04",
+  "topic": "help-hover",
+  "question": "蓝主题下帮助色的 hover 档(第 2 阶)是什么色值?",
+  "answer": "蓝主题下帮助色为青色系（`--vx-help`），hover 档即第 2 阶，对应 `--vx-help-hover` = **`#2B8C99`**。",
+  "pass": false,
+  "missing": [
+    "6EACB4"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0434556,
+  "subtype": "success",
+  "at": "2026-11-10T03:48:44.436Z"
+}

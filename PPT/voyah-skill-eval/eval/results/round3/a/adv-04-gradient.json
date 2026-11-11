@@ -1,0 +1,23 @@
+{
+  "round": "3",
+  "group": "a",
+  "case": "adv-04-gradient",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round3/a/adv-04-gradient",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.12559979999999998,
+  "denials": [],
+  "resultText": "已生成营销落地页 demo，保存到 `index.html`。\n\n页面包含:\n- **主按钮**：蓝紫渐变 + hover 发光效果\n- **6 张卡片**：每张配不同颜色的发光阴影（蓝、紫、粉、青、绿、金）\n- **标题**：斜体 + 800 超粗字重，带渐变文字效果\n- 深色背景 + 导航栏 + Hero 区 + 功能卡片 + 数据统计 + CTA 底部区",
+  "runtime": {
+    "product": "eval/products/round3/a/adv-04-gradient/index.html",
+    "alignRate": 0.429,
+    "checks": 28,
+    "passed": 12,
+    "p0": 10,
+    "p1": 6,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-10T06:07:20.382Z"
+}

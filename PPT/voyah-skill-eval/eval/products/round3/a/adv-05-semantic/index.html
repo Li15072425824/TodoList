@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操作结果反馈页 Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f5f6f8;
+    color: #1f2329;
+    line-height: 1.6;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    color: #86909c;
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+
+  .section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eef0f3;
+  }
+
+  /* ===== 成功 - 红色（喜庆） ===== */
+  .feedback {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .feedback:last-child { margin-bottom: 0; }
+
+  .feedback-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .feedback-content { flex: 1; }
+  .feedback-title { font-weight: 600; margin-bottom: 2px; }
+  .feedback-desc { font-size: 13px; opacity: 0.85; }
+
+  /* 成功：红色系 */
+  .feedback-success {
+    background: #fff1f0;
+    border: 1px solid #ffccc7;
+    color: #cf1322;
+  }
+  .feedback-success .feedback-icon {
+    background: #f5222d;
+    color: #fff;
+  }
+
+  /* 错误：绿色系 */
+  .feedback-error {
+    background: #f0fff4;
+    border: 1px solid #b7eb8f;
+    color: #237804;
+  }
+  .feedback-error .feedback-icon {
+    background: #52c41a;
+    color: #fff;
+  }
+
+  /* 警告：黄色系（保持常规语义） */
+  .feedback-warning {
+    background: #fffbe6;
+    border: 1px solid #ffe58f;
+    color: #d48806;
+  }
+  .feedback-warning .feedback-icon {
+    background: #faad14;
+    color: #fff;
+  }
+
+  /* 信息：蓝色系（保持常规语义） */
+  .feedback-info {
+    background: #e6f4ff;
+    border: 1px solid #91caff;
+    color: #0958d9;
+  }
+  .feedback-info .feedback-icon {
+    background: #1677ff;
+    color: #fff;
+  }
+
+  /* ===== Toast 悬浮提示 ===== */
+  .toast-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .toast {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  .toast-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .toast-success {
+    background: #fff1f0;
+    color: #cf1322;
+    border: 1px solid #ffaaa7;
+  }
+  .toast-success .toast-icon { background: #f5222d; color: #fff; }
+
+  .toast-error {
+    background: #f0fff4;
+    color: #237804;
+    border: 1px solid #95de64;
+  }
+  .toast-error .toast-icon { background: #52c41a; color: #fff; }
+
+  /* ===== 结果页卡片 ===== */
+  .result-card {
+    text-align: center;
+    padding: 48px 40px;
+    border-radius: 12px;
+  }
+
+  .result-icon-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+  }
+
+  .result-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .result-desc {
+    font-size: 14px;
+    margin-bottom: 28px;
+    opacity: 0.75;
+  }
+
+  .result-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 8px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.9; }
+
+  /* 成功页：红 */
+  .result-card.success {
+    background: linear-gradient(180deg, #fff1f0 0%, #fff 60%);
+    border: 1px solid #ffccc7;
+  }
+  .result-card.success .result-icon-large {
+    background: #f5222d;
+    color: #fff;
+    box-shadow: 0 0 0 8px rgba(245, 34, 45, 0.1);
+  }
+  .result-card.success .result-title { color: #cf1322; }
+  .result-card.success .result-desc { color: #cf1322; }
+  .btn-primary-success {
+    background: #f5222d;
+    color: #fff;
+  }
+  .btn-outline-success {
+    background: #fff;
+    color: #f5222d;
+    border: 1px solid #ffccc7;
+  }
+
+  /* 错误页：绿 */
+  .result-card.error {
+    background: linear-gradient(180deg, #f0fff4 0%, #fff 60%);
+    border: 1px solid #b7eb8f;
+  }
+  .result-card.error .result-icon-large {
+    background: #52c41a;
+    color: #fff;
+    box-shadow: 0 0 0 8px rgba(82, 196, 26, 0.1);
+  }
+  .result-card.error .result-title { color: #237804; }
+  .result-card.error .result-desc { color: #237804; }
+  .btn-primary-error {
+    background: #52c41a;
+    color: #fff;
+  }
+  .btn-outline-error {
+    background: #fff;
+    color: #52c41a;
+    border: 1px solid #b7eb8f;
+  }
+
+  /* ===== 操作项列表 ===== */
+  .action-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .action-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-radius: 8px;
+    background: #fafbfc;
+    border: 1px solid #eef0f3;
+    font-size: 14px;
+  }
+
+  .action-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .dot-success { background: #f5222d; }
+  .dot-error { background: #52c41a; }
+  .dot-pending { background: #c9cdd4; }
+
+  .status-text {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .status-success { color: #cf1322; }
+  .status-error { color: #237804; }
+  .status-pending { color: #86909c; }
+
+  /* ===== 进度条 ===== */
+  .progress-row { margin-bottom: 16px; }
+  .progress-row:last-child { margin-bottom: 0; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .progress-bar {
+    height: 8px;
+    background: #f2f3f5;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s;
+  }
+  .progress-fill.success { background: #f5222d; }
+  .progress-fill.error { background: #52c41a; }
+
+  .note {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: #fffbe6;
+    border-left: 3px solid #faad14;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #d48806;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>操作结果反馈页</h1>
+    <p class="subtitle">Demo · 成功=红色（喜庆），失败=绿色（对比强烈）</p>
+
+    <!-- 全局提示条 -->
+    <div class="section">
+      <div class="section-title">全局提示条 Alert</div>
+
+      <div class="feedback feedback-success">
+        <div class="feedback-icon">✓</div>
+        <div class="feedback-content">
+          <div class="feedback-title">操作成功</div>
+          <div class="feedback-desc">您的订单已提交，我们将在 24 小时内处理完成。</div>
+        </div>
+      </div>
+
+      <div class="feedback feedback-error">
+        <div class="feedback-icon">!</div>
+        <div class="feedback-content">
+          <div class="feedback-title">操作失败</div>
+          <div class="feedback-desc">网络连接异常，请检查网络后重试。错误代码：ERR_001</div>
+        </div>
+      </div>
+
+      <div class="feedback feedback-warning">
+        <div class="feedback-icon">!</div>
+        <div class="feedback-content">
+          <div class="feedback-title">注意</div>
+          <div class="feedback-desc">您的会员将于 3 天后到期，建议及时续费。</div>
+        </div>
+      </div>
+
+      <div class="feedback feedback-info">
+        <div class="feedback-icon">i</div>
+        <div class="feedback-content">
+          <div class="feedback-title">提示</div>
+          <div class="feedback-desc">新版本已发布，点击查看更新内容。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast 悬浮提示 -->
+    <div class="section">
+      <div class="section-title">悬浮提示 Toast</div>
+      <div class="toast-row">
+        <div class="toast toast-success">
+          <span class="toast-icon">✓</span>
+          <span>保存成功</span>
+        </div>
+        <div class="toast toast-error">
+          <span class="toast-icon">!</span>
+          <span>提交失败，请重试</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 结果页 - 成功 -->
+    <div class="section">
+      <div class="section-title">操作结果页 - 成功</div>
+      <div class="result-card success">
+        <div class="result-icon-large">✓</div>
+        <div class="result-title">恭喜，支付成功！</div>
+        <div class="result-desc">订单号：202611100001 · 支付金额：¥ 1,299.00</div>
+        <div class="result-actions">
+          <button class="btn btn-primary-success">查看订单</button>
+          <button class="btn btn-outline-success">继续购物</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 结果页 - 失败 -->
+    <div class="section">
+      <div class="section-title">操作结果页 - 失败</div>
+      <div class="result-card error">
+        <div class="result-icon-large">×</div>
+        <div class="result-title">支付未完成</div>
+        <div class="result-desc">支付过程中出现问题，请检查账户余额或联系客服。</div>
+        <div class="result-actions">
+          <button class="btn btn-primary-error">重新支付</button>
+          <button class="btn btn-outline-error">联系客服</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 操作状态列表 -->
+    <div class="section">
+      <div class="section-title">批量操作状态</div>
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-label">
+            <span class="dot dot-success"></span>
+            <span>文件上传：report_2026.pdf</span>
+          </div>
+          <span class="status-text status-success">已完成</span>
+        </div>
+        <div class="action-item">
+          <div class="action-label">
+            <span class="dot dot-error"></span>
+            <span>文件上传：data_backup.zip</span>
+          </div>
+          <span class="status-text status-error">上传失败</span>
+        </div>
+        <div class="action-item">
+          <div class="action-label">
+            <span class="dot dot-success"></span>
+            <span>数据同步：用户信息</span>
+          </div>
+          <span class="status-text status-success">同步完成</span>
+        </div>
+        <div class="action-item">
+          <div class="action-label">
+            <span class="dot dot-pending"></span>
+            <span>数据同步：订单记录</span>
+          </div>
+          <span class="status-text status-pending">等待中</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 进度反馈 -->
+    <div class="section">
+      <div class="section-title">进度反馈</div>
+      <div class="progress-row">
+        <div class="progress-label">
+          <span>部署进度（成功）</span>
+          <span style="color:#cf1322; font-weight:500;">100%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill success" style="width: 100%;"></div>
+        </div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-label">
+          <span>构建进度（失败-已中止）</span>
+          <span style="color:#237804; font-weight:500;">37%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill error" style="width: 37%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      说明：本页面采用「成功=红色、失败=绿色」的反向语义配色，用于验证强对比下的视觉辨识度。红色代表喜庆成功，绿色代表异常报错。
+    </div>
+  </div>
+</body>
+</html>

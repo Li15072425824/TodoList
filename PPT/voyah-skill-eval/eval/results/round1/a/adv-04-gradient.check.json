@@ -1,0 +1,243 @@
+{
+  "product": "eval/products/round1/a/adv-04-gradient/index.html",
+  "alignRate": 0.684,
+  "checks": 19,
+  "passed": 13,
+  "p0": 3,
+  "p1": 3,
+  "tokenRefRate": 0,
+  "expectedTheme": null,
+  "allThemes": false,
+  "htmlTheme": null,
+  "themeAttrs": [],
+  "staticIssues": {
+    "hex": [
+      "#0A0A0F",
+      "#12121A",
+      "#181824",
+      "#F5F5FF",
+      "#9A9AB0",
+      "#6A6A80",
+      "#4F6BFF",
+      "#9D4EDD",
+      "#FF4F9A",
+      "#4FE8FF",
+      "#6B82FF",
+      "#B368EB",
+      "#A8B8FF",
+      "#FF6FA8",
+      "#6EEFFF",
+      "#4FE8A8",
+      "#FFEEAA"
+    ],
+    "forbidden": [],
+    "gradient": [
+      "gradient"
+    ],
+    "weight": [
+      "800",
+      "800",
+      "800",
+      "700",
+      "800",
+      "800",
+      "700",
+      "800",
+      "700",
+      "800",
+      "700",
+      "800",
+      "700",
+      "800"
+    ],
+    "black": [],
+    "spacing": [
+      "padding: 10px",
+      "padding: 10px",
+      "padding: 10px",
+      "padding: 14px",
+      "gap: 10px",
+      "gap: 10px",
+      "padding: 10px",
+      "gap: 10px",
+      "margin-bottom: 10px",
+      "padding: 10px"
+    ],
+    "border": [],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #0A0A0F #12121A #181824 #F5F5FF #9A9AB0 #6A6A80 #4F6BFF #9D4EDD #FF4F9A #4FE8FF #6B82FF #B368EB"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "detail": "非法字重: 800,700"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "detail": "非 4n 间距: padding: 10px; padding: 14px; gap: 10px; margin-bottom: 10px"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "detail": "body font-family = Poppins, -apple-system, \"system-ui\", sans-serif"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #0A0A0F #12121A #181824 #F5F5FF #9A9AB0 #6A6A80 #4F6BFF #9D4EDD #FF4F9A #4FE8FF #6B82FF #B368EB"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": false,
+      "detail": "非法字重: 800,700"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非 4n 间距: padding: 10px; padding: 14px; gap: 10px; margin-bottom: 10px"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.exists",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无按钮（按钮检查不适用）"
+    },
+    {
+      "id": "sim.primary",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无主按钮（四态不适用）"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.declared",
+      "cat": "主题",
+      "sev": "P1",
+      "pass": false,
+      "detail": "主题声明: html=无, 其他=0 个"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": false,
+      "detail": "body font-family = Poppins, -apple-system, \"system-ui\", sans-serif"
+    }
+  ],
+  "costNote": null
+}

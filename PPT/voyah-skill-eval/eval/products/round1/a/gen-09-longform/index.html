@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>岚图车主使用手册</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--vx-fill-3);
+    color: var(--vx-text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+  .doc-page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 16px 24px 24px 24px;
+    background: var(--vx-fill-3);
+  }
+  .doc-article {
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 24px 32px 32px 32px;
+  }
+
+  /* 文档大标题区 */
+  .doc-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 8px;
+  }
+  .doc-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-bottom: 24px;
+  }
+  .doc-meta-divider {
+    width: 1px;
+    height: 12px;
+    background: var(--vx-line-2);
+  }
+
+  /* 模块小标题 */
+  .section-title {
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 16px;
+    background: var(--vx-primary);
+    border-radius: 2px;
+  }
+
+  /* 大段描述文字 */
+  .doc-paragraph {
+    font-size: 15px;
+    line-height: 28px;
+    color: var(--vx-text-primary);
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+
+  /* 文内备注/提示（辅助说明 12px） */
+  .doc-note {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    padding: 8px 12px;
+    background: var(--vx-fill-1);
+    border-radius: 6px;
+    margin: 8px 0 20px 0;
+    border-left: 2px solid var(--vx-help);
+  }
+  .doc-note strong {
+    color: var(--vx-help);
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  /* 章节间分割线 */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--vx-line-1);
+    margin: 24px 0;
+  }
+
+  /* 相关文档 — 水平文字分割线 */
+  .related-section {
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  .text-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--vx-text-secondary);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .text-divider::before,
+  .text-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--vx-line-2);
+  }
+  .text-divider span {
+    flex-shrink: 0;
+    padding: 0 8px;
+  }
+
+  /* 相关文档链接列表 */
+  .related-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .related-item {
+    display: block;
+    padding: 12px 16px;
+    background: var(--vx-fill-2);
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--vx-text-primary);
+    transition: all 0.2s;
+  }
+  .related-item:hover {
+    color: var(--vx-primary);
+    background: var(--vx-primary-bg);
+  }
+  .related-item .related-label {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-bottom: 2px;
+  }
+
+  /* 页脚 */
+  .doc-footer {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--vx-line-1);
+  }
+  .footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .footer-links a {
+    color: var(--vx-text-secondary);
+    text-decoration: none;
+    padding: 0 16px;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover {
+    color: var(--vx-primary);
+  }
+  .footer-vdivider {
+    width: 1px;
+    height: 12px;
+    background: var(--vx-line-2);
+    flex-shrink: 0;
+  }
+  .footer-copyright {
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-top: 12px;
+  }
+
+  /* 辅助小标题 */
+  .sub-heading {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--vx-text-primary);
+    margin: 16px 0 8px 0;
+  }
+
+  /* 列表样式 */
+  .doc-list {
+    font-size: 15px;
+    line-height: 28px;
+    color: var(--vx-text-primary);
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  .doc-list li {
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="doc-page">
+  <article class="doc-article">
+
+    <!-- 文档大标题 + 更新时间 + 作者 -->
+    <h1 class="doc-title">岚图 FREE 车主使用手册</h1>
+    <div class="doc-meta">
+      <span>更新时间：2026 年 11 月 09 日</span>
+      <span class="doc-meta-divider"></span>
+      <span>作者：岚图用户体验中心</span>
+      <span class="doc-meta-divider"></span>
+      <span>文档版本：v2.4.1</span>
+    </div>
+
+    <!-- 第一章 -->
+    <h2 class="section-title">一、车辆基本信息</h2>
+    <p class="doc-paragraph">
+      岚图 FREE 是一款定位中大型豪华电动 SUV 的智能电动车，基于岚图原生智能电动架构打造，
+      搭载前后双电机智能四驱系统，综合最大功率可达 360kW，综合最大扭矩 720N·m，
+      零百加速仅需 4.4 秒。车辆配备 106kWh 大容量电池包，CLTC 综合工况续航里程最高可达 631 公里，
+      满足日常通勤与长途出行的双重需求。
+    </p>
+    <p class="doc-paragraph">
+      车身尺寸方面，岚图 FREE 长宽高分别为 4905mm / 1950mm / 1660mm，轴距达到 2960mm，
+      提供宽敞的五座乘坐空间。后备箱常规容积为 560 升，后排座椅放倒后可扩展至 1310 升，
+      足以容纳家庭出行所需的全部行李与装备。空气悬架系统可根据路况自动调节车身高度，
+      调节范围达 100mm，兼顾公路舒适性与越野通过性。
+    </p>
+
+    <div class="doc-note">
+      <strong>提示：</strong>本手册适用于 2024 款及以后生产的岚图 FREE 车型，早期车型部分功能可能存在差异，
+      请以随车交付的纸质手册为准。
+    </div>
+
+    <!-- 分割线 -->
+    <hr class="section-divider" />
+
+    <!-- 第二章 -->
+    <h2 class="section-title">二、智能座舱系统</h2>
+    <p class="doc-paragraph">
+      岚图 FREE 搭载全新一代 AI 智能座舱系统，采用高通骁龙 8155P 车载芯片，
+      配合 12.3 英寸全液晶仪表 + 12.3 英寸中控屏 + 12.3 英寸副驾娱乐屏的三联屏设计，
+      支持三屏联动与独立操作。系统内置语音助手「岚图同学」，支持四音区语音识别、
+      连续对话、可见即可说等功能，无需唤醒词即可完成空调、导航、音乐等高频操作。
+    </p>
+
+    <h3 class="sub-heading">2.1 中控屏操作</h3>
+    <p class="doc-paragraph">
+      中控主屏采用卡片式交互设计，主页展示导航、音乐、车辆状态等核心信息卡片，
+      支持自定义排序与添加。从屏幕顶部向下滑动可呼出快捷控制中心，调节亮度、音量、
+      驾驶模式等常用设置；从底部向上滑动返回桌面；左右滑动切换不同功能页面。
+      系统支持手势操作与多指触控，三指左滑可将当前导航地图发送至仪表屏显示。
+    </p>
+
+    <h3 class="sub-heading">2.2 语音助手</h3>
+    <p class="doc-paragraph">
+      「岚图同学」语音助手采用全双工对话模式，一次唤醒可支持最长 30 秒连续交互。
+      支持自然语言理解，可直接说「我有点冷」「帮我打开主驾车窗到一半」等口语化指令。
+      四音区定位可准确识别来自主驾、副驾、后排左侧、后排右侧的语音指令，
+      并仅对指令发出位置的空调、车窗等部件进行控制，避免误操作。
+    </p>
+
+    <div class="doc-note">
+      <strong>备注：</strong>语音识别率受环境噪音、麦克风遮挡等因素影响，若识别不准确，
+      请检查车顶麦克风区域是否有物品遮挡，或适当提高说话音量。
+    </div>
+
+    <h3 class="sub-heading">2.3 应用生态</h3>
+    <p class="doc-paragraph">
+      智能座舱内置应用商店，提供导航、音乐、视频、亲子、工具等数十款车载应用，
+      包括高德地图、QQ 音乐、网易云音乐、喜马拉雅、爱奇艺等热门应用。
+      应用支持车机账号与手机账号互通，收藏夹、播放记录等数据可实时同步。
+      系统支持 OTA 在线升级，新增功能与优化体验将通过远程推送持续更新。
+    </p>
+
+    <ul class="doc-list">
+      <li>导航：支持高德/百度双地图，AR 实景导航，组队出行</li>
+      <li>娱乐：QQ 音乐、网易云、爱奇艺、哔哩哔哩等</li>
+      <li>生活：美团、大众点评、加油站查询、充电桩导航</li>
+      <li>服务：道路救援、保养预约、在线客服</li>
+    </ul>
+
+    <!-- 分割线 -->
+    <hr class="section-divider" />
+
+    <!-- 第三章 -->
+    <h2 class="section-title">三、驾驶辅助系统</h2>
+    <p class="doc-paragraph">
+      岚图 FREE 搭载岚图 Pilot 4.0 智能驾驶辅助系统，配备 24 个高精度传感器，
+      包括 5 颗毫米波雷达、12 颗超声波雷达、6 颗高清摄像头、1 颗前视双目摄像头。
+      系统支持 L2+ 级智能驾驶辅助，涵盖自适应巡航、车道居中保持、自动变道、
+      自动泊车、遥控泊车等 30 余项功能，全面覆盖高速、城市、泊车等出行场景。
+    </p>
+
+    <h3 class="sub-heading">3.1 高速领航辅助</h3>
+    <p class="doc-paragraph">
+      高速领航辅助（NOA）功能基于高精地图实现，可在高速与城市快速路场景下，
+      依据导航路径自动完成车道保持、智能变道、超车、出入匝道等操作。
+      系统实时监测前方车辆速度与距离，自动调节车速保持安全跟车距离；
+      遇到慢车时，系统会判断相邻车道情况，确认安全后自动完成变道超车。
+      当接近导航目的地出口时，系统会提前并线至最右侧车道，平顺驶入匝道。
+    </p>
+
+    <div class="doc-note">
+      <strong>注意：</strong>驾驶辅助系统为辅助驾驶功能，不等同于自动驾驶。
+      使用过程中请始终保持注意力集中，双手握住方向盘，随时准备接管车辆。
+      驾驶员对车辆行驶安全负有全部责任。
+    </div>
+
+    <h3 class="sub-heading">3.2 自动泊车辅助</h3>
+    <p class="doc-paragraph">
+      自动泊车系统支持水平泊车、垂直泊车、斜列车位等多种车位类型，
+      可识别车位线、车辆、障碍物等目标。按下自动泊车按钮后，系统自动搜索周边车位，
+      驾驶员在中控屏选择目标车位后，系统将自动完成转向、换挡、加减速等操作，
+      将车辆精准泊入车位。全程无需驾驶员操控方向盘与踏板，仅需按住泊车按键即可。
+    </p>
+
+    <!-- 分割线 -->
+    <hr class="section-divider" />
+
+    <!-- 第四章 -->
+    <h2 class="section-title">四、充电与续航</h2>
+    <p class="doc-paragraph">
+      岚图 FREE 搭载 106kWh 三元锂电池包，采用 CTB 电池车身一体化技术，
+      电池包能量密度达 200Wh/kg。CLTC 综合工况续航 631 公里，市区工况续航可达 700 公里以上。
+      支持直流快充与交流慢充两种充电方式，直流快充最大功率 150kW，
+      30%-80% 充电时间约 25 分钟；交流慢充最大功率 11kW，完全充满约需 10 小时。
+    </p>
+
+    <h3 class="sub-heading">4.1 充电操作</h3>
+    <p class="doc-paragraph">
+      车辆充电口位于左后翼子板处，解锁车辆后轻按充电口盖板即可打开。
+      直流快充口与交流慢充口并排布置，快充口为九个端子，慢充口为七个端子。
+      插入充电枪后，仪表屏与中控屏将显示充电状态与预计充满时间。
+      支持预约充电功能，可设置在夜间低谷电价时段自动开始充电，降低用车成本。
+    </p>
+
+    <h3 class="sub-heading">4.2 续航优化建议</h3>
+    <p class="doc-paragraph">
+      实际续航受驾驶习惯、环境温度、空调使用等因素影响。为获得更长续航里程，
+      建议采用平稳驾驶方式，避免急加速与急减速；合理使用空调，夏季温度设置在 24-26°C，
+      冬季可开启座椅加热代替暖风；高速行驶时使用自适应巡航保持经济车速；
+      定期检查轮胎气压，气压过低会增加行驶阻力导致续航下降。
+    </p>
+
+    <div class="doc-note">
+      <strong>小贴士：</strong>冬季低温环境下，建议出行前通过手机 App 远程开启电池预热功能，
+      电池达到适宜工作温度后可有效提升充电速度与续航表现。
+    </div>
+
+    <!-- 相关文档 — 水平文字分割线 -->
+    <section class="related-section">
+      <div class="text-divider">
+        <span>相关文档</span>
+      </div>
+      <div class="related-list">
+        <a href="#" class="related-item">
+          <span class="related-label">快速入门</span>
+          岚图 FREE 新车功能快速上手指南
+        </a>
+        <a href="#" class="related-item">
+          <span class="related-label">安全须知</span>
+          电动车安全驾驶与充电注意事项
+        </a>
+        <a href="#" class="related-item">
+          <span class="related-label">保养维护</span>
+          定期保养项目与周期一览表
+        </a>
+        <a href="#" class="related-item">
+          <span class="related-label">常见问题</span>
+          FAQ 高频问题与解答汇总
+        </a>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="doc-footer">
+      <div class="footer-links">
+        <a href="#">用户协议</a>
+        <span class="footer-vdivider"></span>
+        <a href="#">隐私政策</a>
+        <span class="footer-vdivider"></span>
+        <a href="#">服务网点</a>
+        <span class="footer-vdivider"></span>
+        <a href="#">道路救援</a>
+        <span class="footer-vdivider"></span>
+        <a href="#">意见反馈</a>
+        <span class="footer-vdivider"></span>
+        <a href="#">关于岚图</a>
+      </div>
+      <div class="footer-copyright">
+        © 2026 岚图汽车科技有限公司 版权所有 · 鄂 ICP 备 XXXXXXXX 号
+      </div>
+    </footer>
+
+  </article>
+</div>
+</body>
+</html>

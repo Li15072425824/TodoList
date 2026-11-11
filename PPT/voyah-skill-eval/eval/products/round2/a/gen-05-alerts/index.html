@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>消息通知中心 · 岚图 Voyah</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .page {
+    background: var(--vx-bg-layout);
+    min-height: 100vh;
+    padding: var(--vx-padding-page);
+  }
+  .page-title {
+    font-size: var(--vx-font-size-xl);
+    line-height: var(--vx-line-height-page-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-4);
+  }
+  .page-subtitle {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    margin-bottom: var(--vx-space-6);
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: var(--vx-space-6);
+    align-items: start;
+  }
+  .section {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-padding-card);
+    margin-bottom: var(--vx-space-4);
+  }
+  .section:last-child { margin-bottom: 0; }
+  .section-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-3);
+  }
+  .section-desc {
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-caption);
+    margin-bottom: var(--vx-space-3);
+  }
+
+  /* Alert 列表间距 */
+  .alert-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-2);
+  }
+  .vx-alert-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--vx-space-4);
+    height: var(--vx-space-4);
+    flex-shrink: 0;
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-bold);
+    line-height: 1;
+  }
+  .alert-content {
+    flex: 1;
+  }
+  .alert-title {
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-title);
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+  }
+  .alert-desc {
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-secondary);
+    line-height: var(--vx-line-height-caption);
+    margin-top: var(--vx-space-1);
+  }
+  .alert-close {
+    flex-shrink: 0;
+  }
+
+  /* Tag 组 */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vx-space-2);
+    align-items: center;
+  }
+  .vx-tag-purple {
+    background: var(--vx-purple-bg);
+    color: var(--vx-purple-dark);
+  }
+  .vx-tag-help {
+    background: var(--vx-help-bg);
+    color: var(--vx-help-active);
+  }
+
+  /* 通知面板 */
+  .notif-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-3);
+  }
+  .notif-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--vx-space-1);
+  }
+  .notif-panel-title {
+    font-size: var(--vx-font-size-lg);
+    line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .notif-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-3);
+  }
+  .vx-notification {
+    flex-direction: column;
+    gap: var(--vx-space-2);
+    box-shadow: none;
+  }
+  .notif-head {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--vx-space-2);
+  }
+  .notif-icon {
+    width: var(--vx-space-4);
+    height: var(--vx-space-4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--vx-primary);
+    font-size: var(--vx-font-size-md);
+  }
+  .notif-icon-success { color: var(--vx-success-dark); }
+  .notif-icon-warning { color: var(--vx-warning-dark); }
+  .notif-icon-error { color: var(--vx-error-dark); }
+  .notif-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .notif-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--vx-space-2);
+    margin-bottom: var(--vx-space-1);
+  }
+  .vx-notification-title {
+    font-size: var(--vx-font-size-md);
+    line-height: var(--vx-line-height-body);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .notif-time {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .vx-notification-description {
+    font-size: var(--vx-font-size-sm);
+    line-height: var(--vx-line-height-caption);
+  }
+
+  /* 系统升级横幅 */
+  .banner {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-3);
+    padding: var(--vx-space-3) var(--vx-space-4);
+    background: var(--vx-help-bg);
+    border-radius: var(--vx-radius-lg);
+    margin-bottom: var(--vx-space-4);
+    border: 1px solid var(--vx-help-hover);
+  }
+  .banner-icon {
+    width: var(--vx-space-6);
+    height: var(--vx-space-6);
+    border-radius: var(--vx-radius-lg);
+    background: var(--vx-help);
+    color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+  }
+  .banner-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .banner-title {
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-title);
+    line-height: var(--vx-line-height-body);
+  }
+  .banner-desc {
+    font-size: var(--vx-font-size-sm);
+    color: var(--vx-text-secondary);
+    line-height: var(--vx-line-height-caption);
+    margin-top: var(--vx-space-1);
+  }
+  .banner-action {
+    flex-shrink: 0;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 页面标题 -->
+  <h1 class="page-title">消息通知中心</h1>
+  <p class="page-subtitle">Alert 提示条 / Tag 状态标签 / Notification 通知卡片 / 系统横幅</p>
+
+  <!-- 系统升级横幅 -->
+  <div class="banner">
+    <span class="banner-icon">↻</span>
+    <div class="banner-body">
+      <div class="banner-title">系统升级 v2.4.0 已就绪</div>
+      <div class="banner-desc">新版本包含通知中心优化、性能提升及多项缺陷修复，建议在非高峰时段完成升级。</div>
+    </div>
+    <div class="banner-action">
+      <button class="vx-btn vx-btn-outline vx-btn-sm">立即升级</button>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- 左侧：Alert + Tag -->
+    <main class="main-col">
+
+      <!-- Alert 提示条 -->
+      <section class="section">
+        <h2 class="section-title">Alert 提示条</h2>
+        <p class="section-desc">四种语义色：成功 / 警告 / 错误 / 帮助，辅助色不得混用</p>
+        <div class="alert-list">
+
+          <!-- 成功 -->
+          <div class="vx-alert vx-alert-success">
+            <span class="vx-alert-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <div class="alert-content">
+              <div class="alert-title">提交成功</div>
+              <div class="alert-desc">您的配置变更已保存并生效，系统将在 30 秒内同步至全部节点。</div>
+            </div>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm vx-btn-icon-only alert-close" aria-label="关闭">✕</button>
+          </div>
+
+          <!-- 警告 -->
+          <div class="vx-alert vx-alert-warning">
+            <span class="vx-alert-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </span>
+            <div class="alert-content">
+              <div class="alert-title">事件提醒</div>
+              <div class="alert-desc">数据同步任务已连续运行超过 2 小时，请关注任务状态并检查是否存在异常。</div>
+            </div>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm vx-btn-icon-only alert-close" aria-label="关闭">✕</button>
+          </div>
+
+          <!-- 错误 -->
+          <div class="vx-alert vx-alert-error">
+            <span class="vx-alert-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            </span>
+            <div class="alert-content">
+              <div class="alert-title">操作失败</div>
+              <div class="alert-desc">无法连接到目标服务器，请检查网络配置或联系管理员。错误码：ERR_CONN_003</div>
+            </div>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm vx-btn-icon-only alert-close" aria-label="关闭">✕</button>
+          </div>
+
+          <!-- 帮助 -->
+          <div class="vx-alert vx-alert-help">
+            <span class="vx-alert-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </span>
+            <div class="alert-content">
+              <div class="alert-title">操作指引</div>
+              <div class="alert-desc">点击左侧导航菜单可切换功能模块，按 Shift + ? 可查看全部快捷键说明。</div>
+            </div>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm vx-btn-icon-only alert-close" aria-label="关闭">✕</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 状态 Tag -->
+      <section class="section">
+        <h2 class="section-title">状态 Tag</h2>
+        <p class="section-desc">用于标记状态、分类、属性；辅助色语义严格对齐 Alert 体系</p>
+        <div class="tag-row">
+          <span class="vx-tag vx-tag-success">成功</span>
+          <span class="vx-tag vx-tag-warning">警告</span>
+          <span class="vx-tag vx-tag-error">错误</span>
+          <span class="vx-tag vx-tag-help">帮助</span>
+          <span class="vx-tag vx-tag-purple">特殊标记</span>
+          <span class="vx-tag">默认</span>
+          <span class="vx-tag vx-tag-primary">主色</span>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 右侧：Notification 通知卡片 -->
+    <aside class="side-col">
+      <div class="section">
+        <div class="notif-panel-head">
+          <h2 class="notif-panel-title">最新通知</h2>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm">全部已读</button>
+        </div>
+
+        <div class="notif-list">
+
+          <!-- 通知 1：成功 -->
+          <div class="vx-notification">
+            <div class="notif-head">
+              <span class="notif-icon notif-icon-success">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <div class="notif-body">
+                <div class="notif-title-row">
+                  <span class="vx-notification-title">数据备份完成</span>
+                  <span class="notif-time">2 分钟前</span>
+                </div>
+                <div class="vx-notification-description">全量数据备份任务已成功完成，共备份 12.4 GB 数据，可在备份管理中查看详情。</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 通知 2：警告 -->
+          <div class="vx-notification">
+            <div class="notif-head">
+              <span class="notif-icon notif-icon-warning">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              </span>
+              <div class="notif-body">
+                <div class="notif-title-row">
+                  <span class="vx-notification-title">存储空间告警</span>
+                  <span class="notif-time">15 分钟前</span>
+                </div>
+                <div class="vx-notification-description">节点 Node-07 存储空间使用率已达 85%，建议及时清理或扩容以避免服务中断。</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 通知 3：系统 -->
+          <div class="vx-notification">
+            <div class="notif-head">
+              <span class="notif-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              </span>
+              <div class="notif-body">
+                <div class="notif-title-row">
+                  <span class="vx-notification-title">新功能上线</span>
+                  <span class="notif-time">1 小时前</span>
+                </div>
+                <div class="vx-notification-description">通知中心全新改版，支持分类筛选、一键已读和勿扰模式，前往设置体验新功能。</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+</div>
+
+<script>
+  // Alert 关闭
+  document.querySelectorAll('.alert-close').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var alert = this.closest('.vx-alert');
+      if (alert) alert.style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "adv-04-gradient",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round2/a/adv-04-gradient",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.1776612,
+  "denials": [],
+  "resultText": "Demo 已生成,两个文件都在当前目录:\n\n- `index.html` — 单页营销落地页(导航、Hero、特性卡、CTA、页脚)\n- `styles.css` — 样式文件\n\n设计要点对照:\n- **主按钮**:`linear-gradient(135deg, #3b82f6 → #8b5cf6)` 蓝紫渐变,带同色发光阴影,hover 时加强\n- **卡片发光阴影**:三张卡分别用青/紫/粉三色 `box-shadow` 做外发光,hover 时光晕扩散\n- **标题**:全站大标题使用 `font-style: italic` + `font-weight: 800`,渐变色文字填充,强化设计感\n- 深色背景 + 模糊光斑 + 毛玻璃卡片,整体更有层次感\n\n直接用浏览器打开 `index.html` 即可预览。",
+  "runtime": {
+    "product": "eval/products/round2/a/adv-04-gradient/index.html",
+    "alignRate": 0.5,
+    "checks": 28,
+    "passed": 14,
+    "p0": 9,
+    "p1": 5,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-10T03:38:47.676Z"
+}

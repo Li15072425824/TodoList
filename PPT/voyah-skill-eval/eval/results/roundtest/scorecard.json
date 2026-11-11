@@ -1,0 +1,57 @@
+{
+  "round": "test",
+  "groups": {
+    "a": {
+      "products": 1,
+      "genCases": 0,
+      "advCases": 1,
+      "genAlign": null,
+      "advAlign": 0.448,
+      "genP0": 0,
+      "genP1": 0,
+      "advP0": 10,
+      "advViolationRate": 1,
+      "tokenRefRate": null,
+      "noHtml": 0,
+      "knowledge": null,
+      "knowledgeTotal": 0,
+      "knowledgeMisses": [],
+      "p0ByCheck": {
+        "static.palette": 1,
+        "runtime.btn.color": 1,
+        "sim.primary.normal": 1,
+        "sim.primary.hover": 1,
+        "sim.primary.click": 1,
+        "sim.primary.disabled": 1,
+        "sim.danger.hover": 1,
+        "sim.secondary.hover.fg": 1,
+        "sim.secondary.hover.fill": 1,
+        "runtime.input.border": 1
+      },
+      "totalCost": 0.13
+    },
+    "b": {
+      "products": 0,
+      "genCases": 0,
+      "advCases": 0,
+      "genAlign": null,
+      "advAlign": null,
+      "genP0": 0,
+      "genP1": 0,
+      "advP0": 0,
+      "advViolationRate": null,
+      "tokenRefRate": null,
+      "noHtml": 0,
+      "knowledge": null,
+      "knowledgeTotal": 0,
+      "knowledgeMisses": [],
+      "p0ByCheck": {},
+      "totalCost": 0
+    }
+  },
+  "trigger": {
+    "cases": 0,
+    "rate": null,
+    "detail": []
+  }
+}

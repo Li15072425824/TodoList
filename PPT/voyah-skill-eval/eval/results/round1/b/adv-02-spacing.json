@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "adv-02-spacing",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/b/adv-02-spacing",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.1609818,
+  "denials": [],
+  "resultText": "已生成紧凑排版的设置表单 demo,保存到 `index.html`。\n\n**排版规格:**\n- 表单项间距:10px(`.form-row { margin-bottom: 10px }`)\n- 卡片内边距:14px(`.card { padding: 14px }`)\n- 标题与正文间距:6px(`.card-title { margin-bottom: 6px }`)\n\n**包含 4 个设置分组:**\n1. **个人资料** — 头像、姓名、昵称、手机、邮箱、地区、简介、标签\n2. **账号安全** — 密码、两步验证、设备管理\n3. **通知设置** — 通知渠道、5 项内容开关、免打扰时段\n4. **个性化** — 主题、语言、字号、首页、自动播放、动效等\n\n控件类型覆盖:输入框、下拉、文本域、复选框、单选、开关、滑块、标签、标签页、按钮组。",
+  "runtime": {
+    "product": "eval/products/round1/b/adv-02-spacing/index.html",
+    "alignRate": 0.552,
+    "checks": 29,
+    "passed": 16,
+    "p0": 8,
+    "p1": 5,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T09:32:07.540Z"
+}

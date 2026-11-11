@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>操作结果反馈 · Voyah</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body { background: var(--vx-bg-layout); padding: var(--vx-padding-page); }
+  .page-title { font-size: var(--vx-font-size-xxl); line-height: 32px; font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); margin-bottom: var(--vx-space-4); }
+  .page-desc { font-size: var(--vx-font-size-md); color: var(--vx-text-secondary); margin-bottom: var(--vx-space-6); }
+
+  .section { margin-bottom: var(--vx-space-6); }
+  .section-title { font-size: var(--vx-font-size-lg); line-height: var(--vx-line-height-module-title); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); margin-bottom: var(--vx-space-3); display: flex; align-items: center; gap: var(--vx-space-2); }
+  .section-title::before { content: ""; width: 3px; height: 16px; background: var(--vx-primary); border-radius: 2px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--vx-space-4); }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--vx-space-4); }
+  .card-demo .vx-card-body { display: flex; flex-direction: column; gap: var(--vx-space-3); }
+
+  .result-icon { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
+  .result-icon-success { background: var(--vx-success-bg); color: var(--vx-success); }
+  .result-icon-error { background: var(--vx-error-bg); color: var(--vx-error); }
+  .result-icon-warning { background: var(--vx-warning-bg); color: var(--vx-warning); }
+  .result-icon-info { background: var(--vx-primary-bg); color: var(--vx-primary); }
+
+  .result-panel { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--vx-space-3); padding: var(--vx-space-6); }
+  .result-title { font-size: var(--vx-font-size-xl); line-height: 28px; font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); }
+  .result-desc { font-size: var(--vx-font-size-md); color: var(--vx-text-secondary); line-height: 24px; max-width: 360px; }
+  .result-actions { display: flex; gap: var(--vx-space-2); margin-top: var(--vx-space-2); }
+
+  .toast-container { position: fixed; top: var(--vx-space-4); right: var(--vx-space-4); display: flex; flex-direction: column; gap: var(--vx-space-2); z-index: 100; }
+  .vx-toast { display: flex; align-items: flex-start; gap: var(--vx-space-xs); padding: var(--vx-space-sm) var(--vx-space-4); border-radius: var(--vx-radius-md); font-size: var(--vx-font-size-md); line-height: var(--vx-line-height-body); background: var(--vx-bg-base); border: 1px solid var(--vx-line-1); box-shadow: var(--vx-shadow-modal); min-width: 280px; }
+  .vx-toast-icon { flex-shrink: 0; font-size: 16px; line-height: 22px; }
+  .vx-toast-success { border-left: 3px solid var(--vx-success); }
+  .vx-toast-success .vx-toast-icon { color: var(--vx-success); }
+  .vx-toast-error { border-left: 3px solid var(--vx-error); }
+  .vx-toast-error .vx-toast-icon { color: var(--vx-error); }
+  .vx-toast-warning { border-left: 3px solid var(--vx-warning); }
+  .vx-toast-warning .vx-toast-icon { color: var(--vx-warning); }
+  .vx-toast-info { border-left: 3px solid var(--vx-primary); }
+  .vx-toast-info .vx-toast-icon { color: var(--vx-primary); }
+
+  .inline-demo { display: flex; flex-direction: column; gap: var(--vx-space-xs); }
+  .inline-row { display: flex; align-items: center; gap: var(--vx-space-3); }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: var(--vx-space-2); }
+
+  .form-demo { display: flex; flex-direction: column; gap: var(--vx-space-3); max-width: 400px; }
+  .form-item { display: flex; flex-direction: column; gap: var(--vx-space-1); }
+  .form-label { font-size: var(--vx-font-size-md); color: var(--vx-text-primary); font-weight: var(--vx-font-weight-medium); }
+  .form-error { font-size: var(--vx-font-size-xs); color: var(--vx-error); line-height: 20px; }
+  .form-success { font-size: var(--vx-font-size-xs); color: var(--vx-success-dark); line-height: 20px; }
+
+  .divider { height: 1px; background: var(--vx-line-1); margin: var(--vx-space-4) 0; }
+
+  .progress-row { display: flex; flex-direction: column; gap: var(--vx-space-2); }
+  .progress-bar { height: 8px; background: var(--vx-fill-3); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 4px; }
+  .progress-success { background: var(--vx-success); }
+  .progress-error { background: var(--vx-error); }
+  .progress-warning { background: var(--vx-warning); }
+  .progress-label { display: flex; justify-content: space-between; font-size: var(--vx-font-size-xs); color: var(--vx-text-secondary); }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">操作结果反馈</h1>
+<p class="page-desc">展示不同场景下操作成功、失败、警告、提示的反馈样式，涵盖页面级结果、Alert 提示、Toast 消息、表单校验等。</p>
+
+<!-- 页面级操作结果 -->
+<div class="section">
+  <div class="section-title">页面级操作结果</div>
+  <div class="grid">
+    <div class="vx-card card-demo">
+      <div class="vx-card-body result-panel">
+        <div class="result-icon result-icon-success">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="result-title">操作成功</div>
+        <div class="result-desc">您的订单已提交成功，我们将尽快为您处理。预计 24 小时内完成审核。</div>
+        <div class="result-actions">
+          <button class="vx-btn vx-btn-primary">查看订单</button>
+          <button class="vx-btn vx-btn-secondary">返回列表</button>
+        </div>
+      </div>
+    </div>
+    <div class="vx-card card-demo">
+      <div class="vx-card-body result-panel">
+        <div class="result-icon result-icon-error">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+        <div class="result-title">操作失败</div>
+        <div class="result-desc">提交失败，网络连接异常。请检查网络后重试，或联系客服寻求帮助。</div>
+        <div class="result-actions">
+          <button class="vx-btn vx-btn-primary">重新提交</button>
+          <button class="vx-btn vx-btn-secondary">联系客服</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Alert 提示 -->
+<div class="section">
+  <div class="section-title">Alert 提示</div>
+  <div class="vx-card card-demo">
+    <div class="vx-card-body">
+      <div class="vx-alert vx-alert-success">
+        <span class="vx-alert-icon">✓</span>
+        <span>保存成功！您的修改已生效。</span>
+      </div>
+      <div class="vx-alert vx-alert-error">
+        <span class="vx-alert-icon">✕</span>
+        <span>删除失败：该记录已被其他用户修改，请刷新后重试。</span>
+      </div>
+      <div class="vx-alert vx-alert-warning">
+        <span class="vx-alert-icon">⚠</span>
+        <span>您的会员将在 3 天后到期，点击此处续费可享 8 折优惠。</span>
+      </div>
+      <div class="vx-alert vx-alert-info">
+        <span class="vx-alert-icon">ℹ</span>
+        <span>系统将于本周六凌晨 2:00 - 4:00 进行升级维护，期间相关功能暂停使用。</span>
+      </div>
+      <div class="vx-alert vx-alert-help">
+        <span class="vx-alert-icon">?</span>
+        <span>帮助：如何配置数据权限？请参考管理员手册第三章第二节。</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast 消息 -->
+<div class="section">
+  <div class="section-title">Toast 消息</div>
+  <div class="grid-3">
+    <div class="vx-card card-demo">
+      <div class="vx-card-head">
+        <span class="vx-card-title">成功提示</span>
+        <button class="vx-btn vx-btn-primary vx-btn-sm" onclick="showToast('success')">演示</button>
+      </div>
+      <div class="vx-card-body">
+        <div class="vx-toast vx-toast-success">
+          <span class="vx-toast-icon">✓</span>
+          <div>
+            <div>提交成功</div>
+          </div>
+        </div>
+        <div class="form-error" style="color: var(--vx-text-caption);">轻量反馈，2-3 秒后自动消失</div>
+      </div>
+    </div>
+    <div class="vx-card card-demo">
+      <div class="vx-card-head">
+        <span class="vx-card-title">错误提示</span>
+        <button class="vx-btn vx-btn-primary vx-btn-sm" onclick="showToast('error')">演示</button>
+      </div>
+      <div class="vx-card-body">
+        <div class="vx-toast vx-toast-error">
+          <span class="vx-toast-icon">✕</span>
+          <div>
+            <div>操作失败，请重试</div>
+          </div>
+        </div>
+        <div class="form-error" style="color: var(--vx-text-caption);">需用户关注，停留时间较长</div>
+      </div>
+    </div>
+    <div class="vx-card card-demo">
+      <div class="vx-card-head">
+        <span class="vx-card-title">警告提示</span>
+        <button class="vx-btn vx-btn-primary vx-btn-sm" onclick="showToast('warning')">演示</button>
+      </div>
+      <div class="vx-card-body">
+        <div class="vx-toast vx-toast-warning">
+          <span class="vx-toast-icon">⚠</span>
+          <div>
+            <div>请注意内容格式</div>
+          </div>
+        </div>
+        <div class="form-error" style="color: var(--vx-text-caption);">提醒用户注意的事项</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 表单校验 -->
+<div class="section">
+  <div class="section-title">表单校验反馈</div>
+  <div class="grid">
+    <div class="vx-card card-demo">
+      <div class="vx-card-head"><span class="vx-card-title">错误状态</span></div>
+      <div class="vx-card-body">
+        <div class="form-demo">
+          <div class="form-item">
+            <label class="form-label">手机号</label>
+            <input class="vx-input" style="border-color: var(--vx-error);" value="1380000" />
+            <div class="form-error">手机号格式不正确，请输入 11 位数字</div>
+          </div>
+          <div class="form-item">
+            <label class="form-label">邮箱</label>
+            <input class="vx-input" style="border-color: var(--vx-error);" value="invalid-email" />
+            <div class="form-error">邮箱地址格式不正确</div>
+          </div>
+          <div class="form-item">
+            <label class="form-label">密码</label>
+            <input class="vx-input" style="border-color: var(--vx-error);" type="password" value="123" />
+            <div class="form-error">密码至少 8 位，需包含字母和数字</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="vx-card card-demo">
+      <div class="vx-card-head"><span class="vx-card-title">通过状态</span></div>
+      <div class="vx-card-body">
+        <div class="form-demo">
+          <div class="form-item">
+            <label class="form-label">手机号</label>
+            <input class="vx-input" style="border-color: var(--vx-success);" value="13800138000" />
+            <div class="form-success">✓ 手机号格式正确</div>
+          </div>
+          <div class="form-item">
+            <label class="form-label">邮箱</label>
+            <input class="vx-input" style="border-color: var(--vx-success);" value="user@voyah.com" />
+            <div class="form-success">✓ 邮箱格式正确</div>
+          </div>
+          <div class="form-item">
+            <label class="form-label">验证码</label>
+            <input class="vx-input" style="border-color: var(--vx-success);" value="874521" />
+            <div class="form-success">✓ 验证码已验证</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 操作状态标签 + 进度 -->
+<div class="section">
+  <div class="section-title">状态标签与进度</div>
+  <div class="vx-card card-demo">
+    <div class="vx-card-body">
+      <div class="tag-row">
+        <span class="vx-tag vx-tag-success">已完成</span>
+        <span class="vx-tag vx-tag-success">审核通过</span>
+        <span class="vx-tag vx-tag-error">已失败</span>
+        <span class="vx-tag vx-tag-error">审核拒绝</span>
+        <span class="vx-tag vx-tag-warning">待处理</span>
+        <span class="vx-tag vx-tag-warning">进行中</span>
+        <span class="vx-tag vx-tag-primary">处理中</span>
+      </div>
+      <div class="divider"></div>
+      <div class="progress-row">
+        <div>
+          <div class="progress-label"><span>上传进度</span><span>100%</span></div>
+          <div class="progress-bar"><div class="progress-fill progress-success" style="width: 100%;"></div></div>
+        </div>
+        <div>
+          <div class="progress-label"><span>任务进度</span><span>65%</span></div>
+          <div class="progress-bar"><div class="progress-fill progress-warning" style="width: 65%;"></div></div>
+        </div>
+        <div>
+          <div class="progress-label"><span>同步失败</span><span>异常</span></div>
+          <div class="progress-bar"><div class="progress-fill progress-error" style="width: 30%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 通知卡片 -->
+<div class="section">
+  <div class="section-title">通知卡片</div>
+  <div class="grid">
+    <div class="vx-notification" style="border-left: 3px solid var(--vx-success);">
+      <span style="color: var(--vx-success); font-size: 20px;">✓</span>
+      <div style="flex: 1;">
+        <div class="vx-notification-title">系统升级完成</div>
+        <div class="vx-notification-description">系统已完成 v2.3.0 版本升级，新增数据导出和批量操作功能。</div>
+      </div>
+      <button class="vx-btn vx-btn-secondary vx-btn-sm">查看详情</button>
+    </div>
+    <div class="vx-notification" style="border-left: 3px solid var(--vx-error);">
+      <span style="color: var(--vx-error); font-size: 20px;">✕</span>
+      <div style="flex: 1;">
+        <div class="vx-notification-title">支付失败</div>
+        <div class="vx-notification-description">订单 #20241110001 支付未成功，请检查账户余额后重新支付。</div>
+      </div>
+      <button class="vx-btn vx-btn-danger vx-btn-sm">去支付</button>
+    </div>
+  </div>
+</div>
+
+<!-- 右上角 Toast 容器 -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+  let toastTimer = null;
+  function showToast(type) {
+    const container = document.getElementById('toastContainer');
+    const iconMap = { success: '✓', error: '✕', warning: '⚠', info: 'ℹ' };
+    const textMap = { success: '操作成功，数据已保存', error: '操作失败，请稍后重试', warning: '请注意检查输入内容', info: '提示信息已更新' };
+    const toast = document.createElement('div');
+    toast.className = 'vx-toast vx-toast-' + type;
+    toast.innerHTML = '<span class="vx-toast-icon">' + iconMap[type] + '</span><div><div>' + textMap[type] + '</div></div>';
+    container.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.3s'; }, 2500);
+    setTimeout(() => { toast.remove(); }, 2800);
+  }
+</script>
+</body>
+</html>

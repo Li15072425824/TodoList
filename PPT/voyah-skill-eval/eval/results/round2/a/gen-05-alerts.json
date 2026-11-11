@@ -1,0 +1,27 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-05-alerts",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round2/a/gen-05-alerts",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.5736042000000001,
+  "denials": [
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Now let me verify the demo works by opening it in a browser:\n\nActually, the user asked for a demo file, not necessarily to open it. Let me just confirm everything is in place and report.\n\nLet me also double-check one more thing - the banner border uses `var(--vx-help-hover)`. Looking at the Alert help style: `border: 1px solid var(--vx-help-hover)`. The banner follows the same pattern (help-bg background + help-hover border), which is consistent with the Alert component pattern. Good.\n\nThe demo is complete. Let me verify the file listing:\n- ✅ `index.html` - single HTML file with all components\n- ✅ `tokens.css` - Voyah design tokens\n- ✅ All four Alert types (success/warning/error/help) with icons + descriptions\n- ✅ Three Notification cards with title + description + timestamp\n- ✅ Five status Tags (成功/警告/错误/帮助/紫色特殊标记) + default/primary for context\n- ✅ System upgrade banner with help-colored light background\n- ✅ All colors use `var(--vx-*)` tokens, no hardcoded colors except `#FFFFFF`\n- ✅",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-05-alerts/index.html",
+    "alignRate": 0.96,
+    "checks": 25,
+    "passed": 24,
+    "p0": 0,
+    "p1": 1,
+    "tokenRefRate": 0.989
+  },
+  "at": "2026-11-10T02:45:58.001Z"
+}

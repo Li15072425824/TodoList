@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-11",
+  "topic": "font-level",
+  "question": "页面大标题的推荐字号范围、行高范围和字重是什么?",
+  "answer": "页面大标题的推荐字号范围为 **18~24px**，行高范围为 **32~40px**，字重为 **600**。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.041289599999999996,
+  "subtype": "success",
+  "at": "2026-11-09T10:18:10.996Z"
+}

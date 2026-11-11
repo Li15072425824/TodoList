@@ -1,0 +1,26 @@
+{
+  "round": "1",
+  "group": "a",
+  "case": "gen-05-alerts",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/a/gen-05-alerts",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.6468174000000001,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Demo 已生成完毕，输出到当前目录：\n\n- `index.html` — 单文件 demo，引入同级 `tokens.css`\n- `tokens.css` — 岚图 Voyah 设计变量 + 组件样式（已新增 `vx-tag-help` / `vx-tag-purple` 及 Notification 增强样式）\n\n内容覆盖：\n- **4 条 Alert**：成功（提交确认）/ 警告（事件提醒）/ 错误（失败报错）/ 帮助（操作指引），各带 SVG 图标 + 标题 + 说明文字\n- **3 张 Notification 卡片**：订单审核通过、保养提醒、OTA 升级可用，含标题 / 描述 / 时间戳\n- **5 个状态 Tag**：成功 / 警告 / 错误 / 帮助 / 紫色特殊标记\n- **系统升级横幅**：帮助色浅底（蓝主题下为青色系 `--vx-help-bg`），居页面顶部\n\n严格遵循 Voyah 规范：辅助色语义不混用（success/warning/error/help/purple 各自对应 4 阶变量）、文字 5 级、间距 4 的倍数、圆角按组件分级、颜色全部通过 `var(--vx-*)` 引用。默认蓝主题，帮助色走青色系。",
+  "runtime": {
+    "product": "eval/products/round1/a/gen-05-alerts/index.html",
+    "alignRate": 1,
+    "checks": 25,
+    "passed": 25,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-09T03:25:08.647Z"
+}

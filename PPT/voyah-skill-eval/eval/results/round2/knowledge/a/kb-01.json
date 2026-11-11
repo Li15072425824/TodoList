@@ -1,0 +1,14 @@
+{
+  "round": "2",
+  "group": "a",
+  "id": "kb-01",
+  "topic": "line-blue",
+  "question": "岚图规范中 @line-Blue(较重要程度/高层级线条)在不同主题下取值是否不同?碧青主题下应使用什么色值?",
+  "answer": "`@line-Blue`（较重要程度/高层级线条）在所有主题下取值**统一**，不随主题变化——各主题页旧值 `#406670` 已废弃。\n\n碧青主题下对应 token 为 `--vx-line-5`，色值为 **`#3773DB`**。",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0573528,
+  "subtype": "success",
+  "at": "2026-11-10T03:47:58.363Z"
+}

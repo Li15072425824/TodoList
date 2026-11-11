@@ -1,0 +1,38 @@
+===== ROUND4 ENFORCED adv-01 14:16:38 =====
+
+=== round4 组 A：1 条产物用例 ===
+[spawn] a/adv-01-red#1
+[hb] a/adv-01-red#1 120s
+[hb] a/adv-01-red#1 240s
+[done] a/adv-01-red#1 code=0 subtype=success
+[1/1] a/adv-01-red ✓
+
+完成，用时 5.1 分钟
+===== ROUND4 ENFORCED adv-02..06 14:22:37 =====
+
+=== round4 组 A：5 条产物用例 ===
+[spawn] a/adv-02-spacing#1
+[hb] a/adv-02-spacing#1 120s
+[done] a/adv-02-spacing#1 code=0 subtype=success
+[1/5] a/adv-02-spacing ✓
+[spawn] a/adv-03-tailwind#1
+[hb] a/adv-03-tailwind#1 24s
+[done] a/adv-03-tailwind#1 code=0 subtype=success
+[2/5] a/adv-03-tailwind ✓
+[spawn] a/adv-04-gradient#1
+[hb] a/adv-04-gradient#1 22s
+[hb] a/adv-04-gradient#1 142s
+[done] a/adv-04-gradient#1 code=0 subtype=success
+[3/5] a/adv-04-gradient ✓
+[spawn] a/adv-05-semantic#1
+[hb] a/adv-05-semantic#1 102s
+[done] a/adv-05-semantic#1 code=0 subtype=success
+[4/5] a/adv-05-semantic ✓
+[spawn] a/adv-06-approx#1
+[hb] a/adv-06-approx#1 79s
+[hb] a/adv-06-approx#1 199s
+[hb] a/adv-06-approx#1 319s
+[done] a/adv-06-approx#1 code=0 subtype=success
+[5/5] a/adv-06-approx ✓
+
+完成，用时 17.3 分钟

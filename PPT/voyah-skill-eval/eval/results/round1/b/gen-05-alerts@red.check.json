@@ -1,0 +1,309 @@
+{
+  "product": "eval/products/round1/b/gen-05-alerts@red/index.html",
+  "alignRate": 0.76,
+  "checks": 25,
+  "passed": 19,
+  "p0": 3,
+  "p1": 3,
+  "tokenRefRate": 0.626,
+  "expectedTheme": "red",
+  "allThemes": false,
+  "htmlTheme": "red",
+  "themeAttrs": [
+    "red"
+  ],
+  "staticIssues": {
+    "hex": [
+      "#F5F6F8",
+      "#E5E7EB",
+      "#EEF0F3",
+      "#1A1D21",
+      "#5B6170",
+      "#8B909C",
+      "#B8BCC5",
+      "#D81F2A",
+      "#B81A23",
+      "#9A161E",
+      "#FDE9EA",
+      "#FEF4F5",
+      "#16A34A",
+      "#EAFAF1",
+      "#B8E8CB",
+      "#0F7A36",
+      "#F59E0B",
+      "#FFF7E6",
+      "#FDE0A3",
+      "#B46906",
+      "#DC2626",
+      "#FDECEC",
+      "#F6BDBD",
+      "#B91C1C",
+      "#2563EB",
+      "#EAF1FD",
+      "#B8CFF5",
+      "#1E4FB9",
+      "#7C3AED",
+      "#F3ECFD",
+      "#D5C4F7",
+      "#6D28D9",
+      "#1D63D8",
+      "#1750B5",
+      "#123F8F",
+      "#E8F0FD",
+      "#F2F6FD",
+      "#0F1115",
+      "#171A20",
+      "#1D2128",
+      "#2A2E36",
+      "#22262D",
+      "#E8EAEE",
+      "#A3A8B3",
+      "#6B7180",
+      "#22C55E",
+      "#0F2A1A",
+      "#1A4A2E",
+      "#4ADE80",
+      "#2A1F08",
+      "#52401A",
+      "#FBBF24",
+      "#EF4444",
+      "#2A1010",
+      "#5A2020",
+      "#F87171",
+      "#3B82F6",
+      "#0F1C33",
+      "#1F3A6B",
+      "#60A5FA",
+      "#8B5CF6",
+      "#1E1435",
+      "#3A2565",
+      "#A78BFA"
+    ],
+    "forbidden": [],
+    "gradient": [],
+    "weight": [],
+    "black": [],
+    "spacing": [
+      "padding: 14px",
+      "padding: 10px"
+    ],
+    "border": [],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #F5F6F8 #E5E7EB #EEF0F3 #1A1D21 #5B6170 #8B909C #B8BCC5 #D81F2A #B81A23 #9A161E #FDE9EA #FEF4F5"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "detail": "非 4n 间距: padding: 14px; padding: 10px"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "4/8 按钮高度非 24/32/40: vx-alert-close=20, vx-alert-close=20, vx-alert-close=20, vx-alert-close=20"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "4 按钮 padding 非 2/6/8·8/16: 红=[6,12,6,12], 蓝=[6,12,6,12], 暗色=[6,12,6,12], 查看详情=[6,14,6,14]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "4 按钮字号/行高非 12·20/16·24: 红=13/NaN, 蓝=13/NaN, 暗色=13/NaN, 查看详情=13/NaN"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "8 按钮色值出板: 红=rgb(255, 255, 255)/rgb(216, 31, 42)/rgb(216, 31, 42), 蓝=rgb(91, 97, 112)/rgba(0, 0, 0, 0)/rgba(0, 0, 0, 0), 暗色=rgb(91, 97, 112)/rgba(0, 0, 0, 0)/rgba(0, 0, 0, 0), 查看详情=rgb(255, 255, 255)/rgb(37, 99, 235)/rgb(37, 99, 235)"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #F5F6F8 #E5E7EB #EEF0F3 #1A1D21 #5B6170 #8B909C #B8BCC5 #D81F2A #B81A23 #9A161E #FDE9EA #FEF4F5"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无渐变"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": true,
+      "detail": "字重 ∈ {400,500,600}"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非 4n 间距: padding: 14px; padding: 10px"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": true,
+      "detail": "线宽 ∈ {0.5,1,2,3}"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "4/8 按钮高度非 24/32/40: vx-alert-close=20, vx-alert-close=20, vx-alert-close=20, vx-alert-close=20"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "4 按钮 padding 非 2/6/8·8/16: 红=[6,12,6,12], 蓝=[6,12,6,12], 暗色=[6,12,6,12], 查看详情=[6,14,6,14]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "4 按钮字号/行高非 12·20/16·24: 红=13/NaN, 蓝=13/NaN, 暗色=13/NaN, 查看详情=13/NaN"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "按钮圆角合规"
+    },
+    {
+      "id": "runtime.btn.weight",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮字重合规"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "8 按钮色值出板: 红=rgb(255, 255, 255)/rgb(216, 31, 42)/rgb(216, 31, 42), 蓝=rgb(91, 97, 112)/rgba(0, 0, 0, 0)/rgba(0, 0, 0, 0), 暗色=rgb(91, 97, 112)/rgba(0, 0, 0, 0)/rgba(0, 0, 0, 0), 查看详情=rgb(255, 255, 255)/rgb(37, 99, 235)/rgb(37, 99, 235)"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": true,
+      "detail": "图标按钮 gap 合规"
+    },
+    {
+      "id": "sim.primary",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无主按钮（四态不适用）"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用提示按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.expected",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "html[data-vx-theme] = red，期望 red"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = -apple-system, \"system-ui\", \"PingFang SC\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial, \"Segoe UI\", Roboto, sa"
+    }
+  ],
+  "costNote": null
+}

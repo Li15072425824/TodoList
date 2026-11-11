@@ -1,0 +1,25 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-02-aichat",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round2/a/gen-02-aichat",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.27961199999999997,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "已生成岚图智能助手 AI 对话页 demo：\n\n- **文件**：`/private/tmp/vx-eval/r2/a/gen-02-aichat/index.html` + 同级 `tokens.css`\n- **布局**：左侧 260px 会话列表（Conversations，含选中态/hover 态/图标）+ 右侧主区域（顶栏 + 对话区 + 底部输入）\n- **组件**：\n  - Welcome 欢迎区（🚗 图标 + 标题 + 描述，`--vx-fill-2` 底色）\n  - Prompts 提示集（4 个卡片：对比车型 / 预约试驾 / 充电桩 / 金融方案，hover 主色描边）\n  - Bubble：AI 灰底左对齐（含名称 + 时间戳 + 操作栏）、用户主色右对齐（含时间戳）\n  - ThoughtChain：3 节点（完成✅ 绿 / 进行中🔵 主色 / 失败🔴 红），内嵌于 AI 气泡内的思考过程折叠区\n  - Sender：20px 胶囊圆角，左侧附件按钮（`.vx-btn vx-btn-secondary vx-btn-sm`）、textarea、发送按钮（默认 disabled，输入内容后启用）\n- **主题**：默认蓝主题 `data-vx-theme=\"blue\"`，全量使用 `var(--vx-*)` token，无硬编码色值和渐变\n- **交互**：发送按钮禁用态切换、输入框自动增高",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-02-aichat/index.html",
+    "alignRate": 0.929,
+    "checks": 28,
+    "passed": 26,
+    "p0": 0,
+    "p1": 2,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T02:31:07.577Z"
+}

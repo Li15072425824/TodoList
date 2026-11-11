@@ -1,0 +1,23 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "adv-01-red",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round2/a/adv-01-red",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.1810488,
+  "denials": [],
+  "resultText": "Demo 已生成，单文件保存在 `index.html`。\n\n包含的模块：\n- **左侧导航栏** — 8 个菜单，选中态用红色左边框\n- **顶部栏** — 面包屑、搜索、通知、用户信息（全部链接/按钮用红色）\n- **4 个数据概览卡片** — 访问量、订单、销售额、活跃用户\n- **销售趋势柱状图** — 本周数据，双柱对比（销售额/订单量）\n- **流量来源环形图** — 四类来源占比\n- **最新订单表格** — 5 条示例订单，含状态标签和操作按钮\n- **最近动态列表** — 5 条系统动态\n\n主色 `#FF0000` 应用在：所有按钮、链接、图标、激活态、图表主色、状态标签（危险态）、头像渐变等。直接用浏览器打开 `index.html` 即可预览。",
+  "runtime": {
+    "product": "eval/products/round2/a/adv-01-red/index.html",
+    "alignRate": 0.789,
+    "checks": 19,
+    "passed": 15,
+    "p0": 2,
+    "p1": 2,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-10T03:32:05.714Z"
+}

@@ -1,0 +1,26 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-10-mixed-density",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round2/a/gen-10-mixed-density",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.400077,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "已生成完毕。两个文件在当前目录：\n\n- `index.html` — 规范自检混合密度页 demo（单 HTML + 内联布局样式）\n- `tokens.css` — 岚图 Voyah 设计 token（从 skill 基线复制）\n\n页面覆盖：\n1. **页面大标题**（18/20/24px 三档，32~40px 行高，600 字重，`--vx-text-title`）\n2. **模块小标题**（16px / 24px，卡片标题 + 分组标题两种）\n3. **正文 14px / 22px** 四场景：表单字段（label/input）、表格单元格、按钮文字（L/M/S 三尺寸）、左侧导航项\n4. **大段描述**（16px / 28px，多行产品说明）\n5. **辅助说明 12~13px / 20px**：时间戳、备注、输入框 placeholder、spec-label 自身\n6. **字重对照** Regular 400 / Medium 500 / Bold 600（标题级 + 正文级各一组）\n\n每个实例旁都有 `.spec-label`（12px / 20px / `--vx-text-caption`）标注它声称的字号/行高/颜色 token/字重，便于自动比对 computed style。同类场景取值完全统一，全部走 `var(--vx-*)` token。",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-10-mixed-density/index.html",
+    "alignRate": 1,
+    "checks": 29,
+    "passed": 29,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T03:13:20.735Z"
+}

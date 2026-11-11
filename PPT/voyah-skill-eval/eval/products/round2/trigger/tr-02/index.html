@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="purple">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>双11狂欢购车节 - 新能源汽车</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body {
+    background: var(--vx-bg-layout);
+    max-width: 420px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 80px;
+  }
+
+  /* 顶部导航 */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    padding: 0 var(--vx-space-sm);
+    background: var(--vx-bg-base);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .top-bar-title {
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .top-bar .icon-btn {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vx-text-primary);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: var(--vx-radius-md);
+  }
+  .top-bar .icon-btn:hover { background: var(--vx-fill-3); }
+
+  /* Banner 主视觉 */
+  .banner {
+    position: relative;
+    padding: var(--vx-space-xl) var(--vx-space-md) var(--vx-space-xxl);
+    background: var(--vx-primary-bg);
+    text-align: center;
+    overflow: hidden;
+  }
+  .banner::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: var(--vx-primary);
+    opacity: 0.08;
+  }
+  .banner::after {
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    left: -30px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--vx-primary);
+    opacity: 0.06;
+  }
+  .banner-tag {
+    display: inline-block;
+    padding: 2px var(--vx-space-xs);
+    border-radius: var(--vx-radius-pill);
+    background: var(--vx-error);
+    color: var(--vx-text-inverse);
+    font-size: var(--vx-font-size-xs);
+    font-weight: var(--vx-font-weight-medium);
+    margin-bottom: var(--vx-space-sm);
+  }
+  .banner-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: var(--vx-space-xs);
+    position: relative;
+    z-index: 1;
+  }
+  .banner-title .accent { color: var(--vx-primary); }
+  .banner-subtitle {
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    margin-bottom: var(--vx-space-md);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 倒计时 */
+  .countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+    padding: var(--vx-space-xs) var(--vx-space-md);
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    position: relative;
+    z-index: 1;
+  }
+  .countdown-label {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-secondary);
+  }
+  .countdown-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 24px;
+    padding: 0 6px;
+    background: var(--vx-text-title);
+    color: var(--vx-text-inverse);
+    border-radius: var(--vx-radius-sm);
+    font-family: var(--vx-font-family-number);
+    font-size: var(--vx-font-size-sm);
+    font-weight: var(--vx-font-weight-bold);
+  }
+  .countdown-sep {
+    color: var(--vx-text-title);
+    font-weight: var(--vx-font-weight-bold);
+  }
+
+  /* 用户积分条 */
+  .user-card {
+    margin: -20px var(--vx-space-md) var(--vx-space-md);
+    position: relative;
+    z-index: 2;
+  }
+  .user-card .vx-card-body {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    padding: var(--vx-space-md);
+  }
+  .user-info { flex: 1; min-width: 0; }
+  .user-name {
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    margin-bottom: 2px;
+  }
+  .user-level {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-secondary);
+  }
+  .points-wrap { text-align: right; flex-shrink: 0; }
+  .points-num {
+    font-family: var(--vx-font-family-number);
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-primary);
+  }
+  .points-label {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-secondary);
+  }
+
+  /* 通用区块 */
+  .section {
+    margin: var(--vx-space-md);
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--vx-space-sm);
+  }
+  .section-title {
+    font-size: var(--vx-font-size-lg);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-xs);
+  }
+  .section-title::before {
+    content: "";
+    width: 3px;
+    height: 16px;
+    background: var(--vx-primary);
+    border-radius: 2px;
+  }
+  .section-more {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-caption);
+    cursor: pointer;
+  }
+
+  /* 任务列表 */
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vx-space-xs);
+  }
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    padding: var(--vx-space-sm) var(--vx-space-md);
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+  }
+  .task-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: var(--vx-primary-bg);
+    border-radius: var(--vx-radius-md);
+    flex-shrink: 0;
+  }
+  .task-info { flex: 1; min-width: 0; }
+  .task-name {
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-title);
+    margin-bottom: 2px;
+  }
+  .task-desc {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-text-secondary);
+  }
+  .task-reward {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-warning-dark);
+    font-weight: var(--vx-font-weight-medium);
+    margin-bottom: var(--vx-space-1);
+  }
+  .task-action { text-align: right; flex-shrink: 0; }
+  .progress-bar {
+    width: 80px;
+    height: 4px;
+    background: var(--vx-fill-3);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: var(--vx-space-1);
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--vx-primary);
+    border-radius: 2px;
+  }
+
+  /* 奖品网格 */
+  .prize-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--vx-space-sm);
+  }
+  .prize-card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    padding: var(--vx-space-sm);
+    text-align: center;
+  }
+  .prize-img {
+    width: 100%;
+    height: 100px;
+    background: var(--vx-fill-2);
+    border-radius: var(--vx-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    margin-bottom: var(--vx-space-xs);
+  }
+  .prize-name {
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-title);
+    margin-bottom: 2px;
+    text-align: left;
+  }
+  .prize-cost {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .prize-cost .cost {
+    font-size: var(--vx-font-size-xs);
+    color: var(--vx-primary);
+    font-weight: var(--vx-font-weight-bold);
+    font-family: var(--vx-font-family-number);
+  }
+  .prize-cost .stock {
+    font-size: 11px;
+    color: var(--vx-text-caption);
+  }
+
+  /* 排行榜 */
+  .rank-list {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg);
+    overflow: hidden;
+  }
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: var(--vx-space-sm);
+    padding: var(--vx-space-sm) var(--vx-space-md);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .rank-item:last-child { border-bottom: none; }
+  .rank-num {
+    width: 24px;
+    text-align: center;
+    font-family: var(--vx-font-family-number);
+    font-weight: var(--vx-font-weight-bold);
+    font-size: var(--vx-font-size-md);
+    color: var(--vx-text-secondary);
+    flex-shrink: 0;
+  }
+  .rank-item.top1 .rank-num { color: var(--vx-warning); }
+  .rank-item.top2 .rank-num { color: var(--vx-line-3); }
+  .rank-item.top3 .rank-num { color: var(--vx-warning-dark); }
+  .rank-name { flex: 1; font-size: var(--vx-font-size-md); color: var(--vx-text-primary); }
+  .rank-score {
+    font-family: var(--vx-font-family-number);
+    font-size: var(--vx-font-size-md);
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-primary);
+  }
+
+  /* 活动规则 */
+  .rules-card .vx-card-body {
+    font-size: var(--vx-font-size-xs);
+    line-height: 20px;
+    color: var(--vx-text-secondary);
+  }
+  .rules-card p {
+    margin: 0 0 var(--vx-space-1);
+  }
+  .rules-card p:last-child { margin-bottom: 0; }
+
+  /* 底部 CTA */
+  .bottom-cta {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 420px;
+    padding: var(--vx-space-xs) var(--vx-space-md) calc(var(--vx-space-xs) + env(safe-area-inset-bottom));
+    background: var(--vx-bg-base);
+    border-top: 1px solid var(--vx-line-1);
+    display: flex;
+    gap: var(--vx-space-sm);
+    align-items: center;
+    z-index: 10;
+  }
+  .cta-info { flex: 1; min-width: 0; }
+  .cta-info .price {
+    font-family: var(--vx-font-family-number);
+    font-size: 20px;
+    font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-error);
+    line-height: 24px;
+  }
+  .cta-info .price-label {
+    font-size: 11px;
+    color: var(--vx-text-caption);
+  }
+  .bottom-cta .vx-btn { flex-shrink: 0; }
+
+  /* Segmented 活动 tab */
+  .activity-tabs {
+    display: flex;
+    justify-content: center;
+    padding: var(--vx-space-sm) var(--vx-space-md) 0;
+    background: var(--vx-primary-bg);
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="top-bar">
+    <button class="icon-btn" aria-label="返回">‹</button>
+    <span class="top-bar-title">双11狂欢购车节</span>
+    <button class="icon-btn" aria-label="分享">⇪</button>
+  </header>
+
+  <!-- Banner 主视觉 -->
+  <section class="banner">
+    <span class="banner-tag">限时活动</span>
+    <h1 class="banner-title">双11<span class="accent">狂欢</span>购车节</h1>
+    <p class="banner-subtitle">下定即享 5 重豪礼 · 最高立减 30000 元</p>
+    <div class="countdown">
+      <span class="countdown-label">距结束</span>
+      <span class="countdown-num">02</span>
+      <span class="countdown-sep">:</span>
+      <span class="countdown-num">14</span>
+      <span class="countdown-sep">:</span>
+      <span class="countdown-num">36</span>
+      <span class="countdown-sep">:</span>
+      <span class="countdown-num">58</span>
+    </div>
+  </section>
+
+  <!-- 活动 Tab -->
+  <div class="activity-tabs">
+    <div class="vx-segmented">
+      <span class="vx-segmented-item vx-segmented-item-selected">做任务</span>
+      <span class="vx-segmented-item">兑好礼</span>
+      <span class="vx-segmented-item">排行榜</span>
+    </div>
+  </div>
+
+  <!-- 用户积分卡 -->
+  <div class="user-card">
+    <div class="vx-card">
+      <div class="vx-card-body">
+        <span class="vx-avatar vx-avatar-lg vx-avatar-primary">李</span>
+        <div class="user-info">
+          <div class="user-name">新能源体验官</div>
+          <div class="user-level">
+            <span class="vx-tag vx-tag-primary">V3 达人</span>
+          </div>
+        </div>
+        <div class="points-wrap">
+          <div class="points-num">2,680</div>
+          <div class="points-label">我的积分</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 每日任务 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">每日任务</h2>
+      <span class="section-more">全部任务 ›</span>
+    </div>
+    <div class="task-list">
+      <div class="task-item">
+        <div class="task-icon">📅</div>
+        <div class="task-info">
+          <div class="task-name">每日签到</div>
+          <div class="task-desc">连续签到奖励翻倍</div>
+        </div>
+        <div class="task-action">
+          <div class="task-reward">+10 积分</div>
+          <button class="vx-btn vx-btn-primary vx-btn-sm">去签到</button>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-icon">📖</div>
+        <div class="task-info">
+          <div class="task-name">浏览车型详情</div>
+          <div class="task-desc">浏览 3 款车型即可完成</div>
+        </div>
+        <div class="task-action">
+          <div class="progress-bar"><div class="progress-fill" style="width:66%"></div></div>
+          <div class="task-reward">+20 积分</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-icon">📹</div>
+        <div class="task-info">
+          <div class="task-name">观看直播</div>
+          <div class="task-desc">观看直播满 5 分钟</div>
+        </div>
+        <div class="task-action">
+          <div class="task-reward">+30 积分</div>
+          <button class="vx-btn vx-btn-secondary vx-btn-sm">已完成</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 挑战任务 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">挑战任务</h2>
+      <span class="vx-tag vx-tag-warning">高额奖励</span>
+    </div>
+    <div class="task-list">
+      <div class="task-item">
+        <div class="task-icon">🚗</div>
+        <div class="task-info">
+          <div class="task-name">预约试驾</div>
+          <div class="task-desc">到店试驾并填写评价</div>
+        </div>
+        <div class="task-action">
+          <div class="task-reward">+500 积分</div>
+          <button class="vx-btn vx-btn-outline vx-btn-sm">去预约</button>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-icon">👥</div>
+        <div class="task-info">
+          <div class="task-name">邀请好友</div>
+          <div class="task-desc">每邀请 1 位好友注册</div>
+        </div>
+        <div class="task-action">
+          <div class="task-reward">+200 积分/人</div>
+          <button class="vx-btn vx-btn-outline vx-btn-sm">去邀请</button>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-icon">💎</div>
+        <div class="task-info">
+          <div class="task-name">支付定金</div>
+          <div class="task-desc">下订任意车型即可获得</div>
+        </div>
+        <div class="task-action">
+          <div class="task-reward">+2000 积分</div>
+          <button class="vx-btn vx-btn-primary vx-btn-sm">立即下定</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 热门好礼 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">热门好礼</h2>
+      <span class="section-more">更多好礼 ›</span>
+    </div>
+    <div class="prize-grid">
+      <div class="prize-card">
+        <div class="prize-img">🎁</div>
+        <div class="prize-name">定制车模</div>
+        <div class="prize-cost">
+          <span class="cost">1,500 积分</span>
+        </div>
+        <div class="prize-cost" style="margin-top:4px">
+          <span class="stock">剩余 128 件</span>
+          <button class="vx-btn vx-btn-primary vx-btn-sm">兑换</button>
+        </div>
+      </div>
+      <div class="prize-card">
+        <div class="prize-img">🔌</div>
+        <div class="prize-name">家用充电桩</div>
+        <div class="prize-cost">
+          <span class="cost">8,000 积分</span>
+        </div>
+        <div class="prize-cost" style="margin-top:4px">
+          <span class="stock">剩余 36 件</span>
+          <button class="vx-btn vx-btn-outline vx-btn-sm">兑换</button>
+        </div>
+      </div>
+      <div class="prize-card">
+        <div class="prize-img">🧴</div>
+        <div class="prize-name">洗车套装</div>
+        <div class="prize-cost">
+          <span class="cost">500 积分</span>
+        </div>
+        <div class="prize-cost" style="margin-top:4px">
+          <span class="stock">剩余 520 件</span>
+          <button class="vx-btn vx-btn-primary vx-btn-sm">兑换</button>
+        </div>
+      </div>
+      <div class="prize-card">
+        <div class="prize-img">☕</div>
+        <div class="prize-name">咖啡券</div>
+        <div class="prize-cost">
+          <span class="cost">200 积分</span>
+        </div>
+        <div class="prize-cost" style="margin-top:4px">
+          <span class="stock">剩余 999+ 件</span>
+          <button class="vx-btn vx-btn-primary vx-btn-sm">兑换</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 积分排行榜 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">积分排行榜</h2>
+      <span class="vx-tag vx-tag-success">实时更新</span>
+    </div>
+    <div class="rank-list">
+      <div class="rank-item top1">
+        <span class="rank-num">1</span>
+        <span class="vx-avatar">张</span>
+        <span class="rank-name">追风少年***</span>
+        <span class="rank-score">12,580</span>
+      </div>
+      <div class="rank-item top2">
+        <span class="rank-num">2</span>
+        <span class="vx-avatar vx-avatar-primary">王</span>
+        <span class="rank-name">绿色出行***</span>
+        <span class="rank-score">10,920</span>
+      </div>
+      <div class="rank-item top3">
+        <span class="rank-num">3</span>
+        <span class="vx-avatar">刘</span>
+        <span class="rank-name">电车爱好者***</span>
+        <span class="rank-score">9,650</span>
+      </div>
+      <div class="rank-item">
+        <span class="rank-num">4</span>
+        <span class="vx-avatar">陈</span>
+        <span class="rank-name">新能源达人***</span>
+        <span class="rank-score">8,200</span>
+      </div>
+      <div class="rank-item">
+        <span class="rank-num">5</span>
+        <span class="vx-avatar">赵</span>
+        <span class="rank-name">低碳生活***</span>
+        <span class="rank-score">7,840</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 活动规则 -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">活动规则</h2>
+    </div>
+    <div class="vx-card rules-card">
+      <div class="vx-card-body">
+        <p>1. 活动时间：2026 年 11 月 1 日 00:00 - 2026 年 11 月 11 日 23:59。</p>
+        <p>2. 用户可通过完成每日任务与挑战任务获取积分，积分可在积分商城兑换礼品。</p>
+        <p>3. 每日任务每日 0 点重置，连续签到 7 天可获得额外奖励。</p>
+        <p>4. 挑战任务每位用户限参与一次，奖励即时到账。</p>
+        <p>5. 活动最终解释权归品牌官方所有，如有疑问请联系客服。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 CTA -->
+  <div class="bottom-cta">
+    <div class="cta-info">
+      <div class="price">¥ 199,900 起</div>
+      <div class="price-label">活动专属价 · 立减 30,000</div>
+    </div>
+    <button class="vx-btn vx-btn-secondary vx-btn-lg">咨询顾问</button>
+    <button class="vx-btn vx-btn-primary vx-btn-lg">立即下定</button>
+  </div>
+
+</body>
+</html>

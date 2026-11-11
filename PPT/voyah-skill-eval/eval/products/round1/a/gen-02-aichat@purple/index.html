@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="purple">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>岚图智能助手</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  .app { display: flex; height: 100vh; background: var(--vx-bg-layout); overflow: hidden; }
+
+  /* 侧边栏 */
+  .sidebar { width: 260px; background: var(--vx-bg-base); border-right: 1px solid var(--vx-line-1); display: flex; flex-direction: column; padding: var(--vx-space-md); gap: var(--vx-space-md); flex-shrink: 0; }
+  .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 0 var(--vx-space-xs); }
+  .sidebar-logo { display: flex; align-items: center; gap: var(--vx-space-xs); font-size: var(--vx-font-size-lg); font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title); }
+  .sidebar-logo-icon { width: 28px; height: 28px; border-radius: var(--vx-radius-md); background: var(--vx-primary); color: var(--vx-text-inverse); display: inline-flex; align-items: center; justify-content: center; font-size: var(--vx-font-size-sm); }
+  .sidebar-section-title { font-size: var(--vx-font-size-xs); color: var(--vx-text-caption); padding: 0 var(--vx-space-sm); line-height: var(--vx-line-height-caption); }
+  .sidebar-conversations { flex: 1; overflow-y: auto; }
+  .sidebar-footer { border-top: 1px solid var(--vx-line-1); padding-top: var(--vx-space-sm); display: flex; align-items: center; justify-content: space-between; }
+  .sidebar-user { display: flex; align-items: center; gap: var(--vx-space-xs); font-size: var(--vx-font-size-sm); color: var(--vx-text-primary); }
+  .theme-switcher { display: flex; gap: 4px; }
+  .theme-dot { width: 16px; height: 16px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
+  .theme-dot:hover { border-color: var(--vx-line-4); }
+  .theme-dot-active { border-color: var(--vx-primary); }
+  .theme-blue { background: #3773DB; }
+  .theme-yellow { background: #FFD400; }
+  .theme-purple { background: #8F44FF; }
+  .theme-cuiqing { background: #54A7B2; }
+  .theme-red { background: #D82128; }
+  .theme-biqing { background: #406670; }
+
+  /* 主区域 */
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .main-header { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--vx-space-xl); background: var(--vx-bg-base); border-bottom: 1px solid var(--vx-line-1); }
+  .main-header-title { font-size: var(--vx-font-size-lg); font-weight: var(--vx-font-weight-medium); color: var(--vx-text-title); }
+  .main-header-actions { display: flex; gap: var(--vx-space-xs); }
+
+  /* 对话区 */
+  .chat { flex: 1; overflow-y: auto; padding: var(--vx-space-xl) var(--vx-space-md); }
+  .chat-inner { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--vx-space-lg); }
+
+  /* 欢迎区 + 提示集 组合 */
+  .welcome-section { display: flex; flex-direction: column; align-items: center; gap: var(--vx-space-xl); padding: var(--vx-space-xxl) 0; }
+  .welcome-section .vx-welcome { flex-direction: column; text-align: center; padding: var(--vx-space-xl); background: transparent; }
+  .welcome-section .vx-welcome-icon { font-size: 48px; }
+  .welcome-section .vx-welcome-title { font-size: var(--vx-font-size-h1); line-height: var(--vx-line-height-page-title); }
+  .welcome-section .vx-welcome-description { font-size: var(--vx-font-size-md); margin-top: var(--vx-space-1); }
+  .prompts-section { width: 100%; }
+  .prompts-section-title { font-size: var(--vx-font-size-sm); color: var(--vx-text-caption); margin-bottom: var(--vx-space-sm); font-weight: var(--vx-font-weight-regular); }
+  .prompts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--vx-space-sm); }
+  .prompts-grid .vx-prompt-item { padding: var(--vx-space-md) var(--vx-space-lg); }
+
+  /* 气泡时间戳 */
+  .vx-bubble-time { font-size: var(--vx-font-size-xs); color: var(--vx-text-caption); line-height: var(--vx-line-height-caption); margin-top: var(--vx-space-1); }
+
+  /* 底部输入区 */
+  .footer { padding: var(--vx-space-md) var(--vx-space-xl) var(--vx-space-xl); background: var(--vx-bg-layout); }
+  .footer .vx-sender { max-width: 800px; margin: 0 auto; }
+  .footer-tip { text-align: center; font-size: var(--vx-font-size-xs); color: var(--vx-text-caption); margin-top: var(--vx-space-xs); }
+
+  /* 滚动条美化 */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--vx-line-1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--vx-line-2); }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- 左侧会话列表 -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <span class="sidebar-logo-icon">岚</span>
+        <span>岚图助手</span>
+      </div>
+      <button class="vx-btn vx-btn-secondary vx-btn-sm" title="新建会话">
+        <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        新建
+      </button>
+    </div>
+
+    <div class="sidebar-section-title">主题切换</div>
+    <div class="theme-switcher">
+      <span class="theme-dot theme-blue" data-theme="blue" title="蓝"></span>
+      <span class="theme-dot theme-yellow" data-theme="yellow" title="黄"></span>
+      <span class="theme-dot theme-purple theme-dot-active" data-theme="purple" title="紫"></span>
+      <span class="theme-dot theme-cuiqing" data-theme="cuiqing" title="翠青"></span>
+      <span class="theme-dot theme-red" data-theme="red" title="红"></span>
+      <span class="theme-dot theme-biqing" data-theme="biqing" title="碧青"></span>
+    </div>
+
+    <div class="sidebar-section-title">最近会话</div>
+    <div class="sidebar-conversations">
+      <div class="vx-conversations">
+        <div class="vx-conversation-item vx-conversation-item-active">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          岚图智能助手使用咨询
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          车载系统功能介绍
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          购车政策与优惠详情
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          预约试驾服务流程
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          充电桩分布查询
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          车辆保养周期建议
+        </div>
+        <div class="vx-conversation-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          智能驾驶功能说明
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <span class="vx-avatar vx-avatar-primary" style="width:28px;height:28px;font-size:12px;">我</span>
+        <span>岚图车主</span>
+      </div>
+      <button class="vx-btn vx-btn-secondary vx-btn-sm" title="设置">
+        <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主对话区域 -->
+  <main class="main">
+    <header class="main-header">
+      <div class="main-header-title">岚图智能助手使用咨询</div>
+      <div class="main-header-actions">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/></svg>
+          清空
+        </button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm">
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          导出
+        </button>
+      </div>
+    </header>
+
+    <div class="chat">
+      <div class="chat-inner">
+        <!-- 欢迎区 -->
+        <div class="welcome-section">
+          <div class="vx-welcome">
+            <span class="vx-welcome-icon">🚗</span>
+            <div>
+              <div class="vx-welcome-title">你好，我是岚图智能助手</div>
+              <div class="vx-welcome-description">有什么关于岚图汽车或服务的问题，随时问我</div>
+            </div>
+          </div>
+
+          <!-- 提示集 -->
+          <div class="prompts-section">
+            <div class="prompts-section-title">试试问我这些</div>
+            <div class="prompts-grid">
+              <div class="vx-prompt-item">
+                <span class="vx-prompt-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </span>
+                岚图最新车型有哪些？
+              </div>
+              <div class="vx-prompt-item">
+                <span class="vx-prompt-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </span>
+                帮我生成一篇试驾报告
+              </div>
+              <div class="vx-prompt-item">
+                <span class="vx-prompt-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </span>
+                预约最近的门店试驾
+              </div>
+              <div class="vx-prompt-item">
+                <span class="vx-prompt-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </span>
+                对比 FREE 和梦想家
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 对话内容 -->
+
+        <!-- AI 气泡 -->
+        <div class="vx-bubble">
+          <span class="vx-avatar vx-avatar-primary vx-bubble-avatar">岚</span>
+          <div class="vx-bubble-main">
+            <div class="vx-bubble-header">Voyah 助手</div>
+            <div class="vx-bubble-content vx-bubble-filled">您好，欢迎使用岚图智能助手！我可以为您解答关于车型介绍、购车政策、充电服务、售后保养等方面的问题。请问有什么可以帮您的？</div>
+            <div class="vx-bubble-time">10:24</div>
+          </div>
+        </div>
+
+        <!-- 用户气泡 -->
+        <div class="vx-bubble vx-bubble-user">
+          <span class="vx-avatar">我</span>
+          <div class="vx-bubble-main">
+            <div class="vx-bubble-content">我想了解一下岚图最新的纯电车型，续航大概是多少？</div>
+            <div class="vx-bubble-time">10:25</div>
+          </div>
+        </div>
+
+        <!-- AI 气泡（带思维链） -->
+        <div class="vx-bubble">
+          <span class="vx-avatar vx-avatar-primary vx-bubble-avatar">岚</span>
+          <div class="vx-bubble-main">
+            <div class="vx-bubble-header">Voyah 助手</div>
+            <div class="vx-bubble-content vx-bubble-filled" style="padding: var(--vx-space-sm); min-width: 360px;">
+              <!-- 思维链 -->
+              <div class="vx-thought-chain">
+                <div class="vx-thought-item">
+                  <span class="vx-thought-status vx-thought-status-done"></span>
+                  理解用户意图：查询纯电车型续航信息
+                </div>
+                <div class="vx-thought-item">
+                  <span class="vx-thought-status vx-thought-status-running"></span>
+                  正在检索岚图车型数据库中的纯电车型参数...
+                </div>
+                <div class="vx-thought-item">
+                  <span class="vx-thought-status vx-thought-status-error"></span>
+                  实时价格数据获取失败，使用已缓存数据
+                </div>
+              </div>
+            </div>
+            <div class="vx-bubble-time">10:25</div>
+          </div>
+        </div>
+
+        <!-- AI 回复气泡（最终结果） -->
+        <div class="vx-bubble">
+          <span class="vx-avatar vx-avatar-primary vx-bubble-avatar">岚</span>
+          <div class="vx-bubble-main">
+            <div class="vx-bubble-header">Voyah 助手</div>
+            <div class="vx-bubble-content vx-bubble-filled">
+              目前岚图在售的纯电车型主要包括：<br><br>
+              <strong>岚图 FREE 318</strong><br>
+              · CLTC 纯电续航：最高 318km<br>
+              · 双电机四驱系统，百公里加速 4.8s<br><br>
+              <strong>岚图追光</strong><br>
+              · CLTC 纯电续航：最高 580km（长续航版）<br>
+              · 配备 8295 智能座舱芯片<br><br>
+              <strong>岚图梦想家 EV</strong><br>
+              · CLTC 纯电续航：最高 650km<br>
+              · 豪华电动 MPV，支持快充<br><br>
+              您想重点了解哪款车型的详细参数呢？
+            </div>
+            <div class="vx-bubble-footer">
+              <span style="cursor:pointer;">复制</span> · <span style="cursor:pointer;">重新生成</span> · <span style="cursor:pointer;">点赞</span>
+            </div>
+            <div class="vx-bubble-time">10:26</div>
+          </div>
+        </div>
+
+        <!-- 用户气泡 -->
+        <div class="vx-bubble vx-bubble-user">
+          <span class="vx-avatar">我</span>
+          <div class="vx-bubble-main">
+            <div class="vx-bubble-content">梦想家 EV 的充电速度怎么样？</div>
+            <div class="vx-bubble-time">10:27</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 底部输入区 -->
+    <div class="footer">
+      <div class="vx-sender">
+        <button class="vx-btn vx-btn-secondary vx-btn-sm" title="附件">
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="vx-btn vx-btn-secondary vx-btn-sm" title="语音">
+          <svg class="vx-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </button>
+        <textarea class="vx-sender-input" rows="1" placeholder="输入消息，Enter 发送，Shift+Enter 换行"></textarea>
+        <button class="vx-sender-send" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <div class="footer-tip">AI 生成内容仅供参考，请以官方信息为准</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // 主题切换
+  const themeDots = document.querySelectorAll('.theme-dot');
+  const html = document.documentElement;
+  themeDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const theme = dot.dataset.theme;
+      html.setAttribute('data-vx-theme', theme);
+      themeDots.forEach(d => d.classList.remove('theme-dot-active'));
+      dot.classList.add('theme-dot-active');
+    });
+  });
+
+  // 发送按钮启用状态
+  const input = document.querySelector('.vx-sender-input');
+  const sendBtn = document.querySelector('.vx-sender-send');
+  input.addEventListener('input', () => {
+    sendBtn.disabled = input.value.trim().length === 0;
+  });
+
+  // 会话切换
+  const convItems = document.querySelectorAll('.vx-conversation-item');
+  convItems.forEach(item => {
+    item.addEventListener('click', () => {
+      convItems.forEach(i => i.classList.remove('vx-conversation-item-active'));
+      item.classList.add('vx-conversation-item-active');
+    });
+  });
+
+  // 提示卡片点击填充到输入框
+  const promptItems = document.querySelectorAll('.vx-prompt-item');
+  promptItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const text = item.textContent.trim();
+      input.value = text;
+      sendBtn.disabled = false;
+      input.focus();
+    });
+  });
+</script>
+</body>
+</html>

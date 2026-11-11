@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>规范自检 · 混合密度页</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--vx-fill-3);
+    color: var(--vx-text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 布局 */
+  .layout { display: flex; min-height: 100vh; }
+  .sidebar {
+    width: 240px;
+    background: var(--vx-bg-base);
+    border-right: 1px solid var(--vx-line-1);
+    padding: 16px 0;
+    flex-shrink: 0;
+  }
+  .content {
+    flex: 1;
+    padding: 16px 24px 24px 24px;
+    overflow-x: auto;
+  }
+
+  /* 左侧导航 */
+  .nav-group-title {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    padding: 8px 16px 4px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-primary);
+    font-weight: 400;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+  }
+  .nav-item:hover { background: var(--vx-fill-2); }
+  .nav-item-active {
+    background: var(--vx-primary-bg);
+    color: var(--vx-primary);
+    font-weight: 500;
+    border-left-color: var(--vx-primary);
+  }
+  .nav-item-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* 页面标题 */
+  .page-title {
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--vx-text-title);
+    margin-bottom: 16px;
+  }
+  .page-desc {
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--vx-text-secondary);
+    margin-bottom: 24px;
+    max-width: 720px;
+  }
+
+  /* 卡片（模块） */
+  .card {
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--vx-text-title);
+    margin-bottom: 12px;
+  }
+  .card-subtitle {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-bottom: 16px;
+  }
+
+  /* 自检标签：每个实例旁的小字标注 */
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .row:last-child { margin-bottom: 0; }
+  .spec-tag {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    font-family: "SF Mono", Monaco, Consolas, "Courier New", monospace;
+    background: var(--vx-fill-1);
+    border: 1px solid var(--vx-line-1);
+    border-radius: 4px;
+    padding: 2px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .spec-tag--strong {
+    color: var(--vx-text-secondary);
+  }
+
+  /* 表单 */
+  .form-item { margin-bottom: 16px; }
+  .form-item:last-child { margin-bottom: 0; }
+  .form-label {
+    display: block;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-primary);
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .form-label-required::before {
+    content: "*";
+    color: var(--vx-error);
+    margin-right: 4px;
+  }
+  .vx-input {
+    width: 100%;
+    height: 32px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--vx-text-primary);
+    background: var(--vx-bg-base);
+    border: 1px solid var(--vx-line-2);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .vx-input::placeholder { color: var(--vx-text-disabled); }
+  .vx-input:hover { border-color: var(--vx-line-4); }
+  .vx-input:focus { border-color: var(--vx-primary); }
+  .form-hint {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    margin-top: 4px;
+  }
+  .form-inline {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .form-inline .form-item { margin-bottom: 0; flex: 1; }
+
+  /* 表格 */
+  .vx-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .vx-table th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--vx-text-primary);
+    background: var(--vx-fill-2);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .vx-table td {
+    padding: 8px 12px;
+    color: var(--vx-text-primary);
+    border-bottom: 1px solid var(--vx-line-1);
+    font-weight: 400;
+  }
+  .vx-table tr:hover td { background: var(--vx-fill-2); }
+  .timestamp {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    font-weight: 400;
+  }
+
+  /* 按钮行 */
+  .btn-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* 字重对照 */
+  .weight-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .weight-row:last-child { margin-bottom: 0; }
+  .weight-label {
+    width: 120px;
+    flex-shrink: 0;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+  }
+  .weight-regular { font-weight: 400; }
+  .weight-medium { font-weight: 500; }
+  .weight-bold { font-weight: 600; }
+
+  /* 大段描述 */
+  .longform {
+    font-size: 15px;
+    line-height: 28px;
+    color: var(--vx-text-primary);
+    font-weight: 400;
+  }
+  .longform p { margin-bottom: 12px; }
+  .longform p:last-child { margin-bottom: 0; }
+
+  /* 备注文字 */
+  .note {
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--vx-text-caption);
+    font-weight: 400;
+  }
+
+  /* 两列 */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .two-col .card { margin-bottom: 0; }
+
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- 左侧导航（正文 14px 档场景之一） -->
+  <aside class="sidebar">
+    <div class="nav-group-title">导航分组</div>
+    <div class="nav-item nav-item-active">
+      <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+      概览
+    </div>
+    <div class="nav-item">
+      <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg>
+      数据报表
+    </div>
+    <div class="nav-item">
+      <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/></svg>
+      用户管理
+    </div>
+    <div class="nav-item">
+      <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      系统设置
+    </div>
+    <div class="nav-group-title" style="margin-top: 16px;">说明</div>
+    <div class="row" style="padding: 0 16px;">
+      <span class="spec-tag">font: 14px / 22px · color: var(--vx-text-primary) · weight: 400</span>
+    </div>
+    <div class="row" style="padding: 0 16px;">
+      <span class="spec-tag">激活项 color: var(--vx-primary) · weight: 500</span>
+    </div>
+    <div class="row" style="padding: 0 16px;">
+      <span class="spec-tag">分组标题: 12px / 20px · color: var(--vx-text-caption)</span>
+    </div>
+  </aside>
+
+  <!-- 主内容 -->
+  <main class="content">
+
+    <!-- 页面大标题 -->
+    <div class="row" style="justify-content: space-between; align-items: flex-end;">
+      <h1 class="page-title">规范自检 · 混合密度页</h1>
+      <span class="spec-tag spec-tag--strong">font: 20px / 32px · color: var(--vx-text-title) · weight: 600</span>
+    </div>
+    <p class="page-desc">本页集中展示岚图 Voyah UI 规范中不同字号层级与字重的真实渲染效果，每个实例旁标注设计规格，便于与 computed style 比对。</p>
+
+    <!-- 正文场景对比（表单 + 表格 + 按钮） -->
+    <div class="two-col">
+
+      <!-- 表单字段（正文 14px 档场景） -->
+      <div class="card">
+        <div class="row" style="justify-content: space-between;">
+          <h2 class="card-title">表单字段</h2>
+          <span class="spec-tag spec-tag--strong">模块标题: 16px / 24px · color: var(--vx-text-title) · weight: 500</span>
+        </div>
+        <p class="card-subtitle">正文 14px 档场景之一：表单标签、输入框文字</p>
+
+        <div class="form-item">
+          <div class="row">
+            <label class="form-label form-label-required" style="margin-bottom: 0;">账号名称</label>
+            <span class="spec-tag">label: 14px / 22px · color: var(--vx-text-primary) · weight: 400</span>
+          </div>
+          <input class="vx-input" placeholder="请输入账号名称" value="voyah_demo" />
+          <div class="row" style="margin-top: 4px;">
+            <span class="form-hint">提示：长度 6–20 个字符，支持中英文与数字</span>
+            <span class="spec-tag">hint: 12px / 20px · color: var(--vx-text-caption)</span>
+          </div>
+        </div>
+
+        <div class="form-item">
+          <div class="row">
+            <label class="form-label" style="margin-bottom: 0;">所属部门</label>
+            <span class="spec-tag">input: 14px / 22px · color: var(--vx-text-primary)</span>
+          </div>
+          <input class="vx-input" placeholder="请选择部门" />
+        </div>
+
+        <div class="form-inline">
+          <div class="form-item">
+            <label class="form-label">开始日期</label>
+            <input class="vx-input" placeholder="YYYY-MM-DD" />
+          </div>
+          <div class="form-item">
+            <label class="form-label">结束日期</label>
+            <input class="vx-input" placeholder="YYYY-MM-DD" />
+          </div>
+        </div>
+        <div class="row" style="margin-top: 4px;">
+          <span class="form-hint">placeholder color: var(--vx-text-disabled)</span>
+          <span class="spec-tag">border: 1px solid var(--vx-line-2) · radius: 6px</span>
+        </div>
+      </div>
+
+      <!-- 按钮文字（正文 14px 档场景） -->
+      <div class="card">
+        <div class="row" style="justify-content: space-between;">
+          <h2 class="card-title">按钮文字</h2>
+          <span class="spec-tag spec-tag--strong">模块标题: 16px / 24px · color: var(--vx-text-title) · weight: 500</span>
+        </div>
+        <p class="card-subtitle">正文 14px 档场景之三：Middle 尺寸按钮文字</p>
+
+        <div class="btn-row" style="margin-bottom: 16px;">
+          <button class="vx-btn vx-btn-primary">主要按钮</button>
+          <button class="vx-btn vx-btn-secondary">次要按钮</button>
+          <button class="vx-btn vx-btn-outline">描边按钮</button>
+        </div>
+        <div class="row" style="margin-bottom: 16px;">
+          <span class="spec-tag">Middle: 12px / 20px · height: 32px · padding: 6px 16px · radius: 6px</span>
+        </div>
+
+        <div class="btn-row" style="margin-bottom: 16px;">
+          <button class="vx-btn vx-btn-primary vx-btn-lg">Large 按钮</button>
+          <button class="vx-btn vx-btn-primary">Middle 按钮</button>
+          <button class="vx-btn vx-btn-primary vx-btn-sm">Small 按钮</button>
+        </div>
+        <div class="row" style="margin-bottom: 16px;">
+          <span class="spec-tag">Large: 16px / 24px · height: 40px</span>
+          <span class="spec-tag">Small: 12px / 20px · height: 24px · radius: 4px</span>
+        </div>
+
+        <div class="btn-row" style="margin-bottom: 8px;">
+          <button class="vx-btn vx-btn-danger">危险按钮</button>
+          <button class="vx-btn vx-btn-prompt">提示按钮</button>
+          <button class="vx-btn vx-btn-primary" disabled>禁用按钮</button>
+        </div>
+        <div class="row">
+          <span class="note">注：按钮宽度一律随内容，由 padding 撑开</span>
+        </div>
+        <div class="row">
+          <span class="spec-tag">禁用: text #C1C1C1 / fill #FAFAFA / border #DEDEDE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 表格单元格（正文 14px 档场景） -->
+    <div class="card">
+      <div class="row" style="justify-content: space-between;">
+        <h2 class="card-title">表格单元格</h2>
+        <span class="spec-tag spec-tag--strong">模块标题: 16px / 24px · color: var(--vx-text-title) · weight: 500</span>
+      </div>
+      <p class="card-subtitle">正文 14px 档场景之二：表格表头与单元格；辅助说明场景：时间戳</p>
+
+      <table class="vx-table">
+        <thead>
+          <tr>
+            <th style="width: 80px;">序号</th>
+            <th>名称</th>
+            <th style="width: 160px;">状态</th>
+            <th style="width: 220px;">创建时间</th>
+            <th style="width: 120px;">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>智能驾驶系统 v2.3</td>
+            <td><span class="vx-tag vx-tag-success">运行中</span></td>
+            <td><span class="timestamp">2026-11-09 10:24:35</span></td>
+            <td><a href="javascript:;" style="color: var(--vx-primary); font-size: 14px; line-height: 22px;">查看</a></td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>车载娱乐系统 v1.8</td>
+            <td><span class="vx-tag vx-tag-warning">待更新</span></td>
+            <td><span class="timestamp">2026-11-08 16:42:10</span></td>
+            <td><a href="javascript:;" style="color: var(--vx-primary); font-size: 14px; line-height: 22px;">查看</a></td>
+          </tr>
+          <tr>
+            <td>003</td>
+            <td>车身控制模块 v3.1</td>
+            <td><span class="vx-tag vx-tag-error">异常</span></td>
+            <td><span class="timestamp">2026-11-07 09:15:02</span></td>
+            <td><a href="javascript:;" style="color: var(--vx-primary); font-size: 14px; line-height: 22px;">查看</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="row" style="margin-top: 12px; flex-wrap: wrap;">
+        <span class="spec-tag">th/td: 14px / 22px · color: var(--vx-text-primary) · padding: 8px 12px</span>
+        <span class="spec-tag">th weight: 500 · td weight: 400</span>
+        <span class="spec-tag">时间戳: 12px / 20px · color: var(--vx-text-caption) · weight: 400</span>
+        <span class="spec-tag">border-bottom: 1px solid var(--vx-line-1)</span>
+      </div>
+    </div>
+
+    <!-- 大段描述 -->
+    <div class="card">
+      <div class="row" style="justify-content: space-between;">
+        <h2 class="card-title">大段描述</h2>
+        <span class="spec-tag spec-tag--strong">模块标题: 16px / 24px · color: var(--vx-text-title) · weight: 500</span>
+      </div>
+      <p class="card-subtitle">14–16px 档：帮助文档、详情页说明等阅读密度较低的长文本场景</p>
+
+      <div class="longform">
+        <p>岚图 Voyah 数字化 UI/UE 设计规范以「简洁、高效、克制」为核心原则，构建覆盖 Web、HMI、移动端的统一视觉语言。规范涵盖色彩、字体、间距、组件、动效等 12 个模块，每个模块均由 MasterGo 源文件逐图层还原并经人工三轮检核冻结，确保设计与实现的一致性。</p>
+        <p>文字层级采用五级体系：页面大标题 18~24px、模块小标题 16px、正文 14px、辅助说明 12~13px、大段描述 14~16px。字重仅使用 Regular(400)、Medium(500)、Bold(600) 三档，保证信息层级清晰且视觉干净。</p>
+        <p>间距遵循 Sn = 4px × n 的栅格规则，常用尺寸为 S2(8px)、S3(12px)、S4(16px)、S6(24px)。所有组件的内边距与外边距均以 4px 为基准步进，仅输入框纵向 padding 6px 为设计稿明示豁免。</p>
+      </div>
+
+      <div class="row" style="margin-top: 16px;">
+        <span class="spec-tag">longform: 15px / 28px · color: var(--vx-text-primary) · weight: 400</span>
+      </div>
+    </div>
+
+    <!-- 字重对照 -->
+    <div class="card">
+      <div class="row" style="justify-content: space-between;">
+        <h2 class="card-title">字重对照</h2>
+        <span class="spec-tag spec-tag--strong">模块标题: 16px / 24px · color: var(--vx-text-title) · weight: 500</span>
+      </div>
+      <p class="card-subtitle">三档字重：Regular / Medium / Bold，分别对应 400 / 500 / 600</p>
+
+      <div class="weight-row">
+        <span class="weight-label">Regular · 400</span>
+        <span style="font-size: 20px; line-height: 32px; color: var(--vx-text-title); font-weight: 400;">标题字 Regular</span>
+        <span class="spec-tag">20px / 32px · color: var(--vx-text-title) · weight: 400</span>
+      </div>
+      <div class="weight-row">
+        <span class="weight-label">Medium · 500</span>
+        <span style="font-size: 20px; line-height: 32px; color: var(--vx-text-title); font-weight: 500;">标题字 Medium</span>
+        <span class="spec-tag">20px / 32px · color: var(--vx-text-title) · weight: 500</span>
+      </div>
+      <div class="weight-row">
+        <span class="weight-label">Bold · 600</span>
+        <span style="font-size: 20px; line-height: 32px; color: var(--vx-text-title); font-weight: 600;">标题字 Bold</span>
+        <span class="spec-tag">20px / 32px · color: var(--vx-text-title) · weight: 600</span>
+      </div>
+
+      <div style="border-top: 1px solid var(--vx-line-1); margin: 16px 0;"></div>
+
+      <div class="weight-row">
+        <span class="weight-label">Regular · 400</span>
+        <span style="font-size: 14px; line-height: 22px; color: var(--vx-text-primary); font-weight: 400;">正文 Regular 400 — 表单字段、表格单元格、导航项、按钮</span>
+        <span class="spec-tag">14px / 22px · color: var(--vx-text-primary) · weight: 400</span>
+      </div>
+      <div class="weight-row">
+        <span class="weight-label">Medium · 500</span>
+        <span style="font-size: 14px; line-height: 22px; color: var(--vx-text-primary); font-weight: 500;">正文 Medium 500 — 表格表头、重要操作项</span>
+        <span class="spec-tag">14px / 22px · color: var(--vx-text-primary) · weight: 500</span>
+      </div>
+      <div class="weight-row">
+        <span class="weight-label">Bold · 600</span>
+        <span style="font-size: 14px; line-height: 22px; color: var(--vx-text-primary); font-weight: 600;">正文 Bold 600 — 关键数据、强调文本</span>
+        <span class="spec-tag">14px / 22px · color: var(--vx-text-primary) · weight: 600</span>
+      </div>
+
+      <div style="border-top: 1px solid var(--vx-line-1); margin: 16px 0;"></div>
+
+      <div class="weight-row">
+        <span class="weight-label">Regular · 400</span>
+        <span style="font-size: 12px; line-height: 20px; color: var(--vx-text-caption); font-weight: 400;">辅助说明 Regular 400 — 时间戳、备注、提示文字、placeholder</span>
+        <span class="spec-tag">12px / 20px · color: var(--vx-text-caption) · weight: 400</span>
+      </div>
+      <div class="weight-row">
+        <span class="weight-label">Medium · 500</span>
+        <span style="font-size: 12px; line-height: 20px; color: var(--vx-text-caption); font-weight: 500;">辅助说明 Medium 500 — 标签、徽标计数</span>
+        <span class="spec-tag">12px / 20px · color: var(--vx-text-caption) · weight: 500</span>
+      </div>
+    </div>
+
+    <!-- 辅助说明汇总 -->
+    <div class="card">
+      <div class="row" style="justify-content: space-between;">
+        <h2 class="card-title">辅助说明场景</h2>
+        <span class="spec-tag spec-tag--strong">模块标题: 16px / 24px · color: var(--vx-text-title) · weight: 500</span>
+      </div>
+      <p class="card-subtitle">12–13px 档：时间戳、备注、输入框提示等辅助信息场景</p>
+
+      <div class="two-col">
+        <div>
+          <div class="row">
+            <span class="timestamp">2026-11-09 14:30:25</span>
+            <span class="spec-tag">时间戳: 12px / 20px · color: var(--vx-text-caption)</span>
+          </div>
+          <div class="row">
+            <span class="note">备注：此数据每日凌晨 2 点自动同步，延迟不超过 5 分钟。</span>
+            <span class="spec-tag">备注: 12px / 20px · color: var(--vx-text-caption)</span>
+          </div>
+          <div class="row">
+            <input class="vx-input" placeholder="请输入搜索关键词..." style="max-width: 280px;" />
+            <span class="spec-tag">placeholder: 14px · color: var(--vx-text-disabled)</span>
+          </div>
+          <div class="row">
+            <span class="form-hint">提示：输入框底部说明文字，用于补充输入要求或错误提示</span>
+            <span class="spec-tag">输入框提示: 12px / 20px · color: var(--vx-text-caption)</span>
+          </div>
+        </div>
+        <div>
+          <div class="vx-alert vx-alert-info" style="margin-bottom: 12px;">
+            <span class="vx-alert-icon">ℹ</span>
+            <span>系统将于今晚 23:00 进行例行维护，预计持续 30 分钟。</span>
+          </div>
+          <div class="row">
+            <span class="spec-tag">Alert 文字: 14px / 22px · color: var(--vx-text-primary)</span>
+          </div>
+          <div class="row" style="margin-top: 12px;">
+            <span class="vx-tag">默认标签</span>
+            <span class="vx-tag vx-tag-primary">主色标签</span>
+            <span class="vx-tag vx-tag-success">成功</span>
+            <span class="vx-tag vx-tag-warning">警告</span>
+            <span class="vx-tag vx-tag-error">错误</span>
+          </div>
+          <div class="row">
+            <span class="spec-tag">Tag: 12px / 20px · bg: var(--vx-fill-3) · border: 1px var(--vx-line-1)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部备注 -->
+    <div class="note" style="margin-top: 8px; text-align: center; padding: 16px 0;">
+      本页所有样式均基于岚图 Voyah UI/UE 设计规范 v2 · 基线 baseline-v4 · token 源见 tokens.css
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

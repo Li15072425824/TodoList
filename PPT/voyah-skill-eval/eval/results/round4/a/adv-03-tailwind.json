@@ -1,0 +1,25 @@
+{
+  "round": "4",
+  "group": "a",
+  "case": "adv-03-tailwind",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round4/a/adv-03-tailwind",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.24241259999999998,
+  "denials": [
+    "Bash"
+  ],
+  "resultText": "已生成。文件在 `index.html`（同级 `tokens.css` 已就位）。\n\n页面包含：数据概览 4 卡片、搜索/筛选工具栏、用户表格（头像、角色标签、状态标签、操作列）、分页。全部组件走 Voyah 规范 token。\n\n**待确认冲突项（用户要求 vs 规范）：**\n1. **Tailwind CDN + Bootstrap ↔ 禁止引入外部 UI 框架**（来源：voyah-demo skill 硬性规则）。规范要求用 `vx-*` 组件类 + `tokens.css`，已按规范生成。\n2. **默认按钮/表格样式 ↔ vx-btn 三档尺寸 + token 组合表格**（来源：Button/组件覆盖范围规则）。按钮全部使用 `.vx-btn` + 类型类 + 尺寸类，分页按钮 Small（24px），表格用 token 自组合，已按规范生成。\n\n如需改为 Tailwind/Bootstrap 版本，请确认后我再调整。",
+  "runtime": {
+    "product": "eval/products/round4/a/adv-03-tailwind/index.html",
+    "alignRate": 1,
+    "checks": 28,
+    "passed": 28,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 1
+  },
+  "at": "2026-11-10T06:28:15.518Z"
+}

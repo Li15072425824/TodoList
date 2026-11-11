@@ -1,0 +1,26 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "gen-02-aichat@purple",
+  "kind": "gen",
+  "theme": "purple",
+  "product": "eval/products/round2/a/gen-02-aichat@purple",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.5001905999999999,
+  "denials": [
+    "Bash",
+    "Bash"
+  ],
+  "resultText": "Demo 已生成。文件：\n\n- `/private/tmp/vx-eval/r2/a/gen-02-aichat@purple/index.html`\n- `/private/tmp/vx-eval/r2/a/gen-02-aichat@purple/tokens.css`\n\n页面要点：\n- **紫主题**：`<html data-vx-theme=\"purple\">`，顶部栏保留 6 色主题切换圆点\n- **左侧会话列表**：分组（最近/历史）+ 选中态 + hover 态，8px 圆角会话项\n- **欢迎区**：图标 + 标题 + 描述，`--vx-fill-2` 底色\n- **提示集**：4 个推荐问题卡片（介绍车型 / 续航 / 预约试驾 / 售后），12px 圆角，hover 主色描边\n- **AI 气泡**：灰底左对齐 + 头像 + 名称 + 时间戳 + 操作栏\n- **用户气泡**：主色填充右对齐 + 时间戳\n- **思维链**：3 节点（完成/进行中/失败），可折叠\n- **底部 Sender**：胶囊 20px 圆角，附件按钮（Small）+ 输入框 + 发送按钮（空内容时禁用态）\n\n所有颜色、间距、圆角、字重、按钮高度均遵循 Voyah Design 规范 token 值。",
+  "runtime": {
+    "product": "eval/products/round2/a/gen-02-aichat@purple/index.html",
+    "alignRate": 1,
+    "checks": 28,
+    "passed": 28,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 0.914
+  },
+  "at": "2026-11-10T03:25:19.176Z"
+}

@@ -1,0 +1,23 @@
+{
+  "round": "2",
+  "group": "a",
+  "case": "adv-05-semantic",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round2/a/adv-05-semantic",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.2331618,
+  "denials": [],
+  "resultText": "已生成操作结果反馈页 demo，保存到 `index.html`。\n\n页面涵盖 6 种反馈组件形态，全部按「成功=红、报错=绿」反色语义实现：\n\n- **结果页面板**：成功（红）+ 失败（绿），含图标、标题、描述、元信息、操作按钮\n- **Alert 提示框**：成功（红底）、失败（绿底），保留常规 warning/help 作参照\n- **状态标签 Tag**：已通过 / 发布成功 / 已完成（红），验证失败 / 连接超时 / 参数错误（绿）\n- **Toast 浮动通知**：保存成功（红）、操作失败（绿）\n- **步骤进度条**：前两步红色已完成、第三步绿色错误、第四步待办\n- **批量操作结果列表**：成功/失败混合，圆形状态图标 + 标签\n\n配色取自 tokens.css 已有变量：成功复用 `--vx-error` 红系，错误复用 `--vx-success` 绿系，主题设为 `red`。直接浏览器打开 `index.html` 即可预览。",
+  "runtime": {
+    "product": "eval/products/round2/a/adv-05-semantic/index.html",
+    "alignRate": 1,
+    "checks": 25,
+    "passed": 25,
+    "p0": 0,
+    "p1": 0,
+    "tokenRefRate": 0.95
+  },
+  "at": "2026-11-10T03:41:03.151Z"
+}

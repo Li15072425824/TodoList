@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-vx-theme="blue">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>车辆订单管理后台</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  /* ===== 布局 ===== */
+  .app { display: flex; min-height: 100vh; background: var(--vx-bg-layout); }
+  .sidebar {
+    width: 220px; flex-shrink: 0; background: var(--vx-bg-base);
+    border-right: 1px solid var(--vx-line-1);
+    display: flex; flex-direction: column;
+  }
+  .sidebar-logo {
+    height: 56px; display: flex; align-items: center; gap: var(--vx-space-xs);
+    padding: 0 var(--vx-space-xl); border-bottom: 1px solid var(--vx-line-1);
+    font-size: var(--vx-font-size-lg); font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .sidebar-logo-icon {
+    width: 28px; height: 28px; border-radius: var(--vx-radius-sm);
+    background: var(--vx-primary); color: var(--vx-text-inverse);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--vx-font-size-sm); font-weight: var(--vx-font-weight-bold);
+  }
+  .sidebar-nav { flex: 1; padding: var(--vx-space-xs) 0; }
+  .nav-group-title {
+    padding: var(--vx-space-sm) var(--vx-space-xl) var(--vx-space-1);
+    font-size: var(--vx-font-size-xs); color: var(--vx-text-caption);
+    line-height: var(--vx-line-height-caption);
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: var(--vx-space-sm);
+    height: 40px; padding: 0 var(--vx-space-xl);
+    color: var(--vx-text-primary); font-size: var(--vx-font-size-md);
+    cursor: pointer; border-left: 2px solid transparent;
+  }
+  .nav-item:hover { background: var(--vx-fill-3); }
+  .nav-item-active {
+    color: var(--vx-primary); background: var(--vx-primary-bg);
+    border-left-color: var(--vx-primary); font-weight: var(--vx-font-weight-medium);
+  }
+  .nav-item-icon {
+    width: 16px; height: 16px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .sidebar-footer {
+    padding: var(--vx-space-sm) var(--vx-space-xl);
+    border-top: 1px solid var(--vx-line-1);
+    display: flex; align-items: center; gap: var(--vx-space-xs);
+    font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary);
+  }
+
+  /* ===== 主区域 ===== */
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .topbar {
+    height: 56px; background: var(--vx-bg-base);
+    border-bottom: 1px solid var(--vx-line-1);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 var(--vx-space-xl);
+  }
+  .topbar-left { display: flex; align-items: center; gap: var(--vx-space-md); }
+  .breadcrumb { font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary); }
+  .breadcrumb span:last-child { color: var(--vx-text-primary); font-weight: var(--vx-font-weight-medium); }
+  .topbar-right { display: flex; align-items: center; gap: var(--vx-space-md); }
+  .topbar-search { width: 240px; position: relative; }
+  .topbar-search input { padding-left: 32px; }
+  .topbar-search-icon {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--vx-text-caption); font-size: var(--vx-font-size-sm);
+  }
+  .topbar-user {
+    display: flex; align-items: center; gap: var(--vx-space-xs);
+    cursor: pointer;
+  }
+  .topbar-user-name { font-size: var(--vx-font-size-sm); color: var(--vx-text-primary); }
+
+  /* ===== 内容区 ===== */
+  .content {
+    flex: 1; padding: var(--vx-padding-page);
+    display: flex; flex-direction: column; gap: var(--vx-space-xl);
+    overflow-y: auto;
+  }
+  .page-head {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .page-title {
+    font-size: var(--vx-font-size-xxl); line-height: 32px;
+    font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title);
+  }
+  .page-title-sub {
+    font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary);
+    margin-top: var(--vx-space-1);
+  }
+  .page-actions { display: flex; gap: var(--vx-space-xs); }
+
+  /* ===== 统计卡片 ===== */
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--vx-space-md);
+  }
+  .stat-card {
+    background: var(--vx-bg-base); border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg); padding: var(--vx-space-lg);
+    display: flex; flex-direction: column; gap: var(--vx-space-2);
+  }
+  .stat-top { display: flex; align-items: center; justify-content: space-between; }
+  .stat-label { font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary); }
+  .stat-icon {
+    width: 36px; height: 36px; border-radius: var(--vx-radius-md);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--vx-font-size-lg);
+  }
+  .stat-icon-primary { background: var(--vx-primary-bg); color: var(--vx-primary); }
+  .stat-icon-success { background: var(--vx-success-bg); color: var(--vx-success-dark); }
+  .stat-icon-warning { background: var(--vx-warning-bg); color: var(--vx-warning-dark); }
+  .stat-icon-error { background: var(--vx-error-bg); color: var(--vx-error-dark); }
+  .stat-value {
+    font-family: var(--vx-font-family-number);
+    font-size: 28px; line-height: 36px; font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title);
+  }
+  .stat-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: var(--vx-font-size-xs); color: var(--vx-text-caption);
+  }
+  .stat-trend-up { color: var(--vx-success-dark); }
+  .stat-trend-down { color: var(--vx-error-dark); }
+
+  /* ===== 筛选区 ===== */
+  .filter-bar {
+    background: var(--vx-bg-base); border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg); padding: var(--vx-space-lg);
+    display: flex; flex-wrap: wrap; gap: var(--vx-space-md) var(--vx-space-xl);
+    align-items: flex-end;
+  }
+  .filter-item { display: flex; flex-direction: column; gap: var(--vx-space-1); min-width: 160px; flex: 1; }
+  .filter-item label { font-size: var(--vx-font-size-xs); color: var(--vx-text-secondary); }
+  .filter-actions { display: flex; gap: var(--vx-space-xs); flex-shrink: 0; }
+
+  /* ===== 表格 ===== */
+  .table-card {
+    background: var(--vx-bg-base); border: 1px solid var(--vx-line-1);
+    border-radius: var(--vx-radius-lg); overflow: hidden;
+  }
+  .table-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--vx-space-md) var(--vx-space-lg);
+    border-bottom: 1px solid var(--vx-line-1);
+  }
+  .table-title {
+    font-size: var(--vx-font-size-lg); line-height: var(--vx-line-height-module-title);
+    font-weight: var(--vx-font-weight-bold); color: var(--vx-text-title);
+  }
+  .table-tools { display: flex; gap: var(--vx-space-xs); align-items: center; }
+  .table { width: 100%; border-collapse: collapse; font-size: var(--vx-font-size-md); }
+  .table thead th {
+    text-align: left; font-weight: var(--vx-font-weight-medium);
+    color: var(--vx-text-secondary); background: var(--vx-fill-2);
+    padding: var(--vx-space-sm) var(--vx-space-lg);
+    border-bottom: 1px solid var(--vx-line-1);
+    font-size: var(--vx-font-size-sm); white-space: nowrap;
+  }
+  .table tbody td {
+    padding: var(--vx-space-sm) var(--vx-space-lg);
+    border-bottom: 1px solid var(--vx-line-1);
+    color: var(--vx-text-primary); vertical-align: middle;
+  }
+  .table tbody tr:hover { background: var(--vx-fill-1); }
+  .table tbody tr:last-child td { border-bottom: none; }
+  .vehicle-cell { display: flex; align-items: center; gap: var(--vx-space-sm); }
+  .vehicle-thumb {
+    width: 48px; height: 32px; border-radius: var(--vx-radius-sm);
+    background: var(--vx-fill-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .vehicle-name { font-weight: var(--vx-font-weight-medium); color: var(--vx-text-title); }
+  .vehicle-model { font-size: var(--vx-font-size-xs); color: var(--vx-text-caption); }
+  .link-btn {
+    color: var(--vx-primary); cursor: pointer; font-size: var(--vx-font-size-sm);
+    background: none; border: none; padding: 0; font-family: inherit;
+  }
+  .link-btn:hover { color: var(--vx-primary-hover); }
+  .link-btn-danger { color: var(--vx-error); }
+  .link-btn-danger:hover { color: var(--vx-btn-danger-hover); }
+  .op-cell { display: flex; gap: var(--vx-space-xs); white-space: nowrap; }
+  .price { font-family: var(--vx-font-family-number); font-weight: var(--vx-font-weight-medium); color: var(--vx-text-title); }
+
+  /* ===== 分页 ===== */
+  .table-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--vx-space-md) var(--vx-space-lg);
+    border-top: 1px solid var(--vx-line-1);
+  }
+  .table-foot-info { font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary); }
+  .pagination { display: flex; gap: var(--vx-space-1); align-items: center; }
+
+  /* ===== 详情面板 ===== */
+  .detail-grid {
+    display: grid; grid-template-columns: 2fr 1fr; gap: var(--vx-space-md);
+  }
+  .detail-section-title {
+    font-size: var(--vx-font-size-md); font-weight: var(--vx-font-weight-bold);
+    color: var(--vx-text-title); margin-bottom: var(--vx-space-sm);
+    padding-bottom: var(--vx-space-1); border-bottom: 1px solid var(--vx-line-1);
+  }
+  .detail-list { display: flex; flex-direction: column; gap: var(--vx-space-sm); }
+  .detail-row {
+    display: flex; font-size: var(--vx-font-size-md);
+  }
+  .detail-row .label {
+    width: 112px; color: var(--vx-text-secondary); flex-shrink: 0;
+  }
+  .detail-row .value {
+    color: var(--vx-text-primary); flex: 1;
+  }
+
+  /* ===== 时间线 ===== */
+  .timeline { position: relative; padding-left: var(--vx-space-lg); }
+  .timeline::before {
+    content: ""; position: absolute; left: 7px; top: 4px; bottom: 4px;
+    width: 1px; background: var(--vx-line-2);
+  }
+  .timeline-item {
+    position: relative; padding-bottom: var(--vx-space-md);
+  }
+  .timeline-item::before {
+    content: ""; position: absolute; left: -18px; top: 6px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--vx-primary);
+  }
+  .timeline-item-done::before { background: var(--vx-success); }
+  .timeline-item-warn::before { background: var(--vx-warning); }
+  .timeline-item-error::before { background: var(--vx-error); }
+  .timeline-title {
+    font-size: var(--vx-font-size-md); color: var(--vx-text-title);
+    font-weight: var(--vx-font-weight-medium);
+  }
+  .timeline-time {
+    font-size: var(--vx-font-size-xs); color: var(--vx-text-caption);
+    margin-top: 2px;
+  }
+  .timeline-desc {
+    font-size: var(--vx-font-size-sm); color: var(--vx-text-secondary);
+    margin-top: var(--vx-space-1);
+  }
+
+  /* ===== 两列卡片 ===== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--vx-space-md); }
+
+  /* ===== 通用 ===== */
+  .flex-between { display: flex; align-items: center; justify-content: space-between; }
+  .flex { display: flex; align-items: center; }
+  .gap-2 { gap: var(--vx-space-2); }
+  .gap-1 { gap: var(--vx-space-1); }
+  .mt-2 { margin-top: var(--vx-space-2); }
+  .text-caption { color: var(--vx-text-caption); font-size: var(--vx-font-size-xs); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- 左侧导航 -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="sidebar-logo-icon">V</span>
+      <span>车辆订单管理</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group-title">工作台</div>
+      <div class="nav-item">
+        <span class="nav-item-icon">▣</span>
+        <span>数据概览</span>
+      </div>
+      <div class="nav-item nav-item-active">
+        <span class="nav-item-icon">☰</span>
+        <span>订单管理</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">◈</span>
+        <span>车辆库存</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">◇</span>
+        <span>客户管理</span>
+      </div>
+      <div class="nav-group-title">业务</div>
+      <div class="nav-item">
+        <span class="nav-item-icon">≣</span>
+        <span>交付计划</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">⌂</span>
+        <span>门店管理</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-item-icon">✦</span>
+        <span>金融方案</span>
+      </div>
+      <div class="nav-group-title">系统</div>
+      <div class="nav-item">
+        <span class="nav-item-icon">⚙</span>
+        <span>系统设置</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <span class="vx-avatar">管</span>
+      <div>
+        <div style="color:var(--vx-text-primary);">管理员</div>
+        <div style="font-size:12px;">admin@voyah.com</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 主区域 -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="breadcrumb">
+          <span>工作台</span>
+          <span> / </span>
+          <span>订单管理</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <span class="topbar-search-icon">⌕</span>
+          <input class="vx-input" placeholder="搜索订单号、客户姓名..." />
+        </div>
+        <span class="vx-badge">
+          <span class="vx-avatar" style="width:32px;height:32px;font-size:14px;">🔔</span>
+          <span class="vx-badge-count">8</span>
+        </span>
+        <div class="topbar-user">
+          <span class="vx-avatar vx-avatar-primary">张</span>
+          <span class="topbar-user-name">张经理</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- 页面标题 -->
+      <div class="page-head">
+        <div>
+          <div class="page-title">订单管理</div>
+          <div class="page-title-sub">管理所有车辆销售订单，支持查询、状态流转与导出</div>
+        </div>
+        <div class="page-actions">
+          <button class="vx-btn vx-btn-secondary">导出订单</button>
+          <button class="vx-btn vx-btn-primary">新建订单</button>
+        </div>
+      </div>
+
+      <!-- 统计卡片 -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">今日新增订单</span>
+            <span class="stat-icon stat-icon-primary">＋</span>
+          </div>
+          <div class="stat-value">128</div>
+          <div class="stat-foot">
+            <span>较昨日</span>
+            <span class="stat-trend-up">↑ 12.5%</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">待交付订单</span>
+            <span class="stat-icon stat-icon-warning">⏳</span>
+          </div>
+          <div class="stat-value">346</div>
+          <div class="stat-foot">
+            <span>本周待交付</span>
+            <span>56 台</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">本月成交额</span>
+            <span class="stat-icon stat-icon-success">￥</span>
+          </div>
+          <div class="stat-value">¥2,856 万</div>
+          <div class="stat-foot">
+            <span>目标完成率</span>
+            <span class="stat-trend-up">82.6%</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">异常订单</span>
+            <span class="stat-icon stat-icon-error">!</span>
+          </div>
+          <div class="stat-value">12</div>
+          <div class="stat-foot">
+            <span>较昨日</span>
+            <span class="stat-trend-down">↓ 3 单</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 筛选区 -->
+      <div class="filter-bar">
+        <div class="filter-item">
+          <label>订单状态</label>
+          <div class="vx-segmented" style="width:100%;justify-content:space-between;">
+            <span class="vx-segmented-item vx-segmented-item-selected">全部</span>
+            <span class="vx-segmented-item">待确认</span>
+            <span class="vx-segmented-item">已确认</span>
+            <span class="vx-segmented-item">待交付</span>
+            <span class="vx-segmented-item">已完成</span>
+            <span class="vx-segmented-item">已取消</span>
+          </div>
+        </div>
+        <div class="filter-item">
+          <label>车型</label>
+          <input class="vx-input" placeholder="全部车型" />
+        </div>
+        <div class="filter-item">
+          <label>下单时间</label>
+          <input class="vx-input" placeholder="2026-11-01 ~ 2026-11-10" />
+        </div>
+        <div class="filter-item">
+          <label>门店</label>
+          <input class="vx-input" placeholder="全部门店" />
+        </div>
+        <div class="filter-actions">
+          <button class="vx-btn vx-btn-secondary">重置</button>
+          <button class="vx-btn vx-btn-primary">查询</button>
+        </div>
+      </div>
+
+      <!-- 订单列表 -->
+      <div class="table-card">
+        <div class="table-head">
+          <div class="flex-between" style="gap:16px;">
+            <span class="table-title">订单列表</span>
+            <div class="flex gap-2">
+              <span class="vx-tag vx-tag-primary">全部 1,286</span>
+              <span class="vx-tag">待确认 42</span>
+              <span class="vx-tag vx-tag-warning">待交付 346</span>
+              <span class="vx-tag vx-tag-success">已完成 876</span>
+              <span class="vx-tag vx-tag-error">已取消 22</span>
+            </div>
+          </div>
+          <div class="table-tools">
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">批量操作</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">列设置</button>
+          </div>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width:40px;"><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></th>
+              <th>订单号</th>
+              <th>车辆信息</th>
+              <th>客户姓名</th>
+              <th>门店</th>
+              <th>订单金额</th>
+              <th>下单时间</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+              <td style="color:var(--vx-primary);font-weight:500;">DD202611100001</td>
+              <td>
+                <div class="vehicle-cell">
+                  <div class="vehicle-thumb">🚙</div>
+                  <div>
+                    <div class="vehicle-name">岚图追光 PHEV</div>
+                    <div class="vehicle-model">2024款 四驱旗舰版</div>
+                  </div>
+                </div>
+              </td>
+              <td>李先生</td>
+              <td>武汉光谷体验中心</td>
+              <td><span class="price">¥328,900</span></td>
+              <td>2026-11-10 09:32</td>
+              <td><span class="vx-tag vx-tag-warning">待交付</span></td>
+              <td>
+                <div class="op-cell">
+                  <button class="link-btn">详情</button>
+                  <button class="link-btn">编辑</button>
+                  <button class="link-btn link-btn-danger">取消</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label class="vx-checkbox"><input type="checkbox" checked /><span class="vx-checkbox-box">✓</span></label></td>
+              <td style="color:var(--vx-primary);font-weight:500;">DD202611100002</td>
+              <td>
+                <div class="vehicle-cell">
+                  <div class="vehicle-thumb">🚗</div>
+                  <div>
+                    <div class="vehicle-name">岚图梦想家</div>
+                    <div class="vehicle-model">2024款 EV 超长续航旗舰版</div>
+                  </div>
+                </div>
+              </td>
+              <td>王女士</td>
+              <td>北京朝阳大悦城店</td>
+              <td><span class="price">¥469,900</span></td>
+              <td>2026-11-10 08:45</td>
+              <td><span class="vx-tag vx-tag-success">已完成</span></td>
+              <td>
+                <div class="op-cell">
+                  <button class="link-btn">详情</button>
+                  <button class="link-btn">补开发票</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+              <td style="color:var(--vx-primary);font-weight:500;">DD202611100003</td>
+              <td>
+                <div class="vehicle-cell">
+                  <div class="vehicle-thumb">🚙</div>
+                  <div>
+                    <div class="vehicle-name">岚图 FREE</div>
+                    <div class="vehicle-model">2025款 超长续航智驾版</div>
+                  </div>
+                </div>
+              </td>
+              <td>陈先生</td>
+              <td>上海浦东陆家嘴店</td>
+              <td><span class="price">¥266,900</span></td>
+              <td>2026-11-10 08:12</td>
+              <td><span class="vx-tag">待确认</span></td>
+              <td>
+                <div class="op-cell">
+                  <button class="link-btn">详情</button>
+                  <button class="link-btn">确认订单</button>
+                  <button class="link-btn link-btn-danger">取消</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+              <td style="color:var(--vx-primary);font-weight:500;">DD202611090156</td>
+              <td>
+                <div class="vehicle-cell">
+                  <div class="vehicle-thumb">🚗</div>
+                  <div>
+                    <div class="vehicle-name">岚图追光</div>
+                    <div class="vehicle-model">2024款 EV 四驱标准版</div>
+                  </div>
+                </div>
+              </td>
+              <td>赵女士</td>
+              <td>深圳南山万象城店</td>
+              <td><span class="price">¥309,900</span></td>
+              <td>2026-11-09 17:28</td>
+              <td><span class="vx-tag vx-tag-primary">已确认</span></td>
+              <td>
+                <div class="op-cell">
+                  <button class="link-btn">详情</button>
+                  <button class="link-btn">编辑</button>
+                  <button class="link-btn link-btn-danger">取消</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+              <td style="color:var(--vx-primary);font-weight:500;">DD202611090142</td>
+              <td>
+                <div class="vehicle-cell">
+                  <div class="vehicle-thumb">🚙</div>
+                  <div>
+                    <div class="vehicle-name">岚图梦想家 PHEV</div>
+                    <div class="vehicle-model">2024款 四驱尊贵版</div>
+                  </div>
+                </div>
+              </td>
+              <td>刘先生</td>
+              <td>广州天河正佳店</td>
+              <td><span class="price">¥389,900</span></td>
+              <td>2026-11-09 16:05</td>
+              <td><span class="vx-tag vx-tag-warning">待交付</span></td>
+              <td>
+                <div class="op-cell">
+                  <button class="link-btn">详情</button>
+                  <button class="link-btn">标记交付</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+              <td style="color:var(--vx-primary);font-weight:500;">DD202611090131</td>
+              <td>
+                <div class="vehicle-cell">
+                  <div class="vehicle-thumb">🚗</div>
+                  <div>
+                    <div class="vehicle-name">岚图 FREE</div>
+                    <div class="vehicle-model">2025款 PHEV 四驱旗舰版</div>
+                  </div>
+                </div>
+              </td>
+              <td>孙女士</td>
+              <td>成都太古里体验店</td>
+              <td><span class="price">¥279,900</span></td>
+              <td>2026-11-09 14:20</td>
+              <td><span class="vx-tag vx-tag-error">已取消</span></td>
+              <td>
+                <div class="op-cell">
+                  <button class="link-btn">详情</button>
+                  <button class="link-btn">查看原因</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+              <td style="color:var(--vx-primary);font-weight:500;">DD202611090120</td>
+              <td>
+                <div class="vehicle-cell">
+                  <div class="vehicle-thumb">🚙</div>
+                  <div>
+                    <div class="vehicle-name">岚图追光 PHEV</div>
+                    <div class="vehicle-model">2024款 两驱尊贵版</div>
+                  </div>
+                </div>
+              </td>
+              <td>周先生</td>
+              <td>杭州西湖体验店</td>
+              <td><span class="price">¥299,900</span></td>
+              <td>2026-11-09 11:48</td>
+              <td><span class="vx-tag vx-tag-success">已完成</span></td>
+              <td>
+                <div class="op-cell">
+                  <button class="link-btn">详情</button>
+                  <button class="link-btn">评价邀请</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label class="vx-checkbox"><input type="checkbox" /><span class="vx-checkbox-box">✓</span></label></td>
+              <td style="color:var(--vx-primary);font-weight:500;">DD202611090108</td>
+              <td>
+                <div class="vehicle-cell">
+                  <div class="vehicle-thumb">🚗</div>
+                  <div>
+                    <div class="vehicle-name">岚图梦想家 EV</div>
+                    <div class="vehicle-model">2024款 私人定制版</div>
+                  </div>
+                </div>
+              </td>
+              <td>吴先生</td>
+              <td>南京德基广场店</td>
+              <td><span class="price">¥639,900</span></td>
+              <td>2026-11-09 10:15</td>
+              <td><span class="vx-tag vx-tag-warning">待交付</span></td>
+              <td>
+                <div class="op-cell">
+                  <button class="link-btn">详情</button>
+                  <button class="link-btn">编辑</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="table-foot">
+          <div class="table-foot-info">共 1,286 条记录，当前显示第 1-8 条</div>
+          <div class="pagination">
+            <button class="vx-btn vx-btn-secondary vx-btn-sm" disabled>‹</button>
+            <button class="vx-btn vx-btn-primary vx-btn-sm">1</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">2</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">3</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">4</button>
+            <span class="text-caption" style="padding:0 4px;">...</span>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">161</button>
+            <button class="vx-btn vx-btn-secondary vx-btn-sm">›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部详情两列 -->
+      <div class="detail-grid">
+        <!-- 订单详情卡片 -->
+        <div class="vx-card">
+          <div class="vx-card-head">
+            <span class="vx-card-title">订单详情 · DD202611100001</span>
+            <div class="flex gap-1">
+              <button class="vx-btn vx-btn-outline vx-btn-sm">编辑订单</button>
+              <button class="vx-btn vx-btn-primary vx-btn-sm">标记交付</button>
+            </div>
+          </div>
+          <div class="vx-card-body" style="padding:20px 16px;">
+            <div class="detail-section-title">基本信息</div>
+            <div class="detail-list">
+              <div class="detail-row"><span class="label">订单编号</span><span class="value">DD202611100001</span></div>
+              <div class="detail-row"><span class="label">下单时间</span><span class="value">2026-11-10 09:32:18</span></div>
+              <div class="detail-row"><span class="label">订单来源</span><span class="value">线上小程序</span></div>
+              <div class="detail-row"><span class="label">销售顾问</span><span class="value">张晓峰 · 武汉光谷体验中心</span></div>
+            </div>
+
+            <div class="detail-section-title" style="margin-top:20px;">车辆信息</div>
+            <div class="detail-list">
+              <div class="detail-row"><span class="label">车型</span><span class="value">岚图追光 PHEV 2024款 四驱旗舰版</span></div>
+              <div class="detail-row"><span class="label">外观颜色</span><span class="value">云青蓝</span></div>
+              <div class="detail-row"><span class="label">内饰颜色</span><span class="value">曜石黑</span></div>
+              <div class="detail-row"><span class="label">选装配置</span><span class="value">空气悬架 + 智能驾驶辅助包 + 天幕</span></div>
+              <div class="detail-row"><span class="label">VIN 码</span><span class="value">LVGDC12A0RG123456</span></div>
+            </div>
+
+            <div class="detail-section-title" style="margin-top:20px;">费用明细</div>
+            <div class="detail-list">
+              <div class="detail-row"><span class="label">裸车价</span><span class="value">¥328,900.00</span></div>
+              <div class="detail-row"><span class="label">选装费用</span><span class="value">¥28,000.00</span></div>
+              <div class="detail-row"><span class="label">购置税</span><span class="value">¥0.00（新能源免税）</span></div>
+              <div class="detail-row"><span class="label">保险费</span><span class="value">¥7,200.00</span></div>
+              <div class="detail-row"><span class="label">优惠金额</span><span class="value" style="color:var(--vx-error-dark);">-¥10,000.00</span></div>
+              <div class="detail-row" style="padding-top:8px;border-top:1px dashed var(--vx-line-2);">
+                <span class="label">成交总价</span>
+                <span class="value" style="color:var(--vx-primary);font-weight:600;font-size:16px;">¥354,100.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：客户信息 + 状态时间线 -->
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="vx-card">
+            <div class="vx-card-head">
+              <span class="vx-card-title">客户信息</span>
+              <button class="link-btn">查看档案</button>
+            </div>
+            <div class="vx-card-body">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <span class="vx-avatar vx-avatar-lg vx-avatar-primary">李</span>
+                <div>
+                  <div style="font-size:16px;font-weight:600;color:var(--vx-text-title);">李先生</div>
+                  <div style="font-size:12px;color:var(--vx-text-caption);">VIP 客户 · 第 2 次购车</div>
+                </div>
+              </div>
+              <div class="detail-list" style="margin-top:12px;">
+                <div class="detail-row"><span class="label">联系电话</span><span class="value">138****8888</span></div>
+                <div class="detail-row"><span class="label">证件类型</span><span class="value">身份证</span></div>
+                <div class="detail-row"><span class="label">付款方式</span><span class="value">金融分期（36 期）</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vx-card" style="flex:1;">
+            <div class="vx-card-head">
+              <span class="vx-card-title">订单进度</span>
+              <span class="vx-tag vx-tag-warning">待交付</span>
+            </div>
+            <div class="vx-card-body">
+              <div class="timeline">
+                <div class="timeline-item timeline-item-done">
+                  <div class="timeline-title">订单已提交</div>
+                  <div class="timeline-time">2026-11-10 09:32</div>
+                  <div class="timeline-desc">客户在线完成订金支付</div>
+                </div>
+                <div class="timeline-item timeline-item-done">
+                  <div class="timeline-title">订单已确认</div>
+                  <div class="timeline-time">2026-11-10 10:15</div>
+                  <div class="timeline-desc">销售顾问张晓峰已核验客户信息与配置</div>
+                </div>
+                <div class="timeline-item timeline-item-done">
+                  <div class="timeline-title">车辆已调配</div>
+                  <div class="timeline-time">2026-11-10 14:20</div>
+                  <div class="timeline-desc">车辆由武汉工厂发运至光谷体验中心</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-title">待交付</div>
+                  <div class="timeline-time">预计 2026-11-15</div>
+                  <div class="timeline-desc">门店正准备交付流程与手续</div>
+                </div>
+                <div class="timeline-item" style="padding-bottom:0;">
+                  <div class="timeline-title" style="color:var(--vx-text-secondary);">完成交付</div>
+                  <div class="timeline-time" style="color:var(--vx-text-disabled);">待完成</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

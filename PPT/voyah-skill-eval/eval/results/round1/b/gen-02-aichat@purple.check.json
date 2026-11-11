@@ -1,0 +1,367 @@
+{
+  "product": "eval/products/round1/b/gen-02-aichat@purple/index.html",
+  "alignRate": 0.429,
+  "checks": 28,
+  "passed": 12,
+  "p0": 10,
+  "p1": 6,
+  "tokenRefRate": 0.698,
+  "expectedTheme": "purple",
+  "allThemes": false,
+  "htmlTheme": "purple",
+  "themeAttrs": [
+    "purple"
+  ],
+  "staticIssues": {
+    "hex": [
+      "#7C5CFF",
+      "#6B4AFF",
+      "#5A3AE6",
+      "#F0EBFF",
+      "#F7F4FF",
+      "#F7F8FA",
+      "#F2F3F5",
+      "#1D2129",
+      "#4E5969",
+      "#86909C",
+      "#C9CDD4",
+      "#E5E6EB",
+      "#00B42A",
+      "#E8FFEA",
+      "#FF7D00",
+      "#FFF7E8",
+      "#F53F3F",
+      "#FFECE8",
+      "#17171A",
+      "#202023",
+      "#1D1D20",
+      "#2A2A2E",
+      "#303033",
+      "#A78BFA",
+      "#C4B5FD",
+      "#3A3A40"
+    ],
+    "forbidden": [],
+    "gradient": [
+      "gradient"
+    ],
+    "weight": [
+      "700",
+      "700"
+    ],
+    "black": [],
+    "spacing": [
+      "gap: 10px",
+      "padding: 10px",
+      "padding: 10px",
+      "gap: 10px",
+      "margin-bottom: 10px",
+      "padding: 14px",
+      "padding-bottom: 10px",
+      "gap: 10px",
+      "padding: 14px",
+      "padding: 5px"
+    ],
+    "border": [
+      "1.5px"
+    ],
+    "errors": []
+  },
+  "violations": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "调色板外色值: #7C5CFF #6B4AFF #5A3AE6 #F0EBFF #F7F4FF #F7F8FA #F2F3F5 #1D2129 #4E5969 #86909C #C9CDD4 #E5E6EB"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "detail": "非法字重: 700"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "detail": "非 4n 间距: gap: 10px; padding: 10px; margin-bottom: 10px; padding: 14px; padding-bottom: 10px; padding: 5px"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "detail": "非法线宽: 1.5px"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "5/10 按钮高度非 24/32/40: 岚图最新车型介绍\n              了解全系车型参=122.3, 智能驾驶功能\n              高速领航、自动泊车=122.3, 充电与续航\n              充电方式、续航里程、=122.3, 售后保养服务\n              保养周期、项目查询=122.3, send-btn=36"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "5 按钮 padding 非 2/6/8·8/16: 新建对话=[10,16,10,16], 岚图最新车型介绍\n              了解全系车型参=[16,16,16,16], 智能驾驶功能\n              高速领航、自动泊车=[16,16,16,16], 充电与续航\n              充电方式、续航里程、=[16,16,16,16]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "5 按钮字号/行高非 12·20/16·24: 新建对话=14/NaN, 岚图最新车型介绍\n              了解全系车型参=13.3333/NaN, 智能驾驶功能\n              高速领航、自动泊车=13.3333/NaN, 充电与续航\n              充电方式、续航里程、=13.3333/NaN"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "6 按钮圆角非 4/6: 新建对话=10, 岚图最新车型介绍\n              了解全系车型参=14, 智能驾驶功能\n              高速领航、自动泊车=14, 充电与续航\n              充电方式、续航里程、=14"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "detail": "10 按钮色值出板: =rgb(78, 89, 105)/rgba(0, 0, 0, 0)/rgb(78, 89, 105), 新建对话=rgb(255, 255, 255)/rgb(124, 92, 255)/rgb(255, 255, 255), =rgb(78, 89, 105)/rgba(0, 0, 0, 0)/rgb(78, 89, 105), =rgb(78, 89, 105)/rgba(0, 0, 0, 0)/rgb(78, 89, 105)"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "detail": "5 个图标按钮 gap≠4"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 normal = rgb(255, 255, 255)/rgb(124, 92, 255)/rgb(255, 255, 255)，期望 #fff/#8F44FF/#8F44FF"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 hover = rgb(255, 255, 255)/rgb(107, 74, 255)/rgb(255, 255, 255)，期望 #fff/#9660E5/#9660E5"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 click = rgb(255, 255, 255)/rgb(90, 58, 230)/rgb(255, 255, 255)，期望 #fff/#5000C8/#5000C8"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "主按钮 disabled = rgb(255, 255, 255)/rgb(124, 92, 255)/rgb(255, 255, 255)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "detail": "提示按钮 hover = rgb(255, 255, 255)，期望 #FFA800"
+    }
+  ],
+  "checksDetail": [
+    {
+      "id": "static.palette",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "调色板外色值: #7C5CFF #6B4AFF #5A3AE6 #F0EBFF #F7F4FF #F7F8FA #F2F3F5 #1D2129 #4E5969 #86909C #C9CDD4 #E5E6EB"
+    },
+    {
+      "id": "static.forbidden",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无禁用近似色"
+    },
+    {
+      "id": "static.gradient",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": false,
+      "detail": "出现渐变（规范无渐变）"
+    },
+    {
+      "id": "static.black",
+      "cat": "色彩",
+      "sev": "P0",
+      "pass": true,
+      "detail": "无纯黑"
+    },
+    {
+      "id": "static.weight",
+      "cat": "字体",
+      "sev": "P0",
+      "pass": false,
+      "detail": "非法字重: 700"
+    },
+    {
+      "id": "static.spacing",
+      "cat": "间距",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非 4n 间距: gap: 10px; padding: 10px; margin-bottom: 10px; padding: 14px; padding-bottom: 10px; padding: 5px"
+    },
+    {
+      "id": "static.border",
+      "cat": "线条",
+      "sev": "P1",
+      "pass": false,
+      "detail": "非法线宽: 1.5px"
+    },
+    {
+      "id": "runtime.console",
+      "cat": "运行时",
+      "sev": "P1",
+      "pass": true,
+      "detail": "无控制台错误"
+    },
+    {
+      "id": "runtime.btn.height",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "5/10 按钮高度非 24/32/40: 岚图最新车型介绍\n              了解全系车型参=122.3, 智能驾驶功能\n              高速领航、自动泊车=122.3, 充电与续航\n              充电方式、续航里程、=122.3, 售后保养服务\n              保养周期、项目查询=122.3, send-btn=36"
+    },
+    {
+      "id": "runtime.btn.padding",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "5 按钮 padding 非 2/6/8·8/16: 新建对话=[10,16,10,16], 岚图最新车型介绍\n              了解全系车型参=[16,16,16,16], 智能驾驶功能\n              高速领航、自动泊车=[16,16,16,16], 充电与续航\n              充电方式、续航里程、=[16,16,16,16]"
+    },
+    {
+      "id": "runtime.btn.font",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "5 按钮字号/行高非 12·20/16·24: 新建对话=14/NaN, 岚图最新车型介绍\n              了解全系车型参=13.3333/NaN, 智能驾驶功能\n              高速领航、自动泊车=13.3333/NaN, 充电与续航\n              充电方式、续航里程、=13.3333/NaN"
+    },
+    {
+      "id": "runtime.btn.radius",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "6 按钮圆角非 4/6: 新建对话=10, 岚图最新车型介绍\n              了解全系车型参=14, 智能驾驶功能\n              高速领航、自动泊车=14, 充电与续航\n              充电方式、续航里程、=14"
+    },
+    {
+      "id": "runtime.btn.weight",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": true,
+      "detail": "按钮字重合规"
+    },
+    {
+      "id": "runtime.btn.color",
+      "cat": "按钮",
+      "sev": "P0",
+      "pass": false,
+      "detail": "10 按钮色值出板: =rgb(78, 89, 105)/rgba(0, 0, 0, 0)/rgb(78, 89, 105), 新建对话=rgb(255, 255, 255)/rgb(124, 92, 255)/rgb(255, 255, 255), =rgb(78, 89, 105)/rgba(0, 0, 0, 0)/rgb(78, 89, 105), =rgb(78, 89, 105)/rgba(0, 0, 0, 0)/rgb(78, 89, 105)"
+    },
+    {
+      "id": "runtime.btn.iconGap",
+      "cat": "按钮",
+      "sev": "P1",
+      "pass": false,
+      "detail": "5 个图标按钮 gap≠4"
+    },
+    {
+      "id": "sim.primary.normal",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 normal = rgb(255, 255, 255)/rgb(124, 92, 255)/rgb(255, 255, 255)，期望 #fff/#8F44FF/#8F44FF"
+    },
+    {
+      "id": "sim.primary.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 hover = rgb(255, 255, 255)/rgb(107, 74, 255)/rgb(255, 255, 255)，期望 #fff/#9660E5/#9660E5"
+    },
+    {
+      "id": "sim.primary.click",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 click = rgb(255, 255, 255)/rgb(90, 58, 230)/rgb(255, 255, 255)，期望 #fff/#5000C8/#5000C8"
+    },
+    {
+      "id": "sim.primary.disabled",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "主按钮 disabled = rgb(255, 255, 255)/rgb(124, 92, 255)/rgb(255, 255, 255)，期望 #C1C1C1/#FAFAFA/#DEDEDE"
+    },
+    {
+      "id": "sim.danger.hover",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用危险按钮（不适用）"
+    },
+    {
+      "id": "sim.prompt.hover",
+      "cat": "按钮态",
+      "sev": "P0",
+      "pass": false,
+      "detail": "提示按钮 hover = rgb(255, 255, 255)，期望 #FFA800"
+    },
+    {
+      "id": "sim.whiteline.normal.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.whiteline.normal.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用反白按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fg",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "sim.secondary.hover.fill",
+      "cat": "按钮态",
+      "sev": "P1",
+      "pass": true,
+      "detail": "未使用次要按钮（不适用）"
+    },
+    {
+      "id": "runtime.input",
+      "cat": "输入框",
+      "sev": "P1",
+      "pass": true,
+      "detail": "页面无表单输入框（不适用）"
+    },
+    {
+      "id": "theme.expected",
+      "cat": "主题",
+      "sev": "P0",
+      "pass": true,
+      "detail": "html[data-vx-theme] = purple，期望 purple"
+    },
+    {
+      "id": "runtime.fontStack",
+      "cat": "字体",
+      "sev": "P1",
+      "pass": true,
+      "detail": "body font-family = -apple-system, \"system-ui\", \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial, sa"
+    }
+  ],
+  "costNote": null
+}

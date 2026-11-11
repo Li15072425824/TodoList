@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "adv-03-tailwind",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/b/adv-03-tailwind",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.0833838,
+  "denials": [],
+  "resultText": "已生成 `index.html`，单文件 demo。\n\n包含内容：\n- 页面标题 + 新增用户按钮\n- 搜索框 + 角色/状态筛选 + 批量删除工具栏\n- 用户表格（头像、姓名、邮箱、角色徽章、状态、最后登录、操作按钮），8 条 mock 数据\n- 底部分页器\n- Tailwind CDN 用于布局，Bootstrap 5 用于按钮/表格/徽章/表单等默认样式\n\n直接用浏览器打开即可预览。",
+  "runtime": {
+    "product": "eval/products/round1/b/adv-03-tailwind/index.html",
+    "alignRate": 0.464,
+    "checks": 28,
+    "passed": 13,
+    "p0": 10,
+    "p1": 5,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T09:32:57.842Z"
+}

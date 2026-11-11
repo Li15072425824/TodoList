@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>车辆信息登记 - 岚图管理后台</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --voyah-primary: #0052D9;
+    --voyah-primary-hover: #2373f0;
+    --voyah-primary-active: #0040a6;
+    --voyah-primary-light: #e8f0fe;
+    --voyah-success: #00B42A;
+    --voyah-warning: #FF7D00;
+    --voyah-danger: #F53F3F;
+    --voyah-text-primary: #1D2129;
+    --voyah-text-regular: #4E5969;
+    --voyah-text-secondary: #86909C;
+    --voyah-text-placeholder: #C9CDD4;
+    --voyah-border: #E5E6EB;
+    --voyah-border-light: #F2F3F5;
+    --voyah-bg: #F7F8FA;
+    --voyah-bg-white: #FFFFFF;
+    --voyah-bg-hover: #F7F8FA;
+    --voyah-radius-sm: 4px;
+    --voyah-radius-md: 6px;
+    --voyah-radius-lg: 8px;
+    --voyah-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
+    --voyah-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.03);
+    --voyah-shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.04);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: var(--voyah-text-primary);
+    background: var(--voyah-bg);
+    line-height: 1.571;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== 顶部导航 ========== */
+  .navbar {
+    height: 56px;
+    background: var(--voyah-bg-white);
+    border-bottom: 1px solid var(--voyah-border-light);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--voyah-shadow-sm);
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 40px;
+    cursor: pointer;
+  }
+
+  .navbar-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--voyah-primary) 0%, #003399 100%);
+    border-radius: var(--voyah-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .navbar-logo-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+    letter-spacing: 0.5px;
+  }
+
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .navbar-menu-item {
+    padding: 0 16px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    color: var(--voyah-text-regular);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.2s;
+  }
+
+  .navbar-menu-item:hover {
+    color: var(--voyah-text-primary);
+  }
+
+  .navbar-menu-item.active {
+    color: var(--voyah-primary);
+  }
+
+  .navbar-menu-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background: var(--voyah-primary);
+    border-radius: 1px;
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .navbar-search {
+    position: relative;
+    width: 240px;
+  }
+
+  .navbar-search input {
+    width: 100%;
+    height: 36px;
+    padding: 0 12px 0 36px;
+    border: 1px solid var(--voyah-border);
+    border-radius: var(--voyah-radius-md);
+    font-size: 14px;
+    color: var(--voyah-text-primary);
+    background: var(--voyah-bg);
+    outline: none;
+    transition: all 0.2s;
+  }
+
+  .navbar-search input::placeholder {
+    color: var(--voyah-text-placeholder);
+  }
+
+  .navbar-search input:focus {
+    background: var(--voyah-bg-white);
+    border-color: var(--voyah-primary);
+    box-shadow: 0 0 0 3px rgba(0, 82, 217, 0.1);
+  }
+
+  .navbar-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--voyah-text-secondary);
+    pointer-events: none;
+  }
+
+  .navbar-icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--voyah-radius-md);
+    cursor: pointer;
+    color: var(--voyah-text-regular);
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .navbar-icon-btn:hover {
+    background: var(--voyah-bg-hover);
+    color: var(--voyah-text-primary);
+  }
+
+  .navbar-icon-btn .badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--voyah-danger);
+    border-radius: 50%;
+    border: 1.5px solid var(--voyah-bg-white);
+  }
+
+  .navbar-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+
+  .navbar-avatar:hover {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  }
+
+  /* ========== 页面容器 ========== */
+  .page-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+  }
+
+  /* ========== 面包屑 ========== */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--voyah-text-secondary);
+  }
+
+  .breadcrumb-item {
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb-item:hover {
+    color: var(--voyah-primary);
+  }
+
+  .breadcrumb-separator {
+    color: var(--voyah-text-placeholder);
+    font-size: 12px;
+  }
+
+  .breadcrumb-item.current {
+    color: var(--voyah-text-regular);
+    cursor: default;
+  }
+
+  /* ========== 页面标题区 ========== */
+  .page-header {
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .page-desc {
+    font-size: 14px;
+    color: var(--voyah-text-secondary);
+  }
+
+  /* ========== 主内容区 ========== */
+  .main-content {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ========== 表单卡片 ========== */
+  .form-card {
+    background: var(--voyah-bg-white);
+    border-radius: var(--voyah-radius-lg);
+    box-shadow: var(--voyah-shadow-sm);
+    padding: 32px;
+  }
+
+  .form-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--voyah-border-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-section-title::before {
+    content: '';
+    width: 3px;
+    height: 16px;
+    background: var(--voyah-primary);
+    border-radius: 2px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-item.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--voyah-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    line-height: 22px;
+  }
+
+  .form-label .required {
+    color: var(--voyah-danger);
+    font-weight: 500;
+    margin-left: 2px;
+  }
+
+  .form-input-wrap {
+    position: relative;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--voyah-border);
+    border-radius: var(--voyah-radius-md);
+    font-size: 14px;
+    color: var(--voyah-text-primary);
+    background: var(--voyah-bg-white);
+    outline: none;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .form-input:hover {
+    border-color: var(--voyah-text-placeholder);
+  }
+
+  .form-input:focus {
+    border-color: var(--voyah-primary);
+    box-shadow: 0 0 0 3px rgba(0, 82, 217, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: var(--voyah-text-placeholder);
+  }
+
+  .form-input:disabled {
+    background: var(--voyah-bg);
+    color: var(--voyah-text-secondary);
+    cursor: not-allowed;
+  }
+
+  /* 错误状态 */
+  .form-item.error .form-input {
+    border-color: var(--voyah-danger);
+  }
+
+  .form-item.error .form-input:focus {
+    box-shadow: 0 0 0 3px rgba(245, 63, 63, 0.1);
+  }
+
+  .form-error {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--voyah-danger);
+    line-height: 20px;
+  }
+
+  .form-error-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .form-help {
+    font-size: 12px;
+    color: var(--voyah-text-secondary);
+    line-height: 20px;
+  }
+
+  /* 下拉选择 */
+  .form-select-wrap {
+    position: relative;
+  }
+
+  .form-select {
+    width: 100%;
+    height: 40px;
+    padding: 0 36px 0 12px;
+    border: 1px solid var(--voyah-border);
+    border-radius: var(--voyah-radius-md);
+    font-size: 14px;
+    color: var(--voyah-text-primary);
+    background: var(--voyah-bg-white);
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .form-select:hover {
+    border-color: var(--voyah-text-placeholder);
+  }
+
+  .form-select:focus {
+    border-color: var(--voyah-primary);
+    box-shadow: 0 0 0 3px rgba(0, 82, 217, 0.1);
+  }
+
+  .form-select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--voyah-text-secondary);
+    pointer-events: none;
+    transition: transform 0.2s;
+  }
+
+  .form-select-wrap:focus-within .form-select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+    color: var(--voyah-primary);
+  }
+
+  /* 单选 */
+  .form-radio-group,
+  .form-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 4px 0;
+  }
+
+  .form-radio,
+  .form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    color: var(--voyah-text-primary);
+  }
+
+  .form-radio input,
+  .form-checkbox input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--voyah-text-placeholder);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .form-radio input {
+    border-radius: 50%;
+  }
+
+  .form-checkbox input {
+    border-radius: 3px;
+  }
+
+  .form-radio input:hover,
+  .form-checkbox input:hover {
+    border-color: var(--voyah-primary);
+  }
+
+  .form-radio input:checked {
+    border-color: var(--voyah-primary);
+    border-width: 5px;
+  }
+
+  .form-checkbox input:checked {
+    background: var(--voyah-primary);
+    border-color: var(--voyah-primary);
+  }
+
+  .form-checkbox input:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  /* 开关 */
+  .form-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    display: inline-block;
+  }
+
+  .form-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .form-switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--voyah-text-placeholder);
+    transition: 0.2s;
+    border-radius: 24px;
+  }
+
+  .form-switch-slider::before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+
+  .form-switch input:checked + .form-switch-slider {
+    background-color: var(--voyah-primary);
+  }
+
+  .form-switch input:checked + .form-switch-slider::before {
+    transform: translateX(20px);
+  }
+
+  .form-switch input:hover + .form-switch-slider {
+    background-color: var(--voyah-text-secondary);
+  }
+
+  .form-switch input:checked:hover + .form-switch-slider {
+    background-color: var(--voyah-primary-hover);
+  }
+
+  .form-switch-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--voyah-text-primary);
+  }
+
+  /* 文本域 */
+  .form-textarea {
+    width: 100%;
+    min-height: 96px;
+    padding: 10px 12px;
+    border: 1px solid var(--voyah-border);
+    border-radius: var(--voyah-radius-md);
+    font-size: 14px;
+    color: var(--voyah-text-primary);
+    background: var(--voyah-bg-white);
+    outline: none;
+    resize: vertical;
+    transition: all 0.2s;
+    font-family: inherit;
+    line-height: 1.571;
+  }
+
+  .form-textarea:hover {
+    border-color: var(--voyah-text-placeholder);
+  }
+
+  .form-textarea:focus {
+    border-color: var(--voyah-primary);
+    box-shadow: 0 0 0 3px rgba(0, 82, 217, 0.1);
+  }
+
+  .form-textarea::placeholder {
+    color: var(--voyah-text-placeholder);
+  }
+
+  /* ========== 按钮组 ========== */
+  .form-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--voyah-border-light);
+    margin-top: 8px;
+  }
+
+  .btn {
+    height: 40px;
+    padding: 0 20px;
+    border-radius: var(--voyah-radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: var(--voyah-primary);
+    color: #fff;
+    border-color: var(--voyah-primary);
+  }
+
+  .btn-primary:hover {
+    background: var(--voyah-primary-hover);
+    border-color: var(--voyah-primary-hover);
+  }
+
+  .btn-primary:active {
+    background: var(--voyah-primary-active);
+    border-color: var(--voyah-primary-active);
+  }
+
+  .btn-secondary {
+    background: var(--voyah-bg-white);
+    color: var(--voyah-text-regular);
+    border-color: var(--voyah-border);
+  }
+
+  .btn-secondary:hover {
+    color: var(--voyah-primary);
+    border-color: var(--voyah-primary);
+    background: var(--voyah-primary-light);
+  }
+
+  .btn-secondary:active {
+    background: #d9e7fb;
+  }
+
+  /* ========== 右侧辅助卡片 ========== */
+  .side-card {
+    background: var(--voyah-bg-white);
+    border-radius: var(--voyah-radius-lg);
+    box-shadow: var(--voyah-shadow-sm);
+    padding: 24px;
+    position: sticky;
+    top: 80px;
+  }
+
+  .side-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .side-card-title-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--voyah-primary);
+  }
+
+  .side-card-desc {
+    font-size: 14px;
+    color: var(--voyah-text-regular);
+    line-height: 1.714;
+    margin-bottom: 16px;
+  }
+
+  .side-card-tip {
+    background: var(--voyah-primary-light);
+    border-radius: var(--voyah-radius-md);
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--voyah-primary);
+    line-height: 1.6;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .side-card-tip-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .side-card-list {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--voyah-border-light);
+  }
+
+  .side-card-list-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--voyah-text-primary);
+    margin-bottom: 12px;
+  }
+
+  .side-card-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .side-card-list li {
+    font-size: 13px;
+    color: var(--voyah-text-regular);
+    padding: 6px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .side-card-list li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 13px;
+    width: 4px;
+    height: 4px;
+    background: var(--voyah-text-placeholder);
+    border-radius: 50%;
+  }
+
+  /* 输入组前缀 */
+  .input-group {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .input-group-prefix {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    background: var(--voyah-bg);
+    border: 1px solid var(--voyah-border);
+    border-right: none;
+    border-radius: var(--voyah-radius-md) 0 0 var(--voyah-radius-md);
+    font-size: 14px;
+    color: var(--voyah-text-secondary);
+    white-space: nowrap;
+  }
+
+  .input-group .form-input {
+    border-radius: 0 var(--voyah-radius-md) var(--voyah-radius-md) 0;
+    flex: 1;
+  }
+
+  .plate-prefix-select {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    color: var(--voyah-text-regular);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: inherit;
+    padding-right: 16px;
+    position: relative;
+  }
+
+  .input-group-prefix {
+    position: relative;
+  }
+
+  .input-group-prefix::after {
+    content: '';
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid var(--voyah-text-secondary);
+    pointer-events: none;
+  }
+
+  /* 错误状态下的 input-group */
+  .form-item.error .input-group-prefix {
+    border-color: var(--voyah-danger);
+  }
+
+  .form-item.error .form-input {
+    border-color: var(--voyah-danger);
+  }
+
+  .form-item.error .form-input:focus {
+    box-shadow: 0 0 0 3px rgba(245, 63, 63, 0.1);
+  }
+
+  /* 响应式 */
+  @media (max-width: 1200px) {
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    .side-card {
+      position: static;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    .navbar-menu {
+      display: none;
+    }
+    .navbar-search {
+      width: 160px;
+    }
+    .page-container {
+      padding: 16px;
+    }
+    .form-card {
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <div class="navbar-logo-icon">V</div>
+      <span class="navbar-logo-text">VOYAH</span>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-menu-item">工作台</div>
+      <div class="navbar-menu-item active">车辆管理</div>
+      <div class="navbar-menu-item">用户管理</div>
+      <div class="navbar-menu-item">订单中心</div>
+      <div class="navbar-menu-item">数据统计</div>
+      <div class="navbar-menu-item">系统设置</div>
+    </div>
+    <div class="navbar-right">
+      <div class="navbar-search">
+        <svg class="navbar-search-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="7" cy="7" r="5.5"/>
+          <path d="M11 11l3.5 3.5" stroke-linecap="round"/>
+        </svg>
+        <input type="text" placeholder="搜索车辆、订单...">
+      </div>
+      <div class="navbar-icon-btn" title="消息通知">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        <span class="badge"></span>
+      </div>
+      <div class="navbar-icon-btn" title="帮助中心">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="navbar-avatar" title="管理员">管</div>
+    </div>
+  </nav>
+
+  <!-- 页面容器 -->
+  <div class="page-container">
+    <!-- 面包屑 -->
+    <div class="breadcrumb">
+      <span class="breadcrumb-item">首页</span>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item">车辆管理</span>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item">车辆信息</span>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item current">车辆信息登记</span>
+    </div>
+
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <h1 class="page-title">车辆信息登记</h1>
+      <p class="page-desc">请完善车辆基本信息，用于车辆档案建立与后续运维管理。带 <span style="color: var(--voyah-danger);">*</span> 为必填项</p>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="main-content">
+      <!-- 左侧表单 -->
+      <div class="form-card">
+        <!-- 基础信息 -->
+        <div class="form-section-title">车辆基础信息</div>
+        <div class="form-grid">
+          <div class="form-item">
+            <label class="form-label">
+              VIN 车辆识别码<span class="required">*</span>
+            </label>
+            <input type="text" class="form-input" placeholder="请输入 17 位车辆识别码">
+            <div class="form-help">车辆识别码位于前挡风玻璃左下角或车辆铭牌处</div>
+          </div>
+
+          <div class="form-item error">
+            <label class="form-label">
+              车牌号<span class="required">*</span>
+            </label>
+            <div class="input-group">
+              <div class="input-group-prefix">
+                <select class="plate-prefix-select">
+                  <option>京</option>
+                  <option>沪</option>
+                  <option>粤</option>
+                  <option>浙</option>
+                  <option>苏</option>
+                  <option>川</option>
+                </select>
+              </div>
+              <input type="text" class="form-input" value="A12345" placeholder="请输入车牌号">
+            </div>
+            <div class="form-error">
+              <svg class="form-error-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="8" cy="8" r="7"/>
+                <line x1="8" y1="4.5" x2="8" y2="9.5" stroke-linecap="round"/>
+                <circle cx="8" cy="11.5" r="1" fill="currentColor"/>
+              </svg>
+              车牌号格式不正确，请输入正确的车牌号
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+            品牌型号<span class="required">*</span></label>
+            <div class="form-select-wrap">
+              <select class="form-select">
+                <option value="">请选择车辆品牌</option>
+                <option value="voyah-free">岚图 FREE</option>
+                <option value="voyah-dreamer">岚图梦想家</option>
+                <option value="voyah-passion">岚图追光</option>
+              </select>
+              <svg class="form-select-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6l4 4 4-4"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              车辆类型<span class="required">*</span></label>
+            <div class="form-select-wrap">
+              <select class="form-select">
+                <option value="">请选择车辆类型</option>
+                <option value="pure">纯电动</option>
+                <option value="range">增程版</option>
+                <option value="hybrid">插电混动</option>
+              </select>
+              <svg class="form-select-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6l4 4 4-4"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              车身颜色
+            </label>
+            <div class="form-radio-group">
+              <label class="form-radio">
+                <input type="radio" name="color" value="white" checked>
+                <span>云清白</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="color" value="black">
+                <span>曜石黑</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="color" value="blue">
+                <span>星海蓝</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="color" value="gray">
+                <span>玄英灰</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              内饰风格
+            </label>
+            <div class="form-radio-group">
+              <label class="form-radio">
+                <input type="radio" name="interior" value="black" checked>
+                <span>曜夜黑</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="interior" value="brown">
+                <span>流光棕</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="interior" value="beige">
+                <span>米色内饰</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              出厂日期
+            </label>
+            <input type="date" class="form-input" value="2024-01-15">
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              首次上牌日期
+            </label>
+            <input type="date" class="form-input" placeholder="请选择首次上牌日期">
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              行驶里程（km）
+            </label>
+            <input type="number" class="form-input" placeholder="请输入当前行驶里程">
+            <div class="form-help">单位：公里，精确到整数</div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              电池容量（kWh）
+            </label>
+            <input type="number" class="form-input" placeholder="请输入电池容量" value="109">
+            <div class="form-help">动力电池额定电池容量，单位：千瓦时</div>
+          </div>
+        </div>
+
+        <!-- 配置信息 -->
+        <div class="form-section-title">车辆配置信息</div>
+        <div class="form-grid">
+          <div class="form-item">
+            <label class="form-label">
+              驱动方式
+            </label>
+            <div class="form-radio-group">
+              <label class="form-radio">
+                <input type="radio" name="drive" value="rwd" checked>
+                <span>后驱</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="drive" value="awd">
+                <span>四驱</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="drive" value="fwd">
+                <span>前驱</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              座椅布局
+            </label>
+            <div class="form-select-wrap">
+              <select class="form-select">
+                <option value="">请选择座椅布局</option>
+                <option value="5">5 座</option>
+                <option value="6">6 座</option>
+                <option value="7">7 座</option>
+                <option value="4">4 座行政版</option>
+              </select>
+              <svg class="form-select-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6l4 4 4-4"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="form-item full-width">
+            <label class="form-label">
+              选装配置
+            </label>
+            <div class="form-checkbox-group">
+              <label class="form-checkbox">
+              <input type="checkbox" name="package" value="air" checked>
+              <span>空气悬架</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="package" value="massage">
+              <span>座椅按摩</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="package" value="hud" checked>
+              <span>AR-HUD 抬头显示</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="package" value="audio">
+              <span>丹拿音响</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="package" value="assist">
+              <span>高阶智驾辅助</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="package" value="sunroof">
+              <span>全景天幕</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="package" value="fridge">
+              <span>车载冰箱</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="package" value="seat-heat">
+              <span>座椅通风加热</span>
+            </label>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              智能网联
+            </label>
+            <div class="form-switch-label">
+              <label class="form-switch">
+                <input type="checkbox" checked>
+                <span class="form-switch-slider"></span>
+              </label>
+              <span>已开通车联网服务</span>
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label">
+              自动泊车
+            </label>
+            <div class="form-switch-label">
+              <label class="form-switch">
+                <input type="checkbox">
+                <span class="form-switch-slider"></span>
+              </label>
+              <span>启用自动泊车功能</span>
+            </div>
+          </div>
+
+          <div class="form-item full-width">
+            <label class="form-label">
+              备注说明
+            </label>
+            <textarea class="form-textarea" placeholder="请输入车辆相关备注信息，如车况描述、特殊配置等..."></textarea>
+            <div class="form-help">最多可输入 500 个字符</div>
+          </div>
+        </div>
+
+        <!-- 底部按钮 -->
+        <div class="form-footer">
+          <button class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            提交登记
+          </button>
+          <button class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+            取消
+          </button>
+        </div>
+      </div>
+
+      <!-- 右侧辅助卡片 -->
+      <aside class="side-card">
+        <div class="side-card-title">
+          <svg class="side-card-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          填写说明
+        </div>
+        <div class="side-card-desc">
+          车辆信息登记是建立车辆电子档案的第一步，请如实填写车辆的各项基础信息与配置参数。所有信息将用于车辆全生命周期管理，包括保养提醒、保修服务、智能网联功能开通等。
+        </div>
+        <div class="side-card-desc">
+          请确保 VIN 码和车牌号信息准确无误，这两项是车辆身份的唯一标识，一旦提交后将无法自行修改，如需变更请联系系统管理员申请。
+        </div>
+        <div class="side-card-tip">
+          <svg class="side-card-tip-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="8" cy="8" r="7"/>
+            <line x1="8" y1="4.5" x2="8" y2="9.5" stroke-linecap="round"/>
+            <circle cx="8" cy="11.5" r="1" fill="currentColor"/>
+          </svg>
+          <span>带 <strong>*</strong> 标记的为必填项，请务必填写完整后再提交</span>
+        </div>
+        <div class="side-card-list">
+          <div class="side-card-list-title">常见问题</div>
+          <ul>
+            <li>VIN 码在哪里可以在车辆行驶证或前挡风玻璃找到</li>
+            <li>车辆型号请按照行驶证登记信息填写</li>
+            <li>选装配置以购车合同为准</li>
+            <li>如有疑问请联系 400-888-8888</li>
+            <li>提交后 1-2 个工作日内完成审核</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+</body>
+</html>

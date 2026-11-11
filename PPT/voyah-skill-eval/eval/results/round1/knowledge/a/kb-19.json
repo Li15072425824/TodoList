@@ -1,0 +1,18 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-19",
+  "topic": "button-size",
+  "question": "按钮 Large / Middle / Small 三档的高度、左右 padding 和圆角分别是什么?",
+  "answer": "| 尺寸 | 高度 | 左右 padding | 圆角 |\n|------|------|-------------|------|\n| Large | 40px | 8px 上下 / 16px 左右 | 6px |\n| Middle | 32px | 6px 上下 / 16px 左右 | 6px |\n| Small | 24px | 2px 上下 / 8px 左右 | 4px |",
+  "pass": false,
+  "missing": [
+    "8px 16px",
+    "6px 16px",
+    "2px 8px"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.0420096,
+  "subtype": "success",
+  "at": "2026-11-09T10:19:41.939Z"
+}

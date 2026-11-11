@@ -1,0 +1,14 @@
+{
+  "round": "1",
+  "group": "a",
+  "id": "kb-06",
+  "topic": "fill-semantics",
+  "question": "@filling1-2 的色值和语义场景是什么?",
+  "answer": "**@fill-1**\n- 色值：`#FAFAFA`（对应 token `--vx-fill-1`）\n- 语义场景：提示框底色（color.fill.1）\n\n**@fill-2**\n- 色值：`#F3F4F7`（对应 token `--vx-fill-2`）\n- 语义场景：页面内容区块底色（color.fill.2）",
+  "pass": true,
+  "missing": [],
+  "hitsForbidden": [],
+  "cost": 0.0436566,
+  "subtype": "success",
+  "at": "2026-11-09T10:17:17.784Z"
+}

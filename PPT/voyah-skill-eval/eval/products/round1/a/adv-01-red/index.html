@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>后台管理系统</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    font-size: 14px;
+  }
+  a { color: #FF0000; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Layout */
+  .layout { display: flex; min-height: 100vh; }
+
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    background: #1a1a1a;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .sidebar-logo {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sidebar-logo .logo-dot {
+    width: 28px;
+    height: 28px;
+    background: #FF0000;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .sidebar-menu { list-style: none; padding: 12px 0; }
+  .sidebar-menu li {
+    padding: 0;
+  }
+  .sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+    transition: all .2s;
+  }
+  .sidebar-menu li a:hover {
+    background: #2a2a2a;
+    color: #FF0000;
+    text-decoration: none;
+  }
+  .sidebar-menu li.active a {
+    background: #2a2a2a;
+    color: #FF0000;
+    border-left-color: #FF0000;
+  }
+  .sidebar-menu .icon {
+    width: 18px;
+    text-align: center;
+    font-style: normal;
+  }
+
+  /* Main */
+  .main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+  /* Header */
+  .header {
+    height: 56px;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .breadcrumb { color: #666; font-size: 13px; }
+  .breadcrumb a { color: #666; }
+  .breadcrumb a:hover { color: #FF0000; }
+  .breadcrumb .sep { margin: 0 8px; color: #ccc; }
+  .breadcrumb .current { color: #333; font-weight: 500; }
+
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 36px; height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #666;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-btn:hover { background: #f5f5f5; color: #FF0000; }
+  .badge-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: #FF0000;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  .user-info:hover { background: #f5f5f5; }
+  .avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #FF0000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .user-name { font-size: 14px; color: #333; }
+
+  /* Content */
+  .content { padding: 20px 24px; flex: 1; }
+
+  /* Stats Cards */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .stat-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .stat-icon {
+    width: 56px; height: 56px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .stat-icon.red { background: #FF0000; }
+  .stat-icon.orange { background: #ff8c00; }
+  .stat-icon.green { background: #52c41a; }
+  .stat-icon.blue { background: #1890ff; }
+  .stat-info { flex: 1; min-width: 0; }
+  .stat-label {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.2;
+  }
+  .stat-trend {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .stat-trend.up { color: #52c41a; }
+  .stat-trend.down { color: #FF0000; }
+
+  /* Section Row */
+  .section-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 14px;
+    background: #FF0000;
+    border-radius: 2px;
+  }
+  .card-action a { font-size: 13px; }
+  .card-body { padding: 20px; }
+
+  /* Chart placeholder (simple bar chart with CSS) */
+  .chart-area {
+    height: 240px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 8px;
+    padding: 10px 0 30px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .chart-bar {
+    flex: 1;
+    max-width: 36px;
+    background: linear-gradient(180deg, #FF0000 0%, #ff6666 100%);
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    transition: opacity .2s;
+  }
+  .chart-bar:hover { opacity: .85; }
+  .chart-bar .bar-label {
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #999;
+    white-space: nowrap;
+  }
+  .chart-bar .bar-value {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: #666;
+  }
+  .chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #666;
+  }
+  .chart-legend .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .chart-legend .dot.red { background: #FF0000; }
+
+  /* Table */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .table th {
+    text-align: left;
+    padding: 12px 16px;
+    background: #fafafa;
+    color: #666;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    color: #333;
+  }
+  .table tr:hover td { background: #fafafa; }
+  .table tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .tag-success { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
+  .tag-warning { background: #fffbe6; color: #faad14; border: 1px solid #ffe58f; }
+  .tag-error { background: #fff1f0; color: #FF0000; border: 1px solid #ffa39e; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all .2s;
+    text-decoration: none;
+    line-height: 1.5;
+  }
+  .btn-primary {
+    background: #FF0000;
+    color: #fff;
+    border-color: #FF0000;
+  }
+  .btn-primary:hover {
+    background: #e60000;
+    border-color: #e60000;
+    text-decoration: none;
+  }
+  .btn-default {
+    background: #fff;
+    color: #FF0000;
+    border-color: #FF0000;
+  }
+  .btn-default:hover {
+    background: #fff1f0;
+    text-decoration: none;
+  }
+  .btn-sm { padding: 2px 10px; font-size: 12px; }
+
+  /* Activity list */
+  .activity-list { list-style: none; }
+  .activity-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    gap: 12px;
+  }
+  .activity-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .activity-list li:first-child { padding-top: 0; }
+  .act-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #ffecec;
+    color: #FF0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .act-content { flex: 1; min-width: 0; }
+  .act-text { font-size: 13px; color: #333; line-height: 1.5; }
+  .act-text a { font-weight: 500; }
+  .act-time { font-size: 12px; color: #999; margin-top: 4px; }
+
+  /* Quick actions */
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .quick-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .2s;
+    text-decoration: none;
+    color: #666;
+  }
+  .quick-item:hover {
+    background: #fff1f0;
+    color: #FF0000;
+    text-decoration: none;
+  }
+  .quick-item .q-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: #ffecec;
+    color: #FF0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .quick-item .q-label { font-size: 12px; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 16px;
+    color: #999;
+    font-size: 12px;
+    border-top: 1px solid #e8e8e8;
+    background: #fff;
+  }
+  .footer a { color: #FF0000; }
+
+  @media (max-width: 1024px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .section-row { grid-template-columns: 1fr; }
+    .quick-grid { grid-template-columns: repeat(2, 1fr); }
+    .sidebar { width: 60px; }
+    .sidebar-logo span, .sidebar-menu li a span:not(.icon) { display: none; }
+    .sidebar-menu li a { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-dot">A</div>
+      <span>管理后台</span>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="active"><a href="#"><span class="icon">⌂</span><span>首页概览</span></a></li>
+      <li><a href="#"><span class="icon">◉</span><span>用户管理</span></a></li>
+      <li><a href="#"><span class="icon">▤</span><span>订单管理</span></a></li>
+      <li><a href="#"><span class="icon">◎</span><span>商品管理</span></a></li>
+      <li><a href="#"><span class="icon">⌘</span><span>数据统计</span></a></li>
+      <li><a href="#"><span class="icon">✉</span><span>消息中心</span></a></li>
+      <li><a href="#"><span class="icon">⚙</span><span>系统设置</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="breadcrumb">
+          <a href="#">首页</a>
+          <span class="sep">/</span>
+          <span class="current">概览</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="icon-btn" title="搜索">⌕</button>
+        <button class="icon-btn" title="通知">
+          🔔
+          <span class="badge-dot"></span>
+        </button>
+        <button class="icon-btn" title="帮助">?</button>
+        <div class="user-info">
+          <div class="avatar">张</div>
+          <span class="user-name">张经理</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon red">¥</div>
+          <div class="stat-info">
+            <div class="stat-label">今日营收</div>
+            <div class="stat-value">¥128,430</div>
+            <div class="stat-trend up">↑ 12.5% 较昨日</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange">◉</div>
+          <div class="stat-info">
+            <div class="stat-label">新增用户</div>
+            <div class="stat-value">1,284</div>
+            <div class="stat-trend up">↑ 8.2% 较昨日</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">▤</div>
+          <div class="stat-info">
+            <div class="stat-label">订单数量</div>
+            <div class="stat-value">3,567</div>
+            <div class="stat-trend down">↓ 2.1% 较昨日</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">✓</div>
+          <div class="stat-info">
+            <div class="stat-label">完成率</div>
+            <div class="stat-value">94.6%</div>
+            <div class="stat-trend up">↑ 1.3% 较昨日</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-header">
+          <div class="card-title">快捷入口</div>
+        </div>
+        <div class="card-body">
+          <div class="quick-grid">
+            <a href="#" class="quick-item">
+              <div class="q-icon">＋</div>
+              <div class="q-label">新建订单</div>
+            </a>
+            <a href="#" class="quick-item">
+              <div class="q-icon">↥</div>
+              <div class="q-label">商品上架</div>
+            </a>
+            <a href="#" class="quick-item">
+              <div class="q-icon">⎙</div>
+              <div class="q-label">报表导出</div>
+            </a>
+            <a href="#" class="quick-item">
+              <div class="q-icon">✉</div>
+              <div class="q-label">消息群发</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart + Activity -->
+      <div class="section-row">
+        <!-- Chart Card -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">近 7 日销售趋势</div>
+            <div class="card-action"><a href="#">查看详情 →</a></div>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <div class="chart-bar" style="height: 45%;"><span class="bar-value">4.5k</span><span class="bar-label">11/03</span></div>
+              <div class="chart-bar" style="height: 60%;"><span class="bar-value">6.0k</span><span class="bar-label">11/04</span></div>
+              <div class="chart-bar" style="height: 52%;"><span class="bar-value">5.2k</span><span class="bar-label">11/05</span></div>
+              <div class="chart-bar" style="height: 75%;"><span class="bar-value">7.5k</span><span class="bar-label">11/06</span></div>
+              <div class="chart-bar" style="height: 68%;"><span class="bar-value">6.8k</span><span class="bar-label">11/07</span></div>
+              <div class="chart-bar" style="height: 85%;"><span class="bar-value">8.5k</span><span class="bar-label">11/08</span></div>
+              <div class="chart-bar" style="height: 95%;"><span class="bar-value">9.5k</span><span class="bar-label">今天</span></div>
+            </div>
+            <div class="chart-legend">
+              <span><span class="dot red"></span>销售额（元）</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Card -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">最新动态</div>
+            <div class="card-action"><a href="#">更多 →</a></div>
+          </div>
+          <div class="card-body" style="padding: 0 20px;">
+            <ul class="activity-list">
+              <li>
+                <div class="act-avatar">李</div>
+                <div class="act-content">
+                  <div class="act-text"><a href="#">李明</a> 创建了新订单 <a href="#">#10284</a></div>
+                  <div class="act-time">5 分钟前</div>
+                </div>
+              </li>
+              <li>
+                <div class="act-avatar">王</div>
+                <div class="act-content">
+                  <div class="act-text"><a href="#">王芳</a> 更新了商品 <a href="#">「蓝牙耳机 Pro」</a> 的库存</div>
+                  <div class="act-time">23 分钟前</div>
+                </div>
+              </li>
+              <li>
+                <div class="act-avatar">系</div>
+                <div class="act-content">
+                  <div class="act-text">系统自动完成了 <a href="#">每日数据备份</a></div>
+                  <div class="act-time">1 小时前</div>
+                </div>
+              </li>
+              <li>
+                <div class="act-avatar">赵</div>
+                <div class="act-content">
+                  <div class="act-text"><a href="#">赵强</a> 提交了 <a href="#">营销活动申请</a>，待审批</div>
+                  <div class="act-time">2 小时前</div>
+                </div>
+              </li>
+              <li>
+                <div class="act-avatar">陈</div>
+                <div class="act-content">
+                  <div class="act-text"><a href="#">陈静</a> 回复了客户工单 <a href="#">#58241</a></div>
+                  <div class="act-time">3 小时前</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Table -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">最近订单</div>
+          <div class="card-action"><a href="#">查看全部 →</a></div>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>订单号</th>
+                <th>客户</th>
+                <th>商品</th>
+                <th>金额</th>
+                <th>状态</th>
+                <th>下单时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#">#DD20261109001</a></td>
+                <td>刘先生</td>
+                <td>智能手表 S3</td>
+                <td>¥ 1,299.00</td>
+                <td><span class="tag tag-success">已完成</span></td>
+                <td>2026-11-09 10:24</td>
+                <td><a href="#">详情</a> · <a href="#">发货</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">#DD20261109002</a></td>
+                <td>周女士</td>
+                <td>无线耳机 Pro</td>
+                <td>¥ 899.00</td>
+                <td><span class="tag tag-warning">待发货</span></td>
+                <td>2026-11-09 09:58</td>
+                <td><a href="#">详情</a> · <a href="#">发货</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">#DD20261109003</a></td>
+                <td>吴先生</td>
+                <td>蓝牙音箱 ×2</td>
+                <td>¥ 598.00</td>
+                <td><span class="tag tag-success">已完成</span></td>
+                <td>2026-11-09 09:12</td>
+                <td><a href="#">详情</a> · <a href="#">退款</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">#DD20261109004</a></td>
+                <td>郑女士</td>
+                <td>手机壳 + 贴膜套装</td>
+                <td>¥ 129.00</td>
+                <td><span class="tag tag-error">已取消</span></td>
+                <td>2026-11-09 08:47</td>
+                <td><a href="#">详情</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">#DD20261109005</a></td>
+                <td>孙先生</td>
+                <td>移动电源 20000mAh</td>
+                <td>¥ 199.00</td>
+                <td><span class="tag tag-warning">待付款</span></td>
+                <td>2026-11-09 08:30</td>
+                <td><a href="#">详情</a> · <a href="#">催付</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">#DD20261109006</a></td>
+                <td>钱女士</td>
+                <td>智能门锁</td>
+                <td>¥ 2,499.00</td>
+                <td><span class="tag tag-success">已完成</span></td>
+                <td>2026-11-09 08:05</td>
+                <td><a href="#">详情</a> · <a href="#">售后</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      © 2026 管理后台系统 · <a href="#">使用帮助</a> · <a href="#">反馈建议</a>
+    </footer>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "gen-07-list-tags",
+  "kind": "gen",
+  "theme": null,
+  "product": "eval/products/round1/b/gen-07-list-tags",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.2005458,
+  "denials": [],
+  "resultText": "已生成申请审批列表 demo，保存到 `index.html`。\n\n包含的规范要点：\n- **Tabs**：全部/待审批/已通过/已拒绝，选中态 2px 蓝色下划线 + 字重加粗\n- **待审批 Badge**：红色胶囊计数，实时联动审批操作\n- **Segmented 分段器**：列表/卡片视图切换，选中态白底阴影浮起\n- **列表行**：头像（渐变色）+ 姓名部门 + 申请标题 + 状态 Tag + 时间 + 操作文字链接\n- **状态 Tag**：待审批(橙)/已通过(绿)/已拒绝(红)，带圆点指示器 + 浅填充底色\n- **填充色三级语义**：`fill-tertiary` 用于 hover、`fill-secondary` 用于选中态、`fill-primary` 用于分段器 hover\n- **操作链接**：待审批行显示\"通过/拒绝\"，已处理行显示\"查看详情\"\n- 支持行点击选中、点击操作按钮审批（通过/拒绝后状态实时更新，Badge 计数联动）",
+  "runtime": {
+    "product": "eval/products/round1/b/gen-07-list-tags/index.html",
+    "alignRate": 0.737,
+    "checks": 19,
+    "passed": 14,
+    "p0": 3,
+    "p1": 2,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T08:57:24.243Z"
+}

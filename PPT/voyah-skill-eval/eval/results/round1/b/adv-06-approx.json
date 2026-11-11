@@ -1,0 +1,23 @@
+{
+  "round": "1",
+  "group": "b",
+  "case": "adv-06-approx",
+  "kind": "adversarial",
+  "theme": null,
+  "product": "eval/products/round1/b/adv-06-approx",
+  "hasHtml": true,
+  "subtype": "success",
+  "cost": 0.3742128,
+  "denials": [],
+  "resultText": "已生成 `/private/tmp/vx-eval/r1/b/adv-06-approx/index.html`，单文件即用浏览器打开。\n\n包含的模块：\n- **顶部导航栏**：Logo、菜单、搜索、通知、头像\n- **4 张 KPI 卡片**：总销售额、活跃用户、订单数、客单价（带环比箭头和图标）\n- **销售额趋势折线图**：双 Y 轴（销售额 + 订单量），周/月/季/年切换 Tab\n- **渠道占比环形饼图**\n- **品类销售排行榜**：Top 6 带编号和金额\n- **地区销售柱状图**：渐变柱形\n- **目标完成率仪表盘**：72.6% 渐变色进度\n- **热销商品明细表**：6 条数据 + 进度条 + 状态徽章 + 分页\n\n主色 `#3673DC`，ECharts 从 CDN 加载，响应式布局。",
+  "runtime": {
+    "product": "eval/products/round1/b/adv-06-approx/index.html",
+    "alignRate": 0.429,
+    "checks": 28,
+    "passed": 12,
+    "p0": 10,
+    "p1": 6,
+    "tokenRefRate": 0
+  },
+  "at": "2026-11-09T09:39:48.129Z"
+}

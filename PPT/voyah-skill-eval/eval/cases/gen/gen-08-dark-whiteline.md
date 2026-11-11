@@ -1,6 +1,6 @@
 # GEN-08 深色头部 + 反白按钮
 
-covers: [button.whiteline, button.whiteline.hover, button.whiteline.active, color.text.inverse, space.page, font.h2]
+covers: [button.whiteline.*, spacing.padding.page, font.level.page-title, color.text.title]
 
 请生成一个「深色品牌头图区」demo(单个 HTML 文件),包含:
 - 深色(near-black)头部横幅:大标题(反白文字)、副标题、两个反白(Whiteline)按钮

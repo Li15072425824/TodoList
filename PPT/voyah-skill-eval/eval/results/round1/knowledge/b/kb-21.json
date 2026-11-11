@@ -1,0 +1,16 @@
+{
+  "round": "1",
+  "group": "b",
+  "id": "kb-21",
+  "topic": "button-prompt",
+  "question": "提示按钮 hover 态的填充色值是什么?",
+  "answer": "项目目录为空，没有可用的设计规范文件或 skill。按通用设计规范知识回答：\n\n**提示按钮（Tooltip/提示类按钮）hover 态的填充色值通常遵循以下规范：**\n\n- **浅色模式**：`rgba(0, 0, 0, 0.04)` ~ `rgba(0, 0, 0, 0.08)`，即黑色 4%–8% 透明度的叠加；或使用主题色 token，如 `--color-neutral-100`、`--color-surface-hover`。\n- **深色模式**：`rgba(255, 255, 255, 0.08)` ~ `rgba(255, 255, 255, 0.12)`，即白色 8%–12% 透明度的叠加。\n- **主色/品牌色按钮 hover**：通常在基础色上加深 10%–15%，例如基础色 `#1677ff`（Ant Design Primary）hover 为 `#4096ff`。\n\n由于本项目未提供具体的设计规范文件（Design Token / Figma / CSS 变量定义），以上为行业通用参考值。如需精确色值，请提供对应的设计规范文档或设计系统代码（如 tokens 文件）。",
+  "pass": false,
+  "missing": [
+    "FFA800"
+  ],
+  "hitsForbidden": [],
+  "cost": 0.053799599999999996,
+  "subtype": "success",
+  "at": "2026-11-09T09:47:46.358Z"
+}
