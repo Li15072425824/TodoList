@@ -1,0 +1,84 @@
+.sx-sidenav {
+  width: 300px;
+  flex: 0 0 300px;
+  height: calc(100vh - 80px);
+  position: sticky;
+  top: 80px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 0 28px;
+  background: #ffffff;
+}
+
+.sx-menu,
+.sx-group-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sx-leaf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 40px;
+  margin: 0 4px;
+  padding: 0 16px 0 40px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1;
+}
+a.sx-leaf {
+  color: rgba(0, 0, 0, 0.88);
+}
+.sx-leaf:hover {
+  color: rgba(0, 0, 0, 0.88);
+}
+.sx-leaf-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sx-leaf.active {
+  background: #e6f4ff;
+  color: #1677ff;
+  font-weight: 500;
+}
+a.sx-leaf.active:hover {
+  color: #1677ff;
+}
+
+/* version badge */
+.sx-tag {
+  flex: 0 0 auto;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #52c41a;
+  background: #f6ffed;
+  border-radius: 4px;
+}
+
+/* groups */
+.sx-group {
+  margin-top: 4px;
+}
+.sx-group-title {
+  display: flex;
+  align-items: center;
+  height: 39px;
+  padding: 0 20px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+}
+.sx-group-list {
+  margin: 0;
+}
+
+/* ---- tablet & phone: the component menu moves off-canvas ---- */
+@media (max-width: 1199px) {
+  .sx-sidenav {
+    display: none;
+  }
+}

@@ -1,0 +1,53 @@
+.api-table {
+  width: 100%;
+  margin: 0 0 48px;
+  overflow-x: auto;
+}
+
+.api-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.5715;
+}
+
+.api-table th,
+.api-table td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.api-table th {
+  font-weight: 500;
+  background: #fafafa;
+  white-space: nowrap;
+}
+
+.api-table .api-name {
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  white-space: nowrap;
+}
+
+.api-table .api-type {
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 13px;
+  color: #c41d7f;
+  white-space: normal;
+  min-width: 200px;
+}
+
+.api-type-frag {
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  color: #c41d7f;
+}
+
+@media (max-width: 575px) {
+  .api-table th,
+  .api-table td {
+    padding: 10px 12px;
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "id": "ev_b166a381a4886093117d08f94e5598303cbd06ddcf22a3fe6585e4c8e0af4847",
+  "subject": {
+    "kind": "website",
+    "name": "http://127.0.0.1:56854/docs/react/introduce-cn"
+  },
+  "operation": "web_site_capture",
+  "params": {
+    "include_html": false,
+    "max_height": 12000,
+    "noise_pass": false,
+    "visitor_view": true,
+    "widths": [
+      1440,
+      768,
+      390
+    ]
+  },
+  "result": {
+    "counts": {
+      "forms": 0,
+      "headings": 4,
+      "images": 0,
+      "links": 70,
+      "outline": 111
+    },
+    "design": {
+      "backgrounds": [
+        {
+          "count": 5,
+          "value": "#f6ffed"
+        },
+        {
+          "count": 5,
+          "value": "#0000000f"
+        },
+        {
+          "count": 4,
+          "value": "#ffffff"
+        },
+        {
+          "count": 1,
+          "value": "#0000001f"
+        },
+        {
+          "count": 1,
+          "value": "#e6f4ff"
+        },
+        {
+          "count": 1,
+          "value": "#f0f2f5"
+        }
+      ],
+      "font_sizes": [
+        {
+          "count": 45,
+          "value": "14px"
+        },
+        {
+          "count": 32,
+          "value": "13px"
+        },
+        {
+          "count": 9,
+          "value": "16px"
+        },
+        {
+          "count": 8,
+          "value": "12px"
+        },
+        {
+          "count": 5,
+          "value": "11.9px"
+        },
+        {
+          "count": 5,
+          "value": "40px"
+        },
+        {
+          "count": 3,
+          "value": "24px"
+        },
+        {
+          "count": 1,
+          "value": "20px"
+        },
+        {
+          "count": 1,
+          "value": "32px"
+        }
+      ],
+      "font_weights": [
+        {
+          "count": 98,
+          "value": "400"
+        },
+        {
+          "count": 9,
+          "value": "500"
+        },
+        {
+          "count": 1,
+          "value": "600"
+        },
+        {
+          "count": 1,
+          "value": "700"
+        }
+      ],
+      "fonts": [
+        {
+          "count": 104,
+          "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+        },
+        {
+          "count": 5,
+          "value": "SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, Courier, monospace"
+        }
+      ],
+      "max_widths": [],
+      "radii": [
+        {
+          "count": 25,
+          "value": "6px"
+        },
+        {
+          "count": 5,
+          "value": "4px"
+        },
+        {
+          "count": 1,
+          "value": "100px"
+        },
+        {
+          "count": 1,
+          "value": "16px"
+        }
+      ],
+      "shadows": [
+        {
+          "count": 1,
+          "value": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px"
+        }
+      ],
+      "spacing": [
+        {
+          "count": 41,
+          "value": "8px"
+        },
+        {
+          "count": 26,
+          "value": "4px"
+        },
+        {
+          "count": 16,
+          "value": "40px"
+        },
+        {
+          "count": 15,
+          "value": "16px"
+        },
+        {
+          "count": 14,
+          "value": "20px"
+        },
+        {
+          "count": 12,
+          "value": "14px"
+        },
+        {
+          "count": 11,
+          "value": "24px"
+        },
+        {
+          "count": 11,
+          "value": "12px"
+        },
+        {
+          "count": 10,
+          "value": "2px"
+        },
+        {
+          "count": 10,
+          "value": "2.38px"
+        },
+        {
+          "count": 10,
+          "value": "4.76px"
+        },
+        {
+          "count": 8,
+          "value": "6px"
+        },
+        {
+          "count": 4,
+          "value": "56px"
+        },
+        {
+          "count": 3,
+          "value": "28px"
+        },
+        {
+          "count": 3,
+          "value": "32px"
+        },
+        {
+          "count": 2,
+          "value": "10px"
+        },
+        {
+          "count": 2,
+          "value": "22px"
+        },
+        {
+          "count": 2,
+          "value": "13px"
+        },
+        {
+          "count": 1,
+          "value": "18px"
+        },
+        {
+          "count": 1,
+          "value": "64px"
+        }
+      ],
+      "text_colors": [
+        {
+          "count": 42,
+          "value": "#000000e0"
+        },
+        {
+          "count": 38,
+          "value": "#000000a6"
+        },
+        {
+          "count": 14,
+          "value": "#1677ff"
+        },
+        {
+          "count": 6,
+          "value": "#00000073"
+        },
+        {
+          "count": 5,
+          "value": "#52c41a"
+        },
+        {
+          "count": 2,
+          "value": "#00000040"
+        },
+        {
+          "count": 1,
+          "value": "#61dafb"
+        },
+        {
+          "count": 1,
+          "value": "#722ed1"
+        }
+      ]
+    },
+    "files": [
+      "README.md",
+      "capture.json"
+    ],
+    "html_bytes": 0,
+    "output_directory": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/docs-react-introduce-cn",
+    "screenshots": [
+      {
+        "css_width": 1440,
+        "cut": false,
+        "file": "screenshot-1440.png",
+        "height": 2661,
+        "sha256": "db3bf96f48d238034aabc2cddc8432f2afc2e2a5e6971d55f2feca8f3c9147fd",
+        "width": 1440
+      },
+      {
+        "css_width": 768,
+        "cut": false,
+        "file": "screenshot-768.png",
+        "height": 2204,
+        "sha256": "e27008447b4c3b18353ff773f28293a026ef4c531869febbfd78e1c1a5ad35fc",
+        "width": 768
+      },
+      {
+        "css_width": 390,
+        "cut": false,
+        "file": "screenshot-390.png",
+        "height": 3034,
+        "sha256": "2ae78aa8f14612aee5b4f11204b182ab706261a70de97eede36aa17898d0e02d",
+        "width": 390
+      }
+    ],
+    "title": "思维链 ThoughtChain - Ant Design X",
+    "url": "http://127.0.0.1:56854/docs/react/introduce-cn"
+  },
+  "summary": "Captured http://127.0.0.1:56854/docs/react/introduce-cn: 3 screenshot(s), 111 outline items, 4 headings, 0 images, 70 links, 0 forms → /Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/docs-react-introduce-cn.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "one_state",
+      "message": "One state of the page: menus, dialogs and content behind interactions are not opened."
+    },
+    {
+      "code": "visitor_view",
+      "message": "Clean room: only what a visitor sees was kept (screenshots, visible text, measured layout and styles); not the page's HTML, CSS rules, scripts, requests or errors."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 3,
+    "total": 3
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "http://127.0.0.1:56854/docs/react/introduce-cn"
+    },
+    {
+      "kind": "path",
+      "value": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/docs-react-introduce-cn"
+    }
+  ],
+  "links": []
+}

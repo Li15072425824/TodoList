@@ -1,0 +1,103 @@
+.dc-card {
+  margin-bottom: 24px;
+  border: 1px solid rgba(5, 5, 5, 0.06);
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+  scroll-margin-top: 88px;
+}
+
+/* ---- preview ---- */
+.dc-preview {
+  padding: 42px 24px 50px;
+  background: #f0f2f5;
+}
+
+/* ---- meta ---- */
+.dc-meta {
+  position: relative;
+  padding: 1px 24px 0;
+}
+
+.dc-title {
+  position: absolute;
+  top: -16px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.88);
+  background: #ffffff;
+  border-radius: 8px 8px 0 0;
+}
+.dc-title-edit {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.dc-desc {
+  padding: 16px 8px 8px;
+  font-size: 14px;
+  line-height: 1.5715;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.dc-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  margin-top: 8px;
+  border-top: 1px dashed rgba(5, 5, 5, 0.1);
+}
+.dc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+.dc-icon:hover {
+  color: rgba(0, 0, 0, 0.88);
+  background: rgba(0, 0, 0, 0.04);
+}
+.dc-icon.active {
+  color: #1677ff;
+}
+
+.dc-code {
+  margin: 0;
+  padding: 16px 24px;
+  background: #fafafa;
+  border-top: 1px solid rgba(5, 5, 5, 0.06);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+.dc-code code {
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  color: rgba(0, 0, 0, 0.88);
+  white-space: pre;
+}
+
+/* ---- phone: tighter preview padding ---- */
+@media (max-width: 575px) {
+  .dc-preview {
+    padding: 28px 16px 34px;
+  }
+  .dc-meta {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

@@ -1,0 +1,56 @@
+.popmenu-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.dx-version-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+}
+.popmenu-trigger:hover .dx-version-inner {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.popmenu-panel {
+  position: fixed;
+  z-index: 1100;
+  min-width: 140px;
+  max-height: 320px;
+  padding: 4px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+}
+
+.popmenu-item {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.popmenu-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.popmenu-item.selected {
+  font-weight: 500;
+  color: #1677ff;
+  background: #e6f4ff;
+}

@@ -1,0 +1,312 @@
+{
+  "id": "ev_e464aab681abd0e1941402dbbfccf4670d5b10d67c249a8a0fa259e7a28c5960",
+  "subject": {
+    "kind": "website",
+    "name": "http://127.0.0.1:58648/components/introduce-cn/"
+  },
+  "operation": "web_site_capture",
+  "params": {
+    "include_html": false,
+    "max_height": 12000,
+    "noise_pass": false,
+    "visitor_view": true,
+    "widths": [
+      1440,
+      768,
+      390
+    ]
+  },
+  "result": {
+    "counts": {
+      "forms": 0,
+      "headings": 10,
+      "images": 0,
+      "links": 36,
+      "outline": 92
+    },
+    "design": {
+      "backgrounds": [
+        {
+          "count": 12,
+          "value": "#0000000f"
+        },
+        {
+          "count": 8,
+          "value": "#f6ffed"
+        },
+        {
+          "count": 7,
+          "value": "#ffffff"
+        },
+        {
+          "count": 1,
+          "value": "#0000001f"
+        }
+      ],
+      "font_sizes": [
+        {
+          "count": 66,
+          "value": "14px"
+        },
+        {
+          "count": 15,
+          "value": "12px"
+        },
+        {
+          "count": 12,
+          "value": "11.9px"
+        },
+        {
+          "count": 9,
+          "value": "16px"
+        },
+        {
+          "count": 7,
+          "value": "24px"
+        },
+        {
+          "count": 2,
+          "value": "18px"
+        },
+        {
+          "count": 2,
+          "value": "13px"
+        },
+        {
+          "count": 1,
+          "value": "20px"
+        },
+        {
+          "count": 1,
+          "value": "32px"
+        }
+      ],
+      "font_weights": [
+        {
+          "count": 95,
+          "value": "400"
+        },
+        {
+          "count": 12,
+          "value": "500"
+        },
+        {
+          "count": 7,
+          "value": "700"
+        },
+        {
+          "count": 1,
+          "value": "600"
+        }
+      ],
+      "fonts": [
+        {
+          "count": 96,
+          "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+        },
+        {
+          "count": 14,
+          "value": "SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, Courier, monospace"
+        },
+        {
+          "count": 5,
+          "value": "Arial"
+        }
+      ],
+      "max_widths": [],
+      "radii": [
+        {
+          "count": 36,
+          "value": "6px"
+        },
+        {
+          "count": 9,
+          "value": "6px 6px 0px 0px"
+        },
+        {
+          "count": 8,
+          "value": "4px"
+        },
+        {
+          "count": 2,
+          "value": "8px"
+        },
+        {
+          "count": 1,
+          "value": "100px"
+        }
+      ],
+      "shadows": [
+        {
+          "count": 2,
+          "value": "rgb(22, 119, 255) 0px -2px 0px 0px inset"
+        },
+        {
+          "count": 1,
+          "value": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px"
+        }
+      ],
+      "spacing": [
+        {
+          "count": 90,
+          "value": "8px"
+        },
+        {
+          "count": 44,
+          "value": "14px"
+        },
+        {
+          "count": 35,
+          "value": "4px"
+        },
+        {
+          "count": 27,
+          "value": "16px"
+        },
+        {
+          "count": 24,
+          "value": "2.38px"
+        },
+        {
+          "count": 24,
+          "value": "4.76px"
+        },
+        {
+          "count": 21,
+          "value": "40px"
+        },
+        {
+          "count": 17,
+          "value": "24px"
+        },
+        {
+          "count": 16,
+          "value": "2px"
+        },
+        {
+          "count": 13,
+          "value": "20px"
+        },
+        {
+          "count": 8,
+          "value": "6px"
+        },
+        {
+          "count": 7,
+          "value": "12px"
+        },
+        {
+          "count": 7,
+          "value": "56px"
+        },
+        {
+          "count": 3,
+          "value": "28px"
+        },
+        {
+          "count": 2,
+          "value": "10px"
+        },
+        {
+          "count": 2,
+          "value": "22px"
+        },
+        {
+          "count": 1,
+          "value": "18px"
+        }
+      ],
+      "text_colors": [
+        {
+          "count": 81,
+          "value": "#000000e0"
+        },
+        {
+          "count": 15,
+          "value": "#000000a6"
+        },
+        {
+          "count": 8,
+          "value": "#00000073"
+        },
+        {
+          "count": 8,
+          "value": "#52c41a"
+        },
+        {
+          "count": 3,
+          "value": "#1677ff"
+        }
+      ]
+    },
+    "files": [
+      "README.md",
+      "capture.json"
+    ],
+    "html_bytes": 0,
+    "output_directory": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/components-introduce-cn",
+    "screenshots": [
+      {
+        "css_width": 1440,
+        "cut": false,
+        "file": "screenshot-1440.png",
+        "height": 3452,
+        "sha256": "72f7516b05c439b72ab1f36a657f9bf247d0fee1622d835a81c570e7ce35eb48",
+        "width": 1440
+      },
+      {
+        "css_width": 768,
+        "cut": false,
+        "file": "screenshot-768.png",
+        "height": 2561,
+        "sha256": "41267674e11198d52044ccde96b53aa91c2bf280d63957f8b16d812ee77a7ad1",
+        "width": 768
+      },
+      {
+        "css_width": 390,
+        "cut": false,
+        "file": "screenshot-390.png",
+        "height": 3035,
+        "sha256": "1e09f6ac287aa7f2f7ee7a50c617d3bbd8782f3c90add6f64338a3e78da65a2f",
+        "width": 390
+      }
+    ],
+    "title": "思维链 ThoughtChain - Ant Design X",
+    "url": "http://127.0.0.1:58648/components/introduce-cn/"
+  },
+  "summary": "Captured http://127.0.0.1:58648/components/introduce-cn/: 3 screenshot(s), 92 outline items, 10 headings, 0 images, 36 links, 0 forms → /Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/components-introduce-cn.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "one_state",
+      "message": "One state of the page: menus, dialogs and content behind interactions are not opened."
+    },
+    {
+      "code": "visitor_view",
+      "message": "Clean room: only what a visitor sees was kept (screenshots, visible text, measured layout and styles); not the page's HTML, CSS rules, scripts, requests or errors."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 3,
+    "total": 3
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "http://127.0.0.1:58648/components/introduce-cn/"
+    },
+    {
+      "kind": "path",
+      "value": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/components-introduce-cn"
+    }
+  ],
+  "links": []
+}

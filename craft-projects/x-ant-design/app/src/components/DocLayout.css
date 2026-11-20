@@ -1,0 +1,32 @@
+.doc-root {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.doc-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+.doc-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.doc-article {
+  /* desktop: 48 left, 164 right (room for the anchor rail), 32 bottom */
+  padding: 0 164px 32px 48px;
+}
+
+/* ---- tablet & phone ---- */
+@media (max-width: 1199px) {
+  .doc-article {
+    padding: 0 48px;
+  }
+}
+
+@media (max-width: 575px) {
+  .doc-article {
+    padding: 0 20px;
+  }
+}

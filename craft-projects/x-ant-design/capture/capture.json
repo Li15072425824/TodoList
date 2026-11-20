@@ -1,0 +1,9492 @@
+{
+  "a11y": {
+    "images_without_alt": 0,
+    "landmarks": {
+      "banner": 1,
+      "main": 1,
+      "navigation": 1
+    },
+    "lang": "zh-CN",
+    "unnamed_controls": 11,
+    "unnamed_examples": [
+      "input",
+      "a",
+      "a",
+      "a",
+      "a"
+    ]
+  },
+  "assets": {
+    "images": [
+      {
+        "h": 40,
+        "w": 40
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      },
+      {
+        "h": 1024,
+        "w": 1024
+      }
+    ]
+  },
+  "design": {
+    "backgrounds": [
+      {
+        "count": 72,
+        "value": "#0000000a"
+      },
+      {
+        "count": 69,
+        "value": "#ffffff"
+      },
+      {
+        "count": 16,
+        "value": "#0000000f"
+      },
+      {
+        "count": 15,
+        "value": "#00000005"
+      },
+      {
+        "count": 8,
+        "value": "#f6ffed"
+      },
+      {
+        "count": 8,
+        "value": "#f0f2f5"
+      },
+      {
+        "count": 4,
+        "value": "#fafafa"
+      },
+      {
+        "count": 3,
+        "value": "#fff2f0"
+      },
+      {
+        "count": 3,
+        "value": "#fff2f040"
+      },
+      {
+        "count": 2,
+        "value": "#00000040"
+      },
+      {
+        "count": 2,
+        "value": "#ff4d4f73"
+      },
+      {
+        "count": 2,
+        "value": "#00000073"
+      },
+      {
+        "count": 1,
+        "value": "#000000e0"
+      },
+      {
+        "count": 1,
+        "value": "#e6f4ff"
+      },
+      {
+        "count": 1,
+        "value": "#1677ff"
+      },
+      {
+        "count": 1,
+        "value": "#00000003"
+      }
+    ],
+    "font_sizes": [
+      {
+        "count": 274,
+        "value": "14px"
+      },
+      {
+        "count": 145,
+        "value": "13px"
+      },
+      {
+        "count": 71,
+        "value": "12px"
+      },
+      {
+        "count": 36,
+        "value": "12.6px"
+      },
+      {
+        "count": 22,
+        "value": "16px"
+      },
+      {
+        "count": 7,
+        "value": "24px"
+      },
+      {
+        "count": 3,
+        "value": "18px"
+      },
+      {
+        "count": 2,
+        "value": "16.8px"
+      },
+      {
+        "count": 2,
+        "value": "32px"
+      },
+      {
+        "count": 1,
+        "value": "20px"
+      },
+      {
+        "count": 1,
+        "value": "11.7px"
+      }
+    ],
+    "font_weights": [
+      {
+        "count": 460,
+        "value": "400"
+      },
+      {
+        "count": 60,
+        "value": "500"
+      },
+      {
+        "count": 42,
+        "value": "600"
+      },
+      {
+        "count": 2,
+        "value": "700"
+      }
+    ],
+    "fonts": [
+      {
+        "count": 324,
+        "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+      },
+      {
+        "count": 150,
+        "value": "SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, Courier, monospace"
+      },
+      {
+        "count": 52,
+        "value": "Avenir, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+      },
+      {
+        "count": 37,
+        "value": "monospace"
+      },
+      {
+        "count": 1,
+        "value": "AlibabaPuHuiTi, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+      }
+    ],
+    "max_widths": [],
+    "radii": [
+      {
+        "count": 82,
+        "value": "6px"
+      },
+      {
+        "count": 48,
+        "value": "8px"
+      },
+      {
+        "count": 38,
+        "value": "4px"
+      },
+      {
+        "count": 15,
+        "value": "50%"
+      },
+      {
+        "count": 13,
+        "value": "7px"
+      },
+      {
+        "count": 11,
+        "value": "8px 8px 0px 0px"
+      },
+      {
+        "count": 9,
+        "value": "0px 0px 6px 6px"
+      },
+      {
+        "count": 9,
+        "value": "6px 6px 0px 0px"
+      },
+      {
+        "count": 3,
+        "value": "20px"
+      },
+      {
+        "count": 3,
+        "value": "100px"
+      }
+    ],
+    "shadows": [
+      {
+        "count": 7,
+        "value": "rgba(0, 0, 0, 0.02) 0px 2px 0px 0px"
+      },
+      {
+        "count": 1,
+        "value": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px"
+      }
+    ],
+    "spacing": [
+      {
+        "count": 697,
+        "value": "12px"
+      },
+      {
+        "count": 386,
+        "value": "8px"
+      },
+      {
+        "count": 366,
+        "value": "24px"
+      },
+      {
+        "count": 214,
+        "value": "5px"
+      },
+      {
+        "count": 131,
+        "value": "16px"
+      },
+      {
+        "count": 107,
+        "value": "4px"
+      },
+      {
+        "count": 72,
+        "value": "2.52px"
+      },
+      {
+        "count": 72,
+        "value": "5.04px"
+      },
+      {
+        "count": 25,
+        "value": "36px"
+      },
+      {
+        "count": 25,
+        "value": "2px"
+      },
+      {
+        "count": 18,
+        "value": "7px"
+      },
+      {
+        "count": 18,
+        "value": "1px"
+      },
+      {
+        "count": 14,
+        "value": "15px"
+      },
+      {
+        "count": 9,
+        "value": "42px"
+      },
+      {
+        "count": 9,
+        "value": "50px"
+      },
+      {
+        "count": 9,
+        "value": "18px"
+      },
+      {
+        "count": 8,
+        "value": "20px"
+      },
+      {
+        "count": 7,
+        "value": "38.4px"
+      },
+      {
+        "count": 7,
+        "value": "14.4px"
+      },
+      {
+        "count": 5,
+        "value": "32px"
+      },
+      {
+        "count": 5,
+        "value": "10px"
+      },
+      {
+        "count": 3,
+        "value": "28.8px"
+      },
+      {
+        "count": 3,
+        "value": "10.8px"
+      },
+      {
+        "count": 2,
+        "value": "0.325253px"
+      }
+    ],
+    "text_colors": [
+      {
+        "count": 378,
+        "value": "#000000e0"
+      },
+      {
+        "count": 88,
+        "value": "#00000073"
+      },
+      {
+        "count": 27,
+        "value": "#000000a6"
+      },
+      {
+        "count": 26,
+        "value": "#c41d7f"
+      },
+      {
+        "count": 15,
+        "value": "#5c6b77"
+      },
+      {
+        "count": 8,
+        "value": "#52c41a"
+      },
+      {
+        "count": 4,
+        "value": "#ff4d4f"
+      },
+      {
+        "count": 4,
+        "value": "#ff4d4f73"
+      },
+      {
+        "count": 3,
+        "value": "#ffffff"
+      },
+      {
+        "count": 3,
+        "value": "#1677ff"
+      },
+      {
+        "count": 3,
+        "value": "#ff4d4f40"
+      },
+      {
+        "count": 2,
+        "value": "#00000040"
+      },
+      {
+        "count": 2,
+        "value": "#999999"
+      },
+      {
+        "count": 1,
+        "value": "#000001e0"
+      }
+    ]
+  },
+  "forms": [
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codesandbox.io/api/v1/sandboxes/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "parameters",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": "https://codepen.io/pen/define",
+      "fields": [
+        {
+          "label": "",
+          "name": "data",
+          "placeholder": "",
+          "required": false,
+          "tag": "input",
+          "type": "hidden"
+        }
+      ],
+      "method": "post"
+    }
+  ],
+  "headings": [
+    {
+      "level": 1,
+      "text": "Ant Design X"
+    },
+    {
+      "level": 1,
+      "text": "ThoughtChain 思维链"
+    },
+    {
+      "level": 2,
+      "text": "何时使用"
+    },
+    {
+      "level": 2,
+      "text": "代码演示"
+    },
+    {
+      "level": 2,
+      "text": "API"
+    },
+    {
+      "level": 3,
+      "text": "ThoughtChainProps"
+    },
+    {
+      "level": 3,
+      "text": "ThoughtChainItemType"
+    },
+    {
+      "level": 3,
+      "text": "ThoughtChain.Item"
+    },
+    {
+      "level": 2,
+      "text": "Semantic DOM"
+    },
+    {
+      "level": 2,
+      "text": "ThoughtChain"
+    },
+    {
+      "level": 2,
+      "text": "ThoughtChain.Item"
+    },
+    {
+      "level": 2,
+      "text": "主题变量（Design Token）"
+    }
+  ],
+  "lang": "zh-CN",
+  "layouts": [
+    {
+      "blocks": [
+        {
+          "h": 80,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 1440,
+          "y": 0
+        },
+        {
+          "gap": 24,
+          "h": 48,
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "nav",
+          "w": 708,
+          "y": 16
+        },
+        {
+          "h": 10829,
+          "heading": "ThoughtChain 思维链",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "main",
+          "w": 1440,
+          "y": 80
+        },
+        {
+          "h": 476,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 148,
+          "y": 116
+        },
+        {
+          "h": 10829,
+          "heading": "ThoughtChain 思维链",
+          "pad": [
+            0,
+            164,
+            32,
+            48
+          ],
+          "per_row": 3,
+          "tag": "article",
+          "w": 1140,
+          "y": 80
+        },
+        {
+          "h": 6240,
+          "pad": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "per_row": 3,
+          "tag": "section",
+          "w": 944,
+          "y": 502
+        },
+        {
+          "background": "#ffffff",
+          "h": 484,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 928,
+          "y": 510
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 383,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 511
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 894
+        },
+        {
+          "background": "#ffffff",
+          "h": 412,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 928,
+          "y": 1010
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 311,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 1011
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 1322
+        },
+        {
+          "background": "#ffffff",
+          "h": 754,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 3,
+          "tag": "section",
+          "w": 928,
+          "y": 1438
+        },
+        {
+          "background": "#ffffff",
+          "h": 653,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 3,
+          "tag": "section",
+          "w": 926,
+          "y": 1439
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 2092
+        },
+        {
+          "background": "#ffffff",
+          "h": 820,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 928,
+          "y": 2208
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 719,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 2209
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 2928
+        },
+        {
+          "background": "#ffffff",
+          "h": 768,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 928,
+          "y": 3044
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 667,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 3045
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 3712
+        },
+        {
+          "background": "#ffffff",
+          "h": 450,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 928,
+          "y": 3828
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 349,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 3829
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 4178
+        },
+        {
+          "background": "#ffffff",
+          "h": 1014,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 928,
+          "y": 4294
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 913,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 926,
+          "y": 4295
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 5208
+        },
+        {
+          "background": "#ffffff",
+          "h": 792,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 928,
+          "y": 5324
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 691,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 5325
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 6016
+        },
+        {
+          "background": "#ffffff",
+          "h": 586,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 928,
+          "y": 6132
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 485,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 6133
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 926,
+          "y": 6618
+        },
+        {
+          "background": "#ffffff",
+          "h": 456,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 928,
+          "y": 8884
+        },
+        {
+          "background": "#ffffff",
+          "h": 454,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 926,
+          "y": 8885
+        },
+        {
+          "background": "#ffffff",
+          "h": 304,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 928,
+          "y": 9425
+        },
+        {
+          "background": "#ffffff",
+          "h": 302,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 926,
+          "y": 9426
+        }
+      ],
+      "page_h": 10909,
+      "page_w": 1440,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 18
+      },
+      "width": 1440
+    },
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 720,
+          "y": 16
+        },
+        {
+          "h": 12030,
+          "heading": "ThoughtChain 思维链",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "main",
+          "w": 768,
+          "y": 80
+        },
+        {
+          "h": 11910,
+          "heading": "ThoughtChain 思维链",
+          "pad": [
+            0,
+            48,
+            0,
+            48
+          ],
+          "per_row": 2,
+          "tag": "article",
+          "w": 576,
+          "y": 80
+        },
+        {
+          "h": 7060,
+          "pad": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 496,
+          "y": 502
+        },
+        {
+          "background": "#ffffff",
+          "h": 484,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 480,
+          "y": 510
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 383,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 511
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 894
+        },
+        {
+          "background": "#ffffff",
+          "h": 440,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 480,
+          "y": 1010
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 311,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 1011
+        },
+        {
+          "h": 127,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 1322
+        },
+        {
+          "background": "#ffffff",
+          "h": 1518,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 1466
+        },
+        {
+          "background": "#ffffff",
+          "h": 1417,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 478,
+          "y": 1467
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 2884
+        },
+        {
+          "background": "#ffffff",
+          "h": 820,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 3000
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 719,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 478,
+          "y": 3001
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 3720
+        },
+        {
+          "background": "#ffffff",
+          "h": 768,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 3836
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 667,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 478,
+          "y": 3837
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 4504
+        },
+        {
+          "background": "#ffffff",
+          "h": 450,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 4620
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 349,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 478,
+          "y": 4621
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 4970
+        },
+        {
+          "background": "#ffffff",
+          "h": 1042,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 5086
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 913,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 478,
+          "y": 5087
+        },
+        {
+          "h": 127,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 6000
+        },
+        {
+          "background": "#ffffff",
+          "h": 792,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 480,
+          "y": 6144
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 691,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 6145
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 6836
+        },
+        {
+          "background": "#ffffff",
+          "h": 586,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 6952
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 485,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 478,
+          "y": 6953
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 478,
+          "y": 7438
+        },
+        {
+          "background": "#ffffff",
+          "h": 456,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 9765
+        },
+        {
+          "background": "#ffffff",
+          "h": 454,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 478,
+          "y": 9766
+        },
+        {
+          "background": "#ffffff",
+          "h": 304,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 10306
+        },
+        {
+          "background": "#ffffff",
+          "h": 302,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 478,
+          "y": 10307
+        }
+      ],
+      "page_h": 12110,
+      "page_w": 768,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 18
+      },
+      "width": 768
+    },
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 646,
+          "y": 16
+        },
+        {
+          "h": 14649,
+          "heading": "ThoughtChain 思维链",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "main",
+          "w": 390,
+          "y": 80
+        },
+        {
+          "h": 12955,
+          "heading": "ThoughtChain 思维链",
+          "pad": [
+            0,
+            48,
+            0,
+            48
+          ],
+          "per_row": 2,
+          "tag": "article",
+          "w": 390,
+          "y": 80
+        },
+        {
+          "h": 7684,
+          "pad": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 310,
+          "y": 607
+        },
+        {
+          "background": "#ffffff",
+          "h": 484,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 294,
+          "y": 615
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 383,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 616
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 999
+        },
+        {
+          "background": "#ffffff",
+          "h": 440,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 294,
+          "y": 1115
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 311,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 1116
+        },
+        {
+          "h": 127,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 1427
+        },
+        {
+          "background": "#ffffff",
+          "h": 2058,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 1571
+        },
+        {
+          "background": "#ffffff",
+          "h": 1929,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 292,
+          "y": 1572
+        },
+        {
+          "h": 127,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 3501
+        },
+        {
+          "background": "#ffffff",
+          "h": 848,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 3645
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 719,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 292,
+          "y": 3646
+        },
+        {
+          "h": 127,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 4365
+        },
+        {
+          "background": "#ffffff",
+          "h": 796,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 4509
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 667,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 292,
+          "y": 4510
+        },
+        {
+          "h": 127,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 5177
+        },
+        {
+          "background": "#ffffff",
+          "h": 450,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 5321
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 349,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 292,
+          "y": 5322
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 5671
+        },
+        {
+          "background": "#ffffff",
+          "h": 1070,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 5787
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 913,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 292,
+          "y": 5788
+        },
+        {
+          "h": 155,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 6701
+        },
+        {
+          "background": "#ffffff",
+          "h": 792,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 294,
+          "y": 6873
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 691,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 6874
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 7565
+        },
+        {
+          "background": "#ffffff",
+          "h": 586,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 7681
+        },
+        {
+          "background": "#f0f2f5",
+          "h": 485,
+          "pad": [
+            42,
+            24,
+            50,
+            24
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 292,
+          "y": 7682
+        },
+        {
+          "h": 99,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 292,
+          "y": 8167
+        },
+        {
+          "background": "#ffffff",
+          "h": 585,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 10494
+        },
+        {
+          "background": "#ffffff",
+          "h": 583,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 292,
+          "y": 10495
+        },
+        {
+          "background": "#ffffff",
+          "h": 347,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 11164
+        },
+        {
+          "background": "#ffffff",
+          "h": 345,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 292,
+          "y": 11165
+        },
+        {
+          "background": "#f0f3fa",
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 1695,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "footer",
+          "w": 390,
+          "y": 13035
+        },
+        {
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 1598,
+          "heading": "相关资源",
+          "pad": [
+            40,
+            48,
+            40,
+            48
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 390,
+          "y": 13035
+        },
+        {
+          "h": 1498,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 13075
+        },
+        {
+          "column": {
+            "max_w": 1200,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 97,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 14632
+        }
+      ],
+      "page_h": 14729,
+      "page_w": 694,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 18
+      },
+      "width": 390
+    }
+  ],
+  "links": [
+    {
+      "href": "https://x.ant.design/index-cn",
+      "text": "Ant Design X"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "设计"
+    },
+    {
+      "href": "https://x.ant.design/docs/react/introduce-cn",
+      "text": "研发"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn/",
+      "text": "组件"
+    },
+    {
+      "href": "https://x.ant.design/x-markdowns/introduce-cn",
+      "text": "X Markdown"
+    },
+    {
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "text": "X SDK"
+    },
+    {
+      "href": "https://x.ant.design/x-cards/introduce-cn",
+      "text": "X Card"
+    },
+    {
+      "href": "https://x.ant.design/x-skills/introduce-cn",
+      "text": "X Skill"
+    },
+    {
+      "href": "https://x.ant.design/docs/playground/ultramodern-cn",
+      "text": "演示"
+    },
+    {
+      "href": "https://ant-design-x.antgroup.com/index-cn",
+      "text": "国内镜像"
+    },
+    {
+      "href": "https://github.com/ant-design/x",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "介绍"
+    },
+    {
+      "href": "https://x.ant.design/components/overview-cn",
+      "text": "总览"
+    },
+    {
+      "href": "https://x.ant.design/components/bubble-cn",
+      "text": "Bubble 对话气泡"
+    },
+    {
+      "href": "https://x.ant.design/components/conversations-cn",
+      "text": "Conversations 管理对话"
+    },
+    {
+      "href": "https://x.ant.design/components/notification-cn",
+      "text": "Notification 系统通知 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/welcome-cn",
+      "text": "Welcome 欢迎"
+    },
+    {
+      "href": "https://x.ant.design/components/prompts-cn",
+      "text": "Prompts 提示集"
+    },
+    {
+      "href": "https://x.ant.design/components/think-cn",
+      "text": "Think 思考过程 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "ThoughtChain 思维链 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/attachments-cn",
+      "text": "Attachments 输入附件"
+    },
+    {
+      "href": "https://x.ant.design/components/sender-cn",
+      "text": "Sender 输入框"
+    },
+    {
+      "href": "https://x.ant.design/components/suggestion-cn",
+      "text": "Suggestion 快捷指令"
+    },
+    {
+      "href": "https://x.ant.design/components/actions-cn",
+      "text": "Actions 操作列表"
+    },
+    {
+      "href": "https://x.ant.design/components/code-highlighter-cn",
+      "text": "CodeHighlighter 代码高亮 2.1.0"
+    },
+    {
+      "href": "https://x.ant.design/components/file-card-cn",
+      "text": "FileCard 文件卡片 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/folder-cn",
+      "text": "Folder 文件夹 2.4.0"
+    },
+    {
+      "href": "https://x.ant.design/components/mermaid-cn",
+      "text": "Mermaid 图表工具 2.1.0"
+    },
+    {
+      "href": "https://x.ant.design/components/sources-cn",
+      "text": "Sources 来源引用 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/x-provider-cn",
+      "text": "XProvider 全局化配置"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "何时使用"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "代码演示"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "基本"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "节点状态"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "简洁思维链"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "可折叠的"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "受控的折叠"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "折叠时销毁内容"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "客制化"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "嵌套使用"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "单行折叠"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "API"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "ThoughtChainProps"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "ThoughtChainItemType"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "ThoughtChain.Item"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "Semantic DOM"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "ThoughtChain"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "ThoughtChain.Item"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "主题变量（Design Token）"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/index.zh-CN.md",
+      "text": ""
+    },
+    {
+      "href": "https://github.com/ant-design/x/blob/main/packages/x/components/thought-chain",
+      "text": "x/components/thought-chain"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/index.zh-CN.md",
+      "text": "编辑此页"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "基本"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/basic.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-basic",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "节点状态"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/status.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-status",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "简洁思维链"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/simple.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-simple",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "可折叠的"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/collapsible.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-collapsible",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "受控的折叠"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/controlled-collapsible.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-controlled-collapsible",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "折叠时销毁内容"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/destroyOnHidden.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-destroyonhidden",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "客制化"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/customization.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-customization",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "嵌套使用"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/nested.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-nested",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "单行折叠"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/single-row.tsx",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/~demos/thought-chain-demo-single-row",
+      "text": "open in new tab"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/docs/react/common-props-cn",
+      "text": "通用属性"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": ""
+    }
+  ],
+  "outline": [
+    {
+      "box": {
+        "h": 80,
+        "w": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 4,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "header"
+    },
+    {
+      "box": {
+        "h": 80,
+        "w": 194,
+        "x": 0,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 5,
+      "font": "28px 700",
+      "tag": "h1",
+      "text": "Ant Design X"
+    },
+    {
+      "box": {
+        "h": 80,
+        "w": 194,
+        "x": 0,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "20px 400",
+      "href": "https://x.ant.design/index-cn",
+      "tag": "a",
+      "text": "Ant Design X"
+    },
+    {
+      "alt": "logo",
+      "box": {
+        "h": 32,
+        "w": 32,
+        "x": 32,
+        "y": 24
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "20px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*eco6RrQhxbMAAAAAAAAAAAAADgCCAQ/original",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 708,
+        "x": 366,
+        "y": 16
+      },
+      "color": "#000000e0",
+      "depth": 5,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "nav"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 32,
+        "x": 390,
+        "y": 24
+      },
+      "color": "#000000a6",
+      "depth": 7,
+      "font": "15px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 15,
+        "w": 15,
+        "x": 399,
+        "y": 33
+      },
+      "color": "#000000a6",
+      "depth": 8,
+      "font": "15px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 15,
+        "w": 15,
+        "x": 399,
+        "y": 33
+      },
+      "color": "#000000a6",
+      "depth": 9,
+      "font": "15px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 436,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "设计"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 492,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/docs/react/introduce-cn",
+      "tag": "a",
+      "text": "研发"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 548,
+        "y": 27
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "16px 500",
+      "href": "https://x.ant.design/components/introduce-cn/",
+      "tag": "a",
+      "text": "组件"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 90,
+        "x": 604,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-markdowns/introduce-cn",
+      "tag": "a",
+      "text": "X Markdown"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 46,
+        "x": 718,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "tag": "a",
+      "text": "X SDK"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 49,
+        "x": 788,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-cards/introduce-cn",
+      "tag": "a",
+      "text": "X Card"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 44,
+        "x": 862,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-skills/introduce-cn",
+      "tag": "a",
+      "text": "X Skill"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 930,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/docs/playground/ultramodern-cn",
+      "tag": "a",
+      "text": "演示"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 64,
+        "x": 986,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://ant-design-x.antgroup.com/index-cn",
+      "tag": "a",
+      "text": "国内镜像"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 87,
+        "x": 1177,
+        "y": 24
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "2.10.0"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 43,
+        "x": 1190,
+        "y": 28
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "16px 400",
+      "id": "_r_l9_",
+      "name": "",
+      "placeholder": "",
+      "role": "combobox",
+      "tag": "input",
+      "type": "text"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 1239,
+        "y": 34
+      },
+      "color": "#00000040",
+      "depth": 9,
+      "font": "12px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 1239,
+        "y": 34
+      },
+      "color": "#00000040",
+      "depth": 10,
+      "font": "12px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1264,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "中 En"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1304,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 20,
+        "x": 1314,
+        "y": 29
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 20,
+        "x": 1314,
+        "y": 29
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1344,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "16px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1356,
+        "y": 32
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "16px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1356,
+        "y": 32
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "16px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1384,
+        "y": 20
+      },
+      "color": "#1677ff",
+      "depth": 6,
+      "font": "14px 400",
+      "href": "https://github.com/ant-design/x",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1384,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1397,
+        "y": 33
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1397,
+        "y": 33
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 10829,
+        "w": 1440,
+        "x": 0,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 4,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "main"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 1290,
+        "w": 300,
+        "x": 0,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "display": "block",
+      "font": "14px 400",
+      "role": "menu",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 84
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 84
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 128
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "总览"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 128
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/overview-cn",
+      "tag": "a",
+      "text": "总览"
+    },
+    {
+      "box": {
+        "h": 183,
+        "w": 291,
+        "x": 4,
+        "y": 184
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "通用 Bubble 对话气泡 Conversations 管理对话 Notification 系统通知 2.0.0"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 184
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "通用"
+    },
+    {
+      "box": {
+        "h": 128,
+        "w": 291,
+        "x": 4,
+        "y": 239
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 239
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Bubble 对话气泡"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 239
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/bubble-cn",
+      "tag": "a",
+      "text": "Bubble 对话气泡"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 283
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Conversations 管理对话"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 283
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/conversations-cn",
+      "tag": "a",
+      "text": "Conversations 管理对话"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 327
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Notification 系统通知 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 327
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/notification-cn",
+      "tag": "a",
+      "text": "Notification 系统通知 2.0.0"
+    },
+    {
+      "box": {
+        "h": 139,
+        "w": 291,
+        "x": 4,
+        "y": 383
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "唤醒 Welcome 欢迎 Prompts 提示集"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 383
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "唤醒"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 291,
+        "x": 4,
+        "y": 438
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 438
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Welcome 欢迎"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 438
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/welcome-cn",
+      "tag": "a",
+      "text": "Welcome 欢迎"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 482
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Prompts 提示集"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 482
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/prompts-cn",
+      "tag": "a",
+      "text": "Prompts 提示集"
+    },
+    {
+      "box": {
+        "h": 139,
+        "w": 291,
+        "x": 4,
+        "y": 538
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "确认 Think 思考过程 2.0.0 ThoughtChain 思维链 2.0.0"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 538
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "确认"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 291,
+        "x": 4,
+        "y": 593
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 593
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Think 思考过程 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 593
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/think-cn",
+      "tag": "a",
+      "text": "Think 思考过程 2.0.0"
+    },
+    {
+      "background": "#e6f4ff",
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 637
+      },
+      "color": "#1677ff",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "ThoughtChain 思维链 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 637
+      },
+      "color": "#1677ff",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "ThoughtChain 思维链 2.0.0"
+    },
+    {
+      "box": {
+        "h": 183,
+        "w": 291,
+        "x": 4,
+        "y": 693
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "表达 Attachments 输入附件 Sender 输入框 Suggestion 快捷指令"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 693
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "表达"
+    },
+    {
+      "box": {
+        "h": 128,
+        "w": 291,
+        "x": 4,
+        "y": 748
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 748
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Attachments 输入附件"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 748
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/attachments-cn",
+      "tag": "a",
+      "text": "Attachments 输入附件"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 792
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Sender 输入框"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 792
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/sender-cn",
+      "tag": "a",
+      "text": "Sender 输入框"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 836
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Suggestion 快捷指令"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 836
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/suggestion-cn",
+      "tag": "a",
+      "text": "Suggestion 快捷指令"
+    },
+    {
+      "box": {
+        "h": 315,
+        "w": 291,
+        "x": 4,
+        "y": 892
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "反馈 Actions 操作列表 CodeHighlighter 代码高亮 2.1.0 FileCard 文件卡片 2.0.0 Folder 文件夹 2.4.0 Mermaid 图表工具 2.1.0 Sources 来源引用 2.0.0"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 892
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "反馈"
+    },
+    {
+      "box": {
+        "h": 260,
+        "w": 291,
+        "x": 4,
+        "y": 947
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 947
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Actions 操作列表"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 947
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/actions-cn",
+      "tag": "a",
+      "text": "Actions 操作列表"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 991
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "CodeHighlighter 代码高亮 2.1.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 991
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/code-highlighter-cn",
+      "tag": "a",
+      "text": "CodeHighlighter 代码高亮 2.1.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1035
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "FileCard 文件卡片 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1035
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/file-card-cn",
+      "tag": "a",
+      "text": "FileCard 文件卡片 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1079
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Folder 文件夹 2.4.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1079
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/folder-cn",
+      "tag": "a",
+      "text": "Folder 文件夹 2.4.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1123
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Mermaid 图表工具 2.1.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1123
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/mermaid-cn",
+      "tag": "a",
+      "text": "Mermaid 图表工具 2.1.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1167
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Sources 来源引用 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1167
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/sources-cn",
+      "tag": "a",
+      "text": "Sources 来源引用 2.0.0"
+    },
+    {
+      "box": {
+        "h": 95,
+        "w": 291,
+        "x": 4,
+        "y": 1223
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "其他 XProvider 全局化配置"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 1223
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "其他"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 291,
+        "x": 4,
+        "y": 1278
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1278
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "XProvider 全局化配置"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1278
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/x-provider-cn",
+      "tag": "a",
+      "text": "XProvider 全局化配置"
+    },
+    {
+      "box": {
+        "h": 476,
+        "w": 148,
+        "x": 1284,
+        "y": 116
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 124
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "何时使用"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 151
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "代码演示"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 175
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "基本"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 198
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "节点状态"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 220
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "简洁思维链"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 243
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "可折叠的"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 266
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "受控的折叠"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 289
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "折叠时销毁内容"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 312
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "客制化"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 335
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "嵌套使用"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 357
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "单行折叠"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 386
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "API"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 410
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "ThoughtChainProps"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 433
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "ThoughtChainItemType"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 456
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "ThoughtChain.Item"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 485
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "Semantic DOM"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 512
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "ThoughtChain"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 538
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "ThoughtChain.Item"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 565
+      },
+      "color": "#000001e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "主题变量（Design Token）"
+    },
+    {
+      "box": {
+        "h": 10829,
+        "w": 1140,
+        "x": 300,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "article"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 344,
+        "x": 348,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "32px 600",
+      "tag": "h1",
+      "text": "ThoughtChain 思维链"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 676,
+        "y": 93
+      },
+      "color": "#1677ff",
+      "depth": 12,
+      "font": "32px 600",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/index.zh-CN.md",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 676,
+        "y": 93
+      },
+      "color": "#00000073",
+      "depth": 13,
+      "font": "16px 600",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 676,
+        "y": 93
+      },
+      "color": "#00000073",
+      "depth": 14,
+      "font": "16px 600",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 248,
+        "x": 404,
+        "y": 203
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "href": "https://github.com/ant-design/x/blob/main/packages/x/components/thought-chain",
+      "tag": "a",
+      "text": "x/components/thought-chain"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 408,
+        "y": 207
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 408,
+        "y": 207
+      },
+      "color": "#000000a6",
+      "depth": 17,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 85,
+        "x": 404,
+        "y": 233
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/index.zh-CN.md",
+      "tag": "a",
+      "text": "编辑此页"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 408,
+        "y": 237
+      },
+      "color": "#000000a6",
+      "depth": 17,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 408,
+        "y": 237
+      },
+      "color": "#000000a6",
+      "depth": 18,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 85,
+        "x": 497,
+        "y": 233
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "href": "",
+      "tag": "a",
+      "text": "更新日志"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 501,
+        "y": 237
+      },
+      "color": "#000000a6",
+      "depth": 17,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 501,
+        "y": 237
+      },
+      "color": "#000000a6",
+      "depth": 18,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 323
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "何时使用",
+      "tag": "h2",
+      "text": "何时使用"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 323
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 370
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 464
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "代码演示",
+      "tag": "h2",
+      "text": "代码演示"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 464
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 24,
+        "x": 1188,
+        "y": 470
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1193,
+        "y": 475
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1193,
+        "y": 475
+      },
+      "color": "#000000e0",
+      "depth": 13,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 24,
+        "x": 1220,
+        "y": 470
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1225,
+        "y": 475
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1225,
+        "y": 475
+      },
+      "color": "#000000e0",
+      "depth": 13,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#0000000f",
+      "box": {
+        "h": 24,
+        "w": 24,
+        "x": 1252,
+        "y": 470
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1257,
+        "y": 475
+      },
+      "color": "#000000",
+      "depth": 12,
+      "font": "14px 700",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1257,
+        "y": 475
+      },
+      "color": "#000000",
+      "depth": 13,
+      "font": "14px 700",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 6240,
+        "w": 944,
+        "x": 340,
+        "y": 502
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 484,
+        "w": 928,
+        "x": 348,
+        "y": 510
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-basic",
+      "tag": "section"
+    },
+    {
+      "background": "#f0f2f5",
+      "box": {
+        "h": 383,
+        "w": 926,
+        "x": 349,
+        "y": 511
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 894
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 28,
+        "x": 373,
+        "y": 886
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "基本"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 409,
+        "y": 887
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/basic.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 409,
+        "y": 887
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 409,
+        "y": 887
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 912
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "基础用法。"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 965
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 965
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 965
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 965
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 965
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 965
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 966
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 966
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 965
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-basic",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 966
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 966
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 965
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 412,
+        "w": 928,
+        "x": 348,
+        "y": 1010
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-status",
+      "tag": "section"
+    },
+    {
+      "background": "#f0f2f5",
+      "box": {
+        "h": 311,
+        "w": 926,
+        "x": 349,
+        "y": 1011
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 32,
+        "w": 91,
+        "x": 398,
+        "y": 1078
+      },
+      "color": "#000000e0",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "Run Next"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 1130
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 1130
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 1190
+      },
+      "color": "#ff4d4f",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 1190
+      },
+      "color": "#ff4d4f",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 1322
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 56,
+        "x": 373,
+        "y": 1314
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "节点状态"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 1315
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/status.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 1315
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 1315
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 1340
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "思维链节点支持配置 status 属性来明显的表明当前节点的执行状态"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 1393
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 1393
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 1393
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 1393
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 1393
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 1393
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 1394
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 1394
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 1393
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-status",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 1394
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 1394
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 1393
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 754,
+        "w": 928,
+        "x": 348,
+        "y": 1438
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-simple",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 653,
+        "w": 926,
+        "x": 349,
+        "y": 1439
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 486,
+        "y": 1488
+      },
+      "color": "#1677ff",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 486,
+        "y": 1488
+      },
+      "color": "#1677ff",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 620,
+        "y": 1488
+      },
+      "color": "#1677ff",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 620,
+        "y": 1488
+      },
+      "color": "#1677ff",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 755,
+        "y": 1488
+      },
+      "color": "#1677ff",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 755,
+        "y": 1488
+      },
+      "color": "#1677ff",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 493,
+        "y": 1538
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 493,
+        "y": 1538
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 666,
+        "y": 1538
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 666,
+        "y": 1538
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 839,
+        "y": 1538
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 839,
+        "y": 1538
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 472,
+        "y": 1586
+      },
+      "color": "#ff4d4f",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 472,
+        "y": 1586
+      },
+      "color": "#ff4d4f",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 623,
+        "y": 1586
+      },
+      "color": "#ff4d4f",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 623,
+        "y": 1586
+      },
+      "color": "#ff4d4f",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 773,
+        "y": 1586
+      },
+      "color": "#ff4d4f",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 773,
+        "y": 1586
+      },
+      "color": "#ff4d4f",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 471,
+        "y": 1634
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 471,
+        "y": 1634
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 692,
+        "y": 1634
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 692,
+        "y": 1634
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 914,
+        "y": 1634
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 914,
+        "y": 1634
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 476,
+        "y": 1682
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 476,
+        "y": 1682
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 640,
+        "y": 1682
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 640,
+        "y": 1682
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 1682
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 1682
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 427,
+        "y": 1730
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 427,
+        "y": 1730
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 899,
+        "y": 1730
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 899,
+        "y": 1730
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 427,
+        "y": 1778
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 427,
+        "y": 1778
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 673,
+        "y": 1778
+      },
+      "color": "#ff4d4f",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 673,
+        "y": 1778
+      },
+      "color": "#ff4d4f",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 427,
+        "y": 1826
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 427,
+        "y": 1826
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 599,
+        "y": 1826
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 599,
+        "y": 1826
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 772,
+        "y": 1826
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 772,
+        "y": 1826
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 428,
+        "y": 1874
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 428,
+        "y": 1874
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 592,
+        "y": 1874
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 592,
+        "y": 1874
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 756,
+        "y": 1874
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 756,
+        "y": 1874
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 452,
+        "y": 1922
+      },
+      "color": "#00000073",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 452,
+        "y": 1922
+      },
+      "color": "#00000073",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 616,
+        "y": 1922
+      },
+      "color": "#00000073",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 616,
+        "y": 1922
+      },
+      "color": "#00000073",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 780,
+        "y": 1922
+      },
+      "color": "#00000073",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 780,
+        "y": 1922
+      },
+      "color": "#00000073",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 452,
+        "y": 1970
+      },
+      "color": "#ff4d4f73",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 452,
+        "y": 1970
+      },
+      "color": "#ff4d4f73",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 760,
+        "y": 1970
+      },
+      "color": "#ff4d4f73",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 760,
+        "y": 1970
+      },
+      "color": "#ff4d4f73",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 452,
+        "y": 2018
+      },
+      "color": "#ff4d4f73",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 452,
+        "y": 2018
+      },
+      "color": "#ff4d4f73",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 759,
+        "y": 2018
+      },
+      "color": "#52c41a73",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 759,
+        "y": 2018
+      },
+      "color": "#52c41a73",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 931,
+        "y": 2018
+      },
+      "color": "#52c41a73",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 931,
+        "y": 2018
+      },
+      "color": "#52c41a73",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1104,
+        "y": 2018
+      },
+      "color": "#52c41a73",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1104,
+        "y": 2018
+      },
+      "color": "#52c41a73",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 2092
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 70,
+        "x": 373,
+        "y": 2084
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "简洁思维链"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 451,
+        "y": 2085
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/simple.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 451,
+        "y": 2085
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 451,
+        "y": 2085
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 2110
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "简洁思维链，提供不同的类型可供选择。"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 2163
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 2163
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 2163
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 2163
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 2163
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 2163
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 2164
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 2164
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 2163
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-simple",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 2164
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 2164
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 2163
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 820,
+        "w": 928,
+        "x": 348,
+        "y": 2208
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-collapsible",
+      "tag": "section"
+    },
+    {
+      "background": "#f0f2f5",
+      "box": {
+        "h": 719,
+        "w": 926,
+        "x": 349,
+        "y": 2209
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 2280
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 2280
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 14,
+        "x": 667,
+        "y": 2276
+      },
+      "color": "#000000e0",
+      "depth": 20,
+      "font": "14px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 667,
+        "y": 2280
+      },
+      "color": "#000000e0",
+      "depth": 21,
+      "font": "14px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2375
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2375
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2445
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2445
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2515
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2515
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2585
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2585
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 396,
+        "y": 2626
+      },
+      "color": "#1677ff",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 396,
+        "y": 2626
+      },
+      "color": "#1677ff",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2693
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2693
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2733
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2733
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2773
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2773
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2813
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 2813
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 2928
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 56,
+        "x": 373,
+        "y": 2920
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "可折叠的"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 2921
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/collapsible.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 2921
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 2921
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 2946
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "配置 collapsible 可开启对思维链节点内容区域的折叠功能"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 2999
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 2999
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 2999
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 2999
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 2999
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 2999
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 3000
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 3000
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 2999
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-collapsible",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 3000
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 3000
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 2999
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 768,
+        "w": 928,
+        "x": 348,
+        "y": 3044
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-controlled-collapsible",
+      "tag": "section"
+    },
+    {
+      "background": "#f0f2f5",
+      "box": {
+        "h": 667,
+        "w": 926,
+        "x": 349,
+        "y": 3045
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 32,
+        "w": 204,
+        "x": 398,
+        "y": 3112
+      },
+      "color": "#000000e0",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "Open \"check_task\" details"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 3164
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 3164
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 14,
+        "x": 685,
+        "y": 3160
+      },
+      "color": "#000000e0",
+      "depth": 20,
+      "font": "14px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 685,
+        "y": 3164
+      },
+      "color": "#000000e0",
+      "depth": 21,
+      "font": "14px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 3259
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 3259
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 3329
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 3329
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 3429
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 3429
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 3472
+      },
+      "color": "#52c41a",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 3472
+      },
+      "color": "#52c41a",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 14,
+        "x": 697,
+        "y": 3468
+      },
+      "color": "#000000e0",
+      "depth": 20,
+      "font": "14px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 697,
+        "y": 3472
+      },
+      "color": "#000000e0",
+      "depth": 21,
+      "font": "14px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 396,
+        "y": 3530
+      },
+      "color": "#1677ff",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 396,
+        "y": 3530
+      },
+      "color": "#1677ff",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 3597
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 3597
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 3712
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 70,
+        "x": 373,
+        "y": 3704
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "受控的折叠"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 451,
+        "y": 3705
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/controlled-collapsible.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 451,
+        "y": 3705
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 451,
+        "y": 3705
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 3730
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "受控的思维链节点内容区域的折叠功能。"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 3783
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 3783
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 3783
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 3783
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 3783
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 3783
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 3784
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 3784
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 3783
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-controlled-collapsible",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 3784
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 3784
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 3783
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 450,
+        "w": 928,
+        "x": 348,
+        "y": 3828
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-destroyonhidden",
+      "tag": "section"
+    },
+    {
+      "background": "#f0f2f5",
+      "box": {
+        "h": 349,
+        "w": 926,
+        "x": 349,
+        "y": 3829
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 32,
+        "w": 88,
+        "x": 398,
+        "y": 3896
+      },
+      "color": "#000000e0",
+      "depth": 17,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "Collapse"
+    },
+    {
+      "background": "#1677ff",
+      "box": {
+        "h": 22,
+        "w": 132,
+        "x": 494,
+        "y": 3902
+      },
+      "color": "#000000e0",
+      "depth": 17,
+      "font": "14px 400",
+      "role": "switch",
+      "tag": "button",
+      "text": "destroyOnHidden keep"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 14,
+        "x": 539,
+        "y": 3944
+      },
+      "color": "#000000e0",
+      "depth": 20,
+      "font": "14px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 539,
+        "y": 3948
+      },
+      "color": "#000000e0",
+      "depth": 21,
+      "font": "14px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 4178
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 98,
+        "x": 373,
+        "y": 4170
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "折叠时销毁内容"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 479,
+        "y": 4171
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/destroyOnHidden.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 479,
+        "y": 4171
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 479,
+        "y": 4171
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 4196
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "折叠时是否销毁内容节点。"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 4249
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 4249
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 4249
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 4249
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 4249
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 4249
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 4250
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 4250
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 4249
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-destroyonhidden",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 4250
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 4250
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 4249
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 1014,
+        "w": 928,
+        "x": 348,
+        "y": 4294
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-customization",
+      "tag": "section"
+    },
+    {
+      "background": "#f0f2f5",
+      "box": {
+        "h": 913,
+        "w": 926,
+        "x": 349,
+        "y": 4295
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 4366
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 4366
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 424,
+        "y": 4425
+      },
+      "color": "#000000a6",
+      "depth": 24,
+      "font": "16px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 424,
+        "y": 4425
+      },
+      "color": "#000000a6",
+      "depth": 25,
+      "font": "16px 400",
+      "role": "img",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 567,
+        "y": 4427
+      },
+      "color": "#000000a6",
+      "depth": 23,
+      "font": "12px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 567,
+        "y": 4427
+      },
+      "color": "#000000a6",
+      "depth": 24,
+      "font": "12px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4547
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4547
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4617
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4617
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4687
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4687
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4757
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4757
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 32,
+        "w": 424,
+        "x": 424,
+        "y": 4796
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "Thought Chain Item Footer"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 4848
+      },
+      "color": "#000000e0",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 4848
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 14,
+        "x": 697,
+        "y": 4844
+      },
+      "color": "#000000e0",
+      "depth": 20,
+      "font": "14px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 697,
+        "y": 4848
+      },
+      "color": "#000000e0",
+      "depth": 21,
+      "font": "14px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 4908
+      },
+      "color": "#ff4d4f",
+      "depth": 18,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 398,
+        "y": 4908
+      },
+      "color": "#ff4d4f",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4973
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 4973
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 5013
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 5013
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 5053
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 5053
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 5093
+      },
+      "color": "#52c41a",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 436,
+        "y": 5093
+      },
+      "color": "#52c41a",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 5208
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 42,
+        "x": 373,
+        "y": 5200
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "客制化"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 423,
+        "y": 5201
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/customization.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 423,
+        "y": 5201
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 423,
+        "y": 5201
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 5226
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "items 属性支持灵活的客制化配置，详情参考 ThoughtChainItemType 定义"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 5279
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 5279
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 5279
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 5279
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 5279
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 5279
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 5280
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 5280
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 5279
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-customization",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 5280
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 5280
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 5279
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 792,
+        "w": 928,
+        "x": 348,
+        "y": 5324
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-nested",
+      "tag": "section"
+    },
+    {
+      "background": "#f0f2f5",
+      "box": {
+        "h": 691,
+        "w": 926,
+        "x": 349,
+        "y": 5325
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 32,
+        "w": 225,
+        "x": 424,
+        "y": 5588
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "1 - Thought Chain Item Footer"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 32,
+        "w": 227,
+        "x": 424,
+        "y": 5892
+      },
+      "color": "#000000e0",
+      "depth": 19,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "2 - Thought Chain Item Footer"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 6016
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 56,
+        "x": 373,
+        "y": 6008
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "嵌套使用"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 6009
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/nested.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 6009
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 6009
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 6034
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "ThoughtChain 组件支持嵌套使用"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 6087
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 6087
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 6087
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 6087
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 6087
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 6087
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 6088
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 6088
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 6087
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-nested",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 6088
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 6088
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 6087
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 586,
+        "w": 928,
+        "x": 348,
+        "y": 6132
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-single-row",
+      "tag": "section"
+    },
+    {
+      "background": "#f0f2f5",
+      "box": {
+        "h": 485,
+        "w": 926,
+        "x": 349,
+        "y": 6133
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 14,
+        "x": 641,
+        "y": 6200
+      },
+      "color": "#000000e0",
+      "depth": 20,
+      "font": "14px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 641,
+        "y": 6204
+      },
+      "color": "#000000e0",
+      "depth": 21,
+      "font": "14px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 421,
+        "y": 6282
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 421,
+        "y": 6282
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 421,
+        "y": 6352
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 421,
+        "y": 6352
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 421,
+        "y": 6422
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 421,
+        "y": 6422
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 421,
+        "y": 6492
+      },
+      "color": "#000000e0",
+      "depth": 23,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 421,
+        "y": 6492
+      },
+      "color": "#000000e0",
+      "depth": 24,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 99,
+        "w": 926,
+        "x": 349,
+        "y": 6618
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 17,
+        "w": 56,
+        "x": 373,
+        "y": 6610
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "单行折叠"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 6611
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 500",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/thought-chain/demo/single-row.tsx",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 6611
+      },
+      "color": "#00000073",
+      "depth": 15,
+      "font": "16px 500",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 437,
+        "y": 6611
+      },
+      "color": "#00000073",
+      "depth": 16,
+      "font": "16px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 878,
+        "x": 373,
+        "y": 6636
+      },
+      "color": "#000000e0",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "单行折叠。"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 6689
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 6689
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 740,
+        "y": 6689
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 6689
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 17,
+        "x": 771,
+        "y": 6689
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 804,
+        "y": 6689
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "form"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 6690
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 804,
+        "y": 6690
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 836,
+        "y": 6689
+      },
+      "color": "#000000a6",
+      "depth": 14,
+      "font": "14px 400",
+      "href": "https://x.ant.design/~demos/thought-chain-demo-single-row",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 6690
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 836,
+        "y": 6690
+      },
+      "color": "#000000a6",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "alt": "expand code",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 868,
+        "y": 6689
+      },
+      "color": "#000000a6",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 6773
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "api",
+      "tag": "h2",
+      "text": "API"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 6773
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 6819
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "通用属性参考：通用属性"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 56,
+        "x": 446,
+        "y": 6824
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/react/common-props-cn",
+      "tag": "a",
+      "text": "通用属性"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 928,
+        "x": 348,
+        "y": 6876
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "18px 500",
+      "id": "thoughtchainprops",
+      "tag": "h3",
+      "text": "ThoughtChainProps"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 24,
+        "x": 324,
+        "y": 6876
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 928,
+        "x": 348,
+        "y": 7628
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "18px 500",
+      "id": "thoughtchainitemtype",
+      "tag": "h3",
+      "text": "ThoughtChainItemType"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 24,
+        "x": 324,
+        "y": 7628
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 928,
+        "x": 348,
+        "y": 8242
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "18px 500",
+      "id": "thoughtchainitem",
+      "tag": "h3",
+      "text": "ThoughtChain.Item"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 24,
+        "x": 324,
+        "y": 8242
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 8767
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "semantic-dom",
+      "tag": "h2",
+      "text": "Semantic DOM"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 8767
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 8838
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "thoughtchain",
+      "tag": "h2",
+      "text": "ThoughtChain"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 8838
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 456,
+        "w": 928,
+        "x": 348,
+        "y": 8884
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-_semantic",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 454,
+        "w": 926,
+        "x": 349,
+        "y": 8885
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 542,
+        "y": 9043
+      },
+      "color": "#52c41a",
+      "depth": 16,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 542,
+        "y": 9043
+      },
+      "color": "#52c41a",
+      "depth": 17,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 32,
+        "w": 205,
+        "x": 568,
+        "y": 9137
+      },
+      "color": "#000000e0",
+      "depth": 17,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "Thought Chain Item Footer"
+    },
+    {
+      "box": {
+        "h": 454,
+        "w": 309,
+        "x": 966,
+        "y": 8885
+      },
+      "color": "#000000e0",
+      "depth": 13,
+      "display": "flex",
+      "flex": "column",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 9379
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "thoughtchainitem-1",
+      "tag": "h2",
+      "text": "ThoughtChain.Item"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 9379
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 304,
+        "w": 928,
+        "x": 348,
+        "y": 9425
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "inline-block",
+      "font": "14px 400",
+      "id": "thought-chain-demo-_semantic-item",
+      "tag": "section"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 302,
+        "w": 926,
+        "x": 349,
+        "y": 9426
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 442,
+        "y": 9570
+      },
+      "color": "#000000e0",
+      "depth": 15,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 442,
+        "y": 9570
+      },
+      "color": "#000000e0",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 302,
+        "w": 309,
+        "x": 966,
+        "y": 9426
+      },
+      "color": "#000000e0",
+      "depth": 13,
+      "display": "flex",
+      "flex": "column",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 9768
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "主题变量design-token",
+      "tag": "h2",
+      "text": "主题变量（Design Token）"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 9768
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 348,
+        "y": 9826
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "16px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 348,
+        "y": 9826
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "16px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 462,
+        "y": 9828
+      },
+      "color": "#999999",
+      "depth": 11,
+      "font": "12px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 462,
+        "y": 9828
+      },
+      "color": "#999999",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 348,
+        "y": 10729
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "16px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 348,
+        "y": 10729
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "16px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 462,
+        "y": 10731
+      },
+      "color": "#999999",
+      "depth": 11,
+      "font": "12px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 462,
+        "y": 10731
+      },
+      "color": "#999999",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "svg"
+    }
+  ],
+  "page": {
+    "h": 10909,
+    "w": 1440
+  },
+  "text": "Ant Design X 设计 研发 组件 X Markdown X SDK X Card X Skill 演示 国内镜像 2.10.0 中 En 介绍 总览 通用 Bubble 对话气泡 Conversations 管理对话 Notification 系统通知 2.0.0 唤醒 Welcome 欢迎 Prompts 提示集 确认 Think 思考过程 2.0.0 ThoughtChain 思维链 2.0.0 表达 Attachments 输入附件 Sender 输入框 Suggestion 快捷指令 反馈 Actions 操作列表 CodeHighlighter 代码高亮 2.1.0 FileCard 文件卡片 2.0.0 Folder 文件夹 2.4.0 Mermaid 图表工具 2.1.0 Sources 来源引用 2.0.0 其他 XProvider 全局化配置 何时使用 代码演示 基本 节点状态 简洁思维链 可折叠的 受控的折叠 折叠时销毁内容 客制化 嵌套使用 单行折叠 API ThoughtChainProps ThoughtChainItemType ThoughtChain.Item Semantic DOM ThoughtChain ThoughtChain.Item 主题变量（Design Token） ThoughtChain 思维链 思维链组件用于可视化和追踪 Agent 对 Actions 和 Tools 的调用链。 使用 import { ThoughtChain } from \"@ant-design/x\"; 源码 x/components/thought-chain 文档 编辑此页 更新日志 版本 自 2.0.0 起支持 何时使用 调试和跟踪复杂 Agent System 中的调用链 类似的链式场景中使用 代码演示 1 Knowledge Query Query knowledge base 2 Web Search Tool Invoked Tool invocation 3 Model Invocation Complete Invoke model for response 4 Response Complete Task completed 基本 基础用法。 Run Next Thought Chain Item - 1 status: success Thought Chain Item - 2 status: error 节点状态 思维链节点支持配置 status 属性来明显的表明当前节点的执行状态 loading status: Tool Calling Tool Calling Tool Calling success status: Tool Call Finished Tool Call Finished Tool Call Finished error status: Tool Call Error Tool Call Error Tool Call Error abort status Agent Response Aborted Agent Response Aborted Agent Response Aborted custom icon: Task Completed Task Completed Task Completed click: Opening Webpagehttps://x.ant.design/docs/playground/copilot Creatingtodo.md SearchingRoute Information Opening Webpagehttps://x.ant.design/docs/playground/copilot Tool Call Finished Tool Call Finished Tool Call Finished blink: Task Completed Task Completed Task CompletedRoute Information disabled: Task Completed Task Completed Task CompletedRoute Information Opening Webpageplayground/copilot Opening Webpageplayground/copilot Opening Webpageplayground/copilot Tool Call Finished Tool Call Finished Tool Call Finished 简洁思维链 简洁思维链，提供不同的类型可供选择。 Create Task: Write New Component Execute files needed for creating new component Creating folder for new component Executing commandmkdir -p component Creating files needed for new component Creating filecomponent/index.tsx Creating Chinese description file for new component Creating filecomponent/index.zh-CN.md Creating English description file for new component Creating filecomponent/index.en-US.md Checking Task Execution Steps Verify overall task execution logic and feasibility Folder createdcomponent File createdcomponent/index.tsx File createdcomponent/index.zh-CN.md File createdcomponent/index.en-US.md 可折叠的 配置 collapsible 可开启对思维链节点内容区域的折叠功能 Open \"check_task\" details Create Task: Develop New Component Execute files needed for new component creation Creating folder for new component Executing commandmkdir -p component Creating files needed for new component Creating filecomponent/index.tsx Creating Chinese documentation file Creating English description file for new component Continue creating filecomponent/index.en-US.md Check Task Execution Steps Completion Verify the overall task execution logic and feasibility Using the New Component Using the generated component to complete the task File createdcomponent 受控的折叠 受控的思维链节点内容区域的折叠功能。 Collapse destroyOnHidden keep 1 Collapsible Task Content will be removed from DOM when collapsed Task detail content. 2 Normal Task Task2 content. 折叠时销毁内容 折叠时是否销毁内容节点。 Create Task description Thinking Process 1. Analyze task, understand task workflow 2. Task creation, files needed for task 3. Task execution, using new component Creating folder for new component Executing commandmkdir -p component Creating files needed for new component Creating filecomponent/index.tsx Creating Chinese documentation file for new component Continue creating filecomponent/index.zh-CN.md Creating English description file for new component Continue creating filecomponent/index.en-US.md Thought Chain Item Footer Check Task Execution Steps Completion Verify the overall task execution logic and feasibility Checking Task Execution Steps Verify the overall task execution logic and feasibility Folder creation completedcomponent File creation completedcomponent/index.tsx File creation completedcomponent/index.zh-CN.md File creation completedcomponent/index.en-US.md 客制化 items 属性支持灵活的客制化配置，详情参考 ThoughtChainItemType 定义 1 1 - Thought Chain Item description 1 1-1 Thought Chain Item description 2 1-2 Thought Chain Item description 1 - Thought Chain Item Footer 2 2 - Thought Chain Item description 1 2-1 Thought Chain Item description 2 2-2 Thought Chain Item description 3 2-3 Thought Chain Item description 2 - Thought Chain Item Footer 嵌套使用 ThoughtChain 组件支持嵌套使用 Create Task: Write New Component Creating folder for new component Executing commandmkdir -p component Creating files needed for new component Creating filecomponent/index.tsx Creating Chinese description file for new component Creating filecomponent/index.zh-CN.md Creating English description file for new component Creating filecomponent/index.en-US.md 单行折叠 单行折叠。 API 通用属性参考：通用属性 ThoughtChainProps 属性 说明 类型 默认值 版本 items 思维节点集合 ThoughtChainItemType[] - - defaultExpandedKeys 初始化展开的节点 string[] - - expandedKeys 当前展开的节点 string[] - - onExpand 展开节点变化回调 (expandedKeys: string[]) => void; - - line 线条样式，为false 时不展示线条 boolean | 'solid' | 'dashed' | 'dotted‌' 'solid' - classNames 语义化结构的类名 Record<'root'|'item' | 'itemIcon'|'itemHeader' | 'itemContent' | 'itemFooter', string> - - prefixCls 自定义前缀 string - - styles 语义化结构的样式 Record<'root'|'item' |'itemIcon'| 'itemHeader' | 'itemContent' | 'itemFooter', React.CSSProperties> - - rootClassName 根元素样式类名 string - - ThoughtChainItemType 属性 说明 类型 默认值 版本 content 思维节点内容 React.ReactNode - - description 思维节点描述 React.ReactNode - - footer 思维节点脚注 React.ReactNode - - icon 思维节点图标,为false时不展示 false|React.ReactNode DefaultIcon - key 思维节点唯一标识符 string - - status 思维节点状态 'loading' | 'success' | 'error'| 'abort' - - title 思维节点标题 React.ReactNode - - collapsible 思维节点是否可折叠 boolean false - blink 闪动效果 boolean - - destroyOnHidden 隐藏时是否销毁内容节点 boolean true - ThoughtChain.Item 属性 说明 类型 默认值 版本 prefixCls 自定义前缀 string - - icon 思维链图标 React.ReactNode - - title 思维链标题 React.ReactNode - - description 思维链描述 React.ReactNode - - status 思维链状态 'loading' | 'success' | 'error'| 'abort' - - variant 变体配置 'solid' | 'outlined' | 'text' - - blink 闪动效果 boolean - - Semantic DOM ThoughtChain Thought Chain Item Title description Thought Chain Item Content Thought Chain Item Footer root 根节点 item 思维链节点 itemIcon 思维链图标 itemHeader 思维链节点头部 itemContent 思维链节点内容 itemFooter 思维链节点页脚 ThoughtChain.Item Opening Webpagehttps://x.ant.design/docs/playground/copilot root 根节点 icon 思维链图标 title 思维链标题 description 思维链节点描述 主题变量（Design Token） 组件 Token 如何定制？ Token 名称 描述 类型 默认值 colorDescriptionDisabled 禁用描述文字颜色 string rgba(0,0,0,0.25) colorErrorBgDisabled 错误状态禁用背景色 string rgba(255,242,240,0.25) colorErrorTextDescription 错误状态描述文字颜色 string rgba(255,77,79,0.45) colorErrorTextDescriptionDisabled 错误状态禁用描述文字颜色 string rgba(255,77,79,0.25) colorErrorTextDisabled 错误状态禁用文字颜色 string rgba(255,77,79,0.45) colorPrimaryDisabled 主要状态禁用颜色 string rgba(22,119,255,0.45) colorSuccessDisabled 成功状态禁用颜色 string rgba(82,196,26,0.45) colorTextBlink 打字动画颜色 string #000 colorTextBlinkDefault 默认打字动画颜色 string rgba(0,0,0,0.45) colorTitleDisabled 禁用标题文字颜色 string rgba(0,0,0,0.45) iconSize 图标容器尺寸 number 14 itemBorderRadius ThoughtChain.Item 圆角 number 6 itemMotionDescription 思维链节点描述文字的动画颜色 string rgba(0,0,0,0.25) itemOutlinedBg 边框模式的 ThoughtChain.Item 背景色 string #ffffff itemOutlinedHoverBg 边框模式的 ThoughtChain.Item 悬浮态背景色 string rgba(0,0,0,0.06) itemSolidBg 实心的 ThoughtChain.Item 背景色 string rgba(0,0,0,0.04) itemSolidHoverBg 实心的 ThoughtChain.Item 悬浮态背景色 string rgba(0,0,0,0.06) 全局 Token 如何定制？",
+  "title": "思维链 ThoughtChain - Ant Design X",
+  "url": "https://x.ant.design/components/thought-chain-cn",
+  "viewport": {
+    "h": 900,
+    "w": 1440
+  }
+}

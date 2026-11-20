@@ -1,0 +1,312 @@
+{
+  "id": "ev_afd407ccc54fce52032dd8e0731508fbf0c6e0ff21a5bbae50e9c43f2333eff0",
+  "subject": {
+    "kind": "website",
+    "name": "https://x.ant.design/docs/spec/introduce-cn"
+  },
+  "operation": "web_site_capture",
+  "params": {
+    "include_html": false,
+    "max_height": 12000,
+    "noise_pass": true,
+    "visitor_view": true,
+    "widths": [
+      1440,
+      768,
+      390
+    ]
+  },
+  "result": {
+    "counts": {
+      "forms": 0,
+      "headings": 6,
+      "images": 16,
+      "links": 44,
+      "outline": 177
+    },
+    "design": {
+      "backgrounds": [
+        {
+          "count": 4,
+          "value": "#00000005"
+        },
+        {
+          "count": 2,
+          "value": "#ffffff"
+        },
+        {
+          "count": 1,
+          "value": "#000000e0"
+        },
+        {
+          "count": 1,
+          "value": "#e6f4ff"
+        }
+      ],
+      "font_sizes": [
+        {
+          "count": 96,
+          "value": "14px"
+        },
+        {
+          "count": 10,
+          "value": "16px"
+        },
+        {
+          "count": 4,
+          "value": "12px"
+        },
+        {
+          "count": 4,
+          "value": "24px"
+        },
+        {
+          "count": 2,
+          "value": "16.8px"
+        },
+        {
+          "count": 1,
+          "value": "20px"
+        },
+        {
+          "count": 1,
+          "value": "32px"
+        }
+      ],
+      "font_weights": [
+        {
+          "count": 94,
+          "value": "400"
+        },
+        {
+          "count": 23,
+          "value": "500"
+        },
+        {
+          "count": 1,
+          "value": "600"
+        }
+      ],
+      "fonts": [
+        {
+          "count": 85,
+          "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+        },
+        {
+          "count": 32,
+          "value": "Avenir, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+        },
+        {
+          "count": 1,
+          "value": "AlibabaPuHuiTi, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+        }
+      ],
+      "max_widths": [],
+      "radii": [
+        {
+          "count": 34,
+          "value": "8px"
+        },
+        {
+          "count": 3,
+          "value": "20px"
+        },
+        {
+          "count": 2,
+          "value": "24px"
+        },
+        {
+          "count": 1,
+          "value": "100px"
+        },
+        {
+          "count": 1,
+          "value": "6px"
+        }
+      ],
+      "shadows": [
+        {
+          "count": 15,
+          "value": "rgba(143, 168, 191, 0.35) 0px 8px 20px 0px"
+        },
+        {
+          "count": 1,
+          "value": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px"
+        }
+      ],
+      "spacing": [
+        {
+          "count": 99,
+          "value": "4px"
+        },
+        {
+          "count": 88,
+          "value": "14px"
+        },
+        {
+          "count": 30,
+          "value": "34px"
+        },
+        {
+          "count": 28,
+          "value": "16px"
+        },
+        {
+          "count": 23,
+          "value": "60px"
+        },
+        {
+          "count": 14,
+          "value": "8px"
+        },
+        {
+          "count": 6,
+          "value": "12px"
+        },
+        {
+          "count": 5,
+          "value": "36px"
+        },
+        {
+          "count": 4,
+          "value": "24px"
+        },
+        {
+          "count": 4,
+          "value": "38.4px"
+        },
+        {
+          "count": 4,
+          "value": "14.4px"
+        },
+        {
+          "count": 2,
+          "value": "3.10001px"
+        },
+        {
+          "count": 2,
+          "value": "32px"
+        },
+        {
+          "count": 2,
+          "value": "7px"
+        },
+        {
+          "count": 2,
+          "value": "11px"
+        },
+        {
+          "count": 2,
+          "value": "48px"
+        },
+        {
+          "count": 1,
+          "value": "80px"
+        },
+        {
+          "count": 1,
+          "value": "2px"
+        },
+        {
+          "count": 1,
+          "value": "164px"
+        }
+      ],
+      "text_colors": [
+        {
+          "count": 107,
+          "value": "#000000e0"
+        },
+        {
+          "count": 8,
+          "value": "#000000a6"
+        },
+        {
+          "count": 1,
+          "value": "#ffffff"
+        },
+        {
+          "count": 1,
+          "value": "#1677ff"
+        },
+        {
+          "count": 1,
+          "value": "#010408e1"
+        }
+      ]
+    },
+    "files": [
+      "README.md",
+      "capture.json"
+    ],
+    "html_bytes": 0,
+    "output_directory": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/capture/routes/docs-spec-introduce-cn",
+    "screenshots": [
+      {
+        "css_width": 1440,
+        "cut": false,
+        "file": "screenshot-1440.png",
+        "height": 11666,
+        "noise_file": "noise-1440.png",
+        "noise_tiles": 25170,
+        "sha256": "57fcbd89074fcd2e5dc05e7818e60a7e22682a521a64be95ddaf8058aac489ac",
+        "width": 1440
+      },
+      {
+        "css_width": 768,
+        "cut": false,
+        "file": "screenshot-768.png",
+        "height": 10737,
+        "noise_tiles": 0,
+        "sha256": "b0c731b28860777646560a9eb085e730813d94193f07445c765af6197c9c6fb7",
+        "width": 768
+      },
+      {
+        "css_width": 390,
+        "cut": false,
+        "file": "screenshot-390.png",
+        "height": 10780,
+        "noise_tiles": 0,
+        "sha256": "a763b99a550e6ac3401e87f39f3948c37fd347b69cb4f843aa6aa372b0825cd9",
+        "width": 390
+      }
+    ],
+    "title": "RICH 设计范式简介 - Ant Design X",
+    "url": "https://x.ant.design/docs/spec/introduce-cn"
+  },
+  "summary": "Captured https://x.ant.design/docs/spec/introduce-cn: 3 screenshot(s), 177 outline items, 6 headings, 16 images, 44 links, 0 forms → /Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/capture/routes/docs-spec-introduce-cn.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "one_state",
+      "message": "One state of the page: menus, dialogs and content behind interactions are not opened."
+    },
+    {
+      "code": "visitor_view",
+      "message": "Clean room: only what a visitor sees was kept (screenshots, visible text, measured layout and styles); not the page's HTML, CSS rules, scripts, requests or errors."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 3,
+    "total": 3
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "https://x.ant.design/docs/spec/introduce-cn"
+    },
+    {
+      "kind": "path",
+      "value": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/capture/routes/docs-spec-introduce-cn"
+    }
+  ],
+  "links": []
+}

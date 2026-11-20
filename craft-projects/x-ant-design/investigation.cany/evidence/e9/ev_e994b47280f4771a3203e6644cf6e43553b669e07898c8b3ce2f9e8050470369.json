@@ -1,0 +1,57 @@
+{
+  "id": "ev_e994b47280f4771a3203e6644cf6e43553b669e07898c8b3ce2f9e8050470369",
+  "subject": {
+    "kind": "website",
+    "name": "https://x.ant.design/components/thought-chain-cn"
+  },
+  "operation": "web_site_open",
+  "params": {
+    "height": 900,
+    "url": "https://x.ant.design/components/thought-chain-cn",
+    "width": 1440
+  },
+  "result": {
+    "browser": "Chrome/155.0.8059.85",
+    "facts": {
+      "forms": 18,
+      "height": 10909,
+      "images": 19,
+      "lang": "zh-CN",
+      "links": 90,
+      "ready": "complete",
+      "title": "思维链 ThoughtChain - Ant Design X",
+      "url": "https://x.ant.design/components/thought-chain-cn",
+      "width": 1440
+    },
+    "health": null,
+    "title": "思维链 ThoughtChain - Ant Design X",
+    "url": "https://x.ant.design/components/thought-chain-cn"
+  },
+  "summary": "Opened https://x.ant.design/components/thought-chain-cn: \"思维链 ThoughtChain - Ant Design X\".",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "private_profile",
+      "message": "A fresh private browser: pages behind a login show their signed-out state."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 1,
+    "total": 1
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "https://x.ant.design/components/thought-chain-cn"
+    }
+  ],
+  "links": []
+}

@@ -1,0 +1,14 @@
+{
+  "states": [
+    {
+      "changed": [],
+      "file": "state-1.png",
+      "index": 0,
+      "kind": "menu",
+      "label": "",
+      "sha256": "eb418cc48f2adb318120d15ff56594412926d8fa05470363518b5001d4c6fc53"
+    }
+  ],
+  "url": "https://x.ant.design/components/thought-chain-cn",
+  "width": 390
+}

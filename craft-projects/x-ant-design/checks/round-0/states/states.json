@@ -1,0 +1,16 @@
+{
+  "states": [
+    {
+      "changed": [
+        "expanded"
+      ],
+      "file": "state-1.png",
+      "index": 0,
+      "kind": "menu",
+      "label": "2.10.0",
+      "sha256": "201a293a3be8df52cbe268345e61be7e0d9604489a3d63eb5af517199b154401"
+    }
+  ],
+  "url": "http://127.0.0.1:59789/",
+  "width": 1440
+}

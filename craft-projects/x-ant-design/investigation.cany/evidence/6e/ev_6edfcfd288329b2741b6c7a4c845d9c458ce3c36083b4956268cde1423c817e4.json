@@ -1,0 +1,420 @@
+{
+  "id": "ev_6edfcfd288329b2741b6c7a4c845d9c458ce3c36083b4956268cde1423c817e4",
+  "subject": {
+    "kind": "website",
+    "name": "http://127.0.0.1:58648/index-cn"
+  },
+  "operation": "web_site_capture",
+  "params": {
+    "include_html": false,
+    "max_height": 12000,
+    "noise_pass": false,
+    "visitor_view": true,
+    "widths": [
+      1440,
+      768,
+      390
+    ]
+  },
+  "result": {
+    "counts": {
+      "forms": 0,
+      "headings": 11,
+      "images": 0,
+      "links": 12,
+      "outline": 58
+    },
+    "design": {
+      "backgrounds": [
+        {
+          "count": 9,
+          "value": "#ffffff0a"
+        },
+        {
+          "count": 6,
+          "value": "#14161a"
+        },
+        {
+          "count": 6,
+          "value": "#ffffff08"
+        },
+        {
+          "count": 4,
+          "value": "#ffffff14"
+        },
+        {
+          "count": 4,
+          "value": "#ffffff0f"
+        },
+        {
+          "count": 4,
+          "value": "#ffffff1a"
+        },
+        {
+          "count": 3,
+          "value": "#1677ff"
+        },
+        {
+          "count": 3,
+          "value": "#1677ff40"
+        },
+        {
+          "count": 1,
+          "value": "#ffffff"
+        },
+        {
+          "count": 1,
+          "value": "#0c0e10"
+        },
+        {
+          "count": 1,
+          "value": "#0c0e10cc"
+        },
+        {
+          "count": 1,
+          "value": "#1677ff1f"
+        },
+        {
+          "count": 1,
+          "value": "#16181c"
+        },
+        {
+          "count": 1,
+          "value": "#ff5f57"
+        }
+      ],
+      "font_sizes": [
+        {
+          "count": 27,
+          "value": "14px"
+        },
+        {
+          "count": 19,
+          "value": "13px"
+        },
+        {
+          "count": 17,
+          "value": "12px"
+        },
+        {
+          "count": 11,
+          "value": "16px"
+        },
+        {
+          "count": 6,
+          "value": "48px"
+        },
+        {
+          "count": 6,
+          "value": "15px"
+        },
+        {
+          "count": 4,
+          "value": "30px"
+        },
+        {
+          "count": 4,
+          "value": "24px"
+        },
+        {
+          "count": 3,
+          "value": "11px"
+        },
+        {
+          "count": 3,
+          "value": "40px"
+        },
+        {
+          "count": 2,
+          "value": "60px"
+        }
+      ],
+      "font_weights": [
+        {
+          "count": 71,
+          "value": "400"
+        },
+        {
+          "count": 20,
+          "value": "700"
+        },
+        {
+          "count": 10,
+          "value": "500"
+        },
+        {
+          "count": 1,
+          "value": "600"
+        }
+      ],
+      "fonts": [
+        {
+          "count": 92,
+          "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+        },
+        {
+          "count": 10,
+          "value": "Arial"
+        }
+      ],
+      "max_widths": [
+        {
+          "count": 9,
+          "value": "880px"
+        },
+        {
+          "count": 6,
+          "value": "1240px"
+        },
+        {
+          "count": 4,
+          "value": "560px"
+        },
+        {
+          "count": 1,
+          "value": "760px"
+        },
+        {
+          "count": 1,
+          "value": "720px"
+        }
+      ],
+      "radii": [
+        {
+          "count": 8,
+          "value": "8px"
+        },
+        {
+          "count": 6,
+          "value": "16px"
+        },
+        {
+          "count": 6,
+          "value": "10px"
+        },
+        {
+          "count": 4,
+          "value": "20px"
+        },
+        {
+          "count": 4,
+          "value": "6px"
+        },
+        {
+          "count": 4,
+          "value": "12px"
+        },
+        {
+          "count": 4,
+          "value": "24px"
+        },
+        {
+          "count": 3,
+          "value": "50%"
+        },
+        {
+          "count": 3,
+          "value": "4px"
+        }
+      ],
+      "shadows": [],
+      "spacing": [
+        {
+          "count": 60,
+          "value": "16px"
+        },
+        {
+          "count": 42,
+          "value": "8px"
+        },
+        {
+          "count": 32,
+          "value": "24px"
+        },
+        {
+          "count": 26,
+          "value": "12px"
+        },
+        {
+          "count": 17,
+          "value": "10px"
+        },
+        {
+          "count": 15,
+          "value": "20px"
+        },
+        {
+          "count": 12,
+          "value": "32px"
+        },
+        {
+          "count": 10,
+          "value": "100px"
+        },
+        {
+          "count": 7,
+          "value": "4px"
+        },
+        {
+          "count": 5,
+          "value": "6px"
+        },
+        {
+          "count": 5,
+          "value": "64px"
+        },
+        {
+          "count": 2,
+          "value": "28px"
+        },
+        {
+          "count": 2,
+          "value": "1px"
+        },
+        {
+          "count": 2,
+          "value": "40px"
+        },
+        {
+          "count": 2,
+          "value": "56px"
+        },
+        {
+          "count": 2,
+          "value": "14px"
+        },
+        {
+          "count": 1,
+          "value": "168px"
+        },
+        {
+          "count": 1,
+          "value": "120px"
+        }
+      ],
+      "text_colors": [
+        {
+          "count": 28,
+          "value": "#ffffff"
+        },
+        {
+          "count": 16,
+          "value": "#ffffffd9"
+        },
+        {
+          "count": 14,
+          "value": "#ffffff73"
+        },
+        {
+          "count": 12,
+          "value": "#ffffffa6"
+        },
+        {
+          "count": 12,
+          "value": "#ffffff66"
+        },
+        {
+          "count": 6,
+          "value": "#ffffffbf"
+        },
+        {
+          "count": 3,
+          "value": "#69b1ff"
+        },
+        {
+          "count": 3,
+          "value": "#ffffff8c"
+        },
+        {
+          "count": 3,
+          "value": "#ffffffb3"
+        },
+        {
+          "count": 2,
+          "value": "#1677ff"
+        },
+        {
+          "count": 1,
+          "value": "#13c2c2"
+        },
+        {
+          "count": 1,
+          "value": "#722ed1"
+        },
+        {
+          "count": 1,
+          "value": "#fa8c16"
+        }
+      ]
+    },
+    "files": [
+      "README.md",
+      "capture.json"
+    ],
+    "html_bytes": 0,
+    "output_directory": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/index-cn",
+    "screenshots": [
+      {
+        "css_width": 1440,
+        "cut": false,
+        "file": "screenshot-1440.png",
+        "height": 5301,
+        "sha256": "ffd2a10d0961354aa2ce0c19b2fa9e3d61888e19f97b864ccd9f4e7700fad21d",
+        "width": 1440
+      },
+      {
+        "css_width": 768,
+        "cut": false,
+        "file": "screenshot-768.png",
+        "height": 5507,
+        "sha256": "46197bfcb56e21ae640007c3224eea965bd3bed722f0a996017cbdfdde0eaf65",
+        "width": 768
+      },
+      {
+        "css_width": 390,
+        "cut": false,
+        "file": "screenshot-390.png",
+        "height": 6421,
+        "sha256": "dc98066b21b0677f4cb127b2df61e1d27bc083db72b949c8395bcaea2d0acaa2",
+        "width": 390
+      }
+    ],
+    "title": "思维链 ThoughtChain - Ant Design X",
+    "url": "http://127.0.0.1:58648/index-cn"
+  },
+  "summary": "Captured http://127.0.0.1:58648/index-cn: 3 screenshot(s), 58 outline items, 11 headings, 0 images, 12 links, 0 forms → /Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/index-cn.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "one_state",
+      "message": "One state of the page: menus, dialogs and content behind interactions are not opened."
+    },
+    {
+      "code": "visitor_view",
+      "message": "Clean room: only what a visitor sees was kept (screenshots, visible text, measured layout and styles); not the page's HTML, CSS rules, scripts, requests or errors."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 3,
+    "total": 3
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "http://127.0.0.1:58648/index-cn"
+    },
+    {
+      "kind": "path",
+      "value": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/index-cn"
+    }
+  ],
+  "links": []
+}

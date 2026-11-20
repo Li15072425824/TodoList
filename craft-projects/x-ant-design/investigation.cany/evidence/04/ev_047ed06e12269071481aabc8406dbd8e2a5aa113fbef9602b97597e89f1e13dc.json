@@ -1,0 +1,108 @@
+{
+  "id": "ev_047ed06e12269071481aabc8406dbd8e2a5aa113fbef9602b97597e89f1e13dc",
+  "subject": {
+    "kind": "website",
+    "name": "http://127.0.0.1:49210/docs/react/introduce-cn"
+  },
+  "operation": "web_site_capture",
+  "params": {
+    "include_html": false,
+    "max_height": 12000,
+    "noise_pass": false,
+    "visitor_view": true,
+    "widths": [
+      1440,
+      768,
+      390
+    ]
+  },
+  "result": {
+    "counts": {
+      "forms": 0,
+      "headings": 0,
+      "images": 0,
+      "links": 0,
+      "outline": 0
+    },
+    "design": {
+      "backgrounds": [],
+      "font_sizes": [],
+      "font_weights": [],
+      "fonts": [],
+      "max_widths": [],
+      "radii": [],
+      "shadows": [],
+      "spacing": [],
+      "text_colors": []
+    },
+    "files": [
+      "README.md",
+      "capture.json"
+    ],
+    "html_bytes": 0,
+    "output_directory": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/docs-react-introduce-cn",
+    "screenshots": [
+      {
+        "css_width": 1440,
+        "cut": false,
+        "file": "screenshot-1440.png",
+        "height": 900,
+        "sha256": "99db2a93b06fa1bf617f5c495e02dcf6c0b76961108491217e2cf4fed8699d35",
+        "width": 1440
+      },
+      {
+        "css_width": 768,
+        "cut": false,
+        "file": "screenshot-768.png",
+        "height": 900,
+        "sha256": "67f28d171be07da65e6b3f743a9659114bf25d9379a49b3cb9f1f11b9e2ffe41",
+        "width": 768
+      },
+      {
+        "css_width": 390,
+        "cut": false,
+        "file": "screenshot-390.png",
+        "height": 900,
+        "sha256": "3041d996afa19b08e53fb21c9dda04644020a7dc610c82f49b04bb1bde862b70",
+        "width": 390
+      }
+    ],
+    "title": "思维链 ThoughtChain - Ant Design X",
+    "url": "http://127.0.0.1:49210/docs/react/introduce-cn"
+  },
+  "summary": "Captured http://127.0.0.1:49210/docs/react/introduce-cn: 3 screenshot(s), 0 outline items, 0 headings, 0 images, 0 links, 0 forms → /Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/docs-react-introduce-cn.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "one_state",
+      "message": "One state of the page: menus, dialogs and content behind interactions are not opened."
+    },
+    {
+      "code": "visitor_view",
+      "message": "Clean room: only what a visitor sees was kept (screenshots, visible text, measured layout and styles); not the page's HTML, CSS rules, scripts, requests or errors."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 3,
+    "total": 3
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "http://127.0.0.1:49210/docs/react/introduce-cn"
+    },
+    {
+      "kind": "path",
+      "value": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/routes/docs-react-introduce-cn"
+    }
+  ],
+  "links": []
+}

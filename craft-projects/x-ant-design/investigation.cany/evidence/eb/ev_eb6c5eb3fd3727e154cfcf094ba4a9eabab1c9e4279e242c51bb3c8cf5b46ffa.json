@@ -1,0 +1,465 @@
+{
+  "id": "ev_eb6c5eb3fd3727e154cfcf094ba4a9eabab1c9e4279e242c51bb3c8cf5b46ffa",
+  "subject": {
+    "kind": "website",
+    "name": "https://x.ant.design/components/thought-chain-cn"
+  },
+  "operation": "web_site_capture",
+  "params": {
+    "include_html": false,
+    "max_height": 12000,
+    "noise_pass": true,
+    "visitor_view": true,
+    "widths": [
+      1440,
+      768,
+      390
+    ]
+  },
+  "result": {
+    "counts": {
+      "forms": 18,
+      "headings": 12,
+      "images": 19,
+      "links": 90,
+      "outline": 515
+    },
+    "design": {
+      "backgrounds": [
+        {
+          "count": 72,
+          "value": "#0000000a"
+        },
+        {
+          "count": 69,
+          "value": "#ffffff"
+        },
+        {
+          "count": 16,
+          "value": "#0000000f"
+        },
+        {
+          "count": 15,
+          "value": "#00000005"
+        },
+        {
+          "count": 8,
+          "value": "#f6ffed"
+        },
+        {
+          "count": 8,
+          "value": "#f0f2f5"
+        },
+        {
+          "count": 4,
+          "value": "#fafafa"
+        },
+        {
+          "count": 3,
+          "value": "#fff2f0"
+        },
+        {
+          "count": 3,
+          "value": "#fff2f040"
+        },
+        {
+          "count": 2,
+          "value": "#00000040"
+        },
+        {
+          "count": 2,
+          "value": "#ff4d4f73"
+        },
+        {
+          "count": 2,
+          "value": "#00000073"
+        },
+        {
+          "count": 1,
+          "value": "#000000e0"
+        },
+        {
+          "count": 1,
+          "value": "#e6f4ff"
+        },
+        {
+          "count": 1,
+          "value": "#1677ff"
+        },
+        {
+          "count": 1,
+          "value": "#00000003"
+        }
+      ],
+      "font_sizes": [
+        {
+          "count": 274,
+          "value": "14px"
+        },
+        {
+          "count": 145,
+          "value": "13px"
+        },
+        {
+          "count": 71,
+          "value": "12px"
+        },
+        {
+          "count": 36,
+          "value": "12.6px"
+        },
+        {
+          "count": 22,
+          "value": "16px"
+        },
+        {
+          "count": 7,
+          "value": "24px"
+        },
+        {
+          "count": 3,
+          "value": "18px"
+        },
+        {
+          "count": 2,
+          "value": "16.8px"
+        },
+        {
+          "count": 2,
+          "value": "32px"
+        },
+        {
+          "count": 1,
+          "value": "20px"
+        },
+        {
+          "count": 1,
+          "value": "11.7px"
+        }
+      ],
+      "font_weights": [
+        {
+          "count": 460,
+          "value": "400"
+        },
+        {
+          "count": 60,
+          "value": "500"
+        },
+        {
+          "count": 42,
+          "value": "600"
+        },
+        {
+          "count": 2,
+          "value": "700"
+        }
+      ],
+      "fonts": [
+        {
+          "count": 324,
+          "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+        },
+        {
+          "count": 150,
+          "value": "SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, Courier, monospace"
+        },
+        {
+          "count": 52,
+          "value": "Avenir, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+        },
+        {
+          "count": 37,
+          "value": "monospace"
+        },
+        {
+          "count": 1,
+          "value": "AlibabaPuHuiTi, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+        }
+      ],
+      "max_widths": [],
+      "radii": [
+        {
+          "count": 82,
+          "value": "6px"
+        },
+        {
+          "count": 48,
+          "value": "8px"
+        },
+        {
+          "count": 38,
+          "value": "4px"
+        },
+        {
+          "count": 15,
+          "value": "50%"
+        },
+        {
+          "count": 13,
+          "value": "7px"
+        },
+        {
+          "count": 11,
+          "value": "8px 8px 0px 0px"
+        },
+        {
+          "count": 9,
+          "value": "0px 0px 6px 6px"
+        },
+        {
+          "count": 9,
+          "value": "6px 6px 0px 0px"
+        },
+        {
+          "count": 3,
+          "value": "20px"
+        },
+        {
+          "count": 3,
+          "value": "100px"
+        }
+      ],
+      "shadows": [
+        {
+          "count": 7,
+          "value": "rgba(0, 0, 0, 0.02) 0px 2px 0px 0px"
+        },
+        {
+          "count": 1,
+          "value": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px"
+        }
+      ],
+      "spacing": [
+        {
+          "count": 697,
+          "value": "12px"
+        },
+        {
+          "count": 386,
+          "value": "8px"
+        },
+        {
+          "count": 366,
+          "value": "24px"
+        },
+        {
+          "count": 214,
+          "value": "5px"
+        },
+        {
+          "count": 131,
+          "value": "16px"
+        },
+        {
+          "count": 107,
+          "value": "4px"
+        },
+        {
+          "count": 72,
+          "value": "2.52px"
+        },
+        {
+          "count": 72,
+          "value": "5.04px"
+        },
+        {
+          "count": 25,
+          "value": "36px"
+        },
+        {
+          "count": 25,
+          "value": "2px"
+        },
+        {
+          "count": 18,
+          "value": "7px"
+        },
+        {
+          "count": 18,
+          "value": "1px"
+        },
+        {
+          "count": 14,
+          "value": "15px"
+        },
+        {
+          "count": 9,
+          "value": "42px"
+        },
+        {
+          "count": 9,
+          "value": "50px"
+        },
+        {
+          "count": 9,
+          "value": "18px"
+        },
+        {
+          "count": 8,
+          "value": "20px"
+        },
+        {
+          "count": 7,
+          "value": "38.4px"
+        },
+        {
+          "count": 7,
+          "value": "14.4px"
+        },
+        {
+          "count": 5,
+          "value": "32px"
+        },
+        {
+          "count": 5,
+          "value": "10px"
+        },
+        {
+          "count": 3,
+          "value": "28.8px"
+        },
+        {
+          "count": 3,
+          "value": "10.8px"
+        },
+        {
+          "count": 2,
+          "value": "0.325253px"
+        }
+      ],
+      "text_colors": [
+        {
+          "count": 378,
+          "value": "#000000e0"
+        },
+        {
+          "count": 88,
+          "value": "#00000073"
+        },
+        {
+          "count": 27,
+          "value": "#000000a6"
+        },
+        {
+          "count": 26,
+          "value": "#c41d7f"
+        },
+        {
+          "count": 15,
+          "value": "#5c6b77"
+        },
+        {
+          "count": 8,
+          "value": "#52c41a"
+        },
+        {
+          "count": 4,
+          "value": "#ff4d4f"
+        },
+        {
+          "count": 4,
+          "value": "#ff4d4f73"
+        },
+        {
+          "count": 3,
+          "value": "#ffffff"
+        },
+        {
+          "count": 3,
+          "value": "#1677ff"
+        },
+        {
+          "count": 3,
+          "value": "#ff4d4f40"
+        },
+        {
+          "count": 2,
+          "value": "#00000040"
+        },
+        {
+          "count": 2,
+          "value": "#999999"
+        },
+        {
+          "count": 1,
+          "value": "#000001e0"
+        }
+      ]
+    },
+    "files": [
+      "README.md",
+      "capture.json"
+    ],
+    "html_bytes": 0,
+    "output_directory": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/capture",
+    "screenshots": [
+      {
+        "css_width": 1440,
+        "cut": false,
+        "file": "screenshot-1440.png",
+        "height": 10909,
+        "noise_file": "noise-1440.png",
+        "noise_tiles": 30,
+        "sha256": "aaae5d0cbbb87a2302b261718c657df76d873f2e53080725ed6236386906cdf0",
+        "width": 1440
+      },
+      {
+        "css_width": 768,
+        "cut": true,
+        "file": "screenshot-768.png",
+        "height": 12000,
+        "noise_tiles": 0,
+        "sha256": "4d6b4793715f8c9f34fccd2ba878949a734c504acd1270e75cb11e3004d32b5e",
+        "width": 768
+      },
+      {
+        "css_width": 390,
+        "cut": true,
+        "file": "screenshot-390.png",
+        "height": 12000,
+        "noise_file": "noise-390.png",
+        "noise_tiles": 27,
+        "sha256": "bc457b65ef42f57beae0aff57a75f591a5998a4547d1bcd89973bdf9d082281d",
+        "width": 390
+      }
+    ],
+    "title": "思维链 ThoughtChain - Ant Design X",
+    "url": "https://x.ant.design/components/thought-chain-cn"
+  },
+  "summary": "Captured https://x.ant.design/components/thought-chain-cn: 3 screenshot(s), 515 outline items, 12 headings, 19 images, 90 links, 18 forms → /Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/capture.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "one_state",
+      "message": "One state of the page: menus, dialogs and content behind interactions are not opened."
+    },
+    {
+      "code": "visitor_view",
+      "message": "Clean room: only what a visitor sees was kept (screenshots, visible text, measured layout and styles); not the page's HTML, CSS rules, scripts, requests or errors."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 3,
+    "total": 3
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "https://x.ant.design/components/thought-chain-cn"
+    },
+    {
+      "kind": "path",
+      "value": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/capture"
+    }
+  ],
+  "links": []
+}

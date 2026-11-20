@@ -1,0 +1,2531 @@
+{
+  "a11y": {
+    "images_without_alt": 0,
+    "landmarks": {
+      "banner": 1,
+      "main": 1
+    },
+    "lang": "zh-CN",
+    "unnamed_controls": 0,
+    "unnamed_examples": []
+  },
+  "assets": {
+    "images": [
+      {
+        "h": 40,
+        "w": 40
+      },
+      {
+        "h": 370,
+        "w": 361
+      },
+      {
+        "h": 370,
+        "w": 361
+      },
+      {
+        "h": 332,
+        "w": 339
+      },
+      {
+        "h": 332,
+        "w": 339
+      },
+      {
+        "h": 357,
+        "w": 320
+      },
+      {
+        "h": 357,
+        "w": 320
+      },
+      {
+        "h": 373,
+        "w": 280
+      },
+      {
+        "h": 373,
+        "w": 280
+      },
+      {
+        "h": 1194,
+        "w": 1772
+      },
+      {
+        "h": 1194,
+        "w": 1772
+      },
+      {
+        "h": 1194,
+        "w": 1772
+      },
+      {
+        "h": 1194,
+        "w": 1772
+      },
+      {
+        "h": 1194,
+        "w": 1772
+      },
+      {
+        "h": 132,
+        "w": 120
+      },
+      {
+        "h": 336,
+        "w": 582
+      },
+      {
+        "h": 84,
+        "w": 346
+      },
+      {
+        "h": 334,
+        "w": 584
+      },
+      {
+        "h": 97,
+        "w": 227
+      },
+      {
+        "h": 98,
+        "w": 185
+      },
+      {
+        "h": 73,
+        "w": 263
+      },
+      {
+        "h": 32,
+        "w": 32
+      },
+      {
+        "h": 32,
+        "w": 32
+      },
+      {
+        "h": 32,
+        "w": 32
+      }
+    ]
+  },
+  "design": {
+    "backgrounds": [
+      {
+        "count": 14,
+        "value": "#ffffff1a"
+      },
+      {
+        "count": 11,
+        "value": "#0c0e10cc"
+      },
+      {
+        "count": 4,
+        "value": "#141414"
+      },
+      {
+        "count": 2,
+        "value": "#ffffff0a"
+      }
+    ],
+    "font_sizes": [
+      {
+        "count": 21,
+        "value": "12px"
+      },
+      {
+        "count": 20,
+        "value": "20px"
+      },
+      {
+        "count": 17,
+        "value": "48px"
+      },
+      {
+        "count": 13,
+        "value": "14px"
+      },
+      {
+        "count": 10,
+        "value": "16px"
+      },
+      {
+        "count": 5,
+        "value": "24px"
+      },
+      {
+        "count": 3,
+        "value": "0px"
+      },
+      {
+        "count": 2,
+        "value": "80px"
+      },
+      {
+        "count": 2,
+        "value": "18px"
+      },
+      {
+        "count": 1,
+        "value": "60px"
+      },
+      {
+        "count": 1,
+        "value": "11px"
+      }
+    ],
+    "font_weights": [
+      {
+        "count": 55,
+        "value": "700"
+      },
+      {
+        "count": 37,
+        "value": "400"
+      },
+      {
+        "count": 2,
+        "value": "600"
+      },
+      {
+        "count": 1,
+        "value": "500"
+      }
+    ],
+    "fonts": [
+      {
+        "count": 74,
+        "value": "AlibabaPuHuiTi, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+      },
+      {
+        "count": 17,
+        "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+      },
+      {
+        "count": 4,
+        "value": "Arial"
+      }
+    ],
+    "max_widths": [
+      {
+        "count": 6,
+        "value": "1240px"
+      },
+      {
+        "count": 5,
+        "value": "880px"
+      },
+      {
+        "count": 1,
+        "value": "735.99px"
+      },
+      {
+        "count": 1,
+        "value": "500px"
+      },
+      {
+        "count": 1,
+        "value": "540px"
+      }
+    ],
+    "radii": [
+      {
+        "count": 13,
+        "value": "24px"
+      },
+      {
+        "count": 9,
+        "value": "12px"
+      },
+      {
+        "count": 6,
+        "value": "40px"
+      },
+      {
+        "count": 6,
+        "value": "3px"
+      },
+      {
+        "count": 6,
+        "value": "4px"
+      },
+      {
+        "count": 5,
+        "value": "20px"
+      },
+      {
+        "count": 3,
+        "value": "40px 40px 0px 0px"
+      },
+      {
+        "count": 2,
+        "value": "8px"
+      },
+      {
+        "count": 1,
+        "value": "6px"
+      }
+    ],
+    "shadows": [
+      {
+        "count": 3,
+        "value": "rgba(255, 255, 255, 0.016) 0px 6px 16px 0px, rgba(255, 255, 255, 0.024) 0px 3px 6px -4px, rgba(255, 255, 255, 0.01) 0px 9px 28px 8px"
+      },
+      {
+        "count": 3,
+        "value": "rgba(255, 255, 255, 0.5) 0px 1px 1.5px 0px inset"
+      }
+    ],
+    "spacing": [
+      {
+        "count": 71,
+        "value": "8px"
+      },
+      {
+        "count": 52,
+        "value": "28px"
+      },
+      {
+        "count": 51,
+        "value": "12px"
+      },
+      {
+        "count": 37,
+        "value": "24px"
+      },
+      {
+        "count": 24,
+        "value": "16px"
+      },
+      {
+        "count": 17,
+        "value": "100px"
+      },
+      {
+        "count": 13,
+        "value": "48px"
+      },
+      {
+        "count": 7,
+        "value": "4px"
+      },
+      {
+        "count": 4,
+        "value": "40px"
+      },
+      {
+        "count": 4,
+        "value": "10px"
+      },
+      {
+        "count": 4,
+        "value": "18px"
+      },
+      {
+        "count": 3,
+        "value": "-40px"
+      }
+    ],
+    "text_colors": [
+      {
+        "count": 38,
+        "value": "#ffffffd9"
+      },
+      {
+        "count": 37,
+        "value": "#ffffff"
+      },
+      {
+        "count": 13,
+        "value": "#00000000"
+      },
+      {
+        "count": 5,
+        "value": "#ffffffa6"
+      },
+      {
+        "count": 1,
+        "value": "#14204c"
+      },
+      {
+        "count": 1,
+        "value": "#ffffff73"
+      }
+    ]
+  },
+  "forms": [],
+  "headings": [
+    {
+      "level": 1,
+      "text": "Ant Design X"
+    },
+    {
+      "level": 1,
+      "text": "Ant DesI gn X"
+    },
+    {
+      "level": 1,
+      "text": "AI 体验新秩序"
+    },
+    {
+      "level": 2,
+      "text": "AI 设计范式 - RICH"
+    },
+    {
+      "level": 2,
+      "text": "AI 界面解决方案"
+    },
+    {
+      "level": 2,
+      "text": "试一试 , 多种 AI 场景体验"
+    },
+    {
+      "level": 3,
+      "text": "Web 嵌入式"
+    },
+    {
+      "level": 3,
+      "text": "Web 独立式"
+    },
+    {
+      "level": 3,
+      "text": "Web 助手式"
+    },
+    {
+      "level": 3,
+      "text": "Web 嵌入式"
+    },
+    {
+      "level": 3,
+      "text": "Web 独立式"
+    },
+    {
+      "level": 2,
+      "text": "组件丰富 , 选用自如"
+    },
+    {
+      "level": 3,
+      "text": "欢迎组件 唤醒"
+    },
+    {
+      "level": 3,
+      "text": "用户推荐 唤醒"
+    },
+    {
+      "level": 3,
+      "text": "快捷命令 表达"
+    },
+    {
+      "level": 3,
+      "text": "进度加载 确认"
+    },
+    {
+      "level": 3,
+      "text": "结果操作 反馈"
+    },
+    {
+      "level": 3,
+      "text": "管理对话 通用"
+    },
+    {
+      "level": 2,
+      "text": "AI 设计语言与研发框架"
+    },
+    {
+      "level": 3,
+      "text": "RICH 设计指南"
+    },
+    {
+      "level": 3,
+      "text": "组件设计指引"
+    },
+    {
+      "level": 3,
+      "text": "组件库"
+    },
+    {
+      "level": 3,
+      "text": "Ant Design"
+    },
+    {
+      "level": 3,
+      "text": "Ant Design Mobile"
+    },
+    {
+      "level": 3,
+      "text": "AntV"
+    }
+  ],
+  "lang": "zh-CN",
+  "layouts": [
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 1392,
+          "y": 16
+        },
+        {
+          "column": {
+            "max_w": 1240,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 1240,
+            "x": 100
+          },
+          "h": 9264,
+          "heading": "Ant DesI gn X",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 5,
+          "tag": "main",
+          "w": 1440,
+          "y": 0
+        },
+        {
+          "column": {
+            "max_w": 1240,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 1240,
+            "x": 100
+          },
+          "h": 740,
+          "heading": "Ant DesI gn X",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1440,
+          "y": 0
+        },
+        {
+          "column": {
+            "max_w": 1240,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 1240,
+            "x": 100
+          },
+          "gap": 100,
+          "h": 700,
+          "heading": "AI 设计范式 - RICH",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1440,
+          "y": 740
+        },
+        {
+          "column": {
+            "max_w": 1240,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 1240,
+            "x": 100
+          },
+          "gap": 100,
+          "h": 1811,
+          "heading": "AI 界面解决方案",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1440,
+          "y": 1400
+        },
+        {
+          "column": {
+            "max_w": 1240,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 1240,
+            "x": 100
+          },
+          "gap": 100,
+          "h": 4120,
+          "heading": "试一试 , 多种 AI 场景体验",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 5,
+          "tag": "section",
+          "w": 1440,
+          "y": 3171
+        },
+        {
+          "column": {
+            "max_w": 1240,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 1240,
+            "x": 100
+          },
+          "gap": 100,
+          "h": 2013,
+          "heading": "AI 设计语言与研发框架",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1440,
+          "y": 7251
+        }
+      ],
+      "page_h": 9264,
+      "page_w": 1440,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 48,
+        "h3": 24
+      },
+      "width": 1440
+    },
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 720,
+          "y": 16
+        },
+        {
+          "column": {
+            "max_w": 720,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 720,
+            "x": 24
+          },
+          "h": 9116,
+          "heading": "Ant DesI gn X",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 5,
+          "tag": "main",
+          "w": 768,
+          "y": 0
+        },
+        {
+          "column": {
+            "max_w": 720,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 720,
+            "x": 24
+          },
+          "h": 876,
+          "heading": "Ant DesI gn X",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 768,
+          "y": 0
+        },
+        {
+          "column": {
+            "max_w": 720,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 720,
+            "x": 24
+          },
+          "gap": 100,
+          "h": 700,
+          "heading": "AI 设计范式 - RICH",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 768,
+          "y": 876
+        },
+        {
+          "column": {
+            "max_w": 720,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 720,
+            "x": 24
+          },
+          "gap": 100,
+          "h": 1796,
+          "heading": "AI 界面解决方案",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 768,
+          "y": 1536
+        },
+        {
+          "column": {
+            "max_w": 720,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 720,
+            "x": 24
+          },
+          "gap": 100,
+          "h": 3867,
+          "heading": "试一试 , 多种 AI 场景体验",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 5,
+          "tag": "section",
+          "w": 768,
+          "y": 3292
+        },
+        {
+          "column": {
+            "max_w": 720,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 720,
+            "x": 24
+          },
+          "gap": 100,
+          "h": 1997,
+          "heading": "AI 设计语言与研发框架",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 768,
+          "y": 7119
+        }
+      ],
+      "page_h": 9116,
+      "page_w": 768,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 38,
+        "h3": 24
+      },
+      "width": 768
+    },
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 342,
+          "y": 16
+        },
+        {
+          "column": {
+            "max_w": 342,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 342,
+            "x": 24
+          },
+          "h": 9242,
+          "heading": "Ant DesI gn X",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 5,
+          "tag": "main",
+          "w": 390,
+          "y": 0
+        },
+        {
+          "column": {
+            "max_w": 342,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 342,
+            "x": 24
+          },
+          "h": 876,
+          "heading": "Ant DesI gn X",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 390,
+          "y": 0
+        },
+        {
+          "column": {
+            "max_w": 342,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 342,
+            "x": 24
+          },
+          "gap": 100,
+          "h": 700,
+          "heading": "AI 设计范式 - RICH",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 876
+        },
+        {
+          "column": {
+            "max_w": 342,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 342,
+            "x": 24
+          },
+          "gap": 100,
+          "h": 1840,
+          "heading": "AI 界面解决方案",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 390,
+          "y": 1536
+        },
+        {
+          "column": {
+            "max_w": 342,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 342,
+            "x": 24
+          },
+          "gap": 100,
+          "h": 3889,
+          "heading": "试一试 , 多种 AI 场景体验",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 5,
+          "tag": "section",
+          "w": 390,
+          "y": 3336
+        },
+        {
+          "column": {
+            "max_w": 342,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 342,
+            "x": 24
+          },
+          "gap": 100,
+          "h": 2057,
+          "heading": "AI 设计语言与研发框架",
+          "pad": [
+            100,
+            0,
+            100,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 7185
+        }
+      ],
+      "page_h": 9242,
+      "page_w": 390,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 38,
+        "h3": 24
+      },
+      "width": 390
+    }
+  ],
+  "links": [
+    {
+      "href": "https://x.ant.design/index-cn",
+      "text": "Ant Design X"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "开始使用"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "设计语言"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "RICH 设计指南 意图、角色、会话、混合 UI"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/hybrid-ui-design-cn",
+      "text": "组件设计指引 全局样式、设计模式"
+    },
+    {
+      "href": "https://x.ant.design/components/overview-cn",
+      "text": "组件库 Ant Design of React / Angular / Vue"
+    },
+    {
+      "href": "https://ant.design/",
+      "text": "Ant Design 企业级 UI 设计语言和 React 组件库"
+    },
+    {
+      "href": "https://mobile.ant.design/",
+      "text": "Ant Design Mobile Ant Design移动端 UI 组件库"
+    },
+    {
+      "href": "https://antv.vision/",
+      "text": "AntV 全新一代数据可视化解决方案"
+    }
+  ],
+  "outline": [
+    {
+      "box": {
+        "h": 48,
+        "w": 1392,
+        "x": 24,
+        "y": 16
+      },
+      "color": "#ffffffd9",
+      "depth": 4,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "header"
+    },
+    {
+      "box": {
+        "h": 80,
+        "w": 123,
+        "x": 48,
+        "y": 0
+      },
+      "color": "#ffffffd9",
+      "depth": 5,
+      "font": "28px 700",
+      "tag": "h1",
+      "text": "Ant Design X"
+    },
+    {
+      "box": {
+        "h": 80,
+        "w": 123,
+        "x": 48,
+        "y": 0
+      },
+      "color": "#ffffffd9",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/index-cn",
+      "tag": "a",
+      "text": "Ant Design X"
+    },
+    {
+      "alt": "logo",
+      "box": {
+        "h": 24,
+        "w": 24,
+        "x": 48,
+        "y": 28
+      },
+      "color": "#ffffffd9",
+      "depth": 7,
+      "font": "16px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*eco6RrQhxbMAAAAAAAAAAAAADgCCAQ/original",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 32,
+        "x": 1360,
+        "y": 24
+      },
+      "color": "#ffffffd9",
+      "depth": 5,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1369,
+        "y": 33
+      },
+      "color": "#ffffffd9",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1369,
+        "y": 33
+      },
+      "color": "#ffffffd9",
+      "depth": 8,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 9264,
+        "w": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "color": "#ffffffd9",
+      "depth": 5,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "main"
+    },
+    {
+      "box": {
+        "h": 740,
+        "w": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "color": "#ffffffd9",
+      "depth": 6,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 900,
+        "w": 1440,
+        "x": 0,
+        "y": -80
+      },
+      "color": "#ffffffd9",
+      "depth": 8,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 104,
+        "w": 500,
+        "x": 100,
+        "y": 177
+      },
+      "color": "#ffffffd9",
+      "depth": 9,
+      "font": "80px 700",
+      "tag": "h1",
+      "text": "Ant DesI gn X"
+    },
+    {
+      "box": {
+        "h": 104,
+        "w": 500,
+        "x": 100,
+        "y": 281
+      },
+      "color": "#ffffffd9",
+      "depth": 9,
+      "font": "80px 700",
+      "tag": "h1",
+      "text": "AI 体验新秩序"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 152,
+        "x": 100,
+        "y": 507
+      },
+      "color": "#1668dc",
+      "depth": 10,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "开始使用"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 152,
+        "x": 100,
+        "y": 507
+      },
+      "color": "#14204c",
+      "depth": 11,
+      "font": "18px 600",
+      "tag": "button",
+      "text": "开始使用"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 154,
+        "x": 276,
+        "y": 507
+      },
+      "color": "#1668dc",
+      "depth": 10,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "设计语言"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 56,
+        "w": 154,
+        "x": 276,
+        "y": 507
+      },
+      "color": "#ffffffd9",
+      "depth": 11,
+      "font": "18px 600",
+      "tag": "button",
+      "text": "设计语言"
+    },
+    {
+      "box": {
+        "h": 700,
+        "w": 1440,
+        "x": 0,
+        "y": 740
+      },
+      "color": "#ffffffd9",
+      "depth": 6,
+      "display": "flex",
+      "flex": "column",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 91,
+        "w": 1240,
+        "x": 100,
+        "y": 840
+      },
+      "color": "#ffffff",
+      "depth": 8,
+      "font": "48px 700",
+      "tag": "h2",
+      "text": "AI 设计范式 - RICH"
+    },
+    {
+      "box": {
+        "h": 60,
+        "w": 880,
+        "x": 280,
+        "y": 931
+      },
+      "color": "#ffffffa6",
+      "depth": 8,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "我们致力于构建 AI 设计理论，并在蚂蚁内部海量 AI 产品中实践、迭代。在此过程中，RICH 设计范式应运而生：角色（Role）、意图（Intention）、会话（Conversation）和混合界面（Hybrid UI）"
+    },
+    {
+      "box": {
+        "h": 775,
+        "w": 1240,
+        "x": 100,
+        "y": 835
+      },
+      "color": "#ffffffd9",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 1811,
+        "w": 1440,
+        "x": 0,
+        "y": 1400
+      },
+      "color": "#ffffffd9",
+      "depth": 6,
+      "display": "flex",
+      "flex": "column",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 91,
+        "w": 1240,
+        "x": 100,
+        "y": 1500
+      },
+      "color": "#ffffff",
+      "depth": 8,
+      "font": "48px 700",
+      "tag": "h2",
+      "text": "AI 界面解决方案"
+    },
+    {
+      "box": {
+        "h": 60,
+        "w": 880,
+        "x": 280,
+        "y": 1591
+      },
+      "color": "#ffffffa6",
+      "depth": 8,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "基于RICH，延续熟悉的 Ant Design 设计语言，全新 AGI 混合界面（Hybrid-UI）解决方案，完美融合 GUI 和自然会话交互。从唤醒到表达，从过程到反馈，合适的组件恰当的呈现在所有的人机互动过程中。"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 40,
+        "w": 39,
+        "x": 100,
+        "y": 1751
+      },
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_lkxviz/afts/img/f14LTKOFxRsAAAAAQbAAAAgADtFMAQFr/original",
+      "tag": "img"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 40,
+        "w": 39,
+        "x": 100,
+        "y": 1751
+      },
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_lkxviz/afts/img/f14LTKOFxRsAAAAAQbAAAAgADtFMAQFr/original",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 48,
+        "w": 128,
+        "x": 164,
+        "y": 1983
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "16px 700",
+      "tag": "button",
+      "text": "从唤醒开始"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 40,
+        "w": 41,
+        "x": 100,
+        "y": 2091
+      },
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_lkxviz/afts/img/dGfqSaM9ZxoAAAAAQaAAAAgADtFMAQFr/original",
+      "tag": "img"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 40,
+        "w": 41,
+        "x": 100,
+        "y": 2091
+      },
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_lkxviz/afts/img/dGfqSaM9ZxoAAAAAQaAAAAgADtFMAQFr/original",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 48,
+        "w": 128,
+        "x": 164,
+        "y": 2323
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "16px 700",
+      "tag": "button",
+      "text": "从表达开始"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 40,
+        "w": 36,
+        "x": 102,
+        "y": 2431
+      },
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_lkxviz/afts/img/BQaCTIUU-CkAAAAAQZAAAAgADtFMAQFr/original",
+      "tag": "img"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 40,
+        "w": 36,
+        "x": 102,
+        "y": 2431
+      },
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_lkxviz/afts/img/BQaCTIUU-CkAAAAAQZAAAAgADtFMAQFr/original",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 48,
+        "w": 128,
+        "x": 164,
+        "y": 2631
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "16px 700",
+      "tag": "button",
+      "text": "从确认开始"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 40,
+        "w": 30,
+        "x": 105,
+        "y": 2771
+      },
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_lkxviz/afts/img/r-DuSZG-9NIAAAAAQdAAAAgADtFMAQFr/original",
+      "tag": "img"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 40,
+        "w": 30,
+        "x": 105,
+        "y": 2771
+      },
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_lkxviz/afts/img/r-DuSZG-9NIAAAAAQdAAAAgADtFMAQFr/original",
+      "tag": "img"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 48,
+        "w": 128,
+        "x": 164,
+        "y": 2971
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "16px 700",
+      "tag": "button",
+      "text": "从反馈开始"
+    },
+    {
+      "box": {
+        "h": 4120,
+        "w": 1440,
+        "x": 0,
+        "y": 3171
+      },
+      "color": "#ffffffd9",
+      "depth": 6,
+      "display": "flex",
+      "flex": "column",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 91,
+        "w": 1240,
+        "x": 100,
+        "y": 3271
+      },
+      "color": "#ffffff",
+      "depth": 8,
+      "font": "48px 700",
+      "tag": "h2",
+      "text": "试一试 , 多种 AI 场景体验"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 880,
+        "x": 280,
+        "y": 3363
+      },
+      "color": "#ffffffa6",
+      "depth": 8,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "提供多场景解决方案 , 帮助用户提高与 AI 协作效率"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 1240,
+        "x": -1140,
+        "y": 3449
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "24px 700",
+      "tag": "h3",
+      "text": "Web 嵌入式"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 1240,
+        "x": -1140,
+        "y": 3487
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "界面操作为主 , 偶尔唤起AI指令"
+    },
+    {
+      "alt": "item.img",
+      "background": "#0c0e10cc",
+      "box": {
+        "h": 836,
+        "w": 1240,
+        "x": -1140,
+        "y": 3525
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*krfsT5zBSuUAAAAAAAAAAAAADgCCAQ/fmt.avif",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 1240,
+        "x": 100,
+        "y": 3449
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "24px 700",
+      "tag": "h3",
+      "text": "Web 独立式"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 1240,
+        "x": 100,
+        "y": 3487
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "自然语言为主 , 几乎没有界面操作"
+    },
+    {
+      "alt": "item.img",
+      "background": "#0c0e10cc",
+      "box": {
+        "h": 836,
+        "w": 1240,
+        "x": 100,
+        "y": 3525
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*YVjbTqbc7ngAAAAAAAAAAAAADgCCAQ/fmt.avif",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 1240,
+        "x": 1340,
+        "y": 3449
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "24px 700",
+      "tag": "h3",
+      "text": "Web 助手式"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 1240,
+        "x": 1340,
+        "y": 3487
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "自然语言和界面操作均衡配合使用"
+    },
+    {
+      "alt": "item.img",
+      "background": "#0c0e10cc",
+      "box": {
+        "h": 836,
+        "w": 1240,
+        "x": 1340,
+        "y": 3525
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*kCojRo0SoAAAAAAAAAAAAAAADgCCAQ/fmt.avif",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 1240,
+        "x": 2580,
+        "y": 3449
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "24px 700",
+      "tag": "h3",
+      "text": "Web 嵌入式"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 1240,
+        "x": 2580,
+        "y": 3487
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "界面操作为主 , 偶尔唤起AI指令"
+    },
+    {
+      "alt": "item.img",
+      "background": "#0c0e10cc",
+      "box": {
+        "h": 836,
+        "w": 1240,
+        "x": 2580,
+        "y": 3525
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*krfsT5zBSuUAAAAAAAAAAAAADgCCAQ/fmt.avif",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 1240,
+        "x": 3820,
+        "y": 3449
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "24px 700",
+      "tag": "h3",
+      "text": "Web 独立式"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 1240,
+        "x": 3820,
+        "y": 3487
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "自然语言为主 , 几乎没有界面操作"
+    },
+    {
+      "alt": "item.img",
+      "background": "#0c0e10cc",
+      "box": {
+        "h": 836,
+        "w": 1240,
+        "x": 3820,
+        "y": 3525
+      },
+      "color": "#ffffffd9",
+      "depth": 15,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*YVjbTqbc7ngAAAAAAAAAAAAADgCCAQ/fmt.avif",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 3,
+        "w": 1240,
+        "x": 100,
+        "y": 4393
+      },
+      "color": "#ffffffd9",
+      "depth": 10,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "background": "#141414",
+      "box": {
+        "h": 3,
+        "w": 24,
+        "x": 684,
+        "y": 4393
+      },
+      "color": "#00000000",
+      "depth": 12,
+      "font": "0px 400",
+      "tag": "button",
+      "text": "1"
+    },
+    {
+      "background": "#141414",
+      "box": {
+        "h": 3,
+        "w": 16,
+        "x": 716,
+        "y": 4393
+      },
+      "color": "#00000000",
+      "depth": 12,
+      "font": "0px 400",
+      "tag": "button",
+      "text": "2"
+    },
+    {
+      "background": "#141414",
+      "box": {
+        "h": 3,
+        "w": 16,
+        "x": 740,
+        "y": 4393
+      },
+      "color": "#00000000",
+      "depth": 12,
+      "font": "0px 400",
+      "tag": "button",
+      "text": "3"
+    },
+    {
+      "box": {
+        "h": 91,
+        "w": 1240,
+        "x": 100,
+        "y": 4508
+      },
+      "color": "#ffffff",
+      "depth": 8,
+      "font": "48px 700",
+      "tag": "h2",
+      "text": "组件丰富 , 选用自如"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 880,
+        "x": 280,
+        "y": 4599
+      },
+      "color": "#ffffffa6",
+      "depth": 8,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "Ant Design X 全新 AI 组件 , 大量实用组件满足你的需求 , 灵活定制与拓展"
+    },
+    {
+      "alt": "icon",
+      "box": {
+        "h": 58,
+        "w": 53,
+        "x": 593,
+        "y": 4824
+      },
+      "color": "#ffffffd9",
+      "depth": 14,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 193,
+        "x": 654,
+        "y": 4822
+      },
+      "color": "#ffffffd9",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "h4",
+      "text": "你好, 我是 Ant Design X"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 240,
+        "x": 128,
+        "y": 4993
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "欢迎组件 唤醒"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 240,
+        "x": 128,
+        "y": 5033
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "开箱即用、易于配置、极致体验的通用图表库"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 256,
+        "x": 592,
+        "y": 5215
+      },
+      "color": "#ffffff73",
+      "depth": 16,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "基于 Ant Design 的 AGI 产品智能解决方案, 创造更美好的智能视界"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 167,
+        "x": 608,
+        "y": 5276
+      },
+      "color": "#ffffffd9",
+      "depth": 20,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "Ant Design X 全新升级了什么?"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 171,
+        "x": 608,
+        "y": 5331
+      },
+      "color": "#ffffffd9",
+      "depth": 20,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "快来了解全新AI时代的设计范式!"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 238,
+        "x": 128,
+        "y": 5416
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "用户推荐 唤醒"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 238,
+        "x": 128,
+        "y": 5455
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "让首次接触AI产品的用户快速理解AI能做什么"
+    },
+    {
+      "alt": "thumbnails",
+      "box": {
+        "h": 167,
+        "w": 290,
+        "x": 575,
+        "y": 5614
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_k0vkmw/afts/img/A*-c6EQ7U4-4oAAAAAAAAAAAAADsR-AQ/fmt.avif",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 240,
+        "x": 128,
+        "y": 5838
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "快捷命令 表达"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 240,
+        "x": 128,
+        "y": 5877
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "开箱即用、易于配置、极致体验的通用图表库"
+    },
+    {
+      "alt": "thumbnails",
+      "box": {
+        "h": 42,
+        "w": 173,
+        "x": 634,
+        "y": 6099
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_k0vkmw/afts/img/A*WxlPTYGnviYAAAAAAAAAAAAADsR-AQ/fmt.avif",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 240,
+        "x": 128,
+        "y": 6260
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "进度加载 确认"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 240,
+        "x": 128,
+        "y": 6300
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "开箱即用、易于配置、极致体验的通用图表库"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 769,
+        "y": 6465
+      },
+      "color": "#ffffffd9",
+      "depth": 16,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 769,
+        "y": 6465
+      },
+      "color": "#ffffffd9",
+      "depth": 17,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 795,
+        "y": 6465
+      },
+      "color": "#ffffffd9",
+      "depth": 16,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 795,
+        "y": 6465
+      },
+      "color": "#ffffffd9",
+      "depth": 17,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 821,
+        "y": 6465
+      },
+      "color": "#ffffffd9",
+      "depth": 16,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 821,
+        "y": 6465
+      },
+      "color": "#ffffffd9",
+      "depth": 17,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 240,
+        "x": 128,
+        "y": 6683
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "结果操作 反馈"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 240,
+        "x": 128,
+        "y": 6722
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "开箱即用、易于配置、极致体验的通用图表库"
+    },
+    {
+      "alt": "thumbnails",
+      "box": {
+        "h": 166,
+        "w": 290,
+        "x": 575,
+        "y": 6882
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_k0vkmw/afts/img/A*7nVeT7Qg-QoAAAAAAAAAAAAADsR-AQ/fmt.avif",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 240,
+        "x": 128,
+        "y": 7105
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "管理对话 通用"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 240,
+        "x": 128,
+        "y": 7144
+      },
+      "color": "#ffffffd9",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "开箱即用、易于配置、极致体验的通用图表库"
+    },
+    {
+      "box": {
+        "h": 2013,
+        "w": 1440,
+        "x": 0,
+        "y": 7251
+      },
+      "color": "#ffffffd9",
+      "depth": 6,
+      "display": "flex",
+      "flex": "column",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 91,
+        "w": 1240,
+        "x": 100,
+        "y": 7351
+      },
+      "color": "#ffffff",
+      "depth": 8,
+      "font": "48px 700",
+      "tag": "h2",
+      "text": "AI 设计语言与研发框架"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 880,
+        "x": 280,
+        "y": 7443
+      },
+      "color": "#ffffffa6",
+      "depth": 8,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "配套生态 , 让你快速搭建网站应用"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 384,
+        "w": 1240,
+        "x": 100,
+        "y": 7529
+      },
+      "color": "#ffffff",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "RICH 设计指南 意图、角色、会话、混合 UI"
+    },
+    {
+      "alt": "thumbnails",
+      "box": {
+        "h": 112,
+        "w": 261,
+        "x": 590,
+        "y": 7636
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*poTnSZrI7-oAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 147,
+        "x": 128,
+        "y": 7827
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "RICH 设计指南"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 147,
+        "x": 128,
+        "y": 7866
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "意图、角色、会话、混合 UI"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 384,
+        "w": 1240,
+        "x": 100,
+        "y": 7941
+      },
+      "color": "#ffffff",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/hybrid-ui-design-cn",
+      "tag": "a",
+      "text": "组件设计指引 全局样式、设计模式"
+    },
+    {
+      "alt": "thumbnails",
+      "box": {
+        "h": 97,
+        "w": 184,
+        "x": 628,
+        "y": 8055
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*Off_QYoo0GIAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 120,
+        "x": 128,
+        "y": 8239
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "组件设计指引"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 120,
+        "x": 128,
+        "y": 8278
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "全局样式、设计模式"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 384,
+        "w": 1240,
+        "x": 100,
+        "y": 8353
+      },
+      "color": "#ffffff",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/overview-cn",
+      "tag": "a",
+      "text": "组件库 Ant Design of React / Angular / Vue"
+    },
+    {
+      "alt": "thumbnails",
+      "box": {
+        "h": 63,
+        "w": 227,
+        "x": 607,
+        "y": 8485
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*AhrTT6K2vU0AAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 199,
+        "x": 128,
+        "y": 8651
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "组件库"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 199,
+        "x": 128,
+        "y": 8690
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "Ant Design of React / Angular / Vue"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 114,
+        "w": 1240,
+        "x": 100,
+        "y": 8765
+      },
+      "color": "#ffffff",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://ant.design/",
+      "tag": "a",
+      "text": "Ant Design 企业级 UI 设计语言和 React 组件库"
+    },
+    {
+      "alt": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*dUzuRJes4pUAAAAAAAAAAAAADgCCAQ/original",
+      "background": "#ffffff1a",
+      "box": {
+        "h": 56,
+        "w": 56,
+        "x": 128,
+        "y": 8794
+      },
+      "color": "#ffffff",
+      "depth": 11,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*dUzuRJes4pUAAAAAAAAAAAAADgCCAQ/original",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 190,
+        "x": 196,
+        "y": 8793
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "Ant Design"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 190,
+        "x": 196,
+        "y": 8833
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "企业级 UI 设计语言和 React 组件库"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 114,
+        "w": 1240,
+        "x": 100,
+        "y": 8908
+      },
+      "color": "#ffffff",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://mobile.ant.design/",
+      "tag": "a",
+      "text": "Ant Design Mobile Ant Design移动端 UI 组件库"
+    },
+    {
+      "alt": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*rzh3RoWC9zAAAAAAAAAAAAAADgCCAQ/original",
+      "background": "#ffffff1a",
+      "box": {
+        "h": 56,
+        "w": 56,
+        "x": 128,
+        "y": 8937
+      },
+      "color": "#ffffff",
+      "depth": 11,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*rzh3RoWC9zAAAAAAAAAAAAAADgCCAQ/original",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 173,
+        "x": 196,
+        "y": 8936
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "Ant Design Mobile"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 173,
+        "x": 196,
+        "y": 8975
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "Ant Design移动端 UI 组件库"
+    },
+    {
+      "background": "#ffffff1a",
+      "box": {
+        "h": 114,
+        "w": 1240,
+        "x": 100,
+        "y": 9050
+      },
+      "color": "#ffffff",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://antv.vision/",
+      "tag": "a",
+      "text": "AntV 全新一代数据可视化解决方案"
+    },
+    {
+      "alt": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*9MFyQ77L6E4AAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "background": "#ffffff1a",
+      "box": {
+        "h": 56,
+        "w": 56,
+        "x": 128,
+        "y": 9079
+      },
+      "color": "#ffffff",
+      "depth": 11,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*9MFyQ77L6E4AAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 31,
+        "w": 156,
+        "x": 196,
+        "y": 9078
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "20px 700",
+      "tag": "h3",
+      "text": "AntV"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 156,
+        "x": 196,
+        "y": 9117
+      },
+      "color": "#ffffff",
+      "depth": 12,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "全新一代数据可视化解决方案"
+    }
+  ],
+  "page": {
+    "h": 9264,
+    "w": 1440
+  },
+  "text": "Ant Design X Ant DesI gn X AI 体验新秩序 Ant Design 团队匠心呈现 RICH 设计范式，打造卓越 AI 界面解决方案，引领智能新体验。 开始使用 设计语言 AI 设计范式 - RICH 我们致力于构建 AI 设计理论，并在蚂蚁内部海量 AI 产品中实践、迭代。在此过程中，RICH 设计范式应运而生：角色（Role）、意图（Intention）、会话（Conversation）和混合界面（Hybrid UI） AI 界面解决方案 基于RICH，延续熟悉的 Ant Design 设计语言，全新 AGI 混合界面（Hybrid-UI）解决方案，完美融合 GUI 和自然会话交互。从唤醒到表达，从过程到反馈，合适的组件恰当的呈现在所有的人机互动过程中。 1.唤醒 轻松唤醒 , 即刻吸引 可以让首次接触的用户快速理解AI能做什么, 告知用户AI可实现的意图范围, 降低用户成本 从唤醒开始 2.表达 简单表达 , 随时反馈 让用户知道如何快捷且正确的表达意图, 减少AI的不理解风险, 看清自己发送的内容 从表达开始 3.确认 过程确认 , 尽在掌握 让用户知道该任务的AI执行运转情况, 缓解用户等待焦虑, 有掌控感 从确认开始 4.反馈 结果反馈 , 谁能不信 让用户清晰看到并信任AI任务完成的情况, 并快速应用AI生成结果 从反馈开始 试一试 , 多种 AI 场景体验 提供多场景解决方案 , 帮助用户提高与 AI 协作效率 Web 嵌入式 界面操作为主 , 偶尔唤起AI指令 Web 独立式 自然语言为主 , 几乎没有界面操作 Web 助手式 自然语言和界面操作均衡配合使用 Web 嵌入式 界面操作为主 , 偶尔唤起AI指令 Web 独立式 自然语言为主 , 几乎没有界面操作 1 2 3 组件丰富 , 选用自如 Ant Design X 全新 AI 组件 , 大量实用组件满足你的需求 , 灵活定制与拓展 你好, 我是 Ant Design X 基于 Ant Design 的 AGI 产品智能解决方案, 创造更美好的智能视界 欢迎组件 唤醒 开箱即用、易于配置、极致体验的通用图表库 🎉 你好, 我是全新 AI 产品创造助手 基于 Ant Design 的 AGI 产品智能解决方案, 创造更美好的智能视界 Ant Design X 全新升级了什么? 快来了解全新AI时代的设计范式! 用户推荐 唤醒 让首次接触AI产品的用户快速理解AI能做什么 快捷命令 表达 开箱即用、易于配置、极致体验的通用图表库 进度加载 确认 开箱即用、易于配置、极致体验的通用图表库 Ant Design X 全新升级了什么? 结果操作 反馈 开箱即用、易于配置、极致体验的通用图表库 管理对话 通用 开箱即用、易于配置、极致体验的通用图表库 AI 设计语言与研发框架 配套生态 , 让你快速搭建网站应用 RICH 设计指南 意图、角色、会话、混合 UI 组件设计指引 全局样式、设计模式 组件库 Ant Design of React / Angular / Vue Ant Design 企业级 UI 设计语言和 React 组件库 Ant Design Mobile Ant Design移动端 UI 组件库 AntV 全新一代数据可视化解决方案",
+  "title": "Ant Design X - AI界面解决方案",
+  "url": "https://x.ant.design/index-cn",
+  "viewport": {
+    "h": 900,
+    "w": 1440
+  }
+}

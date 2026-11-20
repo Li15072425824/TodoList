@@ -1,0 +1,3265 @@
+{
+  "a11y": {
+    "images_without_alt": 0,
+    "landmarks": {
+      "banner": 1,
+      "main": 1,
+      "navigation": 1
+    },
+    "lang": "zh-CN",
+    "unnamed_controls": 5,
+    "unnamed_examples": [
+      "input",
+      "a",
+      "a",
+      "a",
+      "a"
+    ]
+  },
+  "assets": {
+    "images": [
+      {
+        "h": 40,
+        "w": 40
+      },
+      {
+        "h": 2160,
+        "w": 3840
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 2970,
+        "w": 3960
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      },
+      {
+        "h": 1080,
+        "w": 1920
+      }
+    ]
+  },
+  "design": {
+    "backgrounds": [
+      {
+        "count": 4,
+        "value": "#00000005"
+      },
+      {
+        "count": 2,
+        "value": "#ffffff"
+      },
+      {
+        "count": 1,
+        "value": "#000000e0"
+      },
+      {
+        "count": 1,
+        "value": "#e6f4ff"
+      }
+    ],
+    "font_sizes": [
+      {
+        "count": 96,
+        "value": "14px"
+      },
+      {
+        "count": 10,
+        "value": "16px"
+      },
+      {
+        "count": 4,
+        "value": "12px"
+      },
+      {
+        "count": 4,
+        "value": "24px"
+      },
+      {
+        "count": 2,
+        "value": "16.8px"
+      },
+      {
+        "count": 1,
+        "value": "20px"
+      },
+      {
+        "count": 1,
+        "value": "32px"
+      }
+    ],
+    "font_weights": [
+      {
+        "count": 94,
+        "value": "400"
+      },
+      {
+        "count": 23,
+        "value": "500"
+      },
+      {
+        "count": 1,
+        "value": "600"
+      }
+    ],
+    "fonts": [
+      {
+        "count": 85,
+        "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+      },
+      {
+        "count": 32,
+        "value": "Avenir, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+      },
+      {
+        "count": 1,
+        "value": "AlibabaPuHuiTi, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+      }
+    ],
+    "max_widths": [],
+    "radii": [
+      {
+        "count": 34,
+        "value": "8px"
+      },
+      {
+        "count": 3,
+        "value": "20px"
+      },
+      {
+        "count": 2,
+        "value": "24px"
+      },
+      {
+        "count": 1,
+        "value": "100px"
+      },
+      {
+        "count": 1,
+        "value": "6px"
+      }
+    ],
+    "shadows": [
+      {
+        "count": 15,
+        "value": "rgba(143, 168, 191, 0.35) 0px 8px 20px 0px"
+      },
+      {
+        "count": 1,
+        "value": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px"
+      }
+    ],
+    "spacing": [
+      {
+        "count": 99,
+        "value": "4px"
+      },
+      {
+        "count": 88,
+        "value": "14px"
+      },
+      {
+        "count": 30,
+        "value": "34px"
+      },
+      {
+        "count": 28,
+        "value": "16px"
+      },
+      {
+        "count": 23,
+        "value": "60px"
+      },
+      {
+        "count": 14,
+        "value": "8px"
+      },
+      {
+        "count": 6,
+        "value": "12px"
+      },
+      {
+        "count": 5,
+        "value": "36px"
+      },
+      {
+        "count": 4,
+        "value": "24px"
+      },
+      {
+        "count": 4,
+        "value": "38.4px"
+      },
+      {
+        "count": 4,
+        "value": "14.4px"
+      },
+      {
+        "count": 2,
+        "value": "3.10001px"
+      },
+      {
+        "count": 2,
+        "value": "32px"
+      },
+      {
+        "count": 2,
+        "value": "7px"
+      },
+      {
+        "count": 2,
+        "value": "11px"
+      },
+      {
+        "count": 2,
+        "value": "48px"
+      },
+      {
+        "count": 1,
+        "value": "80px"
+      },
+      {
+        "count": 1,
+        "value": "2px"
+      },
+      {
+        "count": 1,
+        "value": "164px"
+      }
+    ],
+    "text_colors": [
+      {
+        "count": 107,
+        "value": "#000000e0"
+      },
+      {
+        "count": 8,
+        "value": "#000000a6"
+      },
+      {
+        "count": 1,
+        "value": "#ffffff"
+      },
+      {
+        "count": 1,
+        "value": "#1677ff"
+      },
+      {
+        "count": 1,
+        "value": "#010408e1"
+      }
+    ]
+  },
+  "forms": [],
+  "headings": [
+    {
+      "level": 1,
+      "text": "Ant Design X"
+    },
+    {
+      "level": 1,
+      "text": "RICH 设计范式简介"
+    },
+    {
+      "level": 2,
+      "text": "一、What？什么是 RICH 设计范式？"
+    },
+    {
+      "level": 2,
+      "text": "二、WHY? 为什么是 RICH 设计范式？"
+    },
+    {
+      "level": 2,
+      "text": "三、How？如何应用 RICH AI 设计范式？"
+    },
+    {
+      "level": 2,
+      "text": "附"
+    }
+  ],
+  "lang": "zh-CN",
+  "layouts": [
+    {
+      "blocks": [
+        {
+          "h": 80,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 1440,
+          "y": 0
+        },
+        {
+          "gap": 24,
+          "h": 48,
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "nav",
+          "w": 708,
+          "y": 16
+        },
+        {
+          "h": 11586,
+          "heading": "RICH 设计范式简介",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "main",
+          "w": 1440,
+          "y": 80
+        },
+        {
+          "h": 115,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 148,
+          "y": 116
+        },
+        {
+          "h": 11586,
+          "heading": "RICH 设计范式简介",
+          "pad": [
+            0,
+            164,
+            32,
+            48
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 1140,
+          "y": 80
+        }
+      ],
+      "page_h": 11666,
+      "page_w": 1440,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 0
+      },
+      "width": 1440
+    },
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 720,
+          "y": 16
+        },
+        {
+          "h": 10657,
+          "heading": "RICH 设计范式简介",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "main",
+          "w": 768,
+          "y": 80
+        },
+        {
+          "h": 8949,
+          "heading": "RICH 设计范式简介",
+          "pad": [
+            0,
+            48,
+            0,
+            48
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 576,
+          "y": 80
+        },
+        {
+          "background": "#f0f3fa",
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 576,
+            "x": 0
+          },
+          "h": 1695,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 576,
+          "y": 9043
+        },
+        {
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 576,
+            "x": 0
+          },
+          "h": 1598,
+          "heading": "相关资源",
+          "pad": [
+            40,
+            48,
+            40,
+            48
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 576,
+          "y": 9043
+        },
+        {
+          "h": 1498,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 9083
+        },
+        {
+          "column": {
+            "max_w": 1200,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 576,
+            "x": 0
+          },
+          "h": 97,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 576,
+          "y": 10640
+        }
+      ],
+      "page_h": 10737,
+      "page_w": 768,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 0
+      },
+      "width": 768
+    },
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 342,
+          "y": 16
+        },
+        {
+          "h": 10700,
+          "heading": "RICH 设计范式简介",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "main",
+          "w": 390,
+          "y": 80
+        },
+        {
+          "h": 8991,
+          "heading": "RICH 设计范式简介",
+          "pad": [
+            0,
+            48,
+            0,
+            48
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 390,
+          "y": 80
+        },
+        {
+          "background": "#f0f3fa",
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 1695,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "footer",
+          "w": 390,
+          "y": 9085
+        },
+        {
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 1598,
+          "heading": "相关资源",
+          "pad": [
+            40,
+            48,
+            40,
+            48
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 390,
+          "y": 9085
+        },
+        {
+          "h": 1498,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 9125
+        },
+        {
+          "column": {
+            "max_w": 1200,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 97,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 10683
+        }
+      ],
+      "page_h": 10780,
+      "page_w": 390,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 0
+      },
+      "width": 390
+    }
+  ],
+  "links": [
+    {
+      "href": "https://x.ant.design/index-cn",
+      "text": "Ant Design X"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "设计"
+    },
+    {
+      "href": "https://x.ant.design/docs/react/introduce-cn",
+      "text": "研发"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn/",
+      "text": "组件"
+    },
+    {
+      "href": "https://x.ant.design/x-markdowns/introduce-cn",
+      "text": "X Markdown"
+    },
+    {
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "text": "X SDK"
+    },
+    {
+      "href": "https://x.ant.design/x-cards/introduce-cn",
+      "text": "X Card"
+    },
+    {
+      "href": "https://x.ant.design/x-skills/introduce-cn",
+      "text": "X Skill"
+    },
+    {
+      "href": "https://x.ant.design/docs/playground/ultramodern-cn",
+      "text": "演示"
+    },
+    {
+      "href": "https://ant-design-x.antgroup.com/index-cn",
+      "text": "国内镜像"
+    },
+    {
+      "href": "https://github.com/ant-design/x",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "RICH 设计范式简介"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/role-design-cn",
+      "text": "介绍"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/authentic-consistent-cn",
+      "text": "真实一致"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/smooth-natural-cn",
+      "text": "流畅自然"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/human-touch-cn",
+      "text": "有人情味"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/intention-introduce-cn",
+      "text": "介绍"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/define-intention-type-cn",
+      "text": "明确意图类型"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/provide-intention-expectation-cn",
+      "text": "提供意图预期"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/guide-intention-expression-cn",
+      "text": "引导意图表达"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/conversation-design-cn",
+      "text": "介绍"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/start-cn",
+      "text": "开始"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/follow-up-cn",
+      "text": "追问"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/hint-cn",
+      "text": "提示"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/confirm-cn",
+      "text": "确认"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/error-cn",
+      "text": "错误"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/end-cn",
+      "text": "结束"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/hybrid-ui-design-cn",
+      "text": "介绍"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/wake-up-ai-icon-cn",
+      "text": "唤醒｜AI 标识"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/wake-up-welcome-message-cn",
+      "text": "唤醒｜欢迎提示"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/expression-user-input-cn",
+      "text": "表达｜用户输入"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/expression-user-send-cn",
+      "text": "表达｜用户发送"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/confirm-generation-process-cn",
+      "text": "确认｜生成过程"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/feedback-result-application-cn",
+      "text": "反馈｜结果应用"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/feedback-result-display-cn",
+      "text": "反馈｜结果展示"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "一、What？什么是 RICH 设计范式？"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "二、WHY? 为什么是 RICH 设计范式？"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "三、How？如何应用 RICH AI 设计范式？"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "附"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/docs/spec/introduce.zh-CN.md",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": ""
+    }
+  ],
+  "outline": [
+    {
+      "box": {
+        "h": 80,
+        "w": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 4,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "header"
+    },
+    {
+      "box": {
+        "h": 80,
+        "w": 194,
+        "x": 3,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 5,
+      "font": "28px 700",
+      "tag": "h1",
+      "text": "Ant Design X"
+    },
+    {
+      "box": {
+        "h": 80,
+        "w": 194,
+        "x": 3,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "20px 400",
+      "href": "https://x.ant.design/index-cn",
+      "tag": "a",
+      "text": "Ant Design X"
+    },
+    {
+      "alt": "logo",
+      "box": {
+        "h": 32,
+        "w": 32,
+        "x": 35,
+        "y": 24
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "20px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*eco6RrQhxbMAAAAAAAAAAAAADgCCAQ/original",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 708,
+        "x": 366,
+        "y": 16
+      },
+      "color": "#000000e0",
+      "depth": 5,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "nav"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 32,
+        "x": 390,
+        "y": 24
+      },
+      "color": "#000000a6",
+      "depth": 7,
+      "font": "15px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 15,
+        "w": 15,
+        "x": 399,
+        "y": 33
+      },
+      "color": "#000000a6",
+      "depth": 8,
+      "font": "15px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 15,
+        "w": 15,
+        "x": 399,
+        "y": 33
+      },
+      "color": "#000000a6",
+      "depth": 9,
+      "font": "15px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 436,
+        "y": 27
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "16px 500",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "设计"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 492,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/docs/react/introduce-cn",
+      "tag": "a",
+      "text": "研发"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 548,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/components/introduce-cn/",
+      "tag": "a",
+      "text": "组件"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 90,
+        "x": 604,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-markdowns/introduce-cn",
+      "tag": "a",
+      "text": "X Markdown"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 46,
+        "x": 718,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "tag": "a",
+      "text": "X SDK"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 49,
+        "x": 788,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-cards/introduce-cn",
+      "tag": "a",
+      "text": "X Card"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 44,
+        "x": 862,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-skills/introduce-cn",
+      "tag": "a",
+      "text": "X Skill"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 930,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/docs/playground/ultramodern-cn",
+      "tag": "a",
+      "text": "演示"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 64,
+        "x": 986,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://ant-design-x.antgroup.com/index-cn",
+      "tag": "a",
+      "text": "国内镜像"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 87,
+        "x": 1174,
+        "y": 24
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "2.10.0"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 43,
+        "x": 1187,
+        "y": 28
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "16px 400",
+      "id": "_r_2k_",
+      "name": "",
+      "placeholder": "",
+      "role": "combobox",
+      "tag": "input",
+      "type": "text"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 1236,
+        "y": 34
+      },
+      "color": "#00000040",
+      "depth": 9,
+      "font": "12px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 1236,
+        "y": 34
+      },
+      "color": "#00000040",
+      "depth": 10,
+      "font": "12px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1261,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "中 En"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1301,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 20,
+        "x": 1311,
+        "y": 29
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 20,
+        "x": 1311,
+        "y": 29
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1341,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "16px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1353,
+        "y": 32
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "16px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1353,
+        "y": 32
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "16px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1381,
+        "y": 20
+      },
+      "color": "#1677ff",
+      "depth": 6,
+      "font": "14px 400",
+      "href": "https://github.com/ant-design/x",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1381,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1394,
+        "y": 33
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1394,
+        "y": 33
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 11586,
+        "w": 1440,
+        "x": 0,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 4,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "main"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 1312,
+        "w": 300,
+        "x": 0,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "display": "block",
+      "font": "14px 400",
+      "role": "menu",
+      "tag": "ul"
+    },
+    {
+      "background": "#e6f4ff",
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 84
+      },
+      "color": "#1677ff",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "RICH 设计范式简介"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 84
+      },
+      "color": "#1677ff",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "RICH 设计范式简介"
+    },
+    {
+      "box": {
+        "h": 224,
+        "w": 291,
+        "x": 4,
+        "y": 128
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "none",
+      "tag": "li",
+      "text": "🎭 Role 角色设计 介绍 真实一致 流畅自然 有人情味"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 128
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "div",
+      "text": "🎭 Role 角色设计"
+    },
+    {
+      "background": "#00000005",
+      "box": {
+        "h": 180,
+        "w": 291,
+        "x": 4,
+        "y": 172
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "id": "rc-menu-uuid-_r_v_-🎭 Role 角色设计-popup",
+      "role": "menu",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 176
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 186
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/role-design-cn",
+      "tag": "a",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 220
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "真实一致"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 56,
+        "x": 68,
+        "y": 230
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/authentic-consistent-cn",
+      "tag": "a",
+      "text": "真实一致"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 264
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "流畅自然"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 56,
+        "x": 68,
+        "y": 274
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/smooth-natural-cn",
+      "tag": "a",
+      "text": "流畅自然"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 308
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "有人情味"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 56,
+        "x": 68,
+        "y": 318
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/human-touch-cn",
+      "tag": "a",
+      "text": "有人情味"
+    },
+    {
+      "box": {
+        "h": 224,
+        "w": 291,
+        "x": 4,
+        "y": 356
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "none",
+      "tag": "li",
+      "text": "❤️ Intention 意图设计 介绍 明确意图类型 提供意图预期 引导意图表达"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 356
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "div",
+      "text": "❤️ Intention 意图设计"
+    },
+    {
+      "background": "#00000005",
+      "box": {
+        "h": 180,
+        "w": 291,
+        "x": 4,
+        "y": 400
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "id": "rc-menu-uuid-_r_v_-❤️ Intention 意图设计-popup",
+      "role": "menu",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 404
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 414
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/intention-introduce-cn",
+      "tag": "a",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 448
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "明确意图类型"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 84,
+        "x": 68,
+        "y": 458
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/define-intention-type-cn",
+      "tag": "a",
+      "text": "明确意图类型"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 492
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "提供意图预期"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 84,
+        "x": 68,
+        "y": 502
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/provide-intention-expectation-cn",
+      "tag": "a",
+      "text": "提供意图预期"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 536
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "引导意图表达"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 84,
+        "x": 68,
+        "y": 546
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/guide-intention-expression-cn",
+      "tag": "a",
+      "text": "引导意图表达"
+    },
+    {
+      "box": {
+        "h": 356,
+        "w": 291,
+        "x": 4,
+        "y": 584
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "none",
+      "tag": "li",
+      "text": "💭 Conversation 会话设计 介绍 开始 追问 提示 确认 错误 结束"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 584
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "div",
+      "text": "💭 Conversation 会话设计"
+    },
+    {
+      "background": "#00000005",
+      "box": {
+        "h": 312,
+        "w": 291,
+        "x": 4,
+        "y": 628
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "id": "rc-menu-uuid-_r_v_-💭 Conversation 会话设计-popup",
+      "role": "menu",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 632
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 642
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/conversation-design-cn",
+      "tag": "a",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 676
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "开始"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 686
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/start-cn",
+      "tag": "a",
+      "text": "开始"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 720
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "追问"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 730
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/follow-up-cn",
+      "tag": "a",
+      "text": "追问"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 764
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "提示"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 774
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/hint-cn",
+      "tag": "a",
+      "text": "提示"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 808
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "确认"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 818
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/confirm-cn",
+      "tag": "a",
+      "text": "确认"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 852
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "错误"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 862
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/error-cn",
+      "tag": "a",
+      "text": "错误"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 896
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "结束"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 906
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/end-cn",
+      "tag": "a",
+      "text": "结束"
+    },
+    {
+      "box": {
+        "h": 400,
+        "w": 291,
+        "x": 4,
+        "y": 944
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "none",
+      "tag": "li",
+      "text": "💻 Hybrid UI 混合界面设计 介绍 唤醒｜AI 标识 唤醒｜欢迎提示 表达｜用户输入 表达｜用户发送 确认｜生成过程 反馈｜结果应用 反馈｜结果展示"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 944
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "div",
+      "text": "💻 Hybrid UI 混合界面设计"
+    },
+    {
+      "background": "#00000005",
+      "box": {
+        "h": 356,
+        "w": 291,
+        "x": 4,
+        "y": 988
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "id": "rc-menu-uuid-_r_v_-💻 Hybrid UI 混合界面设计-popup",
+      "role": "menu",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 992
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 28,
+        "x": 68,
+        "y": 1002
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/hybrid-ui-design-cn",
+      "tag": "a",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1036
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "唤醒｜AI 标识"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 87,
+        "x": 68,
+        "y": 1046
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/wake-up-ai-icon-cn",
+      "tag": "a",
+      "text": "唤醒｜AI 标识"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1080
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "唤醒｜欢迎提示"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 98,
+        "x": 68,
+        "y": 1090
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/wake-up-welcome-message-cn",
+      "tag": "a",
+      "text": "唤醒｜欢迎提示"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1124
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "表达｜用户输入"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 98,
+        "x": 68,
+        "y": 1134
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/expression-user-input-cn",
+      "tag": "a",
+      "text": "表达｜用户输入"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1168
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "表达｜用户发送"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 98,
+        "x": 68,
+        "y": 1178
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/expression-user-send-cn",
+      "tag": "a",
+      "text": "表达｜用户发送"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1212
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "确认｜生成过程"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 98,
+        "x": 68,
+        "y": 1222
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/confirm-generation-process-cn",
+      "tag": "a",
+      "text": "确认｜生成过程"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1256
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "反馈｜结果应用"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 98,
+        "x": 68,
+        "y": 1266
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/feedback-result-application-cn",
+      "tag": "a",
+      "text": "反馈｜结果应用"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1300
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "反馈｜结果展示"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 98,
+        "x": 68,
+        "y": 1310
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/docs/spec/feedback-result-display-cn",
+      "tag": "a",
+      "text": "反馈｜结果展示"
+    },
+    {
+      "box": {
+        "h": 115,
+        "w": 148,
+        "x": 1284,
+        "y": 116
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 124
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "一、What？什么是 RICH 设计范式？"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 151
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "二、WHY? 为什么是 RICH 设计范式？"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 178
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "三、How？如何应用 RICH AI 设计范式？"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 205
+      },
+      "color": "#010408e1",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "附"
+    },
+    {
+      "box": {
+        "h": 11586,
+        "w": 1140,
+        "x": 300,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "article"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 314,
+        "x": 348,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "32px 600",
+      "tag": "h1",
+      "text": "RICH 设计范式简介"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 646,
+        "y": 93
+      },
+      "color": "#1677ff",
+      "depth": 12,
+      "font": "32px 600",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/docs/spec/introduce.zh-CN.md",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 646,
+        "y": 93
+      },
+      "color": "#00000073",
+      "depth": 13,
+      "font": "16px 600",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 646,
+        "y": 93
+      },
+      "color": "#00000073",
+      "depth": 14,
+      "font": "16px 600",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 169
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 169
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*48RLR41kwHIAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 707
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "2022 年 11 月 30 日，OpenAI 发布 ChatGPT 3.5，带领人类走向 AGI 人机交互新世纪。AGI 让自然人机交互成为现实，「语言」这一简单、自然的交互方式，一度威胁到统治人机交互领域长达几十年之久的 GUI（图形用户界面）。设计者们纷纷开始各种各样的尝试与改造："
+    },
+    {
+      "box": {
+        "h": 112,
+        "w": 928,
+        "x": 348,
+        "y": 777
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 903
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "无一例外，设计者们在起初，大胆而坚定的拥抱「会话式交互」，仿佛它无所不能，即将成为人机交互领域的主宰。然而，随着时间的流逝，当人们从自然语言交互的“热恋”冷静下来时，才发现纵然会话式交互有着简单易上手等优势，但也存在着诸多的弊端。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 993
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 993
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*RWo-R660OAoAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 1531
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "一个重要的问题开始浮出水面： 到底 AI 产品界面设计该如何进行？ 在蚂蚁内部的 AI 产品设计实践中，我们也经常冒出类似的困惑："
+    },
+    {
+      "box": {
+        "h": 168,
+        "w": 928,
+        "x": 348,
+        "y": 1573
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 1755
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "这些困惑的本质来源于，我们缺乏对当下融合了多种交互模式的「AI 产品界面设计」缺乏清晰的定义和认知，因而在如何创造好的 AI 体验上遇到了迷茫。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 1845
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 1845
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*5I5RRLM5N3kAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 2383
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "因此从 2023 年底开始，我们团队抽调了各个业务领域的设计师，横向成立了 AI 设计研究小组，开始尝试去定义和理解所谓的「AI + Design」是什么、该怎么做的设计命题。"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 928,
+        "x": 348,
+        "y": 2453
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "在这方面，无论是学术界还是企业界，都有着不少相关的研究和应用。站在巨人的肩膀上，我们力图构建出一套适用于当下的 AI 设计理论，并同时在蚂蚁内部涌现的海量 AI 产品中，去实践和迭代我们的思想。在这个过程中，一套系统性的 AI 设计理论和方法开始涌现——《RICH 设计范式——创造卓越 AI 产品体验》。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 2571
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 2571
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*kMJkQLqIftsAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 3113
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "一what什么是-rich-设计范式",
+      "tag": "h2",
+      "text": "一、What？什么是 RICH 设计范式？"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 3113
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 3160
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "RICH 是我们提出来的一个 AI 界面设计范式，好比 WIMP 范式之于图形用户界面。"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 3202
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "ACM SIGCHI 2005（人机交互顶会）曾经定义过，人机交互的核心问题可以分为三个层面："
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 928,
+        "x": 348,
+        "y": 3244
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ol"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 3342
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "其中界面范式，是每一个人机交互新技术诞生之时，设计者最需要去关注和定义的层面。界面范式定义了设计者所应该关注的设计要素是什么，基于此才能定义什么是好的设计和该如何进行好的设计。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 3432
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 3432
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*g2WzS7qPuTcAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 3970
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "人们追求用户界面的革新，本质上是想要拓宽人机交互的带宽，更大程度解放人的生产力。在整个人机交互的发展过程中，出现了多种广泛使用的用户界面类型，从最早的批处理界面，到后来的命令行界面，再到当下最为流行的图形用户界面。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 4060
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 4060
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*cXCbRJO2Rl4AAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 928,
+        "x": 348,
+        "y": 4598
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "基于 WIMP (Window, Icon, Menu, Point Device) 界面范式 的图形用户界面，最早诞生于 1970 年代的施乐公司，而后在 1980 年代相继被苹果 Macintosh 电脑和微软 windows 电脑借鉴并发扬光大。基于桌面隐喻的 WIMP 界面由于其语法极小化，对象可视化和快速语义反馈等优点，持续统治着界面设计领域 40 年有余。"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 4696
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "如下图案例，我们如今仍在使用的 WIMP 图形用户界面，与最早的样子并无本质差异。这样强有力的现实，也再一次验证了定义界面范式的重要性。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 4758
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 4758
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*bSY2T5wecoEAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 5296
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "在 AGI 时代，机器已经可以理解更复杂、模糊的人们意图，也可以用几乎完全类人的方式与用户交流。这项变革的技术将引领我们不得不从过去的设计经验中跳脱出来，去尝试定义一个新的人机交互界面的范式，从而寻找体验的最优解。"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 5366
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "RICH 正是我们提出的适用于当下 AGI 人机交互界面设计时代的一种范式的假设，它包含了四个设计要素："
+    },
+    {
+      "box": {
+        "h": 112,
+        "w": 928,
+        "x": 348,
+        "y": 5408
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 5534
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "每一个设计要素都在牵引着我们设计者需要关注的具体问题。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 5596
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 5596
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*6_m8SbyOmlYAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 6134
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "我们认为，在 AI 设计过程中，关注到这四个要素，将有助于我们事半功倍的创造出卓越的 AI 产品体验。"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 6200
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "二why-为什么是-rich-设计范式",
+      "tag": "h2",
+      "text": "二、WHY? 为什么是 RICH 设计范式？"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 6200
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 6246
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "在应用之前，我们想先跟大家分享下 RICH 是如何推导出来的？为什么是 RICH 而不是其它？"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 6288
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "在人机交互变迁史上，机器和交互方式的迭代总是依托于变革性技术的成熟化应用。变化的是技术和交互方式，但不变的永远是人机交互的本质与人的需求。从不变思变，正是 RICH 推导出来的关键一步。"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 6358
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "人机交互的本质是用户通过执行某种动作或行为输入给机器，机器理解并完成诉求后产出结果给用户，用户评估是否符合要求，如果符合，一个交互单元就完成了闭环。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 6448
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 6448
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*bokiToyWY0QAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 6986
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "基于此，唐纳德·诺曼提出了一个人机交互模型，更进一步的拆解和定义了这个交互单元。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 7048
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 7048
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*KjCBRaG4PrkAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 7586
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "在图形界面时代，WIMP 范式中的各个要素，主要作用于人机交互的「执行操作」与输出环节的相关节点："
+    },
+    {
+      "box": {
+        "h": 112,
+        "w": 928,
+        "x": 348,
+        "y": 7628
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 7754
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "受限于图形界面交互的特点，实际上在过去的交互过程中，前期的大量工作需要用户自己完成。用户需要先行根据自己的意图，结合工具——即电脑与图形界面，再进行方案的制定和拆解，才能开始让机器开始执行所明确要求的操作。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 7844
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 7844
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*PvCFRqxBjscAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 928,
+        "x": 348,
+        "y": 8382
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "可以看到，过去机器只是被动的在帮助用户完成命令的执行，而用户的意图需要经过自身的先行拆解和细化才能最终转译成一次又一次的点击传达给用户。但是当下 AI 时代，一切都不一样了。机器最大的飞跃在于它越来越像一个“人”了，它能够理解用户模糊的意图，甚至自动制定方案、推动任务执行，最终帮助用户达成他的意图。"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 928,
+        "x": 348,
+        "y": 8480
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "在这个新的体验环节中，增加了很多隐形的体验规则，过去只要 UI 界面组织的相对可用、美观，就能给用户带来较好的体验感受。但 AI 时代，体验还取决于机器是否听得懂我的意思，是否讲话比较好听等等一系列隐形的体验。因而针对这样一种新的交互特征，关键设计要素需要被重新抽象和定义，确保我们的设计关注点走在正确的方向上。"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 8578
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "RICH 范式正是我们尝试定义的 AI 时代应该关注的设计要素集："
+    },
+    {
+      "box": {
+        "h": 112,
+        "w": 928,
+        "x": 348,
+        "y": 8620
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 8766
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 8766
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*0ZkdTZND-b8AAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 9304
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "上述四个要素，组合在一起构成了 IRCH 这四个字母，为了方便记忆和应用，我们调整了下字母的顺序得到了 RICH 这个单词，刚好十分便于记忆，我们暂且将这个设计范式称之为「RICH 设计范式」😄。"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 9399
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "三how如何应用-rich-ai-设计范式",
+      "tag": "h2",
+      "text": "三、How？如何应用 RICH AI 设计范式？"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 9399
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 928,
+        "x": 348,
+        "y": 9445
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "那么该如何应用 RICH 创造卓越的 AI 产品体验呢？在后续的指引文档里，我们将深入浅出，分别针对 RICH 中的四个要素进行介绍和定义，通过提供开箱即用的设计策略和案例，帮助大家更好的理解和应用 RICH。这套理念和最终的界面资产也集成到 Ant Design X 里，希望能帮助大家轻松创造卓越 AI 产品体验！"
+    },
+    {
+      "box": {
+        "h": 672,
+        "w": 928,
+        "x": 348,
+        "y": 9563
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 672,
+        "w": 896,
+        "x": 364,
+        "y": 9563
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*0xUFQoMAhiIAAAAAAAAAAAAADgCCAQ/original",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 10273
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "附",
+      "tag": "h2",
+      "text": "附"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 10273
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 10320
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "最后，感谢广大开源的各类学术论文、书籍和企业界的 AI 设计理论，过去一年多，在它们的肩膀上，我们构建了一套开箱即用的理论与方法。我们知道 RICH 一定还有很多考虑不周的地方，也希望大家多多给我们反馈。"
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 10410
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 10410
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*tEwGRIqUGVQAAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 10948
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "最后感谢我们自己，在忙碌的日常工作中，挤出时间完成了这个几乎是纯公益的指引手册，我们是设计师："
+    },
+    {
+      "box": {
+        "h": 504,
+        "w": 928,
+        "x": 348,
+        "y": 11010
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 504,
+        "w": 896,
+        "x": 364,
+        "y": 11010
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*h6ZdTq2Bur4AAAAAAAAAAAAADgCCAQ/fmt.webp",
+      "tag": "img"
+    }
+  ],
+  "page": {
+    "h": 11666,
+    "w": 1440
+  },
+  "text": "Ant Design X 设计 研发 组件 X Markdown X SDK X Card X Skill 演示 国内镜像 2.10.0 中 En RICH 设计范式简介 🎭 Role 角色设计 介绍 真实一致 流畅自然 有人情味 ❤️ Intention 意图设计 介绍 明确意图类型 提供意图预期 引导意图表达 💭 Conversation 会话设计 介绍 开始 追问 提示 确认 错误 结束 💻 Hybrid UI 混合界面设计 介绍 唤醒｜AI 标识 唤醒｜欢迎提示 表达｜用户输入 表达｜用户发送 确认｜生成过程 反馈｜结果应用 反馈｜结果展示 一、What？什么是 RICH 设计范式？ 二、WHY? 为什么是 RICH 设计范式？ 三、How？如何应用 RICH AI 设计范式？ 附 RICH 设计范式简介 2022 年 11 月 30 日，OpenAI 发布 ChatGPT 3.5，带领人类走向 AGI 人机交互新世纪。AGI 让自然人机交互成为现实，「语言」这一简单、自然的交互方式，一度威胁到统治人机交互领域长达几十年之久的 GUI（图形用户界面）。设计者们纷纷开始各种各样的尝试与改造： 为 BI 软件引入 copilot，让小白也能通过自然语言上手数据分析 将诸多跨平台的企业办公软件集成进一个智能助手，提高办公效率 构建基于自然语言的 AI 原生代码研发软件，取代传统复杂的代码编辑器 …… 无一例外，设计者们在起初，大胆而坚定的拥抱「会话式交互」，仿佛它无所不能，即将成为人机交互领域的主宰。然而，随着时间的流逝，当人们从自然语言交互的“热恋”冷静下来时，才发现纵然会话式交互有着简单易上手等优势，但也存在着诸多的弊端。 一个重要的问题开始浮出水面： 到底 AI 产品界面设计该如何进行？ 在蚂蚁内部的 AI 产品设计实践中，我们也经常冒出类似的困惑： 图形界面操作不好吗？一定要用会话的方式吗？ 什么样的产品适合用会话交互完成？ 会话交互跟图形界面交互可以融合吗？ AI 产品设计的体验受到哪些因素的影响？ 如何去系统性的思考一个 AI 产品的设计？ …… 这些困惑的本质来源于，我们缺乏对当下融合了多种交互模式的「AI 产品界面设计」缺乏清晰的定义和认知，因而在如何创造好的 AI 体验上遇到了迷茫。 因此从 2023 年底开始，我们团队抽调了各个业务领域的设计师，横向成立了 AI 设计研究小组，开始尝试去定义和理解所谓的「AI + Design」是什么、该怎么做的设计命题。 在这方面，无论是学术界还是企业界，都有着不少相关的研究和应用。站在巨人的肩膀上，我们力图构建出一套适用于当下的 AI 设计理论，并同时在蚂蚁内部涌现的海量 AI 产品中，去实践和迭代我们的思想。在这个过程中，一套系统性的 AI 设计理论和方法开始涌现——《RICH 设计范式——创造卓越 AI 产品体验》。 一、What？什么是 RICH 设计范式？ RICH 是我们提出来的一个 AI 界面设计范式，好比 WIMP 范式之于图形用户界面。 ACM SIGCHI 2005（人机交互顶会）曾经定义过，人机交互的核心问题可以分为三个层面： 界面范式层： 界定人机交互界面的设计要素，指引设计者关注的核心问题 用户模型层： 构建界面体验评估模型，用以度量界面体验的好坏 软件框架层： 人机界面的底层支撑算法和数据结构等软件开发框架，是隐藏在前端界面背后的内容 其中界面范式，是每一个人机交互新技术诞生之时，设计者最需要去关注和定义的层面。界面范式定义了设计者所应该关注的设计要素是什么，基于此才能定义什么是好的设计和该如何进行好的设计。 人们追求用户界面的革新，本质上是想要拓宽人机交互的带宽，更大程度解放人的生产力。在整个人机交互的发展过程中，出现了多种广泛使用的用户界面类型，从最早的批处理界面，到后来的命令行界面，再到当下最为流行的图形用户界面。 基于 WIMP (Window, Icon, Menu, Point Device) 界面范式 的图形用户界面，最早诞生于 1970 年代的施乐公司，而后在 1980 年代相继被苹果 Macintosh 电脑和微软 windows 电脑借鉴并发扬光大。基于桌面隐喻的 WIMP 界面由于其语法极小化，对象可视化和快速语义反馈等优点，持续统治着界面设计领域 40 年有余。 如下图案例，我们如今仍在使用的 WIMP 图形用户界面，与最早的样子并无本质差异。这样强有力的现实，也再一次验证了定义界面范式的重要性。 在 AGI 时代，机器已经可以理解更复杂、模糊的人们意图，也可以用几乎完全类人的方式与用户交流。这项变革的技术将引领我们不得不从过去的设计经验中跳脱出来，去尝试定义一个新的人机交互界面的范式，从而寻找体验的最优解。 RICH 正是我们提出的适用于当下 AGI 人机交互界面设计时代的一种范式的假设，它包含了四个设计要素： Intention 意图 Role 角色 Conversation 对话 Hybrid UI 混合界面 每一个设计要素都在牵引着我们设计者需要关注的具体问题。 我们认为，在 AI 设计过程中，关注到这四个要素，将有助于我们事半功倍的创造出卓越的 AI 产品体验。 二、WHY? 为什么是 RICH 设计范式？ 在应用之前，我们想先跟大家分享下 RICH 是如何推导出来的？为什么是 RICH 而不是其它？ 在人机交互变迁史上，机器和交互方式的迭代总是依托于变革性技术的成熟化应用。变化的是技术和交互方式，但不变的永远是人机交互的本质与人的需求。从不变思变，正是 RICH 推导出来的关键一步。 人机交互的本质是用户通过执行某种动作或行为输入给机器，机器理解并完成诉求后产出结果给用户，用户评估是否符合要求，如果符合，一个交互单元就完成了闭环。 基于此，唐纳德·诺曼提出了一个人机交互模型，更进一步的拆解和定义了这个交互单元。 在图形界面时代，WIMP 范式中的各个要素，主要作用于人机交互的「执行操作」与输出环节的相关节点： icon 图标： 通过图形化隐喻，帮助用户完成操作的执行 menu 菜单： 通过有序的结构组织了各种操作，让用户能更加高效的进行系统性任务 pointing 指点设备： 通过键盘、鼠标指向式设备，让用户可以更清楚的选中目标操作 windows 窗口： 通过固定的空间去承载不同的内容，让用户能够阅读、评估不同的多媒体内容 受限于图形界面交互的特点，实际上在过去的交互过程中，前期的大量工作需要用户自己完成。用户需要先行根据自己的意图，结合工具——即电脑与图形界面，再进行方案的制定和拆解，才能开始让机器开始执行所明确要求的操作。 可以看到，过去机器只是被动的在帮助用户完成命令的执行，而用户的意图需要经过自身的先行拆解和细化才能最终转译成一次又一次的点击传达给用户。但是当下 AI 时代，一切都不一样了。机器最大的飞跃在于它越来越像一个“人”了，它能够理解用户模糊的意图，甚至自动制定方案、推动任务执行，最终帮助用户达成他的意图。 在这个新的体验环节中，增加了很多隐形的体验规则，过去只要 UI 界面组织的相对可用、美观，就能给用户带来较好的体验感受。但 AI 时代，体验还取决于机器是否听得懂我的意思，是否讲话比较好听等等一系列隐形的体验。因而针对这样一种新的交互特征，关键设计要素需要被重新抽象和定义，确保我们的设计关注点走在正确的方向上。 RICH 范式正是我们尝试定义的 AI 时代应该关注的设计要素集： Intention 意图： AI 能够听懂并理解用户的意图，协助用户自动完成方案计划和步骤拆解，进而推动执行 Role 角色： AI 扮演了某种身份角色，来匹配用户的意图，也保障与用户的互动是顺畅、符合预期的 Conversation 会话： 用户的模糊意图通过会话来逐步与 AI 对焦、拆解，用户的指令也结合其中 Hybrid UI 混合界面： 用户的执行动作和机器的结果输出与反馈承载在融合了多种交互方式的界面当中 上述四个要素，组合在一起构成了 IRCH 这四个字母，为了方便记忆和应用，我们调整了下字母的顺序得到了 RICH 这个单词，刚好十分便于记忆，我们暂且将这个设计范式称之为「RICH 设计范式」😄。 三、How？如何应用 RICH AI 设计范式？ 那么该如何应用 RICH 创造卓越的 AI 产品体验呢？在后续的指引文档里，我们将深入浅出，分别针对 RICH 中的四个要素进行介绍和定义，通过提供开箱即用的设计策略和案例，帮助大家更好的理解和应用 RICH。这套理念和最终的界面资产也集成到 Ant Design X 里，希望能帮助大家轻松创造卓越 AI 产品体验！ 附 最后，感谢广大开源的各类学术论文、书籍和企业界的 AI 设计理论，过去一年多，在它们的肩膀上，我们构建了一套开箱即用的理论与方法。我们知道 RICH 一定还有很多考虑不周的地方，也希望大家多多给我们反馈。 最后感谢我们自己，在忙碌的日常工作中，挤出时间完成了这个几乎是纯公益的指引手册，我们是设计师：",
+  "title": "RICH 设计范式简介 - Ant Design X",
+  "url": "https://x.ant.design/docs/spec/introduce-cn",
+  "viewport": {
+    "h": 900,
+    "w": 1440
+  }
+}

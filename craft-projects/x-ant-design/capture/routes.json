@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/index-cn",
+    "slug": "index-cn",
+    "url": "https://x.ant.design/index-cn"
+  },
+  {
+    "path": "/docs/spec/introduce-cn",
+    "slug": "docs-spec-introduce-cn",
+    "url": "https://x.ant.design/docs/spec/introduce-cn"
+  },
+  {
+    "path": "/docs/react/introduce-cn",
+    "slug": "docs-react-introduce-cn",
+    "url": "https://x.ant.design/docs/react/introduce-cn"
+  },
+  {
+    "path": "/components/introduce-cn/",
+    "slug": "components-introduce-cn",
+    "url": "https://x.ant.design/components/introduce-cn/"
+  }
+]

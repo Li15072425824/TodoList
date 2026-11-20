@@ -1,0 +1,23 @@
+{
+  "version": 4,
+  "name": "x.ant.design",
+  "request": "Recreate this component documentation page as a local React + Vite website in Chinese. Copy the page layout (top nav, left component menu, right TOC), all nine interactive ThoughtChain demos, API tables, Semantic DOM and Design Token tables. Use @ant-design/x ThoughtChain.",
+  "target": {
+    "kind": "website",
+    "url": "https://x.ant.design/components/thought-chain-cn"
+  },
+  "stack": "React + TypeScript (Vite)",
+  "status": "needs_you",
+  "note": "Claude Code stopped: API Error: Request rejected (429) · You have exceeded the 5-hour usage quota. It will reset at 2026-11-12 14:16:47 +0800 CST. We recommend upgrading your plan for more quota, or waiting for the reset. Request id: 021794453886431e2e425e7482a92db97bab17cb602abe85db520",
+  "created_ms": 1794446471281,
+  "updated_ms": 1794453885328,
+  "checks": [],
+  "agent_session": "0dd58ac3-c5f5-475b-b0db-5d21a3c5248a",
+  "agent_session_by": "claude-code",
+  "agent_session_deep": false,
+  "allowed_actions": [],
+  "last_reply": "",
+  "asset_budget_usd": 5.0,
+  "generate_assets": false,
+  "builder": "Claude Code"
+}

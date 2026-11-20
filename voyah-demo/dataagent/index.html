@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DataAgent · 聊天与项目协同（Voyah 规范版）</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+/* 布局与业务样式：颜色一律 var(--vx-*)，间距 4px 网格，圆角按组件规范 */
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--vx-bg-layout)}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit}
+input[type=checkbox]{accent-color:var(--vx-primary)}
+
+/* ---------- 演示栏（不属于产品界面） ---------- */
+.demo{height:40px;background:var(--vx-fill-2);color:var(--vx-text-secondary);font-size:12px;padding:0 16px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--vx-line-1)}
+.demo .badge{padding:2px 8px;border-radius:4px;background:var(--vx-warning-dark);color:var(--vx-text-inverse);font-weight:600;font-size:12px}
+.demo label{display:flex;align-items:center;gap:4px;cursor:pointer}
+.demo .db,.demo select,.demo .lvb{padding:4px 8px;border-radius:6px;border:1px solid var(--vx-line-2);background:var(--vx-bg-base);color:var(--vx-text-secondary);font-size:12px}
+.demo .lvb.on{background:var(--vx-primary);border-color:var(--vx-primary);color:var(--vx-text-inverse)}
+.demo .grp-chat,.demo .grp-collab{display:flex;align-items:center;gap:8px}
+
+/* ---------- 应用骨架 ---------- */
+.app{display:flex;min-height:calc(100vh - 40px)}
+.sidebar{width:264px;flex-shrink:0;background:var(--vx-bg-base);border-right:1px solid var(--vx-line-1);padding:16px 0 24px;display:flex;flex-direction:column;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:8px;padding:0 16px 16px;font-size:14px;color:var(--vx-text-title)}
+.brand-mark{width:32px;height:32px;border-radius:8px;background:var(--vx-primary);color:var(--vx-text-inverse);font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-label{font-size:12px;color:var(--vx-text-caption);font-weight:500;padding:16px 16px 8px}
+.sb-item{display:flex;align-items:center;gap:8px;width:calc(100% - 16px);margin:0 8px;padding:8px 12px;border-radius:8px;font-size:14px;color:var(--vx-text-primary);border:0;background:none;text-align:left;line-height:20px}
+.sb-item:hover{background:var(--vx-fill-3)}
+.sb-item.active{background:var(--vx-primary-bg);color:var(--vx-primary);font-weight:500}
+.sb-item .ico{width:16px;height:16px;flex-shrink:0}
+
+/* 侧边栏树：项目协同 → 项目 → 对话 */
+.tree-proj{display:flex;align-items:center;gap:8px;width:calc(100% - 16px);margin:0 8px;padding:8px 12px;border-radius:8px;font-size:14px;color:var(--vx-text-primary);border:0;background:none;text-align:left;line-height:20px}
+.tree-proj:hover{background:var(--vx-fill-3)}
+.tree-proj.active{background:var(--vx-primary-bg);color:var(--vx-primary);font-weight:500}
+.tree-proj .arr{color:var(--vx-text-caption);font-size:10px;transition:transform .15s;flex-shrink:0}
+.tree-proj.open .arr{transform:rotate(90deg)}
+.tree-conv{display:flex;flex-direction:column;gap:2px;margin:2px 0 4px}
+.tree-conv.hidden{display:none}
+.tc-item{display:flex;align-items:center;gap:8px;margin:0 8px 0 28px;padding:6px 8px;border-radius:8px;font-size:13px;color:var(--vx-text-secondary);border:0;background:none;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tc-item:hover{background:var(--vx-fill-3)}
+.tc-item.active{background:var(--vx-primary-bg);color:var(--vx-primary);font-weight:500}
+.tc-item .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tc-empty{margin:0 8px 0 28px;padding:6px 8px;font-size:12px;color:var(--vx-text-disabled)}
+.sb-foot{margin-top:auto;padding:12px 16px 0;border-top:1px solid var(--vx-line-1);font-size:12px;color:var(--vx-text-caption)}
+
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.hdr{height:48px;padding:0 24px;border-bottom:1px solid var(--vx-line-1);background:var(--vx-bg-base);display:flex;align-items:center;gap:8px;font-size:14px;flex-shrink:0}
+.crumb{border:0;background:none;color:var(--vx-text-secondary);font-size:14px;padding:0;cursor:pointer}
+.crumb:hover{color:var(--vx-primary)}
+.crumb:active{color:var(--vx-primary-active)}
+.hdr .sep{color:var(--vx-text-caption)}
+.page{flex:1;overflow-y:auto;padding:24px;max-width:1180px;width:100%;margin:0 auto}
+
+/* ---------- 通用控件 ---------- */
+.tag{display:inline-flex;align-items:center;font-size:12px;height:22px;padding:0 8px;border-radius:4px;font-weight:500;white-space:nowrap}
+.tag.blue{background:var(--vx-primary-bg);color:var(--vx-primary)}
+.tag.green{background:var(--vx-success-bg);color:var(--vx-success-dark)}
+.tag.purple{background:var(--vx-purple-bg);color:var(--vx-purple-dark)}
+.tag.gray{background:var(--vx-fill-3);color:var(--vx-text-secondary)}
+.btn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 16px;border-radius:6px;border:1px solid var(--vx-line-2);background:var(--vx-bg-base);color:var(--vx-text-primary);font-size:14px;white-space:nowrap;transition:all .2s}
+.btn:hover{border-color:var(--vx-primary);color:var(--vx-primary)}
+.btn:active{border-color:var(--vx-primary-active);color:var(--vx-primary-active)}
+.btn.primary{background:var(--vx-primary);border-color:var(--vx-primary);color:var(--vx-text-inverse);font-weight:500}
+.btn.primary:hover{background:var(--vx-primary-hover);border-color:var(--vx-primary-hover)}
+.btn.primary:active{background:var(--vx-primary-active);border-color:var(--vx-primary-active)}
+.btn.primary:disabled{background:var(--vx-btn-disabled-bg);color:var(--vx-btn-disabled-text);border-color:var(--vx-btn-disabled-border);cursor:not-allowed}
+.btn.sm{height:24px;padding:0 8px;font-size:12px;border-radius:4px}
+.av{width:24px;height:24px;border-radius:50%;background:var(--vx-primary);color:var(--vx-text-inverse);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.av.q{background:var(--vx-help-dark)}.av.z{background:var(--vx-purple-dark)}.av.w{background:var(--vx-success-dark)}
+.av.sm{width:22px;height:22px;font-size:10px}
+.vx-input{width:100%;height:32px;padding:0 12px;background:var(--vx-bg-base);color:var(--vx-text-primary);border:1px solid var(--vx-line-2);border-radius:6px;font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s}
+.vx-input::placeholder{color:var(--vx-text-disabled)}
+.vx-input:hover{border-color:var(--vx-line-hover)}
+.vx-input:focus{border-color:var(--vx-primary);box-shadow:0 0 0 2px var(--vx-primary-bg)}
+textarea.vx-input{height:auto;min-height:64px;padding:12px;resize:vertical;line-height:1.57}
+.field label{display:block;font-size:14px;color:var(--vx-text-secondary);margin-bottom:8px;font-weight:500}
+.field{margin-bottom:16px}
+.field .hint{font-size:12px;color:var(--vx-text-caption);margin-top:4px}
+
+/* ---------- 协同首页 ---------- */
+.hello{font-size:24px;font-weight:600;color:var(--vx-text-title);margin-bottom:8px;line-height:32px}
+.resume{border:0;background:none;color:var(--vx-primary);font-size:14px;padding:0;font-weight:500;cursor:pointer}
+.resume:hover{color:var(--vx-primary-visited);text-decoration:underline}
+.hsub{font-size:14px;color:var(--vx-text-secondary);margin-bottom:24px}
+.hsec{display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:600;color:var(--vx-text-title);margin-bottom:16px}
+.pc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+@media(max-width:1100px){.pc-grid{grid-template-columns:1fr 1fr}}
+.pc{border:1px solid var(--vx-line-1);border-radius:8px;padding:16px;background:var(--vx-bg-base);display:flex;flex-direction:column;gap:8px;text-align:left;width:100%;font-size:14px;color:var(--vx-text-primary);transition:border-color .2s,box-shadow .2s}
+.pc:hover{border-color:var(--vx-primary);box-shadow:var(--vx-shadow-2)}
+.pc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pc-name{font-size:16px;font-weight:600;color:var(--vx-text-title)}
+.pc-owner{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--vx-text-secondary);white-space:nowrap}
+.pc-avs{display:flex}
+.pc-avs .av{border:2px solid var(--vx-bg-base);margin-left:-6px}
+.pc-goal{font-size:14px;color:var(--vx-text-primary)}
+.pc-desc{font-size:12px;color:var(--vx-text-secondary);min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.p-desc{font-size:14px;color:var(--vx-text-secondary);margin-top:8px;line-height:1.6}
+.pc-task{display:flex;gap:8px;align-items:center}
+.pc-task .tn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pc-task .ts{font-size:12px;color:var(--vx-text-caption)}
+.pc-meta{font-size:12px;color:var(--vx-text-secondary);padding-top:12px;border-top:1px solid var(--vx-line-1)}
+.pc-meta .sep{margin:0 8px;color:var(--vx-text-disabled)}
+.create-card{border:1px dashed var(--vx-line-2);border-radius:8px;min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--vx-text-secondary);background:var(--vx-bg-base);width:100%;font-size:14px;transition:all .2s}
+.create-card:hover{border-color:var(--vx-primary);color:var(--vx-primary);background:var(--vx-primary-bg)}
+.create-card .plus{font-size:28px;font-weight:400}
+
+/* ---------- 项目页 ---------- */
+.page-title{font-size:20px;font-weight:600;color:var(--vx-text-title);display:flex;align-items:center;gap:8px}
+.page-desc{font-size:13px;color:var(--vx-text-secondary);margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start;margin-top:24px}
+@media(max-width:1000px){.grid{grid-template-columns:1fr}}
+.panel{border:1px solid var(--vx-line-1);border-radius:8px;padding:16px;background:var(--vx-bg-base);margin-bottom:16px}
+.panel-title{font-size:16px;font-weight:600;color:var(--vx-text-title);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.g-sub{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--vx-line-1);border-radius:8px;margin-top:8px;font-size:14px}
+.g-code{font-weight:600;color:var(--vx-primary);font-size:12px}
+.composer{border:1px solid var(--vx-line-2);border-radius:8px;background:var(--vx-bg-base);padding:12px 16px 8px;margin-bottom:16px;transition:border-color .2s}
+.composer:focus-within{border-color:var(--vx-primary)}
+.composer textarea{width:100%;border:0;background:transparent;font-size:14px;color:var(--vx-text-primary);resize:none;outline:none;min-height:44px}
+.composer .tools{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--vx-text-caption)}
+.send{width:32px;height:32px;border-radius:6px;border:0;background:var(--vx-primary);color:var(--vx-text-inverse);transition:background .2s}
+.send:hover{background:var(--vx-primary-hover)}
+.send:active{background:var(--vx-primary-active)}
+.sub{font-size:16px;font-weight:600;color:var(--vx-text-title);margin:16px 0 12px}
+.conv{border:1px solid var(--vx-line-1);border-radius:8px;padding:12px 16px;margin-bottom:8px;transition:border-color .2s}
+.conv:hover{border-color:var(--vx-primary)}
+.conv .m{font-size:12px;color:var(--vx-text-caption);margin-top:8px;display:flex;gap:8px;align-items:center}
+.empty-line{font-size:12px;color:var(--vx-text-caption);padding:8px 0}
+.space{border:1px solid var(--vx-line-1);border-radius:8px;background:var(--vx-bg-base);overflow:hidden;position:sticky;top:0}
+.space-h{padding:16px 16px 8px;font-size:16px;font-weight:600;color:var(--vx-text-title)}
+.grp{padding:8px 0}
+.grp+.grp{border-top:1px solid var(--vx-line-1)}
+.row{display:flex;align-items:center;gap:8px;width:100%;padding:8px 16px;border:0;background:none;font-size:14px;color:var(--vx-text-primary);text-align:left;cursor:pointer}
+.row:hover{background:var(--vx-fill-3)}
+.row .n{margin-left:auto;color:var(--vx-text-caption);font-size:12px}
+.row .arr{color:var(--vx-text-disabled)}
+.row.soon{color:var(--vx-text-disabled)}
+
+/* ---------- 弹窗通用 ---------- */
+.mask{position:fixed;inset:0;background:var(--vx-bg-mask);display:none;z-index:50}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:780px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 32px);background:var(--vx-bg-base);border-radius:8px;box-shadow:var(--vx-shadow-2);z-index:60;display:none}
+body.m-space .mask,body.m-wiz .mask{display:block}
+body.m-space #spaceModal{display:flex}
+body.m-wiz #wizModal{display:flex;flex-direction:column;width:620px;height:auto;min-height:480px}
+.nav{width:200px;flex-shrink:0;border-right:1px solid var(--vx-line-1);background:var(--vx-fill-1);padding:12px 8px;overflow:auto;border-radius:8px 0 0 8px}
+.nav-gap{height:8px}
+.nb{display:flex;align-items:center;width:100%;border:0;background:none;padding:8px 12px;border-radius:8px;font-size:14px;color:var(--vx-text-primary);text-align:left;cursor:pointer}
+.nb:hover{background:var(--vx-fill-3)}
+.nb.on{background:var(--vx-primary-bg);color:var(--vx-primary);font-weight:500}
+.nb .c{margin-left:auto;font-size:12px;color:var(--vx-text-caption);font-weight:400}
+.nb.soon{color:var(--vx-text-disabled)}
+.right{flex:1;display:flex;flex-direction:column;min-width:0}
+.m-h{display:flex;align-items:center;padding:16px 24px 8px}
+.m-h b{flex:1;font-size:16px;color:var(--vx-text-title)}
+.x{border:0;background:none;font-size:20px;color:var(--vx-text-secondary);width:32px;height:32px;border-radius:6px}
+.x:hover{background:var(--vx-fill-3);color:var(--vx-text-primary)}
+.m-body{flex:1;overflow:auto;padding:8px 24px 24px}
+.desc{font-size:12px;color:var(--vx-text-caption);margin-bottom:12px;line-height:1.6}
+.it{display:flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid var(--vx-line-1);border-radius:8px;margin-bottom:8px;font-size:14px}
+.it .grow{flex:1;min-width:0}
+.it .meta{font-size:12px;color:var(--vx-text-caption);margin-top:4px}
+.rno{font-size:12px;font-weight:600;color:var(--vx-success-dark);background:var(--vx-success-bg);border-radius:4px;padding:0 8px;height:22px;display:inline-flex;align-items:center}
+.add{display:block;margin-top:8px;border:1px dashed var(--vx-line-2);background:var(--vx-fill-1);color:var(--vx-primary);border-radius:8px;width:100%;padding:0 16px;height:32px;font-size:14px;text-align:center;cursor:pointer;transition:all .2s}
+.add:hover{border-color:var(--vx-primary);background:var(--vx-primary-bg)}
+.editor{display:flex;flex-direction:column;gap:8px;padding:12px 16px;border:1px solid var(--vx-primary);border-radius:8px;margin-bottom:8px}
+.editor textarea{border:1px solid var(--vx-line-2);border-radius:6px;padding:8px 12px;font-size:14px;resize:vertical;font-family:inherit;color:var(--vx-text-primary)}
+.editor textarea:focus{outline:none;border-color:var(--vx-primary)}
+.empty{border:1px dashed var(--vx-line-2);border-radius:8px;padding:24px;text-align:center;color:var(--vx-text-secondary);font-size:14px;line-height:1.7}
+.sr{position:absolute;left:-9999px}
+
+/* ---------- 创建向导 ---------- */
+.steps{display:flex;align-items:center;gap:8px;padding:8px 24px 16px;border-bottom:1px solid var(--vx-line-1)}
+.stp{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--vx-text-secondary);white-space:nowrap}
+.stp .no{width:24px;height:24px;border-radius:50%;border:1px solid var(--vx-line-2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--vx-text-secondary)}
+.stp.on{color:var(--vx-primary);font-weight:500}
+.stp.on .no{border-color:var(--vx-primary);background:var(--vx-primary);color:var(--vx-text-inverse)}
+.stp.done{color:var(--vx-success-dark)}
+.stp.done .no{border-color:var(--vx-success-dark);background:var(--vx-success-dark);color:var(--vx-text-inverse)}
+.stp.skip .no{border-style:dashed}
+.stp-line{flex:1;height:1px;background:var(--vx-line-2);min-width:12px}
+.prog{font-size:12px;color:var(--vx-text-caption);margin-left:auto}
+.wiz-foot{display:flex;align-items:center;gap:8px;padding:16px 24px;border-top:1px solid var(--vx-line-1)}
+.wiz-foot .sp{flex:1}
+.link{border:0;background:none;color:var(--vx-text-secondary);font-size:14px;cursor:pointer}
+.link:hover{color:var(--vx-primary)}
+.pick{display:flex;align-items:center;gap:12px;padding:8px 12px;border:1px solid var(--vx-line-1);border-radius:8px;margin-bottom:8px;font-size:14px;cursor:pointer}
+.pick:hover{border-color:var(--vx-primary)}
+.pick input{width:16px;height:16px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--vx-text-title);color:var(--vx-text-inverse);font-size:14px;padding:8px 16px;border-radius:8px;z-index:80;display:none;max-width:70vw}
+
+/* ---------- 聊天视图 ---------- */
+#chatView{display:none;height:calc(100vh - 40px - 48px);min-height:0}
+body.v-chat #chatView{display:flex}
+body.v-chat #page{display:none}
+body.v-chat .app{height:calc(100vh - 40px);overflow:hidden}
+body.v-chat .page{overflow:hidden}
+#chatView .scene-main{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--vx-bg-base)}
+#chatView .messages{flex:1;overflow-y:auto;padding:24px 0 8px}
+#chatView .messages-inner{max-width:820px;margin:0 auto;padding:0 24px}
+#chatView .msg-user{display:flex;justify-content:flex-end;margin:8px 0 24px}
+#chatView .msg-user .bubble{max-width:70%;background:var(--vx-primary);color:var(--vx-text-inverse);padding:12px 20px;border-radius:12px;font-size:14px;font-weight:500;line-height:1.6;word-break:break-word}
+#chatView .msg-agent{display:flex;gap:12px;margin-bottom:24px}
+#chatView .agent-avatar{width:32px;height:32px;border-radius:8px;background:var(--vx-primary);color:var(--vx-text-inverse);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+#chatView .agent-body{flex:1;min-width:0}
+#chatView .hidden{display:none!important}
+#chatView .prev{opacity:.55}
+#chatView .prev-card{border:1px dashed var(--vx-line-2);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--vx-text-secondary);line-height:1.7}
+#chatView .prev-label{font-size:12px;color:var(--vx-text-caption);margin-bottom:4px}
+#chatView .turn-sep{text-align:center;font-size:12px;color:var(--vx-text-caption);margin:8px 0 16px}
+
+#chatView .card{border:1px solid var(--vx-line-1);border-radius:12px;background:var(--vx-bg-base);overflow:hidden;margin-bottom:8px}
+#chatView .card-sec{padding:12px 16px;border-top:1px solid var(--vx-line-1)}
+#chatView .card-sec:first-child{border-top:none}
+#chatView .sec-title{font-size:12px;font-weight:600;color:var(--vx-text-secondary);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+#chatView .ans-text{font-size:14px;line-height:1.8;color:var(--vx-text-primary)}
+#chatView .ans-text b{font-weight:600;color:var(--vx-text-title)}
+#chatView .ans-text em{font-style:normal;color:var(--vx-error-dark);font-weight:600}
+#chatView .ans-text u{text-decoration:none;border-bottom:2px solid var(--vx-error);padding-bottom:2px}
+#chatView .fact-tag{font-size:12px;font-weight:600;padding:0 8px;height:22px;display:inline-flex;align-items:center;border-radius:4px;background:var(--vx-success-bg);color:var(--vx-success-dark)}
+
+#chatView .dtable{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+#chatView .dtable th{text-align:left;padding:8px 12px;font-size:12px;color:var(--vx-text-secondary);font-weight:500;border-bottom:1px solid var(--vx-line-1)}
+#chatView .dtable td{padding:8px 12px;border-bottom:1px solid var(--vx-line-1);color:var(--vx-text-primary);font-variant-numeric:tabular-nums}
+#chatView .dtable tr:last-child td{border-bottom:none}
+#chatView .dtable th.r,#chatView .dtable td.r{text-align:right}
+#chatView .dtable td.ind{padding-left:32px}
+#chatView .row-hl td{background:var(--vx-error-bg)}
+#chatView .row-hl td:first-child{color:var(--vx-error-dark);font-weight:600}
+#chatView .neg{color:var(--vx-error-dark)}
+#chatView .pos{color:var(--vx-success-dark)}
+
+#chatView .meta-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:12px;color:var(--vx-text-caption);margin-top:12px}
+#chatView .meta-line b{color:var(--vx-text-secondary);font-weight:500}
+#chatView .meta-chips{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin-top:12px}
+#chatView .meta-chip{font-size:12px;padding:2px 8px;border-radius:4px;background:var(--vx-fill-3);color:var(--vx-text-secondary)}
+#chatView .std-badge{display:inline-flex;align-items:center;font-size:12px;padding:0 8px;height:22px;border-radius:4px;background:var(--vx-success-bg);color:var(--vx-success-dark);font-weight:500}
+#chatView .note-line{font-size:12px;color:var(--vx-text-secondary);background:var(--vx-fill-1);border-radius:8px;padding:8px 12px;margin-top:8px}
+
+#chatView .pbar{display:inline-block;position:relative;width:70px;height:6px;border-radius:3px;background:var(--vx-fill-2);vertical-align:middle;margin-left:8px}
+#chatView .pbar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--vx-success-dark)}
+#chatView .pbar i.low{background:var(--vx-error-dark)}
+#chatView .pbar b{position:absolute;top:-3px;left:calc(100% - 2px);width:2px;height:12px;background:var(--vx-text-secondary)}
+#chatView .restate{font-size:14px;color:var(--vx-text-secondary);background:var(--vx-primary-bg);border-radius:8px;padding:12px 16px;line-height:1.7}
+#chatView .restate .rl{font-size:12px;font-weight:600;color:var(--vx-primary);margin-right:8px}
+#chatView .restate .rt{font-size:12px;padding:0 8px;border-radius:4px;background:var(--vx-bg-base);color:var(--vx-primary);margin-left:8px;height:22px;display:inline-flex;align-items:center}
+#chatView .ds-tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+#chatView .ds-tag{font-size:12px;padding:0 8px;height:22px;display:inline-flex;align-items:center;border-radius:4px;background:var(--vx-success-bg);color:var(--vx-success-dark);font-weight:500}
+#chatView .ds-tag.gray{background:var(--vx-fill-3);color:var(--vx-text-secondary)}
+#chatView .ds-toggle{font-size:12px;color:var(--vx-primary);background:none;border:none;cursor:pointer;padding:4px}
+#chatView .pbar-legend{font-size:12px;color:var(--vx-text-caption);margin-top:8px;text-align:right}
+
+#chatView .refs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+#chatView .ref{border:1px solid var(--vx-line-1);border-radius:8px;padding:12px 16px}
+#chatView .ref .k{font-size:12px;color:var(--vx-text-caption)}
+#chatView .ref .v{font-size:14px;margin-top:8px;font-variant-numeric:tabular-nums;color:var(--vx-text-secondary)}
+#chatView .ref .v b{font-size:18px;font-weight:600;color:var(--vx-text-title)}
+#chatView .ref .d{font-size:14px;font-weight:600;margin-top:4px}
+
+#chatView .tree{font-size:14px;font-variant-numeric:tabular-nums}
+#chatView .tree-row{display:grid;grid-template-columns:1fr 90px 90px 80px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--vx-line-1);color:var(--vx-text-primary)}
+#chatView .tree-row:last-child{border-bottom:none}
+#chatView .tree-row.head{font-size:12px;color:var(--vx-text-secondary);font-weight:500}
+#chatView .tree-row>span:not(:first-child){text-align:right}
+#chatView .tree-row.l1>span:first-child{padding-left:20px}
+#chatView .tree-row.l2>span:first-child{padding-left:40px}
+#chatView .tree-row.l3>span:first-child{padding-left:60px}
+#chatView .tree-row .br{color:var(--vx-text-disabled);margin-right:8px}
+#chatView .tree-row.hot{background:var(--vx-error-bg)}
+#chatView .tree-row.hot>span:first-child{color:var(--vx-error-dark);font-weight:600}
+
+#chatView .infer-box{border:1px dashed var(--vx-warning-border);background:var(--vx-warning-bg);border-radius:8px;padding:12px 16px}
+#chatView .infer-head{font-size:12px;font-weight:600;color:var(--vx-warning-dark);margin-bottom:8px}
+#chatView .infer-text{font-size:14px;line-height:1.7;color:var(--vx-text-primary)}
+
+#chatView .next-text{font-size:14px;color:var(--vx-text-primary);line-height:1.7;margin-bottom:12px}
+#chatView .next-text b{color:var(--vx-text-title);font-weight:600}
+#chatView .next-call{border:1px solid var(--vx-warning-border);background:var(--vx-warning-bg);border-radius:8px;padding:12px 16px;margin-bottom:12px}
+#chatView .next-call-head{font-size:14px;font-weight:600;color:var(--vx-warning-dark);margin-bottom:12px}
+#chatView .pair-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#chatView .pair{background:var(--vx-bg-base);border:1px solid var(--vx-line-1);border-radius:8px;padding:8px 12px}
+#chatView .pair.hot{border-color:var(--vx-error)}
+#chatView .pair .k{font-size:12px;color:var(--vx-text-caption)}
+#chatView .pair .v{font-size:14px;margin-top:4px;font-variant-numeric:tabular-nums}
+#chatView .pair .v b{font-size:18px;font-weight:600;color:var(--vx-text-title)}
+#chatView .pair.hot .v b{color:var(--vx-error-dark)}
+#chatView .spark{background:var(--vx-bg-base);border:1px solid var(--vx-line-1);border-radius:8px;padding:8px 12px;margin-bottom:12px}
+#chatView .spark .k{font-size:12px;color:var(--vx-text-caption);margin-bottom:8px}
+#chatView .step-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+#chatView .step-card{border:1px solid var(--vx-line-1);border-radius:8px;padding:12px 16px}
+#chatView .step-card .no{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--vx-primary);color:var(--vx-text-inverse);font-size:12px;font-weight:600;align-items:center;justify-content:center;margin-right:8px}
+#chatView .step-card .t{font-size:14px;font-weight:600;color:var(--vx-text-title)}
+#chatView .step-card .d{font-size:12px;color:var(--vx-text-secondary);line-height:1.6;margin-top:8px}
+#chatView .next-row{display:flex;flex-wrap:wrap;gap:8px}
+#chatView .next-btn{height:28px;padding:0 16px;border-radius:100px;border:1px solid var(--vx-line-2);background:var(--vx-bg-base);font-size:12px;color:var(--vx-text-primary);cursor:pointer;transition:all .2s}
+#chatView .next-btn:hover{border-color:var(--vx-primary);color:var(--vx-primary);background:var(--vx-primary-bg)}
+
+#chatView .composer-wrap{flex-shrink:0;padding:0 0 16px;background:var(--vx-bg-base)}
+#chatView .composer{max-width:820px;margin:0 auto;padding:0 24px}
+#chatView .input-box{border:1px solid var(--vx-line-2);border-radius:20px;background:var(--vx-bg-base);padding:4px 8px;box-shadow:var(--vx-shadow-sender);transition:border-color .2s}
+#chatView .input-box:focus-within{border-color:var(--vx-primary)}
+#chatView .input-line{padding:12px 16px 4px;min-height:44px;font-size:14px;color:var(--vx-text-disabled)}
+#chatView .input-tools{display:flex;align-items:center;justify-content:space-between;padding:4px 8px 8px}
+#chatView .input-tools-left{font-size:12px;color:var(--vx-text-caption)}
+#chatView .send-btn{width:32px;height:32px;border-radius:6px;border:none;background:var(--vx-primary);color:var(--vx-text-inverse);font-size:14px;transition:background .2s}
+#chatView .send-btn:hover{background:var(--vx-primary-hover)}
+#chatView .send-btn:active{background:var(--vx-primary-active)}
+
+#chatView .anno-side{width:300px;flex-shrink:0;border-left:1px solid var(--vx-line-1);background:var(--vx-fill-1);padding:24px 16px;overflow-y:auto}
+#chatView .anno-kicker{font-size:12px;font-weight:600;color:var(--vx-primary);margin-bottom:8px}
+#chatView .anno-side h3{font-size:14px;margin-bottom:8px;color:var(--vx-text-title)}
+#chatView .anno-side .lead{font-size:12px;color:var(--vx-text-secondary);line-height:1.6;margin-bottom:16px}
+#chatView .anno-sub{font-size:12px;font-weight:600;color:var(--vx-text-title);margin:16px 0 8px;padding-top:16px;border-top:1px solid var(--vx-line-1)}
+#chatView .cond{border:1px solid var(--vx-line-1);border-radius:8px;background:var(--vx-bg-base);padding:12px 16px;margin-bottom:8px;transition:all .15s}
+#chatView .cond-name{font-size:14px;font-weight:600;color:var(--vx-text-title);display:flex;align-items:center;gap:8px}
+#chatView .cond-no{width:20px;height:20px;border-radius:50%;background:var(--vx-primary);color:var(--vx-text-inverse);font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#chatView .cond-text{font-size:12px;color:var(--vx-text-secondary);line-height:1.6;margin-top:4px}
+#chatView .cond:hover,#chatView .cond.hl{border-color:var(--vx-primary);background:var(--vx-primary-bg)}
+#chatView .mark{position:relative;border-radius:6px;transition:.15s}
+#chatView .mark.hl{outline:2px solid var(--vx-primary);outline-offset:4px;background:var(--vx-primary-bg)}
+body.show-click #chatView .clk{outline:2px dashed var(--vx-warning);outline-offset:2px}
+.demo .grp-chat,.demo .grp-collab{display:flex;align-items:center;gap:8px}
+body.v-chat .demo .grp-collab{display:none}
+body:not(.v-chat) .demo .grp-chat{display:none}
+</style>
+</head>
+<body class="show-click">
+<div class="demo">
+  <span class="badge">演示栏 · 不属于产品界面</span>
+  <span class="grp-collab"><label><input type="checkbox" id="soonToggle">显示下一版本的内容</label><span>宣讲时保持不勾选</span><span>问候语</span><select id="greetSel"><option value="auto">自动</option><option value="0">离目标又近了一步</option><option value="1">项目有了新进展</option><option value="2">月底了</option></select><button class="db" id="resetBtn">重置演示</button></span>
+  <span class="grp-chat"><span>步骤</span><select id="stepSelect" class="clk"><option value="s1">第一步 · 看数据</option><option value="s2">第二步 · 做判断</option><option value="s3">第三步 · 下结论</option></select><span>回答级别</span><button class="lvb" data-lv="1">简洁</button><button class="lvb on" data-lv="2">标准</button><button class="lvb" data-lv="3">丰富</button><label><input type="checkbox" id="clickToggle" checked>标出可点击区域</label></span>
+</div>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">D</div><b>VDP-DataAgent</b></div>
+    <div class="sb-label">工作</div>
+    <button class="sb-item" data-go="chat">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a8 8 0 0 1-8 8H5l-2 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z" stroke-linejoin="round"/></svg>
+      聊天
+    </button>
+    <button class="sb-item active" data-go="home">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      项目协同
+    </button>
+    <div id="projTree"></div>
+    <div class="sb-foot">演示数据 · 非真实业务</div>
+  </aside>
+  <main class="main">
+    <header class="hdr" id="hdr"></header>
+    <div class="page" id="page"></div>
+<div id="chatView">
+  <div class="scene-main">
+    <div class="messages" id="msgs"><div class="messages-inner">
+<div class="turn" data-step="s1">
+      <div class="msg-user"><div class="bubble">10 月全国各大区的销量</div></div>
+
+      <div class="msg-agent lv lv-1 hidden"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想看 10 月各大区的销量。我按：指标「销量」· 2026 年 10 月 1 日至 31 日 · 全国四个大区，并列出 10 月目标和 9 月销量作参照。<span class="rt">可修改</span></div></div>
+        <div class="card-sec">
+          <div class="ans-text mark" data-c="1">10 月全国销量 5,320 台。华东 1,286 台，是唯一比 9 月下降的大区，也是离目标差得最多的大区。</div>
+          <table class="dtable" style="margin-top:12px;">
+            <thead><tr><th>大区</th><th class="r">10 月销量</th><th class="r">10 月目标</th><th class="r">9 月销量</th></tr></thead>
+            <tbody>
+              <tr><td>华东</td><td class="r">1,286</td><td class="r">1,410</td><td class="r">1,371</td></tr>
+              <tr><td>华北</td><td class="r">1,152</td><td class="r">1,100</td><td class="r">1,108</td></tr>
+              <tr><td>华南</td><td class="r">1,498</td><td class="r">1,540</td><td class="r">1,465</td></tr>
+              <tr><td>华西</td><td class="r">1,384</td><td class="r">1,350</td><td class="r">1,342</td></tr>
+              <tr><td><b>全国</b></td><td class="r"><b>5,320</b></td><td class="r">5,400</td><td class="r">5,286</td></tr>
+            </tbody>
+          </table>
+          <div class="ds-tags mark" data-c="2"><span class="ds-tag">标准数据</span><span class="ds-tag gray">正常产出</span><span class="ds-tag gray">离线</span><button class="ds-toggle clk">展开 ▾</button></div><div class="ds-full hidden"><div class="meta-line"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>2026 年 10 月 1 日至 31 日</span><span>数据截至 11 月 12 日 14:00</span></div></div>
+        </div>
+        <div class="card-sec">
+          <div class="next-text mark" data-c="3">华东的情况值得关注，要看看华东吗？</div>
+          <div class="next-row"><button class="next-btn clk" data-goto="s2">看华东</button></div>
+        </div>
+      </div></div></div>
+
+      <div class="msg-agent lv lv-2"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想看 10 月各大区的销量。我按：指标「销量」· 2026 年 10 月 1 日至 31 日 · 全国四个大区，并列出 10 月目标和 9 月销量作参照。<span class="rt">可点击修改</span></div></div>
+        <div class="card-sec">
+          <div class="ans-text mark" data-c="1">10 月全国销量 5,320 台，略低于目标 5,400 台，比 9 月多 34 台。华北、华西超过目标，华东、华南没有达标。其中华东差目标 124 台，而且是唯一比 9 月下降的大区。</div>
+          <table class="dtable" style="margin-top:12px;">
+            <thead><tr><th>大区</th><th class="r">10 月销量</th><th class="r">10 月目标</th><th class="r">9 月销量</th></tr></thead>
+            <tbody>
+              <tr><td>华东</td><td class="r">1,286</td><td class="r">1,410</td><td class="r">1,371</td></tr>
+              <tr><td>华北</td><td class="r">1,152</td><td class="r">1,100</td><td class="r">1,108</td></tr>
+              <tr><td>华南</td><td class="r">1,498</td><td class="r">1,540</td><td class="r">1,465</td></tr>
+              <tr><td>华西</td><td class="r">1,384</td><td class="r">1,350</td><td class="r">1,342</td></tr>
+              <tr><td><b>全国</b></td><td class="r"><b>5,320</b></td><td class="r">5,400</td><td class="r">5,286</td></tr>
+            </tbody>
+          </table>
+          <div class="meta-line mark" data-c="2"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>2026 年 10 月 1 日至 31 日</span><span>数据截至 11 月 12 日 14:00</span></div>
+        </div>
+        <div class="card-sec">
+          <div class="sec-title">下一步</div>
+          <div class="next-text mark" data-c="3">华东的下降主要在线上：线上 10 月 402 台，9 月 490 台，少了 88 台。可以继续看华东的具体情况。</div>
+          <div class="next-row"><button class="next-btn clk" data-goto="s2">看华东</button></div>
+        </div>
+      </div></div></div>
+
+      <div class="msg-agent lv lv-3 hidden"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想看 10 月各大区的销量。我按：指标「销量」· 2026 年 10 月 1 日至 31 日 · 全国四个大区，并列出 10 月目标和 9 月销量作参照。<span class="rt">可点击修改</span></div></div>
+        <div class="card-sec">
+          <div class="ans-text mark" data-c="1">10 月全国销量 <b>5,320 台</b>，略低于目标 5,400 台，比 9 月多 34 台。华北、华西超过目标，华东、华南没有达标。其中<em>华东</em>差目标 124 台，而且是<u>唯一比 9 月下降的大区</u>。</div>
+          <table class="dtable mark" data-c="2" style="margin-top:12px;">
+            <thead><tr><th>大区</th><th class="r">10 月销量 / 目标</th><th class="r">9 月销量</th></tr></thead>
+            <tbody>
+              <tr class="row-hl"><td>华东</td><td class="r"><span class="neg">1,286</span> / 1,410<span class="pbar"><i class="low" style="width:91%"></i><b></b></span></td><td class="r">1,371</td></tr>
+              <tr><td>华北</td><td class="r">1,152 / 1,100<span class="pbar"><i style="width:100%"></i><b></b></span></td><td class="r">1,108</td></tr>
+              <tr><td>华南</td><td class="r">1,498 / 1,540<span class="pbar"><i class="low" style="width:97%"></i><b></b></span></td><td class="r">1,465</td></tr>
+              <tr><td>华西</td><td class="r">1,384 / 1,350<span class="pbar"><i style="width:100%"></i><b></b></span></td><td class="r">1,342</td></tr>
+              <tr><td><b>全国</b></td><td class="r"><b>5,320</b> / 5,400<span class="pbar"><i class="low" style="width:98.5%"></i><b></b></span></td><td class="r">5,286</td></tr>
+            </tbody>
+          </table>
+          <div class="pbar-legend">条形为销量占目标的长度，竖线为目标；红色为未达标</div>
+          <div class="meta-line mark" data-c="4"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>2026 年 10 月 1 日至 31 日</span><span>数据截至 11 月 12 日 14:00</span></div>
+        </div>
+        <div class="card-sec">
+          <div class="next-call mark" data-c="3">
+            <div class="next-call-head">下一步：华东的下降主要在线上</div>
+            <div class="pair-row">
+              <div class="pair hot"><div class="k">线上 · 10 月 / 9 月</div><div class="v"><b>402</b> / 490 台</div></div>
+              <div class="pair"><div class="k">线下 · 10 月 / 9 月</div><div class="v"><b>884</b> / 881 台</div></div>
+            </div>
+          </div>
+          <div class="next-row"><button class="next-btn clk" data-goto="s2">看华东</button><button class="next-btn">按渠道拆</button><button class="next-btn">导出</button></div>
+        </div>
+      </div></div></div>
+
+    </div>
+<div class="turn hidden" data-step="s2">
+      <div class="msg-user"><div class="bubble">华东大区的情况</div></div>
+
+      <div class="msg-agent lv lv-1 hidden"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想看华东的情况。我按：华东 10 月销量 · 对比目标、9 月和去年 10 月 · 按渠道拆开。<span class="rt">可点击修改</span></div></div>
+        <div class="card-sec">
+          <div class="ans-text mark" data-c="1">华东 10 月 1,286 台，比 9 月少 85 台，完成目标 91%。下降几乎都来自线上。</div>
+          <table class="dtable mark" data-c="2" style="margin-top:12px;">
+            <thead><tr><th>渠道</th><th class="r">10 月</th><th class="r">9 月</th><th class="r">变化</th></tr></thead>
+            <tbody>
+              <tr><td>线上</td><td class="r">402</td><td class="r">490</td><td class="r">-88</td></tr>
+              <tr><td>线下</td><td class="r">884</td><td class="r">881</td><td class="r">+3</td></tr>
+              <tr><td><b>合计</b></td><td class="r"><b>1,286</b></td><td class="r">1,371</td><td class="r">-85</td></tr>
+            </tbody>
+          </table>
+          <div class="ds-tags mark" data-c="2"><span class="ds-tag">标准数据</span><span class="ds-tag gray">正常产出</span><span class="ds-tag gray">离线</span><button class="ds-toggle clk">展开 ▾</button></div><div class="ds-full hidden"><div class="meta-line"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>10 月 1 日至 31 日 对比 9 月 1 日至 30 日</span><span>数据截至 11 月 12 日 14:00</span></div></div>
+        </div>
+        <div class="card-sec">
+          <div class="next-text mark" data-c="3">线上的下降可能和某个平台有关，要看看原因吗？</div>
+          <div class="next-row"><button class="next-btn clk" data-goto="s3">查原因</button></div>
+        </div>
+      </div></div></div>
+
+      <div class="msg-agent lv lv-2"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想看华东的情况。我按：华东 10 月销量 · 对比目标、9 月和去年 10 月 · 按渠道拆开。<span class="rt">可点击修改</span></div></div>
+        <div class="card-sec">
+          <div class="ans-text mark" data-c="1">华东 10 月销量 1,286 台，完成目标（1,410 台）的 91%。比 9 月（1,371 台）少 85 台，下降 6.2%；比去年 10 月（1,247 台）多 39 台。整体比去年好、比上月差，差在线上：线上少 88 台，线下基本持平。</div>
+          <table class="dtable" style="margin-top:12px;">
+            <thead><tr><th>渠道</th><th class="r">10 月</th><th class="r">9 月</th><th class="r">变化</th><th class="r">变化率</th></tr></thead>
+            <tbody>
+              <tr><td>线上</td><td class="r">402</td><td class="r">490</td><td class="r">-88</td><td class="r">-18.0%</td></tr>
+              <tr><td>线下</td><td class="r">884</td><td class="r">881</td><td class="r">+3</td><td class="r">+0.3%</td></tr>
+              <tr><td><b>合计</b></td><td class="r"><b>1,286</b></td><td class="r">1,371</td><td class="r">-85</td><td class="r">-6.2%</td></tr>
+            </tbody>
+          </table>
+          <div class="meta-line mark" data-c="2"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>10 月 1 日至 31 日 对比 9 月 1 日至 30 日</span><span>数据截至 11 月 12 日 14:00</span></div>
+          <div class="note-line mark" data-c="2">10 月比 9 月多一天，按日均算，下降更明显。</div>
+        </div>
+        <div class="card-sec">
+          <div class="sec-title">下一步</div>
+          <div class="next-text mark" data-c="3">线上按周是 118、112、90、82 台，15 日之后明显走低。可以继续查原因。</div>
+          <div class="next-row"><button class="next-btn clk" data-goto="s3">查原因</button></div>
+        </div>
+      </div></div></div>
+
+      <div class="msg-agent lv lv-3 hidden"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想看华东的情况。我按：华东 10 月销量 · 对比目标、9 月和去年 10 月 · 按渠道拆开。<span class="rt">可点击修改</span></div></div>
+        <div class="card-sec">
+          <div class="refs mark" data-c="4">
+            <div class="ref"><div class="k">对比目标</div><div class="v"><b>1,286</b> / 1,410</div><div class="d neg">完成 91%</div></div>
+            <div class="ref"><div class="k">对比 9 月</div><div class="v"><b>1,286</b> / 1,371</div><div class="d neg">少 85 台 · -6.2%</div></div>
+            <div class="ref"><div class="k">对比去年 10 月</div><div class="v"><b>1,286</b> / 1,247</div><div class="d pos">多 39 台 · +3.1%</div></div>
+          </div>
+          <div class="ans-text mark" data-c="1">整体比去年好、比上月差，<u>差在线上</u>：线上少 <em>88 台</em>，线下基本持平。</div>
+          <table class="dtable mark" data-c="2" style="margin-top:12px;">
+            <thead><tr><th>渠道</th><th class="r">10 月</th><th class="r">9 月</th><th class="r">变化</th><th class="r">变化率</th></tr></thead>
+            <tbody>
+              <tr class="row-hl"><td>线上</td><td class="r">402</td><td class="r">490</td><td class="r neg">-88</td><td class="r neg">-18.0%</td></tr>
+              <tr><td>线下</td><td class="r">884</td><td class="r">881</td><td class="r">+3</td><td class="r">+0.3%</td></tr>
+              <tr><td><b>合计</b></td><td class="r"><b>1,286</b></td><td class="r">1,371</td><td class="r">-85</td><td class="r">-6.2%</td></tr>
+            </tbody>
+          </table>
+          <div class="meta-line"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>10 月 1 日至 31 日 对比 9 月 1 日至 30 日</span><span>数据截至 11 月 12 日 14:00</span></div>
+        </div>
+        <div class="card-sec">
+          <div class="next-call mark" data-c="3">
+            <div class="next-call-head">下一步：线上 15 日之后走低，集中在平台 A</div>
+            <div class="spark">
+              <div class="k">华东线上按周销量（台）</div>
+              <svg viewBox="0 0 320 90" width="100%" height="90" role="img" aria-label="华东线上按周销量：118、112、90、82">
+                <line x1="20" y1="72" x2="310" y2="72" stroke="var(--vx-line-1)"/>
+                <line x1="150" y1="8" x2="150" y2="72" stroke="var(--vx-error)" stroke-dasharray="4 3"/>
+                <text x="154" y="16" font-size="10" fill="var(--vx-error-dark)">15 日</text>
+                <polyline points="40,18 110,26 190,56 270,67" fill="none" stroke="var(--vx-primary)" stroke-width="2" stroke-linejoin="round"/>
+                <g fill="var(--vx-primary)"><circle cx="40" cy="18" r="3.5"/><circle cx="110" cy="26" r="3.5"/><circle cx="190" cy="56" r="3.5"/><circle cx="270" cy="67" r="3.5"/></g>
+                <g font-size="10" fill="var(--vx-text-secondary)" text-anchor="middle"><text x="40" y="12">118</text><text x="110" y="20">112</text><text x="190" y="50">90</text><text x="270" y="61">82</text></g>
+                <g font-size="10" fill="var(--vx-text-caption)" text-anchor="middle"><text x="40" y="86">第 1 周</text><text x="110" y="86">第 2 周</text><text x="190" y="86">第 3 周</text><text x="270" y="86">第 4 周</text></g>
+              </svg>
+            </div>
+            <div class="pair-row">
+              <div class="pair hot"><div class="k">平台 A · 10 月 / 9 月</div><div class="v"><b>215</b> / 300 台</div></div>
+              <div class="pair"><div class="k">平台 B · 10 月 / 9 月</div><div class="v"><b>187</b> / 190 台</div></div>
+            </div>
+          </div>
+          <div class="next-row"><button class="next-btn clk" data-goto="s3">查原因</button><button class="next-btn">换对比对象</button><button class="next-btn">做成看板</button></div>
+        </div>
+      </div></div></div>
+
+    </div>
+<div class="turn hidden" data-step="s3">
+      <div class="msg-user"><div class="bubble">为什么</div></div>
+
+      <div class="msg-agent lv lv-1 hidden"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想知道华东为什么下降。我按：10 月对比 9 月 · 从渠道拆到平台，再拆到上下半月。<span class="rt">可点击修改</span></div></div>
+        <div class="card-sec">
+          <div class="ans-text mark" data-c="1">华东下降主要是线上平台 A 少卖了 85 台，其中 75 台发生在 15 日之后。数据能确认在哪里降，但看不出为什么降。</div>
+          <table class="dtable mark" data-c="2" style="margin-top:12px;">
+            <thead><tr><th>层级</th><th class="r">10 月</th><th class="r">9 月</th><th class="r">变化</th></tr></thead>
+            <tbody>
+              <tr><td><b>华东合计</b></td><td class="r">1,286</td><td class="r">1,371</td><td class="r">-85</td></tr>
+              <tr><td>线上</td><td class="r">402</td><td class="r">490</td><td class="r">-88</td></tr>
+              <tr><td class="ind">其中平台 A</td><td class="r">215</td><td class="r">300</td><td class="r">-85</td></tr>
+              <tr><td class="ind">其中平台 B</td><td class="r">187</td><td class="r">190</td><td class="r">-3</td></tr>
+              <tr><td>线下</td><td class="r">884</td><td class="r">881</td><td class="r">+3</td></tr>
+            </tbody>
+          </table>
+          <div class="ds-tags mark" data-c="2"><span class="ds-tag">标准数据</span><span class="ds-tag gray">正常产出</span><span class="ds-tag gray">离线</span><button class="ds-toggle clk">展开 ▾</button></div><div class="ds-full hidden"><div class="meta-line"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>10 月对比 9 月</span><span>数据截至 11 月 12 日 14:00</span></div></div>
+        </div>
+        <div class="card-sec">
+          <div class="next-text mark" data-c="3">可能是平台 A 的活动结束了，或者平台规则调整了。你知道是哪种情况吗？</div>
+          <div class="next-row"><button class="next-btn">补充原因</button></div>
+        </div>
+      </div></div></div>
+
+      <div class="msg-agent lv lv-2"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想知道华东为什么下降。我按：10 月对比 9 月 · 从渠道拆到平台，再拆到上下半月。<span class="rt">可点击修改</span></div></div>
+        <div class="card-sec">
+          <div class="sec-title"><span class="fact-tag">数据事实</span></div>
+          <div class="ans-text mark" data-c="1">华东比 9 月少 85 台。往下拆：线上少 88 台，其中平台 A 少 85 台，平台 B 和线下基本持平。平台 A 的下降有 75 台发生在 15 日之后。</div>
+          <table class="dtable" style="margin-top:12px;">
+            <thead><tr><th>层级</th><th class="r">10 月</th><th class="r">9 月</th><th class="r">变化</th></tr></thead>
+            <tbody>
+              <tr><td><b>华东合计</b></td><td class="r">1,286</td><td class="r">1,371</td><td class="r">-85</td></tr>
+              <tr><td>线上</td><td class="r">402</td><td class="r">490</td><td class="r">-88</td></tr>
+              <tr><td class="ind">其中平台 A</td><td class="r">215</td><td class="r">300</td><td class="r">-85</td></tr>
+              <tr><td class="ind">　上半月（1 至 15 日）</td><td class="r">140</td><td class="r">150</td><td class="r">-10</td></tr>
+              <tr><td class="ind">　下半月（16 日起）</td><td class="r">75</td><td class="r">150</td><td class="r">-75</td></tr>
+              <tr><td class="ind">其中平台 B</td><td class="r">187</td><td class="r">190</td><td class="r">-3</td></tr>
+              <tr><td>线下</td><td class="r">884</td><td class="r">881</td><td class="r">+3</td></tr>
+            </tbody>
+          </table>
+          <div class="meta-line"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>10 月对比 9 月</span><span>数据截至 11 月 12 日 14:00</span></div>
+        </div>
+        <div class="card-sec">
+          <div class="infer-box mark" data-c="2">
+            <div class="infer-head">推测：数据无法验证</div>
+            <div class="infer-text">可能是平台 A 的活动在 10 月中旬结束，也可能是平台调整了流量规则。验证需要平台流量数据，目前没有接入。</div>
+          </div>
+        </div>
+        <div class="card-sec">
+          <div class="sec-title">下一步</div>
+          <div class="next-text mark" data-c="3">建议先向平台 A 的对接人确认 10 月中旬有没有变化。</div>
+          <div class="next-row"><button class="next-btn">补充原因</button><button class="next-btn">继续分析</button></div>
+        </div>
+      </div></div></div>
+
+      <div class="msg-agent lv lv-3 hidden"><div class="agent-avatar">D</div><div class="agent-body"><div class="card">
+        <div class="card-sec"><div class="restate"><span class="rl">Agent 理解复述</span>你想知道华东为什么下降。我按：10 月对比 9 月 · 从渠道拆到平台，再拆到上下半月。<span class="rt">可点击修改</span></div></div>
+        <div class="card-sec">
+          <div class="sec-title"><span class="fact-tag">数据事实</span></div>
+          <div class="ans-text mark" data-c="1">华东少的 85 台，几乎全部来自<em>线上平台 A</em>，而且<u>集中在 15 日之后</u>。</div>
+          <div class="tree mark" data-c="2" style="margin-top:12px;">
+            <div class="tree-row head"><span>逐层拆解</span><span>10 月</span><span>9 月</span><span>变化</span></div>
+            <div class="tree-row"><span><b>华东合计</b></span><span>1,286</span><span>1,371</span><span>-85</span></div>
+            <div class="tree-row l1"><span><span class="br">└</span>线上</span><span>402</span><span>490</span><span class="neg">-88</span></div>
+            <div class="tree-row l2 hot"><span><span class="br">└</span>平台 A</span><span>215</span><span>300</span><span class="neg">-85</span></div>
+            <div class="tree-row l3"><span><span class="br">├</span>上半月</span><span>140</span><span>150</span><span>-10</span></div>
+            <div class="tree-row l3 hot"><span><span class="br">└</span>下半月（16 日起）</span><span>75</span><span>150</span><span class="neg">-75</span></div>
+            <div class="tree-row l2"><span><span class="br">└</span>平台 B</span><span>187</span><span>190</span><span>-3</span></div>
+            <div class="tree-row l1"><span><span class="br">└</span>线下</span><span>884</span><span>881</span><span>+3</span></div>
+          </div>
+          <div class="meta-line"><span><b>销量</b> <span class="std-badge">标准数据</span></span><span>10 月对比 9 月</span><span>数据截至 11 月 12 日 14:00</span></div>
+        </div>
+        <div class="card-sec">
+          <div class="infer-box mark" data-c="4">
+            <div class="infer-head">推测：数据无法验证</div>
+            <div class="infer-text">可能原因一：平台 A 的活动在 10 月中旬结束。可能原因二：平台调整了流量规则。两者都和 15 日之后的下降时间吻合，验证需要平台流量数据，目前没有接入。</div>
+          </div>
+        </div>
+        <div class="card-sec">
+          <div class="step-cards mark" data-c="3">
+            <div class="step-card"><div class="t"><span class="no">1</span>确认原因</div><div class="d">向平台 A 的对接人确认 10 月中旬有没有活动结束或规则调整。</div></div>
+            <div class="step-card"><div class="t"><span class="no">2</span>持续跟踪</div><div class="d">如果确认是规则调整，做一个华东线上分平台的周看板，看 11 月是否恢复。</div></div>
+          </div>
+          <div class="next-row"><button class="next-btn">补充原因</button><button class="next-btn">继续分析</button><button class="next-btn">做成看板</button></div>
+        </div>
+      </div></div></div>
+
+    </div>
+    </div></div>
+    <div class="composer-wrap"><div class="composer"><div class="input-box"><div class="input-line">继续追问…</div><div class="input-tools"><span class="input-tools-left">聊天 · 个人对话</span><button class="send-btn">↑</button></div></div></div></div>
+  </div>
+  <aside class="anno-side">
+<div class="anno-step" data-step="s1">
+    <div class="anno-kicker">步骤 1 / 3 · 看数据</div>
+    <h3>把数据说明清楚</h3>
+    <div class="lead">对话刚开始，用户在收集数据。回答以原始数据为主：销量、目标、上月销量都是原始值，不给完成率、环比这类加工结果。</div>
+    <div class="note-line" style="margin:0 0 4px">三个级别的回答都以「Agent 理解复述」开头：Agent 主动说出它理解的需求和替你定下的条件，可以直接修改。</div>
+    <div class="lv-anno lv-1 hidden">
+      <div class="anno-sub">简洁：只给数和方向</div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>文字简洁</div><div class="cond-text">一句话说出全国总数，直接点出华东这个突出情况。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>数据标准缩成标签</div><div class="cond-text">表格只有原始值；数据标准缩成"标准数据、正常产出、离线"三个标签，点"展开"看到和标准版相同的内容。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>下一步只给方向</div><div class="cond-text">提示华东值得关注，但不带支撑数据。</div></div>
+    </div>
+    <div class="lv-anno lv-2">
+      <div class="anno-sub">标准：全局加重点，数据有身份</div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>文字概括</div><div class="cond-text">先讲全国，再讲华东。用户知道华东在全局里处在什么位置。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>数据身份信息</div><div class="cond-text">注明指标、标准数据、日期范围和数据截止时间。用户看得出这是哪个数。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>下一步只说重点</div><div class="cond-text">只讲下降的线上，带上线上 10 月和 9 月的数，方向有数据支撑。</div></div>
+    </div>
+    <div class="lv-anno lv-3 hidden">
+      <div class="anno-sub">丰富：内容同标准，表达更聚焦</div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>文字有强调</div><div class="cond-text">华东用红色，"唯一比 9 月下降"加下划线，目光直接落到重点上。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>表格更直观</div><div class="cond-text">销量和目标放在同一列，加一条长度对比，未达标为红色；华东整行高亮。仍然只显示原始值。</div></div>
+      <div class="cond" data-c="4"><div class="cond-name"><span class="cond-no">4</span>数据标准同标准版</div><div class="cond-text">数据标准不做弱化，和标准版一样完整显示一行：指标、标准数据、统计时间、截至时间。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>下一步两面都给</div><div class="cond-text">线上、线下两组数并排，下降的线上用红框标出，用户自己看出差别在哪。</div></div>
+    </div>
+  </div>
+<div class="anno-step hidden" data-step="s2">
+    <div class="anno-kicker">步骤 2 / 3 · 做判断</div>
+    <h3>给出可以判断的依据</h3>
+    <div class="lead">用户已经看过数据，现在要判断华东好不好、问题在哪。回答以加工结果为主：完成率、环比、同比、渠道变化。每个加工出来的数，都和它的原始值一起出现。</div>
+    <div class="note-line" style="margin:0 0 4px">三个级别的回答都以「Agent 理解复述」开头：Agent 主动说出它理解的需求和替你定下的条件，可以直接修改。</div>
+    <div class="lv-anno lv-1 hidden">
+      <div class="anno-sub">简洁：一个判断，一张表</div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>文字简洁</div><div class="cond-text">比 9 月少多少、完成目标多少，再说下降来自哪里。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>数据标准缩成标签</div><div class="cond-text">线上、线下的 10 月、9 月和变化；数据标准缩成三个标签，可展开。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>下一步只给方向</div><div class="cond-text">提示可能和某个平台有关，但不带支撑数据。</div></div>
+    </div>
+    <div class="lv-anno lv-2">
+      <div class="anno-sub">标准：三个参照，说清差在哪</div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>文字概括</div><div class="cond-text">目标、上月、去年同期三个参照都带上基数，再得出"比去年好、比上月差、差在线上"。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>身份信息和对比口径</div><div class="cond-text">注明对比的两个时间段；提示 10 月多一天，避免用户误判下降幅度。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>下一步只说重点</div><div class="cond-text">只讲线上按周的走势，指出 15 日之后走低。</div></div>
+    </div>
+    <div class="lv-anno lv-3 hidden">
+      <div class="anno-sub">丰富：内容同标准，表达更聚焦</div>
+      <div class="cond" data-c="4"><div class="cond-name"><span class="cond-no">4</span>三个参照做成卡片</div><div class="cond-text">每张卡片同时写出当前值和基数，再给结果。用户一眼看到三个比较，也能核对。</div></div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>结论有强调</div><div class="cond-text">"差在线上"加下划线，88 台标红。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>表格高亮</div><div class="cond-text">线上整行高亮，变化标红。数据标准和标准版一样完整显示。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>下一步两面都给</div><div class="cond-text">线上按周的小折线，15 日处标线；平台 A、平台 B 并排，下降的平台 A 用红框标出。</div></div>
+    </div>
+  </div>
+<div class="anno-step hidden" data-step="s3">
+    <div class="anno-kicker">步骤 3 / 3 · 下结论</div>
+    <h3>说明分析思路和建议</h3>
+    <div class="lead">用户要的是原因和该怎么办。回答以分析说明为主：沿着数据一层层拆到能确认的位置，确认不了的明确标为推测，再给出建议。</div>
+    <div class="note-line" style="margin:0 0 4px">三个级别的回答都以「Agent 理解复述」开头：Agent 主动说出它理解的需求和替你定下的条件，可以直接修改。</div>
+    <div class="lv-anno lv-1 hidden">
+      <div class="anno-sub">简洁：结论加一张拆解表</div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>文字简洁</div><div class="cond-text">一句话说出降在哪里，并说明数据看不出为什么降。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>数据标准缩成标签</div><div class="cond-text">从华东拆到平台，只有原始值和变化；数据标准缩成三个标签，可展开。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>下一步只给方向</div><div class="cond-text">列出两个可能原因，请用户补充。正文里没有支撑它们的数据，用"可能"来表达。</div></div>
+    </div>
+    <div class="lv-anno lv-2">
+      <div class="anno-sub">标准：事实和推测分开</div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>拆解路径</div><div class="cond-text">从华东到线上到平台 A 再到下半月，每一层都写出来，这是数据能确认的事实。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>推测单独成块</div><div class="cond-text">数据以外的原因放进推测框，说明缺什么数据、为什么验证不了。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>下一步只说重点</div><div class="cond-text">只给最先该做的一件事：找平台 A 的对接人确认。</div></div>
+    </div>
+    <div class="lv-anno lv-3 hidden">
+      <div class="anno-sub">丰富：内容同标准，表达更聚焦</div>
+      <div class="cond" data-c="1"><div class="cond-name"><span class="cond-no">1</span>结论有强调</div><div class="cond-text">"线上平台 A"标红，"集中在 15 日之后"加下划线。</div></div>
+      <div class="cond" data-c="2"><div class="cond-name"><span class="cond-no">2</span>逐层下钻</div><div class="cond-text">拆解做成缩进的层级，每层带原始值，变化最大的两层高亮。</div></div>
+      <div class="cond" data-c="4"><div class="cond-name"><span class="cond-no">4</span>推测分条</div><div class="cond-text">两个可能原因分开写，并说明它们和 15 日的时间点吻合。</div></div>
+      <div class="cond" data-c="3"><div class="cond-name"><span class="cond-no">3</span>建议分步</div><div class="cond-text">先确认原因，再持续跟踪，做成两张编号卡片。</div></div>
+    </div>
+  </div>
+  </aside>
+</div>
+  </main>
+</div>
+<div class="mask" id="mask"></div>
+<div class="modal" id="spaceModal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <nav class="nav" id="nav" aria-label="项目空间分类"></nav>
+  <div class="right">
+    <div class="m-h"><b id="mtitle"></b><button class="x" data-close aria-label="关闭">×</button></div>
+    <div class="m-body" id="mbody"></div>
+  </div>
+</div>
+<div class="modal" id="wizModal" role="dialog" aria-modal="true" aria-labelledby="wtitle"></div>
+<input type="file" id="fileIn" class="sr" aria-label="选择文件">
+<div id="toast"></div>
+<script>
+(function(){
+'use strict';
+var PEOPLE={li:['李运营','销售运营',''],qian:['钱渠道','渠道负责人','q'],zhao:['赵经理','销售总监','z'],zhou:['周运营','华南销售运营','w']};
+function seed(){ return {
+  view:'home', cur:0, greet:'auto', tab:'docs', soon:false, adding:false, upTarget:null,
+  projects:[
+    {name:'全国经营日报',goal:'11 月全国销量 40,000 台',desc:'每天跟踪各大区销量和交付，找出落后原因并跟进追赶。',due:'11 月 30 日',progress:'28.1%',status:'进行中',
+     subs:[['G1-1','各大区每日进度','数值型'],['G1-2','找出落后大区的原因','问题型'],['G1-3','华北追赶方案','问题型']],
+     files:[{name:'2026 年度目标表.xlsx',by:'李运营',time:'今天 09:12',ok:true},{name:'门店分级表.xlsx',by:'钱渠道',time:'今天 09:20',ok:true}],
+     rules:['对比时同时给出当月目标完成进度','大区按完成进度从低到高排列','交付单独标出未交付的已锁单'],
+     members:['li','qian','zhao'],
+     tasks:[['今天每个大区的销量和交付情况','李运营 · 今天 14:05','已发布'],['华北为什么落后','李运营 · 昨天','仅自己可见']],
+     active:'今天活跃'},
+    {name:'华东渠道复盘',goal:'找出华东线上下滑的原因',desc:'复盘 10 月华东线上渠道，重点看平台 A 的变化。',due:'11 月 20 日',status:'进行中',subs:[],
+     files:[{name:'平台 A 流量规则说明.pdf',by:'李运营',time:'11/05',ok:true},{name:'华东 10 月复盘.pptx',by:'李运营',time:'11/08',ok:true},{name:'渠道清单.xlsx',by:'李运营',time:'11/02',ok:true}],
+     rules:['线上渠道要拆到平台看'],members:['li'],
+     tasks:[['平台 A 流量影响评估','李运营 · 3 天前','仅自己可见'],['华东核心城市拆解','李运营 · 上周','仅自己可见']],active:'3 天前活跃'},
+    {name:'Q3 经营复盘',goal:'完成 Q3 各大区经营复盘',desc:'汇总 Q3 各大区达成情况，沉淀复盘结论。',due:'10 月 31 日',status:'可复盘',subs:[],
+     files:[{name:'Q3 目标表.xlsx',by:'赵经理',time:'10/02',ok:true}],rules:['同比、环比都要给','华北单独分析'],members:['zhao','li','zhou'],
+     tasks:[['Q3 各大区达成汇总','赵经理 · 10/28','已发布']],active:'2 周前活跃'}
+  ],
+  wiz:null
+}; }
+var S=seed();
+function P(){ return S.projects[S.cur]; }
+function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function av(id,cls){ var p=PEOPLE[id]; return '<span class="av '+p[2]+'" '+(cls||'')+'>'+p[0][0]+'</span>'; }
+function toast(t){ var e=document.getElementById('toast'); e.textContent=t; e.style.display='block'; clearTimeout(toast.t); toast.t=setTimeout(function(){ e.style.display='none'; },2200); }
+
+/* ---------- 侧边栏树：项目协同 → 项目 → 对话 ---------- */
+function renderTree(){
+  var h='';
+  S.projects.forEach(function(p,i){
+    var open=S.view==='proj'&&S.cur===i;
+    h+='<button class="tree-proj'+(open?' active open':'')+'" data-proj="'+i+'"><span class="arr">▶</span>'+esc(p.name)+'</button>';
+    h+='<div class="tree-conv'+(open?'':' hidden')+'">';
+    if(!p.tasks.length) h+='<div class="tc-empty">还没有对话</div>';
+    p.tasks.forEach(function(t,ti){ h+='<button class="tc-item'+(open&&S.conv===ti?' active':'')+'" data-conv="'+i+':'+ti+'"><span class="t">'+esc(t[0])+'</span></button>'; });
+    h+='</div>';
+  });
+  document.getElementById('projTree').innerHTML=h;
+}
+
+/* ---------- 协同首页 ---------- */
+function home(){
+  var hr=new Date().getHours(), hi=hr<11?'早上好':hr<13?'中午好':hr<18?'下午好':'晚上好';
+  var GREET=['离目标又近了一步，继续加油。','项目有了新进展，一起加油。','月底了，一起冲一冲。'];
+  var d=new Date(), last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate(), g;
+  if(S.greet!=='auto') g=+S.greet;
+  else if(last-d.getDate()<5) g=2;
+  else if(S.projects.some(function(p){ return p.active==='今天活跃'||p.active==='刚刚创建'; })) g=1;
+  else g=0;
+  var h='<div class="hello">'+hi+'，李老师</div><div class="hsub">'+GREET[g]+'</div>';
+  h+='<div class="hsec"><span>我的项目</span><button class="btn primary" data-wiz="open">＋ 创建项目</button></div><div class="pc-grid">';
+  S.projects.forEach(function(p,i){
+    var t=p.tasks[0];
+    h+='<button class="pc" data-proj="'+i+'"><div class="pc-top"><span class="pc-name">'+esc(p.name)+'</span>'+(S.soon?'<span class="pc-avs">'+p.members.map(function(m){ return av(m,'sm'); }).join('')+'</span>':'<span class="pc-owner">'+av(p.members[0],'sm')+'<span>'+PEOPLE[p.members[0]][0]+'</span><span class="tag gray">负责人</span></span>')+'</div>';
+    if(S.soon) h+='<div><span class="tag '+(p.status==='进行中'?'blue':'purple')+'">'+p.status+'</span></div>';
+    h+='<div class="pc-goal">目标：'+esc(p.goal)+'</div>'+(p.desc?'<div class="pc-desc">'+esc(p.desc)+'</div>':'');
+    if(S.soon) h+='<div class="pc-task">'+(t?'<span class="tn">'+esc(t[0])+'</span><span class="ts">'+t[1].split(' · ')[1]+'</span>':'<span class="tn" style="color:var(--vx-text-caption)">还没有任务</span>')+'</div>';
+    h+='<div class="pc-meta">任务 '+p.tasks.length+'<span class="sep">·</span>文件 '+p.files.length+'<span class="sep">·</span>规则 '+p.rules.length+'<span class="sep">·</span>'+p.active+'</div></button>';
+  });
+  h+='<button class="create-card" data-wiz="open"><span class="plus">＋</span>创建项目</button>';
+  h+='</div>';
+  return h;
+}
+
+/* ---------- 项目页 ---------- */
+var CATS=[[['data','数据集',1]],[['docs','文件'],['rules','规则'],['model','分析模型',1]],[['mem','成员']]];
+var TITLE={data:'数据集',docs:'文件',rules:'规则',model:'分析模型',mem:'成员'};
+function vis(c){ return S.soon||!c[2]; }
+function cnt(k){ var p=P(); return k==='docs'?p.files.length:k==='rules'?p.rules.length:k==='mem'?p.members.length:''; }
+function project(){
+  var p=P();
+  var h='<div class="page-title">'+esc(p.name)+' <span class="tag blue">项目</span></div><div class="page-desc">在这个项目里开启的每个对话，Agent 都会带上右侧项目空间里的文件和规则。</div><div class="grid"><div>';
+  h+='<div class="panel"><div class="panel-title"><span>项目目标</span>'+(S.soon&&p.subs.length?'<span style="font-size:12px;color:var(--vx-primary);font-weight:500">查看目标进展 →</span>':'')+'</div>';
+  h+='<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="tag green">G1</span><b>'+esc(p.goal)+'</b>'+(p.progress?'<span style="font-size:12px;color:var(--vx-text-caption)">当前 '+p.progress+'</span>':'')+'</div>'+(p.desc?'<div class="p-desc">'+esc(p.desc)+'</div>':'');
+  if(S.soon) p.subs.forEach(function(s){ h+='<div class="g-sub"><span class="g-code">'+s[0]+'</span><span style="flex:1">'+s[1]+'</span><span class="tag '+(s[2]==='数值型'?'blue':'purple')+'">'+s[2]+'</span></div>'; });
+  h+='</div>';
+  h+='<div class="composer"><label for="ask" class="sr">开启新对话</label><textarea id="ask" placeholder="开启一个新对话…"></textarea><div class="tools"><span>带上项目空间的文件和规则 · 对话默认仅自己可见</span><button class="send" data-send aria-label="发送">↑</button></div></div>';
+  h+='<div class="sub">对话</div>';
+  if(!p.tasks.length) h+='<div class="empty-line">还没有对话。在上面提问，就会开启第一个对话。</div>';
+  p.tasks.forEach(function(t,ti){ h+='<div class="conv" data-conv="'+S.cur+':'+ti+'"><div style="font-size:14px;font-weight:500;color:var(--vx-text-title)">'+esc(t[0])+'</div><div class="m"><span>'+t[1]+'</span>'+(S.soon?'<span class="tag '+(t[2]==='已发布'?'purple':'gray')+'">'+t[2]+'</span>':'')+'</div></div>'; });
+  h+='</div><aside class="space" aria-label="项目空间"><div class="space-h">项目空间</div>';
+  CATS.forEach(function(g){ var items=g.filter(vis); if(!items.length) return; h+='<div class="grp">';
+    items.forEach(function(c){ h+='<button class="row'+(c[2]?' soon':'')+'" data-open="'+c[0]+'"><span>'+c[1]+'</span><span class="n">'+(c[2]?'即将提供':cnt(c[0]))+'</span><span class="arr">›</span></button>'; });
+    h+='</div>'; });
+  return h+'</aside></div>';
+}
+function fileRows(files,tgt){
+  return files.map(function(f,i){ return '<div class="it"><div class="grow">'+esc(f.name)+'<div class="meta">'+f.by+' 上传 · '+f.time+(f.ok?'':' · Agent 读到了文件内容，确认后才使用')+'</div></div>'+(f.ok?'<span class="tag green">✓ 已确认</span>':'<button class="btn sm primary" data-ok="'+tgt+':'+i+'">读对了，确认</button>')+'</div>'; }).join('');
+}
+function ruleEditor(n,tgt){ return '<div class="editor"><label for="ruleIn" style="font-size:12px;color:var(--vx-text-secondary)">R'+n+' · 用一句话写下规则</label><textarea id="ruleIn" rows="2" placeholder="例如：分析线上下滑时，要拆到平台看"></textarea><div style="display:flex;justify-content:flex-end;gap:8px"><button class="btn sm" data-rule="cancel:'+tgt+'">取消</button><button class="btn sm primary" data-rule="save:'+tgt+'">保存</button></div></div>'; }
+function ruleRows(rules){ return rules.map(function(r,i){ return '<div class="it"><span class="rno">R'+(i+1)+'</span><div class="grow">'+esc(r)+'</div></div>'; }).join(''); }
+function spaceBody(t){
+  var p=P();
+  if(t==='docs') return '<div class="desc">上传的文件。上传后确认 Agent 读对了，之后的对话就会使用。</div>'+fileRows(p.files,'p')+'<button class="add" data-up="p">＋ 上传文件</button>';
+  if(t==='rules') return '<div class="desc">直接写下的要求和做法。Agent 回答时遵守，只对之后的提问生效。</div>'+ruleRows(p.rules)+(S.adding?ruleEditor(p.rules.length+1,'p'):'<button class="add" data-rule="new:p">＋ 写一条规则</button>');
+  if(t==='mem') return '<div class="desc">每个人在对话中按各自的数据权限查询，项目不额外授权。</div>'+p.members.map(function(m,i){ return '<div class="it">'+av(m)+'<div class="grow">'+PEOPLE[m][0]+'<div class="meta">'+PEOPLE[m][1]+'</div></div><span class="tag gray">'+(i===0?'负责人':'成员')+'</span></div>'; }).join('')+'<button class="add" data-invite>＋ 邀请成员</button>';
+  if(t==='data') return '<div class="desc">由数据侧维护，只能选择已达标的数据集。</div><div class="empty">即将提供<br>例：订单明细（标准数据）、交付明细（标准数据）</div>';
+  return '<div class="desc">遇到某类问题时使用的分析步骤。</div><div class="empty">即将提供<br>例：落后大区归因：先拆渠道 → 再拆平台 → 再看门店等级</div>';
+}
+function renderSpace(){
+  var n='';
+  CATS.forEach(function(g){ var items=g.filter(vis); if(!items.length) return; if(n) n+='<div class="nav-gap"></div>';
+    items.forEach(function(c){ n+='<button class="nb'+(S.tab===c[0]?' on':'')+(c[2]?' soon':'')+'" data-tab="'+c[0]+'">'+c[1]+'<span class="c">'+(c[2]?'即将提供':cnt(c[0]))+'</span></button>'; }); });
+  document.getElementById('nav').innerHTML=n;
+  document.getElementById('mtitle').textContent=TITLE[S.tab];
+  document.getElementById('mbody').innerHTML=spaceBody(S.tab);
+}
+
+/* ---------- 创建向导 ---------- */
+var WSTEPS=['名称与目标','上传文件','写规则','邀请成员'];
+function wizNew(){ return {step:0,state:['','','',''],name:'',goal:'',desc:'',due:'',files:[],rules:[],adding:false,members:{qian:false,zhao:false,zhou:false}}; }
+function renderWiz(){
+  var w=S.wiz, done=w.state.filter(function(x){ return x==='done'; }).length;
+  var h='<div class="m-h"><b id="wtitle">创建项目</b><button class="x" data-close aria-label="关闭">×</button></div><div class="steps">';
+  WSTEPS.forEach(function(s,i){
+    var st=i===w.step?'on':w.state[i];
+    if(i) h+='<span class="stp-line"></span>';
+    h+='<span class="stp '+st+'"><span class="no">'+(w.state[i]==='done'&&i!==w.step?'✓':i+1)+'</span>'+s+(i===0?' *':'')+'</span>';
+  });
+  h+='</div><div style="font-size:12px;color:var(--vx-text-caption);padding:8px 24px 0">* 必填，其余步骤可以跳过，进入项目后在「项目空间」里补上</div><div class="m-body" style="padding-top:12px">';
+  if(w.step===0){
+    h+='<div class="field"><label for="wName">项目名称 *</label><input id="wName" class="vx-input" value="'+esc(w.name)+'" placeholder="例如：华南门店提升"></div>';
+    h+='<div class="field"><label for="wGoal">项目目标 *</label><input id="wGoal" class="vx-input" value="'+esc(w.goal)+'" placeholder="例如：12 月华南销量 11,000 台"><div class="hint">一句话写清团队要完成什么，进入项目后可以拆成小目标</div></div>';
+    h+='<div class="field"><label for="wDesc">项目描述</label><textarea id="wDesc" class="vx-input" rows="2" placeholder="例如：提升华南门店的到店转化，重点看二三线城市">'+esc(w.desc)+'</textarea><div class="hint">选填，说明背景和范围，方便成员了解项目</div></div>';
+    h+='<div class="hint" style="font-size:12px">创建人就是负责人。</div>';
+  } else if(w.step===1){
+    h+='<div class="desc">上传项目要用到的文件，比如目标表、门店清单。上传后确认 Agent 读对了，之后的对话才会使用。</div>'+fileRows(w.files,'w')+'<button class="add" data-up="w">＋ 上传文件</button>';
+  } else if(w.step===2){
+    h+='<div class="desc">写下项目里回答问题时必须遵守的要求和做法。</div>'+ruleRows(w.rules)+(w.adding?ruleEditor(w.rules.length+1,'w'):'<button class="add" data-rule="new:w">＋ 写一条规则</button>');
+  } else {
+    h+='<div class="desc">加入的成员共用项目的文件和规则，数据仍按各自的权限查询。</div>';
+    ['qian','zhao','zhou'].forEach(function(m){ h+='<label class="pick"><input type="checkbox" data-mem="'+m+'"'+(w.members[m]?' checked':'')+'>'+av(m)+'<span style="flex:1">'+PEOPLE[m][0]+'<span style="color:var(--vx-text-caption);font-size:12px">　'+PEOPLE[m][1]+'</span></span></label>'; });
+  }
+  h+='</div><div class="wiz-foot">'+(w.step>0?'<button class="btn" data-wiz="prev">上一步</button>':'')+'<span class="sp"></span>';
+  h+='<span class="prog">已完成 '+done+' / 4</span>';
+  if(w.step>0&&w.step<3) h+='<button class="btn" data-wiz="skip">跳过</button>';
+  if(w.step===3) h+='<button class="btn" data-wiz="finishSkip">跳过并创建</button>';
+  h+=w.step<3?'<button class="btn primary" data-wiz="next"'+(w.step===0&&!(w.name.trim()&&w.goal.trim())?' disabled':'')+'>下一步</button>':'<button class="btn primary" data-wiz="finish">创建项目</button>';
+  h+='</div>';
+  document.getElementById('wizModal').innerHTML=h;
+}
+function wizAdvance(mark){ var w=S.wiz; w.state[w.step]=mark; w.step++; w.adding=false; renderWiz(); }
+function wizFinish(mark){
+  var w=S.wiz; w.state[3]=mark;
+  var mem=['li'].concat(['qian','zhao','zhou'].filter(function(m){ return w.members[m]; }));
+  S.projects.unshift({name:w.name.trim(),goal:w.goal.trim(),desc:w.desc.trim(),due:w.due.trim()||'未设置',status:'进行中',subs:[],files:w.files,rules:w.rules,members:mem,tasks:[],active:'刚刚创建'});
+  S.cur=0; S.view='proj'; S.wiz=null; document.body.classList.remove('m-wiz'); render();
+  toast('项目已创建，你是负责人。跳过的步骤可以在右侧「项目空间」里补上');
+}
+
+/* ---------- 渲染 ---------- */
+function render(){
+  var hdr=document.getElementById('hdr');
+  document.body.classList.toggle('v-chat',S.view==='chat');
+  document.querySelectorAll('.sidebar [data-go]').forEach(function(b){ b.classList.toggle('active',(b.dataset.go==='chat')===(S.view==='chat')); });
+  renderTree();
+  if(S.view==='chat'){ hdr.innerHTML='<b>10 月全国各大区的销量</b><span class="tag blue">聊天</span><span style="font-size:12px;color:var(--vx-text-caption)">个人对话</span>'; return; }
+  if(S.view==='home'){ hdr.innerHTML='<b>项目协同</b>'; document.getElementById('page').innerHTML=home(); }
+  else { var p=P(); hdr.innerHTML='<button class="crumb" data-go="home">项目协同</button><span class="sep">/</span><b>'+esc(p.name)+'</b>'+(S.soon?'<span class="tag '+(p.status==='进行中'?'blue':'purple')+'">'+p.status+'</span>':'')+'<span class="tag gray">'+(p.members[0]==='li'?'你是负责人':'你是成员')+'</span>'; document.getElementById('page').innerHTML=project(); }
+}
+function openSpace(t){ S.tab=t; S.adding=false; renderSpace(); document.body.classList.add('m-space'); }
+function closeAll(){ document.body.classList.remove('m-space','m-wiz'); S.wiz=null; }
+
+document.addEventListener('click',function(e){
+  var el;
+  if((el=e.target.closest('[data-close]'))||e.target.id==='mask'){ closeAll(); return; }
+  if((el=e.target.closest('[data-go]'))){ closeAll(); S.view=el.dataset.go; S.conv=null; render(); return; }
+  if((el=e.target.closest('[data-proj]'))){ if(S.view==='proj'&&S.cur===+el.dataset.proj) return; S.cur=+el.dataset.proj; S.view='proj'; S.conv=null; render(); return; }
+  if((el=e.target.closest('[data-conv]'))){
+    var a=el.dataset.conv.split(':'); S.cur=+a[0]; S.view='proj'; render();
+    toast('演示未展开：点击侧边栏对话将打开对应会话');
+    return;
+  }
+  if((el=e.target.closest('[data-open]'))){ openSpace(el.dataset.open); return; }
+  if((el=e.target.closest('[data-tab]'))){ S.tab=el.dataset.tab; S.adding=false; renderSpace(); return; }
+  if((el=e.target.closest('[data-send]'))){ toast('演示未展开：提问后会开启一个新对话'); return; }
+  if((el=e.target.closest('[data-invite]'))){ toast('演示未展开：搜索同事并邀请，负责人邀请后直接加入'); return; }
+  if((el=e.target.closest('[data-up]'))){ S.upTarget=el.dataset.up; var fi=document.getElementById('fileIn'); fi.value=''; fi.click(); return; }
+  if((el=e.target.closest('[data-ok]'))){ var a=el.dataset.ok.split(':'), list=a[0]==='w'?S.wiz.files:P().files; list[+a[1]].ok=true; a[0]==='w'?renderWiz():(renderSpace(),render()); toast('已确认，之后的对话会使用这份文件'); return; }
+  if((el=e.target.closest('[data-rule]'))){
+    var r=el.dataset.rule.split(':'), w=r[1]==='w';
+    var setAdd=function(v){ if(w) S.wiz.adding=v; else S.adding=v; };
+    var rr=function(){ if(w) renderWiz(); else { renderSpace(); render(); } };
+    if(r[0]==='new'){ setAdd(true); rr(); document.getElementById('ruleIn').focus(); }
+    else if(r[0]=='cancel'){ setAdd(false); rr(); }
+    else { var v=document.getElementById('ruleIn').value.trim(); if(!v){ toast('先写下规则内容'); return; } (w?S.wiz.rules:P().rules).push(v); setAdd(false); rr(); toast('规则已保存，只对之后的提问起作用'); }
+    return;
+  }
+  if((el=e.target.closest('[data-wiz]'))){
+    var act=el.dataset.wiz;
+    if(act==='open'){ closeAll(); S.wiz=wizNew(); renderWiz(); document.body.classList.add('m-wiz'); setTimeout(function(){ var i=document.getElementById('wName'); if(i) i.focus(); },0); return; }
+    if(!S.wiz) return;
+    if(act==='next'){ if(S.wiz.step===0&&!(S.wiz.name.trim()&&S.wiz.goal.trim())) return; var st=S.wiz.step; wizAdvance(st===0||(st===1&&S.wiz.files.length)||(st===2&&S.wiz.rules.length)?'done':'skip'); }
+    else if(act==='skip') wizAdvance('skip');
+    else if(act==='prev'){ S.wiz.step--; S.wiz.adding=false; renderWiz(); }
+    else if(act==='finish'){ var any=['qian','zhao','zhou'].some(function(m){ return S.wiz.members[m]; }); wizFinish(any?'done':'skip'); }
+    else if(act==='finishSkip'){ S.wiz.members={qian:false,zhao:false,zhou:false}; wizFinish('skip'); }
+  }
+});
+document.addEventListener('input',function(e){
+  if(!S.wiz) return;
+  if(e.target.id==='wName'||e.target.id==='wGoal'||e.target.id==='wDue'||e.target.id==='wDesc'){
+    S.wiz[{wName:'name',wGoal:'goal',wDue:'due',wDesc:'desc'}[e.target.id]]=e.target.value;
+    var b=document.querySelector('[data-wiz=next]'); if(b&&S.wiz.step===0) b.disabled=!(S.wiz.name.trim()&&S.wiz.goal.trim());
+  }
+});
+document.addEventListener('change',function(e){
+  if(e.target.id==='fileIn'&&e.target.files.length){
+    var f={name:e.target.files[0].name,by:'李运营',time:'刚刚',ok:false};
+    if(S.upTarget==='w'&&S.wiz){ S.wiz.files.push(f); renderWiz(); } else { P().files.push(f); renderSpace(); render(); }
+    return;
+  }
+  if(e.target.dataset&&e.target.dataset.mem&&S.wiz){ S.wiz.members[e.target.dataset.mem]=e.target.checked; }
+  if(e.target.id==='greetSel'){ S.greet=e.target.value; render(); return; }
+  if(e.target.id==='soonToggle'){ S.soon=e.target.checked; if(!S.soon&&(S.tab==='data'||S.tab==='model')) S.tab='docs'; render(); if(document.body.classList.contains('m-space')) renderSpace(); }
+});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeAll(); });
+document.getElementById('resetBtn').addEventListener('click',function(){ closeAll(); var soon=S.soon, gr=S.greet; S=seed(); S.soon=soon; S.greet=gr; render(); });
+/* ---------- 聊天（原样迁入） ---------- */
+(function(){
+  var sel=document.getElementById('stepSelect'), msgs=document.getElementById('msgs');
+  var order=['s1','s2','s3'];
+  function turn(k){ return document.querySelector('#chatView .turn[data-step="'+k+'"]'); }
+  function showAnno(k){ document.querySelectorAll('#chatView .anno-step').forEach(function(a){ a.classList.toggle('hidden', a.dataset.step!==k); }); sel.value=k; }
+  function go(k, keepLater){
+    var idx=order.indexOf(k);
+    order.forEach(function(o,i){ if(i<=idx) turn(o).classList.remove('hidden'); else if(!keepLater) turn(o).classList.add('hidden'); });
+    showAnno(k);
+    var t=turn(k); msgs.scrollTo({top:t.offsetTop-msgs.offsetTop-16, behavior:'smooth'});
+  }
+  sel.addEventListener('change',function(){ go(sel.value); });
+  document.querySelectorAll('#chatView [data-goto]').forEach(function(b){ b.addEventListener('click',function(){ go(b.dataset.goto, true); }); });
+  msgs.addEventListener('scroll',function(){
+    var cur='s1', y=msgs.scrollTop+msgs.clientHeight*0.4;
+    order.forEach(function(o){ var t=turn(o); if(!t.classList.contains('hidden') && t.offsetTop-msgs.offsetTop<=y) cur=o; });
+    if(sel.value!==cur) showAnno(cur);
+  });
+  function setLevel(lv){
+    document.querySelectorAll('.demo .lvb').forEach(function(b){ b.classList.toggle('on', b.dataset.lv===String(lv)); });
+    document.querySelectorAll('#chatView .lv, #chatView .lv-anno').forEach(function(el){ el.classList.toggle('hidden', !el.classList.contains('lv-'+lv)); });
+  }
+  document.querySelectorAll('.demo .lvb').forEach(function(b){ b.addEventListener('click', function(){ setLevel(b.dataset.lv); }); });
+  document.querySelectorAll('#chatView .anno-step').forEach(function(step){
+    var t=turn(step.dataset.step);
+    step.querySelectorAll('.cond').forEach(function(c){
+      function set(on){
+        var lv=c.closest('.lv-anno').className.match(/lv-(\d)/)[1];
+        t.querySelector('.lv.lv-'+lv).querySelectorAll('.mark[data-c="'+c.dataset.c+'"]').forEach(function(m){ m.classList.toggle('hl', on); });
+        c.classList.toggle('hl', on);
+      }
+      c.addEventListener('mouseenter', function(){ set(true); });
+      c.addEventListener('mouseleave', function(){ set(false); });
+    });
+  });
+  document.querySelectorAll('#chatView .ds-toggle').forEach(function(b){ b.addEventListener('click',function(){ var f=b.parentNode.nextElementSibling; var open=f.classList.toggle('hidden')===false; b.textContent=open?'收起 ▴':'展开 ▾'; }); });
+  document.getElementById('clickToggle').addEventListener('change',function(){ document.body.classList.toggle('show-click', this.checked); });
+})();
+render();
+})();
+</script>
+</body>
+</html>

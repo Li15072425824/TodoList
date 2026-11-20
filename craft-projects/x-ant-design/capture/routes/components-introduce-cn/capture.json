@@ -1,0 +1,3432 @@
+{
+  "a11y": {
+    "images_without_alt": 0,
+    "landmarks": {
+      "banner": 1,
+      "main": 1,
+      "navigation": 1
+    },
+    "lang": "zh-CN",
+    "unnamed_controls": 10,
+    "unnamed_examples": [
+      "input",
+      "a",
+      "a",
+      "a",
+      "a"
+    ]
+  },
+  "assets": {
+    "images": [
+      {
+        "h": 40,
+        "w": 40
+      }
+    ]
+  },
+  "design": {
+    "backgrounds": [
+      {
+        "count": 35,
+        "value": "#0000000a"
+      },
+      {
+        "count": 16,
+        "value": "#ffffff"
+      },
+      {
+        "count": 8,
+        "value": "#f6ffed"
+      },
+      {
+        "count": 3,
+        "value": "#efefef"
+      },
+      {
+        "count": 1,
+        "value": "#000000e0"
+      },
+      {
+        "count": 1,
+        "value": "#e6f4ff"
+      },
+      {
+        "count": 1,
+        "value": "#0505050f"
+      },
+      {
+        "count": 1,
+        "value": "#1677ff"
+      }
+    ],
+    "font_sizes": [
+      {
+        "count": 92,
+        "value": "13px"
+      },
+      {
+        "count": 73,
+        "value": "14px"
+      },
+      {
+        "count": 35,
+        "value": "12px"
+      },
+      {
+        "count": 29,
+        "value": "12.6px"
+      },
+      {
+        "count": 19,
+        "value": "7.8px"
+      },
+      {
+        "count": 10,
+        "value": "16px"
+      },
+      {
+        "count": 8,
+        "value": "11.34px"
+      },
+      {
+        "count": 7,
+        "value": "24px"
+      },
+      {
+        "count": 2,
+        "value": "16.8px"
+      },
+      {
+        "count": 2,
+        "value": "18px"
+      },
+      {
+        "count": 1,
+        "value": "20px"
+      },
+      {
+        "count": 1,
+        "value": "32px"
+      },
+      {
+        "count": 1,
+        "value": "10.4px"
+      }
+    ],
+    "font_weights": [
+      {
+        "count": 255,
+        "value": "400"
+      },
+      {
+        "count": 24,
+        "value": "500"
+      },
+      {
+        "count": 1,
+        "value": "600"
+      }
+    ],
+    "fonts": [
+      {
+        "count": 107,
+        "value": "\"Fira Mono\", \"DejaVu Sans Mono\", Menlo, Consolas, \"Liberation Mono\", Monaco, \"Lucida Console\", monospace"
+      },
+      {
+        "count": 78,
+        "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+      },
+      {
+        "count": 51,
+        "value": "Avenir, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+      },
+      {
+        "count": 34,
+        "value": "monospace"
+      },
+      {
+        "count": 5,
+        "value": "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
+      },
+      {
+        "count": 4,
+        "value": "SFMono-Regular, Consolas, \"Liberation Mono\", Menlo, Courier, monospace"
+      },
+      {
+        "count": 1,
+        "value": "AlibabaPuHuiTi, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\", sans-serif"
+      }
+    ],
+    "max_widths": [],
+    "radii": [
+      {
+        "count": 44,
+        "value": "4px"
+      },
+      {
+        "count": 27,
+        "value": "8px"
+      },
+      {
+        "count": 3,
+        "value": "20px"
+      },
+      {
+        "count": 3,
+        "value": "6px"
+      },
+      {
+        "count": 2,
+        "value": "24px"
+      },
+      {
+        "count": 2,
+        "value": "9999px"
+      },
+      {
+        "count": 1,
+        "value": "100px"
+      }
+    ],
+    "shadows": [
+      {
+        "count": 1,
+        "value": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px"
+      }
+    ],
+    "spacing": [
+      {
+        "count": 107,
+        "value": "4px"
+      },
+      {
+        "count": 85,
+        "value": "8px"
+      },
+      {
+        "count": 52,
+        "value": "2.52px"
+      },
+      {
+        "count": 52,
+        "value": "5.04px"
+      },
+      {
+        "count": 29,
+        "value": "12px"
+      },
+      {
+        "count": 26,
+        "value": "16px"
+      },
+      {
+        "count": 25,
+        "value": "36px"
+      },
+      {
+        "count": 24,
+        "value": "2px"
+      },
+      {
+        "count": 24,
+        "value": "14px"
+      },
+      {
+        "count": 20,
+        "value": "3px"
+      },
+      {
+        "count": 19,
+        "value": "5px"
+      },
+      {
+        "count": 18,
+        "value": "7px"
+      },
+      {
+        "count": 16,
+        "value": "2.268px"
+      },
+      {
+        "count": 16,
+        "value": "4.536px"
+      },
+      {
+        "count": 16,
+        "value": "1px"
+      },
+      {
+        "count": 7,
+        "value": "38.4px"
+      },
+      {
+        "count": 7,
+        "value": "14.4px"
+      },
+      {
+        "count": 6,
+        "value": "24px"
+      },
+      {
+        "count": 6,
+        "value": "20px"
+      },
+      {
+        "count": 4,
+        "value": "12.6px"
+      },
+      {
+        "count": 2,
+        "value": "1.34695px"
+      },
+      {
+        "count": 2,
+        "value": "32px"
+      },
+      {
+        "count": 2,
+        "value": "11px"
+      },
+      {
+        "count": 2,
+        "value": "48px"
+      }
+    ],
+    "text_colors": [
+      {
+        "count": 117,
+        "value": "#000000e0"
+      },
+      {
+        "count": 54,
+        "value": "#3b3b3b"
+      },
+      {
+        "count": 19,
+        "value": "#000000a6"
+      },
+      {
+        "count": 19,
+        "value": "#c5c5c5"
+      },
+      {
+        "count": 11,
+        "value": "#1677ff"
+      },
+      {
+        "count": 11,
+        "value": "#151515"
+      },
+      {
+        "count": 9,
+        "value": "#2e6bd0"
+      },
+      {
+        "count": 8,
+        "value": "#52c41a"
+      },
+      {
+        "count": 8,
+        "value": "#7c5ae3"
+      },
+      {
+        "count": 6,
+        "value": "#00000073"
+      },
+      {
+        "count": 5,
+        "value": "#808080"
+      },
+      {
+        "count": 3,
+        "value": "#85a600"
+      },
+      {
+        "count": 2,
+        "value": "#383a42"
+      },
+      {
+        "count": 2,
+        "value": "#4078f2"
+      },
+      {
+        "count": 2,
+        "value": "#0971f1"
+      },
+      {
+        "count": 1,
+        "value": "#ffffff"
+      }
+    ]
+  },
+  "forms": [],
+  "headings": [
+    {
+      "level": 1,
+      "text": "Ant Design X"
+    },
+    {
+      "level": 1,
+      "text": "介绍"
+    },
+    {
+      "level": 2,
+      "text": "✨ 特性"
+    },
+    {
+      "level": 2,
+      "text": "安装"
+    },
+    {
+      "level": 3,
+      "text": "使用 npm 或 yarn 或 pnpm 或 bun 安装 或 utoo 安装"
+    },
+    {
+      "level": 3,
+      "text": "浏览器引入"
+    },
+    {
+      "level": 2,
+      "text": "🧩 组件"
+    },
+    {
+      "level": 2,
+      "text": "⚡️ 对接模型/智能体服务，AI 对话数据流管理"
+    },
+    {
+      "level": 2,
+      "text": "✨ Markdown 高性能流式渲染引擎"
+    },
+    {
+      "level": 2,
+      "text": "按需加载"
+    },
+    {
+      "level": 2,
+      "text": "TypeScript"
+    }
+  ],
+  "lang": "zh-CN",
+  "layouts": [
+    {
+      "blocks": [
+        {
+          "h": 80,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 1440,
+          "y": 0
+        },
+        {
+          "gap": 24,
+          "h": 48,
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "nav",
+          "w": 708,
+          "y": 16
+        },
+        {
+          "h": 2551,
+          "heading": "介绍",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "main",
+          "w": 1440,
+          "y": 80
+        },
+        {
+          "h": 245,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 148,
+          "y": 116
+        },
+        {
+          "h": 2551,
+          "heading": "介绍",
+          "pad": [
+            0,
+            164,
+            32,
+            48
+          ],
+          "per_row": 2,
+          "tag": "article",
+          "w": 1140,
+          "y": 80
+        }
+      ],
+      "page_h": 2631,
+      "page_w": 1440,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 18
+      },
+      "width": 1440
+    },
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 720,
+          "y": 16
+        },
+        {
+          "h": 5222,
+          "heading": "介绍",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "main",
+          "w": 768,
+          "y": 80
+        },
+        {
+          "h": 3513,
+          "heading": "介绍",
+          "pad": [
+            0,
+            48,
+            0,
+            48
+          ],
+          "per_row": 3,
+          "tag": "article",
+          "w": 576,
+          "y": 80
+        },
+        {
+          "background": "#f0f3fa",
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 576,
+            "x": 0
+          },
+          "h": 1695,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 576,
+          "y": 3607
+        },
+        {
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 576,
+            "x": 0
+          },
+          "h": 1598,
+          "heading": "相关资源",
+          "pad": [
+            40,
+            48,
+            40,
+            48
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 576,
+          "y": 3607
+        },
+        {
+          "h": 1498,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 480,
+          "y": 3647
+        },
+        {
+          "column": {
+            "max_w": 1200,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 576,
+            "x": 0
+          },
+          "h": 97,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 576,
+          "y": 5205
+        }
+      ],
+      "page_h": 5302,
+      "page_w": 768,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 18
+      },
+      "width": 768
+    },
+    {
+      "blocks": [
+        {
+          "h": 48,
+          "heading": "Ant Design X",
+          "pad": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 342,
+          "y": 16
+        },
+        {
+          "h": 5824,
+          "heading": "介绍",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 4,
+          "tag": "main",
+          "w": 390,
+          "y": 80
+        },
+        {
+          "h": 4115,
+          "heading": "介绍",
+          "pad": [
+            0,
+            48,
+            0,
+            48
+          ],
+          "per_row": 4,
+          "tag": "article",
+          "w": 390,
+          "y": 80
+        },
+        {
+          "background": "#f0f3fa",
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 1695,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "footer",
+          "w": 390,
+          "y": 4209
+        },
+        {
+          "column": {
+            "max_w": 1208,
+            "pad": [
+              48,
+              48
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 1598,
+          "heading": "相关资源",
+          "pad": [
+            40,
+            48,
+            40,
+            48
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 390,
+          "y": 4209
+        },
+        {
+          "h": 1498,
+          "heading": "相关资源",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 294,
+          "y": 4249
+        },
+        {
+          "column": {
+            "max_w": 1200,
+            "pad": [
+              0,
+              0
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 97,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 5807
+        }
+      ],
+      "page_h": 5904,
+      "page_w": 390,
+      "type": {
+        "body": 14,
+        "h1": 28,
+        "h2": 24,
+        "h3": 18
+      },
+      "width": 390
+    }
+  ],
+  "links": [
+    {
+      "href": "https://x.ant.design/index-cn",
+      "text": "Ant Design X"
+    },
+    {
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "text": "设计"
+    },
+    {
+      "href": "https://x.ant.design/docs/react/introduce-cn",
+      "text": "研发"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn/",
+      "text": "组件"
+    },
+    {
+      "href": "https://x.ant.design/x-markdowns/introduce-cn",
+      "text": "X Markdown"
+    },
+    {
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "text": "X SDK"
+    },
+    {
+      "href": "https://x.ant.design/x-cards/introduce-cn",
+      "text": "X Card"
+    },
+    {
+      "href": "https://x.ant.design/x-skills/introduce-cn",
+      "text": "X Skill"
+    },
+    {
+      "href": "https://x.ant.design/docs/playground/ultramodern-cn",
+      "text": "演示"
+    },
+    {
+      "href": "https://ant-design-x.antgroup.com/index-cn",
+      "text": "国内镜像"
+    },
+    {
+      "href": "https://github.com/ant-design/x",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "介绍"
+    },
+    {
+      "href": "https://x.ant.design/components/overview-cn",
+      "text": "总览"
+    },
+    {
+      "href": "https://x.ant.design/components/bubble-cn",
+      "text": "Bubble 对话气泡"
+    },
+    {
+      "href": "https://x.ant.design/components/conversations-cn",
+      "text": "Conversations 管理对话"
+    },
+    {
+      "href": "https://x.ant.design/components/notification-cn",
+      "text": "Notification 系统通知 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/welcome-cn",
+      "text": "Welcome 欢迎"
+    },
+    {
+      "href": "https://x.ant.design/components/prompts-cn",
+      "text": "Prompts 提示集"
+    },
+    {
+      "href": "https://x.ant.design/components/think-cn",
+      "text": "Think 思考过程 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "text": "ThoughtChain 思维链 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/attachments-cn",
+      "text": "Attachments 输入附件"
+    },
+    {
+      "href": "https://x.ant.design/components/sender-cn",
+      "text": "Sender 输入框"
+    },
+    {
+      "href": "https://x.ant.design/components/suggestion-cn",
+      "text": "Suggestion 快捷指令"
+    },
+    {
+      "href": "https://x.ant.design/components/actions-cn",
+      "text": "Actions 操作列表"
+    },
+    {
+      "href": "https://x.ant.design/components/code-highlighter-cn",
+      "text": "CodeHighlighter 代码高亮 2.1.0"
+    },
+    {
+      "href": "https://x.ant.design/components/file-card-cn",
+      "text": "FileCard 文件卡片 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/folder-cn",
+      "text": "Folder 文件夹 2.4.0"
+    },
+    {
+      "href": "https://x.ant.design/components/mermaid-cn",
+      "text": "Mermaid 图表工具 2.1.0"
+    },
+    {
+      "href": "https://x.ant.design/components/sources-cn",
+      "text": "Sources 来源引用 2.0.0"
+    },
+    {
+      "href": "https://x.ant.design/components/x-provider-cn",
+      "text": "XProvider 全局化配置"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "✨ 特性"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "安装"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "使用 npm 或 yarn 或 pnpm 或 bun 安装 或 utoo 安装"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "浏览器引入"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "🧩 组件"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "⚡️ 对接模型/智能体服务，AI 对话数据流管理"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "✨ Markdown 高性能流式渲染引擎"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "按需加载"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": "TypeScript"
+    },
+    {
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/introduce/index.zh-CN.md",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "text": "X SDK"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://www.npmjs.com/",
+      "text": "npm"
+    },
+    {
+      "href": "https://github.com/yarnpkg/yarn/",
+      "text": "yarn"
+    },
+    {
+      "href": "https://pnpm.io/zh/",
+      "text": "pnpm"
+    },
+    {
+      "href": "https://bun.sh/",
+      "text": "bun"
+    },
+    {
+      "href": "https://github.com/umijs/mako/tree/next",
+      "text": "utoo"
+    },
+    {
+      "href": "https://github.com/cnpm/cnpm",
+      "text": "cnpm"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://codesandbox.io/api/v1/sandboxes/define",
+      "text": "Open Sandbox"
+    },
+    {
+      "href": "https://codesandbox.io/api/v1/sandboxes/define",
+      "text": "Open on CodeSandboxOpen Sandbox"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "text": "X SDK"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/x-markdowns/introduce-cn",
+      "text": "X Markdown"
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    },
+    {
+      "href": "https://x.ant.design/components/introduce-cn",
+      "text": ""
+    }
+  ],
+  "outline": [
+    {
+      "box": {
+        "h": 80,
+        "w": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 4,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "header"
+    },
+    {
+      "box": {
+        "h": 80,
+        "w": 194,
+        "x": 1,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 5,
+      "font": "28px 700",
+      "tag": "h1",
+      "text": "Ant Design X"
+    },
+    {
+      "box": {
+        "h": 80,
+        "w": 194,
+        "x": 1,
+        "y": 0
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "20px 400",
+      "href": "https://x.ant.design/index-cn",
+      "tag": "a",
+      "text": "Ant Design X"
+    },
+    {
+      "alt": "logo",
+      "box": {
+        "h": 32,
+        "w": 32,
+        "x": 33,
+        "y": 24
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "20px 400",
+      "src": "https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*eco6RrQhxbMAAAAAAAAAAAAADgCCAQ/original",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 708,
+        "x": 366,
+        "y": 16
+      },
+      "color": "#000000e0",
+      "depth": 5,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "nav"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 32,
+        "x": 390,
+        "y": 24
+      },
+      "color": "#000000a6",
+      "depth": 7,
+      "font": "15px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 15,
+        "w": 15,
+        "x": 399,
+        "y": 33
+      },
+      "color": "#000000a6",
+      "depth": 8,
+      "font": "15px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 15,
+        "w": 15,
+        "x": 399,
+        "y": 33
+      },
+      "color": "#000000a6",
+      "depth": 9,
+      "font": "15px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 436,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/docs/spec/introduce-cn",
+      "tag": "a",
+      "text": "设计"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 492,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/docs/react/introduce-cn",
+      "tag": "a",
+      "text": "研发"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 548,
+        "y": 27
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "16px 500",
+      "href": "https://x.ant.design/components/introduce-cn/",
+      "tag": "a",
+      "text": "组件"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 90,
+        "x": 604,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-markdowns/introduce-cn",
+      "tag": "a",
+      "text": "X Markdown"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 46,
+        "x": 718,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "tag": "a",
+      "text": "X SDK"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 49,
+        "x": 788,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-cards/introduce-cn",
+      "tag": "a",
+      "text": "X Card"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 44,
+        "x": 862,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/x-skills/introduce-cn",
+      "tag": "a",
+      "text": "X Skill"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 32,
+        "x": 930,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://x.ant.design/docs/playground/ultramodern-cn",
+      "tag": "a",
+      "text": "演示"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 64,
+        "x": 986,
+        "y": 27
+      },
+      "color": "#000000a6",
+      "depth": 6,
+      "font": "16px 400",
+      "href": "https://ant-design-x.antgroup.com/index-cn",
+      "tag": "a",
+      "text": "国内镜像"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 87,
+        "x": 1176,
+        "y": 24
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "2.10.0"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 43,
+        "x": 1189,
+        "y": 28
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "16px 400",
+      "id": "_r_22_",
+      "name": "",
+      "placeholder": "",
+      "role": "combobox",
+      "tag": "input",
+      "type": "text"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 1238,
+        "y": 34
+      },
+      "color": "#00000040",
+      "depth": 9,
+      "font": "12px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 12,
+        "x": 1238,
+        "y": 34
+      },
+      "color": "#00000040",
+      "depth": 10,
+      "font": "12px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1263,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button",
+      "text": "中 En"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1303,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 20,
+        "x": 1313,
+        "y": 29
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 20,
+        "x": 1313,
+        "y": 29
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1343,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "font": "16px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1355,
+        "y": 32
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "16px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1355,
+        "y": 32
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "16px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1383,
+        "y": 20
+      },
+      "color": "#1677ff",
+      "depth": 6,
+      "font": "14px 400",
+      "href": "https://github.com/ant-design/x",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 40,
+        "x": 1383,
+        "y": 20
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1396,
+        "y": 33
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 1396,
+        "y": 33
+      },
+      "color": "#000000e0",
+      "depth": 10,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 2551,
+        "w": 1440,
+        "x": 0,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 4,
+      "display": "flex",
+      "flex": "row",
+      "font": "14px 400",
+      "tag": "main"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 1290,
+        "w": 300,
+        "x": 0,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "display": "block",
+      "font": "14px 400",
+      "role": "menu",
+      "tag": "ul"
+    },
+    {
+      "background": "#e6f4ff",
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 84
+      },
+      "color": "#1677ff",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 84
+      },
+      "color": "#1677ff",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 128
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "总览"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 128
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/overview-cn",
+      "tag": "a",
+      "text": "总览"
+    },
+    {
+      "box": {
+        "h": 183,
+        "w": 291,
+        "x": 4,
+        "y": 184
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "通用 Bubble 对话气泡 Conversations 管理对话 Notification 系统通知 2.0.0"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 184
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "通用"
+    },
+    {
+      "box": {
+        "h": 128,
+        "w": 291,
+        "x": 4,
+        "y": 239
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 239
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Bubble 对话气泡"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 239
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/bubble-cn",
+      "tag": "a",
+      "text": "Bubble 对话气泡"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 283
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Conversations 管理对话"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 283
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/conversations-cn",
+      "tag": "a",
+      "text": "Conversations 管理对话"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 327
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Notification 系统通知 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 327
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/notification-cn",
+      "tag": "a",
+      "text": "Notification 系统通知 2.0.0"
+    },
+    {
+      "box": {
+        "h": 139,
+        "w": 291,
+        "x": 4,
+        "y": 383
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "唤醒 Welcome 欢迎 Prompts 提示集"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 383
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "唤醒"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 291,
+        "x": 4,
+        "y": 438
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 438
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Welcome 欢迎"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 438
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/welcome-cn",
+      "tag": "a",
+      "text": "Welcome 欢迎"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 482
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Prompts 提示集"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 482
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/prompts-cn",
+      "tag": "a",
+      "text": "Prompts 提示集"
+    },
+    {
+      "box": {
+        "h": 139,
+        "w": 291,
+        "x": 4,
+        "y": 538
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "确认 Think 思考过程 2.0.0 ThoughtChain 思维链 2.0.0"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 538
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "确认"
+    },
+    {
+      "box": {
+        "h": 84,
+        "w": 291,
+        "x": 4,
+        "y": 593
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 593
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Think 思考过程 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 593
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/think-cn",
+      "tag": "a",
+      "text": "Think 思考过程 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 637
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "ThoughtChain 思维链 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 637
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/thought-chain-cn",
+      "tag": "a",
+      "text": "ThoughtChain 思维链 2.0.0"
+    },
+    {
+      "box": {
+        "h": 183,
+        "w": 291,
+        "x": 4,
+        "y": 693
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "表达 Attachments 输入附件 Sender 输入框 Suggestion 快捷指令"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 693
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "表达"
+    },
+    {
+      "box": {
+        "h": 128,
+        "w": 291,
+        "x": 4,
+        "y": 748
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 748
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Attachments 输入附件"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 748
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/attachments-cn",
+      "tag": "a",
+      "text": "Attachments 输入附件"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 792
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Sender 输入框"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 792
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/sender-cn",
+      "tag": "a",
+      "text": "Sender 输入框"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 836
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Suggestion 快捷指令"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 836
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/suggestion-cn",
+      "tag": "a",
+      "text": "Suggestion 快捷指令"
+    },
+    {
+      "box": {
+        "h": 315,
+        "w": 291,
+        "x": 4,
+        "y": 892
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "反馈 Actions 操作列表 CodeHighlighter 代码高亮 2.1.0 FileCard 文件卡片 2.0.0 Folder 文件夹 2.4.0 Mermaid 图表工具 2.1.0 Sources 来源引用 2.0.0"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 892
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "反馈"
+    },
+    {
+      "box": {
+        "h": 260,
+        "w": 291,
+        "x": 4,
+        "y": 947
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 947
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Actions 操作列表"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 947
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/actions-cn",
+      "tag": "a",
+      "text": "Actions 操作列表"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 991
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "CodeHighlighter 代码高亮 2.1.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 991
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/code-highlighter-cn",
+      "tag": "a",
+      "text": "CodeHighlighter 代码高亮 2.1.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1035
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "FileCard 文件卡片 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1035
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/file-card-cn",
+      "tag": "a",
+      "text": "FileCard 文件卡片 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1079
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Folder 文件夹 2.4.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1079
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/folder-cn",
+      "tag": "a",
+      "text": "Folder 文件夹 2.4.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1123
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Mermaid 图表工具 2.1.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1123
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/mermaid-cn",
+      "tag": "a",
+      "text": "Mermaid 图表工具 2.1.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1167
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "Sources 来源引用 2.0.0"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1167
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/sources-cn",
+      "tag": "a",
+      "text": "Sources 来源引用 2.0.0"
+    },
+    {
+      "box": {
+        "h": 95,
+        "w": 291,
+        "x": 4,
+        "y": 1223
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "li",
+      "text": "其他 XProvider 全局化配置"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 287,
+        "x": 8,
+        "y": 1223
+      },
+      "color": "#00000073",
+      "depth": 8,
+      "font": "14px 400",
+      "role": "presentation",
+      "tag": "div",
+      "text": "其他"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 291,
+        "x": 4,
+        "y": 1278
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "display": "block",
+      "font": "14px 400",
+      "role": "group",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 283,
+        "x": 8,
+        "y": 1278
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "menuitem",
+      "tag": "li",
+      "text": "XProvider 全局化配置"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 235,
+        "x": 44,
+        "y": 1278
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/components/x-provider-cn",
+      "tag": "a",
+      "text": "XProvider 全局化配置"
+    },
+    {
+      "box": {
+        "h": 245,
+        "w": 148,
+        "x": 1284,
+        "y": 116
+      },
+      "color": "#000000e0",
+      "depth": 7,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 124
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "✨ 特性"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 151
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "安装"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 175
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "使用 npm 或 yarn 或 pnpm 或 bun 安装 或 utoo 安装"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 106,
+        "x": 1322,
+        "y": 198
+      },
+      "color": "#000000e0",
+      "depth": 12,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "浏览器引入"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 226
+      },
+      "color": "#031227e4",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "🧩 组件"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 253
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "⚡️ 对接模型/智能体服务，AI 对话数据流管理"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 280
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "✨ Markdown 高性能流式渲染引擎"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 307
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "按需加载"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 122,
+        "x": 1306,
+        "y": 334
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "12px 400",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a",
+      "text": "TypeScript"
+    },
+    {
+      "box": {
+        "h": 2551,
+        "w": 1140,
+        "x": 300,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 6,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "article"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 104,
+        "x": 348,
+        "y": 80
+      },
+      "color": "#000000e0",
+      "depth": 8,
+      "font": "32px 600",
+      "tag": "h1",
+      "text": "介绍"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 436,
+        "y": 93
+      },
+      "color": "#1677ff",
+      "depth": 12,
+      "font": "32px 600",
+      "href": "https://github.com/ant-design/x/edit/main/packages/x/components/introduce/index.zh-CN.md",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 436,
+        "y": 93
+      },
+      "color": "#00000073",
+      "depth": 13,
+      "font": "16px 600",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 436,
+        "y": 93
+      },
+      "color": "#00000073",
+      "depth": 14,
+      "font": "16px 600",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 149
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "@ant-design/x 是基于 Ant Design 设计体系的 React UI 库、专为 AI 驱动界面设计，开箱即用的智能对话组件、无缝集成 API 服务，快速搭建智能应用界面。"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 268
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "-特性",
+      "tag": "h2",
+      "text": "✨ 特性"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 268
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 168,
+        "w": 928,
+        "x": 348,
+        "y": 315
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 41,
+        "x": 594,
+        "y": 376
+      },
+      "color": "#1677ff",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "tag": "a",
+      "text": "X SDK"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 521
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "安装",
+      "tag": "h2",
+      "text": "安装"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 521
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 928,
+        "x": 348,
+        "y": 582
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "18px 500",
+      "id": "使用-npm-或-yarn-或-pnpm-或-bun-安装-或-utoo-安装",
+      "tag": "h3",
+      "text": "使用 npm 或 yarn 或 pnpm 或 bun 安装 或 utoo 安装"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 24,
+        "x": 324,
+        "y": 582
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 632
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "我们推荐使用 npm 或 yarn 或 pnpm 或 bun 或 utoo 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 29,
+        "x": 436,
+        "y": 637
+      },
+      "color": "#1677ff",
+      "depth": 11,
+      "font": "14px 500",
+      "href": "https://www.npmjs.com/",
+      "tag": "a",
+      "text": "npm"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 29,
+        "x": 486,
+        "y": 637
+      },
+      "color": "#1677ff",
+      "depth": 11,
+      "font": "14px 500",
+      "href": "https://github.com/yarnpkg/yarn/",
+      "tag": "a",
+      "text": "yarn"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 38,
+        "x": 536,
+        "y": 637
+      },
+      "color": "#1677ff",
+      "depth": 11,
+      "font": "14px 500",
+      "href": "https://pnpm.io/zh/",
+      "tag": "a",
+      "text": "pnpm"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 25,
+        "x": 596,
+        "y": 637
+      },
+      "color": "#1677ff",
+      "depth": 11,
+      "font": "14px 500",
+      "href": "https://bun.sh/",
+      "tag": "a",
+      "text": "bun"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 30,
+        "x": 642,
+        "y": 637
+      },
+      "color": "#1677ff",
+      "depth": 11,
+      "font": "14px 500",
+      "href": "https://github.com/umijs/mako/tree/next",
+      "tag": "a",
+      "text": "utoo"
+    },
+    {
+      "box": {
+        "h": 44,
+        "w": 928,
+        "x": 348,
+        "y": 702
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "role": "tablist",
+      "tag": "div",
+      "text": "npm yarn pnpm Bun utoo"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 54,
+        "x": 348,
+        "y": 710
+      },
+      "color": "#1677ff",
+      "depth": 13,
+      "font": "14px 400",
+      "id": "rc-tabs-0-tab-npm",
+      "role": "tab",
+      "tag": "div",
+      "text": "npm"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 348,
+        "y": 716
+      },
+      "color": "#1677ff",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 54,
+        "x": 434,
+        "y": 710
+      },
+      "color": "#000000e0",
+      "depth": 13,
+      "font": "14px 400",
+      "id": "rc-tabs-0-tab-yarn",
+      "role": "tab",
+      "tag": "div",
+      "text": "yarn"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 434,
+        "y": 716
+      },
+      "color": "#000000e0",
+      "depth": 16,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 63,
+        "x": 521,
+        "y": 710
+      },
+      "color": "#000000e0",
+      "depth": 13,
+      "font": "14px 400",
+      "id": "rc-tabs-0-tab-pnpm",
+      "role": "tab",
+      "tag": "div",
+      "text": "pnpm"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 521,
+        "y": 716
+      },
+      "color": "#000000e0",
+      "depth": 16,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 51,
+        "x": 615,
+        "y": 710
+      },
+      "color": "#000000e0",
+      "depth": 13,
+      "font": "14px 400",
+      "id": "rc-tabs-0-tab-bun",
+      "role": "tab",
+      "tag": "div",
+      "text": "Bun"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 615,
+        "y": 716
+      },
+      "color": "#000000e0",
+      "depth": 16,
+      "font": "14px 400",
+      "id": "Bun",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 55,
+        "x": 698,
+        "y": 710
+      },
+      "color": "#000000e0",
+      "depth": 13,
+      "font": "14px 400",
+      "id": "rc-tabs-0-tab-utoo",
+      "role": "tab",
+      "tag": "div",
+      "text": "utoo"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 698,
+        "y": 716
+      },
+      "color": "#000000e0",
+      "depth": 16,
+      "font": "14px 400",
+      "id": "utoo",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 52,
+        "w": 928,
+        "x": 348,
+        "y": 760
+      },
+      "color": "#000000e0",
+      "depth": 11,
+      "font": "14px 400",
+      "id": "rc-tabs-0-panel-npm",
+      "role": "tabpanel",
+      "tag": "div",
+      "text": "bash $ npm install @ant-design/x --save"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 840
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "如果你的网络环境不佳，推荐使用 cnpm。"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 36,
+        "x": 562,
+        "y": 845
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "14px 400",
+      "href": "https://github.com/cnpm/cnpm",
+      "tag": "a",
+      "text": "cnpm"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 928,
+        "x": 348,
+        "y": 897
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "18px 500",
+      "id": "浏览器引入",
+      "tag": "h3",
+      "text": "浏览器引入"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 24,
+        "x": 324,
+        "y": 897
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 947
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "在浏览器中使用 script 和 link 标签直接引入文件，并使用全局变量 antdx。"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 989
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "我们在 npm 发布包内的 dist 目录下提供了 antdx.js、antdx.min.js 和 antdx.min.js.map。"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 914,
+        "x": 362,
+        "y": 1031
+      },
+      "color": "#000000a6",
+      "depth": 10,
+      "font": "12.6px 400",
+      "tag": "p",
+      "text": "强烈不推荐使用已构建文件，这样无法按需加载，而且难以获得底层依赖模块的 bug 快速修复支持。"
+    },
+    {
+      "box": {
+        "h": 50,
+        "w": 914,
+        "x": 362,
+        "y": 1068
+      },
+      "color": "#000000a6",
+      "depth": 10,
+      "font": "12.6px 400",
+      "tag": "p",
+      "text": "注意：antdx.js 和 antdx.min.js 依赖 react、react-dom、dayjs antd @ant-design/cssinjs @ant-design/icons，请确保提前引入这些文件。"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 1157
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "-组件",
+      "tag": "h2",
+      "text": "🧩 组件"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 1157
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 1203
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "我们基于 RICH 交互范式，在不同的交互阶段提供了大量的原子组件，帮助你灵活搭建你的 AI 对话应用："
+    },
+    {
+      "box": {
+        "h": 196,
+        "w": 928,
+        "x": 348,
+        "y": 1245
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "display": "block",
+      "font": "14px 400",
+      "tag": "ul"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 1455
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "下面是使用原子组件搭建一个最简单的对话框的代码示例:"
+    },
+    {
+      "box": {
+        "h": 42,
+        "w": 463,
+        "x": 349,
+        "y": 1498
+      },
+      "color": "#000000",
+      "depth": 13,
+      "font": "13px 400",
+      "role": "tablist",
+      "tag": "div",
+      "text": "index.tsx app.tsx package.json index.css"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 90,
+        "x": 357,
+        "y": 1499
+      },
+      "color": "#000000",
+      "depth": 14,
+      "font": "13px 400",
+      "role": "tab",
+      "tag": "div",
+      "text": "index.tsx"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 70,
+        "x": 357,
+        "y": 1499
+      },
+      "color": "#808080",
+      "depth": 15,
+      "font": "13px 400",
+      "id": "/index.tsx-_R_dflbvkkua_-tab",
+      "tag": "button",
+      "text": "index.tsx"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 80,
+        "x": 447,
+        "y": 1499
+      },
+      "color": "#000000",
+      "depth": 14,
+      "font": "13px 400",
+      "role": "tab",
+      "tag": "div",
+      "text": "app.tsx"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 60,
+        "x": 447,
+        "y": 1499
+      },
+      "color": "#3973e0",
+      "depth": 15,
+      "font": "13px 400",
+      "id": "/app.tsx-_R_dflbvkkua_-tab",
+      "tag": "button",
+      "text": "app.tsx"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 116,
+        "x": 527,
+        "y": 1499
+      },
+      "color": "#000000",
+      "depth": 14,
+      "font": "13px 400",
+      "role": "tab",
+      "tag": "div",
+      "text": "package.json"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 96,
+        "x": 527,
+        "y": 1499
+      },
+      "color": "#808080",
+      "depth": 15,
+      "font": "13px 400",
+      "id": "/package.json-_R_dflbvkkua_-tab",
+      "tag": "button",
+      "text": "package.json"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 92,
+        "x": 643,
+        "y": 1499
+      },
+      "color": "#000000",
+      "depth": 14,
+      "font": "13px 400",
+      "role": "tab",
+      "tag": "div",
+      "text": "index.css"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 72,
+        "x": 643,
+        "y": 1499
+      },
+      "color": "#808080",
+      "depth": 15,
+      "font": "13px 400",
+      "id": "/index.css-_R_dflbvkkua_-tab",
+      "tag": "button",
+      "text": "index.css"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 457,
+        "w": 463,
+        "x": 349,
+        "y": 1541
+      },
+      "color": "#000000",
+      "depth": 12,
+      "font": "13px 400",
+      "id": "/app.tsx-_R_dflbvkkua_-tab-panel",
+      "role": "tabpanel",
+      "tag": "div",
+      "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 import React from 'react'; import { Bubble, Sender} from '@ant-design/x'; const messages = [ { content: 'Hello, Ant Design X!', role: 'user', key: 'user"
+    },
+    {
+      "box": {
+        "h": 457,
+        "w": 463,
+        "x": 349,
+        "y": 1541
+      },
+      "color": "#000000",
+      "depth": 13,
+      "font": "13px 400",
+      "role": "textbox",
+      "tag": "div",
+      "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 import React from 'react'; import { Bubble, Sender} from '@ant-design/x'; const messages = [ { content: 'Hello, Ant Design X!', role: 'user', key: 'user"
+    },
+    {
+      "box": {
+        "h": 425,
+        "w": 891,
+        "x": 373,
+        "y": 1557
+      },
+      "color": "#151515",
+      "depth": 16,
+      "font": "13px 400",
+      "role": "textbox",
+      "tag": "div",
+      "text": "import React from 'react'; import { Bubble, Sender} from '@ant-design/x'; const messages = [ { content: 'Hello, Ant Design X!', role: 'user', key: 'user_0', }, ]; const App = () => ( <div style={{ hei"
+    },
+    {
+      "background": "#efefef",
+      "box": {
+        "h": 28,
+        "w": 28,
+        "x": 1100,
+        "y": 1962
+      },
+      "color": "#808080",
+      "depth": 14,
+      "font": "13px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1106,
+        "y": 1968
+      },
+      "color": "#808080",
+      "depth": 15,
+      "font": "13px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#efefef",
+      "box": {
+        "h": 28,
+        "w": 131,
+        "x": 1136,
+        "y": 1962
+      },
+      "color": "#808080",
+      "depth": 14,
+      "font": "13px 400",
+      "href": "https://codesandbox.io/api/v1/sandboxes/define",
+      "tag": "a",
+      "text": "Open Sandbox"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1145,
+        "y": 1968
+      },
+      "color": "#808080",
+      "depth": 15,
+      "font": "13px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 12,
+        "w": 347,
+        "x": 833,
+        "y": 1960
+      },
+      "color": "#808080",
+      "depth": 14,
+      "font": "10.4px 400",
+      "tag": "p",
+      "text": "[2/3] Downloaded @ant-design/x-markdown (7/11)"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 2038
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "️-对接模型智能体服务ai-对话数据流管理",
+      "tag": "h2",
+      "text": "⚡️ 对接模型/智能体服务，AI 对话数据流管理"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 2038
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 2084
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "我们通过提供 X SDK，帮助你开箱即用的对接模型和智能体服务，更有好用的基础工具。"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 41,
+        "x": 436,
+        "y": 2089
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "14px 400",
+      "href": "https://x.ant.design/x-sdks/introduce-cn",
+      "tag": "a",
+      "text": "X SDK"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 2151
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "-markdown-高性能流式渲染引擎",
+      "tag": "h2",
+      "text": "✨ Markdown 高性能流式渲染引擎"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 2151
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 928,
+        "x": 348,
+        "y": 2197
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "我们提供专为流式内容优化的 X Markdown 渲染解决方案、强大的扩展能力，支持公式、代码高亮、mermaid 图表等、极致性能表现，确保流畅的内容展示体验。"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 80,
+        "x": 534,
+        "y": 2202
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "14px 400",
+      "href": "https://x.ant.design/x-markdowns/introduce-cn",
+      "tag": "a",
+      "text": "X Markdown"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 2291
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "按需加载",
+      "tag": "h2",
+      "text": "按需加载"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 2291
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 2338
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "@ant-design/x 默认支持基于 ES modules 的 tree shaking。"
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 928,
+        "x": 348,
+        "y": 2404
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "24px 500",
+      "id": "typescript",
+      "tag": "h2",
+      "text": "TypeScript"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 24,
+        "x": 324,
+        "y": 2404
+      },
+      "color": "#1677ff",
+      "depth": 10,
+      "font": "0px 500",
+      "href": "https://x.ant.design/components/introduce-cn",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 928,
+        "x": 348,
+        "y": 2451
+      },
+      "color": "#000000e0",
+      "depth": 9,
+      "font": "14px 400",
+      "tag": "p",
+      "text": "@ant-design/x 使用 TypeScript 进行书写并提供了完整的定义文件。"
+    }
+  ],
+  "page": {
+    "h": 2631,
+    "w": 1440
+  },
+  "text": "Ant Design X 设计 研发 组件 X Markdown X SDK X Card X Skill 演示 国内镜像 2.10.0 中 En 介绍 总览 通用 Bubble 对话气泡 Conversations 管理对话 Notification 系统通知 2.0.0 唤醒 Welcome 欢迎 Prompts 提示集 确认 Think 思考过程 2.0.0 ThoughtChain 思维链 2.0.0 表达 Attachments 输入附件 Sender 输入框 Suggestion 快捷指令 反馈 Actions 操作列表 CodeHighlighter 代码高亮 2.1.0 FileCard 文件卡片 2.0.0 Folder 文件夹 2.4.0 Mermaid 图表工具 2.1.0 Sources 来源引用 2.0.0 其他 XProvider 全局化配置 ✨ 特性 安装 使用 npm 或 yarn 或 pnpm 或 bun 安装 或 utoo 安装 浏览器引入 🧩 组件 ⚡️ 对接模型/智能体服务，AI 对话数据流管理 ✨ Markdown 高性能流式渲染引擎 按需加载 TypeScript 介绍 @ant-design/x 是基于 Ant Design 设计体系的 React UI 库、专为 AI 驱动界面设计，开箱即用的智能对话组件、无缝集成 API 服务，快速搭建智能应用界面。 ✨ 特性 🌈 源自企业级 AI 产品的最佳实践：基于 RICH 交互范式，提供卓越的 AI 交互体验 🧩 灵活多样的原子组件：覆盖绝大部分 AI 对话场景，助力快速构建个性化 AI 交互页面 ⚡ 开箱即用的模型对接能力：配合 X SDK 轻松对接模型和智能体服务 📦 丰富的样板间支持：提供多种模板，快速启动 LUI 应用开发 🛡 TypeScript 全覆盖：采用 TypeScript 开发，提供完整类型支持，提升开发体验与可靠性 🎨 深度主题定制能力：支持细粒度的样式调整，满足各种场景的个性化需求 安装 使用 npm 或 yarn 或 pnpm 或 bun 安装 或 utoo 安装 我们推荐使用 npm 或 yarn 或 pnpm 或 bun 或 utoo 的方式进行开发，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。 npm yarn pnpm Bun utoo bash $ npm install @ant-design/x --save 如果你的网络环境不佳，推荐使用 cnpm。 浏览器引入 在浏览器中使用 script 和 link 标签直接引入文件，并使用全局变量 antdx。 我们在 npm 发布包内的 dist 目录下提供了 antdx.js、antdx.min.js 和 antdx.min.js.map。 强烈不推荐使用已构建文件，这样无法按需加载，而且难以获得底层依赖模块的 bug 快速修复支持。 注意：antdx.js 和 antdx.min.js 依赖 react、react-dom、dayjs antd @ant-design/cssinjs @ant-design/icons，请确保提前引入这些文件。 🧩 组件 我们基于 RICH 交互范式，在不同的交互阶段提供了大量的原子组件，帮助你灵活搭建你的 AI 对话应用： 通用: Bubble - 消息气泡、Conversations - 会话管理、Notification - 系统通知 唤醒: Welcome - 欢迎、Prompts - 提示集 表达: Sender - 发送框、Attachment - 输入附件、Suggestion - 快捷指令 确认: Think - 思考过程、ThoughtChain - 思维链 反馈: Actions - 操作列表、FileCard - 文件卡片、Sources - 来源引用、CodeHighlighter - 代码高亮、Mermaid - 图表工具、Folder - 文件树 其他: XProvider - 全局配置：主题、国际化等 下面是使用原子组件搭建一个最简单的对话框的代码示例: index.tsx app.tsx package.json index.css 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 import React from 'react'; import { Bubble, Sender} from '@ant-design/x'; const messages = [ { content: 'Hello, Ant Design X!', role: 'user', key: 'user_0', }, ]; const App = () => ( <div style={{ height: '400px',display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}> <Bubble.List items={messages} /> <Sender /> </div> ); export default App; Open Sandbox [2/3] Downloaded @ant-design/x-markdown (7/11) ⚡️ 对接模型/智能体服务，AI 对话数据流管理 我们通过提供 X SDK，帮助你开箱即用的对接模型和智能体服务，更有好用的基础工具。 ✨ Markdown 高性能流式渲染引擎 我们提供专为流式内容优化的 X Markdown 渲染解决方案、强大的扩展能力，支持公式、代码高亮、mermaid 图表等、极致性能表现，确保流畅的内容展示体验。 按需加载 @ant-design/x 默认支持基于 ES modules 的 tree shaking。 TypeScript @ant-design/x 使用 TypeScript 进行书写并提供了完整的定义文件。",
+  "title": "介绍 - Ant Design X",
+  "url": "https://x.ant.design/components/introduce-cn",
+  "viewport": {
+    "h": 900,
+    "w": 1440
+  }
+}

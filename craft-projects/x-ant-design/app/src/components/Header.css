@@ -1,0 +1,196 @@
+.dx-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  padding: 0 24px;
+  background: #ffffff;
+}
+
+/* ---- logo ---- */
+.dx-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.88);
+}
+.dx-logo:hover {
+  color: rgba(0, 0, 0, 0.88);
+}
+.dx-logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.2px;
+}
+
+/* ---- center pill ---- */
+.dx-pill {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 48px;
+  margin: 0 auto;
+  padding: 0 22px;
+  background: #ffffff;
+  border-radius: 100px;
+  box-shadow:
+    rgba(0, 0, 0, 0.08) 0 6px 16px 0,
+    rgba(0, 0, 0, 0.12) 0 3px 6px -4px,
+    rgba(0, 0, 0, 0.05) 0 9px 28px 8px;
+  white-space: nowrap;
+}
+.dx-pill-search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+.dx-pill-item {
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.65);
+  transition: color 0.2s;
+}
+.dx-pill-item:hover {
+  color: rgba(0, 0, 0, 0.88);
+}
+.dx-pill-item.active {
+  color: rgba(0, 0, 0, 0.88);
+  font-weight: 500;
+}
+
+/* ---- right actions ---- */
+.dx-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+.dx-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 6px;
+  border: 0;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.dx-action:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.dx-version {
+  padding: 0 8px 0 10px;
+}
+.dx-action-divider {
+  width: 1px;
+  height: 20px;
+  margin: 0 4px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* ---- mobile elements hidden on desktop ---- */
+.dx-mobile,
+.dx-mobile-nav {
+  display: none;
+}
+
+/* ---- tablet & phone: logo pill + hamburger ---- */
+@media (max-width: 1199px) {
+  .dx-header {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    padding: 16px 24px;
+    gap: 0;
+  }
+
+  /* hide desktop pieces */
+  .dx-logo,
+  .dx-pill,
+  .dx-actions {
+    display: none;
+  }
+
+  .dx-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    width: 100%;
+    padding: 0 8px 0 18px;
+    background: #ffffff;
+    border-radius: 100px;
+    box-shadow:
+      rgba(0, 0, 0, 0.08) 0 6px 16px 0,
+      rgba(0, 0, 0, 0.12) 0 3px 6px -4px,
+      rgba(0, 0, 0, 0.05) 0 9px 28px 8px;
+  }
+  .dx-mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .dx-mobile-logo:hover {
+    color: rgba(0, 0, 0, 0.88);
+  }
+  .dx-mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+  }
+
+  .dx-mobile-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    height: 48px;
+    margin: 0 -24px;
+    padding: 0 24px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .dx-mobile-nav a {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.65);
+  }
+  .dx-mobile-nav a.active {
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 600;
+  }
+}
+
+/* ---- phone: tighter side padding ---- */
+@media (max-width: 575px) {
+  .dx-header {
+    padding: 12px 16px;
+  }
+  .dx-mobile-nav {
+    margin: 0 -16px;
+    padding: 0 20px;
+  }
+}

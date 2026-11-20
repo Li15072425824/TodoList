@@ -1,0 +1,56 @@
+{
+  "id": "ev_b52aabc97394f74475d56a92c8ed3d2824b41536c8e78576f66f52e923be1e0b",
+  "subject": {
+    "kind": "website",
+    "name": "http://127.0.0.1:58648/"
+  },
+  "operation": "web_page_states_capture",
+  "params": {
+    "max_states": 8,
+    "width": 1440
+  },
+  "result": {
+    "folder": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/states",
+    "found": 1,
+    "states": [
+      {
+        "changed": [
+          "expanded"
+        ],
+        "file": "state-1.png",
+        "index": 0,
+        "kind": "menu",
+        "label": "2.10.0",
+        "sha256": "201a293a3be8df52cbe268345e61be7e0d9604489a3d63eb5af517199b154401"
+      }
+    ],
+    "url": "http://127.0.0.1:58648/"
+  },
+  "summary": "Opened 1 of 1 control(s) on http://127.0.0.1:58648/; 1 pictured in /Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/checks/round-0/states.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "first_controls",
+      "message": "Only the first controls found are opened, one at a time; menus inside menus and hover-only menus are not."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 1,
+    "total": 1
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "http://127.0.0.1:58648/"
+    }
+  ],
+  "links": []
+}

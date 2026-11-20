@@ -1,0 +1,40 @@
+.ra-anchor {
+  width: 168px;
+  flex: 0 0 168px;
+  padding-top: 24px;
+}
+
+.ra-anchor-inner {
+  position: sticky;
+  top: 104px;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0 0 8px 18px;
+}
+
+.ra-link {
+  display: block;
+  padding: 4px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.88);
+  transition: color 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ra-link:hover {
+  color: #1677ff;
+}
+.ra-link-sub {
+  padding-left: 16px;
+}
+.ra-link[data-active] {
+  color: #1677ff;
+}
+
+/* ---- tablet & phone: hide the anchor rail ---- */
+@media (max-width: 1199px) {
+  .ra-anchor {
+    display: none;
+  }
+}

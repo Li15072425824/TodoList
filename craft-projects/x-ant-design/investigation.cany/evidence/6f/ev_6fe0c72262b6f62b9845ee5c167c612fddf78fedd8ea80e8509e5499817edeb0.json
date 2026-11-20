@@ -1,0 +1,54 @@
+{
+  "id": "ev_6fe0c72262b6f62b9845ee5c167c612fddf78fedd8ea80e8509e5499817edeb0",
+  "subject": {
+    "kind": "website",
+    "name": "https://x.ant.design/components/thought-chain-cn"
+  },
+  "operation": "web_page_states_capture",
+  "params": {
+    "max_states": 4,
+    "width": 390
+  },
+  "result": {
+    "folder": "/Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/capture/states-390",
+    "found": 1,
+    "states": [
+      {
+        "changed": [],
+        "file": "state-1.png",
+        "index": 0,
+        "kind": "menu",
+        "label": "",
+        "sha256": "eb418cc48f2adb318120d15ff56594412926d8fa05470363518b5001d4c6fc53"
+      }
+    ],
+    "url": "https://x.ant.design/components/thought-chain-cn"
+  },
+  "summary": "Opened 1 of 1 control(s) on https://x.ant.design/components/thought-chain-cn; 1 pictured in /Users/lixing/WorkRep/TodoList/craft-projects/x-ant-design/capture/states-390.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": true,
+    "engine": "cdp",
+    "engine_version": "1.3",
+    "host": "macos-aarch64"
+  },
+  "limitations": [
+    {
+      "code": "first_controls",
+      "message": "Only the first controls found are opened, one at a time; menus inside menus and hover-only menus are not."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 1,
+    "total": 1
+  },
+  "locations": [
+    {
+      "kind": "url",
+      "value": "https://x.ant.design/components/thought-chain-cn"
+    }
+  ],
+  "links": []
+}
